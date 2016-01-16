@@ -1,11 +1,8 @@
 .navigation {
   @include clearfix;
   @include transition(all, $base-duration);
-  padding: 3rem;
-
-  ul {
-    float: right;
-  }
+  padding: 2rem;
+  text-align: center;
 
   a {
     color: $medium-gray;

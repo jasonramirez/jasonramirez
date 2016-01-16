@@ -1,5 +1,5 @@
 .hero {
-  height: calc(100vh - 7.5rem);
+  height: calc(100vh - #{$navigation-height});
   max-height: 28rem;
   display: flex;
   justify-content: center;
