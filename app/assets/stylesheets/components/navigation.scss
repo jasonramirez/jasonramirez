@@ -1,0 +1,18 @@
+.navigation {
+  @include clearfix;
+  @include transition(all, $base-duration);
+  padding: 3rem;
+
+  ul {
+    float: right;
+  }
+
+  a {
+    color: $medium-gray;
+    text-transform: uppercase;
+  }
+
+  a:hover {
+    color: $action-color;
+  }
+}

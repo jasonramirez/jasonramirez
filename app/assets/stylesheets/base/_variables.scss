@@ -1,5 +1,5 @@
 // Typography
-$base-font-family: $helvetica;
+$base-font-family: "Yantramanav";
 $heading-font-family: $base-font-family;
 
 // Font Sizes
@@ -16,7 +16,7 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #477dca;
+$blue: #4d96f4;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
@@ -42,5 +42,5 @@ $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
 
 // Animations
-$base-duration: 150ms;
+$base-duration: 250ms;
 $base-timing: ease;
