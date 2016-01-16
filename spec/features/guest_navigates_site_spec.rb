@@ -8,7 +8,7 @@ RSpec.feature "Guest navigates site" do
       click_link "tinysplash"
       click_link t("navigation.works")
 
-      expect(page).to have_css "img.work"
+      expect(page).to have_css "ul.works"
     end
   end
 end

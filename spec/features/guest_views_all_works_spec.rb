@@ -5,8 +5,8 @@ RSpec.feature "Guest views all works" do
     it "shows the thumbnail" do
       visit "/"
 
-      expect(page).to have_css "img.work--tinysplash"
-      expect(page).to have_css "img.work--piggy"
+      expect(page).to have_css "li.work--tinysplash"
+      expect(page).to have_css "li.work--piggy"
     end
   end
 end

@@ -1,9 +1,7 @@
-= link_to "works/tinysplash", id: "tinysplash" do
-  = image_tag "tinysplash_icon.svg",
-    class: "work work--tinysplash",
-    alt: "Tinysplash"
-
-= link_to "works/piggy", id: "piggy" do
-  = image_tag "piggy_icon.svg",
-    class: "work work--piggy",
-    alt: "Piggy"
+ul.works
+  li.work.work--piggy
+    = link_to "works/piggy", id: "piggy" do
+      = image_tag "piggy_icon.svg", alt: "Piggy"
+  li.work.work--tinysplash
+    = link_to "works/tinysplash", id: "tinysplash" do
+      = image_tag "tinysplash_icon.svg", alt: "Tinysplash"
