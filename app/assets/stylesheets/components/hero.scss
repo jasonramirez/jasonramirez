@@ -1,0 +1,15 @@
+.hero {
+  height: calc(100vh - 7.5rem);
+  max-height: 28rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include media($x-large-screen) {
+    max-height: 42rem;
+  }
+
+  + .content--reading {
+    padding-top: 5rem;
+  }
+}

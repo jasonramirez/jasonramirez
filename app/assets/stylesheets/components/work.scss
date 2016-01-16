@@ -1,11 +1,16 @@
 ul.works {
-  max-width: $large-screen;
   margin: 0 auto;
+  max-width: $large-screen;
 }
 
 .work {
   @include span-columns(6);
   @include omega(2n);
+  @include transition(all, $base-duration);
+
+  &:hover {
+    transform: translateY(-0.125rem);
+  }
 
   a {
     border-radius: 3px;
@@ -14,12 +19,4 @@ ul.works {
     justify-content: center;
     min-height: 18rem;
   }
-}
-
-.work--piggy {
-  background-color: $piggy;
-}
-
-.work--tinysplash {
-  background-color: $tinysplash;
 }

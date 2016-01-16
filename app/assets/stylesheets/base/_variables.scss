@@ -1,13 +1,15 @@
 // Typography
-$base-font-family: "Yantramanav";
+$base-font-family: "Yantramanav", sans-serif;
 $heading-font-family: $base-font-family;
+$reading-font-family: "Merriweather", serif;
 
 // Font Sizes
-$base-font-size: 1em;
+$base-font-size: 1rem;
 
 // Line height
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
+$reading-line-height: 1.8;
 
 // Other Sizes
 $base-border-radius: 3px;

@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Yantramanav:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,300);
 
 body {
   color: $base-font-color;
@@ -15,9 +16,13 @@ h4,
 h5,
 h6 {
   font-family: $heading-font-family;
-  font-size: $base-font-size;
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: normal;
 }
 
 p {
