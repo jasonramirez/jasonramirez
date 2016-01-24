@@ -2,10 +2,9 @@
 
 @import "normalize-rails";
 @import "bourbon";
-@import "base/grid-settings";
 @import "neat";
 @import "refills/flashes";
 
-@import "non_rendering/variables";
+@import "non_rendering/**/*";
 @import "base/**/*";
 @import "components/**/*";
