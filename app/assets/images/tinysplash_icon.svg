@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>tinysplash_icon</title>
+    <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g>
-            <g transform="translate(94.030515, 87.947280) rotate(-20.000000) translate(-94.030515, -87.947280) translate(32.530515, -0.052720)">
-                <circle stroke="#4990E2" stroke-width="4.62" cx="30.3595486" cy="82.4074207" r="5.39"></circle>
-                <circle stroke="#48C4FA" stroke-width="4.62" cx="27.1209943" cy="3.89537809" r="3.85"></circle>
-                <circle stroke="#F6A623" stroke-width="4.62" cx="17.4355748" cy="56.873245" r="5.39"></circle>
-                <circle stroke="#F6A623" stroke-width="4.62" cx="89.8121399" cy="72.2964086" r="3.85"></circle>
-                <path d="M65.2205374,32.8647414 C63.9781018,31.5670115 63.0332305,27.4315518 63.0332305,27.4315518 C63.0332305,27.4315518 62.1159145,31.4288678 60.8872565,32.6575258 C59.5843293,33.960453 55.4384749,35.0263073 55.4384749,35.0263073 C55.4384749,35.0263073 59.51006,36.0527303 60.7758525,37.3359418 C62.0416451,38.6191533 63.0332301,42.7255763 63.0332301,42.7255763 C63.0332301,42.7255763 63.9781016,38.6830279 65.2205373,37.4317536 C66.462973,36.1804794 70.4878444,35.2179309 70.4878444,35.2179309 C70.4878444,35.2179309 66.4629731,34.1624712 65.2205374,32.8647414 Z" stroke="#4990E2" stroke-width="4.62" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M10.2878318,104.399697 C9.01644902,103.092975 8.04956344,98.9288598 8.04956344,98.9288598 C8.04956344,98.9288598 7.11087521,102.953874 5.85359111,104.191046 C4.52030743,105.503001 0.277860101,106.576241 0.277860101,106.576241 C0.277860101,106.576241 4.44430775,107.609776 5.73959158,108.901879 C7.03487542,110.193983 8.04956311,114.32886 8.04956311,114.32886 C8.04956311,114.32886 9.0164488,110.2583 10.2878316,108.998355 C11.5592145,107.738411 15.6778601,106.769192 15.6778601,106.769192 C15.6778601,106.769192 11.5592146,105.706419 10.2878318,104.399697 Z" stroke="#49C4F9" stroke-width="4.62" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M63.1399999,85.48 L63.1399999,154.227245 C63.1399999,154.227245 63.1623502,175.559998 38.7953543,175.56 C14.4283583,175.560002 13.86,154.227245 13.86,154.227245 L13.86,131.28641" stroke="#2A2A2A" stroke-width="12.32" stroke-linecap="round" stroke-linejoin="round"></path>
-                <circle stroke="#2A2A2A" stroke-width="12.32" cx="63.14" cy="70.08" r="10.78"></circle>
-                <path d="M49.36,99.34 L76.9199995,99.34" stroke="#2A2A2A" stroke-width="12.32" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M112.180203,85.238152 L112.180203,153.985397 C112.180203,153.985397 112.202553,175.31815 87.8355573,175.318152 C63.4685613,175.318154 62.900203,153.985397 62.900203,153.985397 L62.900203,131.044562" stroke="#2A2A2A" stroke-width="12.32" stroke-linecap="round" stroke-linejoin="round" transform="translate(87.540203, 130.278152) scale(-1, 1) translate(-87.540203, -130.278152) "></path>
-                <path d="M101.08,138.6 L111.86,129.36 L122.64,138.6" stroke="#2A2A2A" stroke-width="12.32" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3.08,138.6 L13.86,129.36 L24.64,138.6" stroke="#2A2A2A" stroke-width="12.32" stroke-linecap="round" stroke-linejoin="round"></path>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="tinysplash_icon" sketch:type="MSArtboardGroup" stroke="#000000">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(99.500000, 99.500000) rotate(-20.000000) translate(-99.500000, -99.500000) translate(52.000000, 24.000000)">
+                <g id="Path-85-+-Path-82-+-Path-83" transform="translate(6.617862, 49.300368)" stroke-width="11.52" sketch:type="MSShapeGroup">
+                    <path d="M3.37507799e-13,66.1795795 L7.95977069,57.6516985 L15.9195414,66.1795795" id="Path-85" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M55.2706372,24.728006 L55.2706372,79.8983768 C55.2706372,79.8983768 55.2920685,99.9322682 31.9270497,99.9322702 C8.56203099,99.9322722 8.01704372,79.8983768 8.01704372,79.8983768 L8.01704372,58.3543141" id="Path-82" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <ellipse id="Oval-27" cx="55.6440619" cy="11.4180341" rx="10.0757576" ry="10.0666667"></ellipse>
+                </g>
+                <ellipse id="Oval-19" stroke-width="4.32" sketch:type="MSShapeGroup" cx="27.5332826" cy="76.1530612" rx="7.1969697" ry="7.19047619"></ellipse>
+                <ellipse id="Oval-19" stroke-width="4.32" sketch:type="MSShapeGroup" cx="70.291728" cy="3.74114223" rx="3.59848485" ry="3.5952381"></ellipse>
+                <ellipse id="Oval-19" stroke-width="4.32" sketch:type="MSShapeGroup" cx="27.2117859" cy="40.5643273" rx="5.75757576" ry="5.75238095"></ellipse>
+                <ellipse id="Oval-19" stroke-width="4.32" sketch:type="MSShapeGroup" cx="91.0704439" cy="71.6193531" rx="3.59848485" ry="3.5952381"></ellipse>
+                <ellipse id="Oval-19" stroke-width="4.32" sketch:type="MSShapeGroup" cx="83.0684089" cy="31.0476612" rx="9.35606061" ry="9.34761905"></ellipse>
             </g>
         </g>
     </g>
