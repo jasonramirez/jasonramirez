@@ -4,7 +4,8 @@
 @import "bourbon";
 @import "base/grid-settings";
 @import "neat";
-@import "base/base";
 @import "refills/flashes";
 
+@import "non_rendering/variables";
+@import "base/**/*";
 @import "components/**/*";
