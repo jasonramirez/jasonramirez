@@ -4,9 +4,16 @@
   padding: 2rem;
   text-align: center;
 
+  .logo {
+    float: left;
+  }
+
+  .links {
+    float: right;
+  }
+
   a {
     color: $medium-gray;
-    text-transform: uppercase;
   }
 
   a:hover {
