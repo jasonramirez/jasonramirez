@@ -1,3 +1,10 @@
+section.hero
+  div
+    = inline_svg "maker"
+    h3
+      = t(".intro_text")
+    .button.button--shadow
+      = t(".view_work")
 ul.works
   li.work
     = link_to "works/piggy", id: "piggy" do

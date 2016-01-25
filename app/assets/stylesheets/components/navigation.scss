@@ -1,6 +1,7 @@
 .navigation {
   @include clearfix;
   @include transition(all, $base-duration);
+  @include position(absolute, 0px 0px null 0px);
   padding: 2rem;
   text-align: center;
 

@@ -37,7 +37,7 @@ $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: #fcfcfc;
+$base-background-color: rgba(black, 0.0075);
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms
