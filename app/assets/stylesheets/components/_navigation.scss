@@ -23,4 +23,9 @@
   a:hover {
     color: $action-color;
   }
+
+  li {
+    display: inline;
+    margin-left: $base-spacing;
+  }
 }

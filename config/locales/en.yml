@@ -19,9 +19,14 @@ en:
     application: Jasonramirez
 
   navigation:
+    process: process
     works: Works
 
   welcome:
     index:
       intro_text: Lean Product Designer, Problem Solver, Maker & Consultant
       work: Work
+
+  process:
+    show:
+      title: Process
