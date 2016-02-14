@@ -24,12 +24,15 @@ $navigation-height: 6rem;
 $black: #000;
 $blue: #4d96f4;
 $dark-gray: #313030;
-$medium-gray: #999;
+$green: #47e65d;
 $light-gray: #ddd;
+$medium-gray: #999;
 
 // Font Colors
 $base-font-color: $dark-gray;
-$action-color: $blue;
+
+// Colors In Use
+$action-color: $green;
 
 // Border
 $base-border-color: $light-gray;
