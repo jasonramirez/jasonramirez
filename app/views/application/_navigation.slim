@@ -1,8 +1,9 @@
 header
-  nav.navigation
+  nav.navigation.content
     ul.logo
       li
-        = image_tag "logo.svg"
+        = link_to root_path do
+          = image_tag "logo.svg"
     ul.links
       li
         = link_to t("navigation.works"), root_path
