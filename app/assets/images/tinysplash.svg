@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="410px" height="240px" viewBox="0 0 410 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>tinysplash</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="tinysplash" sketch:type="MSArtboardGroup" stroke="#000000">
+            <g sketch:type="MSLayerGroup" transform="translate(206.879385, 112.815960) rotate(-20.000000) translate(-206.879385, -112.815960) translate(175.879385, 60.315960)">
+                <g id="hook" transform="translate(0.597672, 34.281713)" stroke-width="8" sketch:type="MSShapeGroup">
+                    <path d="M2.27373675e-13,46.0189129 L5.52994595,40.0889294 L11.0598919,46.0189129" id="Path-85" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M38.398548,17.194971 L38.398548,55.558474 C38.398548,55.558474 38.4134371,69.4893256 22.1808977,69.489327 C5.94835837,69.4893283 5.56973564,55.558474 5.56973564,55.558474 L5.56973564,40.5775032" id="Path-82" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <circle id="Oval-27" cx="38.6579799" cy="7.93969262" r="7"></circle>
+                </g>
+                <g id="bubbles" transform="translate(10.000000, -0.000000)" stroke-width="3" sketch:type="MSShapeGroup">
+                    <circle id="Oval-19" cx="5.1283858" cy="52.9541154" r="5"></circle>
+                    <circle id="Oval-19" cx="34.8342531" cy="2.60145652" r="2.5"></circle>
+                    <circle id="Oval-19" cx="4.90503019" cy="28.2069826" r="4"></circle>
+                    <circle id="Oval-19" cx="49.2699926" cy="49.8015369" r="2.5"></circle>
+                    <circle id="Oval-19" cx="43.7106841" cy="21.5894333" r="6.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
