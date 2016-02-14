@@ -5,6 +5,7 @@ $reading-font-family: "Merriweather", serif;
 
 // Font Sizes
 $base-font-size: 1rem;
+$small-font-size: 0.85rem;
 
 // Line height
 $base-line-height: 1.5;
@@ -14,13 +15,15 @@ $reading-line-height: 1.8;
 // Other Sizes
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
+$large-spacing: $base-line-height * 2em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
-$navigation-height: 5.5rem;
+$navigation-height: 6rem;
 
 // Colors
+$black: #000;
 $blue: #4d96f4;
-$dark-gray: #333;
+$dark-gray: #313030;
 $medium-gray: #999;
 $light-gray: #ddd;
 
@@ -33,7 +36,7 @@ $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: rgba(black, 0.0075);
+$base-background-color: #fff;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms

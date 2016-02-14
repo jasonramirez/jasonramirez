@@ -1,0 +1,26 @@
+ul.works {
+  @include clearfix;
+  margin: 0 auto;
+  max-width: $large-screen;
+  padding-bottom: 6rem;
+}
+
+.work {
+  @include transition(all, $base-duration);
+
+  &:hover {
+    transform: translateY(-0.25rem);
+    opacity: 0.65;
+  }
+
+  @include media($medium-screen) {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    min-height: 9rem;
+  }
+}

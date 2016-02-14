@@ -1,0 +1,43 @@
+.hero {
+  align-items: center;
+  display: flex;
+  height: calc(100vh);
+  text-align: left;
+}
+
+.hero--mini {
+  background: $light-gray;
+  height: calc(100vh - #{$navigation-height});
+  max-height: 28rem;
+  margin-top: $navigation-height;
+
+  @include media($large-screen) {
+    margin-top: calc(#{$navigation-height} + #{$base-spacing});
+  }
+
+  @include media($x-large-screen) {
+    max-height: 42rem;
+  }
+
+  + .content--reading {
+    padding-top: 5rem;
+  }
+}
+
+.hero__content {
+  svg {
+    @include transition(all, $base-duration);
+    height: auto;
+    max-width: 60%;
+
+    @include media($medium-screen) {
+      max-width: 100%;
+    }
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+  }
+}
