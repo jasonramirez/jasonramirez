@@ -1,7 +1,6 @@
 .navigation {
   @include clearfix;
   @include transition(all, $base-duration);
-  @include position(absolute, 0 0 null 0);
 
   .logo {
     float: left;
@@ -9,14 +8,18 @@
 
   .links {
     float: right;
+
+    a {
+      margin-left: $base-spacing;
+    }
   }
 
   a {
+    character-spacing: 0.05rem;
     color: $dark-gray;
+    font-family: $heading-font-family;
     font-size: $small-font-size;
     font-weight: bold;
-    character-spacing: 0.05rem;
-    font-family: $heading-font-family;
     text-transform: uppercase;
   }
 
@@ -26,6 +29,5 @@
 
   li {
     display: inline;
-    margin-left: $base-spacing;
   }
 }
