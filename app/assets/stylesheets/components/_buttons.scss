@@ -1,6 +1,7 @@
 .button {
   @include transition(all, 0.5s);
-  background-color: $blue;
+  font-family: $button-font-family;
+  background-color: $green;
   border-radius: 100px;
   color: white;
   display: inline-block;

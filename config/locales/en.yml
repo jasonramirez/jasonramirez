@@ -25,8 +25,9 @@ en:
   welcome:
     index:
       intro_text: Jason Ramirez is a Lean Product Designer, Problem Solver, Maker & Consultant
-      work: Work
+      view_work: View Work
 
   process:
     show:
-      title: Process
+      title: Lean and Agile
+      process: My Process

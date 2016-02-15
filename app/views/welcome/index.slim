@@ -1,13 +1,11 @@
 section.hero
   div.content.hero__content
     = image_tag "landing_heading.svg", alt: "Design simple."
-    h4
-      = t(".intro_text")
-section.content
-  .baseline
-    = t(".work")
+    h4= t(".intro_text")
+    a.button href="#works"
+      = t(".view_work")
 
-ul.works
+ul.works#works
   li.work
     = link_to "works/piggy", id: "piggy" do
       = image_tag "piggy.svg", alt: "Piggy"
