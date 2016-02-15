@@ -1,0 +1,4 @@
+.site-header {
+  @include position(fixed, 0 0 null 0);
+  background-color: transparentize($white, 0.0125);
+}
