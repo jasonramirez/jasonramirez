@@ -1,6 +1,11 @@
 .navigation {
   @include clearfix;
   @include transition(all, $base-duration);
+  padding: $base-spacing;
+
+  @include media($large-screen) {
+    padding: $large-spacing;
+  }
 
   .logo {
     float: left;
