@@ -1,0 +1,24 @@
+.step-list {
+}
+
+.step-list__item {
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 1rem;
+
+  &::after {
+    @include position(absolute, 0.3rem null null 0);
+    @include size(1rem);
+    border-radius: 100%;
+    border: solid 0.25rem black;
+    content: "";
+  }
+
+  &:not(:last-child)::before {
+    @include position(absolute, 1.125rem null null 0.4rem);
+    background: black;
+    content: "";
+    height: 2.125rem;
+    width: 0.25rem;
+  }
+}
