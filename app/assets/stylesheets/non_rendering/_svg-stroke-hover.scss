@@ -1,0 +1,13 @@
+@mixin svg-stroke-color($color, $hover-color) {
+  path {
+    @include transition(stroke, $base-duration);
+    stroke: $color;
+  }
+
+  &:hover {
+    path {
+      @include transition(stroke, $base-duration);
+      stroke: $hover-color;
+    }
+  }
+}
