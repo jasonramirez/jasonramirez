@@ -31,7 +31,7 @@ p {
 }
 
 a {
-  color: $action-color;
+  color: shade($action-color, 15%);
   text-decoration: none;
   transition: color $base-duration $base-timing;
 
