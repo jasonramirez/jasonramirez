@@ -2,8 +2,7 @@ section.hero
   div.content.hero__content
     = image_tag "landing_heading.svg", alt: "Design simple."
     h4= t(".intro_text")
-    a.button href="#works"
-      = t(".view_work")
+    = link_to t(".view_work"), "#works", class: "button", "data-smooth-scroll": ""
 
 ul.works#works
   li.work

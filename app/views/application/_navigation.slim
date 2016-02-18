@@ -6,6 +6,9 @@ header.site-header
           = inline_svg "logo.svg"
     ul.links
       li
-        = link_to t("navigation.works"), root_path
+        - if current_page?(root_path)
+          = link_to t("navigation.works"), "#works", "data-smooth-scroll": ""
+        - else
+          = link_to t("navigation.works"), root_path(anchor: "works")
       li
         = link_to t("navigation.process"), process_path
