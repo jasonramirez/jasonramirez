@@ -13,8 +13,8 @@
   text-transform: uppercase;
 
   &:hover {
-    background-color: $black;
-    color: white;
+    border-color: $black;
+    color: $black;
     cursor: pointer;
   }
 }
