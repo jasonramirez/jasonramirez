@@ -24,6 +24,8 @@ gem "redcarpet"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "slim"
+gem "sprockets"
+gem "sprockets-es6"
 gem "title"
 gem "uglifier"
 
