@@ -1,9 +1,9 @@
 .site-header {
   @include position(fixed, 0 0 null 0);
   @include transition(background-color $base-duration);
-  background-color: transparentize($white, 0.0125);
+  background-color: transparentize($base-background-color, 0.0125);
 
   @include media($x-large-screen) {
-    background-color: transparentize($white, 0.05);
+    background-color: transparentize($base-background-color, 0.05);
   }
 }
