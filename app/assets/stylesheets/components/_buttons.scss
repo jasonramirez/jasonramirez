@@ -3,8 +3,8 @@
   font-family: $button-font-family;
   background-color: transparent;
   border-radius: 100px;
-  border: 2px solid $action-color;
-  color: $action-color;
+  border: 2px solid $black;
+  color: $black;
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 700;
@@ -13,8 +13,9 @@
   text-transform: uppercase;
 
   &:hover {
-    border-color: $black;
-    color: $black;
+    @include transition(all, 0.5s);
     cursor: pointer;
+    color: $action-color;
+    border-color: $action-color;
   }
 }
