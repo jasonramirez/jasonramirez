@@ -1,12 +1,13 @@
 // Typography
 $base-font-family: "Open Sans", sans-serif;
-$button-font-family: "avenir-light";
-$heading-font-family: "avenir";
+$heading-font-family: "avenir", sans-serif;
+$button-font-family: $heading-font-family;
 $reading-font-family: "Merriweather", serif;
 
 // Font Sizes
 $base-font-size: 1rem;
 $small-font-size: 0.85rem;
+$reading-font-size: 1.1rem;
 
 // Line height
 $base-line-height: 1.5;
@@ -15,17 +16,18 @@ $reading-line-height: 1.8;
 
 // Other Sizes
 $base-border-radius: 3px;
-$base-spacing: $base-line-height * 1em;
-$large-spacing: $base-line-height * 2em;
+$base-spacing: $base-line-height * 1rem;
+$large-spacing: $base-line-height * 2rem;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
-$navigation-height: 6rem;
+$navigation-height: 8rem;
 
 // Colors
 $black: #000;
 $blue: #4d96f4;
 $dark-gray: #313030;
-$green: #55F687;
+$green: #2ec65d;
+$electric-green: #2cff90;
 $light-gray: #ddd;
 $medium-gray: #999;
 $white: #fff;
@@ -34,14 +36,14 @@ $white: #fff;
 $base-font-color: $dark-gray;
 
 // Colors In Use
-$action-color: $green;
+$action-color: $electric-green;
 
 // Border
 $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: lighten($light-gray, 12%);
+$base-background-color: $white;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms
