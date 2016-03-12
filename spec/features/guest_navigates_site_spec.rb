@@ -6,7 +6,7 @@ RSpec.feature "Guest navigates site" do
       it "takes you to that project's page" do
         visit root_path
 
-        click_link "piggy"
+        page.find(:xpath, ".//a[@href='works/piggy']").click
 
         expect(page).to have_css "body.works-piggy"
       end
@@ -16,7 +16,9 @@ RSpec.feature "Guest navigates site" do
       it "takes you to that process page" do
         visit root_path
 
-        click_link "process"
+        within ".site-header" do
+          click_link t("navigation.process")
+        end
 
         expect(page).to have_text t("process.show.title")
       end

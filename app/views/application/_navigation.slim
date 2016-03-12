@@ -2,12 +2,11 @@ header.site-header
   nav.navigation
     ul.logo
       li
-        = link_to root_path do
-          = inline_svg "logo.svg"
+        = link_to "Jason Ramirez", root_path
     ul.links
       li
         - if current_page?(root_path)
-          = link_to t("navigation.works"), "#works", "data-smooth-scroll": ""
+          = link_to t("navigation.works"), "#works", "data-smooth-scroll": true
         - else
           = link_to t("navigation.works"), root_path(anchor: "works")
       li

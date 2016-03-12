@@ -1,10 +1,12 @@
 .navigation {
   @include clearfix;
   @include transition(all, $base-duration);
+  margin: 0 auto;
+  max-width: $large-screen;
   padding: $base-spacing;
 
   @include media($large-screen) {
-    padding: $large-spacing;
+    padding: $large-spacing 0;
   }
 
   .logo {
@@ -38,5 +40,10 @@
 
   li {
     display: inline;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
   }
 }

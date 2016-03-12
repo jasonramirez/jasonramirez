@@ -19,13 +19,8 @@ en:
     application: Jasonramirez
 
   navigation:
-    process: process
+    process: Process
     works: Works
-
-  welcome:
-    index:
-      intro_text: Jason Ramirez is a Lean Product Designer, Problem Solver, Maker & Consultant
-      view_work: View Work
 
   process:
     show:
