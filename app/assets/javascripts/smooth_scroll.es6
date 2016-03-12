@@ -1,6 +1,8 @@
 class SmoothScroll {
   get position() {
-    return $(this.target).offset().top;
+    const navHeight = $(".site-header").height();
+
+    return $(this.target).offset().top - navHeight;
   }
 
   get target() {
