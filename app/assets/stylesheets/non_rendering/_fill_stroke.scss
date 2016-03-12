@@ -1,0 +1,25 @@
+@mixin svg-stroke($color, $hover-color) {
+  ellipse,
+  path {
+    stroke: $black;
+  }
+
+  &:hover {
+    ellipse,
+    path {
+      stroke: $action-color;
+    }
+  }
+}
+
+@mixin svg-filled($color, $hover-color) {
+  path {
+    fill: $black;
+  }
+
+  &:hover {
+    path {
+      fill: $action-color;
+    }
+  }
+}

@@ -22,22 +22,30 @@
   }
 }
 
-.hero__content {
-  img {
-    @include transition(all, $base-duration);
-    margin-bottom: 1rem;
-    max-width: 70%;
+.hero--landing {
+  text-align: center;
 
-    @include media($large-screen) {
-      max-width: 100%;
-    }
+  .button {
+    font-size: 1.25rem;
+    margin-top: 4rem;
+  }
+}
+
+.hero__image {
+  @include transition(max-width, $base-duration);
+  margin: 0 auto;
+  display: block;
+  max-width: 100%;
+
+  @include media($medium-screen) {
+    max-width: 75%;
   }
 
-  h4 {
-    font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: 0.05rem;
-    line-height: $base-line-height;
-    margin-bottom: 2rem;
+  path {
+    @include transition(fill, 500ms);
+  }
+
+  #simple:hover path {
+    fill: $action-color;
   }
 }

@@ -1,28 +1,27 @@
-section.hero
-  div.content.hero__content
-    = image_tag "landing_heading.svg", alt: "Design simple."
-    h4= t(".intro_text")
-    = link_to t(".view_work"), "#works", class: "button", "data-smooth-scroll": ""
+section.hero.hero--landing
+  div.content
+    = link_to "#works", "data-smooth-scroll": true do
+      = inline_svg "landing_heading.svg", alt: "Simple", class: "hero__image"
 
 ul.works#works
   li.work
-    = link_to "works/piggy", id: "piggy" do
-      = image_tag "piggy.svg", alt: "Piggy"
+    = link_to "works/piggy", class: "stroked" do
+      = inline_svg "piggy.svg"
   li.work
-    = link_to "works/tinysplash", id: "tinysplash" do
-      = image_tag "tinysplash.svg", alt: "Tinysplash"
+    = link_to "works/tinysplash", class: "stroked" do
+      = inline_svg "tinysplash.svg"
   li.work
-    = link_to "works/project_underdog", id: "project_underdog" do
-      = image_tag "project_underdog.svg", alt: "Project Underdog"
+    = link_to "works/project_underdog", class: "stroked" do
+      = inline_svg "project_underdog.svg"
   li.work
-    = link_to "works/frida_and_fred", id: "frida_and_fred" do
-      = image_tag "frida_and_fred.svg", alt: "Frida & Fred"
+    = link_to "works/frida_and_fred", class: "stroked" do
+      = inline_svg "frida_and_fred.svg"
   li.work
-    = link_to "works/penner", id: "penner" do
-      = image_tag "penner.svg", alt: "Penner"
+    = link_to "works/penner", class: "stroked" do
+      = inline_svg "penner.svg"
   li.work
-    = link_to "works/ouch.svg", id: "ouch" do
-      = image_tag "ouch.svg", alt: "Ouch"
+    = link_to "works/ouch", class: "stroked" do
+      = inline_svg "ouch.svg"
   li.work
-    = link_to "works/repor.svg", id: "repor" do
-      = image_tag "repor.svg", alt: "Repor"
+    = link_to "works/repor", class: "filled" do
+      = inline_svg "repor.svg"

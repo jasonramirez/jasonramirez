@@ -1,26 +1,32 @@
 ul.works {
   @include clearfix;
-  margin: -($navigation-height) auto 0;
+  margin: 0 auto 6rem;
   max-width: $large-screen;
-  padding: $navigation-height 0 6rem;
 }
 
 .work {
-  @include transition(all, $base-duration);
-
-  &:hover {
-    opacity: 0.65;
-    transform: translateY(-0.25rem);
-  }
+  @include transition(transform $base-duration);
+  text-align: center;
 
   @include media($medium-screen) {
     @include omega(2n);
     @include span-columns(6);
   }
 
-  a {
-    display: flex;
-    justify-content: center;
-    min-height: 9rem;
+  &:hover {
+    transform: translateY(-0.25rem);
   }
+
+  ellipse,
+  path {
+    @include transition(stroke $base-duration, fill $base-duration);
+  }
+}
+
+.stroked {
+  @include svg-stroke($black, $action-color);
+}
+
+.filled {
+  @include svg-filled($black, $action-color);
 }
