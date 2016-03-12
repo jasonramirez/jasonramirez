@@ -1,0 +1,20 @@
+.site-footer {
+  border-top: 1px solid lighten($light-gray, 6%);
+  padding: ($large-spacing * 2) 0;
+  text-align: center;
+
+  a {
+    margin: 0 $small-spacing;
+  }
+
+  small {
+    display: block;
+    margin-top: $base-spacing;
+  }
+}
+
+.site-footer__image {
+  margin-bottom: 1rem;
+  max-height: 2rem;
+  max-width: 8rem;
+}

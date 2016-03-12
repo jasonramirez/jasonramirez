@@ -30,7 +30,9 @@ RSpec.feature "Guest navigates site" do
       it "takes you to the home page" do
         visit works_piggy_path
 
-        click_link t("navigation.works")
+        within ".site-header" do
+          click_link t("navigation.works")
+        end
 
         expect(page).to have_css "body.welcome"
       end
