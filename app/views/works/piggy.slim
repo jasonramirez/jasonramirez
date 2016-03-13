@@ -1,28 +1,224 @@
 section.hero.hero--mini
-  .content.content--centered.hero__content
-    = image_tag "piggy.svg", alt: "Piggy"
+  = image_tag "works/piggy-phone.png", alt: "Piggy"
 
 section.content.content--reading
   markdown:
-    #Piggy
+    # Piggy
 
-    Piggy is designed to change the way people use technology to faciliate their
-    relationship with money; specifically saving money.
+    The internet is filled with convenient and user friendly interactions that
+    encourage you to spend money: one-click purchasing, recommendation engines,
+    wish-lists, registries, SMS purchasing, etc. There are loads of buttons that
+    help you spend money.  However, there are very few buttons to help you save.
 
-    The internet is an amazing place filled with the most convenient and user
-    friendly interactions that encourage you to spend money: one-click
-    purchasing, recommendation engines, wish-lists, registries, text based
-    purchased confirmations, etc. There are loads of buttons that help you spend
-    money. However, there are very few buttons to help you save.
+    Piggy aims to bring the save button to the forefront, and to help people
+    develop better money saving habits one day at a time. Piggy brings awareness
+    to your daily spending and provides a nudge to get you to save your _extra_
+    cash. Piggy helps you realize your saving potential and provides an easy way
+    to put a little bit away each day.
 
-    Piggy aims to bring the "save" button to the forefront. Piggy operates on a
-    simple principle, build the habbit of saving money by improving your relationship
-    with money on a daily basis.
+    # The Problem
 
-    The application assumes no judgement. You tell piggy how your self-alloted
-    daily spending allowance (not including bills), what bank account you use
-    for spending cash, what time you want Piggy to remind you of how much
-    spending cash you have left over from the day before, and what savings
-    account you want to transfer your money into.
+    A friend and I got into a discussion about how difficult it is to save
+    money.  Our conversation shifted to complaining about how our culture is a
+    spending culture, and we are pushed to spend but not to save.
 
-    #Prototype
+    Spending occurs frequently (daily), while saving is done out of each
+    paycheck (perhaps bi-weekly or monthly).  We are very good at spending
+    because we practice it daily, but we save with far less frequency. As a
+    result, the act of spending feels easy and seamless, while saving money
+    feels like a chore and takes effort.
+
+    Moreover, we both didn't have confidence in our ability to save. We felt
+    that we didn't have the money needed generate real savings, and our
+    spending habits were bad. We recalled that when we did have _extra_ cash,
+    we usually ended up spending it on socializing or superfluous things.
+
+    We came up with this problem statement:
+
+    _**I want to save money, but my current saving habits and lack of extra cash
+    make it very difficult to save money.**_
+
+    # User Research
+
+    Before we started to dig into solutions, we wanted to see if other people
+    had a similar relationship with money and/or related to our problem
+    statement. We created a short list of questions to ask people.  We sent 5
+    online surveys, and did 5 interviews in person. Here are some of the
+    questions from the survey that gave us some insights into people's
+    relationship with saving money:
+
+    * Do you have good saving habits?
+    * Does anyone remind you to save money?
+    * Are you happy with how much you save?
+    * How often do you save money?
+    * Why do/don't you save money?
+    * How do you save money? Go to the bank, automatic withdraw, etc.?
+    * How often to you spend money?
+    * Do you budget? If yes, daily, weekly or monthly?
+    * Do you have extra spendable income?
+
+    Notable findings:
+
+    * **Most** people desired to save more money.
+    * **Most** people spend money every day.
+    * **Most** people did have spendable income.
+    * **Half** of the people said they did not have good saving habits.
+    * **Some** people said they didn't budget.
+    * **Few** people said they spend "too much".
+    * **Few** people said they are often encouraged by others to save money.
+    * **Few** people saved directly out of their paycheck.
+
+    On top of the findings above, we got many great responses. When we started
+    to analyze the responses it appeared that a significant portion of the group
+    didn't believe they had good spending habits, saved only when they were
+    paid, desired to save more, spent money every day, had extra spending cash
+    and were not often encouraged to save money.
+
+    We thought these responses validated that **people wanted to save money,
+    but their saving habits were bad**. We observed from one in-person interview
+    that although that person had extra income, they didn't save it because it
+    was viewed as money they _could spend_. We noted this because there wasn't
+    the lack of extra cash that made it difficult for this person to save, there
+    was a perception that the extra cash wasn't considered for saving.
+
+    After the surveys and the interviews, we modified our problem statement:
+
+    _**I want to save more money than I currently do,
+    but my bad saving habits,
+    the lack of encouragement to save,
+    and my relationship with spendable cash,
+    all deter me form saving more money.**_
+
+    At this point we felt confident that enough people have this problem
+    statment, and decided it was time for an abbreviated [design
+    sprint](https://library.gv.com/the-gv-research-sprint-a-4-day-process-for-answering-important-startup-questions-97279b532b25#.9unipl4gb).
+
+    # The Sprint
+
+    As with most sprints, we started with background, and by looking at the
+    competition. We found that there are some great tools out there that can
+    help you improve your saving habits.
+    Most of these are budgeting tools that are intended to help you
+    understand your money.
+    Others take your input or your bank information, and
+    passively suggest that you save money.
+    A couple go as far as to automate and analyze your spending habits and save
+    for you.
+
+    Some of these are wonderful tools, however we didn't feel they made us
+    better at saving.
+    Most were budgeting tools with the intention of providing us with a better
+    understanding of how we were spending our money.
+    Others went in a different direction and didn't give
+    us ownership or interaction with our money to improve our saving habits,
+    rather they saved for us.
+
+    We noticed that most of the applications were trying to solve the saving
+    problem by trying to monitor spending. We thought that a better approach
+    might be to encourage saving and expose people's potential to save.
+
+    We came up with the following challenge statement:
+
+    **_People want to save money,
+    and by providing daily encouragement and
+    reminders to save the left over spending cash from today,
+    people will begin
+    to develop better saving habits and realize their saving potential._**
+
+    As we progressed through the diverge and converge phases of the sprint we
+    continually revisited the user journey to address new ideas or concerns that
+    came up.  The user journey and the challenge statement are our guiding light
+    for staying on track during the sprint, and we make sure to adjust them if
+    need be.
+
+    <div class="image--centered">
+      <img src="#{image_path("works/piggy-user-journey.png")}" />
+    </div>
+
+    At the end of the converge phase, we picked a solution that we felt
+    provided encouragement to save,
+    and an action to do so with
+    a daily frequency that would be enough to build a habit.
+    Most importantly, we picked a solution that we believe tested our
+    assumptions well:
+
+    * People will use one account for all daily spending.
+    * People want to be reminded to save money daily.
+    * People want the option to save.
+    * People will save out of spending cash, and that is separate than bills.
+
+    Next...we prototype and test our assumptions!
+
+section.content.content--reading
+  markdown:
+    # Prototype
+
+    Based off the outcome from the sprint, we started to build a prototype to
+    test that our solution was a viable solution to the problem we are trying to
+    solve.
+
+    We used this prototype to test:
+
+    * People will use one account for all daily spending.
+    * People want to be reminded to save money daily.
+    * People want the option to save.
+    * People will save out of spending cash, and that is separate than bills.
+
+    Alos, please forgive the _higher_ level of fidelity. Normally I wouldn't
+    include any branding or visual polish, but I got inspired so I put a few
+    hours into it.
+
+.work-prototype
+  iframe width="438" height="930" src="//invis.io/7P5H26KTR" frameborder="0" \
+    allowfullscreen
+
+section.content.content--reading
+  markdown:
+    # Test Results
+
+    We ran 5 user tests with our prototype for people who we thought would be
+    actual users; people who made $80K+, currently _wanted_ to save money, and
+    felt that they had bad saving habits. We came up with this user type during
+    the sprint.
+
+    The user tests were a great success. Not only did we uncover some (now
+    seemingly obvious) interface and experience problems, but got a lot of
+    positive feedback from people saying they would use Piggy. 3 out of the 5
+    users asked to be notified when the application was
+    to be released without being prompted.
+
+    # Outcome
+
+    We started to develop the MVP Piggy application, and quickly ran into some
+    difficult technical hurdles. The immediate problem we faced was facilitating
+    the transferring of funds from a checking account to a savings account. We
+    were able to find a means to do so, but at a high cost.
+    The best solution we found would have cost $5 per bank account being
+    accessed, or $10 per user per month.
+
+    With a cost that high, our solution is not viable. Three options we were
+    considering:
+
+    1. Don't have a save button, rather remind and suggest an amount save.
+
+    2. Partner with a bank to get free access to the API to facilitate money
+       transfers free of charge.
+
+    3. Find a better/free solution to facilitate money transferring.
+
+    4. Create a better/free solution to facilitate money transferring.
+
+    To date, we are currently pursuing the third option, while considering the
+    first option to be our MPV. We felt that although you couldn't save money
+    using the application, the daily reminders and encouragement would still be
+    usefull.  Our end goal is to provide the means to directly save money
+    without any charge to the customer.
+
+    # Updates
+
+    <small>March 1st, 2016</small>
+
+    We were able to negotiate the use of an API for up to 10 accounts for free.
+    Although this isn't ideal or for that matter a scalable solution, we felt it
+    was a positive step in the right direction.
+

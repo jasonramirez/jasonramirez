@@ -1,0 +1,32 @@
+.work-prototype {
+  background-color: $tamed-blue;
+  height: 640px;
+  padding: $base-spacing;
+  text-align: center;
+  width: 100%;
+
+  @include media($large-screen) {
+    height: 780px;
+  }
+
+  iframe {
+    $zoom-level-small: 0.65;
+    $zoom-level-small-transform: 50% 0;
+    $zoom-level-large: 0.8;
+
+    -moz-transform: scale($zoom-level-small);
+    -o-transform: scale($zoom-level-small);
+    -webkit-transform: scale($zoom-level-small);
+    -moz-transform-origin: $zoom-level-small-transform;
+    -o-transform-origin: $zoom-level-small-transform;
+    -webkit-transform-origin: $zoom-level-small-transform;
+    -ms-zoom: $zoom-level-small;
+
+    @include media($large-screen) {
+      -moz-transform: scale($zoom-level-large);
+      -o-transform: scale($zoom-level-large);
+      -webkit-transform: scale($zoom-level-large);
+      -ms-zoom: $zoom-level-large;
+    }
+  }
+}
