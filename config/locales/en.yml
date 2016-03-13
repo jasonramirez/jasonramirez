@@ -17,6 +17,14 @@ en:
 
   titles:
     application: Jasonramirez
+    works:
+      frida_and_fred: Frida And Fred
+      ouch: Ouch
+      penner: Penner
+      piggy: Piggy
+      project_underdog: Project Underdog
+      repor: Repor
+      tinysplash: Tinysplash
 
   navigation:
     process: Process
