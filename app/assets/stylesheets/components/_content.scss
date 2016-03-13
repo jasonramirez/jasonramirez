@@ -1,25 +1,51 @@
 .content {
-  margin: 0 auto;
+  @include padding(null 1rem);
+  margin: $base-spacing auto;
   max-width: $large-screen;
-  padding: $base-spacing;
-  width: 100%;
 
   @include media($large-screen) {
-    padding: $large-spacing 0;
-  }
-
-  .site-header + & {
-    margin-top: $navigation-height;
+    @include padding(null 0);
+    margin: $large-spacing auto;
   }
 }
 
 .content--reading {
+  @include padding(null $base-spacing);
   font-family: $reading-font-family;
+  font-size: $base-font-size;
   line-height: $reading-line-height;
   max-width: $medium-screen;
 
+  @include media($large-screen) {
+    @include padding(null 0);
+  }
+
+  .image--centered {
+    margin: $base-spacing 0 0;
+    text-align: center;
+  }
+
+  blockquote {
+    border-left: solid 4px $light-gray;
+    color: $medium-gray;
+    margin: 2rem 0;
+    padding-left: $base-spacing;
+  }
+
+  h1 {
+    margin-top: ($large-spacing * 1.5);
+  }
+
+  li {
+    padding-left: $small-spacing;
+  }
+
   p {
-    margin-bottom: 2rem;
+    margin-bottom: $base-spacing;
+  }
+
+  + .content--reading {
+    margin-top: 0;
   }
 }
 

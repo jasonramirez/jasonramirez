@@ -24,26 +24,25 @@ $navigation-height: 8rem;
 
 // Colors
 $black: #000;
-$blue: #4d96f4;
+$blue: #341ef9;
 $dark-gray: #313030;
-$green: #2ec65d;
-$electric-green: #2cff90;
 $light-gray: #ddd;
 $medium-gray: #999;
+$tamed-blue: tint($blue, 15%);
 $white: #fff;
 
 // Font Colors
 $base-font-color: $dark-gray;
 
 // Colors In Use
-$action-color: $electric-green;
+$action-color: $blue;
 
 // Border
 $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: $white;
+$base-background-color: #fafafa;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms

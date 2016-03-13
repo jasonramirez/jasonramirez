@@ -5,14 +5,19 @@
 }
 
 .hero--mini {
-  background-color: red;
   height: calc(70vh - #{$navigation-height});
   max-height: 20rem;
   min-height: 16rem;
+  padding: $small-spacing;
 
   @include media($large-screen) {
-    max-height: 32rem;
-    min-height: 20rem;
+    max-height: 34rem;
+    min-height: 24rem;
+  }
+
+  img {
+    max-height: 100%;
+    margin: 0 auto;
   }
 }
 
