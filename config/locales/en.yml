@@ -29,3 +29,12 @@ en:
   navigation:
     process: Process
     works: Works
+
+  works:
+    works_navigation:
+      tinysplash:
+        title: Tinysplash
+        details: A great project.
+      repor:
+        title: Repor
+        details: This project is about this that and the other.

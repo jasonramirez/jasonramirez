@@ -1,0 +1,48 @@
+.work-navigation {
+  @include clearfix;
+
+  a {
+    color: $base-font-color;
+    font-weight: normal;
+  }
+
+  a:hover {
+    color: $action-color;
+
+    .work-footer__link-text {
+      color: $action-color;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 0;
+  }
+
+  .left {
+    float: left;
+    width: 40%;
+  }
+
+  .right {
+    float: right;
+    text-align: right;
+    width: 40%;
+  }
+}
+
+.work-footer__link-text {
+  character-spacing: 0.05rem;
+  color: $dark-gray;
+  display: block;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: $base-spacing;
+}

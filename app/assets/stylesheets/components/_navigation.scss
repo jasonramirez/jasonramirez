@@ -13,10 +13,6 @@
     float: left;
   }
 
-  .logo svg {
-    @include svg-stroke-color($black, $action-color);
-  }
-
   .links {
     float: right;
 
