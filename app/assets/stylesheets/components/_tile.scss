@@ -2,11 +2,14 @@
   @include clearfix;
   margin: 0 auto 6rem;
   max-width: $large-screen;
+  list-style-type: none;
+  padding: 0;
 }
 
 .tile {
   @include transition(transform $base-duration);
   margin-bottom: 1rem;
+  padding: 0;
   text-align: center;
 
   @include media($medium-screen) {
