@@ -1,45 +1,82 @@
-.navigation {
-  @include clearfix;
-  @include transition(all, $base-duration);
-  margin: 0 auto;
-  max-width: $large-screen;
-  padding: $base-spacing;
+.navigation--left {
+  float: left;
+}
 
-  @include media($large-screen) {
-    padding: $large-spacing 0;
+.navigation--right {
+  float: right;
+}
+
+.navigation--mobile-trigger-icon::after {
+  @include position( absolute, 1rem 1.5rem null null);
+  content: $hamburger-icon;
+  font-size: 1.5rem;
+
+  @include media($small-screen) {
+    content: "";
   }
+}
 
-  .logo {
-    float: left;
-  }
+.navigation__links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 
-  .links {
-    float: right;
+  .navigation--right & {
+    display: none;
 
-    a {
-      margin-left: $base-spacing;
+    @include media($small-screen) {
+      display: inline;
     }
   }
 
-  a {
-    character-spacing: 0.05rem;
-    color: $dark-gray;
-    font-family: $heading-font-family;
-    font-size: $small-font-size;
-    font-weight: bold;
-    text-transform: uppercase;
+  .navigation__mobile-trigger:checked + & {
+    @include media(max-width $small-screen) {
+      @include position(absolute, $navigation-height-mobile 0 null 0);
+      background: $base-background-color;
+      border-bottom: $base-border;
+      display: block;
+      z-index: 1;
+
+      li {
+        display: block;
+        margin: 0;
+        padding: $base-spacing;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.navigation__link {
+  character-spacing: 0.05rem;
+  color: $dark-gray;
+  display: inline;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  & + & {
+    margin-left: $base-spacing;
   }
 
-  a:hover {
+  &:hover {
     color: $action-color;
   }
 
-  li {
-    display: inline;
+  a {
+    color: $base-font-color;
   }
+}
 
-  ul {
-    margin: 0;
-    padding: 0;
+.navigation__mobile-trigger {
+  @include position(absolute, null 0 null null);
+  @include size(2rem);
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+
+  @include media($small-screen) {
+    display: none;
   }
 }

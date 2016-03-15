@@ -1,0 +1,11 @@
+.site-header {
+  @include clearfix;
+  @include transition(all, $base-duration);
+  margin: 0 auto;
+  max-width: $large-screen;
+  padding: $base-spacing;
+
+  @include media($large-screen) {
+    padding: $large-spacing 0;
+  }
+}

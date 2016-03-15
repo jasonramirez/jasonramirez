@@ -21,6 +21,7 @@ $large-spacing: $base-line-height * 2rem;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 $navigation-height: 8rem;
+$navigation-height-mobile: 4rem;
 
 // Colors
 $black: #000;
@@ -30,6 +31,9 @@ $light-gray: #ddd;
 $medium-gray: #999;
 $tamed-blue: tint($blue, 25%);
 $white: #fff;
+
+// Unicode Characters
+$hamburger-icon: "\2630";
 
 // Font Colors
 $base-font-color: $dark-gray;
