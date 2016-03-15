@@ -168,9 +168,14 @@ section.content.content--reading
     include any branding or visual polish, but I got inspired so I put a few
     hours into it.
 
-.work-prototype
-  iframe width="438" height="930" src="//invis.io/7P5H26KTR" frameborder="0" \
-    allowfullscreen
+- if browser.device.mobile?
+  section.content.content--reading
+    = link_to "Click to view the Invision prototype", "https://invis.io/346H2GDMG",
+        target: "_blank"
+- else
+  .work-prototype
+    iframe width="438" height="930" src="//invis.io/7P5H26KTR" frameborder="0" \
+      allowfullscreen
 
 section.content.content--reading
   markdown:
