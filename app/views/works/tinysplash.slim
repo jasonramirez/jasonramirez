@@ -1,6 +1,17 @@
-section.hero.tinysplash
-  = image_tag "tinysplash_icon.svg", alt: "Tinysplash", height: "70%"
+section.hero.hero--mini.tinysplash
+  = image_tag "tinysplash.svg", alt: "Tinysplash", height: "70%"
 
-section.content--reading
+section.content.content--reading
   markdown:
     #Tinysplash
+
+    Applying lean businesses practices by testing the value of a product using
+    fake door campaigns, email sign ups and other tools, we are able to get
+    validation without spending money.
+
+    Check back soon for more project details.
+
+= render partial: "works_navigation", locals: { \
+    previous_target: "piggy",
+    next_target: "project_underdog",
+  }
