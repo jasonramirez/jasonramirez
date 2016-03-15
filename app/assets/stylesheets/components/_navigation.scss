@@ -60,13 +60,14 @@
     margin-left: $base-spacing;
   }
 
-  &:hover {
-    color: $action-color;
-  }
-
   a {
     color: $base-font-color;
   }
+
+  a:hover {
+    color: $action-color;
+  }
+
 }
 
 .navigation__mobile-trigger {
