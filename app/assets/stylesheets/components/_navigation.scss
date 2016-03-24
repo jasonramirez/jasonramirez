@@ -22,27 +22,27 @@
   padding: 0;
 
   .navigation--right & {
-    display: none;
+    @include media(max-width $small-screen) {
+      @include position(fixed, $navigation-height-mobile -120% 0 120%);
+      align-items: center;
+      background-color: $white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: left $base-duration, right $base-duration;
+      z-index: 1;
 
-    @include media($small-screen) {
-      display: inline;
+      li {
+        margin: 0;
+        padding: $base-spacing;
+      }
     }
   }
 
   .navigation__mobile-trigger:checked + & {
     @include media(max-width $small-screen) {
       @include position(absolute, $navigation-height-mobile 0 null 0);
-      background: $base-background-color;
-      border-bottom: $base-border;
-      display: block;
-      z-index: 1;
-
-      li {
-        display: block;
-        margin: 0;
-        padding: $base-spacing;
-        text-align: center;
-      }
+      height: calc(100vh - #{$navigation-height-mobile});
     }
   }
 }
