@@ -36,6 +36,10 @@
     margin-top: ($large-spacing * 1.5);
   }
 
+  h1:first-of-type {
+    margin-top: 0;
+  }
+
   li {
     padding-left: $small-spacing;
   }

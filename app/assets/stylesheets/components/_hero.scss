@@ -14,14 +14,17 @@
 }
 
 .hero--mini {
-  height: calc(78vh - #{$navigation-height});
-  max-height: 20rem;
-  min-height: 16rem;
-  padding: $small-spacing;
+  height: calc(75vh - #{$navigation-height});
+  min-height: 18rem;
+  padding: $base-spacing;
+
+  @include media($small-screen) {
+    min-height: 26rem;
+  }
 
   @include media($large-screen) {
     max-height: 34rem;
-    min-height: 24rem;
+    min-height: 26rem;
   }
 
   img {

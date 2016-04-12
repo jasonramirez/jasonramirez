@@ -1,0 +1,5 @@
+.page {
+  @include media(max-width $small-screen) {
+    padding-top: $navigation-height-mobile;
+  }
+}

@@ -11,6 +11,7 @@ html lang="en"
   body class=body_class
     = render "flashes"
     = render "navigation"
-    = yield
+    main.page
+      = yield
     = render "footer"
     = render "javascript"
