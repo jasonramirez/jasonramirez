@@ -1,4 +1,4 @@
-.works {
+.works:not(body) {
   @include clearfix;
   margin: 0 auto 6rem;
   max-width: $large-screen;

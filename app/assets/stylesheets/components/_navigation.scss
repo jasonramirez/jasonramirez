@@ -7,7 +7,7 @@
 }
 
 .navigation--mobile-trigger-icon::after {
-  @include position( absolute, 1rem 1.5rem null null);
+  @include position( absolute, 1.25rem 1.5rem null null);
   content: $hamburger-icon;
   font-size: 1.5rem;
 
@@ -71,7 +71,7 @@
 }
 
 .navigation__mobile-trigger {
-  @include position(absolute, null 0 null null);
+  @include position(absolute, null 1rem null null);
   @include size(2rem);
   cursor: pointer;
   opacity: 0;
