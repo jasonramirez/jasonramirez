@@ -1,4 +1,4 @@
-.tiles {
+.works {
   @include clearfix;
   margin: 0 auto 6rem;
   max-width: $large-screen;
@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.tile {
+.work {
   @include transition(transform $base-duration);
   margin-bottom: 1rem;
   padding: 0;
@@ -22,12 +22,17 @@
   }
 
   ellipse,
-  path {
-    @include transition(stroke $base-duration, fill $base-duration);
+  path,
+  polygon {
+    @include transition(all $base-duration);
   }
 
   .filled {
-    @include svg-filled($black, $action-color);
+    @include svg-fill($black, $action-color);
+  }
+
+  .filled-and-stroked {
+    @include svg-fill-and-stroke($black, $action-color);
   }
 
   .stroked {

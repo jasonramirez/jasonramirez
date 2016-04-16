@@ -1,25 +1,49 @@
-@mixin svg-stroke($color, $hover-color) {
+@mixin svg-fill($color, $hover-color) {
   ellipse,
-  path {
+  path,
+  polygon {
+    fill: $black;
+  }
+
+  &:hover {
+    ellipse,
+    path,
+    polygon {
+      fill: $action-color;
+    }
+  }
+}
+
+@mixin svg-fill-and-stroke($color, $hover-color) {
+  ellipse,
+  path,
+  polygon {
+    fill: $black;
     stroke: $black;
   }
 
   &:hover {
     ellipse,
-    path {
+    path,
+    polygon {
+      fill: $action-color;
       stroke: $action-color;
     }
   }
 }
 
-@mixin svg-filled($color, $hover-color) {
-  path {
-    fill: $black;
+@mixin svg-stroke($color, $hover-color) {
+  ellipse,
+  path,
+  polygon {
+    stroke: $black;
   }
 
   &:hover {
-    path {
-      fill: $action-color;
+    ellipse,
+    path,
+    polygon {
+      stroke: $action-color;
     }
   }
 }
