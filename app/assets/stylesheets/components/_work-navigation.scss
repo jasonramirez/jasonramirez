@@ -3,9 +3,11 @@
 
   a {
     color: $base-font-color;
+    display: block;
     font-weight: normal;
   }
 
+  a:focus,
   a:hover {
     color: $action-color;
 

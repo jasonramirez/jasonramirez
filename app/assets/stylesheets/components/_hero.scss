@@ -35,6 +35,10 @@
 
 .hero--landing {
   text-align: center;
+
+  a[href="#works"]:focus #simple path {
+    fill: $action-color;
+  }
 }
 
 .hero__image {

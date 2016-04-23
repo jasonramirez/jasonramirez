@@ -64,10 +64,11 @@
     color: $base-font-color;
   }
 
+  a:active,
+  a:focus,
   a:hover {
     color: $action-color;
   }
-
 }
 
 .navigation__mobile-trigger {
