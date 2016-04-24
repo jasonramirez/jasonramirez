@@ -2,7 +2,7 @@
   ellipse,
   path,
   polygon {
-    fill: $black;
+    fill: $color;
   }
 
   &:focus,
@@ -19,8 +19,8 @@
   ellipse,
   path,
   polygon {
-    fill: $black;
-    stroke: $black;
+    fill: $color;
+    stroke: $color;
   }
 
   &:focus,
@@ -38,7 +38,7 @@
   ellipse,
   path,
   polygon {
-    stroke: $black;
+    stroke: $color;
   }
 
   &:focus,

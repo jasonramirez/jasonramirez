@@ -26,9 +26,9 @@ $navigation-height-mobile: 4rem;
 // Colors
 $black: #000;
 $blue: #341ef9;
-$dark-gray: #313030;
 $light-gray: #ddd;
 $medium-gray: #999;
+$mine-shaft: #313131;
 $tamed-blue: tint($blue, 25%);
 $white: #fff;
 
@@ -36,7 +36,7 @@ $white: #fff;
 $hamburger-icon: "\2630";
 
 // Font Colors
-$base-font-color: $dark-gray;
+$base-font-color: $mine-shaft;
 
 // Colors In Use
 $action-color: $blue;

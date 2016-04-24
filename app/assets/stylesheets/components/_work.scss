@@ -28,14 +28,14 @@
   }
 
   .filled {
-    @include svg-fill($black, $action-color);
+    @include svg-fill($base-font-color, $action-color);
   }
 
   .filled-and-stroked {
-    @include svg-fill-and-stroke($black, $action-color);
+    @include svg-fill-and-stroke($base-font-color, $action-color);
   }
 
   .stroked {
-    @include svg-stroke($black, $action-color);
+    @include svg-stroke($base-font-color, $action-color);
   }
 }
