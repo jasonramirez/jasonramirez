@@ -4,7 +4,7 @@ ruby "2.3.0"
 
 gem "airbrake"
 gem "autoprefixer-rails"
-gem "bourbon", "~> 4.2.0"
+gem "bourbon", git: "https://github.com/thoughtbot/bourbon", branch: "v5.0.0.beta.5"
 gem "browser"
 gem "coffee-rails", "~> 4.1.0"
 gem "delayed_job_active_record"

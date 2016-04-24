@@ -42,18 +42,18 @@
 }
 
 .hero__image {
-  @include transition(max-width, $base-duration);
   display: block;
   margin: 0 auto;
   max-width: 100%;
   transform: translateY(-$navigation-height / 2);
+  transition: max-width $base-duration;
 
   @include media($medium-screen) {
     max-width: 75%;
   }
 
   path {
-    @include transition(fill, 500ms);
+    transition: fill 500ms;
   }
 
   #simple:hover path {

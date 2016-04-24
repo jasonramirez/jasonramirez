@@ -7,10 +7,10 @@
 }
 
 .work {
-  @include transition(transform $base-duration);
   margin-bottom: 1rem;
   padding: 0;
   text-align: center;
+  transition: transform $base-duration;
 
   @include media($medium-screen) {
     @include omega(2n);
@@ -24,7 +24,7 @@
   ellipse,
   path,
   polygon {
-    @include transition(all $base-duration);
+    transition: all $base-duration;
   }
 
   .filled {

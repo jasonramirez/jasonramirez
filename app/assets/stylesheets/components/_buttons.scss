@@ -1,5 +1,5 @@
 .button {
-  @include transition(all, 0.5s);
+  transition: all 0.5s;
   font-family: $button-font-family;
   background-color: transparent;
   border-radius: 100px;
@@ -13,9 +13,9 @@
   text-transform: uppercase;
 
   &:hover {
-    @include transition(all, 0.5s);
     cursor: pointer;
     color: $action-color;
     border-color: $action-color;
+    transition: all 0.5s;
   }
 }
