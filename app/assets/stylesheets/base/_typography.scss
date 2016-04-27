@@ -14,8 +14,8 @@ h5,
 h6 {
   font-family: $heading-font-family;
   line-height: $heading-line-height;
+  letter-spacing: -0.05em;
   margin: 0 0 $base-spacing;
-  text-transform: uppercase;
 }
 
 h1 {

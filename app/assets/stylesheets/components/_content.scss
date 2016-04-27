@@ -13,8 +13,13 @@
   @include padding(null $base-spacing);
   font-family: $reading-font-family;
   font-size: $base-font-size;
-  line-height: $reading-line-height;
-  max-width: $medium-screen;
+  line-height: $reading-line-height / 1.2;
+  max-width: $reading-screen;
+
+  @include media($medium-screen) {
+    font-size: $reading-font-size;
+    line-height: $reading-line-height;
+  }
 
   @include media($large-screen) {
     @include padding(null 0);
@@ -33,7 +38,30 @@
   }
 
   h1 {
-    margin-top: ($large-spacing * 1.5);
+    font-size: 2rem;
+    margin: $large-spacing 0;
+    padding-top: $large-spacing;
+    position: relative;
+    text-align: center;
+
+    @include media($medium-screen) {
+      font-size: 3rem;
+      margin: ($large-spacing * 2) 0;
+      padding-top: ($large-spacing * 2);
+    }
+
+    &::before {
+      @include position(absolute);
+      @include size(25%, 1px);
+      background-color: $light-gray;
+      content: "";
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      top: 0;
+    }
   }
 
   h1:first-of-type {
@@ -45,7 +73,15 @@
   }
 
   p {
-    margin-bottom: $base-spacing;
+    margin-bottom: $reading-paragraph-spacing / 1.2;
+
+    @include media($large-screen) {
+      margin-bottom: $reading-paragraph-spacing;
+    }
+  }
+
+  ul {
+    margin-bottom: $large-spacing;
   }
 
   + .content--reading {

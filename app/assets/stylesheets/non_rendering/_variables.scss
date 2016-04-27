@@ -7,16 +7,17 @@ $reading-font-family: "Merriweather", serif;
 // Font Sizes
 $base-font-size: 1rem;
 $small-font-size: 0.85rem;
-$reading-font-size: 1.1rem;
+$reading-font-size: 1.2rem;
 
 // Line height
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
-$reading-line-height: 1.8;
+$reading-line-height: 1.9;
 
 // Other Sizes
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1rem;
+$reading-paragraph-spacing: 3rem;
 $large-spacing: $base-line-height * 2rem;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
