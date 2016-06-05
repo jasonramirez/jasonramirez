@@ -16,13 +16,16 @@ $reading-line-height: 1.9;
 
 // Other Sizes
 $base-border-radius: 3px;
-$base-spacing: $base-line-height * 1rem;
-$reading-paragraph-spacing: 3rem;
-$large-spacing: $base-line-height * 2rem;
-$small-spacing: $base-spacing / 2;
+$reading-paragraph-spacing: 1.5rem;
 $base-z-index: 0;
 $navigation-height: 8rem;
 $navigation-height-mobile: 4rem;
+
+// Spacing
+$small-spacing: $base-line-height / 2;
+$base-spacing: $base-line-height * 1rem;
+$large-spacing: $base-line-height * 2rem;
+$x-large-spacing: $base-line-height * 4rem;
 
 // Colors
 $black: #000;

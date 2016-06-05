@@ -1,0 +1,13 @@
+.cover {
+  align-items: center;
+  display: flex;
+  max-width: $large-screen;
+  min-height: 100vh;
+  text-align: left;
+}
+
+.cover__content {
+  svg {
+    max-width: 75%;
+  }
+}

@@ -40,36 +40,31 @@
   h1 {
     font-size: 2rem;
     margin: $large-spacing 0;
-    padding-top: $large-spacing;
+    padding: $large-spacing 0 $base-spacing;
     position: relative;
     text-align: center;
 
     @include media($medium-screen) {
+      @include margin($large-spacing null);
+      padding: $x-large-spacing 0 $large-spacing;
       font-size: 3rem;
-      margin: ($large-spacing * 2) 0;
-      padding-top: ($large-spacing * 2);
     }
 
     &::before {
-      @include position(absolute);
+      @include position(absolute, 0 null null 50%);
       @include size(25%, 1px);
       background-color: $light-gray;
       content: "";
-      left: 50%;
       transform: translateX(-50%);
     }
 
-    &::before {
-      top: 0;
+    &:first-of-type {
+      margin-top: 0;
     }
   }
 
-  h1:first-of-type {
-    margin-top: 0;
-  }
-
-  li {
-    padding-left: $small-spacing;
+  h3 {
+    margin-top: $large-spacing;
   }
 
   p {
@@ -83,6 +78,10 @@
   ol,
   ul {
     margin-bottom: $large-spacing;
+  }
+
+  li {
+    padding-left: $small-spacing;
   }
 
   + .content--reading {
