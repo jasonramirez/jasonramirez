@@ -10,32 +10,47 @@
   margin-bottom: 1rem;
   padding: 0;
   text-align: center;
-  transition: transform $base-duration;
 
   @include media($medium-screen) {
     @include omega(2n);
     @include span-columns(6);
   }
+}
 
-  &:hover {
-    transform: translateY(-0.25rem);
+.work__image {
+  display: block;
+  position: relative;
+
+  &::after {
+    @include position(absolute, null 50% 0 50%);
+    background-color: $blue;
+    border-radius: 4px;
+    content: "";
+    height: 4px;
+    transition-duration: $base-duration;
+    transition-property: left, right;
+  }
+
+  &:hover::after {
+    left: 0;
+    right: 0;
+  }
+
+  &.filled {
+    @include svg-fill($base-font-color, $action-color);
+  }
+
+  &.filled-and-stroked {
+    @include svg-fill-and-stroke($base-font-color, $action-color);
+  }
+
+  &.stroked {
+    @include svg-stroke($base-font-color, $action-color);
   }
 
   ellipse,
   path,
   polygon {
     transition: all $base-duration;
-  }
-
-  .filled {
-    @include svg-fill($base-font-color, $action-color);
-  }
-
-  .filled-and-stroked {
-    @include svg-fill-and-stroke($base-font-color, $action-color);
-  }
-
-  .stroked {
-    @include svg-stroke($base-font-color, $action-color);
   }
 }
