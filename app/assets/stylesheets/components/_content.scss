@@ -26,7 +26,7 @@
   }
 
   .image--centered {
-    margin: $base-spacing 0 0;
+    margin: $base-spacing 0;
     text-align: center;
   }
 
@@ -73,6 +73,13 @@
     @include media($large-screen) {
       margin-bottom: $reading-paragraph-spacing;
     }
+  }
+
+  time {
+    color: $medium-gray;
+    display: block;
+    font-family: $heading-font-family;
+    margin-bottom: 0;
   }
 
   ol,

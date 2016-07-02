@@ -1,1 +1,172 @@
-h1=title
+section.hero.hero--mini
+  = image_tag "works/penner-phone.svg", alt: "Penner"
+
+section.content.content--reading
+  markdown:
+    # Penner
+
+    I aspire to share my learnings through writing, but the process is difficult
+    for me. I created Penner to help me my biggest personal blockers:
+    when I am _feeling_ ready to write I visit my list of ideas only to find
+    incomplete back-of-the-napkin thoughts
+    which I've lost context on or don't understand enough to write about.
+
+    Penner is meant to help me structure my thoughts about a topic to make it
+    easier to write the actual piece in the future. By asking only a couple of
+    key questions and prompting me to add my key points my
+    back-of-the-napkin writing becomes an outline to follow. Furthermore, Penner
+    provides encouragement by reminding me to write about my ideas.
+
+    The product was made for me, but I thought it would be fun to see if the
+    public was interested in it as well. This case-study is about building the
+    product for me to solve my problem and testing if others had shared problems
+    and an interest in solving them with Penner.
+
+    # The Problem
+
+    I learn from everything around me, notably peers, mentors, personal
+    experience and life itself.  Although I have a strong desire to share my
+    learnings with others though writing, I generally get too distracted or
+    overwhelmed to do it.
+
+    I try to find time at the end of the week to sit down and write.
+    I look at my list of ideas I want to share and I try to pick
+    out the ones that are the most relevant or exciting.
+    This process has loads of flaws. Sometimes I don't recall the details of the
+    learing or I don't understand my back of the napkin thought. Other times
+    the idea has grown too complex and I feel disorganized or disconnected
+    from the idea and cant' write about it.
+
+    Here are a couple of problem statements that I came up with to start solving
+    for:
+
+    1. When I have an idea I'd like to share, I take rough notes that don't
+       provide enough insight for me to write about later.
+
+    1. I don't write often enough and when I sit down to write I feel
+       overwhelmed by all the learnings I'd like to share.
+
+    # Solutions
+
+    After identifying the some of the root problems that were contributing to my
+    bad not taking and inconsistent writing, I decided to try out a few tools
+    that might provide the structure, reminders and access I needed:
+
+    ### Apple Reminders
+
+    * Note taking experience left a lot to be desired.
+    * No structure or template to follow when inputing my thoughts.
+    * Great reminders that did help encourage me to write.
+
+    ### Trello
+
+    * Created a template to follow which did improve the quality of my note
+      taking, but still left a lot to be desired.
+    * Good reminders/due-dates that did get me to look back at ideas.
+    * Not easy to use on your phone or on the go.
+    * Bonus - allowed me to set states on ideas like pending, working on, draft,
+      etc.
+    * Bonus - could have others comment and review my ideas.
+
+    ### Typeform
+
+    * Good structure for inputing ideas.
+    * Good note taking experience on the phone.
+    * Couldn't organize talking points once they were inputted.
+    * Tough to access my ideas once I inputted them.
+    * No reminders to encourage me to look back at my ideas and start writing.
+
+    Trello was by far the best, it had a couple bonuses and did an okay job -
+    but in the end it didn't provide me the structure I needed to improve
+    my note taking and wasn't a great mobile experience.
+    I didn't find any tools that fully solved my problems, so I set out to
+    design something simple that might.
+
+    # Prototype
+
+    I designed the prototype to focus only on solutions that were directly
+    related with the problems I was having:
+
+    * Structure the ideas as they come in to make it easier to digest at a
+      later time.
+    * Remind me to look back at ideas to encourage me to sit down and write.
+    * Mobile friendly experience so I can take notes as they come up.
+    * Simple interface to look back at ideas and identify the staleness.
+
+    I came up with Penner:
+
+- if browser.device.mobile?
+  section.content.content--reading
+    = link_to "Click to view the Invision prototype", "https://invis.io/Y57TV2ODJ",
+        target: "_blank"
+- else
+  .work-prototype
+    iframe[
+        allowfullscreen
+        frameborder="0"
+        height="930"
+        src="//invis.io/Z47TV2P78"
+        width="438"
+      ]
+
+section.content.content--reading
+  markdown:
+    # Validation
+
+    I had several friends play with the prototype after it was created and I got
+    some feedback:
+
+    * "The reminders are great"
+    * "I like the fact that it asks me specific questions. Its like creating an
+    outline"
+    * "I could use something like this. I have a big list of unorganized ideas
+      that I never look back at. I think this might help me with that."
+    * "Can I share it with my friends? I would love to get other people opinions
+      about my ideas."
+    * "Oh, this would be fun if I could collaborate with people"
+    * "I think there are better note taking apps out there. This is a little too
+      rigid for me. But I like that it reminds me. That is really nice."
+    * "Hmm... I like it, but I don't think I would use it. It doesn't do
+      anything for me that Trello doesn't (ha)"
+
+    Ininitally when I was asking other people to look at my prototype I was more
+    showing it off than soliciting feedback. I thought it was a cool little
+    tool and thought others would agree. I felt somewhat validated in the
+    responses I got, so I began to wonder if this tool might be a decent
+    solution to a larger audience that shares my problems with writing.
+
+    I decided to throw up a splash page, run a Facebook ad, and see what kind of
+    response I got.
+
+    # The Splash Page
+
+    One of the more common experiments I run is creating a marketing page for a
+    product that doesn't exist. Testing to see if certain audiences have certain
+    problems and are looking for a solution. Generally I don't even have a
+    protoype for a solution, but at this point I did and I thought it would be
+    fun to share.
+
+    <div class="image--centered">
+      <img src="#{image_path("works/penner-browser.svg")}" />
+    </div>
+
+    This splash page isn't like others I have made to test interest and
+    validate a product idea. The main difference is that it was overly
+    transparent - I am revealing that the app isn't real, but if I get enough
+    interest I will make it.
+
+    <div class="image--centered">
+      <img src="#{image_path("works/penner-sign-up.png")}" />
+    </div>
+
+    # Update
+
+    <time>7/2/16</time>
+    I am sitting on this idea until I get validation. I haven't launched the
+    splash page yet, but will be doing so shorty. I will post the metrics here
+    to show you how things are going!
+
+= render partial: "works_navigation", locals: { \
+    previous_target: "tinysplash",
+    next_target: "piggy",
+  }

@@ -5,8 +5,11 @@ section.hero.hero--landing
 
 ul.works#works
   li.work
-    = link_to "works/piggy", class: "filled-and-stroked" do
-      = inline_svg "works/piggy-logo.svg"
+    = link_to "works/piggy", class: "filled-and-stroked work__image" do
+      = inline_svg "piggy.svg"
   li.work
-    = link_to "works/tinysplash", class: "filled-and-stroked" do
+    = link_to "works/tinysplash", class: "filled-and-stroked work__image" do
       = inline_svg "tinysplash.svg"
+  li.work
+    = link_to "works/penner", class: "stroked  work__image" do
+      = inline_svg "penner.svg"
