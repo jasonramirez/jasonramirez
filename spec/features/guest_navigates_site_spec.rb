@@ -20,7 +20,7 @@ RSpec.feature "Guest navigates site" do
           click_link t("navigation.process")
         end
 
-        expect(page).to have_text "process"
+        expect(page).to have_text "Process"
       end
     end
   end

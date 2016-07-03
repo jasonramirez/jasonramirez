@@ -23,12 +23,8 @@ RSpec.feature "Guest views all works" do
 
   def works
     [
-      "frida_and_fred",
-      "ouch",
       "penner",
       "piggy",
-      "project_underdog",
-      "repor",
       "tinysplash",
     ]
   end
