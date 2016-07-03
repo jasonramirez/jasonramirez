@@ -1,20 +1,18 @@
 footer.work-footer
-  nav.work-navigation.content
-    ul.left
-      li
-        = link_to send("works_#{previous_target}_path") do
-          span.work-footer__link-text
-            | Previous
-          h3
-            = t(".#{previous_target}.title")
-          p
-            = t(".#{previous_target}.details")
-    ul.right
-      li
-        = link_to send("works_#{next_target}_path") do
-          span.work-footer__link-text
-            | Next
-          h3
-            = t(".#{next_target}.title")
-          p
-            = t(".#{next_target}.details")
+  nav.work-footer-navigation.content.content--reading
+    = link_to send("works_#{previous_target}_path"), \
+      class: "work-footer-navigation__link left" do
+      span
+        | Previous
+      h3
+        = t(".#{previous_target}.title")
+      p
+        = t(".#{previous_target}.details")
+    = link_to send("works_#{next_target}_path"), \
+      class: "work-footer-navigation__link right" do
+      span
+        | Next
+      h3
+        = t(".#{next_target}.title")
+      p
+        = t(".#{next_target}.details")

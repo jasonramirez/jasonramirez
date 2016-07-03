@@ -1,0 +1,61 @@
+.work-footer-navigation {
+  @include clearfix;
+  @include padding(null $base-spacing);
+  display: block;
+  max-width: $reading-screen;
+
+  @include media($large-screen) {
+    @include padding(null 0);
+  }
+}
+
+.work-footer-navigation__link {
+  color: $base-font-color;
+  display: block;
+  font-weight: normal;
+  line-height: $reading-line-height / 1.2;
+  width: 100%;
+
+  @include media($medium-screen) {
+    width: 40%;
+  }
+
+  &:focus,
+  &:hover {
+    color: $action-color;
+  }
+
+  &.left {
+    @include media($medium-screen) {
+      float: left;
+    }
+  }
+
+  &.right {
+    margin-top: $large-spacing;
+
+    @include media($medium-screen) {
+      margin-top: 0;
+      float: right;
+      text-align: right;
+    }
+  }
+
+  span {
+    character-spacing: 0.05rem;
+    font-family: $heading-font-family;
+    font-size: $small-font-size;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-top: $base-spacing;
+    font-family: $heading-font-family;
+  }
+
+  p {
+    font-family: $reading-font-family;
+    font-size: $base-font-size;
+  }
+}
