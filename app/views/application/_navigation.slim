@@ -2,14 +2,11 @@ header.site-header
   nav.navigation--left
     ul.navigation__links
       li.navigation__link
-        = link_to "Jason Ramirez", root_path
+        = link_to t("navigation.home"), root_path
   nav.navigation--right.navigation--mobile-trigger-icon
     input.navigation__mobile-trigger type="checkbox"
     ul.navigation__links
       li.navigation__link
-        - if current_page?(root_path)
-          = link_to t("navigation.works"), "#works", "data-smooth-scroll": true
-        - else
-          = link_to t("navigation.works"), root_path(anchor: "works")
+        = link_to t("navigation.works"), works_path
       li.navigation__link
         = link_to t("navigation.process"), process_path

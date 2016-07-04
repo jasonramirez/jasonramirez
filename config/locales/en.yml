@@ -15,6 +15,11 @@ en:
       short:
         "%B %d"
 
+  navigation:
+    home: Jason Ramirez
+    process: Process
+    works: Case Studies
+
   titles:
     application: Jason Ramirez | Product Designer
     works:
@@ -25,10 +30,6 @@ en:
       project_underdog: Project Underdog
       repor: Repor
       tinysplash: Tinysplash
-
-  navigation:
-    process: Process
-    works: Case Studies
 
   works:
     works_navigation:

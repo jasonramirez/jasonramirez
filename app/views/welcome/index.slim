@@ -3,13 +3,4 @@ section.hero.hero--landing
     = link_to "#works", "data-smooth-scroll": true do
       = inline_svg "landing_heading.svg", alt: "Simple", class: "hero__image"
 
-ul.works#works
-  li.work
-    = link_to "works/piggy", class: "filled-and-stroked work__image" do
-      = inline_svg "piggy.svg"
-  li.work
-    = link_to "works/tinysplash", class: "filled-and-stroked work__image" do
-      = inline_svg "tinysplash.svg"
-  li.work
-    = link_to "works/penner", class: "stroked  work__image" do
-      = inline_svg "penner.svg"
+= render "works/works"
