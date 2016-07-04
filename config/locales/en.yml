@@ -32,18 +32,14 @@ en:
 
   works:
     works_navigation:
+      next: Next Case Study
+      previous: Previous Case Study
       piggy:
         title: Piggy
         details: A money saving app.
-      project_underdog:
-        title: Project Underdog
-        details: Poop bags that give back to the animal community.
       penner:
         title: Penner
         details: Gem for easy blogging in a rails app.
-      repor:
-        title: Repor
-        details: Read git hub repositories like documentation.
       tinysplash:
         title: Tinysplash
         details: Validate product ideas without spending money.
