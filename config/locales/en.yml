@@ -18,10 +18,12 @@ en:
   navigation:
     home: Jason Ramirez
     process: Process
+    posts: Posts
     works: Case Studies
 
   titles:
     application: Jason Ramirez | Product Designer
+    posts: Posts
     works:
       frida_and_fred: Frida And Fred
       ouch: Ouch

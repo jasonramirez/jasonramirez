@@ -53,3 +53,10 @@ picture {
   margin: 0;
   max-width: 100%;
 }
+
+time {
+  display: block;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  margin-bottom: 0;
+}
