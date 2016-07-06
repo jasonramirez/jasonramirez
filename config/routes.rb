@@ -5,12 +5,5 @@ Rails.application.routes.draw do
   get "posts/test", to: "posts#test"
   get "process", to: "process#show"
   get "works", to: "works#index"
-
-  [
-    "penner",
-    "piggy",
-    "tinysplash",
-  ].each do |work|
-    get "works/#{work}", to: "works##{work}"
-  end
+  get "works/:work", to: "works#show"
 end

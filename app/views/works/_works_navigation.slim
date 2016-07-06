@@ -1,15 +1,13 @@
 footer.work-footer
   nav.work-footer-navigation.content.content--reading
-    = link_to send("works_#{previous_target}_path"), \
-      class: "work-footer-navigation__link left" do
+    = link_to previous_target, class: "work-footer-navigation__link left" do
       span
         | Previous
       h3
         = t(".#{previous_target}.title")
       p
         = t(".#{previous_target}.details")
-    = link_to send("works_#{next_target}_path"), \
-      class: "work-footer-navigation__link right" do
+    = link_to next_target, class: "work-footer-navigation__link right" do
       span
         | Next
       h3

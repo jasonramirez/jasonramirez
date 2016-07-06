@@ -2,12 +2,7 @@ class WorksController < ApplicationController
   def index
   end
 
-  def penner
-  end
-
-  def piggy
-  end
-
-  def tinysplash
+  def show
+    @work = params[:work]
   end
 end

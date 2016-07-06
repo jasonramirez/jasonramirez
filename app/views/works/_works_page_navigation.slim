@@ -1,5 +1,5 @@
 nav.work-page-navigation.work-page-navigation--left
-  = link_to send("works_#{previous_target}_path") do
+  = link_to previous_target do
     .work-page-navigation__details
       .content.content--reading
         h5
@@ -13,7 +13,7 @@ nav.work-page-navigation.work-page-navigation--left
       = image_tag "icon-arrow--left.svg"
 
 nav.work-page-navigation.work-page-navigation--right
-  = link_to send("works_#{next_target}_path") do
+  = link_to next_target do
     .work-page-navigation__tab
       = image_tag "icon-arrow--right.svg"
 

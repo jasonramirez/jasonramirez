@@ -8,7 +8,7 @@ RSpec.feature "Guest navigates site" do
 
         page.find(:xpath, ".//a[@href='works/piggy']").click
 
-        expect(page).to have_css "body.works-piggy"
+        expect(page).to have_text "Piggy"
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.feature "Guest navigates site" do
   context "from a projects page" do
     describe "clicking to home button" do
       it "takes you to the home page" do
-        visit works_piggy_path
+        visit "works/piggy"
 
         within ".site-header" do
           click_link t("navigation.home")

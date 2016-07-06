@@ -4,7 +4,7 @@ RSpec.feature "Guest navigations works" do
   context "from the hero navigation of the works detail page" do
     describe "the next button" do
       it "goes to the next work" do
-        visit works_piggy_path
+        visit_piggy
 
         page.first(".work-page-navigation--left").click
 
@@ -14,7 +14,7 @@ RSpec.feature "Guest navigations works" do
 
     describe "the previous button" do
       it "goes to the previous work" do
-        visit works_piggy_path
+        visit_piggy
 
         page.first(".work-page-navigation--right").click
 
@@ -26,7 +26,7 @@ RSpec.feature "Guest navigations works" do
   context "from the footer navigation of the works detail page" do
     describe "the next button" do
       it "goes to the next work" do
-        visit works_piggy_path
+        visit_piggy
 
         within ".work-footer" do
           click_link "Next"
@@ -38,7 +38,7 @@ RSpec.feature "Guest navigations works" do
 
     describe "the previous button" do
       it "goes to the previous work" do
-        visit works_piggy_path
+        visit_piggy
 
         within ".work-footer" do
           click_link "Previous"
@@ -47,5 +47,9 @@ RSpec.feature "Guest navigations works" do
         expect(page).to have_text "Tinysplash"
       end
     end
+  end
+
+  def visit_piggy
+    visit "works/piggy"
   end
 end
