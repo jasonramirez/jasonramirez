@@ -3,6 +3,14 @@
   display: block;
   margin-bottom: $x-large-spacing;
 
+  &:hover {
+    color: $base-font-color;
+
+    .post__read-more {
+      color: $action-color;
+    }
+  }
+
   p {
     font-weight: normal;
   }
