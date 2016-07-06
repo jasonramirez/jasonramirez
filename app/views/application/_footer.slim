@@ -3,10 +3,7 @@ footer.site-footer
     = inline_svg "landing_heading.svg", alt: "Simple", class: "site-footer__image"
     ul.navigation__links
       li.navigation__link
-        - if current_page?(root_path)
-          = link_to t("navigation.works"), "#works", "data-smooth-scroll": true
-        - else
-          = link_to t("navigation.works"), root_path(anchor: "works")
+        = link_to t("navigation.case_studies"), case_studies_path
       li.navigation__link
         = link_to t("navigation.process"), process_path
     small

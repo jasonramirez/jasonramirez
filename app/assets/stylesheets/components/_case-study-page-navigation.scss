@@ -1,8 +1,8 @@
-.work-page-navigation {
+.case-study-page-navigation {
   @include position(fixed, 0 null 0 null);
   transition-duration: 250ms;
   transition-property: transform box-shadow background-color;
-  width: #{$work-page-navigation-width};
+  width: #{$case-study-page-navigation-width};
   visibility: hidden;
   z-index: $z-index-highest;
 
@@ -22,8 +22,8 @@
   }
 }
 
-.work-page-navigation--left {
-  left: -#{$work-page-navigation-width};
+.case-study-page-navigation--left {
+  left: -#{$case-study-page-navigation-width};
   transform: translateX(3.5rem);
 
   &:hover {
@@ -32,8 +32,8 @@
   }
 }
 
-.work-page-navigation--right {
-  right: -#{$work-page-navigation-width};
+.case-study-page-navigation--right {
+  right: -#{$case-study-page-navigation-width};
   transform: translateX(-3.5rem);
 
   &:hover {
@@ -42,7 +42,7 @@
   }
 }
 
-.work-page-navigation__details {
+.case-study-page-navigation__details {
   flex-grow: 1;
   padding: 0 $base-spacing;
 
@@ -62,7 +62,7 @@
   }
 }
 
-.work-page-navigation__tab {
+.case-study-page-navigation__tab {
   padding: $base-spacing;
 
   img {

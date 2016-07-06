@@ -19,23 +19,19 @@ en:
     home: Jason Ramirez
     process: Process
     posts: Posts
-    works: Case Studies
+    case_studies: Case Studies
 
   titles:
     application: Jason Ramirez | Product Designer
-    posts: Posts
-    process: Process
-    works:
-      frida_and_fred: Frida And Fred
-      ouch: Ouch
+    case_studies:
       penner: Penner
       piggy: Piggy
-      project_underdog: Project Underdog
-      repor: Repor
       tinysplash: Tinysplash
+    posts: Posts
+    process: Process
 
-  works:
-    works_navigation:
+  case_studies:
+    case_studies_navigation:
       next: Next Case Study
       previous: Previous Case Study
       piggy:

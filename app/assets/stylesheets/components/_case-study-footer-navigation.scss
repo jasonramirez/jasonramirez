@@ -1,4 +1,4 @@
-.work-footer-navigation {
+.case-study-footer-navigation {
   @include clearfix;
   @include padding(null $base-spacing);
   display: block;
@@ -9,7 +9,7 @@
   }
 }
 
-.work-footer-navigation__link {
+.case-study-footer-navigation__link {
   color: $base-font-color;
   display: block;
   font-weight: normal;

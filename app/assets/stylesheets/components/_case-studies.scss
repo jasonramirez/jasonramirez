@@ -1,4 +1,4 @@
-.works:not(body) {
+.case-studies:not(body) {
   @include clearfix;
   margin: 0 auto 6rem;
   max-width: $large-screen;
@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.work {
+.case-study {
   margin-bottom: 1rem;
   padding: 0;
   text-align: center;
@@ -17,7 +17,7 @@
   }
 }
 
-.work__image {
+.case-study__image {
   display: block;
   position: relative;
 

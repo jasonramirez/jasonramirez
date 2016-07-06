@@ -1,10 +1,10 @@
-= render partial: "works_page_navigation", locals: { \
-    previous_target: "tinysplash",
+= render partial: "case_studies_page_navigation", locals: { \
+    previous_target: "piggy",
     next_target: "penner",
   }
 
 section.hero.hero--mini.tinysplash
-  = image_tag "works/tinysplash-browser.png", alt: "Tinysplash"
+  = image_tag "case_studies/tinysplash-browser.png", alt: "Tinysplash"
 
 section.content.content--reading
   markdown:
@@ -78,7 +78,7 @@ section.content.content--reading
     I am currently in the interview process, and will post my key takeaways here
     when they are ready!
 
-= render partial: "works_navigation", locals: { \
+= render partial: "case_studies_navigation", locals: { \
     previous_target: "piggy",
     next_target: "penner",
   }

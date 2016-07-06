@@ -1,10 +1,10 @@
-= render partial: "works_page_navigation", locals: { \
+= render partial: "case_studies_page_navigation", locals: { \
     previous_target: "penner",
     next_target: "tinysplash",
   }
 
 section.hero.hero--mini
-  = image_tag "works/piggy-phone.png", alt: "Piggy"
+  = image_tag "case_studies/piggy-phone.png", alt: "Piggy"
 
 section.content.content--reading
   markdown:
@@ -103,7 +103,7 @@ section.content.content--reading
     prototype:
 
     <div class="image--centered">
-      <img src="#{image_path("works/piggy-user-journey.png")}" />
+      <img src="#{image_path("case_studies/piggy-user-journey.png")}" />
     </div>
 
     As we refined a potential solution, we surfaced many assumptions about our
@@ -135,7 +135,7 @@ section.content.content--reading
     = link_to "Click to view the Invision prototype", "https://invis.io/346H2GDMG",
         target: "_blank"
 - else
-  .work-prototype
+  .case-study-prototype
     iframe width="438" height="930" src="//invis.io/7P5H26KTR" frameborder="0" \
       allowfullscreen
 
@@ -196,7 +196,7 @@ section.content.content--reading
 
     Check back for more updates!
 
-= render partial: "works_navigation", locals: { \
+= render partial: "case_studies_navigation", locals: { \
     previous_target: "penner",
     next_target: "tinysplash",
   }

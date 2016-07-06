@@ -1,10 +1,10 @@
-= render partial: "works_page_navigation", locals: { \
+= render partial: "case_studies_page_navigation", locals: { \
     previous_target: "tinysplash",
     next_target: "piggy",
   }
 
 section.hero.hero--mini
-  = image_tag "works/penner-phone.svg", alt: "Penner"
+  = image_tag "case_studies/penner-phone.svg", alt: "Penner"
 
 section.content.content--reading
   markdown:
@@ -105,7 +105,7 @@ section.content.content--reading
     = link_to "Click to view the Invision prototype", "https://invis.io/Y57TV2ODJ",
         target: "_blank"
 - else
-  .work-prototype
+  .case-study-prototype
     iframe[
         allowfullscreen
         frameborder="0"
@@ -152,7 +152,7 @@ section.content.content--reading
     fun to share.
 
     <div class="image--centered">
-      <img src="#{image_path("works/penner-browser.svg")}" />
+      <img src="#{image_path("case_studies/penner-browser.svg")}" />
     </div>
 
     This splash page isn't like others I have made to test interest and
@@ -161,7 +161,7 @@ section.content.content--reading
     interest I will make it.
 
     <div class="image--centered">
-      <img src="#{image_path("works/penner-sign-up.png")}" />
+      <img src="#{image_path("case_studies/penner-sign-up.png")}" />
     </div>
 
     # Update
@@ -171,7 +171,7 @@ section.content.content--reading
     splash page yet, but will be doing so shorty. I will post the metrics here
     to show you how things are going!
 
-= render partial: "works_navigation", locals: { \
+= render partial: "case_studies_navigation", locals: { \
     previous_target: "tinysplash",
     next_target: "piggy",
   }

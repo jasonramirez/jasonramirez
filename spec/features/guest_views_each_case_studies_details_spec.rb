@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Guest views each works deatils" do
+RSpec.feature "Guest views each case studies deatils" do
   describe "tinysplash" do
     it "shows the details" do
       visit "/"
