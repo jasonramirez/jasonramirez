@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
   end
 
-  def test
+  def show
+    @post_title = params[:post_title]
   end
 end
