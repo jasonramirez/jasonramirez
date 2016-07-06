@@ -7,3 +7,13 @@
     font-weight: normal;
   }
 }
+
+.post__read-more {
+  character-spacing: 0.05rem;
+  color: $base-font-color;
+  display: inline;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+}
