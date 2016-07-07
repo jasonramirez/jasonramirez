@@ -2,6 +2,19 @@ section.content.content--reading
   h2
     = t("titles.posts")
 
+  = link_to "/posts/fixed_position_on_ios", class: "post-sample" do
+    article
+      time
+        | 7/8/16
+      h3
+        | Fixed Position Bug on iOS
+      p
+        markdown:
+          The `fixed` value for the `position` property has a very noticeable
+          glitch in iOS9 (and parhaps many other versions). When you scroll
+          vertically, the `fixed` elements can take a slightly different
+          position than intended...
+
   = link_to "/posts/syntax_highlighting", class: "post-sample" do
     article
       time
