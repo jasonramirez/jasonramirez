@@ -194,6 +194,11 @@ GEM
       mail
     redcarpet (3.3.4)
     refills (0.1.0)
+    rouge (2.0.2)
+    rouge-rails (0.2.1)
+      actionview
+      railties
+      rouge
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -308,6 +313,7 @@ DEPENDENCIES
   recipient_interceptor
   redcarpet
   refills
+  rouge-rails
   rspec-rails (~> 3.4.0)
   sass-rails (~> 5.0)
   shoulda-matchers

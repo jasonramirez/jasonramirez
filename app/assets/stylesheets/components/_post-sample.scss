@@ -1,0 +1,27 @@
+.post-sample {
+  color: $base-font-color;
+  display: block;
+  margin-bottom: $x-large-spacing;
+
+  &:hover {
+    color: $base-font-color;
+
+    .post__read-more {
+      color: $action-color;
+    }
+  }
+
+  p {
+    font-weight: normal;
+  }
+}
+
+.post-sample__read-more {
+  character-spacing: 0.05rem;
+  color: $base-font-color;
+  display: inline;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+}
