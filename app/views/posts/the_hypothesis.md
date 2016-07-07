@@ -35,7 +35,7 @@ Bad examples:
 
 ### Then
 
-== The **then** is focused on our desired behavior or outcome and
+==The **then** is focused on our desired behavior or outcome and
 should be measurable.== Avoid desired outcomes that deal with
 emotion. Although you _could_ measure how happy a person is, it is generally
 difficult to rely on.
