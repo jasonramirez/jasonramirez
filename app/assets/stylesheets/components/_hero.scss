@@ -2,11 +2,6 @@
   align-items: center;
   display: flex;
   height: 100vh;
-  padding-top: $navigation-height-mobile;
-
-  @include media($small-screen) {
-    padding-top: 0;
-  }
 
   @include media($large-screen) {
     height: calc(100vh - #{$navigation-height});
