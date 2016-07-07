@@ -6,6 +6,11 @@ en:
       with_weekday:
         "%a %m/%d/%y"
 
+  helpers:
+    submit:
+      follower:
+        create: Follow
+
   time:
     formats:
       default:
