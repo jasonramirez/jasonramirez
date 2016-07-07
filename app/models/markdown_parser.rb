@@ -25,9 +25,10 @@ class MarkdownParser
 
   def extensions
     {
+      autolink: true,
       fenced_code_blocks: true,
-      tables: true,
       highlight: true,
+      tables: true,
     }
   end
 end
