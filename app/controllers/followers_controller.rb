@@ -16,6 +16,6 @@ class FollowersController < ApplicationController
   private
 
   def follower_params
-    params.require(:follower).permit(:email)
+    params.require(:follower).permit(:email, {interest_ids: []})
   end
 end

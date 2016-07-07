@@ -1,3 +1,4 @@
 = simple_form_for @follower do |form|
   = form.input :email
+  = form.association :interests, as: :check_boxes
   = form.submit
