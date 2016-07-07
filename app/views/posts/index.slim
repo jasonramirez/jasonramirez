@@ -2,7 +2,6 @@ section.content.content--reading
   h2
     = t("titles.posts")
 
-  = link_to "/posts/the_hypothesis", class: "post" do
   = link_to "/posts/the_hypothesis", class: "post-sample" do
     article
       h3
@@ -16,3 +15,18 @@ section.content.content--reading
           have an experiment...
       span.post__read-more
         | Read More
+
+  = link_to "/posts/syntax_highlighting", class: "post-sample" do
+    article
+      h3
+        | Rails + Markdown + Syntax Highlighting
+      time
+        | 7/7/16
+      p
+        | This post is to help you add syntax highlighting to your markdown in
+          a rails app. I prefer to use Redcarpet for markdown processing, and
+          Rouge for syntax highlighting. This is a complete ruby solution, I
+          believe its the fastest...
+      span.post__read-more
+        | Read More
+
