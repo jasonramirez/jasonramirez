@@ -1,23 +1,15 @@
 .site-header {
   @include clearfix;
   @include position(fixed, 0 0 null 0);
+  background-color: $base-background-color;
   margin: 0 auto;
   max-width: $large-screen;
   padding: $base-spacing;
-  transition: all $base-duration;
+  transition: padding $base-duration;
   z-index: 1;
 
-  @include media(max-width $small-screen){
-    &::before {
-      @include position(absolute, 0 0 null 0);
-      @include size(100%, $navigation-height-mobile);
-      background-color: $base-background-color;
-      content: "";
-      z-index: -1;
-    }
-  }
-
   @include media($small-screen) {
+    background-color: transparent;
     position: relative;
   }
 
