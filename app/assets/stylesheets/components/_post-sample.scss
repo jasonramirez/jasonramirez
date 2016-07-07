@@ -1,32 +1,25 @@
 .post-sample {
   color: $base-font-color;
   display: block;
-  margin-bottom: $x-large-spacing;
+  margin: $x-large-spacing 0;
   text-decoration: none;
-
-  &:hover {
-    color: $base-font-color;
-
-    .post-sample__read-more {
-      color: $action-color;
-    }
-  }
 
   p {
     font-weight: normal;
+  }
+
+  h3 {
+    margin-top: $base-spacing;
+  }
+
+  time {
+    @include media($small-screen) {
+      float: right;
+      transform: translateY(-2px);
+    }
   }
 }
 
 a.post-sample {
   text-decoration: none;
-}
-
-.post-sample__read-more {
-  character-spacing: 0.05rem;
-  color: $base-font-color;
-  display: inline;
-  font-family: $heading-font-family;
-  font-size: $small-font-size;
-  font-weight: bold;
-  text-transform: uppercase;
 }

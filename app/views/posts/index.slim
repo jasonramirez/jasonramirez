@@ -2,31 +2,26 @@ section.content.content--reading
   h2
     = t("titles.posts")
 
-  = link_to "/posts/the_hypothesis", class: "post-sample" do
-    article
-      h3
-        | The Hypothesis
-      time
-        | 7/5/16
-      p
-        | The guiding light to a good experiment is the hypothesis. It is the second
-          step to setting up an experiment, right after establishing your risky
-          assumption. If you can't articulate a hypothesis, then you don't
-          have an experiment...
-      span.post-sample__read-more
-        | Read More
-
   = link_to "/posts/syntax_highlighting", class: "post-sample" do
     article
-      h3
-        | Rails + Markdown + Syntax Highlighting
       time
         | 7/7/16
+      h3
+        | Rails + Markdown + Syntax Highlighting
       p
         | This post is to help you add syntax highlighting to your markdown in
           a rails app. I prefer to use Redcarpet for markdown processing, and
           Rouge for syntax highlighting. This is a complete ruby solution, I
           believe its the fastest...
-      span.post-sample__read-more
-        | Read More
 
+  = link_to "/posts/the_hypothesis", class: "post-sample" do
+    article
+      time
+        | 7/5/16
+      h3
+        | The Hypothesis
+      p
+        | The guiding light to a good experiment is the hypothesis. It is the second
+          step to setting up an experiment, right after establishing your risky
+          assumption. If you can't articulate a hypothesis, then you don't
+          have an experiment...
