@@ -2,11 +2,12 @@
   color: $base-font-color;
   display: block;
   margin-bottom: $x-large-spacing;
+  text-decoration: none;
 
   &:hover {
     color: $base-font-color;
 
-    .post__read-more {
+    .post-sample__read-more {
       color: $action-color;
     }
   }
@@ -14,6 +15,10 @@
   p {
     font-weight: normal;
   }
+}
+
+a.post-sample {
+  text-decoration: none;
 }
 
 .post-sample__read-more {
