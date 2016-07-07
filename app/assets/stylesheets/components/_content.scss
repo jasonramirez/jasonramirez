@@ -32,6 +32,12 @@
 
   a {
     text-decoration: underline;
+
+    &[href^="#"]::after {
+      content: " §";
+      font-size: $small-font-size;
+      font-weight: normal;
+    }
   }
 
   blockquote {

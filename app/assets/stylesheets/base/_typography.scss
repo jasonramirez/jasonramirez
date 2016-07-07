@@ -38,12 +38,6 @@ a {
     color: shade($action-color, 25%);
     outline: none;
   }
-
-  &[href^="#"]::after {
-    content: " §";
-    font-size: $small-font-size;
-    font-weight: normal;
-  }
 }
 
 code {
