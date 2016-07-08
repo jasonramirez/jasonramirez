@@ -2,6 +2,19 @@
   pre {
     background-color: $code-gray;
     border-radius: $base-border-radius;
+    margin-bottom: $large-spacing;
     padding: $base-spacing;
+
+    code {
+      border: none;
+    }
+  }
+
+  mark {
+    code {
+      background-color: mix(yellow, $white, 75%);
+      border-color: mix(yellow, $black, 75%);
+      color:mix(yellow, $black, 50%);
+    }
   }
 }
