@@ -8,8 +8,8 @@ en:
 
   followers:
     new:
-      email: "Sign up with your email to be notified of new content:"
-      interests: "Get notified of specific types of content:"
+      interests: "Send me content about:"
+      sign_up_copy: Sign up with your email to be notified of new content.
 
   helpers:
     submit:

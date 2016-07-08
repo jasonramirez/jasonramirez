@@ -2,7 +2,10 @@ section.content.content--reading
   h2
     = t("titles.followers.new")
 
+  p
+    = t(".sign_up_copy")
+
   = simple_form_for @follower do |form|
-    = form.input :email, label: t(".email"), placeholder: "Your Email"
+    = form.input :email
     = form.association :interests, as: :check_boxes, label: t(".interests")
     = form.submit class: "button"

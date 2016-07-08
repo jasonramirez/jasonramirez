@@ -5,7 +5,7 @@ RSpec.feature "Guest views posts" do
     it "shows the list of articles" do
       visit root_path
 
-      click_link t("navigation.posts")
+      first(:link, t("navigation.posts")).click
 
       expect(page).to have_text t("titles.posts")
     end
