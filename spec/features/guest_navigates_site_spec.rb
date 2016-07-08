@@ -11,18 +11,6 @@ RSpec.feature "Guest navigates site" do
         expect(page).to have_text "Piggy"
       end
     end
-
-    describe "clicking the process link in the nav" do
-      it "takes you to that process page" do
-        visit root_path
-
-        within ".site-header" do
-          click_link t("navigation.process")
-        end
-
-        expect(page).to have_text "Process"
-      end
-    end
   end
 
   context "from a projects page" do
