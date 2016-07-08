@@ -7,6 +7,10 @@
   @include media($large-screen) {
     @include padding(null 0);
   }
+
+  a.case-study-footer-navigation__link {
+    text-decoration: none;
+  }
 }
 
 .case-study-footer-navigation__link {
