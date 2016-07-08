@@ -68,7 +68,25 @@
   a:focus,
   a:hover {
     color: $action-color;
+
+    svg {
+      path {
+        transition: all 250ms;
+        fill: $action-color;
+      }
+    }
   }
+
+  svg {
+    @include size($base-font-size);
+    vertical-align: text-top;
+    margin-left: $small-spacing / 2;
+
+    path {
+      transition: all 250ms;
+    }
+  }
+
 }
 
 .navigation__mobile-trigger {

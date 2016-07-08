@@ -6,10 +6,15 @@ en:
       with_weekday:
         "%a %m/%d/%y"
 
+  followers:
+    new:
+      email: "Sign up with your email to be notified of new content:"
+      interests: "Get notified of specific types of content:"
+
   helpers:
     submit:
       follower:
-        create: Follow
+        create: Keep me updated
 
   time:
     formats:
@@ -21,10 +26,11 @@ en:
         "%B %d"
 
   navigation:
-    home: Jason Ramirez
-    process: Process
-    posts: Posts
     case_studies: Case Studies
+    follow: Follow
+    home: Jason Ramirez
+    posts: Posts
+    process: Process
 
   titles:
     application: Jason Ramirez | Product Designer
@@ -34,6 +40,8 @@ en:
       tinysplash: Tinysplash
     posts: Posts
     process: Process
+    followers:
+      new: Follow
 
   case_studies:
     case_studies_navigation:

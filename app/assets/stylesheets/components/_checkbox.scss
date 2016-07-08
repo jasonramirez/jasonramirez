@@ -1,0 +1,18 @@
+.checkbox {
+  display: block;
+  margin-right: $base-spacing;
+
+  input {
+    border: none;
+    display: inline-block;
+    margin-right: $small-spacing;
+  }
+
+  &:last-of-type {
+    margin-bottom: $large-spacing;
+  }
+
+  label {
+    text-transform: capitalize;
+  }
+}

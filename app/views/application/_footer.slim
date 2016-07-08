@@ -5,7 +5,14 @@ footer.site-footer
       li.navigation__link
         = link_to t("navigation.case_studies"), case_studies_path
       li.navigation__link
+        = link_to t("navigation.posts"), posts_path
+      li.navigation__link
         = link_to t("navigation.process"), process_path
+      li.navigation__link
+        = link_to new_follower_path do
+          = t("navigation.follow")
+          = inline_svg src="icon-heart.svg"
+
     small
       | &copy;
       = Time.new.year

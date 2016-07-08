@@ -13,3 +13,7 @@ header.site-header
         = link_to t("navigation.posts"), posts_path
       li.navigation__link
         = link_to t("navigation.process"), process_path
+      li.navigation__link
+        = link_to new_follower_path do
+          = t("navigation.follow")
+          = inline_svg src="icon-heart.svg"

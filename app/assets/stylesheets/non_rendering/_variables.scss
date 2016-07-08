@@ -24,7 +24,7 @@ $navigation-height: 8rem;
 $navigation-height-mobile: 4rem;
 
 // Spacing
-$small-spacing: $base-line-height / 2;
+$small-spacing: $base-line-height / 2 * 1rem;
 $base-spacing: $base-line-height * 1rem;
 $large-spacing: $base-line-height * 2rem;
 $x-large-spacing: $base-line-height * 4rem;
@@ -32,8 +32,8 @@ $x-large-spacing: $base-line-height * 4rem;
 // Colors
 $black: #000;
 $blue: #341ef9;
-$light-gray: #ddd;
 $code-gray: #f8f8f8;
+$light-gray: #ddd;
 $medium-gray: #999;
 $mine-shaft: #383838;
 $tamed-blue: tint($blue, 25%);

@@ -9,17 +9,12 @@ input,
 label,
 select {
   display: block;
-  font-family: $base-font-family;
+  font-family: $reading-font-family;
   font-size: $base-font-size;
 }
 
 label {
-  font-weight: 600;
   margin-bottom: $small-spacing / 2;
-
-  &.required::after {
-    content: "*";
-  }
 
   abbr {
     display: none;
@@ -28,15 +23,15 @@ label {
 
 #{$all-text-inputs},
 select[multiple=multiple] {
-  background-color: $base-background-color;
-  border: $base-border;
-  border-radius: $base-border-radius;
-  box-shadow: $form-box-shadow;
+  border: none;
+  border-bottom: solid 2px $black;
   box-sizing: border-box;
-  font-family: $base-font-family;
+  font-family: $reading-font-family;
   font-size: $base-font-size;
-  margin-bottom: $small-spacing;
-  padding: $base-spacing / 3;
+  margin-bottom: $large-spacing;
+  font-weight: 300;
+  line-height: 1;
+  padding: $base-spacing 0;
   transition: border-color $base-duration $base-timing;
   width: 100%;
 
@@ -46,7 +41,6 @@ select[multiple=multiple] {
 
   &:focus {
     border-color: $action-color;
-    box-shadow: $form-box-shadow-focus;
     outline: none;
   }
 
