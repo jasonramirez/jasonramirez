@@ -5,7 +5,7 @@ app.==  I prefer to use [Redcarpet] for markdown processing, and [Rouge] for
 syntax highlighting. This is a complete ruby solution, I believe its the
 [fastest], and somewhat easy to implement.
 
-### Steps
+## Steps
 
 
 1. [Add the `redcarpet` gem.](#redcarpet_gem)
@@ -23,7 +23,7 @@ syntax highlighting. This is a complete ruby solution, I believe its the
 1. [Display the parsed markdown with syntax highlighting in code blocks](#use_it)
 
 <a id="redcarpet_gem"></a>
-### Add the redcarpet Gem
+## Add the redcarpet Gem
 
 ```ruby
 # Gemfile
@@ -32,7 +32,7 @@ gem "redcarpet"
 ```
 
 <a id="markdown_parser_class"></a>
-### MarkdownParser Class
+## MarkdownParser Class
 
 ```ruby
 # app/models/markdown_parser.rb
@@ -68,7 +68,7 @@ gem "rouge-rails"
 ```
 
 <a id="rouge_renderer_class"></a>
-### RougeRenderer Class
+## RougeRenderer Class
 
 ```ruby
 # app/models/rouge_renderer.rb
@@ -82,7 +82,7 @@ end
 ```
 
 <a id="modify_it"></a>
-### Use RougeRenderer As Redcarpet Renderer
+## Use RougeRenderer As Redcarpet Renderer
 
 ```ruby
 # app/models/markdown_parser.rb
@@ -98,7 +98,7 @@ end
 ```
 
 <a id="stylesheets"></a>
-### Styelsheets
+## Styelsheets
 
 There are a couple of ways to add the code styles to you rails app. I like to
 use the rouge `rougify` CLI command to generate a stylesheet.  The CLI command
@@ -125,7 +125,7 @@ You can also copy a stylesheet from [here], but be aware of how the classes are 
 [here]:https://github.com/jacobsimeon/rouge-rails/tree/master/app/assets/stylesheets/rouge
 
 <a id="use_it"></a>
-### Use it
+## Use it
 
 Pass the markdown parser a file:
 

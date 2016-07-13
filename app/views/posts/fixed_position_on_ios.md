@@ -9,7 +9,7 @@ We can fix it by establishing the height and width of the `body` and
 `html` and setting the `overflow` to auto and
 `webkit-overflow-scrolling` to touch.
 
-==Fixed Position Scrolling Solution:==
+## Fix:
 
 ```scss
 body,

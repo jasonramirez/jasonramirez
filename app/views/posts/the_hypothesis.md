@@ -8,7 +8,7 @@ have an experiment.==
 ==The most straightforward and clear way to write a hypothesis is the
 _if_ / _then_ format.== Let's break it down.
 
-### If
+## If
 
 ==The **if** is an isolated change in the application that will lead to
 a desired behavior or outcome and should be coupled with your
@@ -33,7 +33,7 @@ Bad examples:
 
 * If we make our app responsive and remove the landing page...
 
-### Then
+## Then
 
 ==The **then** is focused on our desired behavior or outcome and
 should be measurable.== Avoid desired outcomes that deal with
@@ -54,7 +54,7 @@ Bad examples:
 
 * Then the users wont be so annoyed.
 
-### Summary
+## Summary
 
 ==A well written hypothesis should help you understand from a high level how you
 are going to add value to the user, and how adding that value is going to
