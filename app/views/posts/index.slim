@@ -2,11 +2,18 @@ section.content.content--reading
   h2
     = t("titles.posts")
 
+  = link_to "/posts/the_action", class: "post-sample" do
+    article
+      time
+        | 7/18/16
+      h4
+        | The Action
+
   = link_to "/posts/the_assumption", class: "post-sample" do
     article
       time
         | 7/11/16
-      h3
+      h4
         | The Assumption
 
   = link_to "/posts/fixed_position_on_ios", class: "post-sample" do
