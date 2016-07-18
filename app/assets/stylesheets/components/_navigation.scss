@@ -87,6 +87,9 @@
     }
   }
 
+  .followers & svg path {
+    fill: $heart-red;
+  }
 }
 
 .navigation__mobile-trigger {
