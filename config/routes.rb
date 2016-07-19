@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   get "case_studies/:case_study", to: "case_studies#show"
   get "posts", to: "posts#index"
   get "posts/:post_title", to: "posts#show"
+
+  namespace "admin" do
+    resources :posts
+  end
 end

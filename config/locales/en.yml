@@ -6,6 +6,11 @@ en:
       with_weekday:
         "%a %m/%d/%y"
 
+  admin:
+    flash:
+      created: Your post has been saved.
+      failed: Your post was not created.
+
   followers:
     new:
       interests: "Update me when content is added about:"
@@ -14,6 +19,8 @@ en:
     submit:
       follower:
         create: Keep me updated
+      post:
+        create: Create Post
 
   time:
     formats:
