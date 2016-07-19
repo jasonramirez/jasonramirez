@@ -9,7 +9,8 @@ en:
   admin:
     flash:
       created: Your post has been saved.
-      failed: Your post was not created.
+      failed: There was an issue. Try again.
+      updated: Your post has been updated.
 
   followers:
     new:
@@ -21,6 +22,7 @@ en:
         create: Keep me updated
       post:
         create: Create Post
+        update: Save Changes
 
   time:
     formats:

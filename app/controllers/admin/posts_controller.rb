@@ -7,14 +7,28 @@ class Admin::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to edit_admin_post_path(@post), alert: t("admin.flash.created")
+      flash[:success] = t("admin.flash.created")
+      render "edit"
     else
-      redirect_to new_admin_post_path, alert: t("admin.flash.failed")
+      flash[:alert] = t("admin.flash.failed")
+      render "new"
     end
   end
 
   def edit
     @post = find_post
+  end
+
+  def update
+    @post = find_post
+
+    if @post.update_attributes(post_params)
+      flash[:success] = t("admin.flash.updated")
+      render "edit"
+    else
+      flash[:alert] = t("admin.flash.failed")
+      render "edit"
+    end
   end
 
   private
