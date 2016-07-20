@@ -15,6 +15,7 @@ en:
     navigation:
       all_posts: All Posts
       new_post: New Post
+      sign_out: Sign Out
     posts:
       index:
         delete_post: Delete

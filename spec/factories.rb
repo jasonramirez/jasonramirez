@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :admin do
+    email "admin@example.com"
+    password "password"
+  end
+
   factory :post do
     title "Post"
     body "This is a great post."

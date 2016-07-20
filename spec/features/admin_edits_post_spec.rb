@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.feature "Admin edits post" do
   context "from the posts list" do
     it "shows a list of all posts" do
+      sign_in_admin
       post = create(:post, title: "Post Title")
 
       visit admin_posts_path
@@ -16,6 +17,7 @@ RSpec.feature "Admin edits post" do
 
   context "from the post" do
     it "shows a success message" do
+      sign_in_admin
       post = create(:post)
       visit edit_admin_post_path(post)
 
@@ -24,5 +26,10 @@ RSpec.feature "Admin edits post" do
       expect(page).to have_selector("input[value='New Title']")
       expect(page).to have_text t("admin.flash.updated")
     end
+  end
+
+  def sign_in_admin
+    admin = create(:admin)
+    login_as admin, scope: :admin
   end
 end

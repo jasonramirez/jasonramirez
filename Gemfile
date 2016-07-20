@@ -8,6 +8,7 @@ gem "bourbon", git: "https://github.com/thoughtbot/bourbon", branch: "v5.0.0.bet
 gem "browser"
 gem "coffee-rails", "~> 4.1.0"
 gem "delayed_job_active_record"
+gem "devise"
 gem "flutie"
 gem "high_voltage"
 gem "inline_svg"
