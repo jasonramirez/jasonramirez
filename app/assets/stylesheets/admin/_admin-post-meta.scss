@@ -1,0 +1,20 @@
+.admin-post-meta {
+  margin-bottom: $large-spacing;
+
+  @include media($large-screen) {
+    margin-bottom: $x-large-spacing;
+  }
+
+  * {
+    display: inline-block;
+  }
+
+  input,
+  select {
+    margin: 0;
+  }
+
+  label {
+    margin: 0 $small-spacing 0;
+  }
+}
