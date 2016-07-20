@@ -11,9 +11,12 @@ en:
       created: Your post has been saved.
       failed: There was an issue. Try again.
       updated: Your post has been updated.
+      destroyed: Your post has been deleted.
     posts:
       index:
         new_post: New Post
+        delete_post: Delete
+        delete_confirmation: Are you sure?
 
   followers:
     new:

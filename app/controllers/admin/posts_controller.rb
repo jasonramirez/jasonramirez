@@ -35,6 +35,18 @@ class Admin::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    post = find_post
+
+    if post.destroy
+      flash[:success] = t("admin.flash.destroyed")
+      render "index"
+    else
+      flash[:alert] = t("admin.flash.failed")
+      render "index"
+    end
+  end
+
   private
 
   def find_post
