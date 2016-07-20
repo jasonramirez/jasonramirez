@@ -1,2 +1,4 @@
 section.content.content--reading.post
-  = @post
+  h1
+    = @post.title
+  = MarkdownParser.new(@post.body).markdown_to_html

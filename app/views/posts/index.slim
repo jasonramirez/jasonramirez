@@ -2,37 +2,11 @@ section.content.content--reading
   h2
     = t("titles.posts")
 
-  = link_to "/posts/the_action", class: "post-sample" do
-    article
-      time
-        | 7/18/16
-      h4
-        | The Action
-
-  = link_to "/posts/the_assumption", class: "post-sample" do
-    article
-      time
-        | 7/11/16
-      h4
-        | The Assumption
-
-  = link_to "/posts/fixed_position_on_ios", class: "post-sample" do
-    article
-      time
-        | 7/8/16
-      h4
-        | Fixed Position Bug on iOS
-
-  = link_to "/posts/syntax_highlighting", class: "post-sample" do
-    article
-      time
-        | 7/7/16
-      h4
-        | Rails + Markdown + Syntax Highlighting
-
-  = link_to "/posts/the_hypothesis", class: "post-sample" do
-    article
-      time
-        | 7/5/16
-      h4
-        | The Hypothesis
+  - if @posts.present?
+    - @posts.each do |post|
+      = link_to post_path(post), class: "post-sample" do
+        article
+          time
+            = post.pretty_published_date
+          h4
+            = post.title

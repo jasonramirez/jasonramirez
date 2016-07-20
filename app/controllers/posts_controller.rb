@@ -1,18 +1,15 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.all
   end
 
   def show
-    @post = MarkdownParser.new(post_markdown).markdown_to_html
+    @post = find_post
   end
 
   private
 
-  def post_markdown
-    File.read(File.join("app", "views", "posts", "#{post_title}.md"))
-  end
-
-  def post_title
-    params[:post_title]
+  def find_post
+    Post.find(params[:id])
   end
 end
