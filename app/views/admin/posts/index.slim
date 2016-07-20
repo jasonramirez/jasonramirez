@@ -1,3 +1,6 @@
 - @posts.each do |post|
   = link_to edit_admin_post_path(post) do
     = post.title
+
+= link_to new_admin_post_path do
+  = t(".new_post")

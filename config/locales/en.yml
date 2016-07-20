@@ -11,6 +11,9 @@ en:
       created: Your post has been saved.
       failed: There was an issue. Try again.
       updated: Your post has been updated.
+    posts:
+      index:
+        new_post: New Post
 
   followers:
     new:

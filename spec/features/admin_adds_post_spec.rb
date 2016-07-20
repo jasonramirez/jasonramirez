@@ -1,16 +1,22 @@
 require "rails_helper"
 
 RSpec.feature "Admin adds post" do
+  context "from the posts list" do
+    it "shows a list of all posts" do
+      visit admin_posts_path
+
+      click_on t("admin.posts.index.new_post")
+      fill_new_post_form
+
+      expect(page).to have_text I18n.t("admin.flash.created")
+    end
+  end
+
   context "from the new posts page scucessfully" do
     it "shows a success message" do
       visit new_admin_post_path
 
-      fill_form_and_submit(
-        :post,
-        title: "Title",
-        body: "This is the body.",
-        published: true,
-      )
+      fill_new_post_form
 
       expect(page).to have_text I18n.t("admin.flash.created")
     end
@@ -24,5 +30,14 @@ RSpec.feature "Admin adds post" do
 
       expect(page).to have_text I18n.t("admin.flash.failed")
     end
+  end
+
+  def fill_new_post_form
+    fill_form_and_submit(
+      :post,
+      title: "Title",
+      body: "This is the body.",
+      published: true,
+    )
   end
 end
