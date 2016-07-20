@@ -1,0 +1,18 @@
+.admin-post-item {
+  list-style-type: none;
+  margin-bottom: $base-spacing;
+  padding: $small-spacing;
+  width: 100%;
+
+  @include media($large-screen) {
+    padding: 0;
+  }
+
+  h3 {
+    display: inline-block;
+  }
+
+  .button {
+    float: right;
+  }
+}
