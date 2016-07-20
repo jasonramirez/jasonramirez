@@ -14,11 +14,11 @@ en:
       updated: Your post has been updated.
     navigation:
       all_posts: All Posts
+      new_post: New Post
     posts:
       index:
         delete_post: Delete
         delete_confirmation: Are you sure?
-        new_post: New Post
 
   followers:
     new:

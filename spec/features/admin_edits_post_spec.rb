@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Admin edits post" do
   context "from the posts list" do
     it "shows a list of all posts" do
-      post = create(:post)
+      post = create(:post, title: "Post Title")
 
       visit admin_posts_path
       click_on post.title

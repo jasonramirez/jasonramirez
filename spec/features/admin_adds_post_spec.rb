@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Admin adds post" do
-  context "from the posts list" do
+  context "from the navigation" do
     it "shows a list of all posts" do
       visit admin_posts_path
 
-      click_on t("admin.posts.index.new_post")
+      click_on t("admin.navigation.new_post")
       fill_new_post_form
 
       expect(page).to have_text I18n.t("admin.flash.created")
