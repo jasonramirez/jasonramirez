@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  validates_presence_of :published
+  validates :title, presence: true
 
   def pretty_published_date
     published_date.strftime("%-m/%e/%y")

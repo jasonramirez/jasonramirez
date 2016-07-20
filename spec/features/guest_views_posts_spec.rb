@@ -1,13 +1,21 @@
 require "rails_helper"
 
 RSpec.feature "Guest views posts" do
-  describe "as a list" do
-    it "shows the list of articles" do
-      visit root_path
+  scenario "not published" do
+    post_one = create(:post, title: "Post One", published: false)
 
-      first(:link, t("navigation.posts")).click
+    visit posts_path
 
-      expect(page).to have_text t("titles.posts")
-    end
+    expect(page).to_not have_text post_one.title
+  end
+
+  scenario "as a list" do
+    post_one = create(:post, title: "Post One")
+    post_two = create(:post, title: "Post One")
+
+    visit posts_path
+
+    expect(page).to have_text post_one.title
+    expect(page).to have_text post_two.title
   end
 end

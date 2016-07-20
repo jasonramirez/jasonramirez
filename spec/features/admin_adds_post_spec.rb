@@ -29,7 +29,7 @@ RSpec.feature "Admin adds post" do
       sign_in_admin
       visit new_admins_post_path
 
-      fill_form_and_submit(:post, :new, {})
+      fill_form_and_submit(:post, :new, title: "")
 
       expect(page).to have_text t("admins.flash.failed")
     end
