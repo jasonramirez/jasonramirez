@@ -1,18 +1,31 @@
 .admin-post-item {
   list-style-type: none;
-  margin-bottom: $base-spacing;
-  padding: $small-spacing;
+  padding: $base-spacing;
+  border: none;
   width: 100%;
 
   @include media($large-screen) {
     padding: 0;
   }
+}
 
-  h3 {
-    display: inline-block;
-  }
+.admin-post-item__title {
+  margin: 0;
+}
 
-  .button {
-    float: right;
+.admin-post-item__published-status {
+  font-size: $small-font-size;
+  float: right;
+
+  &.not-published {
+    color: rgba($black, 0.25);
   }
+}
+
+.admin-post-item__time {
+  float: right;
+}
+
+.admin-post-item__delete {
+  float: right;
 }

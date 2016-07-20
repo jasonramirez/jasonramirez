@@ -1,15 +1,30 @@
 section.content
   - if @posts.present?
-    ul.admin-posts-list
+    table
       - @posts.each do |post|
-        li.admin-post-item
-          = link_to edit_admins_post_path(post) do
-            h3
-              = post.title
-            time
-              = post.pretty_published_date
-            = link_to [:admins, post],
-              class: "button",
-              method: :delete,
-              data: {confirm: "Are you sure?"} do
-              = t(".delete_post")
+        tr.admin-post-item
+          td
+            = link_to edit_admins_post_path(post) do
+              h3.admin-post-item__title
+                  = post.title
+
+          td
+            - if post.published
+              .admin-post-item__published-status
+                | Published
+            - else
+              .admin-post-item__published-status.not-published
+                | Not Published
+
+          td
+            .admin-post-item__time
+              time
+                = post.pretty_published_date
+
+          td
+            .admin-post-item__delete
+              = link_to [:admins, post],
+                class: "button",
+                method: :delete,
+                data: {confirm: "Are you sure?"} do
+                = t(".delete_post")
