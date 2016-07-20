@@ -12,6 +12,8 @@ en:
       destroyed: Your post has been deleted.
       failed: There was an issue. Try again.
       updated: Your post has been updated.
+    navigation:
+      all_posts: All Posts
     posts:
       index:
         delete_post: Delete

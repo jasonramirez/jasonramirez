@@ -1,11 +1,12 @@
-- if @posts.present?
-  - @posts.each do |post|
-    = link_to edit_admin_post_path(post) do
-      = post.title
-      = button_to [:admin, post],
-        method: :delete,
-        data: {confirm: "Are you sure?"} do
-        = t(".delete_post")
+section.content
+  - if @posts.present?
+    - @posts.each do |post|
+      = link_to edit_admin_post_path(post) do
+        = post.title
+        = button_to [:admin, post],
+          method: :delete,
+          data: {confirm: "Are you sure?"} do
+          = t(".delete_post")
 
-  = link_to new_admin_post_path do
-    = t(".new_post")
+    = link_to new_admin_post_path do
+      = t(".new_post")
