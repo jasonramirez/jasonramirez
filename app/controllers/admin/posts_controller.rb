@@ -42,7 +42,7 @@ class Admin::PostsController < ApplicationController
 
     if post.destroy
       flash[:success] = t("admin.flash.destroyed")
-      render "index"
+      redirect_to admin_posts_path
     else
       flash[:alert] = t("admin.flash.failed")
       render "index"
