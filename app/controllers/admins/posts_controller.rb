@@ -1,4 +1,4 @@
-class Admin::PostsController < ApplicationController
+class Admins::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   layout "admin"
@@ -15,10 +15,10 @@ class Admin::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      flash[:success] = t("admin.flash.created")
+      flash[:success] = t("admins.flash.created")
       render "edit"
     else
-      flash[:alert] = t("admin.flash.failed")
+      flash[:alert] = t("admins.flash.failed")
       render "new"
     end
   end
@@ -31,10 +31,10 @@ class Admin::PostsController < ApplicationController
     @post = find_post
 
     if @post.update_attributes(post_params)
-      flash[:success] = t("admin.flash.updated")
+      flash[:success] = t("admins.flash.updated")
       render "edit"
     else
-      flash[:alert] = t("admin.flash.failed")
+      flash[:alert] = t("admins.flash.failed")
       render "edit"
     end
   end
@@ -43,10 +43,10 @@ class Admin::PostsController < ApplicationController
     post = find_post
 
     if post.destroy
-      flash[:success] = t("admin.flash.destroyed")
-      redirect_to admin_posts_path
+      flash[:success] = t("admins.flash.destroyed")
+      redirect_to admins_posts_path
     else
-      flash[:alert] = t("admin.flash.failed")
+      flash[:alert] = t("admins.flash.failed")
       render "index"
     end
   end

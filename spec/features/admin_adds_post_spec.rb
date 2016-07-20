@@ -4,34 +4,34 @@ RSpec.feature "Admin adds post" do
   context "from the navigation" do
     it "shows a list of all posts" do
       sign_in_admin
-      visit admin_posts_path
+      visit admins_posts_path
 
-      click_on t("admin.navigation.new_post")
+      click_on t("admins.navigation.new_post")
       fill_new_post_form
 
-      expect(page).to have_text I18n.t("admin.flash.created")
+      expect(page).to have_text t("admins.flash.created")
     end
   end
 
   context "from the new posts page scucessfully" do
     it "shows a success message" do
       sign_in_admin
-      visit new_admin_post_path
+      visit new_admins_post_path
 
       fill_new_post_form
 
-      expect(page).to have_text I18n.t("admin.flash.created")
+      expect(page).to have_text I18n.t("admins.flash.created")
     end
   end
 
   context "from the new posts page not successfully" do
     it "shows a failure message" do
       sign_in_admin
-      visit new_admin_post_path
+      visit new_admins_post_path
 
       fill_form_and_submit(:post, :new, {})
 
-      expect(page).to have_text I18n.t("admin.flash.failed")
+      expect(page).to have_text t("admins.flash.failed")
     end
   end
 

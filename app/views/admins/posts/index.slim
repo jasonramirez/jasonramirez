@@ -3,10 +3,10 @@ section.content
     ul.admin-posts-list
       - @posts.each do |post|
         li.admin-post-item
-          = link_to edit_admin_post_path(post) do
+          = link_to edit_admins_post_path(post) do
             h3
               = post.title
-            = link_to [:admin, post],
+            = link_to [:admins, post],
               class: "button",
               method: :delete,
               data: {confirm: "Are you sure?"} do

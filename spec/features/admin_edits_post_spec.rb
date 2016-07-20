@@ -6,12 +6,12 @@ RSpec.feature "Admin edits post" do
       sign_in_admin
       post = create(:post, title: "Post Title")
 
-      visit admin_posts_path
+      visit admins_posts_path
       click_on post.title
       fill_form_and_submit(:post, :edit, title: "New Title")
 
       expect(page).to have_selector("input[value='New Title']")
-      expect(page).to have_text t("admin.flash.updated")
+      expect(page).to have_text t("admins.flash.updated")
     end
   end
 
@@ -19,12 +19,12 @@ RSpec.feature "Admin edits post" do
     it "shows a success message" do
       sign_in_admin
       post = create(:post)
-      visit edit_admin_post_path(post)
+      visit edit_admins_post_path(post)
 
       fill_form_and_submit(:post, :edit, title: "New Title")
 
       expect(page).to have_selector("input[value='New Title']")
-      expect(page).to have_text t("admin.flash.updated")
+      expect(page).to have_text t("admins.flash.updated")
     end
   end
 
