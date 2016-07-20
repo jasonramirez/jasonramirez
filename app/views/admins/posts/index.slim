@@ -6,6 +6,8 @@ section.content
           = link_to edit_admins_post_path(post) do
             h3
               = post.title
+            time
+              = post.pretty_published_date
             = link_to [:admins, post],
               class: "button",
               method: :delete,
