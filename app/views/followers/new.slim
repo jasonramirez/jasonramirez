@@ -8,5 +8,5 @@ section.content.content--reading
 
   = simple_form_for @follower do |form|
     = form.association :interests, as: :check_boxes, label: false
-    = form.input :email
+    = form.input :email, wrapper_html: { class: "sky-label" }
     = form.submit class: "button"

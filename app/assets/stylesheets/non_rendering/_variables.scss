@@ -60,12 +60,10 @@ $secondary-background-color: tint($base-border-color, 75%);
 $code-background-color: $code-gray;
 
 // Forms
-$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
-$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
-
-// Animations
-$base-duration: 250ms;
-$base-timing: ease;
+$input-background-color: #fafafa;
+$input-padding: 1rem;
+$sky-labels-animation-duration: $base-duration;
+$sky-labels-color: $light-gray;
 
 // Component details
 $case-study-page-navigation-width: 50vw;

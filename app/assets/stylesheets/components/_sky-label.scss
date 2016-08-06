@@ -1,0 +1,33 @@
+.sky-label {
+  margin-top: $large-spacing;
+  position: relative;
+}
+
+.sky-label label {
+  @include position(absolute, 0 null null 0);
+  color: $sky-labels-color;
+  cursor: text;
+  padding: $input-padding;
+  transition:
+    background-color $sky-labels-animation-duration,
+    color $sky-labels-animation-duration,
+    left $sky-labels-animation-duration,
+    opacity $sky-labels-animation-duration,
+    top $sky-labels-animation-duration,
+    transform $sky-labels-animation-duration;
+}
+
+.sky-label-focused label,
+.sky-label-has-text label {
+  cursor: default;
+  left: -(1rem);
+  top: -($large-spacing);
+}
+
+.sky-label-has-text label {
+  opacity: 0;
+}
+
+.sky-label-has-text.sky-label-focused label {
+  opacity: 1;
+}
