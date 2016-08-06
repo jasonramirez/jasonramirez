@@ -1,11 +1,11 @@
 GIT
   remote: https://github.com/thoughtbot/bourbon
-  revision: e023d326cc123fceead1650f646ba73d79a98eb8
-  branch: v5.0.0.beta.5
+  revision: 290878d777c91cea828b3771466b8a1bf9b86af9
+  branch: v5.0.0.beta.6
   specs:
-    bourbon (5.0.0.beta.5)
-      sass (~> 3.4)
-      thor (~> 0.19)
+    bourbon (5.0.0.beta.6)
+      sass (~> 3.4.22)
+      thor (~> 0.19.1)
 
 GEM
   remote: https://rubygems.org/
