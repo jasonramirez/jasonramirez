@@ -7,7 +7,7 @@
   @include position(absolute, 0 null null 0);
   color: $sky-labels-color;
   cursor: text;
-  padding: $input-padding;
+  padding: 0.9rem 1rem;
   transition:
     background-color $sky-labels-animation-duration,
     color $sky-labels-animation-duration,

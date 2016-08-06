@@ -1,12 +1,13 @@
 .button {
-  background-color: transparent;
+  background-color: $action-color;
   border: none;
-  color: $action-color;
+  box-shadow: 0 1rem 2rem rgba($action-color, 0.15);
+  color: $white;
   display: inline-block;
   font-family: $button-font-family;
-  font-size: $base-font-size;
-  font-weight: 300;
-  padding: 0;
+  font-size: $small-font-size;
+  letter-spacing: 0.025rem;
+  padding: $small-spacing $large-spacing;
   position: relative;
   text-transform: uppercase;
   transition: all 250ms;
@@ -14,5 +15,9 @@
   &:hover {
     cursor: pointer;
     transition: all 0.5s;
+  }
+
+  & + & {
+    margin-left: $base-spacing;
   }
 }

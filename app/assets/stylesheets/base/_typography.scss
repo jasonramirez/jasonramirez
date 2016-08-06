@@ -16,6 +16,11 @@ h6 {
   line-height: $heading-line-height;
   letter-spacing: -0.05em;
   margin: 0 0 $base-spacing;
+
+  svg {
+    margin-left: $small-spacing;
+    vertical-align: bottom;
+  }
 }
 
 h1 {
