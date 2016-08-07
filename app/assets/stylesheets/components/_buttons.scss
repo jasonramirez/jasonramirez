@@ -52,19 +52,16 @@
 
 .button--confirmation {
   &:hover {
-    background-color: $forest-green;
+    background-color: $action-color;
+    box-shadow: 0 1rem 2rem rgba($action-color, 0.15);
   }
 }
 
 .button__icon {
   @include position(absolute, $small-spacing 0 null null);
-  @include size(0.85rem);
+  @include size(1rem);
   transform: translate(2rem, -0.25rem);
   transition-duration: $base-duration;
   transition-property: transform padding opacity;
   z-index: 1;
-
-  g {
-    stroke: $white;
-  }
 }
