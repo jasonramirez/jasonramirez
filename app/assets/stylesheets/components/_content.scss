@@ -7,6 +7,14 @@
     @include padding(null 0);
     margin: $large-spacing auto;
   }
+
+  &:last-of-type {
+    margin-bottom: $large-spacing;
+
+    @include media($large-screen) {
+      margin-bottom: $large-spacing * 2;
+    }
+  }
 }
 
 .content--reading {
@@ -79,8 +87,8 @@
     }
   }
 
-  h2,
-  h3 {
+  h2:not(:first-of-type),
+  h3:not(:first-of-type) {
     margin-top: $large-spacing * 1.5;
   }
 

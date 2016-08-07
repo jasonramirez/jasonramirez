@@ -3,8 +3,10 @@
   border: none;
   box-shadow: 0 1rem 2rem rgba($button-background-color, 0.15);
   color: $button-color;
+  character-spacing: 0.05rem;
   display: inline-block;
   font-family: $button-font-family;
+  font-weight: bold;
   font-size: $small-font-size;
   letter-spacing: 0.025rem;
   padding: $x-small-spacing $base-spacing;

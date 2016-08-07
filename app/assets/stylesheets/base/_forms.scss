@@ -90,7 +90,6 @@ select {
   width: auto;
 }
 
-
 [type="checkbox"] {
   @include position(absolute, null null null -999px);
 
@@ -99,20 +98,20 @@ select {
   }
 
   & + label {
-    padding-left: $base-spacing;
+    padding-left: $base-spacing * 1.5;
     position: relative;
   }
 
   & + label::before {
-    @include position(absolute, 0.25rem null 0 0);
-    @include size(1rem);
+    @include position(absolute, 0 null 0 0);
+    @include size(1.25rem);
     content: "";
     background-color: $input-background-color;
   }
 
   & + label::after {
-    @include position(absolute, 0.25rem null 0 0);
-    @include size(1rem);
+    @include position(absolute, 0 null 0 0);
+    @include size(1.25rem);
     background-color: $action-color;
     background-image: asset-url("icon-button-checkmark.svg");
     background-size: 0.85rem;
@@ -131,5 +130,15 @@ select {
     opacity: 1;
     transform: scale(1);
     box-shadow: 0 0.25rem 0.75rem rgba($action-color, 0.25);
+  }
+}
+
+.checkbox {
+  line-height: 1.5;
+}
+
+.input {
+  &:last-of-type {
+    margin-bottom: $base-spacing;
   }
 }

@@ -42,6 +42,19 @@ a {
     color: shade($action-color, 25%);
     outline: none;
   }
+
+  form &.link {
+    character-spacing: 0.05rem;
+    font-family: $heading-font-family;
+    font-size: $small-font-size;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: none;
+
+    * + & {
+      margin-left: $base-spacing;
+    }
+  }
 }
 
 code {
