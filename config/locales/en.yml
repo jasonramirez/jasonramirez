@@ -24,6 +24,7 @@ en:
   followers:
     new:
       interests: "Update me when content is added about:"
+      submit: Keep me updated
 
   helpers:
     submit:

@@ -25,15 +25,17 @@ $navigation-height: 8rem;
 $navigation-height-mobile: 4rem;
 
 // Spacing
-$small-spacing: $base-line-height / 2 * 1rem;
-$base-spacing: $base-line-height * 1rem;
-$large-spacing: $base-line-height * 2rem;
-$x-large-spacing: $base-line-height * 4rem;
+$x-small-spacing: 0.5rem;
+$small-spacing: 1rem;
+$base-spacing: 1.5rem;
+$large-spacing: 3rem;
+$x-large-spacing: 6rem;
 
 // Colors
 $black: #000;
 $blue: #341ef9;
 $code-gray: #f8f8f8;
+$forest-green: #27c34c;
 $heart-red: #ff5687;
 $light-gray: #cfcfcf;
 $medium-gray: #999;
@@ -49,6 +51,8 @@ $base-font-color: $mine-shaft;
 
 // Colors In Use
 $action-color: $blue;
+$button-background-color: $mine-shaft;
+$button-color: $white;
 
 // Animations
 $base-duration: 250ms;

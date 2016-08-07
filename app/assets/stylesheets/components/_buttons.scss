@@ -1,23 +1,70 @@
 .button {
-  background-color: $action-color;
+  background-color: $button-background-color;
   border: none;
-  box-shadow: 0 1rem 2rem rgba($action-color, 0.15);
-  color: $white;
+  box-shadow: 0 1rem 2rem rgba($button-background-color, 0.15);
+  color: $button-color;
   display: inline-block;
   font-family: $button-font-family;
   font-size: $small-font-size;
   letter-spacing: 0.025rem;
-  padding: $small-spacing $large-spacing;
+  padding: $x-small-spacing $base-spacing;
   position: relative;
   text-transform: uppercase;
-  transition: all 250ms;
+  transition: all $base-duration;
 
   &:hover {
+    box-shadow: 0 1rem 2rem rgba($button-background-color, 0.25);
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all $base-duration;
   }
 
   & + & {
     margin-left: $base-spacing;
+  }
+}
+
+.button--with-icon {
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    @include position(absolute, 0 -3rem 0 null);
+    background-color: rgba($black, 0.125);
+    content: "";
+    transition-duration: $base-duration;
+    transition-property: right;
+    width: 3rem;
+    z-index: 0;
+  }
+
+  &:hover {
+    padding-right: 4.5rem;
+
+    &::after {
+      right: 0;
+    }
+
+    .button__icon {
+      transform: translate(-1rem, -0.25rem);
+    }
+  }
+}
+
+.button--confirmation {
+  &:hover {
+    background-color: $forest-green;
+  }
+}
+
+.button__icon {
+  @include position(absolute, $small-spacing 0 null null);
+  @include size(0.85rem);
+  transform: translate(2rem, -0.25rem);
+  transition-duration: $base-duration;
+  transition-property: transform padding opacity;
+  z-index: 1;
+
+  g {
+    stroke: $white;
   }
 }
