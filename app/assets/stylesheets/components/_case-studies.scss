@@ -21,21 +21,6 @@
   display: block;
   position: relative;
 
-  &::after {
-    @include position(absolute, null 50% 0 50%);
-    background-color: $blue;
-    border-radius: 4px;
-    content: "";
-    height: 4px;
-    transition-duration: $base-duration;
-    transition-property: left, right;
-  }
-
-  &:hover::after {
-    left: 5rem;
-    right: 5rem;
-  }
-
   &.filled {
     @include svg-fill($base-font-color, $action-color);
   }
