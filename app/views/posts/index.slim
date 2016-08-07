@@ -1,7 +1,4 @@
 section.content.content--reading
-  h2
-    = t("titles.posts")
-
   - if @posts.present?
     - @posts.each do |post|
       = link_to post_path(post), class: "post-sample" do
