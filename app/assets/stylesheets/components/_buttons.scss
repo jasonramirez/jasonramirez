@@ -59,6 +59,20 @@
   }
 }
 
+.button--link {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: $base-font-color;
+  padding: 0;
+
+  &:hover {
+    box-shadow: none;
+    color: $action-color;
+  }
+}
+
+
 .button__icon {
   @include position(absolute, $small-spacing 0 null null);
   @include size(1rem);
