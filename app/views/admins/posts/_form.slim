@@ -1,8 +1,9 @@
-= simple_form_for [:admins, @post] do |f|
-  .admin-post-meta
-    = f.input :published, as: :boolean
-    = f.input :published_date
-  .admin-post-form
-    = f.input :title
-    = f.input :body, input_html: { "data-flexible-textarea": true }
-    = f.submit class: "button"
+.content.content--reading
+  = simple_form_for [:admins, @post] do |f|
+    .admin-post-meta
+      = f.input :published, as: :boolean
+      = f.input :published_date
+    .admin-post-form
+      = f.input :title
+      = f.input :body, input_html: { "data-flexible-textarea": true }
+      = f.submit class: "button"

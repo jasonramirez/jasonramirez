@@ -90,7 +90,8 @@ select {
   width: auto;
 }
 
-[type="checkbox"] {
+.input input[type="checkbox"],
+.checkbox input[type="checkbox"] {
   @include position(absolute, null null null -999px);
 
   & + label:hover {

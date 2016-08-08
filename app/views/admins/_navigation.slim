@@ -6,7 +6,8 @@ header.site-header
       li.navigation__link
         = link_to t(".new_post"), new_admins_post_path
 
-  nav.navigation--right
+  nav.navigation--right.navigation--mobile-trigger-icon
+    input.navigation__mobile-trigger type="checkbox"
     ul.navigation__links
       li.navigation__link
         = link_to t(".sign_out"), destroy_admin_session_path, method: :delete
