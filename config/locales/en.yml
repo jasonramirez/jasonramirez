@@ -20,6 +20,8 @@ en:
       index:
         delete_post: Delete
         delete_confirmation: Are you sure?
+      form:
+        save: Save Changes
 
   followers:
     new:

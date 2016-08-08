@@ -5,19 +5,21 @@
   }
 
   input[name="post[title]"] {
+    background-color: transparent;
     font-family: $heading-font-family;
     font-size: 2rem;
     font-weight: bold;
-    padding: $base-spacing;
+    padding: 0;
     position: relative;
   }
 
   textarea {
+    background-color: transparent;
     font-family: $reading-font-family;
     font-size: $base-font-size;
     line-height: $reading-line-height / 1.2;
     min-height: 25rem;
-    padding: $base-spacing;
+    padding: 0;
 
     @include media($medium-screen) {
       font-size: $reading-font-size;

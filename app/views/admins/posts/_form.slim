@@ -6,4 +6,7 @@
     .admin-post-form
       = f.input :title
       = f.input :body, input_html: { "data-flexible-textarea": true }
-      = f.submit class: "button"
+      = f.button :button,
+        class: "button button--confirmation button--with-icon" do
+        = t(".save")
+        = inline_svg src="icon-button-checkmark.svg", class: "button__icon"
