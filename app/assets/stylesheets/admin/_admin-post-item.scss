@@ -10,12 +10,19 @@
 }
 
 .admin-post-item__title {
-  margin: 0;
+  h3 {
+    max-width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    margin: 0;
+  }
 }
 
 .admin-post-item__published-status {
   font-size: $small-font-size;
-  float: right;
+  width: 5rem;
 
   &.not-published {
     color: rgba($black, 0.25);
@@ -23,9 +30,9 @@
 }
 
 .admin-post-item__time {
-  float: right;
+  width: 4rem;
 }
 
 .admin-post-item__delete {
-  float: right;
+  width: 6.25rem;
 }

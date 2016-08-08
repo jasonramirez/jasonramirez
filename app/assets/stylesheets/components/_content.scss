@@ -15,6 +15,14 @@
       margin-bottom: $large-spacing * 2;
     }
   }
+
+  &:first-of-type {
+    margin-top: $navigation-height-mobile;
+
+    @include media($small-screen) {
+      margin-top: 0;
+    }
+  }
 }
 
 .content--reading {
