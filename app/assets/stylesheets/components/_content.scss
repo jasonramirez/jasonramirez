@@ -100,6 +100,11 @@
     margin-top: $large-spacing * 1.5;
   }
 
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
   p {
     margin-bottom: $reading-paragraph-spacing / 1.2;
 
