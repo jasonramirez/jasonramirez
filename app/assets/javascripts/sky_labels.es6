@@ -5,14 +5,15 @@ class SkyLabels {
     this.focusedClass = "sky-label-focused";
 
     this._bindEvents();
+
+    setTimeout(() => this._hideLabelsIfInputHasText(), 150);
   }
 
   _bindEvents() {
     $(document)
       .on("focus blur", this.skyLabelSelector, this._addOrRemoveHasTextClass.bind(this))
       .on("focus", this.skyLabelSelector, this._addFocusedClass.bind(this))
-      .on("blur", this.skyLabelSelector, this._removeFocusedClass.bind(this))
-      .ready(this._hideLabelsIfInputHasText.bind(this));
+      .on("blur", this.skyLabelSelector, this._removeFocusedClass.bind(this));
   }
 
   _addOrRemoveHasTextClass(event) {
@@ -28,7 +29,7 @@ class SkyLabels {
   _fieldWrapperHasText(fieldWrapper) {
     const textField = fieldWrapper.find("input, textarea");
 
-    return $.trim(textField.val()).length;
+    return $.trim(textField.val()).length != 0;
   }
 
   _addFocusedClass(event) {

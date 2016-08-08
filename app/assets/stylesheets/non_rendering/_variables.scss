@@ -35,10 +35,12 @@ $x-large-spacing: 6rem;
 $black: #000;
 $blue: #341ef9;
 $code-gray: #f8f8f8;
+$forest-green: #27c34c;
 $heart-red: #ff5687;
 $light-gray: #cfcfcf;
 $medium-gray: #999;
 $mine-shaft: #383838;
+$sun: #ffed2b;
 $tamed-blue: tint($blue, 25%);
 $white: #fff;
 
@@ -52,6 +54,10 @@ $base-font-color: $mine-shaft;
 $action-color: $blue;
 $button-background-color: $mine-shaft;
 $button-color: $white;
+$alert-color: $sun;
+$error-color: #fbe3e4;
+$notice-color: $action-color;
+$success-color: $forest-green;
 
 // Animations
 $base-duration: 250ms;
