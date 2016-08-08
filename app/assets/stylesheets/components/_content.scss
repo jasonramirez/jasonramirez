@@ -20,7 +20,7 @@
     margin-top: $navigation-height-mobile;
 
     @include media($small-screen) {
-      margin-top: 0;
+      margin-top: $large-spacing;
     }
   }
 }
