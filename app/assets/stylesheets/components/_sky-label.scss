@@ -11,6 +11,7 @@
   @include position(absolute, 0 null null 0);
   color: $sky-labels-color;
   cursor: text;
+  line-height: $sky-label-line-height;
   padding: 1rem;
   transition-property: background-color color left opacity top transform;
   transition-duration: $base-duration;
