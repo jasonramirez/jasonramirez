@@ -1,7 +1,7 @@
 .hero {
   align-items: center;
   display: flex;
-  height: 100vh;
+  height: calc(100vh - #{$navigation-height-mobile});
 
   @include media($large-screen) {
     height: calc(100vh - #{$navigation-height});
@@ -28,24 +28,30 @@
   }
 }
 
-.hero--landing {
-  text-align: center;
+.hero__image {
+  transition-property: max-width;
+  transition-duration: 250ms;
+  display: block;
+  max-width: $x-small-screen;
+  margin: 0 auto;
+  transform: translateY(-$navigation-height-mobile / 2);
+
+  @include media($medium-screen) {
+    max-width: $medium-screen;
+  }
+
+  @include media($large-screen) {
+    transform: translateY(-$navigation-height / 2);
+  }
 
   a[href="#works"]:focus #landing_heading path {
     fill: $action-color;
   }
 }
 
-.hero__image {
-  display: block;
-  margin: 0 auto;
+.hero__logo {
   max-width: 100%;
-  transform: translateY(-$navigation-height / 2);
   transition: max-width $base-duration;
-
-  @include media($medium-screen) {
-    max-width: 75%;
-  }
 
   path {
     transition: fill 500ms;

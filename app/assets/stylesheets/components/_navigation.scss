@@ -11,7 +11,7 @@
   content: $hamburger-icon;
   font-size: 1.5rem;
 
-  @include media($small-screen) {
+  @include media($medium-screen) {
     content: "";
   }
 }
@@ -22,7 +22,7 @@
   padding: 0;
 
   .navigation--right & {
-    @include media(max-width $small-screen) {
+    @include media(max-width $medium-screen) {
       @include position(fixed, $navigation-height-mobile -120% 0 120%);
       align-items: center;
       background-color: $white;
@@ -40,7 +40,7 @@
   }
 
   .navigation__mobile-trigger:checked + & {
-    @include media(max-width $small-screen) {
+    @include media(max-width $medium-screen) {
       @include position(absolute, $navigation-height-mobile 0 null 0);
       height: calc(100vh - #{$navigation-height-mobile});
     }
@@ -99,7 +99,7 @@
   opacity: 0;
   z-index: 1;
 
-  @include media($small-screen) {
+  @include media($medium-screen) {
     display: none;
   }
 }
