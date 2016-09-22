@@ -29,12 +29,12 @@
 }
 
 .hero__image {
-  transition-property: max-width;
-  transition-duration: 250ms;
   display: block;
-  max-width: $x-small-screen;
   margin: 0 auto;
+  max-width: $x-small-screen;
   transform: translateY(-$navigation-height-mobile / 2);
+  transition-duration: 250ms;
+  transition-property: max-width;
 
   @include media($medium-screen) {
     max-width: $medium-screen;
