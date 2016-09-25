@@ -7,18 +7,11 @@
 }
 
 .case-study {
-  margin-bottom: 1rem;
   padding: 0;
   text-align: center;
-
-  @include media($medium-screen) {
-    @include omega(2n);
-    @include span-columns(6);
-  }
 }
 
 .case-study__image {
-  display: block;
   position: relative;
 
   &.filled {
