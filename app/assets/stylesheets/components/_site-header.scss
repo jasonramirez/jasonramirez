@@ -2,6 +2,7 @@
   @include clearfix;
   @include position(fixed, 0 0 null 0);
   background-color: $base-background-color;
+  height: $navigation-height-mobile;
   margin: 0 auto;
   max-width: $large-screen;
   padding: $base-spacing;
@@ -14,6 +15,7 @@
   }
 
   @include media($large-screen) {
+    height: $navigation-height;
     padding: $large-spacing 0;
   }
 }
