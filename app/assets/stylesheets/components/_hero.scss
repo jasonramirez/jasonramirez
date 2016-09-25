@@ -35,38 +35,3 @@
     margin: 0 auto;
   }
 }
-
-.hero__image {
-  display: block;
-  margin: 0 auto;
-  max-width: $x-small-screen;
-  opacity: 0.95;
-  transform: translateY(-$navigation-height-mobile / 2);
-  transition-duration: 250ms;
-  transition-property: max-width;
-
-  @include media($medium-screen) {
-    max-width: $medium-screen;
-  }
-
-  @include media($large-screen) {
-    transform: translateY(-$navigation-height / 2);
-  }
-
-  a[href="#works"]:focus #landing_heading path {
-    fill: $action-color;
-  }
-}
-
-.hero__logo {
-  max-width: 100%;
-  transition: max-width $base-duration;
-
-  path {
-    transition: fill 500ms;
-  }
-
-  #landing_heading:hover path {
-    fill: $action-color;
-  }
-}
