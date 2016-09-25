@@ -2,7 +2,9 @@ header.site-header
   nav.navigation--left
     ul.navigation__links
       li.navigation__link
-        = link_to t("navigation.home"), root_path
+        = link_to root_path do
+          = inline_svg src="icon-logo.svg"
+          = t("navigation.home")
 
   nav.navigation--right.navigation--mobile-trigger-icon
     input.navigation__mobile-trigger type="checkbox"
@@ -12,6 +14,4 @@ header.site-header
       li.navigation__link
         = link_to t("navigation.posts"), posts_path
       li.navigation__link
-        = link_to new_follower_path do
-          = t("navigation.follow")
-          = inline_svg src="icon-heart.svg"
+        = link_to t("navigation.follow"), new_follower_path

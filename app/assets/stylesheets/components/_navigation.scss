@@ -79,16 +79,12 @@
 
   svg {
     @include size($base-font-size);
-    vertical-align: text-top;
     margin-left: $small-spacing / 2;
+    vertical-align: text-top;
 
     path {
       transition: all 250ms;
     }
-  }
-
-  .followers & svg path {
-    fill: $heart-red;
   }
 }
 
