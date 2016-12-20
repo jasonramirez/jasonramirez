@@ -1,6 +1,7 @@
 footer.site-footer
   nav
     = inline_svg "landing_heading.svg", alt: "Simple", class: "site-footer__image"
+
     ul.navigation__links
       li.navigation__link
         = link_to t("navigation.case_studies"), case_studies_path
@@ -10,6 +11,9 @@ footer.site-footer
         = link_to new_follower_path do
           = t("navigation.follow")
           = inline_svg src="icon-heart.svg"
+
+    small
+      | jason@jasonramirez.com
 
     small
       | &copy;
