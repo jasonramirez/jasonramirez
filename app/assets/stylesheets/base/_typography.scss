@@ -74,8 +74,12 @@ pre {
 }
 
 mark {
-  background-color: rgba(yellow, 0.5);
-  font-style: normal;
+  background: linear-gradient(180deg, $white 0%,
+                                      $white 40%,
+                                      $mark-highlight-color 40%,
+                                      $mark-highlight-color 100%);
+  border-bottom: solid 3px $mark-highlight-color;
+  color: $mark-color;
 }
 
 hr {

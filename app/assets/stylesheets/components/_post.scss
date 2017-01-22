@@ -12,9 +12,9 @@
 
   mark {
     code {
-      background-color: mix(yellow, $white, 75%);
-      border-color: mix(yellow, $black, 75%);
-      color:mix(yellow, $black, 50%);
+      background-color: darken($mark-highlight-color, 5%);
+      border-color: darken($mark-highlight-color, 25%);
+      color: $mark-color;
     }
   }
 }
