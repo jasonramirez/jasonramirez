@@ -1,21 +1,14 @@
 .post-sample {
   color: $base-font-color;
-  display: block;
-  margin-bottom: $x-large-spacing;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $large-spacing;
+  border-bottom: 1px solid $light-border-color;
+  padding-bottom: $base-spacing;
   text-decoration: none;
-
-  h4 {
-    margin-top: $base-spacing;
-  }
-
-  time {
-    @include media($small-screen) {
-      float: right;
-      transform: translateY(-2px);
-    }
-  }
 }
 
-a.post-sample {
-  border: none;
+.post-sample__title {
+  line-height: 1.7;
+  padding-right: $base-spacing;
 }

@@ -1,9 +1,0 @@
-section.content.content--reading
-  - if @posts.present?
-    - @posts.each do |post|
-      = link_to post_path(post), class: "post-sample" do
-        article
-          time
-            = post.pretty_published_date
-          h4
-            = post.title
