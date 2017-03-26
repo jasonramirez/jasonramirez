@@ -1,10 +1,5 @@
-= render partial: "case_studies_page_navigation", locals: { \
-    previous_target: "piggy",
-    next_target: "penner",
-  }
-
-section.hero.hero--mini.tinysplash
-  = image_tag "case_studies/tinysplash-browser.png", alt: "Tinysplash"
+section.hero.hero--case-study
+  = inline_svg "case_studies/tinysplash-hero.svg", alt: "Tinysplash"
 
 section.content.content--reading
   markdown:

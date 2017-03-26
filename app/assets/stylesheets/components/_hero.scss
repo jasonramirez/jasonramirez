@@ -6,6 +6,11 @@
   @include media($large-screen) {
     height: calc(100vh - #{$navigation-height});
   }
+
+  img {
+    max-height: 100%;
+    margin: 0 auto;
+  }
 }
 
 .hero--landing {
@@ -16,22 +21,16 @@
   box-shadow: 0 1px 0 0 rgba($black, 0.05);
 }
 
-.hero--mini {
-  height: calc(75vh - #{$navigation-height});
-  min-height: 18rem;
-  padding: $base-spacing;
+.hero--case-study {
+  height: 18rem;
+  transition: height $base-duration;
 
   @include media($small-screen) {
-    min-height: 26rem;
+    height: 32rem;
   }
 
   @include media($large-screen) {
-    max-height: 34rem;
-    min-height: 26rem;
-  }
-
-  img {
-    max-height: 100%;
-    margin: 0 auto;
+    height: calc(100vh - #{$navigation-height});
+    max-height: 1300px;
   }
 }
