@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get "case_studies", to: "case_studies#index"
   get "case_studies/:case_study", to: "case_studies#show"
+  get "admin", to: "admins/posts#index"
 
   namespace "admins" do
     resources :posts

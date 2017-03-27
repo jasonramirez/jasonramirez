@@ -22,6 +22,9 @@ en:
         delete_confirmation: Are you sure?
       form:
         save: Save Changes
+    sessions:
+      new:
+        sign_in: Sign In
 
   followers:
     new:

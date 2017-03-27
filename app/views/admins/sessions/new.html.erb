@@ -1,0 +1,23 @@
+<section class="content content--reading">
+  <h2>
+    Hey, Boss
+  </h2>
+
+  <%= simple_form_for(
+    resource,
+    as: resource_name,
+    url: session_path(resource_name),
+  ) do |f| %>
+    <%= f.input :email, required: false, wrapper_html: { class: "sky-label" } %>
+    <%= f.input :password, required: false, wrapper_html: { class: "sky-label" } %>
+    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.button :button, class: "button button--confirmation button--with-icon" do %>
+      <%= t(".sign_in") %>
+      <%= inline_svg "icon-button-checkmark.svg", class: "button__icon" %>
+    <% end %>
+
+    <%= link_to(
+      "Forgot your password?", new_password_path(resource_name), class: "link"
+    )%>
+  <% end %>
+</setion>
