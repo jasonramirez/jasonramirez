@@ -1,0 +1,36 @@
+<section class="content">
+  <% if @posts.present? %>
+    <table>
+      <% @posts.each do |post| %>
+        <tr class="admin-post-item <%= post.published_state_class %>">
+          <td class="admin-post-item__title">
+            <%= link_to edit_admins_post_path(post) do %>
+              <h3>
+                <%= post.title %>
+              </h3>
+            <% end %>
+          </td>
+
+          <td class="admin-post-item__published-status">
+            <%= post.published_state %>
+          </td>
+
+          <td class="admin-post-item__time">
+            <time>
+              <%= post.pretty_published_date %>
+            </time>
+          </td>
+
+          <td class="admin-post-item__delete">
+            <%= link_to [:admins, post],
+              class: "button button--link",
+              method: :delete,
+              data: {confirm: "Are you sure?"} do %>
+              <%= t(".delete_post") %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</section>

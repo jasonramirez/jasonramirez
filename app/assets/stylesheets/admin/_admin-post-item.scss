@@ -11,20 +11,24 @@
 
 .admin-post-item__title {
   h3 {
+    display: block;
+    margin: 0;
     max-width: 75%;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: block;
     white-space: nowrap;
-    margin: 0;
+
+    .not-published & {
+      color: rgba($black, 0.3);
+    }
   }
 }
 
 .admin-post-item__published-status {
   font-size: $small-font-size;
-  width: 5rem;
+  width: 7rem;
 
-  &.not-published {
+  .not-published & {
     color: rgba($black, 0.25);
   }
 }
