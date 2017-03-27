@@ -1,0 +1,7 @@
+<section class="content content--reading post">
+  <h1>
+    <%= @post.title %>
+  </h1>
+
+  <%= MarkdownParser.new(@post.body).markdown_to_html %>
+</section>

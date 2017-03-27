@@ -1,0 +1,30 @@
+<header class="site-header">
+  <nav class="navigation--left">
+    <ul class="navigation__links">
+      <li class="navigation__link">
+        <%= link_to root_path do %>
+          <%= inline_svg src="icon-logo.svg" %>
+          <%= t("navigation.home") %>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="navigation--right navigation--mobile-trigger-icon">
+    <input class="navigation__mobile-trigger" type="checkbox">
+
+    <ul class="navigation__links">
+      <li class="navigation__link">
+        <%= link_to t("navigation.case_studies"), case_studies_path %>
+      </li>
+
+      <li class="navigation__link">
+        <%= link_to t("navigation.posts"), posts_path %>
+      </li>
+
+      <li class="navigation__link">
+        <%= link_to t("navigation.follow"), new_follower_path %>
+      </li>
+    </ul>
+  <nav>
+</header>

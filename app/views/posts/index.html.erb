@@ -1,17 +1,15 @@
 <section class="content content--reading">
   <% if @posts.present? %>
     <% @posts.each do |post| %>
-      <%= link_to post_path(post) do %>
-        <article class="post-sample">
-          <h4 class="post-sample__title">
-            <%= post.display_title %>
-          </h4>
+      <article class="post-sample">
+        <h4 class="post-sample__title">
+          <%= link_to post.display_title, post_path(post) %>
+        </h4>
 
-          <time>
-            <%= post.pretty_published_date %>
-          </time>
-        </article>
-      <% end %>
+        <time>
+          <%= post.pretty_published_date %>
+        </time>
+      </article>
     <% end %>
   <% end %>
 </section>

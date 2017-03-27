@@ -1,4 +1,8 @@
 .post {
+  h1:first-of-type {
+    margin-top: 20vh;
+  }
+
   pre {
     background-color: $code-gray;
     border-radius: $base-border-radius;

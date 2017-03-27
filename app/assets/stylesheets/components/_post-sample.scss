@@ -1,11 +1,15 @@
 .post-sample {
+  border-bottom: 1px solid $light-border-color;
   color: $base-font-color;
   display: flex;
   justify-content: space-between;
-  margin-bottom: $large-spacing;
-  border-bottom: 1px solid $light-border-color;
   padding-bottom: $base-spacing;
   text-decoration: none;
+  margin: 20vh 0 $large-spacing;
+
+  & + .post-sample {
+    margin-top: 0;
+  }
 }
 
 .post-sample__title {
