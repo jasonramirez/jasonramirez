@@ -110,7 +110,6 @@
     margin-bottom: $reading-paragraph-spacing / 1.2;
 
     @include media($large-screen) {
-      font-weight: 300;
       margin-bottom: $reading-paragraph-spacing;
     }
   }
