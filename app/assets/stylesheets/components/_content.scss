@@ -96,9 +96,9 @@
     }
   }
 
-  h2:not(:first-of-type),
-  h3:not(:first-of-type) {
-    margin-top: $large-spacing * 1.5;
+  h2,
+  h3 {
+    margin-top: $large-spacing * 2;
   }
 
   img {
