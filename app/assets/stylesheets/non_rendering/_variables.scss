@@ -41,7 +41,7 @@ $heart-red: #ff5687;
 $light-gray: #cfcfcf;
 $medium-gray: #999;
 $mine-shaft: #383838;
-$standard-blue: #105ad2;
+$standard-blue: #255fec;
 $sun: #ffed2b;
 $tamed-blue: tint($blue, 25%);
 $white: #fff;
@@ -60,7 +60,7 @@ $alert-color: $sun;
 $error-color: #fbe3e4;
 $notice-color: $action-color;
 $success-color: $forest-green;
-$mark-color: mix($standard-blue, $black, 80%);
+$mark-color: $standard-blue;
 $mark-highlight-color: rgba($standard-blue, 0.05);
 
 // Animations
