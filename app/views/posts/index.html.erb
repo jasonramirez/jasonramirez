@@ -1,12 +1,12 @@
-<section class="content content--reading">
+<section class="content content--narrow">
   <% if @posts.present? %>
     <% @posts.each do |post| %>
       <article class="post-sample">
-        <h4 class="post-sample__title">
+        <h3 class="post-sample__title">
           <%= link_to post.display_title, post_path(post) %>
-        </h4>
+        </h3>
 
-        <time>
+        <time class="post-sample__date">
           <%= post.pretty_published_date %>
         </time>
       </article>

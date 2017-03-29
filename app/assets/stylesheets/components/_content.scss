@@ -25,6 +25,15 @@
   }
 }
 
+.content--narrow {
+  @include padding(null $base-spacing);
+  max-width: $reading-screen;
+
+  @include media($large-screen) {
+    @include padding(null 0);
+  }
+}
+
 .content--reading {
   @include padding(null $base-spacing);
   font-family: $reading-font-family;

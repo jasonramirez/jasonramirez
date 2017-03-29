@@ -1,11 +1,12 @@
 .post-sample {
+  align-items: top;
   border-bottom: 1px solid $light-border-color;
   color: $base-font-color;
   display: flex;
   justify-content: space-between;
+  margin: 20vh 0 $large-spacing;
   padding-bottom: $base-spacing;
   text-decoration: none;
-  margin: 20vh 0 $large-spacing;
 
   & + .post-sample {
     margin-top: 0;
@@ -13,6 +14,14 @@
 }
 
 .post-sample__title {
-  line-height: 1.7;
   padding-right: $base-spacing;
+  line-height: 1.7;
+
+  a {
+    border-bottom: solid 2px rgba($action-color, 0.5);
+  }
+}
+
+.post-sample__date {
+  line-height: 2.2;
 }
