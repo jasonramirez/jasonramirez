@@ -134,6 +134,21 @@ select {
   }
 }
 
+select {
+  @include padding($x-small-spacing $base-spacing $x-small-spacing $small-spacing);
+  background-color: rgba($black, 0.01);
+  background-image: url("select-background.svg");
+  background-position: calc(100% - #{$x-small-spacing}), center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 0.25rem 0.75rem rgba($black, 0.05);
+  font-family: $base-font-family;
+  font-size: $small-font-size;
+  position: relative;
+  -webkit-appearance: none;
+}
+
 .checkbox {
   line-height: 1.5;
 }
