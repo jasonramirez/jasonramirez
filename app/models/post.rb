@@ -2,7 +2,11 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
 
   def display_title
-    long_title || title
+    unless long_title.blank?
+      return long_title
+    end
+
+    title
   end
 
   def pretty_published_date

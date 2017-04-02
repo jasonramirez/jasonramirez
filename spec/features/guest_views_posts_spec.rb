@@ -10,8 +10,8 @@ RSpec.feature "Guest views posts" do
   end
 
   scenario "as a list" do
-    post_one = create(:post, title: "Post One")
-    post_two = create(:post, title: "Post One")
+    post_one = create(:post, title: "Post One", long_title: "")
+    post_two = create(:post, title: "Post Two", long_title: " ")
 
     visit posts_path
 
@@ -20,7 +20,7 @@ RSpec.feature "Guest views posts" do
   end
 
   scenario "with a long title" do
-    post_one = create(:post, title: "ShortTitle", long_title: "LongerTitle")
+    post_one = create( :post, title: "Short Title", long_title: "Long Title")
 
     visit posts_path
 
