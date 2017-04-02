@@ -54,7 +54,7 @@ class Admins::PostsController < ApplicationController
   private
 
   def find_post
-    Post.find(params[:id])
+    Post.friendly.find(params[:id])
   end
 
   def post_params
