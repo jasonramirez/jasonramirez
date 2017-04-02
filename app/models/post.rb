@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   validates :title, presence: true
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   def display_title
     unless long_title.blank?
       return long_title
