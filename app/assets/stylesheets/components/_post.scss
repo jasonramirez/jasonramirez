@@ -2,23 +2,4 @@
   h1:first-of-type {
     margin-top: 20vh;
   }
-
-  pre {
-    background-color: $code-gray;
-    border-radius: $base-border-radius;
-    margin-bottom: $large-spacing;
-    padding: $base-spacing;
-
-    code {
-      border: none;
-    }
-  }
-
-  mark {
-    code {
-      background-color: darken($mark-highlight-color, 5%);
-      border-color: darken($mark-highlight-color, 25%);
-      color: $mark-color;
-    }
-  }
 }

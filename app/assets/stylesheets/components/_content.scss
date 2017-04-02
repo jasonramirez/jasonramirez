@@ -25,6 +25,10 @@
   }
 }
 
+.content--centered {
+  text-align: center;
+}
+
 .content--narrow {
   @include padding(null $base-spacing);
   max-width: $reading-screen;
@@ -50,28 +54,8 @@
     @include padding(null 0);
   }
 
-  .image--centered {
-    margin: $base-spacing 0;
-    text-align: center;
-  }
-
   a {
     border-bottom: solid 2px rgba($action-color, 0.5);
-  }
-
-  blockquote {
-    color: mix($action-color, $white, 80%);
-    font-family: $blockquote-font-family;
-    font-size: $base-font-size * 1.75;
-    line-height: 1.6;
-    margin: $large-spacing 0;
-    padding: $base-spacing;
-    position: relative;
-    text-align: center;
-  }
-
-  .blockquote__author {
-    font-size: $base-font-size;
   }
 
   h1 {
@@ -136,11 +120,54 @@
     padding-left: $small-spacing;
   }
 
+  pre {
+    background-color: $code-gray;
+    border-radius: $base-border-radius;
+    margin-bottom: $large-spacing;
+    padding: $base-spacing;
+
+    code {
+      border: none;
+    }
+  }
+
+  mark {
+    code {
+      background-color: darken($mark-highlight-color, 5%);
+      border-color: darken($mark-highlight-color, 25%);
+      color: $mark-color;
+    }
+  }
+
+  table {
+    background-color: rgba($black, 0.0125);
+    border: 1px solid rgba($black, 0.05);
+    font-size: $small-font-size;
+    max-width: 100%;
+    table-layout: table;
+    white-space: nowrap;
+  }
+
+  th {
+    background-color: rgba($black, 0.0125);
+    border-bottom-color: rgba($black, 0.05);
+    text-align: center;
+  }
+
+  tr:nth-child(odd) {
+    background-color: rgba($white, 0.85);
+  }
+
+  td {
+    border: 1px solid rgba($black, 0.05);
+    padding: $x-small-spacing;
+  }
+
+  td + td {
+    text-align: center;
+  }
+
   + .content--reading {
     margin-top: 0;
   }
-}
-
-.content--centered {
-  text-align: center;
 }
