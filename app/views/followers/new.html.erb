@@ -1,0 +1,18 @@
+<section class="content content--narrow">
+  <h2>
+    <%= t("titles.followers.new") %>
+  </h2>
+
+  <p class="u-margin-bottom--large">
+    <%= t(".sign_up") %>
+  </p>
+
+  <%= simple_form_for @follower do |form| %>
+    <%= form.input :email, wrapper_html: { class: "sky-label" } %>
+    <%= form.button :button,
+      class: "button button--confirmation button--with-icon" do %>
+      <%= t("followers.new.submit") %>
+      <%= inline_svg "icon-button-checkmark.svg", class: "button__icon" %>
+    <% end %>
+  <% end %>
+</section>

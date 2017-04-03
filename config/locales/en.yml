@@ -28,7 +28,7 @@ en:
 
   followers:
     new:
-      interests: "Update me when content is added about:"
+      sign_up: Sign up to be notified of new posts and case studies
       submit: Keep me updated
 
   helpers:
