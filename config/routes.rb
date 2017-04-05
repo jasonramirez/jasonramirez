@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :followers, only: [:new, :create]
   resources :posts, only: [:index, :show]
 
+  get "admin", to: "admins/posts#index"
   get "case_studies", to: "case_studies#index"
   get "case_studies/:case_study", to: "case_studies#show"
-  get "admin", to: "admins/posts#index"
 
   namespace "admins" do
     resources :posts
