@@ -30,6 +30,7 @@ en:
     new:
       sign_up: Sign up to be notified of new posts and case studies
       submit: Keep me updated
+      success: Thanks for signing up!
 
   helpers:
     submit:

@@ -7,7 +7,7 @@
     <%= t(".sign_up") %>
   </p>
 
-  <%= simple_form_for @follower do |form| %>
+  <%= simple_form_for :follower, url: followers_path do |form| %>
     <%= form.input :email, wrapper_html: { class: "sky-label" } %>
     <%= form.button :button,
       class: "button button--confirmation button--with-icon" do %>

@@ -1,23 +1,57 @@
 require "rails_helper"
 
-RSpec.feature "Guest follows me" do
-  context "succesfully" do
-    it "shows a success flash message" do
-      visit new_follower_path
+feature "Guest follows me" do
+  scenario "succesfully" do
+    stub_request(:post, mailchimp_url).
+      with(body: mailchimp_request_body).
+      to_return(status: 200, body: mailchimp_valid_response_body)
 
-      fill_form_and_submit(:follower, :new, {email: "user@example.com"});
+    visit new_follower_path
+    submit_email_form
 
-      expect(page).to have_text "Success"
-    end
+    expect(page).to have_content(I18n.t("followers.new.success"))
   end
 
-  context "failure" do
-    it "shows a failure flash message" do
-      visit new_follower_path
+  scenario "member already exists" do
+    stub_request(:post, mailchimp_url).
+      with(body: mailchimp_request_body).
+      to_return(status: 400, body: mailchimp_member_exists_response_body)
 
-      fill_form_and_submit(:follower, :new, {email: ""})
+    visit new_follower_path
+    submit_email_form
 
-      expect(page).to have_text "Failure"
-    end
+    expect(page).to have_content("Member Exists")
+  end
+
+  private
+
+  def mailchimp_url
+    "https://us15.api.mailchimp.com/3.0/lists/80373/members"
+  end
+
+  def mailchimp_request_body
+    "{\"email_address\":\"#{valid_email}\",\"status\":\"subscribed\"}"
+  end
+
+  def mailchimp_valid_response_body
+    {
+      email_address: valid_email,
+      status: "subscribed",
+    }.to_json
+  end
+
+  def mailchimp_member_exists_response_body
+    {
+      title: "Member Exists",
+      status: 400,
+    }.to_json
+  end
+
+  def valid_email
+    "user@example.com"
+  end
+
+  def submit_email_form
+    fill_form_and_submit(:follower, :new, {email: valid_email})
   end
 end

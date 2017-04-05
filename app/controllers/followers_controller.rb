@@ -1,21 +1,17 @@
 class FollowersController < ApplicationController
-  def new
-    @follower = Follower.new
-  end
-
   def create
-    @follower = Follower.new(follower_params)
+    subscription = MailchimpSubscriptionService.new(email: email).create()
 
-    if @follower.save
-      redirect_to posts_path, alert: "Success"
+    if subscription.errors?
+      redirect_to new_follower_path, alert: subscription.error_message
     else
-      redirect_to new_follower_path, alert: "Failure"
+      redirect_to new_follower_path, notice: t("followers.new.success")
     end
   end
 
   private
 
-  def follower_params
-    params.require(:follower).permit(:email)
+  def email
+    params[:follower][:email]
   end
 end
