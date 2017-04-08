@@ -42,6 +42,7 @@
   @include padding(null $base-spacing);
   font-family: $reading-font-family;
   font-size: $base-font-size;
+  font-weight: $reading-font-weight;
   line-height: $reading-line-height / 1.2;
   max-width: $reading-screen;
 
