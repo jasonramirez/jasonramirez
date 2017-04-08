@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Admin adds post" do
+feature "Admin adds post" do
   context "from the navigation" do
     it "shows a list of all posts" do
       sign_in_admin
@@ -20,7 +20,7 @@ RSpec.feature "Admin adds post" do
 
       fill_new_post_form
 
-      expect(page).to have_text I18n.t("admins.flash.created")
+      expect(page).to have_text t("admins.flash.created")
     end
   end
 

@@ -15,11 +15,9 @@ class Admins::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      flash[:success] = t("admins.flash.created")
-      render "edit"
+      redirect_to edit_admins_post_path(@post), notice: t("admins.flash.created")
     else
-      flash[:alert] = t("admins.flash.failed")
-      render "new"
+      redirect_to new_admins_post_path, alert: t("admins.flash.failed")
     end
   end
 
@@ -31,11 +29,9 @@ class Admins::PostsController < ApplicationController
     @post = find_post
 
     if @post.update_attributes(post_params)
-      flash[:success] = t("admins.flash.updated")
-      render "edit"
+      redirect_to edit_admins_post_path, notice: t("admins.flash.updated")
     else
-      flash[:alert] = t("admins.flash.failed")
-      render "edit"
+      redirect_to edit_admins_post_path, alert: t("admins.flash.failed")
     end
   end
 
@@ -43,11 +39,9 @@ class Admins::PostsController < ApplicationController
     post = find_post
 
     if post.destroy
-      flash[:success] = t("admins.flash.destroyed")
-      redirect_to admins_posts_path
+      redirect_to admins_posts_path, notice: t("admins.flash.destroyed")
     else
-      flash[:alert] = t("admins.flash.failed")
-      render "index"
+      redirect_to admins_posts_path, alert: t("admins.flash.failed")
     end
   end
 

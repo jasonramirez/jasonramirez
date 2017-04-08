@@ -19,8 +19,8 @@ RSpec.feature "Admin edits post" do
     it "shows a success message" do
       sign_in_admin
       post = create(:post)
-      visit edit_admins_post_path(post)
 
+      visit edit_admins_post_path(post)
       fill_form_and_submit(:post, :edit, title: "New Title")
 
       expect(page).to have_selector("input[value='New Title']")

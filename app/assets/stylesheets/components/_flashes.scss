@@ -30,8 +30,3 @@
   @include flash($notice-color);
   color: rgba($white, 60%);
 }
-
-.flash-success {
-  @include flash($success-color);
-  color: rgba($white, 60%);
-}

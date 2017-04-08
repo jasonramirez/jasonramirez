@@ -26,7 +26,9 @@ feature "Guest follows me" do
   private
 
   def mailchimp_url
-    "https://us15.api.mailchimp.com/3.0/lists/80373/members"
+    mailchimp_list_id = ENV.fetch("MAILCHIMP_LIST_ID").freeze
+
+    "https://us15.api.mailchimp.com/3.0/lists/#{mailchimp_list_id}/members"
   end
 
   def mailchimp_request_body
