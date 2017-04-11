@@ -23,4 +23,8 @@ class Post < ActiveRecord::Base
   def published_state
     published ? "Published" : "Not Published"
   end
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 end
