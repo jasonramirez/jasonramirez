@@ -17,11 +17,11 @@ en:
       new_post: New Post
       sign_out: Sign Out
     posts:
+      form:
+        save: Save Changes
       index:
         delete_post: Delete
         delete_confirmation: Are you sure?
-      form:
-        save: Save Changes
     sessions:
       new:
         sign_in: Sign In
@@ -79,3 +79,7 @@ en:
       tinysplash:
         title: Tinysplash
         details: Validate product ideas without spending money.
+
+  posts:
+    show:
+      removed: Sorry, this post has been taken down.

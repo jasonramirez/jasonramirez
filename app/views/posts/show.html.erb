@@ -1,7 +1,13 @@
 <section class="content content--reading post">
-  <h1>
-    <%= @post.title %>
-  </h1>
+  <% if @post.published %>
+    <h1>
+      <%= @post.title %>
+    </h1>
 
-  <%= MarkdownParser.new(@post.body).markdown_to_html %>
-</section>
+    <%= MarkdownParser.new(@post.body).markdown_to_html %>
+  <% else %>
+    <p>
+      <%= t(".removed") %>
+    </p>
+  </section>
+<% end %>
