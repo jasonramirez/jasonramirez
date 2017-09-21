@@ -9,6 +9,9 @@
       <%= f.input :title %>
       <%= f.input :long_title %>
       <%= f.input :body, input_html: { "data-flexible-textarea": true } %>
+    </div>
+
+    <div class="admin-post-action">
       <%= f.button :button,
         class: "button button--confirmation button--with-icon" do %>
         <%= t(".save") %>

@@ -1,16 +1,12 @@
 .admin-post-meta {
-  margin-bottom: $base-spacing;
+  display: flex;
+  margin-bottom: $large-spacing;
 
-  @include media($large-screen) {
-    margin-bottom: $large-spacing;
-  }
-
-  * {
-    display: inline-block;
-  }
-
+  div,
   input,
   select {
+    align-items: center;
+    display: flex;
     margin: 0;
   }
 

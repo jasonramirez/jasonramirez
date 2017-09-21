@@ -1,0 +1,9 @@
+.admin-post-action {
+  @include position(fixed, null 0 0 0);
+  background-color: $white;
+  box-shadow: 0 0 1.5rem rgba($black, 0.25);
+  display: flex;
+  padding: $x-small-spacing 0;
+  justify-content: center;
+  z-index: $z-index-highest;
+}
