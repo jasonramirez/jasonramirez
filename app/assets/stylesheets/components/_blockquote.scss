@@ -1,13 +1,22 @@
 blockquote,
 .blockquote {
-  color: mix($action-color, $white, 80%);
+  border-left: 2px solid $blockquote-color;
+  color: $blockquote-color;
   font-family: $blockquote-font-family;
-  font-size: $base-font-size * 1.75;
-  line-height: 1.6;
+  font-size: $base-font-size * 1.5;
+  line-height: $base-line-height;
   margin: $large-spacing 0;
-  padding: $base-spacing;
-  position: relative;
-  text-align: center;
+  padding-left: $base-spacing;
+
+  @media (min-width: $medium-screen) {
+    font-size: $base-font-size * 1.75;
+    max-width: 80%;
+  }
+
+  small {
+    display: block;
+    margin-top: $base-spacing;
+  }
 }
 
 .blockquote__author {

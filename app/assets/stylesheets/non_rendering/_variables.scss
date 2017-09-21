@@ -50,14 +50,10 @@ $sun: #ffed2b;
 $tamed-blue: tint($blue, 25%);
 $white: #fff;
 
-// Unicode Characters
-$hamburger-icon: "\2630";
-
-// Font Colors
-$base-font-color: $mine-shaft;
-
 // Colors In Use
 $action-color: $blue;
+$base-font-color: $mine-shaft;
+$blockquote-color: $heart-red;
 $button-background-color: $mine-shaft;
 $button-color: $white;
 $alert-color: $sun;
@@ -65,6 +61,9 @@ $error-color: #fbe3e4;
 $notice-color: $forest-green;
 $mark-color: $standard-blue;
 $mark-highlight-color: rgba($standard-blue, 0.05);
+
+// Unicode Characters
+$hamburger-icon: "\2630";
 
 // Animations
 $base-duration: 250ms;
