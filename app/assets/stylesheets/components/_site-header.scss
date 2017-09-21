@@ -6,7 +6,6 @@
   margin: 0 auto;
   max-width: $large-screen;
   padding: $base-spacing;
-  transition: padding $base-duration;
   z-index: 1;
 
   @include media($small-screen) {
