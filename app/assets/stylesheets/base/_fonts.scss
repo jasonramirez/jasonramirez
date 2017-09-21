@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Noto+Serif:400,400i,700');
 
-@include font-face("averta", "averta_regular") {font-weight: normal};
-@include font-face("averta", "averta_bold") {font-weight: bold};
+@include font-face("Averta", "averta_regular") {font-weight: normal};
+@include font-face("Averta", "averta_bold") {font-weight: bold};
+@include font-face("Calibre", "calibre_regular") {font-weight: normal};
+@include font-face("Calibre", "calibre_medium") {font-weight: bold};
