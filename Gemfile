@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-ruby "2.4.0"
+ruby "2.7.1"
 
 gem "autoprefixer-rails"
-gem "bourbon", git: "https://github.com/thoughtbot/bourbon", branch: "v5.0.0.beta.6"
+gem "bourbon"
 gem "browser"
 gem "coffee-rails", "~> 4.1.0"
 gem "delayed_job_active_record"
@@ -20,7 +20,7 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 4.2.0"
+gem "rails", "~> 5.0.0"
 gem "recipient_interceptor"
 gem "redcarpet"
 gem "rouge-rails"
@@ -33,7 +33,6 @@ gem "title"
 gem "uglifier"
 
 group :development do
-  gem "quiet_assets"
   gem "refills"
   gem "spring"
   gem "spring-commands-rspec"
@@ -45,16 +44,14 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "bullet"
-  gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.4.0"
+  gem "rspec-rails"
 end
 
 group :test do
-  gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
