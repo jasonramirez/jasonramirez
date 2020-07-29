@@ -28,7 +28,7 @@ class Admins::PostsController < ApplicationController
   def update
     @post = find_post
 
-    if @post.update_attributes(post_params)
+    if @post.update(post_params)
       redirect_to edit_admins_post_path(@post), notice: t("admins.flash.updated")
     else
       redirect_to edit_admins_post_path(@post), alert: t("admins.flash.failed")

@@ -1,6 +1,6 @@
 footer.site-footer
   nav
-    = inline_svg "landing_heading.svg", alt: "Simple", class: "site-footer__image"
+    = inline_svg_tag "landing_heading.svg", alt: "Simple", class: "site-footer__image"
 
     ul.navigation__links
       li.navigation__link
@@ -10,7 +10,7 @@ footer.site-footer
       li.navigation__link
         = link_to new_follower_path do
           = t("navigation.follow")
-          = inline_svg src="icon-heart.svg"
+          = inline_svg_tag src="icon-heart.svg"
 
     small
       | jason@jasonramirez.com
