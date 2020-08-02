@@ -1,5 +1,5 @@
 footer.site-footer
-  nav
+  nav.u-margin-bottom
     ul.navigation__links
       li.navigation__link
         = link_to t("navigation.case_studies"), case_studies_path
@@ -10,9 +10,9 @@ footer.site-footer
           = t("navigation.follow")
           = inline_svg_tag src="icon-heart.svg"
 
-    small
-      | jason@jasonramirez.com
+  p
+    | jason@jasonramirez.com
 
-    small
-      | &copy;
-      = Time.new.year
+  p
+    | &copy;
+    = Time.new.year
