@@ -5,3 +5,7 @@ html {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+p {
+  font-size: $reading-font-size;
+}
