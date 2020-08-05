@@ -3,7 +3,7 @@ $base-font-family: "Calibre", sans-serif;
 $heading-font-family: "Averta", sans-serif;
 $form-font-family: "Averta", sans-serif;
 $button-font-family: $heading-font-family;
-$blockquote-font-family: $base-font-family;
+$blockquote-font-family: "Amethysta", serif;
 $code-font-family: "Inconsolata", sans-serif;
 $reading-font-family: "Noto Serif", serif;
 
@@ -11,12 +11,14 @@ $reading-font-family: "Noto Serif", serif;
 $base-font-size: 1rem;
 $small-font-size: 0.85rem;
 $reading-font-size: 1.2rem;
+$blockquote-font-size: 2.5rem;
 
 // Font Weights
 $reading-font-weight: 400;
 
 // Line height
 $base-line-height: 1.5;
+$blockquote-line-height: 1.35;
 $sky-label-line-height: 1.5;
 $heading-line-height: 1.2;
 $button-line-height: 2;
@@ -52,15 +54,15 @@ $white: #fff;
 
 // Colors In Use
 $action-color: $blue;
-$base-font-color: $mine-shaft;
-$blockquote-color: $heart-red;
+$base-font-color: $black;
+$blockquote-color: $mine-shaft;
 $button-background-color: $mine-shaft;
 $button-color: $white;
 $alert-color: $sun;
 $error-color: #fbe3e4;
 $notice-color: $forest-green;
-$mark-color: $standard-blue;
-$mark-highlight-color: rgba($standard-blue, 0.05);
+$mark-color: $base-font-color;
+$mark-highlight-color: rgba($sun, 0.25);
 
 // Unicode Characters
 $hamburger-icon: "\2630";

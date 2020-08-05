@@ -56,12 +56,41 @@
   }
 
   a {
-    border-bottom: solid 2px rgba($action-color, 0.5);
+    border-bottom: dashed 1px rgba($base-font-color, 0.5);
     color: inherit;
+
+    &:hover {
+      color: $action-color;
+      border-color: $action-color;
+    }
+  }
+
+  blockquote {
+    margin: $large-spacing 0;
+    padding: 0;
+
+    @media (min-width: $reading-screen) {
+      margin: $x-large-spacing (-$base-spacing);
+    }
+
+    @media (min-width: $large-screen) {
+      margin: inherit (-$large-spacing);
+    }
+
+    @media (min-width: $x-large-screen) {
+      margin: inherit (-$x-large-spacing);
+    }
+
+    mark {
+      color: $blockquote-color;
+      font-family: $blockquote-font-family;
+      font-size: $blockquote-font-size;
+      line-height: $blockquote-line-height;
+    }
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin: $large-spacing 0;
     padding: $large-spacing 0 $base-spacing;
     position: relative;
@@ -70,7 +99,7 @@
     @include media($medium-screen) {
       @include margin($large-spacing null);
       padding: $x-large-spacing 0 $large-spacing;
-      font-size: 3rem;
+      font-size: 4rem;
     }
 
     &::before {
@@ -113,13 +142,31 @@
     }
   }
 
+  li {
+    padding-left: $small-spacing;
+  }
+
+  mark {
+    background: linear-gradient( 180deg,
+    $white 0%,
+    $white 50%,
+    $mark-highlight-color 50%,
+    $mark-highlight-color 100%
+    );
+    border-bottom: solid 3px $mark-highlight-color;
+    color: $mark-color;
+
+    code {
+      background-color: darken($mark-highlight-color, 5%);
+      border-color: darken($mark-highlight-color, 25%);
+      color: $mark-color;
+    }
+  }
+
   ol,
   ul {
     margin-bottom: $large-spacing;
-  }
-
-  li {
-    padding-left: $small-spacing;
+    word-break: break-all;
   }
 
   pre {
@@ -133,11 +180,9 @@
     }
   }
 
-  mark {
-    code {
-      background-color: darken($mark-highlight-color, 5%);
-      border-color: darken($mark-highlight-color, 25%);
-      color: $mark-color;
+  small {
+    blockquote & {
+      font-style: italic;
     }
   }
 

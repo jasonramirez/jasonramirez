@@ -73,17 +73,6 @@ pre {
   line-height: 1.2;
 }
 
-mark {
-  background: linear-gradient( 180deg,
-    $white 0%,
-    $white 40%,
-    $mark-highlight-color 40%,
-    $mark-highlight-color 100%
-  );
-  border-bottom: solid 3px $mark-highlight-color;
-  color: $mark-color;
-}
-
 hr {
   border-bottom: $base-border;
   border-left: 0;
