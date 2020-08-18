@@ -16,6 +16,7 @@
   transition: all $base-duration;
 
   &:hover {
+    background-color: $action-color;
     box-shadow: 0 1rem 2rem rgba($button-background-color, 0.25);
     cursor: pointer;
     transition: all $base-duration;

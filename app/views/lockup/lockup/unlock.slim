@@ -1,0 +1,27 @@
+section.content-full-screen
+  section.content
+    p.u-margin-bottom--large
+      = link_to "/case_studies", class: "link" do
+        = inline_svg_tag "icon-back.svg"
+
+    h2
+      | Password protected.
+
+    p
+      | If you'd like a password to view this case study, please contact 
+      a href="mailto:jason@jasonramirez.com"
+        | jason@jasonramirez.com.
+
+    - if @wrong
+      p
+        | Incorrect. Please try again.
+
+    = form_for :lockup, url: { action: 'unlock' } do |form|
+      = form.password_field "codeword", placeholder: "Password", autofocus: true
+
+      - if params[:return_to].present?
+        = form.hidden_field "return_to", value: params[:return_to]
+      - elsif @return_to.present?
+        = form.hidden_field "return_to", value: @return_to
+
+      = button_tag "Go", class: "button"
