@@ -59,6 +59,7 @@ en:
   titles:
     application: Jason Ramirez | Product Designer
     case_studies:
+      mayo_clinic: Mayo Clinic
       penner: Penner
       piggy: Piggy
       tinysplash: Tinysplash
@@ -72,13 +73,16 @@ en:
       previous: Previous Case Study
       piggy:
         title: Piggy
-        details: A money saving app.
+        details: A save button for your finances.
       penner:
         title: Penner
-        details: Gem for easy blogging in a rails app.
+        details: Never forget a great blog post idea again.
       tinysplash:
         title: Tinysplash
         details: Validate product ideas without spending money.
+      mayo_clinic:
+        title: Mayo Clinic
+        details: Improving innovation and continuing education.
 
   posts:
     show:
