@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "protected_case_studies/:protected_case_study",
     to: "protected_case_studies#show"
 
+  get "privacy_and_terms", to: "privacy_and_terms#index"
+
   namespace "admins" do
     resources :posts
   end

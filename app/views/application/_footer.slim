@@ -9,6 +9,8 @@ footer.site-footer
         = link_to new_follower_path do
           = t("navigation.follow")
           = inline_svg_tag src="icon-heart.svg"
+      li.navigation__link
+        = link_to t("navigation.privacy_and_terms"), "/privacy_and_terms"
 
   p
     | jason@jasonramirez.com
