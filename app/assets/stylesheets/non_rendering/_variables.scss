@@ -62,7 +62,7 @@ $base-font-color: $zicron;
 $blockquote-color: $tropical-blue;
 $button-background-color: $mirage;
 $button-color: $white;
-$code-background-color: $code-gray;
+$code-background-color: lighten($base-background-color, 10%);
 $error-color: $tutu;
 $mark-color: $tropical-blue;
 $mark-highlight-color: rgba($ultramarine-blue, 0.25);

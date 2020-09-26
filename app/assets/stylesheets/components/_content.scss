@@ -106,7 +106,12 @@
 
   h1 {
     background-color: transparent;
-    font-size: 5rem;
+    font-size: 3.5rem;
+    word-wrap: break-word;
+
+    @include media($medium-screen) {
+      font-size: 5rem;
+    }
   }
 
   h2 {
@@ -171,7 +176,7 @@
   }
 
   pre {
-    background-color: $code-gray;
+    background-color: $code-background-color;
     border-radius: $base-border-radius;
     margin-bottom: $large-spacing;
     padding: $base-spacing;

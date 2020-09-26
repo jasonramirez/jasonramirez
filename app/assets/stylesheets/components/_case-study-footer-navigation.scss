@@ -1,7 +1,9 @@
 .case-study-footer-navigation {
   @include clearfix;
   @include padding(null $base-spacing);
-  display: block;
+  align-items: top;
+  display: flex;
+  justify-content: space-between;
   max-width: $reading-screen;
 
   @include media($large-screen) {
@@ -15,13 +17,13 @@
 
 .case-study-footer-navigation__link {
   color: $base-font-color;
-  display: block;
+  display: flex;
+  flex-direction: column;
   font-weight: normal;
   line-height: $reading-line-height / 1.2;
-  width: 100%;
+  width: 50%;
 
   @include media($medium-screen) {
-    width: 40%;
   }
 
   &:focus,
@@ -30,19 +32,16 @@
   }
 
   &.left {
-    @include media($medium-screen) {
-      float: left;
-    }
+    align-items: flex-start;
   }
 
   &.right {
-    margin-top: $large-spacing;
+    align-items: flex-end;
+    text-align: right;
+  }
 
-    @include media($medium-screen) {
-      margin-top: 0;
-      float: right;
-      text-align: right;
-    }
+  p {
+    width: 75%;
   }
 
   span {
