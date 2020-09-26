@@ -1,6 +1,5 @@
 .post-sample {
   align-items: top;
-  border-bottom: 1px solid $light-border-color;
   color: $base-font-color;
   display: flex;
   justify-content: space-between;
@@ -28,6 +27,6 @@
 }
 
 .post-sample__date {
-  color: rgba($black, 0.25);
+  color: rgba($base-font-color, 0.5);
   line-height: 2.2;
 }

@@ -1,34 +1,21 @@
 .case-studies:not(body) {
   @include clearfix;
+  list-style-type: none;
   margin: 0 auto 6rem;
   max-width: $large-screen;
-  list-style-type: none;
-  padding: 0;
-}
-
-.case-study {
   padding: 0;
   text-align: center;
 }
 
-.case-study__image {
-  position: relative;
+.case-study {
+  margin: 12rem auto;
 
-  &.filled {
-    @include svg-fill($base-font-color, $action-color);
-  }
+  a {
+    border-bottom: dashed 1px rgba($base-font-color, 0.5);
 
-  &.filled-and-stroked {
-    @include svg-fill-and-stroke($base-font-color, $action-color);
-  }
-
-  &.stroked {
-    @include svg-stroke($base-font-color, $action-color);
-  }
-
-  ellipse,
-  path,
-  polygon {
-    transition: all $base-duration;
+    &:hover {
+      color: $action-color;
+      border-color: $action-color;
+    }
   }
 }

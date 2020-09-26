@@ -1,6 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Amethysta|Inconsolata|Noto+Serif:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700');
 
 @include font-face("Averta", "averta_regular") {font-weight: normal};
 @include font-face("Averta", "averta_bold") {font-weight: bold};
 @include font-face("Calibre", "calibre_regular") {font-weight: normal};
 @include font-face("Calibre", "calibre_medium") {font-weight: bold};
+@include font-face("Charter", "charter_regular") {font-weight: normal};
+@include font-face("Charter", "charter_italic") {font-style: italic};
+@include font-face("Charter", "charter_bold") {font-weight: bold};

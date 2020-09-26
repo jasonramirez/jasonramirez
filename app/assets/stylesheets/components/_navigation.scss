@@ -25,7 +25,7 @@
     @include media(max-width $medium-screen) {
       @include position(fixed, $navigation-height-mobile -120% 0 120%);
       align-items: center;
-      background-color: $white;
+      background-color: $base-background-color;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -71,7 +71,6 @@
 
     svg {
       path {
-        transition: all 250ms;
         fill: $action-color;
       }
     }
@@ -84,6 +83,7 @@
 
     path {
       transition: all 250ms;
+      fill: $base-font-color;
     }
   }
 }

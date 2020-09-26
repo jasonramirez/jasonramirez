@@ -1,12 +1,12 @@
 .case-study-prototype {
-  background-color: $tamed-blue;
-  height: 640px;
+  background-color: $white;
+  height: 750px;
   padding: $base-spacing;
   text-align: center;
   width: 100%;
 
   @include media($large-screen) {
-    height: 780px;
+    height: 850px;
   }
 
   iframe {

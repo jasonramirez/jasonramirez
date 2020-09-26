@@ -41,18 +41,22 @@
 .content--reading {
   @include padding(null $base-spacing);
   font-family: $reading-font-family;
-  font-size: $base-font-size;
+  font-size: $reading-font-size;
   font-weight: $reading-font-weight;
-  line-height: $reading-line-height / 1.2;
+  line-height: $reading-line-height;
   max-width: $reading-screen;
-
-  @include media($medium-screen) {
-    font-size: $reading-font-size;
-    line-height: $reading-line-height;
-  }
+  transition: all 250ms ease;
 
   @include media($large-screen) {
     @include padding(null 0);
+  }
+
+  @include media($x-large-screen) {
+    max-width: $reading-screen * 1.15;
+  }
+
+  @include media($xx-large-screen) {
+    max-width: $reading-screen * 1.25;
   }
 
   a {
@@ -89,44 +93,42 @@
     }
   }
 
-  h1 {
-    font-size: 3rem;
-    margin: $large-spacing 0;
-    padding: $large-spacing 0 $base-spacing;
-    position: relative;
+  h1,
+  h2 {
+    margin: $x-large-spacing 0;
     text-align: center;
 
     @include media($medium-screen) {
-      @include margin($large-spacing null);
+      @include margin($x-large-spacing null $large-spacing);
       padding: $x-large-spacing 0 $large-spacing;
-      font-size: 4rem;
     }
+  }
+
+  h1 {
+    background-color: transparent;
+    font-size: 5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+    padding: $x-large-spacing 0 $base-spacing;
+    position: relative;
 
     &::before {
       @include position(absolute, 0 null null 50%);
       @include size(25%, 1px);
-      background-color: $light-gray;
+      background-color: $light-border-color;
       content: "";
       transform: translateX(-50%);
     }
-
-    &:first-of-type {
-      margin-top: 0;
-      padding-top: 0;
-    }
-
-    &:first-of-type::before {
-      background-color: transparent;
-    }
   }
 
-  h2,
   h3 {
     margin-top: $large-spacing * 2;
   }
 
   h4 {
-    margin-top: $large-spacing * 1.25;
+    margin: $large-spacing auto 0;
   }
 
   img {
@@ -147,14 +149,8 @@
   }
 
   mark {
-    background: linear-gradient( 180deg,
-    $white 0%,
-    $white 50%,
-    $mark-highlight-color 50%,
-    $mark-highlight-color 100%
-    );
-    border-bottom: solid 3px $mark-highlight-color;
     color: $mark-color;
+    background-color: $mark-highlight-color;
 
     code {
       background-color: darken($mark-highlight-color, 5%);
@@ -166,7 +162,12 @@
   ol,
   ul {
     margin-bottom: $large-spacing;
-    word-break: break-all;
+
+    li {
+      a {
+        word-break: break-all;
+      }
+    }
   }
 
   pre {
@@ -217,4 +218,8 @@
   + .content--reading {
     margin-top: 0;
   }
+}
+
+.content__title {
+  font-size: 6rem;
 }

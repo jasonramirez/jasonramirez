@@ -2,6 +2,20 @@ body,
 html {
   @include size(100vw, 100vh);
   background-color: $base-background-color;
+  font-size: $base-font-size * 0.9;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+
+  @include media($large-screen) {
+    font-size: $base-font-size;
+  }
+
+  @include media($x-large-screen) {
+    font-size: $base-font-size * 1.1;
+  }
+
+  @include media($xx-large-screen) {
+    font-size: $base-font-size * 1.2;
+  }
 }

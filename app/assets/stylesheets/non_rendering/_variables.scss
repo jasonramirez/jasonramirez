@@ -3,14 +3,14 @@ $base-font-family: "Calibre", sans-serif;
 $heading-font-family: "Averta", sans-serif;
 $form-font-family: "Averta", sans-serif;
 $button-font-family: $heading-font-family;
-$blockquote-font-family: "Amethysta", serif;
+$blockquote-font-family: "Charter", serif;
 $code-font-family: "Inconsolata", sans-serif;
-$reading-font-family: "Noto Serif", serif;
+$reading-font-family: "Charter", serif;
 
 // Font Sizes
 $base-font-size: 1rem;
 $small-font-size: 0.85rem;
-$reading-font-size: 1.2rem;
+$reading-font-size: 1.4rem;
 $blockquote-font-size: 2.5rem;
 
 // Font Weights
@@ -22,7 +22,7 @@ $blockquote-line-height: 1.35;
 $sky-label-line-height: 1.5;
 $heading-line-height: 1.2;
 $button-line-height: 2;
-$reading-line-height: 1.9;
+$reading-line-height: 1.7;
 
 // Other Sizes
 $base-border-radius: 3px;
@@ -39,30 +39,35 @@ $large-spacing: 3rem;
 $x-large-spacing: 6rem;
 
 // Colors
+$black-pearl: #20222b;
 $black: #000;
-$blue: #341ef9;
 $code-gray: #f8f8f8;
 $forest-green: #27c34c;
 $heart-red: #ff5687;
+$lavendar-blue: #c8ccff;
 $light-gray: #cfcfcf;
-$medium-gray: #999;
-$mine-shaft: #383838;
-$standard-blue: #255fec;
+$mirage: #181923;
 $sun: #ffed2b;
-$tamed-blue: tint($blue, 25%);
+$tutu: #fbe3e4;
+$tropical-blue: #c9dcff;
+$ultramarine-blue: #5e70fe;
 $white: #fff;
+$zicron: #e1e1e1;
 
 // Colors In Use
-$action-color: $blue;
-$base-font-color: $black;
-$blockquote-color: $mine-shaft;
-$button-background-color: $mine-shaft;
-$button-color: $white;
+$action-color: $ultramarine-blue;
 $alert-color: $sun;
-$error-color: #fbe3e4;
+$base-background-color: $black-pearl;
+$base-font-color: $zicron;
+$blockquote-color: $tropical-blue;
+$button-background-color: $mirage;
+$button-color: $white;
+$code-background-color: $code-gray;
+$error-color: $tutu;
+$mark-color: $tropical-blue;
+$mark-highlight-color: rgba($ultramarine-blue, 0.25);
 $notice-color: $forest-green;
-$mark-color: $base-font-color;
-$mark-highlight-color: rgba($sun, 0.25);
+$secondary-background-color: tint($light-gray, 75%);
 
 // Unicode Characters
 $hamburger-icon: "\2630";
@@ -72,20 +77,15 @@ $base-duration: 750ms;
 $base-timing: ease;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: darken($base-background-color, 15%);
 $light-border-color: rgba($light-gray, 0.125);
-$base-border: 1px solid $base-border-color;
-
-// Background Colors
-$base-background-color: $white;
-$secondary-background-color: tint($base-border-color, 75%);
-$code-background-color: $code-gray;
+$base-border: 1px solid $light-border-color;
 
 // Forms
-$input-background-color: #f6f6f6;
+$input-background-color: lighten($base-background-color, 5%);
 $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
-$sky-labels-color: $light-gray;
+$sky-labels-color: $base-font-color;
 
 // Component details
 $case-study-page-navigation-width: 50vw;
