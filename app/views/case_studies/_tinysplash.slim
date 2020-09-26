@@ -1,11 +1,9 @@
-section.hero.hero--case-study
-  = inline_svg_tag "case_studies/tinysplash-hero.svg", alt: "Tinysplash"
+/section.hero.hero--case-study
+/  = inline_svg_tag "case_studies/tinysplash-hero.svg", alt: "Tinysplash"
 
 section.content.content--reading
   markdown:
     # Tinysplash
-
-    **It's not can we build it, it's should we build it...**
 
     When building a product around a business, I try to add value with every
     addition or removal.
@@ -17,11 +15,13 @@ section.content.content--reading
     tricks we can gauge if our unique value proposition hits, our customer
     segment is responding, and our solution set resonates.
 
+    ><mark>It's not can we build it, it's should we build it.</mark>
+
     Applying lean businesses practices by testing the value of a product using
     fake door campaigns, email sign ups and other tools, we are able to get
     validation without spending money.
 
-    # The problem we're solving
+    ## The Problem
 
     Working as a product consultant,
     I am often work for new start-ups where I am asked to build
@@ -46,7 +46,7 @@ section.content.content--reading
       building a business, we can greatly reduce the risk of wasting countless
       hours and money.
 
-    # Customer Discovery
+    ## Customer Discovery
 
     I am seeking out 5 entrepreneurs, who had all started at least 1 business,
     and who were still self employed.
@@ -73,7 +73,14 @@ section.content.content--reading
     I am currently in the interview process, and will post my key takeaways here
     when they are ready!
 
-= render partial: "case_studies_navigation", locals: { \
-    previous_target: "piggy",
-    next_target: "penner",
+= render partial: "case_studies/case_studies_navigation",
+  locals: { \
+    next_case_study: { \
+      name: "penner",
+      protected: false,
+    },
+    previous_case_study: { \
+      name: "piggy",
+      protected: false,
+    },
   }

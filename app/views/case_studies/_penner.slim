@@ -1,5 +1,5 @@
-section.hero.hero--case-study
-  = image_tag "case_studies/penner-hero.jpg", alt: "Penner"
+/section.hero.hero--case-study
+/  = image_tag "case_studies/penner-hero.jpg", alt: "Penner"
 
 section.content.content--reading
   markdown:
@@ -22,7 +22,7 @@ section.content.content--reading
     product for me to solve my problem and testing if others had shared problems
     and an interest in solving them with Penner.
 
-    # The Problem
+    ## The Problem
 
     I learn from everything around me, notably peers, mentors, personal
     experience and life itself.  Although I have a strong desire to share my
@@ -46,7 +46,7 @@ section.content.content--reading
     1. I don't write often enough and when I sit down to write I feel
        overwhelmed by all the learnings I'd like to share.
 
-    # Solutions
+    ## Solutions
 
     After identifying the some of the root problems that were contributing to my
     bad not taking and inconsistent writing, I decided to try out a few tools
@@ -82,7 +82,7 @@ section.content.content--reading
     I didn't find any tools that fully solved my problems, so I set out to
     design something simple that might.
 
-    # Prototype
+    ## Prototype
 
     I designed the prototype to focus only on solutions that were directly
     related with the problems I was having:
@@ -111,7 +111,7 @@ section.content.content--reading
 
 section.content.content--reading
   markdown:
-    # Validation
+    ## Validation
 
     I had several friends play with the prototype after it was created and I got
     some feedback:
@@ -138,7 +138,7 @@ section.content.content--reading
     I decided to throw up a splash page, run a Facebook ad, and see what kind of
     response I got.
 
-    # The Splash Page
+    ## The Splash Page
 
     One of the more common experiments I run is creating a marketing page for a
     product that doesn't exist. Testing to see if certain audiences have certain
@@ -159,14 +159,14 @@ section.content.content--reading
       <img src="#{image_path("case_studies/penner-sign-up.png")}" />
     </div>
 
-    # Update
-
-    <time>7/2/16</time>
-    I am sitting on this idea until I get validation. I haven't launched the
-    splash page yet, but will be doing so shorty. I will post the metrics here
-    to show you how things are going!
-
-= render partial: "case_studies_navigation", locals: { \
-    previous_target: "tinysplash",
-    next_target: "piggy",
+= render partial: "case_studies/case_studies_navigation",
+  locals: { \
+    next_case_study: { \
+      name: "mayo_clinic",
+      protected: true,
+    },
+    previous_case_study: { \
+      name: "tinysplash",
+      protected: false,
+    },
   }

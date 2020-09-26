@@ -5,7 +5,7 @@ RSpec.feature "Guest views each case studies deatils" do
     it "shows the details" do
       visit "/"
 
-      click_link "tinysplash"
+      click_link "Tinysplash"
 
       expect(page).to have_text "Tinysplash"
     end
@@ -15,7 +15,7 @@ RSpec.feature "Guest views each case studies deatils" do
     it "shows the details" do
       visit "/"
 
-      click_link "piggy"
+      click_link "Piggy"
 
       expect(page).to have_text "Piggy"
     end

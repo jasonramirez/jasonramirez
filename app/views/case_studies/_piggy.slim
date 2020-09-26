@@ -1,5 +1,5 @@
-section.hero.hero--case-study-for-mobile
-  = image_tag "case_studies/piggy-screens.jpg", alt: "Piggy"
+/section.hero.hero--case-study-for-mobile
+/  = inline_svg_tag "case_studies/piggy-hero.svg", alt: "Piggy"
 
 section.content.content--reading
   markdown:
@@ -7,13 +7,12 @@ section.content.content--reading
 
     The internet is filled with convenient and user friendly interactions that
     encourage you to spend money: one-click purchasing, recommendation engines,
-    wish-lists, registries, SMS purchasing, etc. There are loads of buttons that
-    help you spend money. However, there are very few buttons to help you save.
+    wish-lists, registries, SMS purchasing, etc. There are loads of buttons that help you spend money. However, there are very few buttons to help you save.
 
     Piggy brings the save button to the forefront, and helps people develop
     better money-saving habits one day at a time.
 
-    # The problem we're solving
+    ## The Problem
 
     A friend and I got into a discussion about how difficult it is to save
     money. Our conversation shifted to complaining about how our culture is a
@@ -36,7 +35,7 @@ section.content.content--reading
     Our next step was to do some customer discovery and see if other shared in
     this pain.
 
-    # Customer Discovery
+    ## Customer Discovery
 
     Before we started to dig into solutions, we wanted to see if other people
     had a similar relationship with money and/or related to our problem
@@ -72,7 +71,7 @@ section.content.content--reading
     statment, and decided it was time for an abbreviated [design
     sprint](https://library.gv.com/the-gv-research-sprint-a-4-day-process-for-answering-important-startup-questions-97279b532b25#.9unipl4gb).
 
-    # The Sprint
+    ## The Sprint
 
     Almost right away we had an interesting finding.  While getting background
     and looking at our competition, we noticed that most existing tools were
@@ -111,7 +110,7 @@ section.content.content--reading
 
     Next we set out to build a prototype to test with users.
 
-    # Prototype
+    ## Prototype
 
     Based off the outcome from the sprint, we started to build a prototype to
     test that our solution was a viable solution and addressed our riskiest
@@ -127,16 +126,15 @@ section.content.content--reading
 
 - if browser.device.mobile?
   section.content.content--reading
-    = link_to "Click to view the Invision prototype", "https://invis.io/346H2GDMG",
+    = link_to "Click to view the Invision prototype", "https://invis.io/EQYHWD8M54D",
         target: "_blank"
 - else
   .case-study-prototype
-    iframe width="438" height="930" src="//invis.io/7P5H26KTR" frameborder="0" \
-      allowfullscreen
+    iframe width="480" height="980" frameborder="0" src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/RySG7djTvOhTk5lLsVrde4tN/Piggy?node-id=235%253A20&chrome=DOCUMENTATION" allowfullscreen
 
 section.content.content--reading
   markdown:
-    # Results
+    ## Results
 
     We ran 7 user tests with our "target market"; people who made $80K+,
     currently _wanted_ to save money, and felt that they had bad saving habits.
@@ -150,7 +148,7 @@ section.content.content--reading
     group users asked to be notified when the application was to be released
     without being prompted.
 
-    # MVP
+    ## MVP
 
     Before we started to develop the MVP Piggy application, we spiked on the
     engineering side of things. We quickly ran into some difficult technical
@@ -180,18 +178,14 @@ section.content.content--reading
     without any charge to the customer, so option 5 is out of the picture for
     now.
 
-    # Updates
-
-    <small>March 1st, 2016</small>
-
-    We were able to negotiate the use of an API for up to 10 accounts for free.
-    Although this isn't ideal or for that matter a scalable solution, we felt it
-    was a positive step in the right direction and would allow us to work with
-    some early adopters.
-
-    Check back for more updates!
-
-= render partial: "case_studies_navigation", locals: { \
-    previous_target: "penner",
-    next_target: "tinysplash",
+= render partial: "case_studies/case_studies_navigation",
+  locals: { \
+    next_case_study: { \
+      name: "tinysplash",
+      protected: false,
+    },
+    previous_case_study: { \
+      name: "mayo_clinic",
+      protected: true,
+    },
   }

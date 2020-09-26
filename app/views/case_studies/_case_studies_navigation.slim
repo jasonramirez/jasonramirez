@@ -1,18 +1,19 @@
 footer.case-study-footer
   nav.case-study-footer-navigation.content.content--reading
-    = link_to previous_target, \
+    = link_to case_study_link(previous_case_study), \
       class: "case-study-footer-navigation__link left" do
       span
         | Previous
       h3
-        = t(".#{previous_target}.title")
+        = t(".#{previous_case_study[:name]}.title")
       p
-        = t(".#{previous_target}.details")
-    = link_to next_target, \
+        = t(".#{previous_case_study[:name]}.details")
+
+    = link_to case_study_link(next_case_study), \
       class: "case-study-footer-navigation__link right" do
       span
         | Next
       h3
-        = t(".#{next_target}.title")
+        = t(".#{next_case_study[:name]}.title")
       p
-        = t(".#{next_target}.details")
+        = t(".#{next_case_study[:name]}.details")
