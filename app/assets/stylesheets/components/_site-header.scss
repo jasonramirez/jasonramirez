@@ -1,8 +1,11 @@
 .site-header {
   @include clearfix;
   @include position(fixed, 0 0 null 0);
+  align-items: center;
   background-color: $base-background-color;
+  display: flex;
   height: $navigation-height-mobile;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: $large-screen;
   padding: $base-spacing;
