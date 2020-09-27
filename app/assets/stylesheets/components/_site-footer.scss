@@ -4,8 +4,33 @@
   text-align: center;
 }
 
-.site-footer__image {
-  margin-bottom: 1rem;
-  max-height: 2rem;
-  max-width: 8rem;
+.site-footer__links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__link {
+  character-spacing: 0.05rem;
+  color: $base-font-color;
+  display: block;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  @include media($small-screen) {
+    display: inline;
+    margin: $small-spacing;
+  }
+
+  a {
+    color: $base-font-color;
+  }
+
+  a:active,
+  a:focus,
+  a:hover {
+    color: $action-color;
+  }
 }

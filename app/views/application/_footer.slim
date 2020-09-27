@@ -1,15 +1,13 @@
 footer.site-footer
   nav.u-margin-bottom
-    ul.navigation__links
-      li.navigation__link
+    ul.site-footer__links
+      li.site-footer__link
         = link_to t("navigation.case_studies"), case_studies_path
-      li.navigation__link
+      li.site-footer__link
         = link_to t("navigation.posts"), posts_path
-      li.navigation__link
-        = link_to new_follower_path do
-          = t("navigation.follow")
-          = inline_svg_tag src="icon-heart.svg"
-      li.navigation__link
+      li.site-footer__link
+        = link_to t("navigation.follow"), new_follower_path
+      li.site-footer__link
         = link_to t("navigation.privacy_and_terms"), "/privacy_and_terms"
 
   p
