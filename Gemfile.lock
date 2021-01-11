@@ -282,6 +282,7 @@ GEM
       ffi (~> 1.0)
     recipient_interceptor (0.3.1)
       mail
+<<<<<<< HEAD
     redcarpet (3.6.0)
     regexp_parser (2.8.0)
     responders (3.1.0)
@@ -289,6 +290,14 @@ GEM
       railties (>= 5.2)
     rexml (3.2.5)
     rouge (4.1.0)
+=======
+    redcarpet (3.5.1)
+    regexp_parser (1.8.0)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
+    rouge (3.23.0)
+>>>>>>> 5a7a5ac... Bump redcarpet from 3.5.0 to 3.5.1
     rouge-rails (0.2.1)
       actionview
       railties
