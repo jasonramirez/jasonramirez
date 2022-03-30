@@ -381,8 +381,11 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+>>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
     net-imap (0.3.4)
       date
       net-protocol
@@ -397,11 +400,15 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
 =======
     nio4r (2.5.8)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
 >>>>>>> 9d47e1a... Bump puma from 5.0.0 to 5.6.4
+<<<<<<< HEAD
 =======
     nio4r (2.5.8)
     nokogiri (1.10.10)
@@ -424,6 +431,8 @@ GEM
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+>>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
     normalize-rails (3.0.3)
     notiffany (0.1.3)
       nenv (~> 0.1)
@@ -438,6 +447,7 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -461,13 +471,26 @@ GEM
     puma (5.0.0)
 >>>>>>> 1bd1b60... Bump addressable from 2.7.0 to 2.8.1
 =======
+=======
+>>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
     public_suffix (5.0.0)
     puma (5.0.0)
 =======
     public_suffix (5.0.1)
     puma (6.2.2)
 >>>>>>> 85c3e69... Updated gems
+<<<<<<< HEAD
 >>>>>>> 7b8c24e... Updated gems
+=======
+=======
+    public_suffix (5.0.1)
+    puma (6.2.2)
+=======
+    public_suffix (4.0.6)
+    puma (5.6.4)
+>>>>>>> 9d47e1a... Bump puma from 5.0.0 to 5.6.4
+>>>>>>> 0b38301... Bump puma from 5.0.0 to 5.6.4
+>>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.7)
