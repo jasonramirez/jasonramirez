@@ -123,12 +123,20 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+<<<<<<< HEAD
 >>>>>>> 7d3f11c... Updated gems
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
     awesome_print (1.9.2)
+=======
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
+    autoprefixer-rails (10.0.0.2)
+      execjs
+    awesome_print (1.8.0)
+>>>>>>> 1bd1b60... Bump addressable from 2.7.0 to 2.8.1
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -327,6 +335,7 @@ GEM
       pry (>= 0.10.4)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public_suffix (5.0.1)
     puma (6.2.2)
 =======
@@ -341,6 +350,10 @@ GEM
     puma (6.2.2)
 >>>>>>> 85c3e69... Updated gems
 >>>>>>> 7d3f11c... Updated gems
+=======
+    public_suffix (5.0.0)
+    puma (5.0.0)
+>>>>>>> 1bd1b60... Bump addressable from 2.7.0 to 2.8.1
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.7)
