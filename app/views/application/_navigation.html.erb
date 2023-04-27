@@ -3,7 +3,6 @@
     <ul class="navigation__links">
       <li class="navigation__link">
         <%= link_to root_path do %>
-          <%= inline_svg_tag src="icon-logo.svg" %>
           <%= t("navigation.home") %>
         <% end %>
       </li>
@@ -20,10 +19,6 @@
 
       <li class="navigation__link">
         <%= link_to t("navigation.posts"), posts_path %>
-      </li>
-
-      <li class="navigation__link">
-        <%= link_to t("navigation.follow"), new_follower_path %>
       </li>
     </ul>
   </nav>

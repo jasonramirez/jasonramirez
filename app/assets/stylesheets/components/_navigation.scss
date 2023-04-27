@@ -65,23 +65,6 @@
   a:focus,
   a:hover {
     color: $action-color;
-
-    svg {
-      path {
-        fill: $action-color;
-      }
-    }
-  }
-
-  svg {
-    @include size($base-font-size);
-    margin-left: $small-spacing / 2;
-    vertical-align: text-top;
-
-    path {
-      transition: all 250ms;
-      fill: $base-font-color;
-    }
   }
 }
 
