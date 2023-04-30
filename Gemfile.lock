@@ -4,6 +4,9 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d324b8a... Updated gems
     actioncable (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
@@ -36,6 +39,7 @@ GEM
       activestorage (= 6.0.3.7)
       activesupport (= 6.0.3.7)
       mail (>= 2.7.1)
+<<<<<<< HEAD
 =======
     actioncable (6.0.3.7)
       actionpack (= 6.0.3.7)
@@ -55,10 +59,13 @@ GEM
       mail (>= 2.7.1)
 <<<<<<< HEAD
 >>>>>>> 7b8c24e... Updated gems
+=======
+>>>>>>> d324b8a... Updated gems
     actionmailer (6.0.3.7)
       actionpack (= 6.0.3.7)
       actionview (= 6.0.3.7)
       activejob (= 6.0.3.7)
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 7d3f11c... Updated gems
 =======
@@ -73,6 +80,9 @@ GEM
       activejob (= 7.0.4)
       activesupport (= 7.0.4)
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
       mail (~> 2.5, >= 2.5.4)
       net-imap
       net-pop
@@ -80,8 +90,11 @@ GEM
       rails-dom-testing (~> 2.0)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+>>>>>>> d324b8a... Updated gems
     actionpack (7.0.4)
       actionview (= 7.0.4)
       activesupport (= 7.0.4)
@@ -129,7 +142,27 @@ GEM
 =======
     actionview (7.0.4)
       activesupport (= 7.0.4)
+<<<<<<< HEAD
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+=======
+    actionpack (6.0.3.7)
+      actionview (= 6.0.3.7)
+      activesupport (= 6.0.3.7)
+      rack (~> 2.0, >= 2.0.8)
+      rack-test (>= 0.6.3)
+      rails-dom-testing (~> 2.0)
+      rails-html-sanitizer (~> 1.0, >= 1.2.0)
+    actiontext (6.0.3.7)
+      actionpack (= 6.0.3.7)
+      activerecord (= 6.0.3.7)
+      activestorage (= 6.0.3.7)
+      activesupport (= 6.0.3.7)
+      nokogiri (>= 1.8.5)
+    actionview (6.0.3.7)
+      activesupport (= 6.0.3.7)
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
@@ -137,6 +170,9 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d324b8a... Updated gems
     activejob (7.0.4)
       activesupport (= 7.0.4)
       globalid (>= 0.3.6)
@@ -225,7 +261,31 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+<<<<<<< HEAD
 >>>>>>> a53c446... Update Ruby and Rails
+=======
+=======
+    activejob (6.0.3.7)
+      activesupport (= 6.0.3.7)
+      globalid (>= 0.3.6)
+    activemodel (6.0.3.7)
+      activesupport (= 6.0.3.7)
+    activerecord (6.0.3.7)
+      activemodel (= 6.0.3.7)
+      activesupport (= 6.0.3.7)
+    activestorage (6.0.3.7)
+      actionpack (= 6.0.3.7)
+      activejob (= 6.0.3.7)
+      activerecord (= 6.0.3.7)
+      marcel (~> 1.0.0)
+    activesupport (6.0.3.7)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> 3318f2b... Updated gems
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.13.0)
@@ -314,11 +374,17 @@ GEM
       activerecord (>= 4.0.0)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     gemoji (4.1.0)
 =======
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+    gemoji (4.1.0)
+=======
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
     gibbon (3.4.4)
       faraday (>= 1.0)
       multi_json (>= 1.11.0)
@@ -382,10 +448,13 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7b8c24e... Updated gems
 =======
 >>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
+=======
+>>>>>>> d324b8a... Updated gems
     net-imap (0.3.4)
       date
       net-protocol
@@ -409,6 +478,9 @@ GEM
       mini_portile2 (~> 2.4.0)
 >>>>>>> 9d47e1a... Bump puma from 5.0.0 to 5.6.4
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d324b8a... Updated gems
 =======
     nio4r (2.5.8)
     nokogiri (1.10.10)
@@ -429,10 +501,13 @@ GEM
       racc (~> 1.4)
 >>>>>>> 85c3e69... Updated gems
 >>>>>>> 7d3f11c... Updated gems
+<<<<<<< HEAD
 =======
 >>>>>>> 7b8c24e... Updated gems
 =======
 >>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
+=======
+>>>>>>> d324b8a... Updated gems
     normalize-rails (3.0.3)
     notiffany (0.1.3)
       nenv (~> 0.1)
@@ -447,6 +522,7 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -473,6 +549,8 @@ GEM
 =======
 =======
 >>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
+=======
+>>>>>>> d324b8a... Updated gems
     public_suffix (5.0.0)
     puma (5.0.0)
 =======
@@ -483,14 +561,30 @@ GEM
 >>>>>>> 7b8c24e... Updated gems
 =======
 =======
+=======
+>>>>>>> 3318f2b... Updated gems
     public_suffix (5.0.1)
     puma (6.2.2)
 =======
     public_suffix (4.0.6)
     puma (5.6.4)
 >>>>>>> 9d47e1a... Bump puma from 5.0.0 to 5.6.4
+<<<<<<< HEAD
 >>>>>>> 0b38301... Bump puma from 5.0.0 to 5.6.4
+<<<<<<< HEAD
 >>>>>>> 7a820c9... Bump puma from 5.0.0 to 5.6.4
+=======
+=======
+=======
+    public_suffix (4.0.6)
+    puma (5.6.4)
+=======
+    public_suffix (5.0.1)
+    puma (6.2.2)
+>>>>>>> 85c3e69... Updated gems
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> 3318f2b... Updated gems
+>>>>>>> d324b8a... Updated gems
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.7)
@@ -505,8 +599,11 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+>>>>>>> d324b8a... Updated gems
     rails (7.0.4)
       actioncable (= 7.0.4)
       actionmailbox (= 7.0.4)
@@ -522,9 +619,13 @@ GEM
       bundler (>= 1.15.0)
       railties (= 7.0.4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+=======
+>>>>>>> d324b8a... Updated gems
     rails (6.0.3.7)
       actioncable (= 6.0.3.7)
       actionmailbox (= 6.0.3.7)
@@ -541,13 +642,17 @@ GEM
       railties (= 6.0.3.7)
       sprockets-rails (>= 2.0.0)
 >>>>>>> 7d3f11c... Updated gems
+<<<<<<< HEAD
 =======
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+>>>>>>> d324b8a... Updated gems
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -572,6 +677,8 @@ GEM
 =======
 >>>>>>> 7b8c24e... Updated gems
 =======
+=======
+>>>>>>> d324b8a... Updated gems
     railties (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
@@ -579,7 +686,18 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+<<<<<<< HEAD
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+=======
+    railties (6.0.3.7)
+      actionpack (= 6.0.3.7)
+      activesupport (= 6.0.3.7)
+      method_source
+      rake (>= 0.8.7)
+      thor (>= 0.20.3, < 2.0)
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
     rake (13.0.6)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
@@ -589,10 +707,15 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+=======
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
     redcarpet (3.6.0)
     regexp_parser (2.8.0)
     responders (3.1.0)
@@ -602,6 +725,9 @@ GEM
     rouge (4.1.0)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d324b8a... Updated gems
 =======
     redcarpet (3.5.1)
     regexp_parser (1.8.0)
@@ -612,8 +738,11 @@ GEM
 >>>>>>> 5a7a5ac... Bump redcarpet from 3.5.0 to 3.5.1
 =======
 >>>>>>> 7d3f11c... Updated gems
+<<<<<<< HEAD
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+>>>>>>> d324b8a... Updated gems
     rouge-rails (0.2.1)
       actionview
       railties
@@ -629,8 +758,11 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+>>>>>>> d324b8a... Updated gems
     rspec-rails (6.0.1)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
@@ -640,9 +772,13 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+=======
+>>>>>>> d324b8a... Updated gems
     rspec-rails (5.1.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -652,11 +788,15 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
 =======
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
     sass (3.7.4)
@@ -704,6 +844,7 @@ GEM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     thread_safe (0.3.6)
 >>>>>>> 7d3f11c... Updated gems
@@ -712,12 +853,18 @@ GEM
 >>>>>>> 7b8c24e... Updated gems
 =======
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+=======
+    thread_safe (0.3.6)
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
     tilt (2.1.0)
     timecop (0.9.6)
     timeout (0.3.2)
     title (0.0.8)
       i18n
       rails (>= 3.1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -733,6 +880,14 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
 >>>>>>> 8e324bc... Update Ruby and Rails
+=======
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+=======
+    tzinfo (1.2.11)
+      thread_safe (~> 0.1)
+>>>>>>> 7d3f11c... Updated gems
+>>>>>>> d324b8a... Updated gems
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     uniform_notifier (1.16.0)
