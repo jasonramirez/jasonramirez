@@ -3,6 +3,7 @@ GEM
   specs:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     actioncable (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
@@ -38,15 +39,21 @@ GEM
 =======
     actioncable (6.0.3.7)
       actionpack (= 6.0.3.7)
+=======
+    actioncable (7.0.4)
+      actionpack (= 7.0.4)
+      activesupport (= 7.0.4)
+>>>>>>> 8e324bc... Update Ruby and Rails
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
-    actionmailbox (6.0.3.7)
-      actionpack (= 6.0.3.7)
-      activejob (= 6.0.3.7)
-      activerecord (= 6.0.3.7)
-      activestorage (= 6.0.3.7)
-      activesupport (= 6.0.3.7)
+    actionmailbox (7.0.4)
+      actionpack (= 7.0.4)
+      activejob (= 7.0.4)
+      activerecord (= 7.0.4)
+      activestorage (= 7.0.4)
+      activesupport (= 7.0.4)
       mail (>= 2.7.1)
+<<<<<<< HEAD
 >>>>>>> 7b8c24e... Updated gems
     actionmailer (6.0.3.7)
       actionpack (= 6.0.3.7)
@@ -56,16 +63,30 @@ GEM
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+      net-imap
+      net-pop
+      net-smtp
+    actionmailer (7.0.4)
+      actionpack (= 7.0.4)
+      actionview (= 7.0.4)
+      activejob (= 7.0.4)
+      activesupport (= 7.0.4)
+>>>>>>> 8e324bc... Update Ruby and Rails
       mail (~> 2.5, >= 2.5.4)
       net-imap
       net-pop
       net-smtp
       rails-dom-testing (~> 2.0)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
     actionpack (7.0.4)
       actionview (= 7.0.4)
       activesupport (= 7.0.4)
       rack (~> 2.0, >= 2.2.0)
+<<<<<<< HEAD
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
 <<<<<<< HEAD
@@ -86,25 +107,34 @@ GEM
       actionview (= 6.0.3.7)
       activesupport (= 6.0.3.7)
       rack (~> 2.0, >= 2.0.8)
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actiontext (6.0.3.7)
-      actionpack (= 6.0.3.7)
-      activerecord (= 6.0.3.7)
-      activestorage (= 6.0.3.7)
-      activesupport (= 6.0.3.7)
+    actiontext (7.0.4)
+      actionpack (= 7.0.4)
+      activerecord (= 7.0.4)
+      activestorage (= 7.0.4)
+      activesupport (= 7.0.4)
+      globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
+<<<<<<< HEAD
     actionview (6.0.3.7)
       activesupport (= 6.0.3.7)
 <<<<<<< HEAD
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+    actionview (7.0.4)
+      activesupport (= 7.0.4)
+>>>>>>> 8e324bc... Update Ruby and Rails
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     activejob (7.0.4)
@@ -147,7 +177,26 @@ GEM
       activerecord (= 6.0.3.7)
       marcel (~> 1.0.0)
     activesupport (6.0.3.7)
+=======
+    activejob (7.0.4)
+      activesupport (= 7.0.4)
+      globalid (>= 0.3.6)
+    activemodel (7.0.4)
+      activesupport (= 7.0.4)
+    activerecord (7.0.4)
+      activemodel (= 7.0.4)
+      activesupport (= 7.0.4)
+    activestorage (7.0.4)
+      actionpack (= 7.0.4)
+      activejob (= 7.0.4)
+      activerecord (= 7.0.4)
+      activesupport (= 7.0.4)
+      marcel (~> 1.0)
+      mini_mime (>= 1.1.0)
+    activesupport (7.0.4)
+>>>>>>> 8e324bc... Update Ruby and Rails
       concurrent-ruby (~> 1.0, >= 1.0.2)
+<<<<<<< HEAD
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
@@ -172,6 +221,11 @@ GEM
 >>>>>>> 1bd1b60... Bump addressable from 2.7.0 to 2.8.1
 =======
 =======
+=======
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+>>>>>>> a53c446... Update Ruby and Rails
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.13.0)
@@ -427,6 +481,9 @@ GEM
     rack-timeout (0.6.3)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
     rails (7.0.4)
       actioncable (= 7.0.4)
       actionmailbox (= 7.0.4)
@@ -441,6 +498,7 @@ GEM
       activesupport (= 7.0.4)
       bundler (>= 1.15.0)
       railties (= 7.0.4)
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 7b8c24e... Updated gems
@@ -460,11 +518,14 @@ GEM
       railties (= 6.0.3.7)
       sprockets-rails (>= 2.0.0)
 >>>>>>> 7d3f11c... Updated gems
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     railties (7.0.4)
@@ -487,6 +548,15 @@ GEM
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+    railties (7.0.4)
+      actionpack (= 7.0.4)
+      activesupport (= 7.0.4)
+      method_source
+      rake (>= 12.2)
+      thor (~> 1.0)
+      zeitwerk (~> 2.5)
+>>>>>>> 8e324bc... Update Ruby and Rails
     rake (13.0.6)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
@@ -535,6 +605,9 @@ GEM
       rspec-support (~> 3.12.0)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
     rspec-rails (6.0.1)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
@@ -543,6 +616,7 @@ GEM
       rspec-expectations (~> 3.11)
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 7b8c24e... Updated gems
@@ -558,6 +632,8 @@ GEM
 >>>>>>> 7d3f11c... Updated gems
 =======
 >>>>>>> 7b8c24e... Updated gems
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
     sass (3.7.4)
@@ -604,18 +680,22 @@ GEM
     thor (1.2.1)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     thread_safe (0.3.6)
 >>>>>>> 7d3f11c... Updated gems
 =======
     thread_safe (0.3.6)
 >>>>>>> 7b8c24e... Updated gems
+=======
+>>>>>>> 8e324bc... Update Ruby and Rails
     tilt (2.1.0)
     timecop (0.9.6)
     timeout (0.3.2)
     title (0.0.8)
       i18n
       rails (>= 3.1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     tzinfo (2.0.6)
@@ -626,6 +706,10 @@ GEM
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
 >>>>>>> 7d3f11c... Updated gems
+=======
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+>>>>>>> 8e324bc... Update Ruby and Rails
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     uniform_notifier (1.16.0)
