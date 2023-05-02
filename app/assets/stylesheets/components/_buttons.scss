@@ -70,6 +70,7 @@
   padding: 0;
 
   &:hover {
+    background-color: transparent;
     box-shadow: none;
     color: $action-color;
   }

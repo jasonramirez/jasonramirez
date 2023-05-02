@@ -40,7 +40,7 @@ select[multiple=multiple] {
   width: 100%;
 
   @include media($medium-screen) {
-    max-width: $medium-screen;
+    // max-width: $medium-screen;
   }
 
   &:hover {
@@ -136,7 +136,7 @@ select {
 
 select {
   @include padding($x-small-spacing $base-spacing $x-small-spacing $small-spacing);
-  background-color: lighten($black, 99%);
+  background-color: $input-background-color;
   background-image: url("select-background.svg");
   background-position: calc(100% - #{$x-small-spacing}), center;
   background-repeat: no-repeat;
