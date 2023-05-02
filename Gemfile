@@ -22,6 +22,7 @@ gem "rack-canonical-host"
 gem "rails", "7.0.4"
 gem "recipient_interceptor"
 gem "redcarpet"
+gem 'gemoji'
 gem "rouge-rails"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"

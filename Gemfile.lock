@@ -150,6 +150,7 @@ GEM
       i18n
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
+    gemoji (4.1.0)
     gibbon (3.4.4)
       faraday (>= 1.0)
       multi_json (>= 1.11.0)
@@ -399,6 +400,7 @@ DEPENDENCIES
   flutie
   formulaic
   friendly_id
+  gemoji
   gibbon
   guard-livereload
   high_voltage
