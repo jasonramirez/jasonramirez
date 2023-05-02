@@ -14,15 +14,17 @@ your machine with [this script].
 
 After setting up, you can run the application using [Heroku Local]:
 
-    % heroku local
+    % rails s
 
-[Heroku Local]: https://devcenter.heroku.com/articles/heroku-local
+## Database Management
+
+Use the `parity` gem for database backups and copies.
 
 ## Guidelines
 
 Use the following guides for getting things done, programming well, and
 programming in style.
 
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+- [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
+- [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
+- [Style](http://github.com/thoughtbot/guides/blob/master/style)
