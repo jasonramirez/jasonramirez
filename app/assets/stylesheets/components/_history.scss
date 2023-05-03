@@ -2,6 +2,7 @@
   align-items: left;
   display: flex;
   flex-direction: column;
+  margin-bottom: 12rem;
 
   @include media($large-screen) {
     align-items: center;
