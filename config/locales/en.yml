@@ -50,7 +50,7 @@ en:
         "%B %d"
 
   navigation:
-    case_studies: Case Studies
+    case_studies: Work
     follow: Follow
     home: Jason Ramirez
     posts: Writing
@@ -70,8 +70,8 @@ en:
 
   case_studies:
     case_studies_navigation:
-      next: Next Case Study
-      previous: Previous Case Study
+      next: Next
+      previous: Previous
       piggy:
         title: Piggy
         details: A save button for your finances.
