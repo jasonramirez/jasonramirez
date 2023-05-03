@@ -1,0 +1,11 @@
+.history-divider {
+  background-color: lighten($base-background-color, 20%);
+  height: 6rem;
+  margin-left: 20%;
+  width: 1px;
+
+  @include media($large-screen) {
+    margin-left: 0;
+  }
+}
+

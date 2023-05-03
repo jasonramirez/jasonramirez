@@ -1,0 +1,9 @@
+.history {
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+
+  @include media($large-screen) {
+    align-items: center;
+  }
+}

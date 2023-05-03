@@ -1,0 +1,23 @@
+<section class="history">
+  <% history_item_list.each do |history_item| %>
+    <div class="history-divider"></div>
+
+    <section class="history-item">
+      <div class="history-item__filler"></div>
+
+      <div class="history-item__image">
+       <%= image_tag "history/#{history_item[0]["image"]}" %>
+      </div>
+
+      <div class="history-item__details">
+        <h2>
+          <%= history_item[0]["title"] %>
+        </h2>
+
+        <span>
+          <%= history_item[0]["date"] %> &mdash; <%= history_item[0]["organization"] %>
+        </span>
+      </div>
+    </section>
+  <% end %>
+</section>

@@ -68,6 +68,7 @@ $mark-color: $tropical-blue;
 $mark-highlight-color: rgba($ultramarine-blue, 0.25);
 $notice-color: $forest-green;
 $secondary-background-color: tint($light-gray, 75%);
+$secondary-font-color: darken($base-font-color, 50%);
 
 // Unicode Characters
 $hamburger-icon: "\2630";

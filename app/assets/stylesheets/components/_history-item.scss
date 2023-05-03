@@ -1,0 +1,41 @@
+.history-item {
+  display: flex;
+  margin: 1rem;
+  width: 100%;
+}
+
+.history-item__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+  width: 50%;
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin: 0;
+  }
+
+  span {
+    color: $secondary-font-color;
+  }
+}
+
+.history-item__filler {
+  width: calc(20% - 3rem);
+
+  @include media($large-screen) {
+    width: 50%;
+  }
+}
+
+.history-item__image {
+  height: 4rem;
+  width: 4rem;
+
+  @include media($large-screen) {
+    height: 6rem;
+    width: 6rem;
+  }
+}
