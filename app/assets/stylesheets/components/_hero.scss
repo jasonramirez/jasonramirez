@@ -41,7 +41,7 @@
 }
 
 .hero_leading-line {
-  background-color: lighten($base-background-color, 20%);
+  background: linear-gradient(0deg, lighten($base-background-color, 20%) 0%, $base-background-color 100%);
   height: 100%;
   margin-left: 20%;
   width: 1px;
