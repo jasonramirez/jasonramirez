@@ -25,6 +25,7 @@
       background-color: $base-background-color;
       display: flex;
       flex-direction: column;
+      height: calc(100vh - #{$navigation-height-mobile});
       justify-content: center;
       transition: left $base-duration, right $base-duration;
       z-index: 1;
@@ -38,8 +39,7 @@
 
   .navigation__mobile-trigger:checked + & {
     @include media(max-width $medium-screen) {
-      @include position(absolute, $navigation-height-mobile 0 null 0);
-      height: calc(100vh - #{$navigation-height-mobile});
+      @include position(fixed, $navigation-height-mobile 0 0 0);
     }
   }
 }
