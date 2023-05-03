@@ -14,8 +14,17 @@
   font-size: 5rem;
   margin-left: 10%;
 
+  @include media($small-screen) {
+    font-size: 7rem;
+  }
+
   @include media($large-screen) {
     font-size: 8rem;
+    margin-left: 0;
+  }
+
+  @include media($x-large-screen) {
+    font-size: 10rem;
     margin-left: 0;
   }
 }
