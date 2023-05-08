@@ -2,11 +2,11 @@
   align-items: left;
   flex-direction: column;
   display: flex;
-  height: calc(100vh - #{$navigation-height-mobile} - 15rem);
+  height: calc(100vh - #{$navigation-height-mobile} - 9rem);
 
   @include media($large-screen) {
     align-items: center;
-    height: calc(100vh - #{$navigation-height} - 15rem);
+    height: calc(100vh - #{$navigation-height} - 9rem);
   }
 }
 
@@ -23,7 +23,7 @@
     margin-left: 0;
   }
 
-  @include media($x-large-screen) {
+  @include media($xx-large-screen) {
     font-size: 10rem;
     margin-left: 0;
   }
@@ -31,9 +31,16 @@
 
 .hero_filler {
   display: flex;
-  height: 50%;
   justify-content: left;
   width: 100%;
+
+  &:first-child {
+    height: 57%;
+  }
+
+  &:last-child {
+    height: 43%;
+  }
 
   @include media($large-screen) {
     justify-content: center;
