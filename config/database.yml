@@ -8,11 +8,6 @@ development: &default
   reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
   timeout: 5000
 
-development:
-  <<: *default
-  database: jasonramirez_development
-  host: localhost
-
 test:
   <<: *default
   database: jasonramirez_test
