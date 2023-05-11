@@ -1,5 +1,17 @@
 <section class="content content--reading post">
   <% if @post.published %>
+    <% if @post.video_src %>
+      <div class="post-video">
+        <iframe src="<%= @post.video_src %>?hide_owner=true&hide_title=true&hideEmbedTopBar=true"
+          class="post-video__video"
+          frameborder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
+          allowfullscreen>
+        </iframe>
+      </div>
+    <% end %>
+
     <h1>
       <%= @post.title %>
     </h1>

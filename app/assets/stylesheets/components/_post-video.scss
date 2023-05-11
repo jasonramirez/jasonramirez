@@ -1,0 +1,13 @@
+.post-video {
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 2rem $black;
+  padding-bottom: 64%;
+  position: relative;
+
+  .post-video__video {
+    @include position(absolute, 0 0 0 0);
+    border-radius: 1rem;
+    height: 100%;
+    width: 100%;
+  }
+}
