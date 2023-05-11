@@ -17,10 +17,8 @@
   transition: all $base-duration;
 
   &:hover {
-    background-color: $action-color;
-    box-shadow: 0 1rem 2rem rgba($button-background-color, 0.25);
     cursor: pointer;
-    transition: all $base-duration;
+    outline: $action-color solid 2px;
   }
 
   & + & {
@@ -33,7 +31,6 @@
   position: relative;
 
   &::after {
-    @include position(absolute, 0 -3rem 0 null);
     background-color: rgba($black, 0.125);
     content: "";
     transition-duration: $base-duration;
@@ -50,15 +47,8 @@
     }
 
     .button__icon {
-      transform: translate(-1rem, -0.2rem);
+      opacity: 100%;
     }
-  }
-}
-
-.button--confirmation {
-  &:hover {
-    background-color: $action-color;
-    box-shadow: 0 1rem 2rem rgba($action-color, 0.15);
   }
 }
 
@@ -72,15 +62,17 @@
   &:hover {
     background-color: transparent;
     box-shadow: none;
-    color: $action-color;
+    outline: none;
+    // color: $action-color;
   }
 }
 
 
 .button__icon {
-  @include position(absolute, $small-spacing 0 null null);
+  @include position(absolute, 50% $base-spacing null null);
   @include size(1rem);
-  transform: translate(2rem, -0.2rem);
+  opacity: 0;
+  transform: translateY(-50%);
   transition-duration: $base-duration;
   transition-property: transform padding opacity;
   z-index: 1;

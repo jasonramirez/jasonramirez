@@ -29,13 +29,13 @@ en:
   followers:
     new:
       sign_up: Sign up to be notified of new posts and case studies
-      submit: Keep me updated
+      submit: Sign up
       success: Thanks for signing up!
 
   helpers:
     submit:
       follower:
-        create: Keep me updated
+        create: Sign up
       post:
         create: Create Post
         update: Save Changes
