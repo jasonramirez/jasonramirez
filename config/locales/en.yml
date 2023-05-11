@@ -50,6 +50,7 @@ en:
         "%B %d"
 
   navigation:
+    admin: Admin
     case_studies: Work
     follow: Follow
     home: Jason Ramirez

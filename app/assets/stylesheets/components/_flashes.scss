@@ -1,11 +1,17 @@
 @mixin flash($color) {
+  animation-duration: 5s;
+  animation-name: slide-in-out-from-bottom;
   background-color: $color;
+  bottom: -100%;
   color: darken($color, 60%);
   display: block;
   font-weight: 600;
-  margin-bottom: $base-spacing / 2;
+  margin: $base-spacing;
   padding: $base-spacing / 2;
+  position: fixed;
   text-align: center;
+  width: calc(100% - (#{$base-spacing} * 2));
+  z-index: $z-index-flashes;
 
   a {
     color: darken($color, 70%);
@@ -28,5 +34,5 @@
 
 .flash-notice {
   @include flash($notice-color);
-  color: rgba($white, 60%);
+  color: darken($notice-color, 30%);
 }

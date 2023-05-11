@@ -92,5 +92,6 @@ $sky-labels-color: $base-font-color;
 $case-study-page-navigation-width: 50vw;
 
 // Z-index
-$z-index-highest: 100;
-$z-index-below-content: -10;
+$z-index-flashes: 2;
+$z-index-highest: 1;
+$z-index-below-content: -1;
