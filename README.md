@@ -18,7 +18,16 @@ After setting up, you can run the application using [Heroku Local]:
 
 ## Database Management
 
-Use the `parity` gem for database backups and copies.
+Use the [parity](https://github.com/thoughtbot/parity) gem for database backups
+and copies.
+
+### Copy Local Database to Production
+
+From the command line:
+
+```
+$ production restore-from development --force
+```
 
 ## Guidelines
 

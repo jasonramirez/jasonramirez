@@ -93,20 +93,11 @@
     }
   }
 
-  h1,
-  h2 {
-    margin: $x-large-spacing 0;
-    text-align: center;
-
-    @include media($medium-screen) {
-      @include margin($x-large-spacing null $large-spacing);
-      padding: $x-large-spacing 0 $large-spacing;
-    }
-  }
 
   h1 {
     background-color: transparent;
     font-size: 3.5rem;
+    margin-bottom: $x-large-spacing;
     word-wrap: break-word;
 
     @include media($medium-screen) {
@@ -116,24 +107,14 @@
 
   h2 {
     font-size: 3rem;
-    padding: $x-large-spacing 0 $base-spacing;
-    position: relative;
-
-    &::before {
-      @include position(absolute, 0 null null 50%);
-      @include size(25%, 1px);
-      background-color: $light-border-color;
-      content: "";
-      transform: translateX(-50%);
-    }
+    margin-bottom: $large-spacing;
+    padding-top: $x-large-spacing;
   }
 
-  h3 {
-    margin-top: $large-spacing * 2;
-  }
-
+  h3,
   h4 {
-    margin: $large-spacing auto 0;
+    margin-bottom: $small-spacing;
+    padding-top: $small-spacing;
   }
 
   img {
