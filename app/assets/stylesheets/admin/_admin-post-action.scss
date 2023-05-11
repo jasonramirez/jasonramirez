@@ -1,9 +1,9 @@
 .admin-post-action {
-  @include position(fixed, null 0 0 0);
-  background-color: darken($base-background-color, 100%);
-  box-shadow: 0 0 1.5rem rgba($black, 0.25);
+  background-color: $base-background-color;
   display: flex;
+  margin-bottom: $large-spacing;
   padding: $x-small-spacing 0;
-  justify-content: center;
+  position: sticky;
+  top: 0px;
   z-index: $z-index-highest;
 }

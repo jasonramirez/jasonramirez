@@ -11,12 +11,14 @@
   font-size: $small-font-size;
   line-height: $button-line-height;
   letter-spacing: 0.025rem;
+  outline: $action-color solid 0px;
   padding: $x-small-spacing $base-spacing;
   position: relative;
   text-transform: uppercase;
   transition: all $base-duration;
 
   &:hover {
+    color: $action-color;
     cursor: pointer;
     outline: $action-color solid 2px;
   }
@@ -30,20 +32,11 @@
   overflow: hidden;
   position: relative;
 
-  &::after {
-    background-color: rgba($black, 0.125);
-    content: "";
-    transition-duration: $base-duration;
-    transition-property: right;
-    width: 3rem;
-    z-index: 0;
-  }
-
   &:hover {
     padding-right: 4.5rem;
 
-    &::after {
-      right: 0;
+    svg g {
+      stroke: $action-color;
     }
 
     .button__icon {
@@ -63,7 +56,6 @@
     background-color: transparent;
     box-shadow: none;
     outline: none;
-    // color: $action-color;
   }
 }
 
@@ -71,7 +63,7 @@
 .button__icon {
   @include position(absolute, 50% $base-spacing null null);
   @include size(1rem);
-  opacity: 0;
+  opacity: 0%;
   transform: translateY(-50%);
   transition-duration: $base-duration;
   transition-property: transform padding opacity;

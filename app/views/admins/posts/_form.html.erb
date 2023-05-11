@@ -1,5 +1,13 @@
 <section class="content content--reading">
   <%= simple_form_for [:admins, @post] do |f| %>
+    <div class="admin-post-action">
+      <%= f.button :button,
+        class: "button button--with-icon" do %>
+        <%= t(".save") %>
+        <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
+      <% end %>
+    </div>
+
     <div class="admin-post-meta">
       <%= f.input :published, as: :boolean %>
       <%= f.input :published_date %>
@@ -11,12 +19,5 @@
       <%= f.input :body, input_html: { "data-flexible-textarea": true } %>
     </div>
 
-    <div class="admin-post-action">
-      <%= f.button :button,
-        class: "button button--with-icon" do %>
-        <%= t(".save") %>
-        <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
-      <% end %>
-    </div>
   <% end %>
 </section>

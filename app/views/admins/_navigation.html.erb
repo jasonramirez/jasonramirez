@@ -1,0 +1,21 @@
+<header class="site-header">
+  <nav class="navigation--left">
+    <ul class="navigation__links">
+      <li class="navigation__link">
+        <%= link_to t(".all_posts"), admins_posts_path %>
+      </li>
+      <li class="navigation__link">
+        <%= link_to t(".new_post"), new_admins_post_path %>
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="navigation--right navigation--mobile-trigger-icon">
+    <input class="navigation__mobile-trigger" type="checkbox">
+    <ul class="navigation__links">
+      <li class="navigation__link">
+        <%= link_to t(".sign_out"), destroy_admin_session_path, method: :delete %>
+      </li>
+    </ul>
+  </nav>
+</header>

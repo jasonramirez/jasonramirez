@@ -17,9 +17,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: all $base-duration;
 
     .not-published & {
-      color: rgba($white, 0.3);
+      color: darken($base-font-color, 50%);
+    }
+
+    .not-published &:hover {
+      color: $action-color;
     }
   }
 }
