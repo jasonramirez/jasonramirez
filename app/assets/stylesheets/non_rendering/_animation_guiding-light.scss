@@ -1,0 +1,18 @@
+@keyframes guiding-light {
+  0% {
+    background: lighten(#121212, 50%);
+    opacity: 0;
+    top: 0;
+  }
+
+  90% {
+    background: lighten(#121212, 90%);
+    opacity: 1;
+    top: 92%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 95%;
+  }
+}

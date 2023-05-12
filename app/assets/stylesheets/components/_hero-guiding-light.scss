@@ -1,0 +1,17 @@
+.hero-guiding-light {
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: guiding-light;
+  animation-timing-function: ease;
+  background: lighten($base-background-color, 20%);
+  content: "";
+  height: 2rem;
+  left: 20%;
+  position: absolute;
+  top: 0;
+  width: 1px;
+
+  @include media($large-screen) {
+    left: 50%;
+  }
+}
