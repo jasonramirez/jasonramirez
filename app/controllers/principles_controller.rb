@@ -1,0 +1,2 @@
+class PrinciplesController < ApplicationController
+end

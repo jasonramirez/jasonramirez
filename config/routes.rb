@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get "protected_case_studies/:protected_case_study",
     to: "protected_case_studies#show"
   get "privacy_and_terms", to: "privacy_and_terms#index"
-  get "values_and_principles", to: "values_and_principles#index"
+  get "principles", to: "principles#index"
+  get "values", to: "values#index"
 
   namespace "admins" do
     resources :posts
