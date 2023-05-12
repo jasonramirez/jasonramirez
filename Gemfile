@@ -19,7 +19,7 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "7.0.4"
+gem "rails", "7.0.4.3"
 gem "recipient_interceptor"
 gem "redcarpet"
 gem 'gemoji'
