@@ -1,31 +1,21 @@
 .hero {
-  align-items: left;
+  align-items: center;
   flex-direction: column;
   display: flex;
   height: calc(100vh - #{$navigation-height-mobile});
 
   @include media($large-screen) {
-    align-items: center;
     height: calc(100vh - #{$navigation-height});
   }
 }
 
 .hero_title {
-  font-size: 4.5rem;
-  margin-left: 10%;
+  font-size: 22vw;
+  text-align: center;
+  width: 100%;
 
-  @include media($small-screen) {
-    font-size: 6rem;
-  }
-
-  @include media($large-screen) {
-    font-size: 8rem;
-    margin-left: 0;
-  }
-
-  @include media($xx-large-screen) {
+  @include media($medium-screen) {
     font-size: 10rem;
-    margin-left: 0;
   }
 }
 
