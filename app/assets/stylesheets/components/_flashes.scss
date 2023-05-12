@@ -6,11 +6,10 @@
   color: darken($color, 60%);
   display: block;
   font-weight: 600;
-  margin: $base-spacing;
   padding: $base-spacing / 2;
   position: fixed;
   text-align: center;
-  width: calc(100% - (#{$base-spacing} * 2));
+  width: 100%;
   z-index: $z-index-flashes;
 
   a {
