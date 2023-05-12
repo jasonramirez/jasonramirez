@@ -3,5 +3,10 @@
 }
 
 .u-margin-bottom--large {
+  display: block;
   margin-bottom: $large-spacing;
+}
+
+.u-margin-bottom-x-large {
+  padding-bottom: $x-large-spacing;
 }

@@ -1,0 +1,34 @@
+.hero-description {
+  @include padding(null $base-spacing);
+  font-family: $reading-font-family;
+  font-size: $reading-font-size;
+  font-weight: $reading-font-weight;
+  line-height: $reading-line-height;
+  max-width: $reading-screen;
+  text-align: left;
+  transition: all 250ms ease;
+  margin: $base-spacing auto;
+
+  @include media($large-screen) {
+    text-align: center;
+    margin: $large-spacing auto;
+  }
+
+  @include media($x-large-screen) {
+    max-width: $reading-screen * 1.15;
+  }
+
+  @include media($xx-large-screen) {
+    max-width: $reading-screen * 1.25;
+  }
+
+  a {
+    border-bottom: dashed 1px rgba($base-font-color, 0.5);
+    color: inherit;
+
+    &:hover {
+      color: $action-color;
+      border-color: $action-color;
+    }
+  }
+}

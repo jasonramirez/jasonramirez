@@ -6,7 +6,7 @@
 
   @include media($large-screen) {
     align-items: center;
-    height: calc(100vh - #{$navigation-height} - 9rem);
+    height: calc(100vh - #{$navigation-height} - 0rem);
   }
 }
 
@@ -35,11 +35,11 @@
   width: 100%;
 
   &:first-child {
-    height: 57%;
+    height: 50%;
   }
 
   &:last-child {
-    height: 43%;
+    height: 50%;
   }
 
   @include media($large-screen) {
