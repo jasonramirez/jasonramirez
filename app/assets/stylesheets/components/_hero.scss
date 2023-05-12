@@ -36,11 +36,11 @@
   width: 100%;
 
   &:first-child {
-    height: 50%;
+    height: 40%;
   }
 
   &:last-child {
-    height: 50%;
+    height: 60%;
   }
 
   @include media($large-screen) {
