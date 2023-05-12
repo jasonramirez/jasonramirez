@@ -51,7 +51,7 @@
     max-width: $reading-screen * 1.25;
   }
 
-  a {
+  a:not(.button) {
     border-bottom: dashed 1px rgba($base-font-color, 0.5);
     color: inherit;
 
@@ -110,6 +110,7 @@
     margin: 0 auto;
   }
 
+  ul,
   p {
     margin-bottom: $reading-paragraph-spacing / 1.2;
 

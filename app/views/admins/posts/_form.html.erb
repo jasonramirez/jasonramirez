@@ -6,6 +6,8 @@
         <%= t(".save") %>
         <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
       <% end %>
+
+      <%= link_to "Preview", post_path(@post), class: "button" %>
     </div>
 
     <div class="admin-post-meta">
