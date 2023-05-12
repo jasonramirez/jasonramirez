@@ -1,0 +1,10 @@
+.post-edit-link {
+  @include position(fixed, null $base-spacing $base-spacing null);
+  align-items: center;
+  background: $action-color;
+  border-radius: 2rem;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  width: 4rem;
+}

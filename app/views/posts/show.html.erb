@@ -21,5 +21,9 @@
     <p>
       <%= t(".removed") %>
     </p>
-  </section>
+  <% end %>
+</section>
+
+<% if admin_signed_in? %>
+  <%= link_to "✏️", edit_admins_post_path(@post), class: "post-edit-link" %>
 <% end %>
