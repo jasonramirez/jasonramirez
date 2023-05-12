@@ -27,6 +27,7 @@
       flex-direction: column;
       height: calc(100vh - #{$navigation-height-mobile});
       justify-content: center;
+      padding-bottom: 5vh;
       transition: left $base-duration, right $base-duration;
       z-index: 1;
 
@@ -49,9 +50,13 @@
   color: $base-font-color;
   display: inline;
   font-family: $heading-font-family;
-  font-size: $small-font-size;
+  font-size: $base-font-size;
   font-weight: bold;
   text-transform: uppercase;
+
+  @include media(min-width $medium-screen) {
+    font-size: $small-font-size;
+  }
 
   & + & {
     margin-left: $base-spacing;
