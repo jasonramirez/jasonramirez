@@ -11,11 +11,11 @@
 }
 
 .hero_title {
-  font-size: 5rem;
+  font-size: 4.5rem;
   margin-left: 10%;
 
   @include media($small-screen) {
-    font-size: 7rem;
+    font-size: 6rem;
   }
 
   @include media($large-screen) {
