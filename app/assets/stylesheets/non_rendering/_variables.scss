@@ -35,6 +35,7 @@ $navigation-height-mobile: 5rem;
 $x-small-spacing: 0.5rem;
 $small-spacing: 1rem;
 $base-spacing: 1.5rem;
+$medium-spacing: 2.25rem;
 $large-spacing: 3rem;
 $x-large-spacing: 6rem;
 
@@ -59,7 +60,8 @@ $zicron: #e1e1e1;
 $action-color: $ultramarine-blue;
 $alert-color: $sun;
 $base-background-color: $dark-grey;
-$base-font-color: $zicron;
+$base-font-color: darken($zicron, 5%);
+$heading-font-color: darken($zicron, 0%);
 $blockquote-color: $tropical-blue;
 $button-background-color: $black;
 $button-color: $white;

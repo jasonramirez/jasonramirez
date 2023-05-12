@@ -12,10 +12,10 @@ h3,
 h4,
 h5,
 h6 {
+  color: $heading-font-color;
   font-family: $heading-font-family;
   line-height: $heading-line-height;
   letter-spacing: -0.0125em;
-  margin: 0 0 $base-spacing;
 
   svg {
     margin-left: $small-spacing;
@@ -25,18 +25,30 @@ h6 {
 
 h1 {
   font-size: 3rem;
+  margin: 0 0 $base-spacing;
 }
 
 h2 {
   font-size: 1.75rem;
+  margin: 0 0 $base-spacing;
 }
 
-p {
-  margin: 0 0 $small-spacing;
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 $x-small-spacing;
+}
+
+p,
+a,
+time,
+pre {
+  color: $base-font-color;
+
 }
 
 a {
-  color: $base-font-color;
   text-decoration: none;
   transition: color $base-duration $base-timing;
 
@@ -72,11 +84,6 @@ code {
   font-family: $code-font-family;
 }
 
-pre {
-  font-size: $base-font-size * 1.125;
-  line-height: 1.2;
-}
-
 hr {
   border-bottom: $base-border;
   border-left: 0;
@@ -91,9 +98,19 @@ picture {
   max-width: 100%;
 }
 
+p {
+  margin: 0 0 $small-spacing;
+}
+
+pre {
+  font-size: $base-font-size * 1.125;
+  line-height: 1.2;
+}
+
 time {
   display: block;
   font-family: $heading-font-family;
   font-size: $small-font-size;
   margin-bottom: 0;
 }
+
