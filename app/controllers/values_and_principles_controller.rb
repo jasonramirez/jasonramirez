@@ -1,0 +1,2 @@
+class ValuesAndPrinciplesController < ApplicationController
+end
