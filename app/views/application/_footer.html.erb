@@ -2,13 +2,20 @@
   <nav class="u-margin-bottom">
     <ul class="site-footer__links">
       <li class="site-footer__link">
+        <%= link_to t("navigation.follow"), new_follower_path %>
+      </li>
+
+      <li class="site-footer__link">
         <%= link_to t("navigation.case_studies"), case_studies_path %>
       </li>
       <li class="site-footer__link">
         <%= link_to t("navigation.posts"), posts_path %>
       </li>
       <li class="site-footer__link">
-        <%= link_to t("navigation.follow"), new_follower_path %>
+        <%= link_to t("navigation.values"), values_path %>
+      </li>
+      <li class="site-footer__link">
+        <%= link_to t("navigation.principles"), principles_path %>
       </li>
       <li class="site-footer__link">
         <%= link_to t("navigation.privacy_and_terms"), "/privacy_and_terms" %>
