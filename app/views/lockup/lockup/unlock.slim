@@ -5,7 +5,7 @@ section.content-full-screen
         = inline_svg_tag "icon-back.svg"
 
     h2
-      | Password protected.
+      = t(".heading")
 
     p
       | If you'd like a password to view this case study, please contact 
@@ -24,4 +24,4 @@ section.content-full-screen
       - elsif @return_to.present?
         = form.hidden_field "return_to", value: @return_to
 
-      = button_tag "Go", class: "button"
+      = button_tag t(".submit"), class: "button"

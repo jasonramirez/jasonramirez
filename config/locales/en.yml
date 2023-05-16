@@ -88,6 +88,12 @@ en:
         title: Mayo Clinic
         details: Improving innovation and continuing education.
 
+  lockup:
+    lockup:
+      unlock:
+        heading: "Password protected."
+        submit: "Go"
+
   posts:
     show:
       removed: Sorry, this post has been taken down.
