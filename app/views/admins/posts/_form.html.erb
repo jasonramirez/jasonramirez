@@ -1,13 +1,14 @@
 <section class="content content--reading">
   <%= simple_form_for [:admins, @post] do |f| %>
     <div class="admin-post-action">
-      <%= f.button :button,
-        class: "button button--with-icon" do %>
+      <%= f.button :button, class: "button button--with-icon" do %>
         <%= t(".save") %>
         <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
       <% end %>
 
-      <%= link_to "Preview", post_path(@post), class: "button" %>
+      <% if @post.id.present? %>
+        <%= link_to "Preview", post_path(@post), class: "button" %>
+      <% end %>
     </div>
 
     <div class="admin-post-meta">

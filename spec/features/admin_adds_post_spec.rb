@@ -36,6 +36,19 @@ feature "Admin adds post" do
     end
   end
 
+  context "then previews it" do
+    it "shows the post" do
+      post_one = create(:post, title: "Post One", published: true)
+
+      sign_in_admin
+      visit admins_posts_path
+      click_link "Post One"
+      click_link "Preview"
+
+      expect(page).to have_text  "Post One"
+    end
+  end
+
   def fill_new_post_form
     fill_form(
       :post,

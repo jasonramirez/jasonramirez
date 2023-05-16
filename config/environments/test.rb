@@ -1,6 +1,6 @@
 Rails.application.configure do
   config.assets.raise_runtime_errors = true
-  config.cache_classes = true
+  config.cache_classes = false
   config.eager_load = false
   config.log_level = :warn
   config.serve_static_files   = true
