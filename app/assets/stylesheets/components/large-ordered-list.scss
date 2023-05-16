@@ -1,0 +1,25 @@
+.large-ordered-list {
+  counter-reset: counts;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    counter-increment: count;
+    padding-left: $large-spacing;
+    margin-bottom: $x-large-spacing;
+    position: relative;
+  }
+
+  li::before {
+    @include position(absolute, 0 null null 0);
+    content: counter(count, decimal) '. ';
+    font-family: $heading-font-family;
+    font-size: 1.17em;
+    font-weight: bold;
+    line-height: 1.4;
+  }
+
+  h3 {
+    display: inline;
+  }
+}
