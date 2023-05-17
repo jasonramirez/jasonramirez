@@ -4,21 +4,17 @@
     <meta content=("text/html; charset=UTF-8") http-equiv="Content-Type">
     <meta charset="utf-8">
     <meta content="NOODP" name="ROBOTS">
-    <meta content="initial-scale=1" name="viewport">
-    <%= render "favicons" %>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#121212">
+    <%= render "application/favicons" %>
     <title>
-      <%= title %>
+      <%= t("titles.application") %>
     </title>
     <%= stylesheet_link_tag :application, media: "all" %>
     <%= csrf_meta_tags %>
   </head>
   <body class="<%= body_class %>">
-    <%= render "flashes" %>
-    <%= render "admins/navigation" %>
-    <main class="page">
-      <%= yield %>
-    </main>
-    <%= render "footer" %>
-    <%= render "javascript" %>
+    <%= yield %>
   </body>
 </html>
