@@ -1,25 +1,11 @@
 .hero-description {
-  @include padding(null $base-spacing);
-  font-family: $reading-font-family;
-  font-size: $reading-font-size;
-  font-weight: $reading-font-weight;
-  line-height: $reading-line-height;
-  max-width: $reading-screen;
-  text-align: left;
+  align-items: left;
+  display: flex;
+  flex-direction: column;
   transition: all 250ms ease;
-  margin: $base-spacing auto;
 
   @include media($large-screen) {
-    text-align: center;
-    margin: $large-spacing auto;
-  }
-
-  @include media($x-large-screen) {
-    max-width: $reading-screen * 1.15;
-  }
-
-  @include media($xx-large-screen) {
-    max-width: $reading-screen * 1.25;
+    align-items: center;
   }
 
   a {
@@ -30,5 +16,20 @@
       color: $action-color;
       border-color: $action-color;
     }
+  }
+}
+
+.hero-description__content {
+  @include padding(null $base-spacing);
+  max-width: $reading-screen;
+  text-align: left;
+
+  @include media($x-large-screen) {
+    max-width: $reading-screen * 1.15;
+    text-align: center;
+  }
+
+  @include media($xx-large-screen) {
+    max-width: $reading-screen * 1.25;
   }
 }

@@ -7,18 +7,33 @@
 
   <div class="hero_filler">
     <div class="hero_leading-line"></div>
-    <div class="hero-guiding-light"></div>
+    <div class="hero_guiding-light"></div>
   </div>
 </section>
 
 <section class="hero-description">
-  <h1>
-    <%= link_to "Worked with unicorns", case_studies_path %>,
+  <div class="leading-line"></div>
+
+  <h1 class="hero-description__content">
+    I'm a Product Design Director.
+  </h1>
+
+  <div class="leading-line leading-line--large"></div>
+</section>
+
+<section class="hero-description">
+  <div class="leading-line leading-line--large"></div>
+
+  <h1 class="hero-description__content">
+    I've 
+    <%= link_to "worked with unicorns", case_studies_path %>,
     <%= link_to "consulted for world class hospitals", case_studies_path %>,
     <%= link_to "invalidated stuff you've never heard of", case_studies_path %>,
     and
     <%= link_to "scaled scaled scaled.", case_studies_path %>
   </h1>
+
+  <div class="leading-line leading-line--large"></div>
 </section>
 
 <%= render "history" %>

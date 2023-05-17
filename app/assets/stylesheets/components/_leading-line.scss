@@ -1,4 +1,4 @@
-.history-divider {
+.leading-line {
   background-color: lighten($base-background-color, 20%);
   height: 6rem;
   margin-left: 20%;
@@ -9,3 +9,6 @@
   }
 }
 
+.leading-line--large {
+  height: 12rem;
+}
