@@ -1,13 +1,24 @@
 .case-study-footer-navigation {
-  @include clearfix;
   @include padding(null $base-spacing);
-  align-items: top;
+  align-item: flex-start;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   max-width: $reading-screen;
+  transition: all 250ms ease;
+  width: 100%;
 
   @include media($large-screen) {
     @include padding(null 0);
+    align-item: space-between;
+    flex-direction: row;
+  }
+
+  @include media($x-large-screen) {
+    max-width: $reading-screen * 1.15;
+  }
+
+  @include media($xx-large-screen) {
+    max-width: $reading-screen * 1.25;
   }
 }
 
@@ -24,12 +35,19 @@
   }
 
   &.left {
-    align-items: flex-start;
+    @include media($large-screen) {
+      align-items: flex-start;
+    }
   }
 
   &.right {
-    align-items: flex-end;
-    text-align: right;
+    margin-top: $x-large-spacing;
+
+    @include media($large-screen) {
+      margin-top: 0;
+      align-items: flex-end;
+      text-align: right;
+    }
   }
 
   &:focus,
@@ -41,6 +59,7 @@
     character-spacing: 0.05rem;
     font-family: $heading-font-family;
     font-size: $small-font-size;
+    font-weight: bold;
     text-transform: uppercase;
   }
 

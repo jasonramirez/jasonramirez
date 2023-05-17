@@ -1,4 +1,7 @@
 .case-study-footer {
-  margin-top: $large-spacing * 2;
-  padding: $large-spacing 0;
+  border-top: 1px solid $light-border-color;
+  display: flex;
+  justify-content: center;
+  margin-top: $xx-large-spacing;
+  padding: $xx-large-spacing 0;
 }
