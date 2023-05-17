@@ -4,6 +4,12 @@ module HistoryHelper
 
     return history_list_array = [
       [
+        "image" => "jason-ramirez.png",
+        "title" => "Jason",
+        "date" => Date.today.strftime('%B %Y'),
+        "organization" => "Life"
+      ],
+      [
         "image" => "dropbox-logo.png",
         "title" => "Design Director",
         "date" => "January 2022",
