@@ -1,0 +1,27 @@
+<footer class="case-study-footer">
+  <nav class="case-study-footer-navigation content content--reading">
+    <%= link_to case_study_link(previous_case_study), class: "case-study-footer-navigation__link left" do %>
+      <span>
+        Previous
+      </span>
+      <h3>
+        <%= t(".#{previous_case_study[:name]}.title") %>
+      </h3>
+      <p>
+        <%= t(".#{previous_case_study[:name]}.details") %>
+      </p>
+    <% end %>
+
+    <%= link_to case_study_link(next_case_study), class: "case-study-footer-navigation__link right" do %>
+      <span>
+        Next
+      </span>
+      <h3>
+        <%= t(".#{next_case_study[:name]}.title") %>
+      </h3>
+      <p>
+        <%= t(".#{next_case_study[:name]}.details") %>
+      </p>
+    <% end %>
+  </nav>
+</footer>

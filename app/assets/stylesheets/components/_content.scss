@@ -51,9 +51,8 @@
     max-width: $reading-screen * 1.25;
   }
 
-  a:not(.button) {
+  a {
     border-bottom: dashed 1px rgba($base-font-color, 0.5);
-    color: inherit;
 
     &:hover {
       color: $action-color;
@@ -62,26 +61,23 @@
   }
 
   blockquote {
-    margin: $large-spacing 0;
+    margin: $x-large-spacing 0;
     padding: 0;
 
     @media (min-width: $reading-screen) {
-      margin: $x-large-spacing (-$base-spacing);
-    }
-
-    @media (min-width: $large-screen) {
-      margin: inherit (-$large-spacing);
-    }
-
-    @media (min-width: $x-large-screen) {
-      margin: inherit (-$x-large-spacing);
+      margin: $xx-large-spacing 0;
     }
 
     mark {
-      color: $blockquote-color;
-      font-family: $blockquote-font-family;
+      background-color: transparent;
+      font-family: $heading-font-family;
+      font-weight: bold;
       font-size: $blockquote-font-size;
       line-height: $blockquote-line-height;
+    }
+
+    small {
+      color: $secondary-font-color;
     }
   }
 
@@ -134,8 +130,9 @@
   }
 
   mark {
-    color: $mark-color;
     background-color: $mark-highlight-color;
+    color: $mark-color;
+    padding: 0.25rem 0;
 
     code {
       background-color: darken($mark-highlight-color, 5%);

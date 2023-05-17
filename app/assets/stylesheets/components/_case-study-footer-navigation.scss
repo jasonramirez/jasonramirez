@@ -9,10 +9,6 @@
   @include media($large-screen) {
     @include padding(null 0);
   }
-
-  a.case-study-footer-navigation__link {
-    border: none;
-  }
 }
 
 .case-study-footer-navigation__link {
@@ -23,12 +19,8 @@
   line-height: $reading-line-height / 1.2;
   width: 50%;
 
-  @include media($medium-screen) {
-  }
-
-  &:focus,
-  &:hover {
-    color: $action-color;
+  &:not(.button) {
+    border: none;
   }
 
   &.left {
@@ -40,8 +32,9 @@
     text-align: right;
   }
 
-  p {
-    width: 85%;
+  &:focus,
+  &:hover {
+    color: $action-color;
   }
 
   span {
@@ -60,5 +53,6 @@
   p {
     font-family: $reading-font-family;
     font-size: $base-font-size;
+    width: 85%;
   }
 }

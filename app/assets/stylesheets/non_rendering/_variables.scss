@@ -38,6 +38,7 @@ $base-spacing: 1.5rem;
 $medium-spacing: 2.25rem;
 $large-spacing: 3rem;
 $x-large-spacing: 6rem;
+$xx-large-spacing: 9rem;
 
 // Colors
 $dark-grey: #121212;
@@ -62,13 +63,13 @@ $alert-color: $sun;
 $base-background-color: $dark-grey;
 $base-font-color: darken($zicron, 5%);
 $heading-font-color: darken($zicron, 0%);
-$blockquote-color: $tropical-blue;
+$blockquote-color: $base-font-color;
 $button-background-color: $black;
 $button-color: $white;
 $code-background-color: lighten($base-background-color, 10%);
 $error-color: $tutu;
-$mark-color: $tropical-blue;
-$mark-highlight-color: rgba($ultramarine-blue, 0.25);
+$mark-color: $base-font-color;
+$mark-highlight-color: darken($ultramarine-blue, 30%);
 $notice-color: $forest-green;
 $secondary-background-color: tint($light-gray, 75%);
 $secondary-font-color: darken($base-font-color, 50%);
