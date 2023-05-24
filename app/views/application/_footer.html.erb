@@ -1,5 +1,5 @@
 <footer class="site-footer">
-  <nav class="u-margin-bottom">
+  <nav class="u-margin-bottom-x-large">
     <ul class="site-footer__links">
       <li class="site-footer__link">
         <%= link_to t("navigation.follow"), new_follower_path %>
@@ -26,6 +26,19 @@
           <%= link_to t("navigation.admin"), "/admin" %>
         </li>
       <% end %>
+    </ul>
+  </nav>
+
+  <nav class="u-margin-bottom-x-large">
+    <ul class="site-footer__links">
+      <li class="site-footer__link">
+        <%= link_to "LinkedIn", "https://www.linkedin.com/in/jasondramirez/" %>
+      </li>
+
+      <li class="site-footer__link">
+        <%= link_to "Book time with me on ADPList",
+          "https://adplist.org/mentors/jason-ramirez" %>
+      </li>
     </ul>
   </nav>
 
