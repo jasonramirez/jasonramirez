@@ -1,6 +1,6 @@
 <section class="content content--reading">
   <% if @post.published %>
-    <% if @post.video_src %>
+    <% unless @post.video_src.blank? %>
       <div class="post-video">
         <iframe src="<%= @post.video_src %>?hide_owner=true&hide_title=true&hideEmbedTopBar=true"
           class="post-video__video"
