@@ -11,6 +11,14 @@ select {
   display: block;
   font-family: $reading-font-family;
   font-size: $base-font-size;
+
+  &::placeholder {
+    color: transparentize($sky-labels-color, 0.5);
+  }
+
+  &:focus::placeholder {
+    color: $sky-labels-color;
+  }
 }
 
 label {
