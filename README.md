@@ -34,6 +34,21 @@ $ production restore-from development --force
 Use the following guides for getting things done, programming well, and
 programming in style.
 
-- [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-- [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-- [Style](http://github.com/thoughtbot/guides/blob/master/style)
+-   [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
+-   [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
+-   [Style](http://github.com/thoughtbot/guides/blob/master/style)
+
+## Creating Posts
+
+### Hosting Images
+
+We're using AWS S3 buckets to host images. Visit http://aws.amazon.com and login
+with jason@jasonramirez.com credentials to upload images.
+
+### Adding Images to a Post
+
+Using markdown:
+
+```
+![image alt text](https://s3.amazonaws.com/jasonramirez/image.png)
+```
