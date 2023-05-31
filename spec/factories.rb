@@ -6,6 +6,7 @@ FactoryBot.define do
 
   factory :post do
     title { "Post" }
+    long_title { "Long Post Title" }
     body { "This is a great post." }
     published { true }
     published_date { "2016-07-19 07:34:28" }
