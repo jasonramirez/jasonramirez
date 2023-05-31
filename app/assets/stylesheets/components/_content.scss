@@ -203,8 +203,12 @@
   th {
     background-color: $base-background-color;
     border-bottom: 1px solid lighten($base-background-color, 10%);
-    padding: $small-spacing $large-spacing $small-spacing $small-spacing;;
+    text-align: center;
     white-space: nowrap;
+
+    &:empty {
+      padding: 0;
+    }
   }
 
   tr:nth-child(odd) {
@@ -213,6 +217,16 @@
 
   td {
     padding: $small-spacing;
+    text-align: center;
+
+    &:empty {
+      padding: 0;
+      width: 1px;
+    }
+
+    &:first-child {
+      text-align: left;
+    }
   }
 
   + .content--reading {
