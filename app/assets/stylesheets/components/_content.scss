@@ -125,8 +125,12 @@
     }
   }
 
+  ul {
+    padding-left: $base-spacing;
+  }
+
   li {
-    padding-left: $small-spacing;
+    padding-left: 0;
   }
 
   mark {
@@ -170,31 +174,25 @@
   }
 
   table {
-    background-color: rgba($black, 0.0125);
+    background-color: $base-background-color;
     border: 1px solid rgba($black, 0.05);
-    font-size: $small-font-size;
-    max-width: 100%;
-    table-layout: table;
+    font-size: $base-font-size;
     white-space: nowrap;
   }
 
   th {
-    background-color: rgba($black, 0.0125);
+    background-color: $base-background-color;
     border-bottom-color: rgba($black, 0.05);
-    text-align: center;
+    padding: $small-spacing $large-spacing $small-spacing $small-spacing;;
   }
 
   tr:nth-child(odd) {
-    background-color: rgba($white, 0.85);
+    background-color: rgba($white, 0.05);
   }
 
   td {
     border: 1px solid rgba($black, 0.05);
-    padding: $x-small-spacing;
-  }
-
-  td + td {
-    text-align: center;
+    padding: $small-spacing;
   }
 
   + .content--reading {

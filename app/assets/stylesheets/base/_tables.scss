@@ -1,4 +1,5 @@
 table {
+  font-family: $table-font-family;
   border-collapse: collapse;
   font-feature-settings: "kern", "liga", "tnum";
   margin: $small-spacing 0;
