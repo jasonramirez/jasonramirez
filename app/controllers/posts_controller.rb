@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.where(published: true).order(published_date: :desc)
+
+    @searched_posts = search_posts
   end
 
   def show
     @post = find_post
-
     @next_post = next_post
     @previous_post = previous_post
   end
@@ -52,5 +53,21 @@ class PostsController < ApplicationController
 
   def last_published_post
     Post.where(published: true).order(published_date: :asc).first
+  end
+
+  def search_posts
+    if params[:search]
+      post_ids = search_title | search_body
+
+      @searched_posts = @posts.find(post_ids)
+    end
+  end
+
+  def search_title
+    @posts.where("title ilike ?", "%#{params[:search]}%").pluck(:id)
+  end
+
+  def search_body
+    @posts.where("body ilike ?", "%#{params[:search]}%").pluck(:id)
   end
 end

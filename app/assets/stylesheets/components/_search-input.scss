@@ -1,0 +1,11 @@
+.search-input {
+  background-image: image-url("icon-search.svg");
+  background-position: center left $small-spacing;
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  padding-left: $large-spacing;
+
+  &:placeholder-shown {
+    background-image: image-url("icon-search-empty.svg");
+  }
+}

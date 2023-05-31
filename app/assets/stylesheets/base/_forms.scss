@@ -39,10 +39,6 @@ select[multiple=multiple] {
   transition: border-color $base-duration $base-timing;
   width: 100%;
 
-  @include media($medium-screen) {
-    // max-width: $medium-screen;
-  }
-
   &:hover {
     border-color: shade($base-border-color, 20%);
   }
@@ -68,6 +64,7 @@ textarea {
 
 input[type="search"] {
   appearance: none;
+  box-sizing: border-box;
 }
 
 input[type="checkbox"],
