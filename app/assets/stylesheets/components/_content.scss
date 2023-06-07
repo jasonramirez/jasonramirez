@@ -126,7 +126,8 @@
   }
 
   ul,
-  p {
+  p,
+  table {
     margin-bottom: $reading-paragraph-spacing / 1.2;
 
     @include media($large-screen) {
@@ -203,11 +204,16 @@
   th {
     background-color: $base-background-color;
     border-bottom: 1px solid lighten($base-background-color, 10%);
+    padding: $small-spacing;
     text-align: center;
     white-space: nowrap;
 
     &:empty {
       padding: 0;
+    }
+
+    &:first-child {
+      text-align: left;
     }
   }
 
