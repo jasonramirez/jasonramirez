@@ -1,17 +1,21 @@
 .link {
-  display: inline-flex;
   align-items: center;
-  stroke: $base-font-color;
-  transition: color, stroke;
-  transition-timing-function: $base-timing;
+  display: inline-flex;
   transition-duration: $base-duration;
+  transition-timing-function: $base-timing;
+  transition: color, stroke;
 
   svg {
+    height: $base-font-size;
     margin-right: $x-small-spacing;
+    width: auto;
   }
 
   &:hover {
     color: $action-color;
-    stroke: $action-color;
+
+    path {
+      fill: $action-color;
+    }
   }
 }
