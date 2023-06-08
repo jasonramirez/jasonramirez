@@ -46,23 +46,21 @@ $dark-grey: #121212;
 $black: #000;
 $code-gray: #f8f8f8;
 $forest-green: #27c34c;
-$lavendar-blue: #c8ccff;
 $light-gray: #cfcfcf;
 $mirage: #181923;
-$marigold: #fbce56;
 $sun: #ffed2b;
 $tutu: #fbe3e4;
-$tropical-blue: #c9dcff;
 $ultramarine-blue: #1246ff;
 $white: #fff;
+$warm-white: #fffaed;
 $zicron: #e1e1e1;
 
 // Colors In Use
 $action-color: $ultramarine-blue;
 $alert-color: $sun;
 $base-background-color: $dark-grey;
-$base-font-color: darken($zicron, 5%);
-$heading-font-color: darken($zicron, 0%);
+$base-font-color: $warm-white;
+$heading-font-color: $warm-white;
 $blockquote-color: $base-font-color;
 $button-background-color: $black;
 $button-color: $white;
@@ -72,7 +70,7 @@ $mark-color: $base-font-color;
 $mark-highlight-color: darken($ultramarine-blue, 30%);
 $notice-color: $forest-green;
 $secondary-background-color: tint($light-gray, 75%);
-$secondary-font-color: darken($base-font-color, 50%);
+$secondary-font-color: mix($base-font-color, $black, 50%);
 
 // Unicode Characters
 $hamburger-icon: "\2630";
