@@ -1,8 +1,9 @@
 .hero {
   align-items: center;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   height: calc(100vh - #{$navigation-height-mobile});
+  min-height: 600px;
 
   @include media($large-screen) {
     height: calc(100vh - #{$navigation-height});
@@ -23,15 +24,24 @@
   display: flex;
   height: 100%;
   justify-content: left;
+  min-height: 300px;
   position: relative;
   width: 100%;
 
   &:first-child {
-    height: 40%;
+    background-image: image-url("hero-background.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 20vw;
+    height: 50%;
+
+    @include media($medium-screen) {
+      background-size: 14rem;
+    }
   }
 
   &:last-child {
-    height: 60%;
+    height: 50%;
   }
 
   @include media($large-screen) {
