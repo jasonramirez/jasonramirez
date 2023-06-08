@@ -23,7 +23,7 @@ RSpec.feature "Guest navigates site" do
           click_link t("navigation.posts")
         end
 
-        expect(page).to have_text post.title
+        expect(page).to have_text post.long_title
       end
     end
 
