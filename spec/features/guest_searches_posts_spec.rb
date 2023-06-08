@@ -15,7 +15,7 @@ feature "Guest searches posts" do
 
   context "adds search parameters" do
     it "shows a list of searched posts" do
-      create(:post, title: "Super duper post")
+      create(:post, title: "Super duper post", long_title: "Super duper post")
 
       visit posts_path
       fill_in "search", with: "Super"
