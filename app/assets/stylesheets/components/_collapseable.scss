@@ -1,0 +1,48 @@
+.collapseable {
+  font-family: inherit;
+  font-size: inherit;
+  margin-bottom: $x-large-spacing;
+}
+
+.collapseable__input {
+  display: none;
+
+  & + span + ul {
+    display: none;
+  }
+
+  &:checked + span + ul {
+    display: block;
+  }
+
+  &:checked + span svg {
+    transform: rotate(180deg) translateY(-10%);
+  }
+}
+
+.collapseable__trigger {
+  font-family:$heading-font-family;
+  font-size: $base-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $action-color;
+    cursor: pointer;
+
+    svg {
+      path {
+        fill: $action-color;
+      }
+    }
+  }
+
+  svg {
+    height: 1rem;
+    transform: translateY(10%);
+    transition-duration: $base-duration;
+    transition-timing-function: $base-timing;
+    transition: fill;
+    width: 2.5rem;
+  }
+}

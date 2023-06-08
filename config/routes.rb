@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "privacy_and_terms", to: "privacy_and_terms#index"
   get "principles", to: "principles#index"
   get "values", to: "values#index"
+  get "resume", to: "resume#show"
 
   namespace "admins" do
     resources :posts
