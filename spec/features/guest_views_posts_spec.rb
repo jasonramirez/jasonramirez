@@ -20,7 +20,7 @@ RSpec.feature "Guest views posts" do
   end
 
   scenario "with a long title" do
-    post_one = create( :post, title: "Short Title", long_title: "Long Title")
+    post_one = create(:post, title: "Short Title", long_title: "Long Title")
 
     visit posts_path
 
@@ -29,11 +29,11 @@ RSpec.feature "Guest views posts" do
   end
 
   scenario "has a slugged url" do
-    post_one = create( :post, title: "Short Title")
+    post_one = create(:post, title: "Short Title", long_title: "Long Title")
     expected_path = "/posts/short-title"
 
     visit posts_path
-    click_link "Short Title"
+    click_link "Long Title"
 
     expect(page).to have_text post_one.title
     expect(current_path).to have_content(expected_path)
