@@ -52,7 +52,7 @@
   }
 
   a {
-    border-bottom: dashed 1px rgba($base-font-color, 0.5);
+    border-bottom: dotted 0.1em $action-color;
 
     &:hover {
       color: $action-color;

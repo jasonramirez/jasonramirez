@@ -9,8 +9,6 @@
 
 .case-study {
   a {
-    border-bottom: dashed 1px rgba($base-font-color, 0.5);
-
     &:hover {
       color: $action-color;
       border-color: $action-color;
