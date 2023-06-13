@@ -1,6 +1,8 @@
 <section class="hero">
   <div class="hero_filler"></div>
 
+  <%= image_tag "hero-headshot.png", class: "hero_headshot" %>
+
   <h1 class="hero_title">
     Hi friend.
   </h1>
@@ -30,9 +32,12 @@
   <div class="leading-line leading-line--large"></div>
 
   <h1 class="hero-description__content">
-    <%= link_to "Worked with unicorns", case_studies_path %>,
-    <%= link_to "consulted for world class hospitals", case_studies_path %>,
-    <%= link_to "invalidated stuff you've never heard of", case_studies_path %>,
+    Worked with 
+    <%= link_to "unicorns", case_studies_path %>,
+    consulted for 
+    <%= link_to " world class hospitals", case_studies_path %>,
+    invalidated stuff 
+    <%= link_to "you've never heard of", case_studies_path %>,
     and
     <%= link_to "scaled scaled scaled.", case_studies_path %>
   </h1>
