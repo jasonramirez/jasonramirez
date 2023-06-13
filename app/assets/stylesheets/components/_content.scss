@@ -47,10 +47,6 @@
     max-width: $reading-screen * 1.15;
   }
 
-  @include media($xx-large-screen) {
-    max-width: $reading-screen * 1.25;
-  }
-
   a {
     border-bottom: dotted 0.1em $action-color;
 
