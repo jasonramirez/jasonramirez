@@ -106,6 +106,16 @@ time {
   margin-bottom: 0;
 }
 
+mark {
+  background: linear-gradient(
+    180deg,
+    rgba($mark-highlight-color, 0%) 0 50%,
+    $mark-highlight-color 50% 100%
+  );
+  color: $mark-color;
+  padding: 0.25rem 0;
+}
+
 del {
   position: relative;
   padding: 0 $base-spacing;
