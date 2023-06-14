@@ -1,0 +1,35 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel__cards {
+  display: flex;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: left 500ms ease;
+}
+
+.carousel__card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  width: 100vw;
+}
+
+.carousel__cards-placeholder {
+  position: relative;
+}
+
+.carousel__actions {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

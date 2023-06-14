@@ -14,8 +14,6 @@
 </section>
 
 <section class="hero-description">
-  <div class="leading-line"></div>
-
   <h1 class="hero-description__content">
     A big thinking player/coach Product Design Director
     building teams with
@@ -25,12 +23,76 @@
     <%= link_to "principles", principles_path %>.
   </h1>
 
-  <div class="leading-line leading-line--large"></div>
+  <div class="leading-line"></div>
+</section>
+
+
+<section data-js-carousel class="hero-description carousel" id="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+
+  <div data-js-carousel-cards class="carousel__cards">
+    <div data-js-carousel-card class="carousel__card">
+      <h1 class="hero-description__quote">
+        "At Dropbox, Jason created an environment that powered a free flow of ideas that
+        resulted in innovative solutions."
+      </h1>
+
+      <div class="hero-description__quote-person">
+        <%= image_tag "recommendations/recommendation-frances-dropbox.png" %>
+
+        <p>
+          Frances Klien &mdash; Director of Product, Dropbox
+        </p>
+      </div>
+    </div>
+
+    <div data-js-carousel-card class="carousel__card">
+      <h1 class="hero-description__quote">
+        "While consulting us at Abound, Jason engendered a culture of
+        design-first thinking with our
+        leadership."
+      </h1>
+
+      <div class="hero-description__quote-person">
+        <%= image_tag "recommendations/recommendation-bill-dropbox.png" %>
+
+        <p>
+          Bill Shope &mdash; CFO, Hu.ma.ne
+        </p>
+      </div>
+    </div>
+
+    <div data-js-carousel-card class="carousel__card">
+      <h1 class="hero-description__quote">
+        "At Dropbox, Jason was the thought leader of our group. He was a large
+        driving
+        factor in our strategic roadmap."
+      </h1>
+
+      <div class="hero-description__quote-person">
+        <%= image_tag "recommendations/recommendation-chase-dropbox.png" %>
+
+        <p>
+          Chase Seibert &mdash; Director of Engineering, Dropbox
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div data-js-carousel-actions class="carousel__actions">
+    <a data-js-carousel-previous-card-trigger="true">
+      <%= inline_svg "icon-long-arrow-left.svg" %>
+    </a>
+
+    <a data-js-carousel-next-card-trigger="true">
+      <%= inline_svg "icon-long-arrow-right.svg" %>
+    </a>
+  </div>
+
+  <div class="leading-line"></div>
 </section>
 
 <section class="hero-description">
-  <div class="leading-line leading-line--large"></div>
-
   <h1 class="hero-description__content">
     Worked with 
     <%= link_to "unicorns", case_studies_path %>,
@@ -42,7 +104,7 @@
     <%= link_to "scaled scaled scaled.", case_studies_path %>
   </h1>
 
-  <div class="leading-line leading-line--large"></div>
+  <div class="leading-line"></div>
 </section>
 
 <%= render "history" %>

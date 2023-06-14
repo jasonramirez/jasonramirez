@@ -17,10 +17,20 @@
       border-color: $action-color;
     }
   }
+
+  .carousel__actions a {
+    border-bottom: none;
+    margin-bottom: $large-spacing;
+  }
+
+  .carousel__actions svg {
+    height: 1rem;
+    width: 2.5rem;
+  }
 }
 
 .hero-description__content {
-  @include padding(null $base-spacing);
+  margin: $base-spacing $base-spacing $large-spacing;
   max-width: $reading-screen;
   text-align: left;
 
@@ -31,5 +41,42 @@
 
   @include media($xx-large-screen) {
     max-width: $reading-screen * 1.25;
+  }
+}
+
+.hero-description__quote {
+  margin: $base-spacing $base-spacing $large-spacing;
+  max-width: $reading-screen;
+  text-align: left;
+
+  @include media($x-large-screen) {
+    max-width: $reading-screen * 1.15;
+    text-align: center;
+  }
+
+  @include media($xx-large-screen) {
+    max-width: $reading-screen * 1.25;
+  }
+}
+
+
+.hero-description__quote-person {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: $base-spacing $base-spacing $large-spacing;
+
+  img {
+    height: 2rem;
+    width: auto;
+    margin-bottom: $small-spacing;
+
+    @include media($large-screen) {
+      height: 3rem;
+    }
+  }
+
+  p {
+    color: $secondary-font-color;
   }
 }
