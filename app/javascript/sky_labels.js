@@ -1,6 +1,6 @@
-class SkyLabels {
+export default class SkyLabels {
   constructor() {
-    this.skyLabelSelector = ".sky-label"
+    this.skyLabelSelector = ".sky-label";
     this.hasTextClass = "sky-label-has-text";
     this.focusedClass = "sky-label-focused";
 
@@ -11,7 +11,11 @@ class SkyLabels {
 
   _bindEvents() {
     $(document)
-      .on("focus blur", this.skyLabelSelector, this._addOrRemoveHasTextClass.bind(this))
+      .on(
+        "focus blur",
+        this.skyLabelSelector,
+        this._addOrRemoveHasTextClass.bind(this)
+      )
       .on("focus", this.skyLabelSelector, this._addFocusedClass.bind(this))
       .on("blur", this.skyLabelSelector, this._removeFocusedClass.bind(this));
   }
@@ -19,7 +23,7 @@ class SkyLabels {
   _addOrRemoveHasTextClass(event) {
     const fieldWrapper = $(event.currentTarget);
 
-    if ( this._fieldWrapperHasText(fieldWrapper) ) {
+    if (this._fieldWrapperHasText(fieldWrapper)) {
       fieldWrapper.addClass(this.hasTextClass);
     } else {
       fieldWrapper.removeClass(this.hasTextClass);
