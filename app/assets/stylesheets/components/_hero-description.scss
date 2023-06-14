@@ -18,6 +18,16 @@
     }
   }
 
+  .carousel__actions {
+    align-items: flex-start;
+    padding-left: calc(20% - 2.5rem);
+
+    @include media($large-screen) {
+      justify-content: center;
+      padding-left: 0;
+    }
+  }
+
   .carousel__actions a {
     border-bottom: none;
     margin-bottom: $large-spacing;
@@ -61,10 +71,17 @@
 
 
 .hero-description__quote-person {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin: $base-spacing $base-spacing $large-spacing;
+  max-width: $reading-screen;
+  padding: 0 $base-spacing;
+  width: 100%;
+
+  @include media($x-large-screen) {
+    align-items: center;
+  }
 
   img {
     height: 2rem;
