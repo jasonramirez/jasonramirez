@@ -34,8 +34,7 @@ gem "uglifier"
 
 group :development do
   gem "bundler-audit"
-  gem "guard-livereload", require: false
-  gem "rack-livereload"
+  gem "rails_live_reload"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
