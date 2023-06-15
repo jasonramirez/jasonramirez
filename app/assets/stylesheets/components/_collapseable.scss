@@ -1,31 +1,29 @@
 .collapseable {
   font-family: inherit;
   font-size: inherit;
-  margin-bottom: $x-large-spacing;
 }
 
 .collapseable__input {
   display: none;
 
-  & + span + ul {
+  & + .collapseable__trigger + .collapseable__content {
     display: none;
   }
 
-  &:checked + span + ul {
+  &:checked + .collapseable__trigger + .collapseable__content {
     display: block;
   }
 
-  &:checked + span svg {
+  &:checked + .collapseable__trigger svg {
     transform: rotate(180deg) translateY(-10%);
   }
 }
 
-.collapseable__trigger {
-  font-family:$heading-font-family;
-  font-size: $base-font-size;
-  font-weight: bold;
-  text-transform: uppercase;
+.collapseable__content {
+  margin-bottom: $x-large-spacing;
+}
 
+.collapseable__trigger {
   &:hover {
     color: $action-color;
     cursor: pointer;
@@ -37,12 +35,25 @@
     }
   }
 
+  h2 {
+    align-items: center;
+    display: flex;
+    transition-duration: $base-duration;
+    transition-timing-function: $base-timing;
+    transition-property: all;
+  }
+
   svg {
     height: 1rem;
     transform: translateY(10%);
     transition-duration: $base-duration;
-    transition-timing-function: $base-timing;
-    transition: fill;
-    width: 2.5rem;
+    transition-property: transform;
+    width: auto;
+
+    path {
+      transition-duration: $base-duration;
+      transition-timing-function: $base-timing;
+      transition-property: fill, transform;
+    }
   }
 }
