@@ -41,21 +41,21 @@
 
 .hero-description__content {
   margin: $base-spacing $base-spacing $large-spacing;
-  max-width: $reading-screen;
+  max-width: $medium-screen;
   text-align: left;
 
   @include media($x-large-screen) {
-    max-width: $reading-screen * 1.15;
+    max-width: $medium-screen * 1.15;
     text-align: center;
   }
 
   @include media($xx-large-screen) {
-    max-width: $reading-screen * 1.25;
+    max-width: $medium-screen * 1.25;
   }
 }
 
 .hero-description__quote {
-  margin: $base-spacing $base-spacing $large-spacing;
+  margin: $base-spacing;
   max-width: $reading-screen;
   text-align: left;
 
@@ -73,7 +73,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  margin: $base-spacing $base-spacing $large-spacing;
+  margin: $base-spacing;
   max-width: $reading-screen;
   padding: 0 $base-spacing;
   width: 100%;

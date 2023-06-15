@@ -1,0 +1,7 @@
+.post-title {
+  font-size: 3rem;
+
+  @include media($medium-screen) {
+    font-size: 4rem;
+  }
+}

@@ -80,17 +80,7 @@
 
   h1 {
     margin-bottom: 10vh;
-    background-color: transparent;
-    font-size: 3.5rem;
     word-wrap: break-word;
-
-    @include media($medium-screen) {
-      font-size: 5rem;
-    }
-  }
-
-  h2 {
-    font-size: 3rem;
   }
 
   hr {
