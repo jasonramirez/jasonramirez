@@ -1,40 +1,24 @@
 .content {
-  @include padding(null 1rem);
-  margin: $base-spacing auto;
+  @include padding(0 1rem);
+  margin: $xx-large-spacing auto;
   max-width: $large-screen;
 
   @include media($large-screen) {
     @include padding(null 0);
-    margin: $large-spacing auto;
   }
 
-  &:last-of-type {
-    padding-bottom: $large-spacing;
-
-    @include media($large-screen) {
-      padding-bottom: $large-spacing * 2;
-    }
-  }
-
-  &:first-of-type {
-    padding-top: $navigation-height-mobile;
-
-    @include media($small-screen) {
-      padding-top: $large-spacing;
-    }
+  & + section,
+  & + article {
+    margin-top: -($xx-large-spacing - $base-spacing);
   }
 }
 
-.content--centered {
-  text-align: center;
+.content--wide {
+  max-width: 100%;
 }
 
 .content--slim {
   max-width: $reading-screen;
-
-  @include media($large-screen) {
-    @include padding(null 0);
-  }
 
   @include media($x-large-screen) {
     max-width: $reading-screen * 1.15;
@@ -42,7 +26,6 @@
 }
 
 .content--reading {
-  @include padding(null $base-spacing);
   font-family: $reading-font-family;
   font-size: $reading-font-size;
   font-weight: $reading-font-weight;
@@ -51,7 +34,6 @@
   transition: all 250ms ease;
 
   @include media($large-screen) {
-    @include padding(null 0);
     max-width: $reading-screen * 1.1;
   }
 

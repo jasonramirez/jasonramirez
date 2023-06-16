@@ -1,5 +1,4 @@
 .post {
-  @include padding(null $base-spacing);
   font-family: $reading-font-family;
   font-size: $reading-font-size;
   font-weight: $reading-font-weight;
@@ -39,6 +38,10 @@
     margin-top: $x-large-spacing;
   }
 
+  h2 + h3 {
+    margin-top: $base-spacing;
+  }
+
   hr {
     margin: $x-large-spacing 0;
   }
@@ -76,14 +79,6 @@
     }
   }
 
-  ul {
-    padding-left: $base-spacing;
-  }
-
-  li {
-    padding-left: 0;
-  }
-
   mark {
     code {
       background-color: darken($mark-highlight-color, 5%);
@@ -92,9 +87,16 @@
     }
   }
 
-  ol,
+  ol {
+    padding-left: $base-spacing * 1.25;
+  }
+
   ul {
+    padding-left: $small-spacing;
+
     li {
+      padding-left: 0;
+
       a {
         word-break: break-all;
       }
@@ -168,4 +170,3 @@
 .content__title {
   font-size: 6rem;
 }
-

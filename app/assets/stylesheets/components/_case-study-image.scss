@@ -1,0 +1,23 @@
+.case-study-image {
+  margin: $medium-spacing 0;
+
+  @include media($large-screen) {
+    margin: $medium-spacing -10vw;
+  }
+
+  &:has(figure + figure) {
+    @include media($large-screen) {
+      column-count: 2;
+      column-width: 50%;
+    }
+  }
+}
+
+.case-study-image__figure {
+  margin: 0;
+
+  img {
+    max-width: $x-large-screen;
+    width: 100%;
+  }
+}

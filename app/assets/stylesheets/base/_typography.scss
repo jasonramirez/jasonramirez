@@ -42,8 +42,9 @@ a {
   text-decoration-color: $action-color;
   text-decoration-line: underline;
   text-decoration-style: dotted;
-  text-decoration-thickness: 0.2rem;
+  text-decoration-thickness: 0.35rem;
   text-decoration-skip-ink: none;
+  text-underline-offset: 0.25rem;
   transition: all $base-duration $base-timing;
 
   &:active,
@@ -134,20 +135,31 @@ mark {
   text-decoration-skip: none;
   text-decoration-style: solid;
   text-decoration-thickness: 0.35rem;
+  text-underline-offset: 0.25rem;
 }
 
 del {
-  position: relative;
+  display: inline-block;
   padding: 0 $base-spacing;
+  position: relative;
 
   &::before {
-    @include position(absolute, 0 0 0 0);
-    padding: 0 $base-spacing;
+    @include position(absolute, 2px 0 2px 0);
+    background-color: lighten($mirage, 15%);
     content: "";
-    background-color: $mirage;
+    padding: 0 $base-spacing;
   }
+}
+
+ul {
+  list-style-type: "-  ";
 }
 
 li {
   margin-bottom: $base-spacing / 2;
+}
+
+figcaption {
+  color: $secondary-font-color;
+  font-size: $small-font-size;
 }

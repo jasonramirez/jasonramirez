@@ -7,17 +7,17 @@
 
   svg {
     display: block;
-    margin-bottom: $small-spacing;
     height: 1.5rem;
+    margin-bottom: $small-spacing;
     width: auto;
   }
 }
 
 .case-study-link__title {
   @include h1;
+  margin-bottom: $small-spacing;
   text-decoration-color: $action-color;
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-decoration-thickness: 0.2rem;
-  margin-bottom: $small-spacing;
 }

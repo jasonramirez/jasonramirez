@@ -9,7 +9,6 @@ export default class Carousel {
     this.hammer = new Hammer(document.getElementById("carousel"));
     this.lastCard = $("[data-js-carousel-card]").length;
 
-    this.$carousel = $(element);
     this.$window = $(window);
     this.$carouselCardsPlaceholder = $(element).find(
       "[data-js-carousel-cards-placeholder]"
@@ -27,7 +26,6 @@ export default class Carousel {
   }
 
   get leftPosition() {
-    console.log(this.currentCard);
     return (this.currentCard - 1) * 100;
   }
 

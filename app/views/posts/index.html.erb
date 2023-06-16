@@ -1,4 +1,4 @@
-<section class="content content--reading u-padding-bottom-medium">
+<section class="content content--reading">
   <form id="search_form" action="<%= posts_path %>">
     <%= search_field_tag :search,
       params[:search],
@@ -38,9 +38,9 @@
 
     <hr />
   <% end %>
-</section>
 
-<section class="content content--reading">
+  <div class="u-margin-bottom-x-large"></div>
+
   <% if @posts.present? %>
     <% @posts.each do |post| %>
       <article class="post-sample">
