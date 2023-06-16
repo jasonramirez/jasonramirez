@@ -2,11 +2,14 @@
   margin-bottom: $base-spacing;
 }
 
+.u-margin-bottom-medium {
+  margin-bottom: $medium-spacing;
+}
+
 .u-margin-bottom-large {
-  display: block;
   margin-bottom: $large-spacing;
 }
 
 .u-margin-bottom-x-large {
-  padding-bottom: $x-large-spacing;
+  margin-bottom: $x-large-spacing;
 }

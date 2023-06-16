@@ -1,0 +1,27 @@
+.case-study-focus {
+  border-bottom: solid 1px rgba($base-font-color, 50%);
+  border-top: solid 1px rgba($base-font-color, 50%);
+  margin: $large-spacing 0;
+  padding: $medium-spacing 0;
+
+  ul.minimal-unordered-list {
+    padding-left: 0;
+  }
+}
+
+.case-study-focus--small {
+  li,
+  ol,
+  p,
+  strong {
+    font-size: $base-font-size;
+  }
+}
+
+.case-study-focus__grid {
+  column-count: 2;
+
+  @media (min-width: $large-screen) {
+    column-count: 3;
+  }
+}

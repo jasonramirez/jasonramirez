@@ -9,12 +9,10 @@
   }
 
   a {
-    border-bottom: dotted 0.1em $action-color;
     color: inherit;
 
     &:hover {
       color: $action-color;
-      border-color: $action-color;
     }
   }
 
@@ -29,7 +27,6 @@
   }
 
   .carousel__actions a {
-    border-bottom: none;
     margin-bottom: $large-spacing;
   }
 

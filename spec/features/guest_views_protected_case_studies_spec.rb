@@ -10,7 +10,9 @@ feature "Guest views protected case studies" do
       end
 
       case_studies.each do |case_study|
-        expect(page).to have_css "a[href='protected_case_studies/#{case_study[0][:path]}']"
+        expect(page).to have_css(
+          "a[href='protected_case_studies/#{case_study[0][:path]}']"
+        )
 
         visit "/case_studies"
       end

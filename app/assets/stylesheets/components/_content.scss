@@ -9,18 +9,18 @@
   }
 
   &:last-of-type {
-    margin-bottom: $large-spacing;
+    padding-bottom: $large-spacing;
 
     @include media($large-screen) {
-      margin-bottom: $large-spacing * 2;
+      padding-bottom: $large-spacing * 2;
     }
   }
 
   &:first-of-type {
-    margin-top: $navigation-height-mobile;
+    padding-top: $navigation-height-mobile;
 
     @include media($small-screen) {
-      margin-top: $large-spacing;
+      padding-top: $large-spacing;
     }
   }
 }
@@ -29,15 +29,8 @@
   text-align: center;
 }
 
-.content--reading {
-  @include padding(null $base-spacing);
-  font-family: $reading-font-family;
-  font-size: $reading-font-size;
-  font-weight: $reading-font-weight;
-  line-height: $reading-line-height;
-  padding-top: 10vh;
+.content--slim {
   max-width: $reading-screen;
-  transition: all 250ms ease;
 
   @include media($large-screen) {
     @include padding(null 0);
@@ -46,182 +39,23 @@
   @include media($x-large-screen) {
     max-width: $reading-screen * 1.15;
   }
-
-  a {
-    border-bottom: dotted 0.1em $action-color;
-
-    &:hover {
-      color: $action-color;
-      border-color: $action-color;
-    }
-  }
-
-  blockquote {
-    margin: $x-large-spacing 0;
-    padding: 0;
-
-    @media (min-width: $reading-screen) {
-      margin: $xx-large-spacing 0;
-    }
-
-    mark {
-      background-color: transparent;
-      font-family: $heading-font-family;
-      font-weight: bold;
-      font-size: $blockquote-font-size;
-      line-height: $blockquote-line-height;
-    }
-
-    small {
-      color: $secondary-font-color;
-    }
-  }
-
-
-  h1 {
-    margin-bottom: 10vh;
-    word-wrap: break-word;
-  }
-
-  hr {
-    margin: $x-large-spacing 0;
-  }
-
-  img {
-    margin: 0 auto;
-  }
-
-  p:has(img + img) {
-    display: flex;
-
-    @media (max-width: $large-screen) {
-      flex-direction: column;
-      margin-bottom: 0;
-    }
-
-    img {
-      @media (max-width: $large-screen) {
-        margin-bottom: $base-spacing;
-      }
-
-      @media (min-width: $large-screen) {
-        margin-right: $base-spacing;
-        width: calc(50% - (#{$base-spacing} / 2 ));
-      }
-    }
-  }
-
-  ul,
-  p,
-  table {
-    margin-bottom: $reading-paragraph-spacing / 1.2;
-
-    @include media($large-screen) {
-      margin-bottom: $reading-paragraph-spacing;
-    }
-
-    & + h1,
-    & + h2 {
-      padding-top: $x-large-spacing;
-    }
-
-    & + h3,
-    & + h4 {
-      padding-top: $base-spacing;
-    }
-  }
-
-  ul {
-    padding-left: $base-spacing;
-  }
-
-  li {
-    padding-left: 0;
-  }
-
-  mark {
-    code {
-      background-color: darken($mark-highlight-color, 5%);
-      border-color: darken($mark-highlight-color, 25%);
-      color: $mark-color;
-    }
-  }
-
-  ol,
-  ul {
-    margin-bottom: $large-spacing;
-
-    li {
-      a {
-        word-break: break-all;
-      }
-    }
-  }
-
-  pre {
-    background-color: $code-background-color;
-    border-radius: $base-border-radius;
-    margin-bottom: $large-spacing;
-    padding: $base-spacing;
-
-    code {
-      border: none;
-    }
-  }
-
-  small {
-    blockquote & {
-      font-style: italic;
-    }
-  }
-
-  table {
-    background-color: $base-background-color;
-    border: 1px solid lighten($base-background-color, 10%);
-    font-size: $base-font-size;
-    max-width: 100%;
-    margin-bottom: $medium-spacing;
-  }
-
-  th {
-    background-color: $base-background-color;
-    border-bottom: 1px solid lighten($base-background-color, 10%);
-    padding: $small-spacing;
-    text-align: center;
-    white-space: nowrap;
-
-    &:empty {
-      padding: 0;
-    }
-
-    &:first-child {
-      text-align: left;
-    }
-  }
-
-  tr:nth-child(odd) {
-    background-color: rgba($white, 0.05);
-  }
-
-  td {
-    padding: $small-spacing;
-    text-align: center;
-
-    &:empty {
-      padding: 0;
-      width: 1px;
-    }
-
-    &:first-child {
-      text-align: left;
-    }
-  }
-
-  + .content--reading {
-    margin-top: 0;
-  }
 }
 
-.content__title {
-  font-size: 6rem;
+.content--reading {
+  @include padding(null $base-spacing);
+  font-family: $reading-font-family;
+  font-size: $reading-font-size;
+  font-weight: $reading-font-weight;
+  line-height: $reading-line-height;
+  max-width: $reading-screen;
+  transition: all 250ms ease;
+
+  @include media($large-screen) {
+    @include padding(null 0);
+    max-width: $reading-screen * 1.1;
+  }
+
+  @include media($x-large-screen) {
+    max-width: $reading-screen * 1.2;
+  }
 }

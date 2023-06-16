@@ -6,24 +6,15 @@
   margin: 0 0 $large-spacing;
   padding-bottom: $base-spacing;
   text-decoration: none;
-
-  & + .post-sample {
-    margin-top: 0;
-  }
 }
 
 .post-sample__title {
+  line-height: $reading-line-height;
   padding-right: $base-spacing;
-
-  a {
-    &:hover {
-      color: $action-color;
-      border-color: $action-color;
-    }
-  }
 }
 
 .post-sample__date {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
   color: rgba($base-font-color, 0.5);
+  font-weight: normal;
 }

@@ -15,25 +15,19 @@ h6 {
   font-family: $heading-font-family;
   line-height: $heading-line-height;
   letter-spacing: -0.0125em;
-
-  svg {
-    margin-left: $small-spacing;
-    vertical-align: bottom;
-  }
 }
 
 h1 {
-  font-size: 2.25rem;
-  margin: 0 0 $base-spacing;
-
-  @include media($medium-screen) {
-    font-size: 2.75rem;
-  }
+  @include h1;
 }
 
 h2 {
   font-size: 1.65rem;
   margin: 0 0 $base-spacing;
+}
+
+h3 {
+  font-size: $reading-font-size;
 }
 
 h3,
@@ -45,23 +39,45 @@ h6 {
 
 a {
   color: $base-font-color;
-  text-decoration: none;
-  transition: color $base-duration $base-timing;
+  text-decoration-color: $action-color;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 0.2rem;
+  text-decoration-skip-ink: none;
+  transition: all $base-duration $base-timing;
 
   &:active,
   &:focus,
   &:hover {
     color: $action-color;
     outline: none;
+
+    * {
+      color: $action-color;
+      transition: all $base-duration $base-timing;
+    }
+
+    svg {
+      path {
+        transition: all $base-duration $base-timing;
+        fill: $action-color;
+      }
+    }
+  }
+
+  svg {
+    path {
+      transition: all $base-duration $base-timing;
+    }
   }
 
   form &.link {
+    border-bottom: none;
     character-spacing: 0.05rem;
     font-family: $heading-font-family;
     font-size: $small-font-size;
     font-weight: bold;
     text-transform: uppercase;
-    border-bottom: none;
 
     * + & {
       margin-left: $base-spacing;
@@ -71,13 +87,13 @@ a {
 
 code {
   @include padding(0rem 0.5rem);
-  line-height: 1.3;
   background-color: $code-background-color;
-  border: solid 1px darken($code-background-color, 5%);
   border-radius: $base-border-radius;
+  border: solid 1px darken($code-background-color, 5%);
   color: lighten($base-font-color, 10%);
   display: inline-block;
   font-family: $code-font-family;
+  line-height: 1.3;
 }
 
 hr {
@@ -128,6 +144,10 @@ del {
     @include position(absolute, 0 0 0 0);
     padding: 0 $base-spacing;
     content: "";
-    background-color: black;
+    background-color: $mirage;
   }
+}
+
+li {
+  margin-bottom: $base-spacing / 2;
 }

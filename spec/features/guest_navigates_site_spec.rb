@@ -10,7 +10,7 @@ RSpec.feature "Guest navigates site" do
           click_link t("navigation.case_studies")
         end
 
-        expect(page).to have_text "Mayo Clinic"
+        expect(page).to have_text "Mayo Clinic's On Par"
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.feature "Guest navigates site" do
           click_link t("navigation.principles")
         end
 
-        expect(page).to have_text "design principles"
+        expect(page).to have_text "My principles influence"
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.feature "Guest navigates site" do
           click_link t("navigation.values")
         end
 
-        expect(page).to have_text "design values"
+        expect(page).to have_text "I establish values"
       end
     end
   end

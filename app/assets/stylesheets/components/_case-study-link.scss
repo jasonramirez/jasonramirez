@@ -1,0 +1,22 @@
+.case-study-link {
+  align-items: flex-start;
+  border-bottom: 0;
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: $x-large-spacing;
+
+  svg {
+    display: block;
+    margin-bottom: $small-spacing;
+    height: 1.5rem;
+    width: auto;
+  }
+}
+
+.case-study-link__title {
+  @include h1;
+  text-decoration-color: $action-color;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 0.2rem;
+}

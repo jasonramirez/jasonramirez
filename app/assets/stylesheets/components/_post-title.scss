@@ -1,7 +1,13 @@
 .post-title {
+  margin-top: 0;
   font-size: 3rem;
 
   @include media($medium-screen) {
     font-size: 4rem;
+  }
+
+  svg {
+    display: block;
+    margin-bottom: $large-spacing;
   }
 }
