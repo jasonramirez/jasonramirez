@@ -67,7 +67,7 @@ $button-color: $white;
 $code-background-color: lighten($base-background-color, 10%);
 $error-color: $tutu;
 $mark-color: $white;
-$mark-highlight-color: darken($ultramarine-blue, 20%);
+$mark-highlight-color: $ultramarine-blue;
 $notice-color: $forest-green;
 $secondary-background-color: tint($light-gray, 75%);
 $secondary-font-color: mix($base-font-color, $black, 50%);

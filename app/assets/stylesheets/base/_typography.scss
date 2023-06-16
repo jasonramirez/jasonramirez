@@ -111,13 +111,13 @@ time {
 }
 
 mark {
-  background: linear-gradient(
-    180deg,
-    rgba($mark-highlight-color, 0%) 0 50%,
-    $mark-highlight-color 50% 100%
-  );
+  background: none;
   color: $mark-color;
-  padding: 0.25rem 0;
+  text-decoration-color: $action-color;
+  text-decoration-line: underline;
+  text-decoration-skip: none;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0.35rem;
 }
 
 del {
