@@ -18,6 +18,6 @@
 
   @include media($large-screen) {
     height: $navigation-height;
-    padding: $large-spacing 0;
+    padding: $large-spacing $base-spacing;
   }
 }
