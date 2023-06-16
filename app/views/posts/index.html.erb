@@ -24,9 +24,9 @@
       <ol class="large-ordered-list">
         <% @searched_posts.each do |searched_post| %>
           <li class="post-sample">
-            <h3 class="post-sample__title">
+            <h2 class="post-sample__title">
               <%= link_to searched_post.display_title, post_path(searched_post) %>
-            </h3>
+            </h2>
 
             <time class="post-sample__date">
               <%= searched_post.pretty_published_date %>
@@ -44,9 +44,9 @@
   <% if @posts.present? %>
     <% @posts.each do |post| %>
       <article class="post-sample">
-        <h3 class="post-sample__title">
+        <h2 class="post-sample__title">
           <%= link_to post.display_title, post_path(post) %>
-        </h3>
+        </h2>
 
         <time class="post-sample__date">
           <%= post.pretty_published_date %>

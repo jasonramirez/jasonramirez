@@ -8,4 +8,8 @@
   &:placeholder-shown {
     background-image: image-url("icon-search-empty.svg");
   }
+
+  &:focus {
+    background-image: image-url("icon-search.svg");
+  }
 }
