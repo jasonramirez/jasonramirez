@@ -18,9 +18,8 @@
   transition: all $base-duration;
 
   &:hover {
-    color: $action-color;
+    background-color: darken($button-background-color, 10%);
     cursor: pointer;
-    outline: $action-color solid 2px;
   }
 
   & + & {

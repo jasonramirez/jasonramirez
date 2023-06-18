@@ -65,7 +65,7 @@ $base-light-font-color: $black;
 $heading-font-color: $warm-white;
 $base-heading-font-color: $black;
 $blockquote-color: $base-font-color;
-$button-background-color: $black;
+$button-background-color: $action-color;
 $button-color: $white;
 $code-background-color: lighten($base-background-color, 10%);
 $error-color: $tutu;
@@ -83,12 +83,12 @@ $base-duration: 250ms;
 $base-timing: ease;
 
 // Border
-$base-border-color: darken($base-background-color, 15%);
+$base-border-color: lighten($base-background-color, 10%);
 $light-border-color: rgba($light-gray, 0.125);
 $base-border: 1px solid $light-border-color;
 
 // Forms
-$input-background-color: lighten($base-background-color, 5%);
+$input-background-color: lighten($base-background-color, 15%);
 $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
 $sky-labels-color: $base-font-color;
