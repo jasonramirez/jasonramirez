@@ -44,7 +44,6 @@ feature "Guest views protected case studies" do
 
   def case_studies
     [
-      [:title => "Mayo Clinic", :path => "mayo_clinic"],
       [:title => "Dropbox Activation", :path => "dropbox_activation"],
     ]
   end

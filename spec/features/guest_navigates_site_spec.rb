@@ -10,7 +10,7 @@ RSpec.feature "Guest navigates site" do
           click_link t("navigation.case_studies")
         end
 
-        expect(page).to have_text "Mayo Clinic's On Par"
+        expect(page).to have_text "Dropbox Activation"
       end
     end
 
