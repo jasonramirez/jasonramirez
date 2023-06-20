@@ -44,7 +44,7 @@
   text-align: left;
 
   @include media($x-large-screen) {
-    max-width: $medium-screen * 1.15;
+    max-width: $medium-screen * 1.3;
     text-align: center;
   }
 
