@@ -10,6 +10,8 @@
 
   a {
     color: inherit;
+    text-decoration-thickness: 0.35rem;
+
 
     &:hover {
       color: $action-color;

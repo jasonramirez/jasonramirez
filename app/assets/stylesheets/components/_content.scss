@@ -6,11 +6,6 @@
   @include media($large-screen) {
     @include padding(null 0);
   }
-
-  & + section,
-  & + article {
-    margin-top: -($xx-large-spacing - $base-spacing);
-  }
 }
 
 .content--wide {

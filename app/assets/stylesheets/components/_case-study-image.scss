@@ -1,8 +1,8 @@
 .case-study-image {
-  margin: $medium-spacing 0;
+  margin: $large-spacing 0;
 
   @include media($large-screen) {
-    margin: $medium-spacing -10vw;
+    margin: $x-large-spacing -10vw;
   }
 
   &:has(figure + figure) {

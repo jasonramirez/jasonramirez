@@ -42,7 +42,7 @@ a {
   text-decoration-color: $action-color;
   text-decoration-line: underline;
   text-decoration-style: dotted;
-  text-decoration-thickness: 0.35rem;
+  text-decoration-thickness: 0.15rem;
   text-decoration-skip-ink: none;
   text-underline-offset: 0.25rem;
   transition: all $base-duration $base-timing;
@@ -145,7 +145,7 @@ del {
 
   &::before {
     @include position(absolute, 2px 0 2px 0);
-    background-color: lighten($mirage, 15%);
+    background-color: lighten($mirage, 5%);
     content: "";
     padding: 0 $base-spacing;
   }
@@ -153,6 +153,7 @@ del {
 
 ul {
   list-style-type: "-  ";
+  padding-left: 1rem;
 }
 
 li {

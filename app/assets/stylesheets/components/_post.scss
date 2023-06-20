@@ -91,18 +91,6 @@
     padding-left: $base-spacing * 1.25;
   }
 
-  ul {
-    padding-left: $small-spacing;
-
-    li {
-      padding-left: 0;
-
-      a {
-        word-break: break-all;
-      }
-    }
-  }
-
   pre {
     background-color: $code-background-color;
     border-radius: $base-border-radius;
