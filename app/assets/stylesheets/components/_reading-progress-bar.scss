@@ -1,0 +1,9 @@
+[data-js-reading-progress-bar] {
+  @include position("sticky", 0 null null 0);
+  background-color: $action-color;
+  height: 0.25rem;
+  position: sticky;
+  transition: width 100ms;
+  width: 0%;
+  z-index: 1;
+}

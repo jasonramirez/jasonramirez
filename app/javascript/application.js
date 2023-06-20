@@ -6,4 +6,5 @@ import "jquery_ujs";
 
 import "carousel";
 import "flexible-textarea";
+import "reading-progress-bar";
 import "sky-labels";
