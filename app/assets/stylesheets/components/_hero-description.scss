@@ -49,22 +49,7 @@
   }
 
   @include media($xx-large-screen) {
-    max-width: $medium-screen * 1.25;
-  }
-}
-
-.hero-description__quote {
-  margin: $base-spacing;
-  max-width: $reading-screen;
-  text-align: left;
-
-  @include media($x-large-screen) {
-    max-width: $reading-screen * 1.15;
-    text-align: center;
-  }
-
-  @include media($xx-large-screen) {
-    max-width: $reading-screen * 1.25;
+    max-width: $medium-screen * 1.45;
   }
 }
 
