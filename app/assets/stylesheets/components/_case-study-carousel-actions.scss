@@ -1,14 +1,11 @@
 .case-study-carousel-actions {
   align-items: flex-start;
+  padding: $base-spacing null;
   padding-left: calc(20% - 2.5rem);
 
   @include media($large-screen) {
     justify-content: center;
     padding-left: 0;
-  }
-
-  a {
-    margin-bottom: $large-spacing;
   }
 
   svg {

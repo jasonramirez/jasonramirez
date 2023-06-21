@@ -6,9 +6,10 @@ export default class Carousel {
     this.currentCard = 1;
     this.disabledClass = "button--disabled";
     this.firstCard = 1;
-    this.hammer = new Hammer(document.getElementById("carousel"));
-    this.lastCard = $("[data-js-carousel-card]").length;
+    this.hammer = new Hammer(element);
+    this.lastCard = $(element).find("[data-js-carousel-card]").length;
 
+    this.$element = $(element);
     this.$window = $(window);
     this.$carouselCardsPlaceholder = $(element).find(
       "[data-js-carousel-cards-placeholder]"
@@ -16,9 +17,13 @@ export default class Carousel {
     this.$carouselCardsContainer = $(element).find("[data-js-carousel-cards]");
     this.$carouselActions = $(element).find("[data-js-carousel-actions]");
     this.$carouselCards = $(element).find("[data-js-carousel-card]");
-    this.$carouselIndexes = $("[data-js-carousel-index]");
-    this.$nextCardTrigger = $("[data-js-carousel-next-card-trigger]");
-    this.$previousCardTrigger = $("[data-js-carousel-previous-card-trigger]");
+    this.$carouselIndexes = $(element).find("[data-js-carousel-index]");
+    this.$nextCardTrigger = $(element).find(
+      "[data-js-carousel-next-card-trigger]"
+    );
+    this.$previousCardTrigger = $(element).find(
+      "[data-js-carousel-previous-card-trigger]"
+    );
 
     this._setTriggerState();
     this._setContainerSize();
@@ -38,7 +43,8 @@ export default class Carousel {
   }
 
   get maxCardHeight() {
-    const heightArray = $("[data-js-carousel-card]")
+    const heightArray = this.$element
+      .find("[data-js-carousel-card]")
       .map(function() {
         return $(this).height();
       })

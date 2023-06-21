@@ -1,10 +1,14 @@
 .content {
   @include padding(0 1rem);
-  margin: $xx-large-spacing auto;
+  margin: $large-spacing auto;
   max-width: $large-screen;
 
   @include media($large-screen) {
     @include padding(null 0);
+  }
+
+  &:first-of-type {
+    margin-top: $xx-large-spacing;
   }
 }
 
