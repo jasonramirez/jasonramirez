@@ -13,8 +13,6 @@ feature "Guest views protected case studies" do
         expect(page).to have_css(
           "a[href='protected_case_studies/#{case_study[0][:path]}']"
         )
-
-        visit "/case_studies"
       end
     end
   end
@@ -45,6 +43,8 @@ feature "Guest views protected case studies" do
   def case_studies
     [
       [:title => "Dropbox Activation", :path => "dropbox_activation"],
+      [:title => "Dropbox Collaboration For Pros And Teams",
+       :path => "dropbox_collaboration_for_pros_and_teams"],
     ]
   end
 end
