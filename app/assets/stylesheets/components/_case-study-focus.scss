@@ -29,4 +29,10 @@
   @media (min-width: $large-screen) {
     column-count: 3;
   }
+
+  ul {
+    break-inside: avoid-column;
+    margin-bottom: $large-spacing;
+    margin-top: 0;
+  }
 }

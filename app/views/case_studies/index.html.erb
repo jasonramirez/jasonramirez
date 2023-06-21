@@ -2,7 +2,9 @@
   <div>
     <%= link_to "protected_case_studies/dropbox_activation",
       class: "case-study-link" do %>
-      <%= inline_svg "case_studies/dropbox-logo.svg" %>
+      <div class="case-study-link__image-container">
+        <%= inline_svg "case_studies/dropbox-logo.svg" %>
+      </div>
       <span class="case-study-link__title">
         Dropbox Activation in 2023
       </span>
@@ -12,9 +14,24 @@
   <div>
     <%= link_to "protected_case_studies/dropbox_collaboration_for_pros_and_teams",
       class: "case-study-link" do %>
-      <%= inline_svg "case_studies/dropbox-logo.svg" %>
+      <div class="case-study-link__image-container">
+        <%= inline_svg "case_studies/dropbox-logo.svg" %>
+      </div>
       <span class="case-study-link__title">
         Dropbox Collaboration for Pros and Teams in 2022
+      </span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "protected_case_studies/mayo_clinic_educational_game",
+      class: "case-study-link" do %>
+      <div class="case-study-link__image-container">
+        <%= inline_svg "case_studies/thoughtbot-logo.svg" %>
+        <%= inline_svg "case_studies/mayo-clinic-logo.svg" %>
+      </div>
+      <span class="case-study-link__title">
+        Mayo Clinic Educational Game in 2017
       </span>
     <% end %>
   </div>

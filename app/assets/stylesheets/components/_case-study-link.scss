@@ -4,12 +4,19 @@
   display: inline-flex;
   flex-direction: column;
   margin-bottom: $x-large-spacing;
+}
+
+.case-study-link__image-container {
+  display: flex;
+  border-bottom: 0;
+  text-decoration: none;
 
   svg {
-    display: block;
     height: 1.5rem;
     margin-bottom: $small-spacing;
+    margin-right: $small-spacing;
     width: auto;
+    border-bottom: 0;
   }
 }
 

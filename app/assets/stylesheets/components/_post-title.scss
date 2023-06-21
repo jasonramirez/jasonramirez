@@ -12,3 +12,12 @@
     margin-bottom: $large-spacing;
   }
 }
+
+.post-title__image-container {
+  display: flex;
+
+  svg {
+    margin-bottom: $small-spacing;
+    margin-right: $small-spacing;
+  }
+}

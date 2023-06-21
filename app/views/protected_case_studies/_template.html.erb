@@ -1,0 +1,121 @@
+<div data-js-reading-progress-bar></div>
+
+<article class="content content--reading post">
+  <h1 class="post-title">
+    <%= inline_svg "case_studies/dropbox-logo.svg" %>
+    Title
+  </h1>
+
+  <h2 class="u-margin-bottom-x-large">
+    Teaser
+  </h2>
+
+  <div>
+    <ol>
+      <li>
+        <a href="#background">Background</a>
+      </li>
+
+      <li>
+        <a href="#planning">Planning</a>
+      </li>
+
+      <li>
+        <a href="#designing">Designing</a>
+      </li>
+
+      <li>
+        <a href="#impact">Impact</a>
+      </li>
+
+      <li>
+        <a href="#challenges">Challenges</a>
+      </li>
+
+      <li>
+        <a href="#closing">Closing</a>
+      </li>
+    </ul>
+  </div>
+</article>
+
+<article class="content content--reading post">
+  <a name="background"></a>
+  <h1>
+    Background
+  </h1>
+
+  <p>
+  </p>
+
+  <div class="case-study-focus case-study-focus--small">
+    <header class="case-study-focus__header">
+      <h3>
+        Contributors
+      </h3>
+    </header>
+
+    <div class="case-study-focus__grid">
+    </div>
+  </div>
+
+  <a name="planning"></a>
+  <h1>
+    Planning
+  </h1>
+
+  <p>
+  </p>
+
+  <a name="designing"></a>
+  <h1>
+    Designing
+  </h1>
+
+  <p>
+  </p>
+</article>
+
+<section data-js-carousel class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <% (1..10).each do |index| %>
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/feature-validation-process-#{index}.png" %>
+      </figure>
+      <figcaption>
+      </figcaption>
+    <% end %>
+  </div>
+</section>
+
+<article class="content content--reading post">
+  <a name="impact"></a>
+  <h1>
+    The Impact
+  </h1>
+
+  <p>
+  </p>
+
+  <a name="challenges"></a>
+  <h1>
+    The Challenges
+  </h1>
+
+  <p>
+  </p>
+
+  <a name="closing"></a>
+  <h1>
+    Closing
+  </h1>
+
+  <p>
+  </p>
+
+  <h1>
+    🤝
+  </h1>
+</article>

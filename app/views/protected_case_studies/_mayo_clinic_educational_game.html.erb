@@ -1,0 +1,738 @@
+<div data-js-reading-progress-bar></div>
+
+<article class="content content--reading post">
+  <h1 class="post-title">
+    <div class="post-title__image-container">
+      <%= inline_svg "case_studies/thoughtbot-logo.svg" %>
+      <%= inline_svg "case_studies/mayo-clinic-logo.svg" %>
+    </div>
+    Mayo Clinic Educational Game in 2017
+  </h1>
+
+  <h2 class="u-margin-bottom-x-large">
+    How building a product using lean product practices
+    changed the Mayo Clinic and established
+    it's digital innovation lab.
+  </h2>
+
+  <div>
+    <ol>
+      <li>
+        <a href="#background">Background</a>
+      </li>
+
+      <li>
+        <a href="#planning">Planning</a>
+      </li>
+
+      <li>
+        <a href="#designing">Designing</a>
+      </li>
+
+      <li>
+        <a href="#impact">Impact</a>
+      </li>
+
+      <li>
+        <a href="#challenges">Challenges</a>
+      </li>
+
+      <li>
+        <a href="#learnings">Learnings</a>
+      </li>
+
+      <li>
+        <a href="#closing">Closing</a>
+      </li>
+    </ul>
+  </div>
+
+  <a name="background"></a>
+  <h1>
+    Background
+  </h1>
+
+  <p>
+    In 2018 the Mayo Clinic came to
+    <%= link_to "thoughtbot", "https://thoughtbot.com", target: :blank %>,
+    where I was the NYC Design Director,
+    to learn to innovate.
+    They wanted to learn and ship quickly and solve real
+    problems with software. Myself and 
+    <%= link_to "Trace Wax", "https://www.linkedin.com/in/tracewax/",
+      target: :blank %>
+    thoughtbot NYCs Managing Director, established an engagement
+    with the Mayo Clinic focused on
+    building an innovation practice.
+  </p>
+
+  <p>
+    We would develop the innovation practice through building a product. That
+    product would be OnPar; an educational game to improve the continuing
+    education methods for doctors, nurses and residents. This is the story of
+    how we built the product and helped the Mayo Clinic build an
+    innovation practice.
+  </p>
+
+  <a name="planning"></a>
+  <h1>
+    Planning
+  </h1>
+
+  <p>
+    In our discovery phase with Mayo, we uncovered a problem:
+    <strong>current continuing education methods for doctors, nurses and
+    residents were not engaging, were expensive to produce, and mildly
+    effective.</strong> With some assumptions, I put together a 
+    customer development interview (based off the template below),
+    and set off to interview ~25 individuals in, and tangental to, what 
+    we thought our target market was: health care professionals.
+  </p>
+</article>
+
+<section>
+  <section data-js-carousel class="carousel">
+    <div data-js-carousel-cards-placeholder
+         class="carousel__cards-placeholder"></div>
+
+    <div data-js-carousel-cards class="carousel__cards">
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-customer-development-1.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-customer-development-2.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div data-js-carousel-actions
+      class="carousel__actions case-study-carousel-actions">
+      <a data-js-carousel-previous-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-left.svg" %>
+      </a>
+
+      <a data-js-carousel-next-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-right.svg" %>
+      </a>
+    </div>
+  </section>
+</section>
+
+<article class="content content--reading post">
+  </p>
+    The continuing educational space had competition. There was qualitative
+    research that supported our assumptions around engagement, expense, and
+    effectiveness. We aligned that this was a good starting point for our
+    project. As the project, lead I took on many responsibilities:
+  </p>
+
+  <div class="case-study-focus case-study-focus--small">
+    <header class="case-study-focus__header">
+      <h3>
+        My Role
+      </h3>
+    </header>
+
+    <ul>
+      <li>
+        Lead and execute customer development and research.
+      </li>
+      <li>
+        Facilitate solution exploration and testing.
+      </li>
+      <li>
+        Lead interface and experience design.
+      </li>
+      <li>
+        Establish experiment process, setup and analysis.
+      </li>
+      <li>
+        Develop the product roadmap and manage the project.
+      </li>
+      <li>
+        Communicate with, align, and present to stakeholders.
+      </li>
+      <li>
+        Build, manage, and mentor the design team.
+      </li>
+    </ul>
+  </div>
+
+  <p>
+    As with most successful projects, it takes a village. I was
+    lucky to be surrounded with amazing thoughtbot designers and 
+    engineers, and a Mayo Clinic administrative duo.
+    The Mayo Clinic also provided us with world
+    class Doctors to create the case content, as well
+    as a board to lobby for investment.
+  </p>
+
+  <div class="case-study-focus case-study-focus--small">
+    <header class="case-study-focus__header">
+      <h3>
+        Contributors
+      </h3>
+    </header>
+
+    <div class="case-study-focus__grid">
+      <ul class="minimal-unordered-list">
+        <li>
+          <strong>Board</strong>
+        </li>
+        <li>
+          Mark Warner, MD
+        </li>
+        <li>
+          Barbara Baasch Thomas
+        </li>
+      </ul>
+
+      <ul class="minimal-unordered-list">
+        <li>
+          <strong>Mayo Clinicians</strong>
+        </li>
+        <li>
+          Richer Berger, MD
+        </li>
+        <li>
+          David Cook, MD
+        </li>
+        <li>
+          Jane Linderbaum, NP
+        </li>
+        <li>
+          Rozalina McCoy, MD
+        </li>
+        <li>
+          Farrell Lloyd, MD
+        </li>
+      </ul>
+
+      <ul class="minimal-unordered-list">
+        <li>
+          <strong>Mayo Admin</strong>
+        </li>
+        <li>
+          Jeannie Poterucha Carter
+        </li>
+        <li>
+          Abhi Bikkani
+        </li>
+      </ul>
+
+      <ul class="minimal-unordered-list">
+        <li>
+          <strong>Directors</strong>
+        </li>
+        <li>
+          Trace Wax
+        </li>
+      </ul>
+
+      <ul class="minimal-unordered-list">
+        <li>
+          <strong>Designers</strong>
+        </li>
+        <li>
+          Ward Penney
+        </li>
+        <li>
+          Tyson Gatch
+        </li>
+      </ul>
+
+      <ul class="minimal-unordered-list">
+        <li>
+          <strong>Engineers</strong>
+        </li>
+        <li>
+          Sean Doyle
+        </li>
+        <li>
+          Eric Collins
+        </li>
+        <li>
+          Christina Entcheva
+        </li>
+        <li>
+          George Brocklehurst
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    For this project I chose a lean product approach. We would
+    discover a problem, identify the business, develop the customer, identify
+    risks and assumptions, then build measure and learn from the solutions 
+    you ship.
+  </p>
+
+  <div class="case-study-image-containter">
+    <figure class="case-study-image">
+      <%= image_tag "case_studies/mayo-clinic-educational-game-process.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
+
+  <p>
+    The first phase of the project was dedicated to refining the problem space,
+    testing the business idea, establishing goals, and honing in on
+    a specific problem set to solve. 
+    <%= link_to "We used the Lean Canvas method made popular by Ash Maurya.",
+      "https://leanstack.com/lean-canvas/",
+      target: :blank 
+    %>
+  </p>
+
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        The Problem
+      </h3>
+    </header>
+    <p>
+      Current continuing education methods for doctors, nurses and residents
+      are not engaging, expensive to produce, and only somewhat effective. 
+    </p>
+
+    <div class="u-margin-bottom-large"></div>
+
+    <header class="case-study-focus__header">
+      <h3>
+        The Goals
+      </h3>
+    </header>
+    <ul>
+      <li>
+        Create an engaging method of continuing education.
+      </li>
+      <li>
+        Improve effectiveness of continuing education.
+      </li>
+      <li>
+        Reduce the cost of creating content.
+      </li>
+      <li>
+        Have a proven viable business model.
+      </li>
+    </ul>
+  </div>
+
+  <p>
+    We did a competitive audit to understand what we were up against, and
+    potentially the size of our market. The audit validated our problem space,
+    gave us a sense of market size, and illuminated our
+    unique value proposition: world class doctors creating content.
+  </p>
+
+  <div class="case-study-image-containter">
+    <figure class="case-study-image">
+      <%= image_tag "case_studies/mayo-clinic-educational-game-copetitive-audit.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
+
+  <p>
+    With an understanding of our problem, our goals, and our competition,
+    we kicked off a design sprint to test our assumptions. The Google Venture
+    Design Sprint emphasizes effective problem identification and iterative
+    testing. It accelerates learning and provides clear direction. 
+  </p>
+
+  <div class="case-study-image-containter">
+    <figure class="case-study-image">
+      <%= image_tag "case_studies/dropbox-activation-design-sprint.png" %>
+      <figcaption>
+        An abstraction of the 5-day Design Sprint Process
+        made famous by Jake Knapp. Created while Jake Knapp
+        was at Google Ventures. This was used to demonstrate the
+        similarities to design thinking and
+        get alignment on using the process
+        for vague problem spaces.
+      </figcaption>
+    </figure>
+  </div>
+
+  <a name="designing"></a>
+  <h1>
+    Designing
+  </h1>
+
+  <p>
+    For our first sprint, we tested on a card game as a solution. We
+    incorporated elements we'd heard from our target customers about what might
+    engage them: solving real cases, pitting doctors against an expert
+    clinician, and professionalism. The initial prototype was a physical card
+    game made using index cards.
+  </p>
+
+  <div class="case-study-image-containter">
+    <figure class="case-study-image">
+      <%= image_tag "case_studies/mayo-clinic-educational-game-prototype.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
+
+  <p>
+    We set out to test the card game with 15 doctors in the Mayo Clinic. We
+    ended up testing it with around 40. Doctors were not only eager to play, but
+    they were finding other doctors in the clinic to share their experience
+    with, and recommend they play. We had real world referrals to a prototype.
+    Aside for the engaement, the game answered many of our assumptions and
+    helped us understand short term needs and a potential long term direction.
+  </p>
+
+  <p>
+    Our next task
+    was to create a simple digital version of the game and get it out to our
+    target customers to get more feedback. Our team had proficient 
+    <%= link_to "Ember", "https://emberjs.com", target: :blank %>
+    engineers, and capable of building powerful javascript apps ripe
+    with interaction, so we decided we'd build a web based app..
+  </p>
+
+  <p>
+    We prioritized a mobile platform as continuing education 
+    for doctors was generally done "between things". Often times on a commute, 
+    or between appointments. But rarely was this work done at home. When 
+    doctors got home, they were tired and wanted to rest.
+  </p>
+
+  <p>
+    Here is the case picking screen. You'll notice the first version is quite
+    bare bones, but offers a few "nice-to-have" features our test groups asked
+    for; the last score a doctor got was displayed, and unplayed cases were
+    separated.
+  </p>
+</article>
+
+<section>
+  <section data-js-carousel class="carousel">
+    <div data-js-carousel-cards-placeholder
+         class="carousel__cards-placeholder"></div>
+
+    <div data-js-carousel-cards class="carousel__cards">
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-case-picker-v1.png" %>
+        <figcaption>
+          Version 1 of the case selection screen. Allowing users to pick a case,
+          view par for that case, and get a little detail as to the patient
+          presenting.
+        </figcaption>
+      </figure>
+
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-case-picker-v4.png" %>
+        <figcaption>
+          Version 4 showing how we emphaised "real case" to drive engagement, 
+          leveraged the Mayo logo to build trust and drive retention, and finally
+          highlighted par to drive more engagement.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div data-js-carousel-actions
+      class="carousel__actions case-study-carousel-actions">
+      <a data-js-carousel-previous-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-left.svg" %>
+      </a>
+
+      <a data-js-carousel-next-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-right.svg" %>
+      </a>
+    </div>
+  </section>
+</section>
+
+<article class="content content--reading post">
+  <p>
+    By version 4, we'd made many changes to the case picking screen.
+    The words “real case” meant a lot to the users, so we 
+    emphasizing it. By doing so we saw an increase in the number
+    of cases started. However, it also
+    caused a a small reduction in retention. It turns the users now had
+    concerns about PHI (Protected Health Information). We later
+    addressed this on the "meet the patient" screen. 
+    Another change was using the Mayo Logo to improve trust.
+    Adding it showed an increase in cases started and retention.
+    Finally, we highlighted "par" (the score to beat) for each case.
+    Doctors told us they were very competitive, and emphasizing the score
+    signaled what to beat. We saw an increase in cases started with
+    lower par numbers, and a reduction of cases started with higher par numbers.
+  </p>
+
+  <p>
+    Another important aspect of the game was being introduced to the patient. We
+    followed the
+    <%= link_to "Grand Rounds",
+      "https://en.wikipedia.org/wiki/Grand_rounds", target: :blank %>
+    methodology and maintined that language. On the screen there is an image of
+    a patient, and some basic information about that patient. From here the user
+    goes on to ask questions to this patient.
+  </p>
+</article>
+
+<section>
+  <section data-js-carousel class="carousel">
+    <div data-js-carousel-cards-placeholder
+         class="carousel__cards-placeholder"></div>
+
+    <div data-js-carousel-cards class="carousel__cards">
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-patient-information-v1.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-patient-information-v3.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div data-js-carousel-actions
+      class="carousel__actions case-study-carousel-actions">
+      <a data-js-carousel-previous-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-left.svg" %>
+      </a>
+
+      <a data-js-carousel-next-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-right.svg" %>
+      </a>
+    </div>
+  </section>
+</section>
+
+<article class="content content--reading post">
+  <p>
+    The initial version uncovered some significant learnings; people were
+    concerned the case might contain PHI (Protected Health Information), images
+    of people were not helpful unless providing diagnostic clues, and finally
+    proper domain language was a must. In our iterations, we addressed these
+    issues in several ways. We highlighted the fact that we removed any PHE. We
+    removed all of the images of people and only used relevant information. And
+    finally, we updated all of our language to be domain language
+  </p>
+
+  <p>
+    After meeting the patient, we were on to game play.
+    Asking a question (playing a card) added 1 to your score.
+    You'd ask a question by dragging a card to the playing field (middle).
+    Once a question was asked, the card would flip, and the answer exposed.
+    You could freely page through all the questions, and diagnose
+    the patient whenever you wanted..
+  </p>
+</article>
+
+<section>
+  <section data-js-carousel class="carousel">
+    <div data-js-carousel-cards-placeholder
+         class="carousel__cards-placeholder"></div>
+
+    <div data-js-carousel-cards class="carousel__cards">
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-play-v1.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-play-v5.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div data-js-carousel-actions
+      class="carousel__actions case-study-carousel-actions">
+      <a data-js-carousel-previous-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-left.svg" %>
+      </a>
+
+      <a data-js-carousel-next-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-right.svg" %>
+      </a>
+    </div>
+  </section>
+</section>
+
+<article class="content content--reading post">
+  <p>
+    Through interviews and data we learned a lot, and made adjustments. Doctors
+    were not happy that all questions had the same cost to play - they felt some
+    questions or test should cost more. Adding variable costs to cards increased
+    retention. Our original game mechanics were janky; it wasn't obvious where
+    to drop the card, once you'd asked 4 questions it was nearly impossible to
+    scroll up, and not being able to easily revisit the patient information
+    provided uneccesary friction.
+  </p>
+
+  <p>
+    The climax of the game was the diagnosis screen.
+    Here was the chance for the user to make their diagnosis and
+    solve the case.
+    The original screen was quite simple,
+    the user could see par, review the questions they asked,
+    and make a diagnosis. Once they made the diagnosis, they were
+    either correct and celebrated, or wrong and shown the correct answer.
+  </p>
+</article>
+
+<section>
+  <section data-js-carousel class="carousel">
+    <div data-js-carousel-cards-placeholder
+         class="carousel__cards-placeholder"></div>
+
+    <div data-js-carousel-cards class="carousel__cards">
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-diagnose-v1.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+
+      <figure data-js-carousel-card
+        class="carousel__card case-study-carousel-card">
+        <%= image_tag "case_studies/mayo-clinic-educational-game-diagnose-v4.png" %>
+        <figcaption>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div data-js-carousel-actions
+      class="carousel__actions case-study-carousel-actions">
+      <a data-js-carousel-previous-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-left.svg" %>
+      </a>
+
+      <a data-js-carousel-next-card-trigger="true">
+        <%= inline_svg "icon-long-arrow-right.svg" %>
+      </a>
+    </div>
+  </section>
+</section>
+
+<article class="content content--reading post">
+  <p>
+    During our in-person interviews there were a lot of “I knew its” and “oh no,
+    it can’t be that” on this screen. There was a lot of emotion from the 
+    users. The question most often asked when the diagnosis was wrong was
+    "how did the expert do it?". They were curious what questions would
+    have been a better line of thought.
+    The biggest win we had in the product was adding adding a section
+    that showed the line of questioning an expert took to solve it.
+    By adding this, we say a significant increase in cases played and
+    overall retention.
+  </p>
+
+  <p>
+    Ultimately the iterations proved successful as we saw
+    steady engagement, an upwards trend in acquisition,
+    good 30 day retention (adding new cases was the only driver of
+    continued retention), and signal of customers willing to pay.
+  </p>
+
+  <a name="impact"></a>
+  <h1>
+    The Impact
+  </h1>
+
+  <p>
+    After extensive testing and pivoting, we discovered a successful business
+    model for OnPar. Our shift from targeting individual users to focusing on
+    those invested in learning and credentialing led us to two types of paying
+    customers.
+  </p>
+
+  <p>
+    Firstly, nurse organizations desired our platform for ongoing education,
+    curated content dissemination, and tracking participant engagement.
+  </p>
+
+  <p>
+    Secondly, larger organizations like the CDC saw the value in leveraging our
+    platform for urgent messaging, improved communication, and more accurate
+    tracking compared to their existing systems.
+  </p>
+
+  <p>
+    These distinct customer perspectives guided our final pivot, resulting in a
+    problem-solution fit and a group of paying customers. Moreover, the Mayo
+    Clinic team gained valuable insights in product development,
+    decision-making, customer engagement, iteration, and innovation. This
+    successful product launch marked the establishment of the Mayo Clinic's
+    digital innovation lab.
+  </p>
+
+  <a name="challenges"></a>
+  <h1>
+    The Challenges
+  </h1>
+
+  <p>
+    The biggest challenge with this project was changing the mindset of the Mayo
+    Clinic from shipping something perfect, to shipping something to learn. The
+    two things we struggle with was shipping something scrappy under the Mayo
+    brand, and keeping the board aligned with learning as progress. We focused
+    on metrics often to show progress, but struggled with expressing how
+    important the qualitative learnings were, and that a failed version of an
+    A/B test was a path forward, not a set back. This took a lot of hand
+    holding, weekly meetings, and education. I leveraged the 
+    <%= link_to "Stop, Pivot, or Preserve framework", post_path(14) %>
+    framework to disclose learings and progress, as well as force
+    alignment and decision making as a team.
+  </p>
+
+  <a name="learnings"></a>
+  <h1>
+    Learnings
+  </h1>
+
+  <p>
+    Our key realization was that we initially targeted the wrong paying customer
+    for the project. While doctors and residents found value in the product,
+    they were reluctant to pay for it. Nurses were willing to pay, but we
+    couldn't sustain their engagement beyond 60 days. Ultimately, department
+    heads emerged as the paying customer, benefiting from the product's insights
+    into residents and nurses, enabling them to address knowledge gaps and track
+    performance in their organizations.
+  </p>
+
+  <a name="closing"></a>
+  <h1>
+    Closing
+  </h1>
+
+  <p>
+    The collaboration between thoughtbot and the Mayo Clinic resulted in OnPar,
+    an innovative educational game for healthcare professionals. Through a lean
+    product approach and iterative design, the team addressed the shortcomings
+    of traditional continuing education methods. OnPar successfully launched,
+    attracting paying customers such as nurse organizations and larger
+    institutions like the CDC. project established the Mayo Clinic's digital
+    innovation lab and provided valuable insights into product development,
+    customer engagement, and innovation in healthcare. OnPar represents a
+    cultural shift in the Mayo Clinic.
+  </p>
+
+  <h1>
+    🤝
+  </h1>
+</article>
