@@ -28,7 +28,6 @@ $reading-line-height: 1.6;
 // Other Sizes
 $base-border-radius: 3px;
 $reading-paragraph-spacing: 1.5rem;
-$base-z-index: 0;
 $navigation-height: 8rem;
 $navigation-height-mobile: 5rem;
 
@@ -99,4 +98,5 @@ $case-study-page-navigation-width: 50vw;
 // Z-index
 $z-index-flashes: 2;
 $z-index-highest: 1;
+$base-z-index: 0;
 $z-index-below-content: -1;
