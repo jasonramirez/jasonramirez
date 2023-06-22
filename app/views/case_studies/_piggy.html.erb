@@ -3,13 +3,13 @@
 <article class="content content--reading post">
   <h1 class="post-title">
     <div class="post-title__image-container">
-      <%= inline_svg "case_studies/thoughtbot-logo.svg" %>
+      <%= inline_svg "case_studies/jasonramirez-case-study-logo.svg" %>
     </div>
     Saving Money With One Click
   </h1>
 
   <h2 class="u-margin-bottom-x-large">
-    How 2 friends quickly tested the idea of a button to save money and learned
+    How two friends quickly tested the idea of a button to save money and learned
     of a monetization path.
   </h2>
 
@@ -59,7 +59,6 @@
     better money-saving habits one day at a time.
   </p>
 
-
   <p>
     A friend and I got into a discussion about how difficult it is to save
     money. Our conversation shifted to complaining about how our culture is a
@@ -89,12 +88,18 @@
     </p>
   </div>
 
+  <a name="planning"></a>
+  <h1>
+    Planning
+  </h1>
+
   <p>
     Our next step was to do some customer discovery and see if other shared in
     this pain. Before we started to dig into solutions, we wanted to see if
     other people had a similar relationship with money and/or related to our
     problem statement. We created a short list of questions to ask people. We
     started with gathering qualitative data from 5 in-person interviews.
+  </p>
 
   <div class="case-study-focus">
     <header class="case-study-focus__header">
@@ -139,6 +144,7 @@
     as money they _should save_, rather there was a perception that the extra
     cash could be spent. After the surveys and the interviews, we modified our
     problem statement:
+  </p>
 
   <div class="case-study-focus">
     <header class="case-study-focus__header">
@@ -153,8 +159,9 @@
   </div>
 
 
+  <p>
     At this point we felt confident that people resonated with our problem
-    statment, and decided it was time for an abbreviated design sprint.
+    statement, and decided it was time for an abbreviated design sprint.
   </p>
 
   <a name="designing"></a>
@@ -168,52 +175,90 @@
     directed at helping people get context around their money. They "helped"
     people save by offering up budgets or attempting to automate the saving
     process.
-
-    Looking at our competition was eye opening. It didn't seem that anyone had
-    acitvely focused on developing a persons saving habit. Rather, existing
-    tools aimed to help people save money by monitoring spending habits. We kept
-    this top of mind as we went though the sprint.
-
-    As we diverged we continually found ourselves digging into the belief that:
-
-    * People's saving habits will be improved if we engage them in saving daily.
-
-    As we continued to sketch out solutions, we refined that statement further:
-
-    * Providing a person with daily encouragement and reminders to save their
-      left over spending cash will help develop better saving habits.
-
-    From here we developed a user journey to help guide us through building our
-    prototype:
-
-    <div class="image--centered">
-      <img src="#{image_path("case_studies/piggy-user-journey.png")}" />
-    </div>
-
-    As we refined a potential solution, we surfaced many assumptions about our
-    users that we needed to test.
-
-    * People will use one account for all daily spending.
-    * People want to be reminded to save money daily.
-    * People want the option to save.
-    * People will save out of spending cash, and that is separate than bills.
-
-    Next we set out to build a prototype to test with users.
-
-    ## Prototype
-
-    Based off the outcome from the sprint, we started to build a prototype to
-    test that our solution was a viable solution and addressed our riskiest
-    assumptions:
-
-    * People wouldn't pay for this service
-    * People will use one account for all daily spending.
-    * People want to be reminded to save money daily.
-    * People want the option to save.
-    * People will save out of spending cash, and that is separate than bills.
-
-    Without further ado, here is the prototype:
   </p>
+
+  <p>
+    Looking at our competition was eye opening. It didn't seem that anyone had
+    actively focused on developing a persons saving habit. Rather, existing
+    tools aimed to help people save money by monitoring spending habits. We kept
+    this top of mind as we went through the sprint.
+  </p>
+
+  <p>
+    As we diverged we continually
+    found ourselves digging into the belief that:
+    <strong>
+    People's saving habits will be improved if we engage them in saving daily.
+    </strong>
+
+  <p>
+    As we continued to sketch out solutions, we refined that statement further:
+    <strong>
+      Providing a person with daily encouragement and reminders to save their
+      left over spending cash will help develop better saving habits.
+    </strong>
+  </p>
+
+  <p>
+    From here we developed a user journey to help guide us through building our
+    prototype. As we refined a potential solution, we surfaced many assumptions
+    about our users that we needed to test.
+  </p>
+
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        Base Assumptions
+      </h3>
+    </header>
+
+    <ul>
+      <li>
+        People will use one account for all daily spending.
+      </li>
+      <li>
+        People want to be reminded to save money daily.
+      </li>
+      <li>
+        People want the option to save.
+      </li>
+      <li>
+        People will save out of spending cash, and that is separate than bills.
+      </li>
+    </ul>
+  </div>
+
+  <p>
+    Next we set out to build a prototype to test with users. Based off the
+    outcome from the sprint, we started to build a prototype to test that our
+    solution was a viable solution and addressed our riskiest assumptions:
+  </p>
+
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        Riskiest Assumptions
+      </h3>
+    </header>
+
+    <ul>
+      <li>
+        People wouldn't pay for this service
+      </li>
+      <li>
+        People will use one account for all daily spending.
+      </li>
+      <li>
+        People want to be reminded to save money daily.
+      </li>
+      <li>
+        People want the option to save.
+      </li>
+      <li>
+        People will save out of spending cash, and that is separate than bills.
+      </li>
+    </ul>
+  </div>
 </article>
 
 <% if browser.device.mobile? %>
@@ -225,7 +270,7 @@
   <section class="case-study-prototype">
     <iframe width="480" height="980" frameborder="0"
       src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/RySG7djTvOhTk5lLsVrde4tN/Piggy?node-id=235%253A20&chrome=DOCUMENTATION"
-      allowfullscreen />
+      allowfullscreen></iframe>
   </section>
 <% end %>
 
@@ -235,11 +280,14 @@
     Impact
   </h1>
 
+  <p>
     We ran 7 user tests with our "target market"; people who made $80K+,
     currently _wanted_ to save money, and felt that they had bad saving habits.
     We weren't entirely confident that this was our target market, but that was
     the group we had gotten the most positive feedback from.
+  </p>
 
+  <p>
     The user tests were a great success. Not only did we uncover some (now
     seemingly obvious) interface and experience problems, but we got a lot of
     positive feedback and validation that being prompted to save money felt
@@ -260,21 +308,41 @@
     funds from a checking account to a savings account. We were able to find a
     means to do so, but at a high cost.  The best solution we found would cost
     each user $10 per month.
+  </p>
 
-    With a cost that high, we didn't believe that our _complete_ solution would
+  <p>
+    With a cost that high, we didn't believe that our complete solution would
     be viable. Five options we were considering:
+  </p>
 
-    1. Don't have a save button, rather remind and suggest an amount save.
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        Options
+      </h3>
+    </header>
 
-    2. Partner with a bank to get free access to the API to facilitate money
-       transfers free of charge.
+    <ol>
+      <li>
+        Don't have a save button, rather remind and suggest an amount save.
+      </li>
+      <li>
+        Partner with a bank to get free access to the API to facilitate money
+        transfers free of charge.
+      </li>
+      <li>
+        Find a better/free solution to facilitate money transferring.
+      </li>
+      <li>
+        Create a better/free solution to facilitate money transferring.
+      </li>
+      <li>
+        Get users to pay
+      </li>
+    </ul>
+  </div>
 
-    3. Find a better/free solution to facilitate money transferring.
-
-    4. Create a better/free solution to facilitate money transferring.
-
-    5. Get users to pay
-
+  <p>
     We wanted to pursue the third option, while considering the
     first option to be our MVP. We felt that although you couldn't save money
     using the application, the daily reminders and encouragement would still be
@@ -289,7 +357,17 @@
   </h1>
 
   <p>
-    Who the buyer was
+    The most interesting learning to my was finding the buyer. Free products
+    are never free. If a product is free, than the user is the product.
+    With that in mind we started to look into how the helping a person save
+    money was monetizable. Through some of my partner's connections, we
+    were able to sit down with people from American Express and Citi Bank.
+    What we learned was obvious in hindsight. Banks pay a great deal of money
+    to get an individual to open a checking or savings account. If we could
+    use this app to guide people to opening an account, it was an 
+    acquisition play for the banks. Moreover, the more money a person has
+    in their account, the more the bank can leverage that money. It's a win-win
+    for the user and the bank.
   </p>
 
   <a name="closing"></a>
@@ -298,9 +376,19 @@
   </h1>
 
   <p>
+    The development of the Piggy application has addressed the challenge of
+    saving money in a spending-centric culture. By actively engaging users in
+    daily saving habits through reminders and encouragement, Piggy sets itself
+    apart from existing tools focused on monitoring spending. User testing
+    validated its effectiveness, receiving positive feedback. Challenges related
+    to technical hurdles and high costs for fund transfers prompted exploration
+    of alternative options, including partnerships with banks. The journey also
+    revealed the potential for Piggy to serve as an acquisition tool for
+    financial institutions. Overall, Piggy offers a practical solution to
+    improve saving habits and benefits both users and banks.
   </p>
 
   <h1>
-    😷
+    🤑
   </h1>
 </article>
