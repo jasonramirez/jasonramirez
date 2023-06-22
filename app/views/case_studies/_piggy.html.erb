@@ -1,78 +1,168 @@
-/section.hero.hero--case-study-for-mobile
-/  = inline_svg_tag "case_studies/piggy-hero.svg", alt: "Piggy"
+<div data-js-reading-progress-bar></div>
 
-section.content.content--reading
-  markdown:
-    # Piggy
+<article class="content content--reading post">
+  <h1 class="post-title">
+    <div class="post-title__image-container">
+      <%= inline_svg "case_studies/thoughtbot-logo.svg" %>
+    </div>
+    Saving Money With One Click
+  </h1>
 
+  <h2 class="u-margin-bottom-x-large">
+    How 2 friends quickly tested the idea of a button to save money and learned
+    of a monetization path.
+  </h2>
+
+  <div>
+    <ol>
+      <li>
+        <a href="#background">Background</a>
+      </li>
+
+      <li>
+        <a href="#planning">Planning</a>
+      </li>
+
+      <li>
+        <a href="#designing">Designing</a>
+      </li>
+
+      <li>
+        <a href="#impact">Impact</a>
+      </li>
+
+      <li>
+        <a href="#challenges">Challenges</a>
+      </li>
+
+      <li>
+        <a href="#learnings">Learnings</a>
+      </li>
+
+      <li>
+        <a href="#closing">Closing</a>
+      </li>
+    </ul>
+  </div>
+
+  <a name="background"></a>
+  <h1>
+    Background
+  </h1>
+
+  <p>
     The internet is filled with convenient and user friendly interactions that
     encourage you to spend money: one-click purchasing, recommendation engines,
-    wish-lists, registries, SMS purchasing, etc. There are loads of buttons that help you spend money. However, there are very few buttons to help you save.
-
+    wish-lists, registries, SMS purchasing, etc. There are loads of buttons that
+    help you spend money. However, there are very few buttons to help you save.
     Piggy brings the save button to the forefront, and helps people develop
     better money-saving habits one day at a time.
+  </p>
 
-    ## The Problem
 
+  <p>
     A friend and I got into a discussion about how difficult it is to save
     money. Our conversation shifted to complaining about how our culture is a
-    spending culture, and we are pushed to spend but not to save.
+    spending culture, and we are pushed to spend but not to save. In our
+    personal lives spending occurs daily, while saving occurs bi-weekly or
+    monthly.  We are very good at spending because we practice it daily, but the
+    opposite is true of saving.  As a result, the act of spending feels easy and
+    seamless, while saving money feels like a chore and takes effort.
+  </p>
 
-    In our personal lives spending occurs daily, while saving occurs bi-weekly
-    or monthly.  We are very good at spending because we practice it daily, but
-    the opposite is true of saving.  As a result, the act of spending feels easy
-    and seamless, while saving money feels like a chore and takes effort.
-
+  <p>
     Moreover, we both didn't have confidence in our ability to save. We felt
     that our spending habits were bad. We recalled that when we did have _extra_
     cash, we usually ended up spending it on socializing or superfluous things.
+  </p>
 
-    We came up with this problem statement:
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        Problem Statement
+      </h3>
+    </header>
 
-    * I want to save money, but my current saving habits and lack of extra
+    <p>
+      I want to save money, but my current saving habits and lack of extra
       cash make it very difficult to save money.
+    </p>
+  </div>
 
+  <p>
     Our next step was to do some customer discovery and see if other shared in
-    this pain.
+    this pain. Before we started to dig into solutions, we wanted to see if
+    other people had a similar relationship with money and/or related to our
+    problem statement. We created a short list of questions to ask people. We
+    started with gathering qualitative data from 5 in-person interviews.
 
-    ## Customer Discovery
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        Analysis
+      </h3>
+    </header>
 
-    Before we started to dig into solutions, we wanted to see if other people
-    had a similar relationship with money and/or related to our problem
-    statement. We created a short list of questions to ask people. We started
-    with gathering qualitative data from 5 in-person interviews.
+    <ul>
+      <li>
+        Most people desired to save more money.
+      </li>
+      <li>
+        Most people spend money every day.
+      </li>
+      <li>
+        Most people did have spendable income.
+      </li>
+      <li>
+        Half of the people said they did not have good saving habits.
+      </li>
+      <li>
+        Some people said they didn't budget.
+      </li>
+      <li>
+        Few people said they spend "too much".
+      </li>
+      <li>
+        Few people said they are often encouraged by others to save money.
+      </li>
+      <li>
+        Few people saved directly out of their paycheck
+      </li>
+    </ul>
+  </div>
 
-    After some basic analysis we found that:
-
-    * **Most** people desired to save more money.
-    * **Most** people spend money every day.
-    * **Most** people did have spendable income.
-    * **Half** of the people said they did not have good saving habits.
-    * **Some** people said they didn't budget.
-    * **Few** people said they spend "too much".
-    * **Few** people said they are often encouraged by others to save money.
-    * **Few** people saved directly out of their paycheck
-
-    We thought these responses validated that **people wanted to save money, but
-    their saving habits were bad**.
-
-    However, we feel that our assumption that the lack of extra cash led added
-    to the difficulty of saving was invalidated.
-
+  <p>
+    We thought these responses validated that people wanted to save money, but
+    their saving habits were bad. However, we feel that our assumption that the
+    lack of extra cash led added to the difficulty of saving was invalidated.
     We observed from multiple in-person interviews that extra cash wasn't viewed
     as money they _should save_, rather there was a perception that the extra
-    cash could be spent.
+    cash could be spent. After the surveys and the interviews, we modified our
+    problem statement:
 
-    After the surveys and the interviews, we modified our problem statement:
+  <div class="case-study-focus">
+    <header class="case-study-focus__header">
+      <h3>
+        Modified Problem Statement
+      </h3>
+    </header>
 
-    * I have extra money that I want to save, but I have bad saving habits.
+    <p>
+      I have extra money that I want to save, but I have bad saving habits.
+    </p>
+  </div>
+
 
     At this point we felt confident that people resonated with our problem
-    statment, and decided it was time for an abbreviated [design
-    sprint](https://library.gv.com/the-gv-research-sprint-a-4-day-process-for-answering-important-startup-questions-97279b532b25#.9unipl4gb).
+    statment, and decided it was time for an abbreviated design sprint.
+  </p>
 
-    ## The Sprint
+  <a name="designing"></a>
+  <h1>
+    Designing
+  </h1>
 
+  <p>
     Almost right away we had an interesting finding.  While getting background
     and looking at our competition, we noticed that most existing tools were
     directed at helping people get context around their money. They "helped"
@@ -123,18 +213,27 @@ section.content.content--reading
     * People will save out of spending cash, and that is separate than bills.
 
     Without further ado, here is the prototype:
+  </p>
+</article>
 
-- if browser.device.mobile?
-  section.content.content--reading
-    = link_to "Click to view the Invision prototype", "https://invis.io/EQYHWD8M54D",
-        target: "_blank"
-- else
-  .case-study-prototype
-    iframe width="480" height="980" frameborder="0" src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/RySG7djTvOhTk5lLsVrde4tN/Piggy?node-id=235%253A20&chrome=DOCUMENTATION" allowfullscreen
+<% if browser.device.mobile? %>
+  <section class="content content--reading">
+    <%= link_to "Click to view the Invision prototype",
+      "https://invis.io/EQYHWD8M54D", target: "_blank" %>
+  </section>
+<% else %>
+  <section class="case-study-prototype">
+    <iframe width="480" height="980" frameborder="0"
+      src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/RySG7djTvOhTk5lLsVrde4tN/Piggy?node-id=235%253A20&chrome=DOCUMENTATION"
+      allowfullscreen />
+  </section>
+<% end %>
 
-section.content.content--reading
-  markdown:
-    ## Results
+<article class="content content--reading post">
+  <a name="designing"></a>
+  <h1>
+    Impact
+  </h1>
 
     We ran 7 user tests with our "target market"; people who made $80K+,
     currently _wanted_ to save money, and felt that they had bad saving habits.
@@ -147,9 +246,14 @@ section.content.content--reading
     empowering, and that it felt different from other tools. About half of the
     group users asked to be notified when the application was to be released
     without being prompted.
+  </p>
 
-    ## MVP
+  <a name="challenges"></a>
+  <h1>
+    Challenges
+  </h1>
 
+  <p>
     Before we started to develop the MVP Piggy application, we spiked on the
     engineering side of things. We quickly ran into some difficult technical
     hurdles. The immediate problem we faced was facilitating the transferring of
@@ -171,21 +275,32 @@ section.content.content--reading
 
     5. Get users to pay
 
-    To date, we are currently pursuing the third option, while considering the
-    first option to be our MPV. We felt that although you couldn't save money
+    We wanted to pursue the third option, while considering the
+    first option to be our MVP. We felt that although you couldn't save money
     using the application, the daily reminders and encouragement would still be
     usefull.  Our end goal is to provide the means to directly save money
     without any charge to the customer, so option 5 is out of the picture for
-    now.
+    now. But before we could take this path we went in search of a buyer.
+  </p>
 
-= render partial: "case_studies/case_studies_navigation",
-  locals: { \
-    next_case_study: { \
-      name: "tinysplash",
-      protected: false,
-    },
-    previous_case_study: { \
-      name: "mayo_clinic",
-      protected: true,
-    },
-  }
+  <a name="learnings"></a>
+  <h1>
+    Learnings
+  </h1>
+
+  <p>
+    Who the buyer was
+  </p>
+
+  <a name="closing"></a>
+  <h1>
+    Closing
+  </h1>
+
+  <p>
+  </p>
+
+  <h1>
+    😷
+  </h1>
+</article>
