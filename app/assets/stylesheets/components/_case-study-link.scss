@@ -7,17 +7,18 @@
 }
 
 .case-study-link__image-container {
-  display: flex;
   border-bottom: 0;
+  display: flex;
+  position: relative;
   text-decoration: none;
+}
 
-  svg {
-    height: 1.5rem;
-    margin-bottom: $small-spacing;
-    margin-right: $small-spacing;
-    width: auto;
-    border-bottom: 0;
-  }
+.case-study-link__image {
+  border-bottom: 0;
+  height: 2.5rem;
+  margin-bottom: $small-spacing;
+  margin-right: $small-spacing;
+  width: auto;
 }
 
 .case-study-link__title {
@@ -27,4 +28,13 @@
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-decoration-thickness: 0.2rem;
+}
+
+.case-study-link__protected {
+  @include position(absolute, null -0.25rem -0.25rem null);
+  background-color: $secondary-background-color;
+  border-radius: $base-font-size;
+  display: flex;
+  font-size: $small-font-size;
+  padding: $x-small-spacing;
 }

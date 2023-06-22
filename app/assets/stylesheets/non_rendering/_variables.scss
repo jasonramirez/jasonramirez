@@ -71,7 +71,7 @@ $error-color: $tutu;
 $mark-color: $white;
 $mark-highlight-color: $ultramarine-blue;
 $notice-color: $forest-green;
-$secondary-background-color: tint($light-gray, 75%);
+$secondary-background-color: lighten($base-background-color, 15%);
 $secondary-font-color: mix($base-font-color, $black, 50%);
 
 // Unicode Characters
