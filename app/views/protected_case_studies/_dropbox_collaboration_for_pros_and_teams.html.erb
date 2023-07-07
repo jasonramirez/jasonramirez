@@ -312,16 +312,7 @@
     <% end %>
   </div>
 
-  <div data-js-carousel-actions
-    class="carousel__actions case-study-carousel-actions">
-    <a data-js-carousel-previous-card-trigger="true">
-      <%= inline_svg "icon-long-arrow-left.svg" %>
-    </a>
-
-    <a data-js-carousel-next-card-trigger="true">
-      <%= inline_svg "icon-long-arrow-right.svg" %>
-    </a>
-  </div>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -347,16 +338,7 @@
     <% end %>
   </div>
 
-  <div data-js-carousel-actions
-    class="carousel__actions case-study-carousel-actions">
-    <a data-js-carousel-previous-card-trigger="true">
-      <%= inline_svg "icon-long-arrow-left.svg" %>
-    </a>
-
-    <a data-js-carousel-next-card-trigger="true">
-      <%= inline_svg "icon-long-arrow-right.svg" %>
-    </a>
-  </div>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -382,7 +364,7 @@
     quickly and address small, validated problems with our solutions.
   </p>
 
-  <div class="case-study-image-containter">
+  <div class="case-study-image-container">
     <figure class="case-study-image">
       <%= image_tag "case_studies/dropbox-activation-double-diamond.png" %>
       <figcaption>
@@ -436,45 +418,34 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel" id="carousel">
-    <div data-js-carousel-cards-placeholder
-      class="carousel__cards-placeholder"></div>
+<section data-js-carousel class="carousel" id="carousel">
+  <div data-js-carousel-cards-placeholder
+    class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-client-space-concept-1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-client-space-concept-1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-client-space-concept-2.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-client-space-concept-2.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-client-space-concept-3.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-client-space-concept-3.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <div data-js-carousel-actions
-      class="carousel__actions case-study-carousel-actions">
-      <a data-js-carousel-previous-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-left.svg" %>
-      </a>
-
-      <a data-js-carousel-next-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-right.svg" %>
-      </a>
-    </div>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -556,38 +527,27 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel" id="carousel">
-    <div data-js-carousel-cards-placeholder
-      class="carousel__cards-placeholder"></div>
+<section data-js-carousel class="carousel" id="carousel">
+  <div data-js-carousel-cards-placeholder
+    class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-passwords-sharing-1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-passwords-sharing-1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-passwords-sharing-2.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-passwords-sharing-2.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <div data-js-carousel-actions
-      class="carousel__actions case-study-carousel-actions">
-      <a data-js-carousel-previous-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-left.svg" %>
-      </a>
-
-      <a data-js-carousel-next-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-right.svg" %>
-      </a>
-    </div>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -601,59 +561,48 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel" id="carousel">
-    <div data-js-carousel-cards-placeholder
-      class="carousel__cards-placeholder"></div>
+<section data-js-carousel class="carousel" id="carousel">
+  <div data-js-carousel-cards-placeholder
+    class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-2.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-2.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-3.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-3.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-4.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-4.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-5.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-branded-sharing-5.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <div data-js-carousel-actions
-      class="carousel__actions case-study-carousel-actions">
-      <a data-js-carousel-previous-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-left.svg" %>
-      </a>
-
-      <a data-js-carousel-next-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-right.svg" %>
-      </a>
-    </div>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -675,7 +624,7 @@
     would serve as a guide for our solution.
   </p>
 
-  <div class="case-study-image-containter">
+  <div class="case-study-image-container">
     <figure class="case-study-image">
       <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-map.png" %>
       <figcaption>
@@ -731,55 +680,44 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel" id="carousel">
-    <div data-js-carousel-cards-placeholder
-      class="carousel__cards-placeholder"></div>
+<section data-js-carousel class="carousel" id="carousel">
+  <div data-js-carousel-cards-placeholder
+    class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-2.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-3.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-4.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-      <figure data-js-carousel-card
-        class="carousel__card case-study-carousel-card">
-        <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-5.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-2.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-3.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-4.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+    <figure data-js-carousel-card
+      class="carousel__card case-study-carousel-card">
+      <%= image_tag "case_studies/dropbox-collaboration-flexible-membership-5.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <div data-js-carousel-actions
-      class="carousel__actions case-study-carousel-actions">
-      <a data-js-carousel-previous-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-left.svg" %>
-      </a>
-
-      <a data-js-carousel-next-card-trigger="true">
-        <%= inline_svg "icon-long-arrow-right.svg" %>
-      </a>
-    </div>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
