@@ -2,7 +2,9 @@
 
 <article class="content content--reading post">
   <h1 class="post-title">
-    <%= inline_svg "case_studies/dropbox-logo.svg" %>
+    <div class="post-title__image-container">
+      <%= inline_svg "case_studies/dropbox-case-study-logo.svg" %>
+    </div>
     Title
   </h1>
 
@@ -30,6 +32,10 @@
 
       <li>
         <a href="#challenges">Challenges</a>
+      </li>
+
+      <li>
+        <a href="#learnings">Learnings</a>
       </li>
 
       <li>
@@ -88,6 +94,8 @@
       </figcaption>
     <% end %>
   </div>
+
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -102,6 +110,14 @@
   <a name="challenges"></a>
   <h1>
     The Challenges
+  </h1>
+
+  <p>
+  </p>
+
+  <a name="learnings"></a>
+  <h1>
+    Learnings
   </h1>
 
   <p>
