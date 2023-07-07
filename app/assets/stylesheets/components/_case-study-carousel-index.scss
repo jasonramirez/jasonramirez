@@ -1,0 +1,14 @@
+.carousel-index {
+  display: inline-flex;
+}
+
+.carousel__index {
+  background-color: transparentize($base-font-color, 0.75);
+  height: 0.25rem;
+  margin: 0 $xx-small-spacing;
+  width: 0.25rem;
+}
+
+.carousel__index--selected  {
+  background-color: $base-font-color;
+}

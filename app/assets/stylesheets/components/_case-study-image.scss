@@ -1,22 +1,16 @@
-.case-study-image {
+.case-study-image-container {
   margin: $large-spacing 0;
 
   @include media($large-screen) {
     margin: $x-large-spacing -10vw;
-  }
-
-  &:has(figure + figure) {
-    @include media($large-screen) {
-      column-count: 2;
-      column-width: 50%;
-    }
   }
 }
 
 .case-study-image__figure {
   margin: 0;
 
-  img {
+  img,
+  video {
     max-width: $x-large-screen;
     width: 100%;
   }

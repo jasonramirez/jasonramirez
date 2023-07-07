@@ -17,7 +17,7 @@ export default class Carousel {
     this.$carouselCardsContainer = $(element).find("[data-js-carousel-cards]");
     this.$carouselActions = $(element).find("[data-js-carousel-actions]");
     this.$carouselCards = $(element).find("[data-js-carousel-card]");
-    this.$carouselIndexes = $(element).find("[data-js-carousel-index]");
+    this.$carouselIndex = $(element).find("[data-js-carousel-index]");
     this.$nextCardTrigger = $(element).find(
       "[data-js-carousel-next-card-trigger]"
     );
@@ -27,6 +27,8 @@ export default class Carousel {
 
     this._setTriggerState();
     this._setContainerSize();
+    this._setIndexContent();
+    this._setIndexSelected();
     this._bindEvents();
   }
 
@@ -45,7 +47,7 @@ export default class Carousel {
   get maxCardHeight() {
     const heightArray = this.$element
       .find("[data-js-carousel-card]")
-      .map(function() {
+      .map(function () {
         return $(this).height();
       })
       .get();
@@ -80,7 +82,7 @@ export default class Carousel {
   _nextCard() {
     event.preventDefault();
     this._increaseCount();
-    this._setSelectedDot();
+    this._setIndexSelected();
     this._setTriggerState();
     this._setLeftPosition();
   }
@@ -88,17 +90,28 @@ export default class Carousel {
   _previousCard() {
     event.preventDefault();
     this._decreaseCount();
-    this._setSelectedDot();
+    this._setIndexSelected();
     this._setTriggerState();
     this._setLeftPosition();
   }
 
-  _setSelectedDot() {
-    this.$carouselIndexes.removeClass(this.carouselIndexSelectedClass);
+  _setIndexContent() {
+    for (let i = 0; i < this.lastCard; i++) {
+      this.$carouselIndex.append(this._indexItem(i));
+    }
+  }
 
-    $(`[data-js-carousel-index="${this.currentCard - 1}"]`).addClass(
-      this.carouselIndexSelectedClass
-    );
+  _indexItem(index) {
+    return `<div data-js-carousel-index-item="${index}"
+      class="carousel__index"></div>`;
+  }
+
+  _setIndexSelected() {
+    this.$carouselIndex.children().removeClass(this.carouselIndexSelectedClass);
+
+    this.$element
+      .find(`[data-js-carousel-index-item="${this.currentCard - 1}"]`)
+      .addClass(this.carouselIndexSelectedClass);
   }
 
   _setContainerSize() {

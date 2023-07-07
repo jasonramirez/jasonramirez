@@ -1,5 +1,6 @@
 .case-study-carousel-actions {
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   padding: $base-spacing null;
   padding-left: calc(20% - 2.5rem);
 
@@ -8,8 +9,12 @@
     padding-left: 0;
   }
 
+  a {
+    line-height: 0;
+  }
+
   svg {
-    height: 1rem;
-    width: 2.5rem;
+    height: 1.75rem;
+    width: auto;
   }
 }
