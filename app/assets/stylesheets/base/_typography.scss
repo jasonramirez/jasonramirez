@@ -41,8 +41,7 @@ a {
   color: $base-font-color;
   text-decoration-color: $action-color;
   text-decoration-line: underline;
-  text-decoration-style: dotted;
-  text-decoration-thickness: 0.15rem;
+  text-decoration-thickness: 0.15em;
   text-decoration-skip-ink: none;
   text-underline-offset: 0.25rem;
   transition: all $base-duration $base-timing;
@@ -128,14 +127,8 @@ time {
 }
 
 mark {
-  background: none;
+  background: $mark-background-color;
   color: $mark-color;
-  text-decoration-color: $action-color;
-  text-decoration-line: underline;
-  text-decoration-skip: none;
-  text-decoration-style: solid;
-  text-decoration-thickness: 0.35rem;
-  text-underline-offset: 0.25rem;
 }
 
 del {
