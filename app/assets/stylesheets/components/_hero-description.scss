@@ -1,12 +1,8 @@
 .hero-description {
-  align-items: left;
+  align-items: center;
   display: flex;
   flex-direction: column;
   transition: all 250ms ease;
-
-  @include media($large-screen) {
-    align-items: center;
-  }
 
   a {
     color: inherit;
@@ -20,11 +16,10 @@
 .hero-description__content {
   margin: $base-spacing $base-spacing $large-spacing;
   max-width: $medium-screen;
-  text-align: left;
+  text-align: center;
 
   @include media($x-large-screen) {
     max-width: $medium-screen * 1.3;
-    text-align: center;
   }
 
   @include media($xx-large-screen) {
@@ -33,17 +28,13 @@
 }
 
 .hero-description__quote-person {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   margin: $base-spacing;
   max-width: $reading-screen;
   padding: 0 $base-spacing;
   width: 100%;
-
-  @include media($x-large-screen) {
-    align-items: center;
-  }
 
   img {
     height: 2rem;

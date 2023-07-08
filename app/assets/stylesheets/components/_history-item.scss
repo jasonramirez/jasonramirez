@@ -1,15 +1,26 @@
 .history-item {
+  align-items: center;
   display: flex;
-  margin: 1rem;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
+
+  @include media($large-screen) {
+    flex-direction: row;
+  }
 }
 
 .history-item__details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-left: 1rem;
+  padding: 1rem 0 0;
+  text-align: center;
   width: 50%;
+
+  @include media($large-screen) {
+    padding: 0 1rem 0;
+    text-align: left;
+  }
 
   h2 {
     font-size: 1.25rem;
@@ -23,18 +34,16 @@
 }
 
 .history-item__filler {
-  width: calc(20% - 3rem);
-
   @include media($large-screen) {
     width: 50%;
   }
 }
 
 .history-item__image {
-  height: 4rem;
-  width: 4rem;
+  height: 6rem;
+  width: 6rem;
 
-  @include media($large-screen) {
+  img {
     height: 6rem;
     width: 6rem;
   }

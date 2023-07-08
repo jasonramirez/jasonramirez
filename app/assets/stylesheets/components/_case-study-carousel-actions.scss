@@ -1,14 +1,9 @@
 .case-study-carousel-actions {
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding-top: $small-spacing;
-  padding-left: calc(20% - 2.5rem);
+  padding-left: 0;
   padding-bottom: $base-spacing;
-
-  @include media($large-screen) {
-    justify-content: center;
-    padding-left: 0;
-  }
 
   a {
     line-height: 0;
