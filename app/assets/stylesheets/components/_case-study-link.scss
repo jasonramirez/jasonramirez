@@ -23,6 +23,8 @@
 .case-study-link__title {
   @include h1;
   margin-bottom: $small-spacing;
+  text-decoration-color: $action-color;
+  text-decoration-thickness: 0.2em;
 }
 
 .case-study-link__protected {
