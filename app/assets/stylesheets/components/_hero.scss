@@ -5,7 +5,7 @@
   height: calc(100vh - #{$navigation-height-mobile});
   min-height: 400px;
 
-  @include media($large-screen) {
+  @include media($medium-screen) {
     min-height: 700px;
     height: calc(100vh - #{$navigation-height});
   }
