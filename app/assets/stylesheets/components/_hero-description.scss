@@ -15,25 +15,6 @@
       color: $action-color;
     }
   }
-
-  .carousel__actions {
-    align-items: flex-start;
-    padding-left: calc(20% - 2.5rem);
-
-    @include media($large-screen) {
-      justify-content: center;
-      padding-left: 0;
-    }
-  }
-
-  .carousel__actions a {
-    margin-bottom: $large-spacing;
-  }
-
-  .carousel__actions svg {
-    height: 1rem;
-    width: 2.5rem;
-  }
 }
 
 .hero-description__content {
