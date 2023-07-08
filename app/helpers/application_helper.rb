@@ -1,13 +1,19 @@
 module ApplicationHelper
-  def themed_stylesheet
-    return "application_#{theme}"
+  def theme_content
+    theme_color
   end
 
+  def theme_stylesheet
+    "application_#{theme}"
+  end
+
+  private
+
   def theme
-    if cookies[:theme].blank?
-      cookies[:theme] = "dark"
-    else
-      cookies[:theme]
-    end
+    cookies[:theme] ||= "dark"
+  end
+
+  def theme_color
+    theme == "dark" ? "#181923" : "#fffaed"
   end
 end

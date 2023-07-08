@@ -6,12 +6,12 @@
     <meta content="NOODP" name="ROBOTS">
     <meta name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000">
+    <meta name="theme-color" content="<%= theme_content %>">
     <%= render "favicons" %>
     <title>
       <%= title %>
     </title>
-    <%= stylesheet_link_tag :application, media: "all" %>
+    <%= stylesheet_link_tag theme_stylesheet, media: "all" %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
   </head>
