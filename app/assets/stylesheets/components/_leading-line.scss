@@ -3,7 +3,7 @@
   width: 100%;
 
   &::after {
-    background-color: lighten($base-background-color, 25%);
+    background-color: map-get($colors, tertiary);
     display: block;
     content: " ";
     height: 100%;

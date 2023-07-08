@@ -50,8 +50,8 @@
 .hero_leading-line {
   background: linear-gradient(
     0deg,
-    lighten($base-background-color, 20%) 0%,
-    $base-background-color 100%
+    map-get($colors, tertiary),
+    transparentize(map-get($colors, tertiary), 1)
   );
   height: 100%;
   margin-left: 20%;
@@ -67,7 +67,7 @@
   animation-iteration-count: infinite;
   animation-name: guiding-light;
   animation-timing-function: linear;
-  background: lighten($base-background-color, 20%);
+  background: map-get($colors, tertiary);
   content: "";
   height: 2rem;
   left: 20%;

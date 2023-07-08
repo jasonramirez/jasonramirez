@@ -9,4 +9,4 @@ Rails.application.config.assets.version = "1.0"
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w( carousel.js flexible_textarea.js jquery.min.js jquery_ujs.js reading-progress-bar.js sky_labels.js )
+Rails.application.config.assets.precompile += %w( application_dark.css application_light.css carousel.js flexible_textarea.js jquery.min.js jquery_ujs.js reading-progress-bar.js sky_labels.js )

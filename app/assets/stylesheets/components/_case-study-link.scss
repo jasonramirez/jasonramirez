@@ -1,6 +1,5 @@
 .case-study-link {
   align-items: flex-start;
-  border-bottom: 0;
   display: inline-flex;
   flex-direction: column;
   margin-bottom: $xx-large-spacing;
@@ -24,15 +23,11 @@
 .case-study-link__title {
   @include h1;
   margin-bottom: $small-spacing;
-  text-decoration-color: $action-color;
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
-  text-decoration-thickness: 0.2rem;
 }
 
 .case-study-link__protected {
   @include position(absolute, null -0.25rem -0.25rem null);
-  background-color: $secondary-background-color;
+  background-color: $base-background-color;
   border-radius: $base-font-size;
   display: flex;
   font-size: $small-font-size;

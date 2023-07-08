@@ -9,7 +9,7 @@
 
 .sky-label label {
   @include position(absolute, 0 null null 0);
-  color: transparentize($sky-labels-color, 0.5);
+  color: $secondary-font-color;
   cursor: text;
   line-height: $sky-label-line-height;
   padding: 1rem;
@@ -19,7 +19,7 @@
 
 .sky-label-focused label,
 .sky-label-has-text label {
-  color: $sky-labels-color;
+  color: $secondary-font-color;
   cursor: default;
   left: -(1rem);
   top: -($base-spacing * 1.65);

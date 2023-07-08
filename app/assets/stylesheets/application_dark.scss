@@ -4,7 +4,10 @@
 @import "bourbon";
 @import "neat";
 
-@import "non_rendering/**/*";
+@import "themes/dark";
+
+@import "variables/**/*";
+@import "animations/**/*";
 @import "mixins/**/*";
 @import "base/**/*";
 

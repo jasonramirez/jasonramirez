@@ -1,5 +1,5 @@
 fieldset {
-  background-color: $secondary-background-color;
+  background-color: $base-background-color;
   border: $base-border;
   margin: 0 0 $small-spacing;
   padding: $base-spacing;
@@ -13,11 +13,11 @@ select {
   font-size: $base-font-size;
 
   &::placeholder {
-    color: transparentize($sky-labels-color, 0.5);
+    color: $secondary-font-color;
   }
 
   &:focus::placeholder {
-    color: $sky-labels-color;
+    color: $secondary-font-color;
   }
 }
 

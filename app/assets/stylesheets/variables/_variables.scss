@@ -42,38 +42,23 @@ $x-large-spacing: 6rem;
 $xx-large-spacing: 9rem;
 
 // Colors
-$dark-grey: #121212;
-$black: #000;
-$code-gray: #f8f8f8;
-$forest-green: #27c34c;
-$light-gray: #cfcfcf;
-$mirage: #181923;
-$sun: #ffed2b;
-$tutu: #fbe3e4;
-$ultramarine-blue: #1246ff;
-$white: #fff;
-$warm-white: #fffaed;
-$zicron: #e1e1e1;
+$base-background-color: map-get($colors, primary);
+$base-font-color: map-get($colors, secondary);
+$secondary-font-color: map-get($colors, secondary);
+$base-heading-font-color: map-get($colors, secondary);
+$blockquote-color:  map-get($colors, secondary);
+$code-background-color: map-get($colors, primary);
+$heading-font-color: map-get($colors, secondary);
+$mark-background-color: map-get($colors, primary);
+$mark-color: map-get($colors, secondary);
 
-// Colors In Use
+// Colors for all themes
 $action-color: $ultramarine-blue;
 $alert-color: $sun;
-$base-background-color: $mirage;
-$base-light-background-color: $warm-white;
-$base-font-color: $warm-white;
-$base-light-font-color: $mirage;
-$heading-font-color: $warm-white;
-$base-heading-font-color: $mirage;
-$blockquote-color: $base-font-color;
 $button-background-color: $action-color;
-$button-color: $white;
-$code-background-color: lighten($base-background-color, 10%);
+$button-color: $warm-white;
 $error-color: $tutu;
-$mark-color: $white;
-$mark-background-color: $ultramarine-blue;
 $notice-color: $forest-green;
-$secondary-background-color: lighten($base-background-color, 15%);
-$secondary-font-color: mix($base-font-color, $mirage, 50%);
 
 // Unicode Characters
 $hamburger-icon: "\2630";
@@ -83,21 +68,25 @@ $base-duration: 250ms;
 $base-timing: ease;
 
 // Border
-$base-border-color: lighten($base-background-color, 10%);
-$light-border-color: rgba($light-gray, 0.125);
-$base-border: 1px solid $light-border-color;
+$base-border-color: map-get($colors, tertiary);
+$base-border: 1px solid $base-border-color;
 
 // Forms
-$input-background-color: lighten($base-background-color, 15%);
+$input-background-color: darken($base-background-color, 15%);
 $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
-$sky-labels-color: $base-font-color;
-
-// Component details
-$case-study-page-navigation-width: 50vw;
 
 // Z-index
 $z-index-flashes: 2;
 $z-index-highest: 1;
 $base-z-index: 0;
 $z-index-below-content: -1;
+
+// Breakpoints
+$x-small-screen: 320px;
+$small-screen: 420px;
+$reading-screen: 540px;
+$medium-screen: 600px;
+$large-screen: 900px;
+$x-large-screen: 1240px;
+$xx-large-screen: 1560px;

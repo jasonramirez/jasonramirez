@@ -133,7 +133,7 @@
   }
 
   tr:nth-child(odd) {
-    background-color: rgba($white, 0.05);
+    background-color: lighten($base-background-color, 0.05);
   }
 
   td {

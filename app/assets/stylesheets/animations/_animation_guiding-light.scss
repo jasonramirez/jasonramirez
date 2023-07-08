@@ -1,12 +1,12 @@
 @keyframes guiding-light {
   0% {
-    background: lighten(#121212, 50%);
+    background: transparentize(map-get($colors, tertiary), 0);
     opacity: 0;
     top: 0;
   }
 
   50% {
-    background: lighten(#121212, 90%);
+    background: map-get($colors, tertiary);
     opacity: 1;
     top: calc(50% - 2rem);
   }
