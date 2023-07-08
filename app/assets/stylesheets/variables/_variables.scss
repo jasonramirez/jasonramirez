@@ -72,7 +72,7 @@ $base-border-color: map-get($colors, tertiary);
 $base-border: 1px solid $base-border-color;
 
 // Forms
-$input-background-color: darken($base-background-color, 15%);
+$input-background-color: map-get($colors, tertiary);
 $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
 
