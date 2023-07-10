@@ -10,11 +10,11 @@ export default class FlexibleTextarea {
 
   _resize() {
     this.$element.style.height = "5px";
-    this.$element.style.height = element.scrollHeight + "px";
+    this.$element.style.height = this.$element.scrollHeight + "px";
   }
 }
 
-$(document).on("turbolinks:load", function() {
+$(window).on("load", () => {
   $("[data-js-flexible-textarea]").each(
     (index, element) => new FlexibleTextarea(element)
   );

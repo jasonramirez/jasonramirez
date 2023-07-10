@@ -1,25 +1,33 @@
 table {
-  font-family: $table-font-family;
+  background-color: $base-background-color;
   border-collapse: collapse;
+  border: $base-border;
+  font-family: $table-font-family;
   font-feature-settings: "kern", "liga", "tnum";
-  margin: $small-spacing 0;
+  font-size: $base-font-size;
+  margin-bottom: $medium-spacing;
   width: 100%;
 }
 
 th {
-  border-bottom: 1px solid shade($base-border-color, 25%);
+  background-color: $base-background-color;
   font-weight: 600;
-  padding: $small-spacing 0;
+  padding: $small-spacing;
   text-align: left;
+  white-space: nowrap;
 }
 
 td {
-  border-bottom: $base-border;
-  padding: $small-spacing 0;
+  padding: $small-spacing;
+  text-align: center;
 }
 
 tr,
 td,
 th {
   vertical-align: middle;
+}
+
+tr:nth-child(odd) {
+  background-color: $input-background-color;
 }
