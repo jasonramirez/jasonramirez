@@ -3,6 +3,7 @@
   display: inline-flex;
   flex-direction: column;
   margin-bottom: $xx-large-spacing;
+  text-decoration: none;
 }
 
 .case-study-link__image-container {
@@ -27,6 +28,8 @@
   line-height: $heading-line-height;
   margin-bottom: $small-spacing;
   text-decoration-color: $action-color;
+  text-decoration-line: underline;
+  text-decoration-skip-ink: none;
   text-decoration-thickness: $link-text-decoration-thickness;
   text-transform: capitalize;
   text-underline-offset: $link-text-underline-offset;
