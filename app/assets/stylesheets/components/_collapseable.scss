@@ -46,6 +46,7 @@
 
   svg {
     height: 1rem;
+    margin-left: $base-spacing;
     transform: translateY(10%);
     transition-duration: $base-duration;
     transition-property: transform;
