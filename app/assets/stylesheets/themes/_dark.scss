@@ -6,4 +6,5 @@ $colors: (
   primary: $mirage,
   secondary: $warm-white,
   tertiary: transparentize($warm-white, 0.8),
+  quaternary: transparentize($warm-white, 0.95)
 );

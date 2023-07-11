@@ -54,7 +54,7 @@ $mark-color: map-get($colors, secondary);
 
 // Colors for all themes
 $action-color: $ultramarine-blue;
-$alert-color: $sun;
+$alert-color: map-get($colors, secondary);
 $button-background-color: $action-color;
 $button-color: $warm-white;
 $error-color: $tutu;
@@ -76,7 +76,7 @@ $base-border-color: map-get($colors, tertiary);
 $base-border: 1px solid $base-border-color;
 
 // Forms
-$input-background-color: map-get($colors, tertiary);
+$input-background-color: map-get($colors, quaternary);
 $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
 

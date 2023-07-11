@@ -16,6 +16,18 @@
       <li class="navigation__link">
         <%= link_to t(".sign_out"), destroy_admin_session_path, method: :delete %>
       </li>
+
+      <li class="navigation__link">
+        <% if cookies[:theme] == "dark" %>
+          <%= link_to set_theme_path(theme: "light") do %>
+            <%= inline_svg "icon-theme-change.svg" %>
+          <% end %>
+        <% else %>
+          <%= link_to set_theme_path(theme: "dark") do %>
+            <%= inline_svg "icon-theme-change.svg" %>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </header>
