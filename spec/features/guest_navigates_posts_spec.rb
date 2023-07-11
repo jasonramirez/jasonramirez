@@ -36,7 +36,7 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_one)
 
         within ".case-study-footer" do
-          click_link "Next"
+          click_link "Post Two"
         end
 
         expect(post_title_section).to have_text "Post Two"
@@ -50,7 +50,7 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_one)
 
         within ".case-study-footer" do
-          click_link "Previous"
+          click_link "Post Four"
         end
 
         expect(post_title_section).to have_text "Post Four"
@@ -66,7 +66,7 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_four)
 
         within ".case-study-footer" do
-          click_link "Next"
+          click_link "Post One"
         end
 
         expect(post_title_section).to have_text "Post One"
@@ -80,7 +80,7 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_four)
 
         within ".case-study-footer" do
-          click_link "Previous"
+          click_link "Post Two"
         end
 
         expect(post_title_section).to have_text "Post Two"
@@ -98,7 +98,7 @@ RSpec.feature "Guest navigates posts from the footer" do
   end
 
   def post_title_section
-    find(:css, ".page > .content > h1")
+    find(:css, ".page > .content > .post-title")
   end
 
   def footer_section
