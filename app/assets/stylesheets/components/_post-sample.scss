@@ -10,7 +10,12 @@
 
 .post-sample__title {
   line-height: $reading-line-height;
-  padding-right: $base-spacing;
+  margin: 0;
+  padding-right: $large-spacing;
+
+  @include media($medium-screen) {
+    padding-right: $x-large-spacing;
+  }
 }
 
 .post-sample__date {
