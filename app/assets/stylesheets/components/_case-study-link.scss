@@ -21,11 +21,19 @@
 }
 
 .case-study-link__title {
-  @include h1;
+  font-family: $heading-font-family;
+  font-size: 3rem;
+  font-weight: $heading-font-weight;
+  line-height: $heading-line-height;
   margin-bottom: $small-spacing;
   text-decoration-color: $action-color;
   text-decoration-thickness: $link-text-decoration-thickness;
+  text-transform: capitalize;
   text-underline-offset: $link-text-underline-offset;
+
+  @include media($medium-screen) {
+    font-size: 4rem;
+  }
 }
 
 .case-study-link__protected {

@@ -5,41 +5,12 @@
   line-height: $reading-line-height;
   transition: all 250ms ease;
 
-  blockquote {
-    margin: $x-large-spacing 0;
-    padding: 0;
-
-    @media (min-width: $reading-screen) {
-      margin: $xx-large-spacing 0;
-    }
-
-    mark {
-      background-color: transparent;
-      font-family: $heading-font-family;
-      font-weight: bold;
-      font-size: $blockquote-font-size;
-      line-height: $blockquote-line-height;
-    }
-
-    small {
-      color: $secondary-font-color;
-    }
-  }
-
   h1,
   h2,
   h3 {
+    margin-bottom: 0.5em;
+    margin-top: 3em;
     word-wrap: break-word;
-  }
-
-  * + h1,
-  * + h2,
-  * + h3 {
-    margin-top: $x-large-spacing;
-  }
-
-  h2 + h3 {
-    margin-top: $base-spacing;
   }
 
   hr {
@@ -48,6 +19,15 @@
 
   img {
     margin: 0 auto;
+  }
+
+  p,
+  table {
+    margin-bottom: $reading-paragraph-spacing / 1.2;
+
+    @include media($large-screen) {
+      margin-bottom: $reading-paragraph-spacing;
+    }
   }
 
   p:has(img + img) {
@@ -70,47 +50,6 @@
     }
   }
 
-  p,
-  table {
-    margin-bottom: $reading-paragraph-spacing / 1.2;
-
-    @include media($large-screen) {
-      margin-bottom: $reading-paragraph-spacing;
-    }
-  }
-
-  mark {
-    code {
-      background-color: darken($mark-background-color, 5%);
-      border-color: darken($mark-background-color, 25%);
-      color: $mark-color;
-    }
-  }
-
-  ol {
-    padding-left: $base-spacing * 1.25;
-  }
-
-  pre {
-    background-color: $code-background-color;
-    border-radius: $base-border-radius;
-    margin-bottom: $large-spacing;
-    padding: $base-spacing;
-
-    code {
-      border: none;
-    }
-  }
-
-  small {
-    blockquote & {
-      font-style: italic;
-    }
-  }
-
-  + .post {
-    margin-top: 0;
-  }
 }
 
 .content__title {

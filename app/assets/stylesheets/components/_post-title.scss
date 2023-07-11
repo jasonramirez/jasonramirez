@@ -1,6 +1,9 @@
 .post-title {
+  font-family: $heading-font-family;
   font-size: 3rem;
-  margin-top: 0;
+  font-weight: $heading-font-weight;
+  line-height: $heading-line-height;
+  margin-bottom: $x-large-spacing;
   text-transform: capitalize;
 
   @include media($medium-screen) {

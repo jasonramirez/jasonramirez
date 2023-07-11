@@ -12,18 +12,21 @@ $reading-font-family: "Charter", serif;
 $base-font-size: 1rem;
 $small-font-size: 0.85rem;
 $reading-font-size: 1.25rem;
+$code-font-size: 1rem;
 $blockquote-font-size: 2.5rem;
 
 // Font Weights
+$heading-font-weight: bold;
 $reading-font-weight: 400;
 
 // Line height
 $base-line-height: 1.6;
 $blockquote-line-height: 1.35;
-$sky-label-line-height: 1.6;
-$heading-line-height: 1.35;
 $button-line-height: 2;
+$code-line-height: 1.1;
+$heading-line-height: 1.35;
 $reading-line-height: 1.6;
+$sky-label-line-height: 1.6;
 
 // Other Sizes
 $base-border-radius: 3px;
@@ -47,7 +50,7 @@ $base-font-color: map-get($colors, secondary);
 $secondary-font-color: map-get($colors, secondary);
 $base-heading-font-color: map-get($colors, secondary);
 $blockquote-color:  map-get($colors, secondary);
-$code-background-color: map-get($colors, primary);
+$code-background-color: map-get($colors, quaternary);
 $heading-font-color: map-get($colors, secondary);
 $mark-background-color: map-get($colors, primary);
 $mark-color: map-get($colors, secondary);
@@ -64,7 +67,7 @@ $notice-color: $forest-green;
 $hamburger-icon: "\2630";
 
 // Links
-$link-text-decoration-thickness: 0.15em;
+$link-text-decoration-thickness: 0.1em;
 $link-text-underline-offset: 0.15em;
 
 // Animations
