@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   height: calc(100vh - #{$navigation-height-mobile});
-  min-height: 400px;
+  min-height: 600px;
 
   @include media($medium-screen) {
     height: calc(100vh - #{$navigation-height});
-    min-height: 700px;
+    min-height: 800px;
   }
 }
 
@@ -18,7 +18,12 @@
 }
 
 .hero_title {
+  font-family: $heading-font-family;
   font-size: 22vw;
+  font-weight: $heading-font-weight;
+  letter-spacing: -0.0125em;
+  line-height: $heading-line-height;
+  margin: 0;
   text-align: center;
   width: 100%;
 
@@ -55,15 +60,14 @@
 }
 
 .hero_guiding-light {
-  animation-duration: 3s;
+  animation-duration: 1.5s;
   animation-iteration-count: infinite;
   animation-name: guiding-light;
   animation-timing-function: linear;
-  background: map-get($colors, tertiary);
+  background: map-get($colors, secondary);
   content: "";
-  height: 2rem;
+  height: 1rem;
   position: absolute;
   top: 0;
-  transform: translateX(-50%);
-  width: 1px;
+  width: 3px;
 }
