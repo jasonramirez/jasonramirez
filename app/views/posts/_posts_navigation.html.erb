@@ -1,9 +1,7 @@
 <footer class="case-study-footer">
   <nav class="case-study-footer-navigation">
     <%= link_to post_path(@previous_post), class: "case-study-footer-navigation__link left" do %>
-      <span>
-        Previous
-      </span>
+      <%= inline_svg "icon-long-arrow-left.svg" %>
       <h3>
         <%= @previous_post.title %>
       </h3>
@@ -13,9 +11,7 @@
     <% end %>
 
     <%= link_to post_path(@next_post), class: "case-study-footer-navigation__link right" do %>
-      <span>
-        Next
-      </span>
+      <%= inline_svg "icon-long-arrow-right.svg" %>
       <h3>
         <%= @next_post.title %>
       </h3>

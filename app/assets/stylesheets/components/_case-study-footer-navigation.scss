@@ -28,11 +28,8 @@
   flex-direction: column;
   font-weight: normal;
   line-height: $reading-line-height / 1.2;
+  text-decoration: none;
   width: 50%;
-
-  &:not(.button) {
-    border: none;
-  }
 
   &.left {
     @include media($large-screen) {
@@ -55,18 +52,9 @@
     color: $action-color;
   }
 
-  span {
-    character-spacing: 0.05rem;
-    font-family: $heading-font-family;
-    font-size: $small-font-size;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    font-weight: bold;
-    margin-top: $base-spacing;
-    font-family: $heading-font-family;
+  svg {
+    height: $small-font-size;
+    width: auto;
   }
 
   p {
