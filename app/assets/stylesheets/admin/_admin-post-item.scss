@@ -1,36 +1,18 @@
 .admin-post-item {
-  list-style-type: none;
-  padding: $base-spacing;
-  border: none;
-  width: 100%;
-
-  @include media($large-screen) {
-    padding: 0;
-  }
+  align-items: center;
+  display: flex;
+  margin-bottom: $base-spacing;
 }
 
 .admin-post-item__title {
-  h3 {
-    display: block;
-    margin: 0;
-    max-width: 75%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    transition: all $base-duration;
+  flex-grow: 1;
 
-    .not-published & {
-      color: darken($base-font-color, 50%);
-    }
-
-    .not-published &:hover {
-      color: $action-color;
-    }
+  .not-published & {
+    color: rgba($base-font-color, 0.3);
   }
 }
 
 .admin-post-item__published-status {
-  font-size: $small-font-size;
   width: 7rem;
 
   .not-published & {
@@ -40,8 +22,12 @@
 
 .admin-post-item__time {
   width: 4rem;
+
+  .not-published & {
+    color: rgba($base-font-color, 0.3);
+  }
 }
 
 .admin-post-item__delete {
-  width: 3.5rem;
+  width: 4rem;
 }
