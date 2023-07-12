@@ -48,7 +48,7 @@ $xx-large-spacing: 9rem;
 $base-background-color: map-get($colors, primary);
 $base-font-color: map-get($colors, secondary);
 $base-border-color: map-get($colors, tertiary);
-$secondary-font-color: map-get($colors, tertiary);
+$secondary-font-color: rgba(map-get($colors, secondary), 0.6);
 $base-heading-font-color: map-get($colors, secondary);
 $blockquote-color:  map-get($colors, secondary);
 $code-font-color: #f5e3b5;

@@ -1,8 +1,6 @@
 .post-sample {
   align-items: top;
   color: $base-font-color;
-  display: flex;
-  justify-content: space-between;
   margin: 0 0 $large-spacing;
   padding-bottom: $base-spacing;
   text-decoration: none;
@@ -11,15 +9,9 @@
 .post-sample__title {
   line-height: $reading-line-height;
   margin: 0;
-  padding-right: $large-spacing;
-
-  @include media($medium-screen) {
-    padding-right: $x-large-spacing;
-  }
 }
 
 .post-sample__date {
-  margin: 0.5rem 0;
-  color: rgba($base-font-color, 0.5);
-  font-weight: normal;
+  color: $secondary-font-color;
+  margin: $x-small-spacing 0;
 }

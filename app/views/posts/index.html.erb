@@ -1,4 +1,4 @@
-<section class="content content--reading">
+<section class="content content--slim">
   <form id="search_form" action="<%= posts_path %>">
     <%= search_field_tag :search,
       params[:search],
@@ -28,9 +28,11 @@
               <%= link_to searched_post.display_title, post_path(searched_post) %>
             </h2>
 
-            <time class="post-sample__date">
-              <%= searched_post.pretty_published_date %>
-            </time>
+            <span class="post-sample__date">
+              Published <%= searched_post.pretty_published_date %>
+              and 
+              updated <%= time_ago_in_words(searched_post.updated_at) %> ago
+            </span>
           </li>
         <% end %>
       </ol>
@@ -48,9 +50,11 @@
           <%= link_to post.display_title, post_path(post) %>
         </h2>
 
-        <time class="post-sample__date">
-          <%= post.pretty_published_date %>
-        </time>
+        <span class="post-sample__date">
+          Published <%= post.pretty_published_date %>
+          and 
+          updated <%= time_ago_in_words(post.updated_at) %> ago
+        </span>
       </article>
     <% end %>
   <% end %>
