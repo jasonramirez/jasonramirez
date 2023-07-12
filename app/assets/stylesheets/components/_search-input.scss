@@ -20,12 +20,4 @@
       background-image: image-url("icon-search--light.svg");
     }
   }
-
-  .dark &:placeholder-shown {
-    background-image: image-url("icon-search-empty--dark.svg");
-  }
-
-  .dark &:focus {
-    background-image: image-url("icon-search--dark.svg");
-  }
 }
