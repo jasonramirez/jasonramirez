@@ -1,5 +1,5 @@
 <section class="history">
-  <% history_item_list.each do |history_item| %>
+  <% history_item_list.each_with_index do |history_item, index| %>
     <section class="history-item">
       <div class="history-item__filler"></div>
 
@@ -18,6 +18,8 @@
       </div>
     </section>
 
-    <div class="leading-line"></div>
+    <% unless index == history_item_list.size - 1 %>
+      <div class="leading-line"></div>
+    <% end %>
   <% end %>
 </section>
