@@ -6,6 +6,11 @@
   text-decoration: none;
 }
 
+.post-sample--search-result {
+  margin-bottom: 0;
+  padding-bottom: $small-spacing;
+}
+
 .post-sample__title {
   line-height: $reading-line-height;
   margin: 0;

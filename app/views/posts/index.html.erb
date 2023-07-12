@@ -23,16 +23,16 @@
 
       <ol class="large-ordered-list">
         <% @searched_posts.each do |searched_post| %>
-          <li class="post-sample">
-            <h2 class="post-sample__title">
+          <li class="post-sample post-sample--search-result">
+            <h4 class="post-sample__title">
               <%= link_to searched_post.display_title, post_path(searched_post) %>
-            </h2>
+            </h4>
 
-            <span class="post-sample__date">
+            <div class="post-sample__date">
               Published <%= searched_post.pretty_published_date %>
               and 
               updated <%= time_ago_in_words(searched_post.updated_at) %> ago
-            </span>
+            </div>
           </li>
         <% end %>
       </ol>
