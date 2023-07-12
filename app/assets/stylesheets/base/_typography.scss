@@ -53,9 +53,8 @@ body {
 code {
   @include padding(0rem 0.5rem);
   background-color: $code-background-color;
-  border-radius: $base-border-radius;
-  border: solid 1px darken($code-background-color, 5%);
-  color: lighten($base-font-color, 10%);
+  color: $code-font-color;
+  border: $code-border;
   font-family: $code-font-family;
   font-size: $code-font-size;
 

@@ -47,10 +47,13 @@ $xx-large-spacing: 9rem;
 // Colors
 $base-background-color: map-get($colors, primary);
 $base-font-color: map-get($colors, secondary);
+$base-border-color: map-get($colors, tertiary);
 $secondary-font-color: map-get($colors, secondary);
 $base-heading-font-color: map-get($colors, secondary);
 $blockquote-color:  map-get($colors, secondary);
-$code-background-color: map-get($colors, quaternary);
+$code-font-color: #f5e3b5;
+$code-background-color: lighten($mirage, 3%);
+$code-border-color: lighten($mirage, 5%);
 $heading-font-color: map-get($colors, secondary);
 $mark-background-color: map-get($colors, primary);
 $mark-color: map-get($colors, secondary);
@@ -74,9 +77,9 @@ $link-text-underline-offset: 0.15em;
 $base-duration: 250ms;
 $base-timing: ease;
 
-// Border
-$base-border-color: map-get($colors, tertiary);
+// Borders
 $base-border: 1px solid $base-border-color;
+$code-border: 1px solid $code-border-color;
 
 // Forms
 $input-background-color: map-get($colors, quaternary);
