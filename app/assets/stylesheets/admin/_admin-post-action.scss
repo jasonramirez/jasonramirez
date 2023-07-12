@@ -1,6 +1,7 @@
 .admin-post-action {
   background-color: $base-background-color;
   display: flex;
+  justify-content: space-between;
   margin-bottom: $large-spacing;
   padding: $x-small-spacing 0;
   position: sticky;

@@ -1,7 +1,6 @@
 .button {
   background-color: $button-background-color;
   border: none;
-  border-radius: $base-border-radius;
   box-shadow: 0 1rem 2rem rgba($button-background-color, 0.15);
   color: $button-color;
   character-spacing: 0.05rem;
@@ -12,14 +11,16 @@
   line-height: $button-line-height;
   letter-spacing: 0.025rem;
   outline: $action-color solid 0px;
-  padding: $x-small-spacing $base-spacing;
+  padding: $xx-small-spacing $small-spacing;
   position: relative;
   text-transform: uppercase;
   transition: all $base-duration;
 
   &:hover {
     background-color: darken($button-background-color, 10%);
+    color: $button-color;
     cursor: pointer;
+    text-decoration: none;
   }
 
   & + & {
