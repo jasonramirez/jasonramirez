@@ -7,9 +7,25 @@
 
   &:placeholder-shown {
     background-image: image-url("icon-search-empty.svg");
+
+    .light & {
+      background-image: image-url("icon-search-empty--light.svg");
+    }
   }
 
   &:focus {
     background-image: image-url("icon-search.svg");
+
+    .light & {
+      background-image: image-url("icon-search--light.svg");
+    }
+  }
+
+  .dark &:placeholder-shown {
+    background-image: image-url("icon-search-empty--dark.svg");
+  }
+
+  .dark &:focus {
+    background-image: image-url("icon-search--dark.svg");
   }
 }

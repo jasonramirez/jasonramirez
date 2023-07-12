@@ -15,7 +15,7 @@
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="<%= body_class %>">
+  <body class="<%= body_class %> <%= cookies[:theme] %>">
     <%= render "flashes" %>
     <%= render "navigation" %>
     <main class="page">
