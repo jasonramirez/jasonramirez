@@ -18,6 +18,20 @@
       <%= @post.title %>
     </div>
 
+    <div class="post-meta">
+      <%= image_tag "hero-headshot.png", class: "post-meta__avatar" %>
+
+      <div class="post-meta__stats">
+        <small class="post-meta__published">
+          Jason Ramirez published <%= @post.pretty_published_date %>
+        </small>
+
+        <small class="post-meta__updated">
+          Updated <%= time_ago_in_words(@post.updated_at) %> ago
+        </small>
+      </div>
+    </div>
+
     <%= MarkdownParser.new(@post.body).markdown_to_html %>
   <% else %>
     <p>

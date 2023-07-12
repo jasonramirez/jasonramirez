@@ -1,0 +1,31 @@
+.post-meta {
+  align-items: center;
+  display: flex;
+  font: $base-font-family;
+  justify-content: flex-start;
+  margin-bottom: $x-large-spacing;
+}
+
+.post-meta__avatar {
+  border-radius: 3rem;
+  height: 3rem;
+  width: 3rem;
+
+  .post-meta & {
+    margin: 0 $small-spacing 0 0;
+  }
+}
+
+.post-meta__stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-meta__published {
+  font-weight: bold;
+  font-size: $small-font-size;
+}
+
+.post-meta__updated {
+  font-size: $small-font-size;
+}
