@@ -1,5 +1,23 @@
 # Jasonramirez
 
+# Tracking
+
+## Google Analytics
+
+We're using Google Analytics for tracking basic events like page views,
+scrolling to the end of a page, etc.
+Visit [Google Analytics](analytics.google.com) to
+review this site's activity.
+
+The tracking only happens on the production site where an environment
+variable is present.
+
+## Google Ads
+
+We've connected our Google Analytics to Google Ads for improved tracking
+of ads to conversions for actions like following.
+Visit [Google Ads](ads.google.com) to review ads running and ad performance.
+
 # Development
 
 ## Getting Started
@@ -27,7 +45,6 @@ $ rake image_cleaner:find_unused_images
 ```
 
 It will remove the images. You can commit the change to finalize it.
-
 
 ## Database Management
 
