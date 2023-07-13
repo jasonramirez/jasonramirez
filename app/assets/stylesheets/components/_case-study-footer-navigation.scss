@@ -53,8 +53,14 @@
   }
 
   svg {
+    display: flex;
     height: $small-font-size;
     width: auto;
+    align-self: flex-start;
+
+    @include media($large-screen) {
+      align-self: auto;
+    }
   }
 
   p {
