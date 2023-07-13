@@ -6,14 +6,10 @@
 
   input[name="post[title]"] {
     font-family: $heading-font-family;
-    font-size: 2.5rem;
-    font-weight: bold;
   }
 
   input[name="post[long_title]"] {
     font-family: $heading-font-family;
-    font-size: 1.5rem;
-    font-weight: bold;
   }
 
   textarea {

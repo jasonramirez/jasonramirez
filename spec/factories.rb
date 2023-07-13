@@ -1,4 +1,12 @@
 FactoryBot.define do
+  factory :post_tag do
+    text { "MyString" }
+  end
+
+  factory :tag do
+    lable { "MyString" }
+  end
+
   factory :admin do
     email { "admin@example.com" }
     password { "password" }

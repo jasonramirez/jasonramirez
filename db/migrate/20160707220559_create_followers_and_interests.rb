@@ -1,4 +1,4 @@
-class CreateFollowersAndInterests < ActiveRecord::Migration
+class CreateFollowersAndInterests < ActiveRecord::Migration[4.2]
   def change
     create_table :followers_interests, id: false do |t|
       t.belongs_to :follower, index: true

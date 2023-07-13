@@ -1,0 +1,10 @@
+<section class="content content--slim" %>
+  <%= simple_form_for [:admins, @hashtag] do |f| %>
+    <%= f.input :label %>
+
+    <%= f.button :button, class: "button button--with-icon" do %>
+      <%= t(".save") %>
+      <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
+    <% end %>
+  <% end %>
+</section>

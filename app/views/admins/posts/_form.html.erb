@@ -20,6 +20,13 @@
       <%= f.input :title %>
       <%= f.input :long_title %>
       <%= f.input :video_src %>
+      <div class="admin-post-hashtags">
+        <%= f.association :hashtags,
+          as: :check_boxes,
+          label_method: :label,
+          value_method: :id 
+        %>
+      </div>
       <%= f.input :body, input_html: { "data-js-flexible-textarea": true } %>
     </div>
   <% end %>

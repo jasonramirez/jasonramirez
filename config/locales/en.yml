@@ -8,13 +8,19 @@ en:
 
   admins:
     flash:
-      created: Your post has been saved.
-      destroyed: Your post has been deleted.
+      created: Saved successfully.
+      destroyed: Deleted successfully.
       failed: There was an issue. Try again.
-      updated: Your post has been updated.
+      updated: Updated successfully.
+    hashtags:
+      index:
+        delete_hashtag: Delete
+        edit_hashtag: Edit
     navigation:
-      all_posts: All Posts
+      posts: Posts
+      hashtags: Hashtags
       new_post: New Post
+      new_hashtag: New Hashtag
       sign_out: Sign Out
     posts:
       form:

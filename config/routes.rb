@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   namespace "admins" do
     resources :posts
+    resources :hashtags
   end
 end

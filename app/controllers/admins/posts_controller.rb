@@ -54,11 +54,12 @@ class Admins::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :body,
-      :video_src,
       :long_title,
       :published,
       :published_date,
       :title,
+      :video_src,
+      hashtag_ids: [],
     )
   end
 end

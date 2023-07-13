@@ -1,32 +1,34 @@
 <section class="content content--slim">
-  <% if @posts.present? %>
-    <% @posts.each do |post| %>
-      <div class="admin-post-item <%= post.published_state_class %>">
-        <div class="admin-post-item__title">
-          <%= link_to edit_admins_post_path(post) do %>
-            <%= post.title %>
-          <% end %>
-        </div>
+  <li class="navigation__link">
+    <%= link_to t(".new_post"), new_admins_post_path %>
+  </li>
 
-        <div class="admin-post-item__published-status">
-          <%= post.published_state %>
-        </div>
-
-        <div class="admin-post-item__time">
-          <time>
-            <%= post.pretty_published_date %>
-          </time>
-        </div>
-
-        <div class="admin-post-item__delete">
-          <%= link_to [:admins, post],
-            class: "button button--link",
-            method: :delete,
-            data: {confirm: "Are you sure?"} do %>
-            <%= t(".delete_post") %>
-          <% end %>
-        </div>
+  <% @posts.each do |post| %>
+    <div class="admin-post-item <%= post.published_state_class %>">
+      <div class="admin-post-item__title">
+        <%= link_to edit_admins_post_path(post) do %>
+          <%= post.title %>
+        <% end %>
       </div>
-    <% end %>
+
+      <div class="admin-post-item__published-status">
+        <%= post.published_state %>
+      </div>
+
+      <div class="admin-post-item__time">
+        <time>
+          <%= post.pretty_published_date %>
+        </time>
+      </div>
+
+      <div class="admin-post-item__delete">
+        <%= link_to [:admins, post],
+          class: "button button--link",
+          method: :delete,
+          data: {confirm: "Are you sure?"} do %>
+          <%= t(".delete_post") %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </section>

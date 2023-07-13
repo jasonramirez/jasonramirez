@@ -1,0 +1,33 @@
+.admin-post-hashtags {
+  margin-bottom: $large-spacing;
+
+  .checkbox {
+    display: inline;
+    margin-right: $small-spacing;
+  }
+
+  input[type="checkbox"] + label,
+  input[type="checkbox"]:checked + label {
+    background-color: rgba(map-get($colors, secondary), 4%);
+    padding: $x-small-spacing $small-spacing $x-small-spacing $medium-spacing;
+    border-radius: 1rem;
+  }
+
+  input[type="checkbox"]:checked + label {
+    background-color: rgba($action-color, 25%);
+  }
+
+  input[type="checkbox"] + label::before,
+  input[type="checkbox"]:checked + label::after {
+    top: 50%;
+    left: $x-small-spacing;
+    transform: translateY(-50%);
+    border-radius: 1rem;
+  }
+
+  input[type="checkbox"]:checked + label::after {
+    outline: solid 0.15rem $action-color;
+  }
+
+}
+
