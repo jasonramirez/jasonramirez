@@ -3,13 +3,7 @@
   display: flex;
   font: $base-font-family;
   justify-content: flex-start;
-  margin-bottom: $x-large-spacing;
-
-  form {
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-end;
-  }
+  margin-bottom: $large-spacing;
 }
 
 .post-meta__avatar {
@@ -35,4 +29,3 @@
 .post-meta__updated {
   font-family: $base-font-family;
 }
-

@@ -31,17 +31,23 @@
           Updated <%= time_ago_in_words(@post.updated_at) %> ago
         </small>
       </div>
-
-      <%= button_to "", {
-        class: "link post-meta__share",
-        data: { action: "click->share#share" }} do %>
-        <%= inline_svg("icon-share.svg") %> Share
-      <% end %>
     </div>
+
+    <%= button_to "", {
+      class: "link u-margin-bottom-large",
+      data: { action: "click->share#share" }} do %>
+      <%= inline_svg("icon-share.svg") %> Share
+    <% end %>
 
     <%= content_tag(:div, parsed_body, data: {
       share_target: "text",
     }) %>
+
+    <%= button_to "", {
+      class: "link u-margin-top-large",
+      data: { action: "click->share#share" }} do %>
+      <%= inline_svg("icon-share.svg") %> Share
+    <% end %>
   </section>
 <% end %>
 
