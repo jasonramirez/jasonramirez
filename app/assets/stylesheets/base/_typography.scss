@@ -38,9 +38,11 @@ a {
 }
 
 blockquote {
+  border-top: $base-border;
+  border-bottom: $base-border;
   font-style: italic;
-  margin: $x-large-spacing 0;
-  padding: 0;
+  margin: $large-spacing 0;
+  padding: $large-spacing 0 $base-spacing;
 }
 
 body {
