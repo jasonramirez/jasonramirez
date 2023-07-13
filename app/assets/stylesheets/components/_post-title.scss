@@ -2,7 +2,7 @@
   font-family: $heading-font-family;
   font-size: 3rem;
   font-weight: $heading-font-weight;
-  line-height: $heading-line-height;
+  line-height: $heading-line-height * .9;
   margin-bottom: $x-large-spacing;
   text-transform: capitalize;
 
