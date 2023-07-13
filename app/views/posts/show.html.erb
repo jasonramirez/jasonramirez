@@ -1,10 +1,11 @@
 <div data-js-reading-progress-bar></div>
 
-<section class="content content--reading post">
-  <% if @post.published || admin_signed_in? %>
+<% if @post.published || admin_signed_in? %>
+  <section class="content content--reading post" data-controller="share"
+    data-share-url-value="<%= post_url(@post) %>">
     <% unless @post.video_src.blank? %>
       <div class="post-video">
-        <iframe src="<%= @post.video_src %>?hide_owner=true&hide_title=true&hideEmbedTopBar=true"
+        <iframe src="<%= video_src %>"
           class="post-video__video"
           frameborder="0"
           webkitallowfullscreen
@@ -14,9 +15,9 @@
       </div>
     <% end %>
 
-    <div class="post-title">
-      <%= @post.display_title %>
-    </div>
+    <%= content_tag(:div, @post.display_title, class: "post-title",  data: {
+      share_target: "title",
+    }) %>
 
     <div class="post-meta">
       <%= image_tag "headshot-zoomed-in.png", class: "post-meta__avatar" %>
@@ -30,15 +31,19 @@
           Updated <%= time_ago_in_words(@post.updated_at) %> ago
         </small>
       </div>
+
+      <%= button_to "", {
+        class: "link post-meta__share",
+        data: { action: "click->share#share" }} do %>
+        <%= inline_svg("icon-share.svg") %> Share
+      <% end %>
     </div>
 
-    <%= MarkdownParser.new(@post.body).markdown_to_html %>
-  <% else %>
-    <p>
-      <%= t(".removed") %>
-    </p>
-  <% end %>
-</section>
+    <%= content_tag(:div, parsed_body, data: {
+      share_target: "text",
+    }) %>
+  </section>
+<% end %>
 
 <% if admin_signed_in? %>
   <%= link_to "✏️", edit_admins_post_path(@post), class: "post-edit-link" %>

@@ -29,6 +29,7 @@ gem "simple_form"
 gem "slim"
 gem "sprockets"
 gem "sprockets-es6"
+gem "stimulus-rails"
 gem "title"
 gem "uglifier"
 

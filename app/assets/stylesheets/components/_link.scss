@@ -1,12 +1,18 @@
 .link {
   align-items: center;
   display: inline-flex;
+  text-decoration-color: $action-color;
+  text-decoration-line: underline;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: $link-text-decoration-thickness;
+  text-underline-offset: $link-text-underline-offset;
   transition-duration: $base-duration;
   transition-timing-function: $base-timing;
   transition: color, stroke;
 
   svg {
-    height: $base-font-size;
+    transform: translateY(-2px);
+    height: 20px;
     margin-right: $x-small-spacing;
     width: auto;
   }

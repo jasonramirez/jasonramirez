@@ -8,3 +8,4 @@ import "carousel";
 import "flexible-textarea";
 import "reading-progress-bar";
 import "sky-labels";
+import "controllers"

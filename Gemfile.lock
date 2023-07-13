@@ -332,6 +332,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stimulus-rails (1.2.1)
+      railties (>= 6.0.0)
     temple (0.10.2)
     thor (1.2.2)
     tilt (2.2.0)
@@ -413,6 +415,7 @@ DEPENDENCIES
   spring-commands-rspec
   sprockets
   sprockets-es6
+  stimulus-rails
   timecop
   title
   uglifier

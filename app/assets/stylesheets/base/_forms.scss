@@ -1,3 +1,12 @@
+button {
+  border: none;
+  background: none;
+  font-family: $button-font-family;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  text-transform: uppercase;
+}
+
 fieldset {
   background-color: $base-background-color;
   border: $base-border;
