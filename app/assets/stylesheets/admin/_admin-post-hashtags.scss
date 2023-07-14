@@ -8,6 +8,7 @@
 
   input[type="checkbox"] + label,
   input[type="checkbox"]:checked + label {
+    text-transform: lowercase;
     background-color: rgba(map-get($colors, secondary), 4%);
     padding: $x-small-spacing $small-spacing $x-small-spacing $medium-spacing;
     border-radius: 1rem;

@@ -4,10 +4,20 @@ class Hashtag < ActiveRecord::Base
   validates :label, presence: true
 
   before_save do
-    self.label = self.label.downcase.gsub(special_characters, "")
+    label_withouth_special_characters = remove_special_characters(self.label)
+
+    self.label = add_hashtag(label_withouth_special_characters)
+  end
+
+  def remove_special_characters(string)
+    string.downcase.gsub(special_characters, "")
+  end
+
+  def add_hashtag(string)
+    string.insert(0, "#")
   end
 
   def special_characters
-    /(\'|\"|\.|\*|\/|\-|\\|\+|\ )/
+    /(\'|\"|\.|\*|\/|\-|\\|\+|\ |\#)/
   end
 end
