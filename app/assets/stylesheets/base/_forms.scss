@@ -17,6 +17,7 @@ fieldset {
 input,
 label,
 select {
+  border-radius: 0;
   display: block;
   font-family: $reading-font-family;
   font-size: $base-font-size;
@@ -80,6 +81,7 @@ textarea {
 
 input[type="search"] {
   appearance: none;
+  border-radius: 0;
   box-sizing: border-box;
 }
 

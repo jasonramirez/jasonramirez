@@ -14,6 +14,23 @@
 </section>
 
 <section class="hero-description">
+  <div class="hero-description__content">
+    <% @hashtags.each_with_index do |hashtag, index| %>
+      <span class="hero-description__hashtag">
+        <form action="<%= posts_path %>">
+          <%= search_field_tag :search, hashtag.label, hidden: :true %>
+          <button type="submit" id="search_posts_submit" class="link">
+            <%= hashtag_with_comma(@hashtags.size, hashtag, index) %>
+          </button>
+        </form>
+      </span>
+    <% end %>
+  </div>
+</section>
+
+<div class="leading-line leading-line--large"></div>
+
+<section class="hero-description">
   <h1 class="hero-description__content">
     I'm a big-thinking Product Design Director driven by ambitious ideas,
     fostering 
