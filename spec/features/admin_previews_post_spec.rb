@@ -5,7 +5,7 @@ feature "Admin previews post" do
     it "shows the post" do
       sign_in_admin
       create(:post)
-      post = create(:post, title: "Post title", published: "false")
+      post = create(:post, long_title: "Post title", published: "false")
 
       visit post_path(post)
 

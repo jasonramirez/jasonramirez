@@ -20,6 +20,10 @@ FactoryBot.define do
     published_date { "2016-07-19 07:34:28" }
   end
 
+  factory :hashtag do
+    label { "hashtag" }
+  end
+
   factory :interest do
   end
 

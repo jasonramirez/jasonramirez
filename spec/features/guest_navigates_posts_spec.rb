@@ -91,10 +91,10 @@ RSpec.feature "Guest navigates posts from the footer" do
   private
 
   def create_posts
-    @post_one = create(:post, title: "Post One", published: true, published_date: Date.today)
-    @post_two = create(:post, title: "Post Two", published: true, published_date: Date.today - 1.day)
-    @post_three = create(:post, title: "Post Three", published: false, published_date: Date.today - 2.day)
-    @post_four = create(:post, title: "Post Four", published: true, published_date: Date.today - 3.day)
+    @post_one = create(:post, long_title: "Post One", published: true, published_date: Date.today)
+    @post_two = create(:post, long_title: "Post Two", published: true, published_date: Date.today - 1.day)
+    @post_three = create(:post, long_title: "Post Three", published: false, published_date: Date.today - 2.day)
+    @post_four = create(:post, long_title: "Post Four", published: true, published_date: Date.today - 3.day)
   end
 
   def post_title_section

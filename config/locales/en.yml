@@ -13,6 +13,8 @@ en:
       failed: There was an issue. Try again.
       updated: Updated successfully.
     hashtags:
+      form:
+        save: Save Changes
       index:
         delete_hashtag: Delete
         edit_hashtag: Edit
@@ -42,6 +44,9 @@ en:
     submit:
       follower:
         create: Sign up
+      hashtag:
+        create: Create Hashtag
+        update: Save Changes
       post:
         create: Create Post
         update: Save Changes

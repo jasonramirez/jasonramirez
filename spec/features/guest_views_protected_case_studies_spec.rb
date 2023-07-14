@@ -42,9 +42,13 @@ feature "Guest views protected case studies" do
 
   def case_studies
     [
-      [:title => "Dropbox Activation", :path => "dropbox_activation"],
-      [:title => "Dropbox Collaboration For Pros And Teams",
-       :path => "dropbox_collaboration_for_pros_and_teams"],
+      [
+        :title => "Smartifying Activation",
+        :path => "dropbox_smartifying_activation"
+      ],
+      [
+        :title => "Enhancing Collaboration",
+        :path => "dropbox_enhancing_collaboration"],
     ]
   end
 end
