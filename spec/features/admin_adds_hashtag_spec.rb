@@ -6,7 +6,7 @@ feature "Admin adds hashtag" do
       sign_in_admin
       visit admins_hashtags_path
 
-      click_on t("admins.navigation.new_hashtag")
+      page.find("#new_hashtag_link").click
       fill_new_hashtag_form
 
       expect(page).to have_css "input[value='#hashtagone']"

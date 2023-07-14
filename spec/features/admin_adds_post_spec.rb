@@ -6,7 +6,7 @@ feature "Admin adds post" do
       sign_in_admin
       visit admins_posts_path
 
-      click_on t("admins.navigation.new_post")
+      page.find("#new_post_link").click
       fill_new_post_form
 
       expect(page).to have_text t("admins.flash.created")
@@ -38,7 +38,7 @@ feature "Admin adds post" do
 
   context "then previews it" do
     it "shows the post" do
-      post_one = create(:post, title: "Post One", published: true)
+      create(:post, title: "Post One", published: true)
 
       sign_in_admin
       visit admins_posts_path
