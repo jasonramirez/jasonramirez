@@ -4,20 +4,27 @@
   margin: 0 0 $large-spacing;
   padding-bottom: $base-spacing;
   text-decoration: none;
-  text-transform: capitalize;
-}
-
-.post-sample--search-result {
-  margin-bottom: 0;
-  padding-bottom: $small-spacing;
 }
 
 .post-sample__title {
+  text-transform: capitalize;
   line-height: $reading-line-height;
-  margin: 0;
+  margin-bottom: $small-spacing;
 }
 
 .post-sample__date {
   color: $secondary-font-color;
   margin: $x-small-spacing 0;
+}
+
+.post-sample__hashtag {
+  display: inline-flex;
+
+  & button {
+    font-size: $small-font-size;
+    font-weight: normal;
+    margin-right: -$x-small-spacing;
+    text-transform: lowercase;
+    transform: translateX(-$xx-small-spacing);
+  }
 }

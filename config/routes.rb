@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :followers, only: [:new, :create]
-  resources :posts, only: [:index, :show]
+  resources :posts, only: [:index, :show, :search]
 
   get "admin", to: "admins/posts#index"
   get "case_studies", to: "case_studies#index"

@@ -9,53 +9,26 @@
     <button type="submit" id="search_posts_submit" hidden>
       Search
     </button>
+
+    <% unless params[:search].blank? %>
+      <%= link_to "Clear Search",
+        posts_path, class: "button u-margin-bottom-large" %>
+    <% end %>
   </form>
 
-  <% unless params[:search].blank? %>
-    <section id="search_results">
-      <small>
-        <%= pluralize(@searched_posts.count, "post", "posts") %>
-        found for search
-        "<%= params[:search] %>".
-      </small>
-
-      <div class="u-margin-bottom-x-large"></div>
-
-      <ol class="large-ordered-list">
-        <% @searched_posts.each do |searched_post| %>
-          <li class="post-sample post-sample--search-result">
-            <h4 class="post-sample__title">
-              <%= link_to searched_post.display_title, post_path(searched_post) %>
-            </h4>
-
-            <div class="post-sample__date">
-              Published <%= searched_post.pretty_published_date %>
-              and 
-              updated <%= time_ago_in_words(searched_post.updated_at) %> ago
-            </div>
-          </li>
-        <% end %>
-      </ol>
-    </section>
-
-    <hr />
-  <% end %>
-
-  <div class="u-margin-bottom-x-large"></div>
-
-  <% if @posts.present? %>
+  <% if params[:search].blank? %>
     <% @posts.each do |post| %>
-      <article class="post-sample">
-        <h2 class="post-sample__title">
-          <%= link_to post.display_title, post_path(post) %>
-        </h2>
+      <%= render "post_sample", post: post %>
+    <% end %>
+  <% else %>
+    <small>
+      <%= pluralize(@searched_posts.count, "post", "posts") %>
+      found for search
+      "<%= params[:search] %>".
+    </small>
 
-        <span class="post-sample__date">
-          Published <%= post.pretty_published_date %>
-          and 
-          updated <%= time_ago_in_words(post.updated_at) %> ago
-        </span>
-      </article>
+    <% @searched_posts.each do |searched_post| %>
+      <%= render "post_sample", post: searched_post %>
     <% end %>
   <% end %>
 </section>

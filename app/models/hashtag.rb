@@ -18,6 +18,6 @@ class Hashtag < ActiveRecord::Base
   end
 
   def special_characters
-    /(\'|\"|\.|\*|\/|\-|\\|\+|\ |\#)/
+    /(\'|\"|\.|\*|\/|\-|\\|\+|\_|\ |\#)/
   end
 end

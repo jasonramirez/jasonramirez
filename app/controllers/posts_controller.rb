@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
   def search_posts
     if params[:search]
-      post_ids = search_title | search_body
+      post_ids = search_title | search_body | search_hashtags
 
       @searched_posts = @posts.find(post_ids)
     end
@@ -69,5 +69,11 @@ class PostsController < ApplicationController
 
   def search_body
     @posts.where("body ilike ?", "%#{params[:search]}%").pluck(:id)
+  end
+
+  def search_hashtags
+    Post.joins(:hashtags).where(
+      "hashtags.label ilike ?", "%#{params[:search]}%"
+    ).pluck(:id)
   end
 end
