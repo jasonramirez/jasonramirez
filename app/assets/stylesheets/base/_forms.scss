@@ -51,7 +51,7 @@ select[multiple=multiple] {
   font-size: $base-font-size;
   font-weight: normal;
   line-height: 1;
-  margin-bottom: $large-spacing;
+  margin-bottom: $base-spacing;
   padding: $input-padding;
   transition: border-color $base-duration $base-timing;
   width: 100%;

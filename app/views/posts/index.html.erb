@@ -1,32 +1,37 @@
 <section class="content content--slim">
-  <form id="search_form" action="<%= posts_path %>">
-    <%= search_field_tag :search,
-      params[:search],
-      class: "search-input",
-      placeholder: "Search"
-    %>
+  <div class="post-search">
+    <form id="search_form" action="<%= posts_path %>" class="post-search__form">
+      <%= search_field_tag :search,
+        params[:search],
+        class: "search-input",
+        placeholder: "Search"
+      %>
 
-    <button type="submit" id="search_posts_submit" hidden>
-      Search
-    </button>
+      <% unless params[:search].blank? %>
+        <%= link_to "Clear", posts_path, class: "button button--secondary" %>
+      <% end %>
 
-    <% unless params[:search].blank? %>
-      <%= link_to "View all posts",
-        posts_path, class: "button button--link u-margin-bottom-large" %>
-    <% end %>
-  </form>
+      <button type="submit" id="search_posts_submit" hidden>
+        Search
+      </button>
+    </form>
 
+    <div class="post-search__results">
+      <% unless params[:search].blank? %>
+        <%= pluralize(@searched_posts.count, "post", "posts") %>
+        found for search
+        "<%= params[:search] %>".
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="content content--slim">
   <% if params[:search].blank? %>
     <% @posts.each do |post| %>
       <%= render "post_sample", post: post %>
     <% end %>
   <% else %>
-    <small>
-      <%= pluralize(@searched_posts.count, "post", "posts") %>
-      found for search
-      "<%= params[:search] %>".
-    </small>
-
     <% @searched_posts.each do |searched_post| %>
       <%= render "post_sample", post: searched_post %>
     <% end %>

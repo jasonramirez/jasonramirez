@@ -1,7 +1,6 @@
 .button {
   background-color: $button-background-color;
   border: none;
-  box-shadow: 0 1rem 2rem rgba($button-background-color, 0.15);
   color: $button-color;
   character-spacing: 0.05rem;
   display: inline-block;
@@ -26,6 +25,13 @@
   & + & {
     margin-left: $base-spacing;
   }
+}
+
+.button--secondary {
+  color: $base-font-color;
+  border: $base-border;
+  text-decoration: none;
+  background-color: transparent;
 }
 
 .button--with-icon {
@@ -58,7 +64,6 @@
     outline: none;
   }
 }
-
 
 .button__icon {
   @include position(absolute, 50% $base-spacing null null);

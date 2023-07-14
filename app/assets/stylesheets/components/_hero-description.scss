@@ -33,8 +33,8 @@
 .hero-description__hashtag-count {
   @include position(absolute, 0 -1rem null null);
   border-radius: 0.5rem;
-  color: $secondary-font-color;
-  font-size: $small-font-size;
+  color: rgba($secondary-font-color, 35%);
+  font-size: $x-small-font-size;
   width: 1rem;
 }
 
