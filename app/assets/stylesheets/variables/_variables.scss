@@ -59,6 +59,7 @@ $code-border-color: lighten($mirage, 5%);
 $heading-font-color: map-get($colors, secondary);
 $mark-background-color: map-get($colors, primary);
 $mark-color: map-get($colors, secondary);
+$input-background-color: map-get($colors, quaternary);
 
 // Colors for all themes
 $action-color: $ultramarine-blue;
@@ -84,7 +85,6 @@ $base-border: 1px solid $base-border-color;
 $code-border: 1px solid $code-border-color;
 
 // Forms
-$input-background-color: map-get($colors, quaternary);
 $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
 

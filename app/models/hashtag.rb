@@ -20,4 +20,8 @@ class Hashtag < ActiveRecord::Base
   def special_characters
     /(\'|\"|\.|\*|\/|\-|\\|\+|\_|\ |\#)/
   end
+
+  def usage_count
+    Post.joins(:hashtags).where(hashtags: [self.id]).pluck(:id).size
+  end
 end

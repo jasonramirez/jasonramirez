@@ -14,31 +14,38 @@
 </section>
 
 <section class="hero-description">
-  <div class="hero-description__content">
-    <% @hashtags.each_with_index do |hashtag, index| %>
-      <span class="hero-description__hashtag">
-        <form action="<%= posts_path %>">
-          <%= search_field_tag :search, hashtag.label, hidden: :true %>
-          <button type="submit" id="search_posts_submit" class="link">
-            <%= hashtag_with_comma(@hashtags.size, hashtag, index) %>
-          </button>
-        </form>
-      </span>
-    <% end %>
-  </div>
-</section>
-
-<div class="leading-line leading-line--large"></div>
-
-<section class="hero-description">
   <h1 class="hero-description__content">
     I'm a big-thinking Product Design Director driven by ambitious ideas,
     fostering 
     <%= link_to "purpose-driven", values_path %>
     teams, and crafting 
     <%= link_to "principle-led", principles_path %>
-    products.
+    products...
   </h1>
+</section>
+
+<div class="leading-line leading-line--large"></div>
+
+<section class="hero-description">
+  <div class="hero-description__content">
+    <h1>
+      ...and I love to share
+    </h1>
+    <% @hashtags.each_with_index do |hashtag, index| %>
+      <form action="<%= posts_path %>" class="hero-description__hashtag">
+        <%= search_field_tag :search, hashtag.label, hidden: :true %>
+        <button type="submit" id="search_posts_submit">
+          <span class="link">
+            <%= hashtag.label %>
+            <span class="hero-description__hashtag-count">
+              <%= hashtag.usage_count %>
+            </span>
+          </span>
+          <%= hashtag_comma(@hashtags.size, index)%>
+        </button>
+      </form>
+    <% end %>
+  </div>
 </section>
 
 <div class="leading-line leading-line--large"></div>

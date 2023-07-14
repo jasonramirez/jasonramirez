@@ -52,7 +52,8 @@
 <% end %>
 
 <% if admin_signed_in? %>
-  <%= link_to "✏️", edit_admins_post_path(@post), class: "post-edit-link" %>
+  <%= link_to "✏️", edit_admins_post_path(@post),
+    class: "admin-floating-action-button" %>
 <% end %>
 
 <%= render "posts_navigation" %>
