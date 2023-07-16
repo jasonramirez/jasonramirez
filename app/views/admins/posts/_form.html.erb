@@ -16,18 +16,21 @@
       <%= f.input :published_date %>
     </div>
 
+
     <div class="admin-post-form">
       <%= f.input :title %>
       <%= f.input :long_title %>
       <%= f.input :video_src %>
 
-      <div class="input u-margin-bottom">
-        <label>Meta details</label>
-        <div>
-          <label>ID: <%= @post.id %></label>
-          <label>link: <%= post_url(@post) %></label>
+      <% if @post.id.present? %>
+        <div class="input u-margin-bottom">
+          <label>Post details</label>
+          <div>
+            <label>ID: <%= @post.id %></label>
+            <label>link: <%= post_url(@post) %></label>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="admin-post-hashtags">
         <%= f.association :hashtags,

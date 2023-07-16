@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "Admin adds post" do
-  context "from the navigation" do
-    it "shows a list of all posts" do
+  context "by clicking the add new posts button on the all posts page" do
+    it "successfully creates the post and shows a success flash." do
       sign_in_admin
       visit admins_posts_path
 
@@ -10,6 +10,19 @@ feature "Admin adds post" do
       fill_new_post_form
 
       expect(page).to have_text t("admins.flash.created")
+    end
+  end
+
+  context "by clicking the add new posts button on the all posts page" do
+    it "shows the id and link of the post" do
+      sign_in_admin
+      visit admins_posts_path
+
+      page.find("#new_post_link").click
+      fill_new_post_form
+
+      expect(page).to have_text Post.all.first.id
+      expect(page).to have_text post_url(Post.all.first)
     end
   end
 
@@ -35,6 +48,7 @@ feature "Admin adds post" do
       expect(page).to have_text t("admins.flash.failed")
     end
   end
+
 
   context "then previews it" do
     it "shows the post" do
