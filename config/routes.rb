@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :followers, only: [:new, :create]
   resources :posts, only: [:index, :show, :search]
 
+  match "/403", to: "errors#prohibited", via: :all
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
+
   get "admin", to: "admins/posts#index"
   get "case_studies", to: "case_studies#index"
   get "case_studies/:case_study", to: "case_studies#show"

@@ -1,0 +1,7 @@
+.u-padding-navigation-height {
+  height: $navigation-height-mobile;
+
+  @include media($large-screen) {
+    height: $navigation-height;
+  }
+}

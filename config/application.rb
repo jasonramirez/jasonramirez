@@ -21,7 +21,7 @@ Bundler.require(*Rails.groups)
 module Jasonramirez
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -33,5 +33,13 @@ module Jasonramirez
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Configure custom exception pages
+    config.exceptions_app = self.routes
+  end
+end
+
+module YourAppName
+  class Application < Rails::Application
   end
 end
