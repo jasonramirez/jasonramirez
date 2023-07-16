@@ -17,6 +17,7 @@
   display: inline-flex;
 
   button {
+    padding: 0;
     text-transform: lowercase;
     font-size: 1.25rem;
 
@@ -26,12 +27,13 @@
   }
 
   .link {
+    margin-right: -0.125rem;
     position: relative;
   }
 }
 
 .hero-description__hashtag-count {
-  @include position(absolute, 0 -1rem null null);
+  @include position(absolute, 0 -0.75rem null null);
   border-radius: 0.5rem;
   color: rgba($secondary-font-color, 35%);
   font-size: $x-small-font-size;

@@ -23,7 +23,8 @@
   & button {
     font-size: $small-font-size;
     font-weight: normal;
-    margin-right: -$x-small-spacing;
+    margin-right: $xx-small-spacing;
+    padding: 0;
     text-transform: lowercase;
     transform: translateX(-$xx-small-spacing);
   }
