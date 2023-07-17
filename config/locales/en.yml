@@ -28,6 +28,7 @@ en:
       form:
         save: Save Changes
       index:
+        all_posts: All Posts
         delete_post: Delete
         delete_confirmation: Are you sure?
     sessions:

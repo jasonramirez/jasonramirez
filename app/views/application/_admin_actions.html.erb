@@ -1,0 +1,35 @@
+<% if admin_signed_in? %>
+  <div class="admin-floating-action">
+    <% if current_page?(admins_posts_path) || current_page?(admin_path) %>
+      <%= link_to new_admins_post_path,
+        id: "new_post_link",
+        class: "admin-floating-action__button" do %>
+        <%= inline_svg "icon-plus.svg" %>
+      <% end %>
+    <% end %>
+
+    <% if current_page?(admins_hashtags_path) %>
+      <%= link_to new_admins_hashtag_path,
+        id: "new_hashtag_link",
+        class: "admin-floating-action__button" do %>
+        <%= inline_svg "icon-plus.svg" %>
+      <% end %>
+    <% end %>
+
+    <% unless request.path.include?("admin") %>
+      <%= link_to admin_path,
+        id: "admin_edit_link",
+        class: "admin-floating-action__button" do %>
+        <%= inline_svg "icon-settings.svg" %>
+      <% end %>
+
+      <% unless @post.blank? %>
+        <%= link_to edit_admins_post_path(@post),
+          id: "post_edit_link",
+          class: "admin-floating-action__button" do %>
+          <%= inline_svg "icon-pencil.svg" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

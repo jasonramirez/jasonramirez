@@ -1,10 +1,8 @@
-<%= link_to new_admins_post_path,
-  id: "new_post_link",
-  class: "admin-floating-action-button" do %>
-  <%= inline_svg "icon-plus.svg" %>
-<% end %>
-
 <section class="content content--slim">
+  <h1>
+    <%= t(".all_posts") %>
+  </h1>
+
   <% @posts.each do |post| %>
     <div class="admin-post-item <%= post.published_state_class %>">
       <div class="admin-post-item__title">

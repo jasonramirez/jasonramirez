@@ -1,21 +1,22 @@
-.admin-floating-action-button {
+.admin-floating-action {
   @include position(fixed, null $base-spacing $base-spacing null);
+}
+
+.admin-floating-action__button {
   align-items: center;
   background: $action-color;
-  border-radius: 2rem;
   display: flex;
   font-family: $heading-font-family;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: $heading-font-weight;
-  height: 3.5rem;
+  height: 3rem;
   justify-content: center;
-  width: 3.5rem;
+  width: 3rem;
+  margin-top: $small-spacing;
 
   &:active,
   &:focus,
   &:hover {
-    transform: scale(110%);
-
     svg {
       path {
         transition: all $base-duration $base-timing;
@@ -27,5 +28,9 @@
   svg {
     height: 1.5rem;
     width: 1.5rem;
+
+    path {
+      fill: $button-color;
+    }
   }
 }
