@@ -1,13 +1,15 @@
 <section class="content content--reading u-margin-top-none">
   <%= simple_form_for [:admins, @post] do |f| %>
-    <div class="admin-post-action">
-      <%= f.button :button, class: "button button--with-icon" do %>
-        <%= t(".save") %>
-        <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
+    <div class="admin-floating-action">
+      <%= f.button :button, class: "admin-floating-action__button" do %>
+        <%= inline_svg_tag "icon-button-checkmark.svg" %>
       <% end %>
 
       <% if @post.id.present? %>
-        <%= link_to "Preview", post_path(@post), class: "button" %>
+        <%= link_to post_path(@post),
+          class: "admin-floating-action__button" do %>
+          <%= inline_svg_tag "icon-preview.svg" %>
+        <% end %>
       <% end %>
     </div>
 
@@ -15,7 +17,6 @@
       <%= f.input :published, as: :boolean %>
       <%= f.input :published_date %>
     </div>
-
 
     <div class="admin-post-form">
       <%= f.input :title %>

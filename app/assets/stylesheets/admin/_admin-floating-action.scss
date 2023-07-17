@@ -5,18 +5,22 @@
 .admin-floating-action__button {
   align-items: center;
   background: $action-color;
+  color: $button-color;
   display: flex;
   font-family: $heading-font-family;
   font-size: 2rem;
   font-weight: $heading-font-weight;
   height: 3rem;
   justify-content: center;
-  width: 3rem;
   margin-top: $small-spacing;
+  width: 3rem;
 
   &:active,
   &:focus,
   &:hover {
+    background-color: darken($button-background-color, 10%);
+    cursor: pointer;
+
     svg {
       path {
         transition: all $base-duration $base-timing;
