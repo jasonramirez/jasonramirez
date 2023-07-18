@@ -38,8 +38,3 @@ module Jasonramirez
     config.exceptions_app = self.routes
   end
 end
-
-module YourAppName
-  class Application < Rails::Application
-  end
-end
