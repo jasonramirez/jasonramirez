@@ -1,12 +1,15 @@
 <section class="content content--reading u-margin-top-none">
   <%= simple_form_for [:admins, @post] do |f| %>
     <div class="admin-floating-action">
-      <%= f.button :button, class: "admin-floating-action__button" do %>
+      <%= f.button :button,
+        id: "save_post",
+        class: "admin-floating-action__button" do %>
         <%= inline_svg_tag "icon-button-checkmark.svg" %>
       <% end %>
 
       <% if @post.id.present? %>
         <%= link_to post_path(@post),
+          id: "save_and_preview_post",
           class: "admin-floating-action__button" do %>
           <%= inline_svg_tag "icon-preview.svg" %>
         <% end %>

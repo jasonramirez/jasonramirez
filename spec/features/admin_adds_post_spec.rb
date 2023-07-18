@@ -43,12 +43,11 @@ feature "Admin adds post" do
       visit new_admins_post_path
 
       fill_form(:post, :new, title: "")
-      click_button t("admins.posts.form.save")
+      page.find("#save_post").click
 
       expect(page).to have_text t("admins.flash.failed")
     end
   end
-
 
   context "then previews it" do
     it "shows the post" do
@@ -57,7 +56,7 @@ feature "Admin adds post" do
       sign_in_admin
       visit admins_posts_path
       click_link "Post One"
-      click_link "Preview"
+      page.find("#save_and_preview_post").click
 
       expect(page).to have_text  "Post One"
     end
@@ -70,7 +69,7 @@ feature "Admin adds post" do
       body: "This is the body.",
       published: true,
     )
-    click_button t("admins.posts.form.save")
+    page.find("#save_post").click
   end
 
   def sign_in_admin
