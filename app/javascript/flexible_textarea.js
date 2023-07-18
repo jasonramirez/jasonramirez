@@ -1,16 +1,21 @@
 export default class FlexibleTextarea {
   constructor(element) {
-    this.$element = element;
+    this.$element = $(element);
+
     this._bindEvents();
+    this._resize();
+  }
+
+  get _newTextAreaHeight() {
+    return `${this.$element.prop("scrollHeight")}px`;
   }
 
   _bindEvents() {
-    this.$element.oninput = this._resize();
+    this.$element.on("input", this._resize.bind(this));
   }
 
   _resize() {
-    this.$element.style.height = "5px";
-    this.$element.style.height = this.$element.scrollHeight + "px";
+    this.$element.css("height", "auto").css("height", this._newTextAreaHeight);
   }
 }
 

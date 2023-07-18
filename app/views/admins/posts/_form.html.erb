@@ -44,7 +44,8 @@
         %>
       </div>
 
-      <%= f.input :body, input_html: { "data-js-flexible-textarea": true } %>
+      <%= f.input :body, class: "admin-post-form__textarea",
+        input_html: { "data-js-flexible-textarea": true } %>
     </div>
   <% end %>
 </section>
