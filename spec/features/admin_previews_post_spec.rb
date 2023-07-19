@@ -5,11 +5,11 @@ feature "Admin previews post" do
     it "shows the post" do
       sign_in_admin
       create(:post)
-      post = create(:post, long_title: "Post title", published: "false")
+      post = create(:post, published: "false")
 
       visit post_path(post)
 
-      expect(page).to have_text "Post title"
+      expect(page).to have_text post.title
     end
   end
 

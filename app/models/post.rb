@@ -6,14 +6,6 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  def display_title
-    unless long_title.blank?
-      return long_title
-    end
-
-    title
-  end
-
   def pretty_published_date
     published_date.strftime("%-m/%-d/%y")
   end

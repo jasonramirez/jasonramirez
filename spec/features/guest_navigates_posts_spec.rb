@@ -8,8 +8,8 @@ RSpec.feature "Guest navigates posts from the footer" do
 
         visit post_path(@post_one)
 
-        expect(footer_section).to have_text "Post Two"
-        expect(footer_section).to have_text "Post Four"
+        expect(footer_section).to have_text "Post 2"
+        expect(footer_section).to have_text "Post 4"
       end
     end
   end
@@ -21,8 +21,8 @@ RSpec.feature "Guest navigates posts from the footer" do
 
         visit post_path(@post_four)
 
-        expect(footer_section).to have_text "Post Two"
-        expect(footer_section).to have_text "Post One"
+        expect(footer_section).to have_text "Post 3"
+        expect(footer_section).to have_text "Post 1"
       end
     end
   end
@@ -36,10 +36,10 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_one)
 
         within ".case-study-footer" do
-          click_link "Post Two"
+          click_link "Post 2"
         end
 
-        expect(post_title_section).to have_text "Post Two"
+        expect(post_title_section).to have_text "Post 2"
       end
     end
 
@@ -50,10 +50,10 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_one)
 
         within ".case-study-footer" do
-          click_link "Post Four"
+          click_link "Post 4"
         end
 
-        expect(post_title_section).to have_text "Post Four"
+        expect(post_title_section).to have_text "Post 4"
       end
     end
   end
@@ -66,10 +66,10 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_four)
 
         within ".case-study-footer" do
-          click_link "Post One"
+          click_link "Post 1"
         end
 
-        expect(post_title_section).to have_text "Post One"
+        expect(post_title_section).to have_text "Post 1"
       end
     end
 
@@ -80,10 +80,10 @@ RSpec.feature "Guest navigates posts from the footer" do
         visit post_path(@post_four)
 
         within ".case-study-footer" do
-          click_link "Post Two"
+          click_link "Post 3"
         end
 
-        expect(post_title_section).to have_text "Post Two"
+        expect(post_title_section).to have_text "Post 3"
       end
     end
   end
@@ -91,10 +91,19 @@ RSpec.feature "Guest navigates posts from the footer" do
   private
 
   def create_posts
-    @post_one = create(:post, long_title: "Post One", published: true, published_date: Date.today)
-    @post_two = create(:post, long_title: "Post Two", published: true, published_date: Date.today - 1.day)
-    @post_three = create(:post, long_title: "Post Three", published: false, published_date: Date.today - 2.day)
-    @post_four = create(:post, long_title: "Post Four", published: true, published_date: Date.today - 3.day)
+    @post_one = post(1);
+    @post_two = post(2)
+    @post_three = post(3)
+    @post_four = post(4)
+  end
+
+  def post(number)
+    create(:post,
+      title: "Post #{number}",
+      summary: "This is the summary for post #{number}",
+      published: true,
+      published_date: Date.today - number.day
+    )
   end
 
   def post_title_section
