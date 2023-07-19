@@ -1,51 +1,58 @@
-<section class="content content--reading u-margin-top-none">
-  <%= simple_form_for [:admins, @post] do |f| %>
-    <div class="admin-floating-action">
-      <%= f.button :button,
-        id: "save_post",
-        class: "admin-floating-action__button" do %>
-        <%= inline_svg_tag "icon-button-checkmark.svg" %>
-      <% end %>
-
-      <% if @post.id.present? %>
-        <%= link_to post_path(@post),
-          id: "save_and_preview_post",
-          class: "admin-floating-action__button" do %>
-          <%= inline_svg_tag "icon-preview.svg" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="admin-post-meta">
-      <%= f.input :published, as: :boolean %>
-      <%= f.input :published_date %>
-    </div>
-
-    <div class="admin-post-form">
-      <%= f.input :title %>
-      <%= f.input :long_title %>
-      <%= f.input :video_src %>
-
-      <% if @post.id.present? %>
-        <div class="input u-margin-bottom">
-          <label>Post details</label>
-          <div>
-            <label>ID: <%= @post.id %></label>
-            <label>link: <%= post_url(@post) %></label>
-          </div>
-        </div>
-      <% end %>
-
-      <div class="admin-post-hashtags">
-        <%= f.association :hashtags,
-          as: :check_boxes,
-          label_method: :label,
-          value_method: :id 
-        %>
+<%= turbo_frame_tag "admin-post-form-frame" do %>
+  <section class="content content--reading u-margin-top-none">
+    <%= simple_form_for [:admins, @post],
+      data: {turbo_frame: "admin-post-form frame"} do |f|
+    %>
+      <div class="admin-post-meta">
+        <%= f.input :published, as: :boolean %>
+        <%= f.input :published_date %>
       </div>
 
-      <%= f.input :body, class: "admin-post-form__textarea",
-        input_html: { "data-js-flexible-textarea": true } %>
-    </div>
-  <% end %>
-</section>
+      <div class="admin-post-form">
+        <%= f.input :title %>
+        <%= f.input :long_title %>
+        <%= f.input :video_src %>
+
+        <% if @post.id.present? %>
+          <div class="input u-margin-bottom">
+            <label>Post details</label>
+            <div>
+              <label>ID: <%= @post.id %></label>
+              <label>link: <%= post_url(@post) %></label>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="admin-post-hashtags">
+          <%= f.association :hashtags,
+            as: :check_boxes,
+            label_method: :label,
+            value_method: :id 
+          %>
+        </div>
+
+        <%= f.input :body, class: "admin-post-form__textarea",
+          input_html: { "data-js-flexible-textarea": true } %>
+      </div>
+
+      <div class="admin-floating-action">
+        <%= f.button :button,
+          id: "save_post",
+          class: "admin-floating-action__button",
+          data: { turbo_action: " submit" } do
+        %>
+          <%= inline_svg_tag "icon-checkmark.svg" %>
+        <% end %>
+
+        <% if @post.id.present? %>
+          <%= link_to post_path(@post),
+            data: { turbo: :false },
+            id: "save_and_preview_post",
+            class: "admin-floating-action__button" do %>
+            <%= inline_svg_tag "icon-preview.svg" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+<% end %>

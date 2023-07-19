@@ -3,9 +3,10 @@
 
 import "jquery";
 import "jquery_ujs";
+import "@hotwired/turbo-rails";
+import "controllers";
 
 import "carousel";
 import "flexible-textarea";
 import "reading-progress-bar";
 import "sky-labels";
-import "controllers";

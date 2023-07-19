@@ -18,19 +18,31 @@ class Admins::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    redirect_for_create
+    if @post.save
+      redirect_after_success(edit_admins_post_path(@post), "created")
+    else
+      redirect_after_failure(new_admins_post_path)
+    end
   end
 
   def update
     @post = find_post
 
-    redirect_for_update
+    if @post.update(post_params)
+      render_success
+    else
+      redirect_after_failure(edit_admins_posts_path(@post))
+    end
   end
 
   def destroy
     post = find_post
 
-    redirect_for_destroy(post)
+    if post.destroy
+      redirect_after_success(admins_posts_path, "destroyed")
+    else
+      redirect_after_failure(edit_admins_posts_path(@post))
+    end
   end
 
   private
@@ -43,28 +55,20 @@ class Admins::PostsController < ApplicationController
     params.has_key?(:preview)
   end
 
-  def redirect_for_create
-    if @post.save
-      redirect_to edit_admins_post_path(@post), notice: t("admins.flash.created")
-    else
-      redirect_to new_admins_post_path, alert: t("admins.flash.failed")
+  def render_success
+    respond_to do |format|
+      format.turbo_stream do
+        render "success"
+      end
     end
   end
 
-  def redirect_for_update
-    if @post.update(post_params)
-      redirect_to edit_admins_post_path(@post), notice: t("admins.flash.updated")
-    else
-      redirect_to edit_admins_post_path(@post), alert: t("admins.flash.failed")
-    end
+  def redirect_after_success(path, message)
+    redirect_to path, notice: t("admins.flash.#{message}")
   end
 
-  def redirect_for_destroy(post)
-    if post.destroy
-      redirect_to admins_posts_path, notice: t("admins.flash.destroyed")
-    else
-      redirect_to admins_posts_path, alert: t("admins.flash.failed")
-    end
+  def redirect_after_failure(path)
+    redirect_to path, alert: t("admins.flash.failed")
   end
 
   def post_params

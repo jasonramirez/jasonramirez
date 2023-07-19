@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
+
   mount Lockup::Engine, at: "/lockup"
 
   root "welcome#index"

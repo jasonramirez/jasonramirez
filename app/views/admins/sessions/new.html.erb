@@ -13,7 +13,7 @@
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
     <%= f.button :button, class: "button button--with-icon" do %>
       <%= t(".sign_in") %>
-      <%= inline_svg_tag "icon-button-checkmark.svg", class: "button__icon" %>
+      <%= inline_svg_tag "icon-checkmark.svg", class: "button__icon" %>
     <% end %>
 
     <%= link_to(

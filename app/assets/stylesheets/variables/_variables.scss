@@ -64,11 +64,14 @@ $input-background-color: map-get($colors, quaternary);
 
 // Colors for all themes
 $action-color: $ultramarine-blue;
-$alert-color: map-get($colors, secondary);
+$alert-background-color: $sun;
+$alert-color: $mirage;
 $button-background-color: $action-color;
 $button-color: $warm-white;
-$error-color: $tutu;
-$notice-color: $forest-green;
+$error-background-color: $salmon;
+$error-color: $mirage;
+$notice-background-color: $forest-green;
+$notice-color: $warm-white;
 
 // Unicode Characters
 $hamburger-icon: "\2630";

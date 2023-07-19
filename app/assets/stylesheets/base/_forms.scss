@@ -129,7 +129,7 @@ select {
     @include position(absolute, 0 null 0 0);
     @include size(1.25rem);
     background-color: $action-color;
-    background-image: asset-url("icon-button-checkmark.svg");
+    background-image: asset-url("icon-checkmark.svg");
     background-size: 0.85rem;
     background-repeat: no-repeat;
     background-position: center center;

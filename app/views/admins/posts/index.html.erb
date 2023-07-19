@@ -6,9 +6,7 @@
   <% @posts.each do |post| %>
     <div class="admin-post-item <%= post.published_state_class %>">
       <div class="admin-post-item__title">
-        <%= link_to edit_admins_post_path(post) do %>
-          <%= post.title %>
-        <% end %>
+        <%= link_to post.title, edit_admins_post_path(post) %>
       </div>
 
       <div class="admin-post-item__published-status">

@@ -3,6 +3,7 @@
 }
 
 .admin-floating-action__button {
+  appearance: none;
   align-items: center;
   background: $action-color;
   color: $button-color;
