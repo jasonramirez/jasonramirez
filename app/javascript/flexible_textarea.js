@@ -7,7 +7,7 @@ export default class FlexibleTextarea {
   }
 
   get _newTextAreaHeight() {
-    return `${this.$element.prop("scrollHeight") + 100}px`;
+    return `${this.$element.prop("scrollHeight") + 16}px`;
   }
 
   _bindEvents() {
