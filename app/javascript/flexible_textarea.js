@@ -7,7 +7,7 @@ export default class FlexibleTextarea {
   }
 
   get _newTextAreaHeight() {
-    return `${this.$element.prop("scrollHeight")}px`;
+    return `${this.$element.prop("scrollHeight") + 100}px`;
   }
 
   _bindEvents() {
@@ -19,7 +19,7 @@ export default class FlexibleTextarea {
   }
 }
 
-$(window).on("load", () => {
+$(document).on("turbo:load", () => {
   $("[data-js-flexible-textarea]").each(
     (index, element) => new FlexibleTextarea(element)
   );
