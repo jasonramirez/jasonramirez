@@ -99,6 +99,7 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -153,6 +154,9 @@ GEM
       activesupport (>= 5.0)
     hashdiff (1.0.1)
     high_voltage (3.1.2)
+    hotwire-livereload (1.2.3)
+      listen (>= 3.0.0)
+      rails (>= 6.0.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -246,11 +250,6 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails_live_reload (0.3.4)
-      listen
-      nio4r
-      railties
-      websocket-driver
     railties (7.0.6)
       actionpack (= 7.0.6)
       activesupport (= 7.0.6)
@@ -265,6 +264,10 @@ GEM
     recipient_interceptor (0.3.1)
       mail
     redcarpet (3.6.0)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (2.8.1)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -342,6 +345,10 @@ GEM
     title (0.0.8)
       i18n
       rails (>= 3.1)
+    turbo-rails (1.4.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -387,6 +394,7 @@ DEPENDENCIES
   gemoji
   gibbon
   high_voltage
+  hotwire-livereload
   importmap-rails (~> 1.1)
   inline_svg
   jquery-rails
@@ -401,9 +409,9 @@ DEPENDENCIES
   rack-canonical-host
   rack-timeout
   rails
-  rails_live_reload
   recipient_interceptor
   redcarpet
+  redis
   rouge-rails
   rspec-rails
   sass-rails (~> 5.0)
@@ -418,6 +426,7 @@ DEPENDENCIES
   stimulus-rails
   timecop
   title
+  turbo-rails
   uglifier
   web-console
   webmock
