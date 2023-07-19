@@ -16,8 +16,8 @@ export default class extends Controller {
 
     try {
       await navigator.share(shareData);
-    } catch {
-      console.log(err);
+    } catch (e) {
+      console.log(e);
     }
   }
 }

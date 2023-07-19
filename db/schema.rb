@@ -72,7 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_192856) do
     t.datetime "published_date", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "summary"
+    t.text "summary"
     t.string "slug"
     t.string "video_src"
     t.index ["slug"], name: "index_posts_on_slug", unique: true

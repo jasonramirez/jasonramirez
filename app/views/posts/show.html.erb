@@ -19,6 +19,10 @@
       <%= @post.title %>
     </div>
 
+    <div data-share-target="text" hidden>
+      <%= @post.summary %>
+    </div>
+
     <div class="post-meta">
       <%= image_tag "headshot-zoomed-in.png", class: "post-meta__avatar" %>
 
@@ -39,9 +43,7 @@
       <%= inline_svg("icon-share.svg") %> Share
     <% end %>
 
-    <%= content_tag(:div, parsed_body, data: {
-      share_target: "text",
-    }) %>
+    <%= parsed_body %>
 
     <%= button_to "", {
       class: "link u-margin-top-large",
