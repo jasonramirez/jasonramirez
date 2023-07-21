@@ -7,6 +7,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 
 import "carousel";
+import "drawer";
 import "flexible-textarea";
 import "reading-progress-bar";
 import "sky-labels";

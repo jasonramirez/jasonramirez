@@ -1,16 +1,22 @@
 .admin-post-meta {
-  display: flex;
-  margin-bottom: $large-spacing;
+  margin-bottom: $medium-spacing;
 
-  div,
-  input,
-  select {
+  .text {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .datetime {
     align-items: center;
     display: flex;
     margin: 0;
   }
 
   label {
-    margin: 0 $small-spacing 0 0;
+    margin-bottom: $small-spacing;
+  }
+
+  textarea {
+    margin-bottom: 0;
   }
 }

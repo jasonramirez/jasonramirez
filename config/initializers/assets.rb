@@ -11,10 +11,12 @@ Rails.application.config.assets.version = "1.0"
 # folder are already added.
 Rails.application.config.assets.precompile += %w(
   controllers/index.js
-  controllers/share_controller.js 
+  controllers/share_controller.js
+  controllers/admin_post_controller.js
   application_dark.css
   application_light.css
   carousel.js
+  drawer.js
   flexible_textarea.js
   jquery.min.js
   jquery_ujs.js

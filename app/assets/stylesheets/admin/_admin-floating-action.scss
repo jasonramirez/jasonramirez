@@ -1,5 +1,6 @@
 .admin-floating-action {
   @include position(fixed, null $base-spacing $base-spacing null);
+  z-index: $z-index-floating-actions;
 }
 
 .admin-floating-action__button {

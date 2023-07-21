@@ -16,6 +16,7 @@
     font-family: $reading-font-family;
     font-size: $base-font-size;
     line-height: $reading-line-height / 1.2;
+    resize: none;
 
     @include media($medium-screen) {
       font-size: $reading-font-size;

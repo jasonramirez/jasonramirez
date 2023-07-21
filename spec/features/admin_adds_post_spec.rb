@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Admin adds post" do
+feature "Admin adds post", js: true do
   context "by clicking the add new posts button on the all posts page" do
     it "successfully creates the post and shows a success flash." do
       sign_in_admin
@@ -16,13 +16,13 @@ feature "Admin adds post" do
   context "by clicking the add new posts button on the all posts page" do
     it "shows the id and link of the post" do
       sign_in_admin
-      visit admins_posts_path
+      post = create(:post, title: "Title")
 
-      page.find("#new_post_link").click
-      fill_new_post_form
+      visit edit_admins_post_path(post)
+      page.find("[data-js-drawer-open-trigger]").click
 
-      expect(page).to have_text Post.all.first.id
-      expect(page).to have_text post_url(Post.all.first)
+      expect(page).to have_field("post-id", with: Post.all.first.id)
+      expect(page).to have_field("post-url", with: /title/i)
     end
   end
 
@@ -63,12 +63,9 @@ feature "Admin adds post" do
   end
 
   def fill_new_post_form
-    fill_form(
-      :post,
-      title: "Title",
-      body: "This is the body.",
-      published: true,
-    )
+    fill_in "post[title]", with: "Title"
+    fill_in "post[body]", with: "This is the body."
+
     page.find("#save_post").click
   end
 
