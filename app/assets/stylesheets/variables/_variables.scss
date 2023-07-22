@@ -93,8 +93,9 @@ $input-padding: 1rem;
 $sky-labels-animation-duration: $base-duration;
 
 // Z-index
-$z-index-flashes: 2;
-$z-index-highest: 1;
+$z-index-flashes: 4;
+$z-index-floating-actions: 3;
+$z-index-drawers: 2;
 $base-z-index: 0;
 $z-index-below-content: -1;
 

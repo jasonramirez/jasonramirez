@@ -6,6 +6,10 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  def parsed_body
+    MarkdownParser.new(self.body).markdown_to_html
+  end
+
   def pretty_published_date
     published_date.strftime("%-m/%-d/%y")
   end

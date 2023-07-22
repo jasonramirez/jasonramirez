@@ -1,24 +1,28 @@
 <footer class="case-study-footer">
-  <nav class="case-study-footer-navigation">
-    <%= link_to post_path(@previous_post), class: "case-study-footer-navigation__link left" do %>
-      <%= inline_svg "icon-long-arrow-left.svg" %>
-      <h3>
-        <%= @previous_post.title %>
-      </h3>
-      <p>
-        <%= @previous_post.summary%>
-      </p>
-    <% end %>
+  <% if more_than_one_post %>
+    <nav class="case-study-footer-navigation">
+      <%= link_to post_path(@previous_post),
+        class: "case-study-footer-navigation__link left" do %>
+        <%= inline_svg "icon-long-arrow-left.svg" %>
+        <h3>
+          <%= @previous_post.title %>
+        </h3>
+        <p>
+          <%= @previous_post.summary%>
+        </p>
+      <% end %>
 
-    <%= link_to post_path(@next_post), class: "case-study-footer-navigation__link right" do %>
-      <%= inline_svg "icon-long-arrow-right.svg" %>
-      <h3>
-        <%= @next_post.title %>
-      </h3>
+      <%= link_to post_path(@next_post),
+        class: "case-study-footer-navigation__link right" do %>
+        <%= inline_svg "icon-long-arrow-right.svg" %>
+        <h3>
+          <%= @next_post.title %>
+        </h3>
 
-      <p>
-        <%= @next_post.summary %>
-      </p>
-    <% end %>
-  </nav>
+        <p>
+          <%= @next_post.summary %>
+        </p>
+      <% end %>
+    </nav>
+  <% end %>
 </footer>

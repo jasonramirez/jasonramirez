@@ -18,19 +18,11 @@ class PostsController < ApplicationController
   end
 
   def previous_post
-    if previous_published_post.nil?
-      last_published_post
-    else
-      previous_published_post
-    end
+    previous_published_post.nil? ? last_published_post : previous_published_post
   end
 
   def next_post
-    if next_published_post.nil?
-      first_published_post
-    else
-      next_published_post
-    end
+    next_published_post.nil? ? first_published_post : next_published_post
   end
 
   def next_published_post

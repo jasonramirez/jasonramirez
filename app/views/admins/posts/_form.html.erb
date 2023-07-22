@@ -1,59 +1,117 @@
-<%= turbo_frame_tag "admin-post-form-frame" do %>
-  <section class="content content--reading u-margin-top-none">
-    <%= simple_form_for [:admins, @post],
-      data: {turbo_frame: "admin-post-form frame"} do |f|
-    %>
+<%= turbo_frame_tag "form-frame" do %>
+  <%= simple_form_for [:admins, @post] do |f| %>
+    <section class="admin-drawer" data-js-drawer>
+      <a class="admin-drawer__close-trigger button button--square"
+        data-js-drawer-close-trigger>
+        <%= inline_svg_tag "icon-close.svg" %>
+      </a>
+
+      <h2>
+        Post Details
+      </h2>
+
       <div class="admin-post-meta">
         <%= f.input :published, as: :boolean %>
-        <%= f.input :published_date %>
       </div>
 
-      <div class="admin-post-form">
-        <%= f.input :title %>
+      <div class="admin-post-meta">
+        <%= f.input :published_date, label: false %>
+      </div>
+
+      <div class="admin-post-meta">
         <%= f.input :summary, class: "admin-post-form__textarea",
           input_html: { "data-js-flexible-textarea": true } %>
-        <%= f.input :video_src %>
-
-        <% if @post.id.present? %>
-          <div class="input u-margin-bottom">
-            <label>Post details</label>
-            <div>
-              <label>ID: <%= @post.id %></label>
-              <label>link: <%= post_url(@post) %></label>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="admin-post-hashtags">
-          <%= f.association :hashtags,
-            as: :check_boxes,
-            label_method: :label,
-            value_method: :id 
-          %>
-        </div>
-
-        <%= f.input :body, class: "admin-post-form__textarea",
-          input_html: { "data-js-flexible-textarea": true } %>
       </div>
 
-      <div class="admin-floating-action">
-        <%= f.button :button,
-          id: "save_post",
-          class: "admin-floating-action__button",
-          data: { turbo_action: " submit" } do
-        %>
-          <%= inline_svg_tag "icon-checkmark.svg" %>
-        <% end %>
+      <div class="admin-post-meta">
+        <%= f.input :video_src %>
+      </div>
 
+      <div class="admin-post-meta">
+        <div class="admin-post-hashtags">
+          <%= f.association(:hashtags,
+            as: :check_boxes,
+            label_method: :label,
+            value_method: :id,
+          ) %>
+        </div>
+      </div>
+
+      <div id="post_id_and_url">
         <% if @post.id.present? %>
-          <%= link_to post_path(@post),
+          <div class="admin-post-meta">
+            <label>Post ID</label>
+            <input name="post-id" value="<%= @post.id %>" readonly>
+          </div>
+
+          <div class="admin-post-meta">
+            <label>Post URL</label>
+            <input name="post-url" value="<%= post_url(@post) %>" readonly>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="content content--reading u-margin-top-none">
+      <div id="published_chip">
+        <% if @post.published %>
+          <div class="admin-chip admin-chip--published">
+            Published
+          </div>
+        <% else %>
+          <div class="admin-chip admin-chip--not-published">
+            Not Published
+          </div>
+        <% end %>
+      </div>
+
+      <%= f.input(:title,
+        as: :text,
+        input_html: {
+          class: "admin-post-form__title post-title",
+          "data-js-flexible-textarea": "",
+          placeholder: "Title",
+        },
+        label: false,
+      ) %>
+
+      <%= f.input(:body,
+        input_html: {
+          class: "admin-post-form__body",
+          "data-js-flexible-textarea": "",
+          placeholder: "Body",
+        },
+        label: false,
+      ) %>
+    </section>
+
+    <div class="admin-floating-action">
+      <a class="admin-floating-action__button" data-js-drawer-open-trigger>
+        <%= inline_svg_tag "icon-more.svg" %>
+      </a>
+
+      <%= f.button(:button,
+        id: "save_post",
+        class: "admin-floating-action__button",
+        data: { turbo_action: " submit" },
+      ) do %>
+        <%= inline_svg_tag "icon-checkmark.svg" %>
+      <% end %>
+
+      <div id="post_preview_button">
+        <% if @post.id.present? %>
+          <%= link_to(post_path(@post),
             data: { turbo: :false },
-            id: "save_and_preview_post",
-            class: "admin-floating-action__button" do %>
+            id: "preview_post",
+            class: "admin-floating-action__button",
+          ) do %>
             <%= inline_svg_tag "icon-preview.svg" %>
           <% end %>
         <% end %>
       </div>
-    <% end %>
-  </section>
+    </div>
+  <% end %>
 <% end %>
+
+<div class="flashes" id="post_flash" %>
+</div>

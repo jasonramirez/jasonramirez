@@ -1,0 +1,40 @@
+<turbo-stream action="replace" target="post_flash">
+  <template>
+    <div class="flashes" id="post_flash" %>
+      <div class="flash-notice">
+        <%= inline_svg "icon-checkmark.svg" %>
+        <%= t("admins.flash.created") %>
+      </div>
+    </div>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="post_preview_button">
+  <template>
+    <% if @post.id.present? %>
+      <%= link_to(post_path(@post),
+        data: { turbo: :false },
+        id: "save_and_preview_post",
+        class: "admin-floating-action__button",
+      ) do %>
+        <%= inline_svg_tag "icon-preview.svg" %>
+      <% end %>
+    <% end %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="post_id_and_url">
+  <template>
+    <% if @post.id.present? %>
+      <div class="admin-post-meta">
+        <label>Post ID</label>
+        <input name="post-id" value="<%= @post.id %>" readonly>
+      </div>
+
+      <div class="admin-post-meta">
+        <label>Post URL</label>
+        <input name="post-url" value="<%= post_url(@post) %>" readonly>
+      </div>
+    <% end %>
+  </template>
+</turbo-stream>

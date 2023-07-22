@@ -1,0 +1,36 @@
+.admin-chip {
+  align-items: center;
+  background-color: rgba(map-get($colors, secondary), 4%);
+  border-radius: 1rem;
+  display: inline-flex;
+  font-family: $base-font-family;
+  font-size: $small-font-size;
+  margin-bottom: $base-spacing;
+  padding: $x-small-spacing $small-spacing;
+  position: relative;
+  width: auto;
+
+  &::before {
+    content: "";
+    border-radius: 1rem;
+    height: 1rem;
+    margin-right: $x-small-spacing;
+    width: 1rem;
+  }
+}
+
+.admin-chip--published {
+  background-color: rgba($notice-background-color, 0.125);
+
+  &::before {
+    background-color: $notice-background-color;
+  }
+}
+
+.admin-chip--not-published {
+  background-color: rgba($error-background-color, 0.125);
+
+  &::before {
+    background-color: $error-background-color;
+  }
+}

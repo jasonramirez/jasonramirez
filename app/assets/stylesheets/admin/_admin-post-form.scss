@@ -1,29 +1,24 @@
 .admin-post-form {
-  input[type="text"],
-  textarea {
-    max-width: 100%;
-  }
-
-  input[name="post[title]"] {
-    font-family: $heading-font-family;
-  }
-
-  input[name="post[summary]"] {
-    font-family: $heading-font-family;
-  }
-
-  textarea {
-    font-family: $reading-font-family;
-    font-size: $base-font-size;
-    line-height: $reading-line-height / 1.2;
-
-    @include media($medium-screen) {
-      font-size: $reading-font-size;
-      line-height: $reading-line-height;
-    }
-  }
 }
 
-.admin-post-form__textarea {
+.admin-post-form__title {
+  background-color: transparent;
+  font-family: $heading-font-family;
+  font-size: $base-font-size;
+  margin-top: $large-spacing;
+  padding: 0;
+}
+
+.admin-post-form__body {
+  background-color: transparent;
+  font-family: $reading-font-family;
+  font-size: $base-font-size;
+  line-height: $reading-line-height / 1.2;
+  padding: 0;
   resize: none;
+
+  @include media($medium-screen) {
+    font-size: $reading-font-size;
+    line-height: $reading-line-height;
+  }
 }

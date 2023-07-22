@@ -1,0 +1,40 @@
+.admin-drawer {
+  @include position(fixed, 0 -200% 0 null);
+  background-color: darken($base-background-color, 2%);
+  max-width: calc(#{$medium-screen} - #{$x-large-spacing});
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: $base-spacing ($x-large-spacing + $base-spacing) $base-spacing $base-spacing;
+  transition: right $base-duration $base-timing;
+  width: calc(100vw - #{$x-large-spacing} - #{$base-spacing});
+  z-index: $z-index-drawers;
+
+  @include media($large-screen) {
+    max-width: calc(#{$large-screen} - #{$x-large-spacing});
+  }
+
+  &.open {
+    @include position(fixed, 0 0 0 null);
+  }
+
+  &::before {
+    @include position(fixed, 0 -100% 0 null);
+    background-color: darken($base-background-color, 2%);
+    border-left: solid 1px transparentize($base-border-color, 0.1);
+    content: "";
+    transition: right $base-duration $base-timing;
+    width: $x-large-spacing;
+  }
+}
+
+.open.admin-drawer::before {
+  right: 0;
+}
+
+.admin-drawer__close-trigger {
+  @include position(fixed, $base-spacing -100% null null);
+
+  .open & {
+    right: $base-spacing;
+  }
+}

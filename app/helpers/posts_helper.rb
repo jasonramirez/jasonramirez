@@ -1,13 +1,17 @@
 module PostsHelper
-  def video_src
-    "#{@post.video_src} + #{loom_params}"
+  def loom_params
+    "?hide_owner=true&hide_title=true&hideEmbedTopBar=true"
+  end
+
+  def more_than_one_post
+    Post.all.count > 1
   end
 
   def parsed_body
     MarkdownParser.new(@post.body).markdown_to_html
   end
 
-  def loom_params
-    "?hide_owner=true&hide_title=true&hideEmbedTopBar=true"
+  def video_src
+    "#{@post.video_src} + #{loom_params}"
   end
 end

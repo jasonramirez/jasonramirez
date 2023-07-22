@@ -8,7 +8,13 @@ class Admins::PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    post = Post.new(default_post)
+
+    if post.save
+      redirect_after_success(edit_admins_post_path(post), "created")
+    else
+      redirect_after_failure(admins_posts_path)
+    end
   end
 
   def edit
@@ -19,9 +25,9 @@ class Admins::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_after_success(edit_admins_post_path(@post), "created")
+      render_turbo_steam("save")
     else
-      redirect_after_failure(new_admins_post_path)
+      render_turbo_steam("failure")
     end
   end
 
@@ -29,9 +35,9 @@ class Admins::PostsController < ApplicationController
     @post = find_post
 
     if @post.update(post_params)
-      render_success
+      render_turbo_steam("update")
     else
-      redirect_after_failure(edit_admins_posts_path(@post))
+      render_turbo_steam("failure")
     end
   end
 
@@ -55,10 +61,10 @@ class Admins::PostsController < ApplicationController
     params.has_key?(:preview)
   end
 
-  def render_success
+  def render_turbo_steam(stream_name)
     respond_to do |format|
       format.turbo_stream do
-        render "success"
+        render stream_name
       end
     end
   end
@@ -69,6 +75,10 @@ class Admins::PostsController < ApplicationController
 
   def redirect_after_failure(path)
     redirect_to path, alert: t("admins.flash.failed")
+  end
+
+  def default_post
+    { title: "Draft" }
   end
 
   def post_params

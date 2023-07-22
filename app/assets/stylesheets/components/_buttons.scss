@@ -11,7 +11,6 @@
   letter-spacing: 0.025rem;
   outline: $action-color solid 0px;
   padding: $xx-small-spacing $small-spacing;
-  position: relative;
   text-transform: uppercase;
   transition: all $base-duration;
 
@@ -24,6 +23,37 @@
 
   & + & {
     margin-left: $base-spacing;
+  }
+}
+
+.button--square {
+  @include size(3rem);
+  align-items: center;
+  display: flex;
+  font-size: 2rem;
+  height: 3rem;
+  justify-content: center;
+  padding: 0;
+  width: 3rem;
+
+  &:active,
+  &:focus,
+  &:hover {
+    svg {
+      path {
+        transition: all $base-duration $base-timing;
+        fill: $button-color;
+      }
+    }
+  }
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+
+    path {
+      fill: $button-color;
+    }
   }
 }
 
