@@ -21,7 +21,7 @@ export default class ReadingProgressBar {
   }
 }
 
-$(window).on("load", () => {
+$(document).on("turo:load", () => {
   $("[data-js-reading-progress-bar]").each(
     (index, element) => new ReadingProgressBar(element)
   );

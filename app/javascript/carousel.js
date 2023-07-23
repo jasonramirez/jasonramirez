@@ -133,6 +133,6 @@ export default class Carousel {
   }
 }
 
-$(window).on("load", () => {
+$(document).on("turbo:load", () => {
   $("[data-js-carousel]").each((index, element) => new Carousel(element));
 });
