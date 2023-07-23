@@ -13,11 +13,9 @@
 }
 
 .admin-post-item__published-status {
-  width: 7rem;
-
-  .not-published & {
-    color: rgba($base-font-color, 0.3);
-  }
+  align-items: center;
+  display: flex;
+  width: 2rem;
 }
 
 .admin-post-item__time {
@@ -29,5 +27,8 @@
 }
 
 .admin-post-item__delete {
-  width: 4rem;
+  align-items: center;
+  display: flex;
+  margin-bottom: 0;
+  padding: 0;
 }
