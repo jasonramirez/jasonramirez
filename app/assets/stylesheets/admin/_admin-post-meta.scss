@@ -6,10 +6,10 @@
     align-items: flex-start;
   }
 
-  .datetime {
+  .date {
     align-items: center;
     display: flex;
-    margin: 0;
+    margin: 0 $x-small-spacing 0 0;
   }
 
   label {

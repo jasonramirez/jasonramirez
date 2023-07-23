@@ -15,7 +15,11 @@
       </div>
 
       <div class="admin-post-meta">
-        <%= f.input :published_date, label: false %>
+        <%= f.input(:published_date,
+          label: false,
+          as: :date,
+          order: [:day, :month, :year],
+        ) %>
       </div>
 
       <div class="admin-post-meta">

@@ -78,7 +78,11 @@ class Admins::PostsController < ApplicationController
   end
 
   def default_post
-    { title: "Draft" }
+    {
+      title: "Draft",
+      published: false,
+      published_date: Time.now,
+    }
   end
 
   def post_params
