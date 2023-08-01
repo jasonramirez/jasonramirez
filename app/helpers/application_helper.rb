@@ -3,6 +3,14 @@ module ApplicationHelper
     theme_color
   end
 
+  def stylesheet
+    stylesheet_link_tag(
+      theme_stylesheet,
+      media: "all",
+      "data-turbo-track": "reload"
+    )
+  end
+
   def theme_stylesheet
     "application_#{theme}"
   end
