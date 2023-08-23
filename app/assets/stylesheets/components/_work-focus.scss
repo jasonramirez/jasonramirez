@@ -1,4 +1,4 @@
-.case-study-focus {
+.work-focus {
   border-bottom: $base-border;
   border-top: $base-border;
   margin: $x-large-spacing 0;
@@ -9,7 +9,7 @@
   }
 }
 
-.case-study-focus--small {
+.work-focus--small {
   li,
   ol,
   p,
@@ -18,12 +18,12 @@
   }
 }
 
-.case-study-focus__header {
+.work-focus__header {
   margin-top: $reading-paragraph-spacing / 1.2;
   margin-bottom: $base-spacing;
 }
 
-.case-study-focus__grid {
+.work-focus__grid {
   column-count: 2;
 
   @media (min-width: $large-screen) {

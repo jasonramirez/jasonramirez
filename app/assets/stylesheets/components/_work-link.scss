@@ -1,4 +1,4 @@
-.case-study-link {
+.work-link {
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
@@ -6,14 +6,14 @@
   text-decoration: none;
 }
 
-.case-study-link__image-container {
+.work-link__image-container {
   border-bottom: 0;
   display: flex;
   position: relative;
   text-decoration: none;
 }
 
-.case-study-link__image {
+.work-link__image {
   border-bottom: 0;
   height: 2.5rem;
   margin-bottom: $small-spacing;
@@ -21,7 +21,7 @@
   width: auto;
 }
 
-.case-study-link__title {
+.work-link__title {
   font-family: $heading-font-family;
   font-size: 3rem;
   font-weight: $heading-font-weight;
@@ -39,7 +39,7 @@
   }
 }
 
-.case-study-link__protected {
+.work-link__protected {
   @include position(absolute, null -0.25rem -0.25rem null);
   background-color: $base-background-color;
   border-radius: $base-font-size;

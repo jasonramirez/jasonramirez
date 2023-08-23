@@ -1,4 +1,4 @@
-.case-study-image-container {
+.work-image-container {
   margin: $large-spacing 0;
 
   @include media($large-screen) {
@@ -6,7 +6,7 @@
   }
 }
 
-.case-study-image__figure {
+.work-image__figure {
   margin: 0;
 
   img,

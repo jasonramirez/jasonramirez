@@ -35,7 +35,7 @@ RSpec.feature "Guest navigates posts from the footer" do
 
         visit post_path(@post_one)
 
-        within ".case-study-footer" do
+        within ".work-footer" do
           click_link "Post 2"
         end
 
@@ -49,7 +49,7 @@ RSpec.feature "Guest navigates posts from the footer" do
 
         visit post_path(@post_one)
 
-        within ".case-study-footer" do
+        within ".work-footer" do
           click_link "Post 4"
         end
 
@@ -65,7 +65,7 @@ RSpec.feature "Guest navigates posts from the footer" do
 
         visit post_path(@post_four)
 
-        within ".case-study-footer" do
+        within ".work-footer" do
           click_link "Post 1"
         end
 
@@ -79,7 +79,7 @@ RSpec.feature "Guest navigates posts from the footer" do
 
         visit post_path(@post_four)
 
-        within ".case-study-footer" do
+        within ".work-footer" do
           click_link "Post 3"
         end
 
@@ -111,6 +111,6 @@ RSpec.feature "Guest navigates posts from the footer" do
   end
 
   def footer_section
-    find(:css, ".case-study-footer")
+    find(:css, ".work-footer")
   end
 end

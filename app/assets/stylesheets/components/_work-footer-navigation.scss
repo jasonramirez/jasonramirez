@@ -1,4 +1,4 @@
-.case-study-footer-navigation {
+.work-footer-navigation {
   @include padding(null $base-spacing);
   align-item: flex-start;
   display: flex;
@@ -22,7 +22,7 @@
   }
 }
 
-.case-study-footer-navigation__link {
+.work-footer-navigation__link {
   color: $base-font-color;
   display: flex;
   flex-direction: column;

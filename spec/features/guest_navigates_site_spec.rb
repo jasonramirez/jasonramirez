@@ -7,7 +7,7 @@ RSpec.feature "Guest navigates site" do
         visit root_path
 
         within ".site-header" do
-          click_link t("navigation.case_studies")
+          click_link t("navigation.works")
         end
 
         expect(page).to have_text "Smartifying Activation"

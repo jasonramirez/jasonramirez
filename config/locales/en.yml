@@ -63,7 +63,7 @@ en:
 
   navigation:
     admin: Admin
-    case_studies: Work
+    works: Work
     follow: Follow
     home: Jason Ramirez
     posts: Posts
@@ -74,7 +74,7 @@ en:
 
   titles:
     application: Jason Ramirez | Product Design Director
-    case_studies:
+    works:
       mayo_clinic: Mayo Clinic
       penner: Penner
       piggy: Piggy
@@ -83,8 +83,8 @@ en:
     followers:
       new: Follow
 
-  case_studies:
-    case_studies_navigation:
+  works:
+    works_navigation:
       next: Next
       previous: Previous
       piggy:

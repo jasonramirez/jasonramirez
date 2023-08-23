@@ -13,10 +13,9 @@ Rails.application.routes.draw do
   match "/500", to: "errors#internal_server_error", via: :all
 
   get "admin", to: "admins/posts#index"
-  get "case_studies", to: "case_studies#index"
-  get "case_studies/:case_study", to: "case_studies#show"
-  get "protected_case_studies/:protected_case_study",
-    to: "protected_case_studies#show"
+  get "works", to: "works#index"
+  get "works/:work", to: "works#show"
+  get "protected_works/:protected_work", to: "protected_works#show"
   get "privacy_and_terms", to: "privacy_and_terms#index"
   get "principles", to: "principles#index"
   get "set_theme", to: "theme#update"
