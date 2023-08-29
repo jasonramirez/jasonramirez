@@ -3,6 +3,6 @@ class WorksController < ApplicationController
   end
 
   def show
-    @works = params[:work]
+    @work = params[:work]
   end
 end
