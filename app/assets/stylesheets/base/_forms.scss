@@ -73,6 +73,10 @@ select[multiple=multiple] {
       border: $base-border;
     }
   }
+
+  &.error {
+    box-shadow: 0 0 1px 1px $error-background-color;
+  }
 }
 
 textarea {
