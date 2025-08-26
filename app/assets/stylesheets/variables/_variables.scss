@@ -1,8 +1,8 @@
 // Font families
 $base-font-family: "Calibre", sans-serif;
-$heading-font-family: "Passo test", sans-serif;
-$form-font-family: "Passo test", sans-serif;
-$table-font-family: "Passo test", sans-serif;
+$heading-font-family: "Passo", sans-serif;
+$form-font-family: "Passo", sans-serif;
+$table-font-family: "Passo", sans-serif;
 $button-font-family: $heading-font-family;
 $blockquote-font-family: "Charter", serif;
 $code-font-family: "JetBrains Mono", monospace;
@@ -19,7 +19,7 @@ $button-font-size: 1rem;
 
 // Font Weights
 $button-font-weight: bold;
-$heading-font-weight: bold;
+$heading-font-weight: 600;
 $reading-font-weight: 400;
 
 // Line height

@@ -1,11 +1,39 @@
-@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
-@include font-face("Poppins", "poppins_regular") {
+// Passo Test font loading
+@include font-face("Passo", "passo_regular") {
   font-weight: normal;
+  font-style: normal;
 }
-@include font-face("Poppins", "poppins_semibold") {
+@include font-face("Passo", "passo_italic") {
+  font-weight: normal;
+  font-style: italic;
+}
+@include font-face("Passo", "passo_bold") {
   font-weight: bold;
+  font-style: normal;
 }
+@include font-face("Passo", "passo_bold_italic") {
+  font-weight: bold;
+  font-style: italic;
+}
+@include font-face("Passo", "passo_medium") {
+  font-weight: 500;
+  font-style: normal;
+}
+@include font-face("Passo", "passo_medium_italic") {
+  font-weight: 500;
+  font-style: italic;
+}
+@include font-face("Passo", "passo_semi_bold") {
+  font-weight: 600;
+  font-style: normal;
+}
+@include font-face("Passo", "passo_semi_bold_italic") {
+  font-weight: 600;
+  font-style: italic;
+}
+
 @include font-face("Calibre", "calibre_regular") {
   font-weight: normal;
 }
