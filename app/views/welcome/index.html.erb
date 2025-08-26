@@ -2,7 +2,18 @@
   <div class="hero_filler"></div>
 
   <div class="hero_title">
-    Ideas.
+      <div class="rotating-text">
+        <div class="rotating-text__item">Craft.</div>
+        <div class="rotating-text__item">Quality.</div>
+        <div class="rotating-text__item">Speed.</div>
+        <div class="rotating-text__item">Growth.</div>
+      </div>
+      <div class="rotating-text-indicator">
+        <span class="rotating-text-indicator__dot rotating-text-indicator__dot--active"></span>
+        <span class="rotating-text-indicator__dot"></span>
+        <span class="rotating-text-indicator__dot"></span>
+        <span class="rotating-text-indicator__dot"></span>
+      </div>
   </div>
 
   <div class="hero_filler">
@@ -13,12 +24,12 @@
 
 <section class="hero-description">
   <h1 class="hero-description__content">
-    I'm a big-thinking Product Design Director driven by ambitious ideas,
-    fostering 
+    I <%= link_to "evolve teams", "#" %>, <%= link_to "embrace AI", "#" %>, develop ambitious ideas,
+    foster 
     <%= link_to "purpose-driven", values_path %>
-    teams, and crafting 
+    teams, and craft 
     <%= link_to "principle-led", principles_path %>
-    products...
+    products.
   </h1>
 </section>
 
@@ -27,7 +38,7 @@
 <section class="hero-description">
   <div class="hero-description__content">
     <h1>
-      ...and I love to share
+      I also love to share
     </h1>
     <% @hashtags.each_with_index do |hashtag, index| %>
       <form action="<%= posts_path %>" class="hero-description__hashtag">

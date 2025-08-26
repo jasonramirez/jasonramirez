@@ -21,14 +21,19 @@
 }
 
 .hero_title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   font-family: $heading-font-family;
   font-size: 22vw;
   font-weight: $heading-font-weight;
+  justify-content: center;
   letter-spacing: -0.0125em;
   line-height: $heading-line-height;
   margin: 0;
+  min-height: 25vh;
+  position: relative;
   text-align: center;
-  width: 100%;
 
   @include media($medium-screen) {
     font-size: 10rem;

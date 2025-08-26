@@ -1,0 +1,91 @@
+// Rotating Text Animation
+@keyframes rotate-text {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  25%,
+  35% {
+    opacity: 1;
+  }
+  40%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-text-indicator {
+  0%,
+  20% {
+    background-color: $action-color;
+  }
+  25%,
+  35% {
+    background-color: currentColor;
+  }
+  40%,
+  100% {
+    background-color: $action-color;
+  }
+}
+
+// Rotating text container
+.rotating-text {
+  min-height: 32vw;
+  position: relative;
+  width: 100vw;
+
+  @include media($medium-screen) {
+    min-height: 14rem;
+  }
+
+  &__item {
+    animation: rotate-text 8s infinite;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 4s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 6s;
+    }
+  }
+}
+
+// Text indicator dots
+.rotating-text-indicator {
+  &__dot {
+    animation: rotate-text-indicator 8s infinite;
+    transition: all 0.3s ease;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 4s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 6s;
+    }
+  }
+}

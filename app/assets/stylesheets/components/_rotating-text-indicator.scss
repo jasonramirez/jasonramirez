@@ -1,0 +1,19 @@
+.rotating-text-indicator {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.rotating-text-indicator__dot {
+  background-color: $action-color;
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.25rem;
+  margin: 0 0.5rem;
+  width: 0.25rem;
+}
+
+.rotating-text-indicator__dot--active {
+  background-color: $warm-white;
+}
