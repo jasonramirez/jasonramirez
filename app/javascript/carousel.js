@@ -133,6 +133,13 @@ export default class Carousel {
   }
 }
 
-$(document).on("turbo:load", () => {
-  $("[data-js-carousel]").each((index, element) => new Carousel(element));
-});
+const initCarousels = () => {
+  $("[data-js-carousel]").each((index, element) => {
+    if (!$(element).data("carousel-initialized")) {
+      new Carousel(element);
+      $(element).data("carousel-initialized", true); // Mark as initialized
+    }
+  });
+};
+
+$(document).on("turbo:load", initCarousels).ready(initCarousels);

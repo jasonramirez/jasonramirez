@@ -4,10 +4,22 @@ module HistoryHelper
 
     return history_list_array = [
       [
+        "image" => "dad-2.png",
+        "title" => "Double Dad",
+        "date" => "December 2024",
+        "organization" => "Life"
+      ],
+      [
         "image" => "grow-therapy-logo.png",
         "title" => "Head of Product Design",
         "date" => "November 2023",
         "organization" => "Grow Therapy"
+      ],
+      [
+        "image" => "madisonian.png",
+        "title" => "Madisonian",
+        "date" => "July 2023",
+        "organization" => "Life"
       ],
       [
         "image" => "dropbox-logo.png",
