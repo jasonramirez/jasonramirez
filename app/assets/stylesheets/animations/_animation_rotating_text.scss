@@ -17,7 +17,7 @@
 @keyframes rotate-text-indicator {
   0%,
   20% {
-    background-color: rgba($warm-white, 0.25);
+    background-color: rgba($base-font-color, 0.25);
   }
   25%,
   35% {
@@ -25,7 +25,7 @@
   }
   40%,
   100% {
-    background-color: rgba($warm-white, 0.25);
+    background-color: rgba($base-font-color, 0.25);
   }
 }
 

@@ -3,7 +3,7 @@
 }
 
 .navigation--mobile-trigger-icon::after {
-  @include position( absolute, 50% 1.5rem null null);
+  @include position(absolute, 50% 1.5rem null null);
   content: $hamburger-icon;
   font-size: 1.5rem;
   transform: translateY(-55%);
@@ -51,12 +51,11 @@
 }
 
 .navigation__link {
-  character-spacing: 0.05rem;
   color: $base-font-color;
   display: flex;
   font-family: $heading-font-family;
   font-size: $base-font-size;
-  font-weight: bold;
+  font-weight: 600;
   text-transform: uppercase;
 
   @include media(min-width $medium-screen) {
