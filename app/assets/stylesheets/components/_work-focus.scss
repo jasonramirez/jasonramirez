@@ -30,6 +30,10 @@
     column-count: 3;
   }
 
+  strong {
+    margin-bottom: $small-spacing;
+  }
+
   ul {
     break-inside: avoid-column;
     margin-bottom: $large-spacing;

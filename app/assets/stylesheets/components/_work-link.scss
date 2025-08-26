@@ -4,6 +4,21 @@
   flex-direction: column;
   margin-bottom: $xx-large-spacing;
   text-decoration: none;
+  transition-duration: $base-duration;
+  transition-timing-function: $base-timing;
+  transition: color;
+
+  &:hover {
+    color: currentColor;
+
+    * {
+      color: currentColor;
+    }
+
+    img {
+      box-shadow: 0 0 2rem 0rem rgba($action-color, 0.75);
+    }
+  }
 }
 
 .work-link__image-container {
@@ -13,30 +28,9 @@
   text-decoration: none;
 }
 
-.work-link__image {
-  border-bottom: 0;
-  height: 2.5rem;
-  margin-bottom: $small-spacing;
-  margin-right: $small-spacing;
-  width: auto;
-}
-
 .work-link__title {
-  font-family: $heading-font-family;
-  font-size: 3rem;
-  font-weight: $heading-font-weight;
-  line-height: $heading-line-height;
-  margin-bottom: $small-spacing;
-  text-decoration-color: $action-color;
-  text-decoration-line: underline;
-  text-decoration-skip-ink: none;
-  text-decoration-thickness: $link-text-decoration-thickness;
-  text-transform: capitalize;
-  text-underline-offset: $link-text-underline-offset;
-
-  @include media($medium-screen) {
-    font-size: 4rem;
-  }
+  margin-top: 3.5rem;
+  font-weight: $reading-font-weight;
 }
 
 .work-link__protected {
@@ -46,4 +40,14 @@
   display: flex;
   font-size: $small-font-size;
   padding: $x-small-spacing;
+}
+
+.work-link__description {
+  font-weight: $reading-font-weight;
+  letter-spacing: $reading-letter-spacing;
+  width: 100%;
+
+  @include media($medium-screen) {
+    width: 75%;
+  }
 }
