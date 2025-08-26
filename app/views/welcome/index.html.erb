@@ -38,13 +38,13 @@
 <section class="hero-description">
   <div class="hero-description__content">
     <h1>
-      I also love to share
+      I also love to share:
     </h1>
     <% @hashtags.each_with_index do |hashtag, index| %>
       <form action="<%= posts_path %>" class="hero-description__hashtag">
         <%= search_field_tag :search, hashtag.label, hidden: :true %>
         <button type="submit" id="search_posts_submit">
-          <span class="link">
+          <span class="link hero-description__hashtag-link">
             <%= hashtag.label %>
             <span class="hero-description__hashtag-count">
               <%= hashtag.usage_count %>
