@@ -17,15 +17,15 @@
 @keyframes rotate-text-indicator {
   0%,
   20% {
-    background-color: $action-color;
+    background-color: rgba($warm-white, 0.25);
   }
   25%,
   35% {
-    background-color: currentColor;
+    background-color: $action-color;
   }
   40%,
   100% {
-    background-color: $action-color;
+    background-color: rgba($warm-white, 0.25);
   }
 }
 

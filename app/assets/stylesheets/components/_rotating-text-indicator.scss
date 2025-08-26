@@ -6,14 +6,10 @@
 }
 
 .rotating-text-indicator__dot {
-  background-color: $action-color;
+  background-color: rgba($warm-white, 0.25);
   border-radius: 50%;
   display: inline-block;
   height: 0.25rem;
   margin: 0 0.5rem;
   width: 0.25rem;
-}
-
-.rotating-text-indicator__dot--active {
-  background-color: $warm-white;
 }
