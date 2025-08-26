@@ -1,8 +1,8 @@
 // Font families
 $base-font-family: "Calibre", sans-serif;
-$heading-font-family: "Poppins", sans-serif;
-$form-font-family: "Poppins", sans-serif;
-$table-font-family: "Poppins", sans-serif;
+$heading-font-family: "Passo test", sans-serif;
+$form-font-family: "Passo test", sans-serif;
+$table-font-family: "Passo test", sans-serif;
 $button-font-family: $heading-font-family;
 $blockquote-font-family: "Charter", serif;
 $code-font-family: "Inconsolata", sans-serif;
@@ -53,7 +53,7 @@ $base-font-color: map-get($colors, secondary);
 $base-border-color: map-get($colors, tertiary);
 $secondary-font-color: rgba(map-get($colors, secondary), 0.6);
 $base-heading-font-color: map-get($colors, secondary);
-$blockquote-color:  map-get($colors, secondary);
+$blockquote-color: map-get($colors, secondary);
 $code-font-color: #f5e3b5;
 $code-background-color: lighten($mirage, 3%);
 $code-border-color: lighten($mirage, 5%);
