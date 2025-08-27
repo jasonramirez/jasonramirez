@@ -63,18 +63,26 @@ $ production restore-from development --force
 
 ### Updating Production
 
+**Automatic Deployment**: When you push to the `main` branch, your site automatically deploys to production.
+
 To deploy updates to production:
 
 1. **Ensure your changes are committed and pushed to your main branch**
-2. **Deploy to production:**
+
+   ```bash
+   git push origin main
+   ```
+
+   _Note: The automatic deployment will handle the rest!_
+
+2. **If you need to manually deploy or run migrations:**
+
    ```bash
    git push heroku main
-   ```
-3. **Run any pending migrations:**
-   ```bash
    heroku run rake db:migrate
    ```
-4. **Verify the deployment:**
+
+3. **Verify the deployment:**
    ```bash
    heroku open
    ```
