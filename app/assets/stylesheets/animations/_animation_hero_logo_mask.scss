@@ -11,7 +11,7 @@ $animation-total-duration: ($animation-count * $animation-delay);
   #{$animation-interval * 0.5}% {
     opacity: 0;
   }
-  #{$animation-interval * 0.75}% {
+  #{$animation-interval * 0.5}% {
     opacity: 1;
   }
   #{$animation-interval * 1.25}% {
@@ -35,11 +35,11 @@ $animation-total-duration: ($animation-count * $animation-delay);
   opacity: 0; // Start hidden, animation will make visible
   position: absolute;
   top: 0;
+  z-index: 1;
   -webkit-mask-image: url("/assets/jason-ramirez-logo-white.svg");
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
-  z-index: 1;
 
   @for $i from 1 through $animation-count {
     &:nth-child(#{$i}) {
