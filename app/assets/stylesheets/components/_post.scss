@@ -18,6 +18,7 @@
   }
 
   img {
+    border: 1px solid $base-border-color;
     margin: 0 auto;
   }
 
@@ -45,11 +46,10 @@
 
       @media (min-width: $large-screen) {
         margin-right: $base-spacing;
-        width: calc(50% - (#{$base-spacing} / 2 ));
+        width: calc(50% - (#{$base-spacing} / 2));
       }
     }
   }
-
 }
 
 .content__title {
