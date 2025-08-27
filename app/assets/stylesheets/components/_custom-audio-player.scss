@@ -3,6 +3,23 @@
   align-items: center;
   background: transparent;
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.custom-audio-player__title-container {
+  width: 100%;
+}
+
+.custom-audio-player__title {
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: $reading-font-weight;
+}
+
+.custom-audio-player__controls {
+  align-items: center;
+  display: flex;
   width: 100%;
 }
 
@@ -55,7 +72,7 @@
 }
 
 .custom-audio-player__progress-bar-fill {
-  background: $base-font-color;
+  background: $action-color;
   border-radius: 4px;
   height: 100%;
   position: absolute;
@@ -93,6 +110,24 @@
   align-items: center;
   display: flex;
   gap: $small-spacing;
+}
+
+.custom-audio-player__volume-container {
+  position: relative;
+  width: 60px;
+  height: 4px;
+}
+
+.custom-audio-player__volume-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: $action-color;
+  border-radius: 2px;
+  pointer-events: none;
+  transition: width 0.1s ease;
+  width: 100%; // Will be updated by JavaScript
 }
 
 .custom-audio-player__volume-button {
@@ -153,7 +188,70 @@
 }
 
 .custom-audio-player__volume-slider {
-  background: rgba($base-font-color, 0.5);
-  width: 60px;
+  appearance: none;
+  background: rgba($base-font-color, 0.2); // Unfilled portion
+  border-radius: 2px;
+  cursor: pointer;
   height: 4px;
+  width: 60px;
+  -webkit-appearance: none;
+
+  // Webkit browsers - filled portion
+  &::-webkit-slider-runnable-track {
+    background: $action-color; // Blue filled portion
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  // Webkit browsers - thumb
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: $action-color; // Blue thumb
+    border-radius: 50%;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    margin-top: -6px; // Center the thumb on the track
+  }
+
+  // Firefox - filled portion
+  &::-moz-range-progress {
+    background: $action-color; // Blue filled portion
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  // Firefox - unfilled portion
+  &::-moz-range-track {
+    background: rgba($base-font-color, 0.2); // Gray unfilled portion
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+  }
+
+  // Firefox - thumb
+  &::-moz-range-thumb {
+    background: $action-color; // Blue thumb
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+  }
+
+  // Focus states
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      background: lighten($action-color, 10%);
+      transform: scale(1.1);
+    }
+
+    &::-moz-range-thumb {
+      background: lighten($action-color, 10%);
+      transform: scale(1.1);
+    }
+  }
 }
