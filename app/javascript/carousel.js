@@ -8,6 +8,8 @@ export default class Carousel {
     this.firstCard = 1;
     this.hammer = new Hammer(element);
     this.lastCard = $(element).find("[data-js-carousel-card]").length;
+    this.imagesLoaded = 0;
+    this.totalImages = $(element).find("img").length;
 
     this.$element = $(element);
     this.$window = $(window);
@@ -25,11 +27,45 @@ export default class Carousel {
       "[data-js-carousel-previous-card-trigger]"
     );
 
+    this._waitForImages();
+  }
+
+  _waitForImages() {
+    if (this.totalImages === 0) {
+      this._initialize();
+      return;
+    }
+
+    this.$element.find("img").each((index, img) => {
+      const $img = $(img);
+
+      if (img.complete) {
+        this._onImageLoad();
+      } else {
+        $img.on("load", () => this._onImageLoad());
+        $img.on("error", () => this._onImageLoad()); // Continue even if image fails
+      }
+    });
+  }
+
+  _onImageLoad() {
+    this.imagesLoaded++;
+    if (this.imagesLoaded >= this.totalImages) {
+      this._initialize();
+    }
+  }
+
+  _initialize() {
     this._setTriggerState();
     this._setContainerSize();
     this._setIndexContent();
     this._setIndexSelected();
     this._bindEvents();
+
+    // Add a small delay to ensure DOM is ready
+    setTimeout(() => {
+      this._setLeftPosition();
+    }, 50);
   }
 
   get leftPosition() {
@@ -52,7 +88,7 @@ export default class Carousel {
       })
       .get();
 
-    return Math.max(...heightArray);
+    return Math.max(...heightArray) || 400; // Fallback height
   }
 
   _bindEvents() {
@@ -60,7 +96,22 @@ export default class Carousel {
     this.hammer.on("swiperight", this._previousCard.bind(this));
     this.$nextCardTrigger.on("click", this._nextCard.bind(this));
     this.$previousCardTrigger.on("click", this._previousCard.bind(this));
-    this.$window.on("resize", this._setContainerSize.bind(this));
+    this.$window.on(
+      "resize",
+      this._debounce(this._setContainerSize.bind(this), 250)
+    );
+  }
+
+  _debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   }
 
   _increaseCount() {
@@ -79,16 +130,16 @@ export default class Carousel {
     }
   }
 
-  _nextCard() {
-    event.preventDefault();
+  _nextCard(event) {
+    if (event) event.preventDefault();
     this._increaseCount();
     this._setIndexSelected();
     this._setTriggerState();
     this._setLeftPosition();
   }
 
-  _previousCard() {
-    event.preventDefault();
+  _previousCard(event) {
+    if (event) event.preventDefault();
     this._decreaseCount();
     this._setIndexSelected();
     this._setTriggerState();
@@ -115,7 +166,8 @@ export default class Carousel {
   }
 
   _setContainerSize() {
-    this.$carouselCardsPlaceholder.css("min-height", `${this.maxCardHeight}px`);
+    const height = this.maxCardHeight;
+    this.$carouselCardsPlaceholder.css("min-height", `${height}px`);
   }
 
   _setTriggerState() {
@@ -136,8 +188,12 @@ export default class Carousel {
 const initCarousels = () => {
   $("[data-js-carousel]").each((index, element) => {
     if (!$(element).data("carousel-initialized")) {
-      new Carousel(element);
-      $(element).data("carousel-initialized", true); // Mark as initialized
+      try {
+        new Carousel(element);
+        $(element).data("carousel-initialized", true);
+      } catch (error) {
+        console.error("Failed to initialize carousel:", error);
+      }
     }
   });
 };
