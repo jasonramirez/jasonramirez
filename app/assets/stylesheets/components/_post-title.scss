@@ -1,9 +1,19 @@
-.post-title {
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.post-meta__image {
+  margin-bottom: $xx-large-spacing;
+}
+
+.post-meta__title {
   font-family: $heading-font-family;
   font-size: 3rem;
   font-weight: $heading-font-weight;
-  line-height: $heading-line-height * .9;
-  margin-bottom: $x-large-spacing;
+  line-height: $heading-line-height * 0.9;
+  margin: $x-large-spacing 0 $large-spacing;
   text-transform: capitalize;
 
   @include media($medium-screen) {
@@ -11,12 +21,10 @@
   }
 }
 
-.post-title__image-container {
-  display: flex;
-
-  svg {
-    height: 5rem;
-    width: auto;
-    margin-bottom: $x-large-spacing;
-  }
+.post-meta__subtitle,
+.post-meta__description {
+  font-size: 1.5rem;
+  line-height: $heading-line-height;
+  margin-bottom: $x-large-spacing;
+  font-weight: $reading-font-weight;
 }

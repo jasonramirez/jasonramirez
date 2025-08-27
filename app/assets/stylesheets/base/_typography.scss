@@ -128,8 +128,14 @@ img {
   max-width: 100%;
 }
 
+ol {
+  list-style-type: decimal;
+  padding-left: 2rem;
+  line-height: $reading-line-height;
+}
+
 p {
-  margin: 0 0 $small-spacing;
+  margin: 0 0 $base-spacing;
 }
 
 pre {
@@ -139,7 +145,7 @@ pre {
 }
 
 li {
-  margin-bottom: $base-spacing / 2;
+  // margin-bottom: $base-spacing / 2;
 }
 
 mark {
