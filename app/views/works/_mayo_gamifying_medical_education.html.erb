@@ -6,7 +6,7 @@
 
     <%= 
       render 'shared/custom_audio_player',
-      audio_source: '/assets/mayo-clinic-gamifying-tldr.mp3',
+      audio_source: '<%= asset_path("mayo-clinic-gamifying-tldr.mp3") %>',
       title: 'Gamifying Medical Education',
       transcript_file: 'transcripts/mayo-clinic-gamifying.txt'
     %>

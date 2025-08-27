@@ -6,7 +6,7 @@
 
     <%= 
       render 'shared/custom_audio_player',
-      audio_source: '/assets/saving-money-tldr.mp3',
+      audio_source: '<%= asset_path("saving-money-tldr.mp3") %>',
       title: 'Saving Money',
       transcript_file: 'transcripts/saving-money.txt'
     %>
