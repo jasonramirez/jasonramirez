@@ -56,10 +56,17 @@ class CustomAudioPlayer {
 
     // Audio events
     this.audio.addEventListener("timeupdate", () => this.updateProgress());
-    this.audio.addEventListener("loadedmetadata", () =>
-      this.updateTimeDisplay()
-    );
+    this.audio.addEventListener("loadedmetadata", () => {
+      console.log("Audio metadata loaded, duration:", this.audio.duration);
+      this.updateTimeDisplay();
+    });
+    this.audio.addEventListener("canplay", () => {
+      console.log("Audio can play, duration:", this.audio.duration);
+    });
     this.audio.addEventListener("ended", () => this.onEnded());
+    this.audio.addEventListener("error", (e) => {
+      console.error("Audio error:", e);
+    });
     console.log("Events bound successfully");
   }
 
@@ -92,9 +99,15 @@ class CustomAudioPlayer {
     const rect = this.progressBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const percentage = clickX / rect.width;
-    const newTime = percentage * this.audio.duration;
 
-    this.audio.currentTime = newTime;
+    // Only seek if audio has duration
+    if (this.audio.duration && this.audio.duration > 0) {
+      const newTime = percentage * this.audio.duration;
+      console.log("Seeking to:", newTime, "seconds");
+      this.audio.currentTime = newTime;
+    } else {
+      console.log("Audio not ready, duration:", this.audio.duration);
+    }
   }
 
   startDragging() {
@@ -107,9 +120,12 @@ class CustomAudioPlayer {
     const rect = this.progressBar.getBoundingClientRect();
     const dragX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
     const percentage = dragX / rect.width;
-    const newTime = percentage * this.audio.duration;
 
-    this.audio.currentTime = newTime;
+    // Only seek if audio has duration
+    if (this.audio.duration && this.audio.duration > 0) {
+      const newTime = percentage * this.audio.duration;
+      this.audio.currentTime = newTime;
+    }
   }
 
   stopDragging() {
