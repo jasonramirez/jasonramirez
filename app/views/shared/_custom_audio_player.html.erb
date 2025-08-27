@@ -43,5 +43,19 @@
       </button>
       <input class="custom-audio-player__volume-slider" type="range" min="0" max="100" value="100">
     </div>
+
+    <% if local_assigns[:transcript_file] %>
+      <div class="custom-audio-player__transcript">
+        <button class="custom-audio-player__transcript-button" type="button">
+          <%= inline_svg "icon-transcript.svg", class: "icon transcript-icon", style: "width: 16px; height: 16px;" %>
+        </button>
+      </div>
+    <% end %>
   </div>
+
+  <% if local_assigns[:transcript_file] %>
+    <div class="custom-audio-player__transcript-content">
+      <%= read_transcript_file(transcript_file) %>
+    </div>
+  <% end %>
 </div>

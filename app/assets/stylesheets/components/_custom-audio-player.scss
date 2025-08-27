@@ -27,7 +27,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-right: $small-spacing;
+  margin-right: $x-small-spacing;
 
   .icon {
     height: 16px;
@@ -35,6 +35,10 @@
 
     path {
       fill: none;
+    }
+
+    &:hover {
+      stroke: $action-color;
     }
   }
 
@@ -138,7 +142,7 @@
   transition: color $base-duration $base-timing;
 
   &:hover {
-    color: darken($action-color, 10%);
+    color: $action-color;
   }
 
   .icon {
@@ -148,6 +152,10 @@
 
     path {
       fill: none;
+    }
+
+    &:hover {
+      stroke: $action-color;
     }
   }
 
@@ -252,7 +260,8 @@
 }
 
 .custom-audio-player__speed {
-  margin: 0 $small-spacing;
+  //margin: 0 $small-spacing;
+  margin-left: $small-spacing;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,20 +269,23 @@
 
 select.custom-audio-player__speed-selector {
   background: transparent;
-  border: 1px solid rgba($base-font-color, 0.3);
+  //border: 1px solid rgba($base-font-color, 0.3);
+  border: none;
   border-radius: $base-border-radius;
   box-shadow: none;
   color: $base-font-color;
   cursor: pointer;
   font-family: $base-font-family;
   font-size: $small-font-size;
-  padding: 4px 0px 4px 18px;
+  font-weight: $heading-font-weight;
+  padding: 4px 0px 4px 6px;
   transition: all $base-duration $base-timing;
   margin-bottom: 0;
-  margin-left: 12px;
+  //margin-left: 12px;
 
   &:hover {
     border-color: $action-color;
+    color: $action-color;
   }
 
   &:focus {
@@ -284,5 +296,37 @@ select.custom-audio-player__speed-selector {
   option {
     background: $base-background-color;
     color: $base-font-color;
+  }
+}
+
+.custom-audio-player__transcript-button {
+  background: none;
+  border: none;
+  color: $base-font-color;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: all $base-duration $base-timing;
+  margin-left: $base-spacing;
+
+  &:hover {
+    color: lighten($action-color, 10%);
+  }
+
+  &.active {
+    color: darken($action-color, 10%);
+  }
+}
+
+.custom-audio-player__transcript-content {
+  display: none;
+  margin-top: $small-spacing;
+  border-top: 1px solid $base-border-color;
+  padding-top: $small-spacing;
+
+  &.show {
+    display: block;
   }
 }

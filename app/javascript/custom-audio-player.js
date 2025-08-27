@@ -62,9 +62,24 @@ class CustomAudioPlayer {
     });
 
     // Speed
-    this.speedSelector.addEventListener("change", (e) =>
-      this.setPlaybackSpeed(e.target.value)
+    this.speedSelector.addEventListener("change", (e) => {
+      this.setPlaybackSpeed(e.target.value);
+    });
+
+    // Transcript button
+    const transcriptButton = this.container.querySelector(
+      ".custom-audio-player__transcript-button"
     );
+    const transcriptContent = this.container.querySelector(
+      ".custom-audio-player__transcript-content"
+    );
+
+    if (transcriptButton && transcriptContent) {
+      transcriptButton.addEventListener("click", () => {
+        transcriptContent.classList.toggle("show");
+        transcriptButton.classList.toggle("active");
+      });
+    }
 
     // Audio events
     this.audio.addEventListener("timeupdate", () => this.updateProgress());

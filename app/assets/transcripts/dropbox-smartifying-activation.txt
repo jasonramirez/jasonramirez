@@ -1,0 +1,9 @@
+In 2021, Dropbox faced a critical challenge: customers weren't discovering the full value of our platform beyond basic file sharing. We identified three key problems: limited value discovery, trust erosion from frequent upsells, and overly complex foundational features.
+
+Our solution involved establishing design rituals, improving data-driven decision making, and using a Design Sprint to validate our approach. [surprised] We discovered that relevant communication dramatically improved feature discovery, leading to 12 experiments and ultimately a $50M+ increase in annual recurring revenue.
+
+Key learnings: one-size-fits-all doesn't scale, goals drive outcomes more than principles, and time constraints are your friends. The project validated a new activation direction using data models for relevant recommendations.
+
+Ultimately the project was a strong success. 
+
+Thanks for listening!
