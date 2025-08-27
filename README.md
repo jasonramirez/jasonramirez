@@ -59,14 +59,56 @@ From the command line:
 $ production restore-from development --force
 ```
 
+## Deployment
+
+### Updating Production
+
+To deploy updates to production:
+
+1. **Ensure your changes are committed and pushed to your main branch**
+2. **Deploy to production:**
+   ```bash
+   git push heroku main
+   ```
+3. **Run any pending migrations:**
+   ```bash
+   heroku run rake db:migrate
+   ```
+4. **Verify the deployment:**
+   ```bash
+   heroku open
+   ```
+
+### Rollback (if needed)
+
+If you need to rollback to a previous version:
+
+```bash
+heroku rollback
+```
+
+### Check Deployment Status
+
+View recent deployments:
+
+```bash
+heroku releases
+```
+
+View current app status:
+
+```bash
+heroku ps
+```
+
 ## Guidelines
 
 Use the following guides for getting things done, programming well, and
 programming in style.
 
--   [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
--   [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
--   [Style](http://github.com/thoughtbot/guides/blob/master/style)
+- [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
+- [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
+- [Style](http://github.com/thoughtbot/guides/blob/master/style)
 
 # Creating Posts
 
