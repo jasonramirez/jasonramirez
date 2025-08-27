@@ -4,10 +4,25 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  background-color: rgba($base-border-color, 0.05);
+  border-radius: $base-border-radius;
+  margin-top: $medium-spacing;
+  padding: $small-spacing $small-spacing $x-small-spacing;
+  width: 100%;
 }
 
 .custom-audio-player__title-container {
+  align-items: center;
+  border-bottom: 1px solid rgba($base-border-color, 0.05);
+  display: flex;
+  margin-bottom: $x-small-spacing;
+  padding-bottom: $small-spacing;
   width: 100%;
+}
+
+.custom-audio-player__title-icon {
+  margin-right: $x-small-spacing;
 }
 
 .custom-audio-player__title {
@@ -23,10 +38,8 @@
 }
 
 .custom-audio-player__play-button {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-right: $x-small-spacing;
+  margin-right: $small-spacing;
+  padding: 0;
 
   .icon {
     height: 16px;

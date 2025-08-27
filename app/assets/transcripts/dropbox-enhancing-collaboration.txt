@@ -1,0 +1,13 @@
+In 2022, Dropbox faced a big challenge: declining Teams SKU retention while noticing increased Professional SKU purchases by freelancers. Our research revealed that remote work created temporary working relationships where Pros and Teams had similar collaboration needs but faced significant challenges working together.
+
+Frances Klein, my product partner, assembled a cross-functional tiger team including Product Design, Research, Content Design, Product, Product Marketing, Customer Experience, Data Science, and Engineering. Marian Oman, our Research Lead, discovered that remote work fostered temporary working relationships, and Christina Choi, our Data Science lead, confirmed low retention despite many former Teams users buying Pro.
+
+Our solution involved establishing two squads with different approaches - one Pro-first, one Teams-first - to diagnose collaboration challenges and establish principles for enhancing collaboration between Teams and Pros. We tasked the tiger team with devising both principles and actionable strategies.
+
+The project opened new revenue streams and improved retention by bringing new value to freelancers and Teams through enhanced collaboration and relationship-building features. This strategic approach validated that cross-functional collaboration and user-centered research could drive significant business impact.
+
+Key learnings: remote work fundamentally changed collaboration patterns, temporary working relationships require different tools than permanent teams, and addressing collaboration challenges between different user types can unlock new revenue opportunities.
+
+Ultimately, the project was a strong success, demonstrating how understanding user collaboration patterns can lead to both improved retention and new market opportunities.
+
+Thanks for listening!
