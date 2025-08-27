@@ -1,0 +1,15 @@
+In 2018, the Mayo Clinic came to thoughtbot, where I was the NYC Design Director, to learn to innovate. They wanted to learn and ship quickly and solve real problems with software. Myself and Trace Wax, thoughtbot NYC's Managing Director, established an engagement with the Mayo Clinic focused on building an innovation practice.
+
+We would develop the innovation practice through building a product. That product would be OnPar; an educational game to improve the continuing education methods for doctors, nurses and residents. This is the story of how we built the product and helped the Mayo Clinic build an innovation practice.
+
+In our discovery phase with Mayo, we uncovered a key problem: current continuing education methods for doctors, nurses and residents were not engaging, expensive to produce, and only mildly effective. With these insights, I created a customer development interview template and interviewed about 25 healthcare professionals and related stakeholders.
+
+The continuing education space had existing competition, but qualitative research supported our assumptions about engagement, expense, and effectiveness issues. As the project lead, I took on multiple responsibilities including customer development, solution exploration, interface design, experiment process, product roadmap, stakeholder communication, and team management.
+
+The Mayo Clinic provided us with world-class doctors to create the case content, as well as a board to lobby for investment. We built OnPar as an educational game that would make continuing medical education more engaging and effective through gamification principles.
+
+Key learnings: healthcare education desperately needed innovation, gamification could make complex medical concepts more accessible, and building an innovation practice within a traditional healthcare institution required both technical and cultural change.
+
+Ultimately, the project helped establish Mayo Clinic's digital innovation lab and demonstrated how lean product practices could transform even the most traditional healthcare education methods.
+
+Thanks for listening!

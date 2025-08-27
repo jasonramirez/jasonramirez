@@ -1,57 +1,63 @@
 <div data-js-reading-progress-bar></div>
 
 <article class="content content--reading post">
-  <div class="post-title">
-    <div class="post-title__image-container">
-      <%= inline_svg "works/thoughtbot-work-logo.svg" %>
+  <div class="post-meta">
+    <%= image_tag "works/mayo-clinic-educational-game-title-card.png", class: "post-meta__image" %>
+
+    <%= 
+      render 'shared/custom_audio_player',
+      audio_source: '/assets/mayo-clinic-gamifying-tldr.mp3',
+      title: 'Gamifying Medical Education',
+      transcript_file: 'transcripts/mayo-clinic-gamifying.txt'
+    %>
+
+    <div class="post-meta__title">
+      Gamifying Medical Education
     </div>
-    Gamifying Medical Education
+
+    <h2 class="post-meta__subtitle">
+      Mayo Clinic, 2017
+    </h2>
+
+    <h2 class="post-meta__description">
+      How building an educational game using lean product practices changed the
+      Mayo Clinic and established its digital innovation lab.
+    </h2>
   </div>
-
-  <h2>
-    Mayo Clinic, 2017
-  </h2>
-
-  <h2>
-    How building an educational game using lean product practices changed the
-    Mayo Clinic and established it's digital innovation lab.
-  </h2>
 
   <h1>
-    Table of Contents
+    Contents
   </h1>
 
-  <div>
-    <ol>
-      <li>
-        <a href="#background">Background</a>
-      </li>
+  <ol>
+    <li>
+      <a href="#background">Background</a>
+    </li>
 
-      <li>
-        <a href="#planning">Planning</a>
-      </li>
+    <li>
+      <a href="#planning">Planning</a>
+    </li>
 
-      <li>
-        <a href="#designing">Designing</a>
-      </li>
+    <li>
+      <a href="#designing">Designing</a>
+    </li>
 
-      <li>
-        <a href="#impact">Impact</a>
-      </li>
+    <li>
+      <a href="#impact">Impact</a>
+    </li>
 
-      <li>
-        <a href="#challenges">Challenges</a>
-      </li>
+    <li>
+      <a href="#challenges">Challenges</a>
+    </li>
 
-      <li>
-        <a href="#learnings">Learnings</a>
-      </li>
+    <li>
+      <a href="#learnings">Learnings</a>
+    </li>
 
-      <li>
-        <a href="#closing">Closing</a>
-      </li>
-    </ul>
-  </div>
+    <li>
+      <a href="#closing">Closing</a>
+    </li>
+  </ol>
 
   <a name="background"></a>
   <h1>
@@ -59,25 +65,16 @@
   </h1>
 
   <p>
-    In 2018 the Mayo Clinic came to
+    In 2018, the Mayo Clinic came to
     <%= link_to "thoughtbot", "https://thoughtbot.com", target: :blank %>,
-    where I was the NYC Design Director,
-    to learn to innovate.
-    They wanted to learn and ship quickly and solve real
-    problems with software. Myself and 
+    where I was the NYC Design Director, to learn to innovate. They wanted to learn and ship quickly and solve real problems with software. Myself and 
     <%= link_to "Trace Wax", "https://www.linkedin.com/in/tracewax/",
       target: :blank %>
-    thoughtbot NYCs Managing Director, established an engagement
-    with the Mayo Clinic focused on
-    building an innovation practice.
+    (thoughtbot NYC's Managing Director) established an engagement with the Mayo Clinic focused on building an innovation practice.
   </p>
 
   <p>
-    We would develop the innovation practice through building a product. That
-    product would be OnPar; an educational game to improve the continuing
-    education methods for doctors, nurses and residents. This is the story of
-    how we built the product and helped the Mayo Clinic build an
-    innovation practice.
+    We would develop the innovation practice through building a product. That product would be OnPar; an educational game to improve the continuing education methods for doctors, nurses and residents. This is the story of how we built the product and helped the Mayo Clinic build an innovation practice.
   </p>
 
   <a name="planning"></a>
@@ -86,182 +83,75 @@
   </h1>
 
   <p>
-    In our discovery phase with Mayo, we uncovered a problem:
-    <strong>current continuing education methods for doctors, nurses and
-    residents were not engaging, were expensive to produce, and mildly
-    effective.</strong> With some assumptions, I put together a 
-    customer development interview (based off the template below),
-    and set off to interview ~25 individuals in, and tangental to, what 
-    we thought our target market was: health care professionals.
+    In our discovery phase with Mayo, we uncovered a key problem: current continuing education methods for doctors, nurses and residents were not engaging, expensive to produce, and only mildly effective.
   </p>
-</article>
-
-<section>
-  <section data-js-carousel class="carousel">
-    <div data-js-carousel-cards-placeholder
-         class="carousel__cards-placeholder"></div>
-
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-customer-development-1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-customer-development-2.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
-
-    <%= render "carousels/actions" %>
-  </section>
-</section>
-
-<article class="content content--reading post">
-  </p>
-    The continuing educational space had competition. There was qualitative
-    research that supported our assumptions around engagement, expense, and
-    effectiveness. We aligned that this was a good starting point for our
-    project. As the project, lead I took on many responsibilities:
-  </p>
-
-  <div class="work-focus work-focus--small">
-    <header class="work-focus__header">
-      <h3>
-        My Role
-      </h3>
-    </header>
-
-    <ul>
-      <li>
-        Lead and execute customer development and research.
-      </li>
-      <li>
-        Facilitate solution exploration and testing.
-      </li>
-      <li>
-        Lead interface and experience design.
-      </li>
-      <li>
-        Establish experiment process, setup and analysis.
-      </li>
-      <li>
-        Develop the product roadmap and manage the project.
-      </li>
-      <li>
-        Communicate with, align, and present to stakeholders.
-      </li>
-      <li>
-        Build, manage, and mentor the design team.
-      </li>
-    </ul>
-  </div>
 
   <p>
-    As with most successful projects, it takes a village. I was
-    lucky to be surrounded with amazing thoughtbot designers and 
-    engineers, and a Mayo Clinic administrative duo.
-    The Mayo Clinic also provided us with world
-    class Doctors to create the case content, as well
-    as a board to lobby for investment.
+    With these insights, I created a customer development interview template and interviewed about 25 healthcare professionals and related stakeholders. The continuing education space had existing competition, but qualitative research supported our assumptions about engagement, expense, and effectiveness issues.
   </p>
 
-  <div class="work-focus work-focus--small">
-    <header class="work-focus__header">
-      <h3>
-        Contributors
-      </h3>
-    </header>
+  <p>
+    As the project lead, I took on multiple responsibilities:
+  </p>
 
-    <div class="work-focus__grid">
-      <ul class="minimal-unordered-list">
-        <li>
-          <strong>Board</strong>
-        </li>
-        <li>
-          Mark Warner, MD
-        </li>
-        <li>
-          Barbara Baasch Thomas
-        </li>
-      </ul>
+  <ol>
+    <li>Lead and execute customer development and research</li>
+    <li>Facilitate solution exploration and testing</li>
+    <li>Lead interface and experience design</li>
+    <li>Establish experiment process, setup and analysis</li>
+    <li>Develop the product roadmap and manage the project</li>
+    <li>Communicate with, align, and present to stakeholders</li>
+    <li>Build, manage, and mentor the design team</li>
+  </ol>
 
-      <ul class="minimal-unordered-list">
-        <li>
-          <strong>Mayo Clinicians</strong>
-        </li>
-        <li>
-          Richer Berger, MD
-        </li>
-        <li>
-          David Cook, MD
-        </li>
-        <li>
-          Jane Linderbaum, NP
-        </li>
-        <li>
-          Rozalina McCoy, MD
-        </li>
-        <li>
-          Farrell Lloyd, MD
-        </li>
-      </ul>
+  <p>
+    As with most successful projects, it takes a village. I was lucky to be surrounded with amazing thoughtbot designers and engineers, and a Mayo Clinic administrative duo. The Mayo Clinic also provided us with world-class doctors to create the case content, as well as a board to lobby for investment.
+  </p>
 
-      <ul class="minimal-unordered-list">
-        <li>
-          <strong>Mayo Admin</strong>
-        </li>
-        <li>
-          Jeannie Poterucha Carter
-        </li>
-        <li>
-          Abhi Bikkani
-        </li>
-      </ul>
+  <h1>
+    Collaborators
+  </h1>
 
-      <ul class="minimal-unordered-list">
-        <li>
-          <strong>Directors</strong>
-        </li>
-        <li>
-          Trace Wax
-        </li>
-      </ul>
+  <div class="work-focus__grid">
+    <strong>Board</strong>
+    <ul class="minimal-unordered-list">
+      <li>Mark Warner, MD</li>
+      <li>Barbara Baasch Thomas</li>
+    </ul>
 
-      <ul class="minimal-unordered-list">
-        <li>
-          <strong>Designers</strong>
-        </li>
-        <li>
-          Ward Penney
-        </li>
-        <li>
-          Tyson Gatch
-        </li>
-      </ul>
+    <strong>Mayo Clinicians</strong>
+    <ul class="minimal-unordered-list">
+      <li>Richer Berger, MD</li>
+      <li>David Cook, MD</li>
+      <li>Jane Linderbaum, NP</li>
+      <li>Rozalina McCoy, MD</li>
+      <li>Farrell Lloyd, MD</li>
+    </ul>
 
-      <ul class="minimal-unordered-list">
-        <li>
-          <strong>Engineers</strong>
-        </li>
-        <li>
-          Sean Doyle
-        </li>
-        <li>
-          Eric Collins
-        </li>
-        <li>
-          Christina Entcheva
-        </li>
-        <li>
-          George Brocklehurst
-        </li>
-      </ul>
-    </div>
+    <strong>Mayo Admin</strong>
+    <ul class="minimal-unordered-list">
+      <li>Jeannie Poterucha Carter</li>
+      <li>Abhi Bikkani</li>
+    </ul>
+
+    <strong>Directors</strong>
+    <ul class="minimal-unordered-list">
+      <li>Trace Wax</li>
+    </ul>
+
+    <strong>Designers</strong>
+    <ul class="minimal-unordered-list">
+      <li>Ward Penney</li>
+      <li>Tyson Gatch</li>
+    </ul>
+
+    <strong>Engineers</strong>
+    <ul class="minimal-unordered-list">
+      <li>Sean Doyle</li>
+      <li>Eric Collins</li>
+      <li>Christina Entcheva</li>
+      <li>George Brocklehurst</li>
+    </ul>
   </div>
 
   <p>
@@ -289,39 +179,33 @@
     %>
   </p>
 
-  <div class="work-focus">
-    <header class="work-focus__header">
-      <h3>
-        The Problem
-      </h3>
-    </header>
-    <p>
-      Current continuing education methods for doctors, nurses and residents
-      are not engaging, expensive to produce, and only somewhat effective. 
-    </p>
+  <h2>
+    The Problem
+  </h2>
+  <p>
+    Current continuing education methods for doctors, nurses and residents
+    are not engaging, expensive to produce, and only somewhat effective. 
+  </p>
 
-    <div class="u-margin-bottom-large"></div>
+  <div class="u-margin-bottom-large"></div>
 
-    <header class="work-focus__header">
-      <h3>
-        The Goals
-      </h3>
-    </header>
-    <ul>
-      <li>
-        Create an engaging method of continuing education.
-      </li>
-      <li>
-        Improve effectiveness of continuing education.
-      </li>
-      <li>
-        Reduce the cost of creating content.
-      </li>
-      <li>
-        Have a proven viable business model.
-      </li>
-    </ul>
-  </div>
+  <h2>
+    The Goals
+  </h2>
+  <ul>
+    <li>
+      Create an engaging method of continuing education.
+    </li>
+    <li>
+      Improve effectiveness of continuing education.
+    </li>
+    <li>
+      Reduce the cost of creating content.
+    </li>
+    <li>
+      Have a proven viable business model.
+    </li>
+  </ul>
 
   <p>
     We did a competitive audit to understand what we were up against, and
@@ -692,8 +576,4 @@
     customer engagement, and innovation in healthcare. OnPar represents a
     cultural shift in the Mayo Clinic.
   </p>
-
-  <h1>
-    😷
-  </h1>
 </article>
