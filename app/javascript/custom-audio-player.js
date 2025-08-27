@@ -32,15 +32,13 @@ class CustomAudioPlayer {
   }
 
   init() {
-    console.log("CustomAudioPlayer init() called");
     this.bindEvents();
     this.updateTimeDisplay();
-    this.updateVolumeIcon(); // This will set the initial volume icon state
-    this.updateVolumeSlider(); // Add this line
+    this.updateVolumeIcon();
+    this.updateVolumeSlider();
   }
 
   bindEvents() {
-    console.log("Binding events...");
     // Play/Pause
     this.playButton.addEventListener("click", () => this.togglePlay());
 
@@ -58,7 +56,7 @@ class CustomAudioPlayer {
       const volume = e.target.value / 100;
       this.audio.volume = volume;
       this.updateVolumeIcon();
-      this.updateVolumeSlider(); // Add this line
+      this.updateVolumeSlider();
     });
 
     // Speed
@@ -84,21 +82,18 @@ class CustomAudioPlayer {
     // Audio events
     this.audio.addEventListener("timeupdate", () => this.updateProgress());
     this.audio.addEventListener("loadedmetadata", () => {
-      console.log("Audio metadata loaded, duration:", this.audio.duration);
       this.updateTimeDisplay();
     });
     this.audio.addEventListener("canplay", () => {
-      console.log("Audio can play, duration:", this.audio.duration);
+      // Audio is ready to play
     });
     this.audio.addEventListener("ended", () => this.onEnded());
     this.audio.addEventListener("error", (e) => {
       console.error("Audio error:", e);
     });
-    console.log("Events bound successfully");
   }
 
   togglePlay() {
-    console.log("togglePlay called, isPlaying:", this.isPlaying);
     if (this.isPlaying) {
       this.pause();
     } else {
@@ -107,14 +102,12 @@ class CustomAudioPlayer {
   }
 
   play() {
-    console.log("play() called");
     this.audio.play();
     this.isPlaying = true;
     this.playButton.classList.add("playing");
   }
 
   pause() {
-    console.log("pause() called");
     this.audio.pause();
     this.isPlaying = false;
     this.playButton.classList.remove("playing");
@@ -130,10 +123,7 @@ class CustomAudioPlayer {
     // Only seek if audio has duration
     if (this.audio.duration && this.audio.duration > 0) {
       const newTime = percentage * this.audio.duration;
-      console.log("Seeking to:", newTime, "seconds");
       this.audio.currentTime = newTime;
-    } else {
-      console.log("Audio not ready, duration:", this.audio.duration);
     }
   }
 
@@ -195,7 +185,6 @@ class CustomAudioPlayer {
   setPlaybackSpeed(speed) {
     const speedValue = parseFloat(speed);
     this.audio.playbackRate = speedValue;
-    console.log("Playback speed set to:", speedValue + "x");
   }
 
   updateVolumeIcon() {
@@ -252,8 +241,21 @@ class CustomAudioPlayer {
   }
 }
 
-// Initialize all custom audio players on the page
-document.addEventListener("DOMContentLoaded", () => {
+// Initialize audio players when DOM is ready
+const initAudioPlayers = () => {
   const audioPlayers = document.querySelectorAll(".custom-audio-player");
-  audioPlayers.forEach((player) => new CustomAudioPlayer(player));
-});
+  audioPlayers.forEach((player) => {
+    if (!player.dataset.audioPlayerInitialized) {
+      new CustomAudioPlayer(player);
+      player.dataset.audioPlayerInitialized = "true";
+    }
+  });
+};
+
+// Initialize on page load and Turbo navigation
+document.addEventListener("DOMContentLoaded", initAudioPlayers);
+document.addEventListener("turbo:load", initAudioPlayers);
+document.addEventListener("turbo:render", initAudioPlayers);
+
+// Export for module usage
+export default CustomAudioPlayer;
