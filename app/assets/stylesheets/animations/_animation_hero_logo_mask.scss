@@ -8,7 +8,13 @@ $animation-total-duration: ($animation-count * $animation-delay);
   0% {
     opacity: 0;
   }
-  #{$animation-interval}% {
+  #{$animation-interval * 0.5}% {
+    opacity: 0;
+  }
+  #{$animation-interval * 0.75}% {
+    opacity: 1;
+  }
+  #{$animation-interval * 1.25}% {
     opacity: 1;
   }
   #{$animation-interval * 1.5}% {
