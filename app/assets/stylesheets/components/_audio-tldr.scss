@@ -1,0 +1,31 @@
+// Audio TLDR Component Styling
+.audio-tldr {
+  border: rgba($base-border-color, 0.1) solid 1px;
+  border-radius: $base-border-radius;
+  margin-top: $medium-spacing;
+  padding: $base-spacing;
+  width: 100%;
+
+  h3.audio-tldr__title {
+    margin-top: 0;
+  }
+}
+
+.audio-tldr__title {
+  align-items: center;
+  color: $base-font-color;
+  display: flex;
+}
+
+.audio-tldr__description {
+  color: $base-font-color;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.audio-tldr__player {
+  // background-color: transparent;
+  margin: 0;
+  width: 100%;
+}

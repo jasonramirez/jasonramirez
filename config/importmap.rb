@@ -9,6 +9,7 @@ pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "carousel", to: "carousel.js"
+pin "custom-audio-player", to: "custom-audio-player.js"
 pin "drawer", to: "drawer.js"
 pin "flexible-textarea", to: "flexible_textarea.js"
 pin "hammerjs", to: "https://ga.jspm.io/npm:hammerjs@2.0.8/hammer.js"

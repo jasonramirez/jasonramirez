@@ -1,0 +1,159 @@
+// Custom Audio Player Component
+.custom-audio-player {
+  align-items: center;
+  background: transparent;
+  display: flex;
+  width: 100%;
+}
+
+.custom-audio-player__play-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: $small-spacing;
+
+  .icon {
+    height: 16px;
+    width: 16px;
+
+    path {
+      fill: none;
+    }
+  }
+
+  .play-icon {
+    display: block;
+  }
+
+  .pause-icon {
+    display: none;
+  }
+
+  &.playing {
+    .play-icon {
+      display: none;
+    }
+
+    .pause-icon {
+      display: block;
+    }
+  }
+}
+
+.custom-audio-player__progress-container {
+  flex: 1;
+  position: relative;
+}
+
+.custom-audio-player__progress-bar {
+  background: rgba($base-font-color, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  height: 4px;
+  position: relative;
+  width: 100%;
+}
+
+.custom-audio-player__progress-bar-fill {
+  background: $base-font-color;
+  border-radius: 4px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: width 0.1s ease;
+  width: 0%;
+}
+
+.custom-audio-player__progress-bar-handle {
+  background: $action-color;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 16px;
+  position: absolute;
+  top: -6px;
+  transform: translateX(-50%);
+  transition: transform 0.1s ease;
+  width: 16px;
+
+  &:hover {
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+.custom-audio-player__time {
+  color: $secondary-font-color;
+  font-size: $small-font-size;
+  font-weight: $reading-font-weight;
+  text-align: center;
+  margin: 0 $small-spacing;
+}
+
+.custom-audio-player__volume {
+  align-items: center;
+  display: flex;
+  gap: $small-spacing;
+}
+
+.custom-audio-player__volume-button {
+  align-items: center;
+  background: none;
+  border: none;
+  color: $action-color;
+  cursor: pointer;
+  display: flex;
+  //font-size: 1.1rem;
+  padding: $x-small-spacing;
+  transition: color $base-duration $base-timing;
+
+  &:hover {
+    color: darken($action-color, 10%);
+  }
+
+  .icon {
+    height: 16px;
+    width: 16px;
+    stroke: $base-font-color;
+
+    path {
+      fill: none;
+    }
+  }
+
+  .volume-icon {
+    display: none;
+
+    &--muted {
+      display: none; // Start with muted hidden
+    }
+
+    &--high {
+      display: block; // Start with high volume visible
+    }
+  }
+
+  &.volume-muted {
+    .volume-icon--muted {
+      display: block;
+    }
+
+    .volume-icon--high {
+      display: none; // Hide high volume when muted
+    }
+  }
+
+  &.volume-high {
+    .volume-icon--muted {
+      display: none; // Hide muted when high volume
+    }
+
+    .volume-icon--high {
+      display: block;
+    }
+  }
+}
+
+.custom-audio-player__volume-slider {
+  background: rgba($base-font-color, 0.5);
+  width: 60px;
+  height: 4px;
+}

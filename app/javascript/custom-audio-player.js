@@ -1,0 +1,172 @@
+class CustomAudioPlayer {
+  constructor(container) {
+    this.container = container;
+    this.audio = container.querySelector("audio");
+    this.playButton = container.querySelector(
+      ".custom-audio-player__play-button"
+    );
+    this.progressBar = container.querySelector(
+      ".custom-audio-player__progress-bar"
+    );
+    this.progressFill = container.querySelector(
+      ".custom-audio-player__progress-bar-fill"
+    );
+    this.progressHandle = container.querySelector(
+      ".custom-audio-player__progress-bar-handle"
+    );
+    this.timeDisplay = container.querySelector(".custom-audio-player__time");
+    this.volumeButton = container.querySelector(
+      ".custom-audio-player__volume-button"
+    );
+    this.volumeSlider = container.querySelector(
+      ".custom-audio-player__volume-slider"
+    );
+
+    this.isPlaying = false;
+    this.isDragging = false;
+
+    this.init();
+  }
+
+  init() {
+    this.bindEvents();
+    this.updateTimeDisplay();
+    this.updateVolumeIcon(); // This will set the initial volume icon state
+  }
+
+  bindEvents() {
+    // Play/Pause
+    this.playButton.addEventListener("click", () => this.togglePlay());
+
+    // Progress bar
+    this.progressBar.addEventListener("click", (e) => this.seek(e));
+    this.progressHandle.addEventListener("mousedown", () =>
+      this.startDragging()
+    );
+    document.addEventListener("mousemove", (e) => this.drag(e));
+    document.addEventListener("mouseup", () => this.stopDragging());
+
+    // Volume
+    this.volumeButton.addEventListener("click", () => this.toggleMute());
+    this.volumeSlider.addEventListener("input", (e) =>
+      this.setVolume(e.target.value)
+    );
+
+    // Audio events
+    this.audio.addEventListener("timeupdate", () => this.updateProgress());
+    this.audio.addEventListener("loadedmetadata", () =>
+      this.updateTimeDisplay()
+    );
+    this.audio.addEventListener("ended", () => this.onEnded());
+  }
+
+  togglePlay() {
+    if (this.isPlaying) {
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
+
+  play() {
+    this.audio.play();
+    this.isPlaying = true;
+    this.playButton.classList.add("playing");
+  }
+
+  pause() {
+    this.audio.pause();
+    this.isPlaying = false;
+    this.playButton.classList.remove("playing");
+  }
+
+  seek(e) {
+    if (this.isDragging) return;
+
+    const rect = this.progressBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = clickX / rect.width;
+    const newTime = percentage * this.audio.duration;
+
+    this.audio.currentTime = newTime;
+  }
+
+  startDragging() {
+    this.isDragging = true;
+  }
+
+  drag(e) {
+    if (!this.isDragging) return;
+
+    const rect = this.progressBar.getBoundingClientRect();
+    const dragX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+    const percentage = dragX / rect.width;
+    const newTime = percentage * this.audio.duration;
+
+    this.audio.currentTime = newTime;
+  }
+
+  stopDragging() {
+    this.isDragging = false;
+  }
+
+  updateProgress() {
+    if (this.audio.duration) {
+      const percentage = (this.audio.currentTime / this.audio.duration) * 100;
+      this.progressFill.style.width = `${percentage}%`;
+      this.progressHandle.style.left = `${percentage}%`;
+    }
+  }
+
+  updateTimeDisplay() {
+    if (this.audio.duration) {
+      const current = this.formatTime(this.audio.currentTime);
+      const total = this.formatTime(this.audio.duration);
+      this.timeDisplay.textContent = `${current} / ${total}`;
+    }
+  }
+
+  formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  }
+
+  toggleMute() {
+    this.audio.muted = !this.audio.muted;
+    this.updateVolumeIcon();
+  }
+
+  setVolume(value) {
+    this.audio.volume = value / 100;
+    this.audio.muted = false;
+    this.updateVolumeIcon();
+  }
+
+  updateVolumeIcon() {
+    // Remove all volume state classes
+    this.volumeButton.classList.remove(
+      "volume-muted",
+      "volume-low",
+      "volume-high"
+    );
+
+    if (this.audio.muted || this.audio.volume === 0) {
+      this.volumeButton.classList.add("volume-muted");
+    } else {
+      this.volumeButton.classList.add("volume-high");
+    }
+  }
+
+  onEnded() {
+    this.pause();
+    this.progressFill.style.width = "0%";
+    this.progressHandle.style.left = "0%";
+  }
+}
+
+// Initialize all custom audio players on the page
+document.addEventListener("DOMContentLoaded", () => {
+  const audioPlayers = document.querySelectorAll(".custom-audio-player");
+  audioPlayers.forEach((player) => new CustomAudioPlayer(player));
+});

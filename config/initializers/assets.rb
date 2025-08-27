@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w(
   application_dark.css
   application_light.css
   carousel.js
+  custom-audio-player.js
   drawer.js
   flexible_textarea.js
   jquery.min.js
