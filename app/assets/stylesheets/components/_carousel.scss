@@ -6,6 +6,7 @@
 }
 
 .carousel__cards {
+  border-radius: $base-border-radius;
   display: flex;
   left: 0;
   position: absolute;
