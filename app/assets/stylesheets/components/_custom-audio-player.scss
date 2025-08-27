@@ -1,4 +1,3 @@
-// Custom Audio Player Component
 .custom-audio-player {
   align-items: center;
   background: transparent;
@@ -106,30 +105,13 @@
   font-family: $heading-font-family;
   font-size: $small-font-size;
   font-weight: $reading-font-weight;
-  text-align: center;
   margin: 0 $small-spacing;
+  text-align: center;
 }
 
 .custom-audio-player__volume {
   align-items: center;
   display: flex;
-}
-
-.custom-audio-player__volume-container {
-  position: relative;
-  width: 60px;
-  height: 4px;
-}
-
-.custom-audio-player__volume-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  border-radius: 2px;
-  pointer-events: none;
-  transition: width 0.1s ease;
-  width: 100%; // Will be updated by JavaScript
 }
 
 .custom-audio-player__volume-button {
@@ -147,8 +129,8 @@
 
   .icon {
     height: 16px;
-    width: 16px;
     stroke: $base-font-color;
+    width: 16px;
 
     path {
       fill: none;
@@ -163,11 +145,11 @@
     display: none;
 
     &--muted {
-      display: none; // Start with muted hidden
+      display: none;
     }
 
     &--high {
-      display: block; // Start with high volume visible
+      display: block;
     }
   }
 
@@ -177,13 +159,13 @@
     }
 
     .volume-icon--high {
-      display: none; // Hide high volume when muted
+      display: none;
     }
   }
 
   &.volume-high {
     .volume-icon--muted {
-      display: none; // Hide muted when high volume
+      display: none;
     }
 
     .volume-icon--high {
@@ -193,49 +175,42 @@
 }
 
 .custom-audio-player__volume-slider {
+  -webkit-appearance: none;
   appearance: none;
   background: rgba($base-font-color, 0.15);
+  border: none;
   border-radius: $base-border-radius;
   cursor: pointer;
   height: 4px;
-  width: 60px;
-  -webkit-appearance: none;
-  border: none;
   outline: none;
+  width: 60px;
 
-  // Webkit browsers - thumb
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    background: $action-color; // Blue thumb
+    background: $action-color;
     border-radius: $base-border-radius;
     cursor: pointer;
     height: 12px;
+    margin-top: 0px;
     width: 8px;
-    margin-top: 0px; // Center the thumb on the track
   }
 
-  // Firefox - filled portion
   &::-moz-range-progress {
-    background: $action-color; // Blue filled portion
-    height: 4px;
+    background: $action-color;
     border-radius: 2px;
+    height: 4px;
   }
 
-  // Firefox - unfilled portion
   &::-moz-range-track {
-    background: rgba(
-      $base-font-color,
-      0.1
-    ); // Very subtle gray unfilled portion
-    height: 4px;
-    border-radius: 2px;
+    background: rgba($base-font-color, 0.1);
     border: none;
+    border-radius: 2px;
+    height: 4px;
   }
 
-  // Firefox - thumb
   &::-moz-range-thumb {
-    background: $action-color; // Blue thumb
+    background: $action-color;
     border: none;
     border-radius: $base-border-radius;
     cursor: pointer;
@@ -243,7 +218,6 @@
     width: 18px;
   }
 
-  // Focus states
   &:focus {
     outline: none;
 
@@ -260,16 +234,14 @@
 }
 
 .custom-audio-player__speed {
-  //margin: 0 $small-spacing;
-  margin-left: $small-spacing;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
+  margin-left: $small-spacing;
 }
 
 select.custom-audio-player__speed-selector {
   background: transparent;
-  //border: 1px solid rgba($base-font-color, 0.3);
   border: none;
   border-radius: $base-border-radius;
   box-shadow: none;
@@ -278,10 +250,9 @@ select.custom-audio-player__speed-selector {
   font-family: $base-font-family;
   font-size: $small-font-size;
   font-weight: $heading-font-weight;
+  margin-bottom: 0;
   padding: 4px 0px 4px 6px;
   transition: all $base-duration $base-timing;
-  margin-bottom: 0;
-  //margin-left: 12px;
 
   &:hover {
     border-color: $action-color;
@@ -300,16 +271,16 @@ select.custom-audio-player__speed-selector {
 }
 
 .custom-audio-player__transcript-button {
+  align-items: center;
   background: none;
   border: none;
   color: $base-font-color;
   cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-left: $base-spacing;
   padding: 4px;
   transition: all $base-duration $base-timing;
-  margin-left: $base-spacing;
 
   &:hover {
     color: lighten($action-color, 10%);
@@ -321,9 +292,9 @@ select.custom-audio-player__speed-selector {
 }
 
 .custom-audio-player__transcript-content {
+  border-top: 1px solid $base-border-color;
   display: none;
   margin-top: $small-spacing;
-  border-top: 1px solid $base-border-color;
   padding-top: $small-spacing;
 
   &.show {
