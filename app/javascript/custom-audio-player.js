@@ -29,12 +29,14 @@ class CustomAudioPlayer {
   }
 
   init() {
+    console.log("CustomAudioPlayer init() called");
     this.bindEvents();
     this.updateTimeDisplay();
     this.updateVolumeIcon(); // This will set the initial volume icon state
   }
 
   bindEvents() {
+    console.log("Binding events...");
     // Play/Pause
     this.playButton.addEventListener("click", () => this.togglePlay());
 
@@ -58,9 +60,11 @@ class CustomAudioPlayer {
       this.updateTimeDisplay()
     );
     this.audio.addEventListener("ended", () => this.onEnded());
+    console.log("Events bound successfully");
   }
 
   togglePlay() {
+    console.log("togglePlay called, isPlaying:", this.isPlaying);
     if (this.isPlaying) {
       this.pause();
     } else {
@@ -69,12 +73,14 @@ class CustomAudioPlayer {
   }
 
   play() {
+    console.log("play() called");
     this.audio.play();
     this.isPlaying = true;
     this.playButton.classList.add("playing");
   }
 
   pause() {
+    console.log("pause() called");
     this.audio.pause();
     this.isPlaying = false;
     this.playButton.classList.remove("playing");

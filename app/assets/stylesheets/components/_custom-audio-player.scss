@@ -82,6 +82,7 @@
 
 .custom-audio-player__time {
   color: $secondary-font-color;
+  font-family: $heading-font-family;
   font-size: $small-font-size;
   font-weight: $reading-font-weight;
   text-align: center;
@@ -101,7 +102,6 @@
   color: $action-color;
   cursor: pointer;
   display: flex;
-  //font-size: 1.1rem;
   padding: $x-small-spacing;
   transition: color $base-duration $base-timing;
 

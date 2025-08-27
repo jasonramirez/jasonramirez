@@ -17,13 +17,12 @@
   </div>
   
   <div class="custom-audio-player__time">0:00 / 0:00</div>
-  
-          <div class="custom-audio-player__volume">
-          <button class="custom-audio-player__volume-button volume-high" type="button">
-            <%= inline_svg "icon-volume-x.svg", class: "icon volume-icon volume-icon--muted" %>
-            <%= inline_svg "icon-play.svg", class: "icon volume-icon volume-icon--low" %>
-            <%= inline_svg "icon-volume-2.svg", class: "icon volume-icon volume-icon--high" %>
-          </button>
-          <input class="custom-audio-player__volume-slider" type="range" min="0" max="100" value="100">
-        </div>
+    <div class="custom-audio-player__volume">
+    <button class="custom-audio-player__volume-button volume-high" type="button">
+      <%= inline_svg "icon-volume-x.svg", class: "icon volume-icon volume-icon--muted" %>
+      <%= inline_svg "icon-play.svg", class: "icon volume-icon volume-icon--low" %>
+      <%= inline_svg "icon-volume-2.svg", class: "icon volume-icon volume-icon--high" %>
+    </button>
+    <input class="custom-audio-player__volume-slider" type="range" min="0" max="100" value="100">
+  </div>
 </div>

@@ -1,0 +1,27 @@
+TEST AUDIO FILE INSTRUCTIONS
+============================
+
+To test the audio player, you need to create an MP3 file named "test-tldr.mp3" and place it in the app/assets/audio/ directory.
+
+You can create this using:
+
+1. ElevenLabs (https://elevenlabs.io/) - Upload the transcript text and generate audio
+2. Google Text-to-Speech - Use their API or browser tools
+3. Any TTS service - Generate audio from this transcript:
+
+TRANSCRIPT FOR TTS:
+==================
+
+This is a test of the audio TLDR feature using a generic text-to-speech voice. The audio player should now work with play/pause, progress bar, and volume controls.
+
+In 2021, Dropbox faced a critical challenge: customers weren't discovering the full value of our platform beyond basic file sharing. We identified three key problems: limited value discovery, trust erosion from frequent upsells, and overly complex foundational features.
+
+Our solution involved establishing design rituals, improving data-driven decision making, and using a Design Sprint to validate our approach. We discovered that relevant communication dramatically improved feature discovery, leading to 12 experiments and ultimately a $50M+ increase in annual recurring revenue.
+
+Key learnings: one-size-fits-all doesn't scale, goals drive outcomes more than principles, and time constraints are your friends. The project validated a new activation direction using data models for relevant recommendations.
+
+FILE LOCATION:
+==============
+app/assets/audio/test-tldr.mp3
+
+Once you create this file, the audio player should work perfectly for testing!
