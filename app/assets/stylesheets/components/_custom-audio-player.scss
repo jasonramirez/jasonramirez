@@ -305,7 +305,7 @@ select.custom-audio-player__speed-selector {
 }
 
 .custom-audio-player__transcript-content {
-  border-top: 1px solid $base-border-color;
+  border-top: 1px solid rgba($base-border-color, 0.05);
   display: none;
   margin-top: $small-spacing;
   padding-top: $small-spacing;

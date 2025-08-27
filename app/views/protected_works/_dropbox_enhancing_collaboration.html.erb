@@ -4,6 +4,13 @@
   <div class="post-meta">
     <%= image_tag "works/dropbox-collaboration-title-card.png", class: "post-meta__image" %>
 
+    <%= 
+      render 'shared/custom_audio_player',
+      audio_source: '/assets/dropbox-collaboration-tldr.mp3',
+      title: 'Enhancing Collaboration',
+      transcript_file: 'transcripts/dropbox-enhancing-collaboration.txt'
+    %>
+
     <div class="post-meta__title">
       Enhancing Collaboration
     </div>
@@ -16,18 +23,6 @@
       How we opened new revenue streams and improved retention by bringing new 
       value to freelancers and Teams through collaboration and relationships.
     </h2>
-  </div>
-
-  <div class="audio-tldr">
-    <h3 class="audio-tldr__title">🎧 Listen to 2-Minute TLDR</h3>
-    <p class="audio-tldr__description">
-      Get the key insights from this case study in under 2 minutes
-    </p>
-    <%= render 'shared/custom_audio_player', 
-      audio_source: '/assets/dropbox-collaboration-tldr.mp3',
-      title: 'Enhancing Collaboration',
-      transcript_file: 'transcripts/dropbox-enhancing-collaboration.txt'
-    %>
   </div>
 
   <h1>
