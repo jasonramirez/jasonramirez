@@ -85,6 +85,14 @@
       fill: map-get($colors, secondary);
     }
   }
+
+  &:hover {
+    svg {
+      path {
+        fill: $action-color;
+      }
+    }
+  }
 }
 
 .navigation__mobile-trigger {

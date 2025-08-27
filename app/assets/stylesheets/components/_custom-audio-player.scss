@@ -137,7 +137,9 @@
   transition: color $base-duration $base-timing;
 
   &:hover {
-    color: $action-color;
+    .icon {
+      stroke: $action-color;
+    }
   }
 
   .icon {
@@ -147,10 +149,6 @@
 
     path {
       fill: none;
-    }
-
-    &:hover {
-      stroke: $action-color;
     }
   }
 

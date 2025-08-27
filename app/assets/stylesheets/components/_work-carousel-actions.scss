@@ -10,7 +10,11 @@
   }
 
   svg {
-    height: 1.75rem;
+    height: 1.25rem;
     width: auto;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
