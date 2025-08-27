@@ -1,60 +1,57 @@
 <div data-js-reading-progress-bar></div>
 
 <article class="content content--reading post">
-  <div class="post-title">
-    <div class="post-title__image-container">
-      <%= inline_svg "works/dropbox-work-logo.svg" %>
+  <div class="post-meta">
+    <%= image_tag "works/dropbox-flow-title-card.png", class: "post-meta__image" %>
+
+    <div class="post-meta__title">
+      Keeping Flow
     </div>
-    Keeping Flow
+
+    <h2 class="post-meta__subtitle">
+      Dropbox, 2019
+    </h2>
+
+    <h2 class="post-meta__description">
+      How in one week we validated an idea, got funding to go after an
+      international market, and received a patent.
+    </h2>
   </div>
-
-  <h2>
-    Dropbox, 2019
-  </h2>
-
-  <h2>
-    How in one week we validated an idea, got funding to go after an
-    international market, and received a patent.
-  </h2>
 
   <h1>
-    Table of Contents
+    Contents
   </h1>
 
-  <div>
-    <ol>
-      <li>
-        <a href="#background">Background</a>
-      </li>
+  <ol>
+    <li>
+      <a href="#background">Background</a>
+    </li>
 
-      <li>
-        <a href="#planning">Planning</a>
-      </li>
+    <li>
+      <a href="#planning">Planning</a>
+    </li>
 
-      <li>
-        <a href="#designing">Designing</a>
-      </li>
+    <li>
+      <a href="#designing">Designing</a>
+    </li>
 
-      <li>
-        <a href="#impact">Impact</a>
-      </li>
+    <li>
+      <a href="#impact">Impact</a>
+    </li>
 
-      <li>
-        <a href="#challenges">Challenges</a>
-      </li>
+    <li>
+      <a href="#challenges">Challenges</a>
+    </li>
 
-      <li>
-        <a href="#learnings">Learnings</a>
-      </li>
+    <li>
+      <a href="#learnings">Learnings</a>
+    </li>
 
-      <li>
-        <a href="#closing">Closing</a>
-      </li>
-    </ul>
-  </div>
-</article>
+    <li>
+      <a href="#closing">Closing</a>
+    </li>
+  </ol>
 
-<article class="content content--reading post">
   <a name="background"></a>
   <h1>
     Background
@@ -94,25 +91,21 @@
     80% of respondents.
   </p>
 
-  <div class="work-focus">
-    <header class="work-focus__header">
-      <h3>
-        Top 3 Existing Needs
-      </h3>
-    </header>
+  <h2>
+    Top 3 Existing Needs
+  </h2>
 
-    <ol>
-      <li>
-        Storing files across multiple conversations.
-      </li>
-      <li>
-        Searching for files across multiple conversations.
-      </li>
-      <li>
-        Storing comments and decisions across multiple conversations.
-      </li>
-    </ol>
-  </div>
+  <ol>
+    <li>
+      Storing files across multiple conversations.
+    </li>
+    <li>
+      Searching for files across multiple conversations.
+    </li>
+    <li>
+      Storing comments and decisions across multiple conversations.
+    </li>
+  </ol>
 
   <p>
     After a significant competitive audit, we recognized that no one was
@@ -159,49 +152,45 @@
     opporunity we saw infront of us.
   </p>
 
-  <div class="work-focus work-focus--small">
-    <header class="work-focus__header">
-      <h3>
-        Contributors
-      </h3>
-    </header>
+  <h1>
+    Contributors
+  </h1>
 
-    <div class="work-focus__grid">
-      <strong>Owner, Design</strong>
-      <ul class="minimal-unordered-list">
-        <li>
-          Jason Ramirez (me)
-        </li>
-      </ul>
+  <div class="work-focus__grid">
+    <strong>Owner, Design</strong>
+    <ul class="minimal-unordered-list">
+      <li>
+        Jason Ramirez (me)
+      </li>
+    </ul>
 
-      <strong>Research</strong>
-      <ul class="minimal-unordered-list">
-        <li>
-          Jen DiZio
-        </li>
-      </ul>
+    <strong>Research</strong>
+    <ul class="minimal-unordered-list">
+      <li>
+        Jen DiZio
+      </li>
+    </ul>
 
-      <strong>Product</strong>
-      <ul class="minimal-unordered-list">
-        <li>
-          EJ Reckers
-        </li>
-      </ul>
+    <strong>Product</strong>
+    <ul class="minimal-unordered-list">
+      <li>
+        EJ Reckers
+      </li>
+    </ul>
 
-      <strong>Design</strong>
-      <ul class="minimal-unordered-list">
-        <li>
-          Ming Li
-        </li>
-      </ul>
+    <strong>Design</strong>
+    <ul class="minimal-unordered-list">
+      <li>
+        Ming Li
+      </li>
+    </ul>
 
-      <strong>Engineering</strong>
-      <ul class="minimal-unordered-list">
-        <li>
-          Yenchi Linn
-        </li>
-      </ul>
-    </div>
+    <strong>Engineering</strong>
+    <ul class="minimal-unordered-list">
+      <li>
+        Yenchi Linn
+      </li>
+    </ul>
   </div>
 
   <a name="designing"></a>
@@ -215,14 +204,14 @@
   </p>
 
   <div class="work-image-container">
-    <figure class="work-image__figure">
+    <figure class="work-image">
       <%= video_tag "https://jasonramirez.s3.amazonaws.com/dropbox-flow-app-reactions.mp4",
-        controls: true %>
+        controls: true, class: "work-video" %>
     </figure>
   </div>
 
   <p>
-    The people we talked with  hadn’t seen anything like this before. They were
+    The people we talked with  hadn't seen anything like this before. They were
     excited and the validation was promising. Our next step was to put together
     a pitch to request funding to start on an MVP. Our MVP launch would start
     with 4 in-chat features and 5 out-of-chat workspace features. These features
@@ -231,58 +220,50 @@
     capturing important decisions.
   </p>
 
-  <div class="work-focus">
-    <header class="work-focus__header">
-      <h3>
-        In-Chat MVP Feature Set
-      </h3>
-    </header>
+  <h2>
+    In-Chat MVP Feature Set
+  </h2>
 
-    <ol>
-      <li>
-        Add Flow from a conversation.
-      </li>
-      <li>
-        Connect a conversation to a workspace.
-      </li>
-      <li>
-        Automatically store files to a workspace.
-      </li>
-      <li>
-        Capture important decisions.
-      </li>
-    </ol>
-  </div>
+  <ol>
+    <li>
+      Add Flow from a conversation.
+    </li>
+    <li>
+      Connect a conversation to a workspace.
+    </li>
+    <li>
+      Automatically store files to a workspace.
+    </li>
+    <li>
+      Capture important decisions.
+    </li>
+  </ol>
 
   <p>
     For greater control, we have 5 workspace features.
   </p>
 
-  <div class="work-focus">
-    <header class="work-focus__header">
-      <h3>
-        Flow App Experience
-      </h3>
-    </header>
+  <h2>
+    Flow App Experience
+  </h2>
 
-    <ol>
-      <li>
-        Setup and organize a workspace.
-      </li>
-      <li>
-        Add multiple conversations to a workspace.
-      </li>
-      <li>
-        Search across conversations and workspaces.
-      </li>
-      <li>
-        View, preview and retrieve content.
-      </li>
-      <li>
-        Share content in a conversation.
-      </li>
-    </ol>
-  </div>
+  <ol>
+    <li>
+      Setup and organize a workspace.
+    </li>
+    <li>
+      Add multiple conversations to a workspace.
+    </li>
+    <li>
+      Search across conversations and workspaces.
+    </li>
+    <li>
+      View, preview and retrieve content.
+    </li>
+    <li>
+      Share content in a conversation.
+    </li>
+  </ol>
 
   <p>
     Our MVP tackled the major pain points we'd heard our customers say. Here are
@@ -333,6 +314,7 @@
 </section>
 
 <article class="content content--reading post">
+  <a name="impact"></a>
   <h1>
     The Impact
   </h1>
@@ -411,8 +393,4 @@
     experience taught us valuable lessons about proactive planning and
     sustaining momentum.
   </p>
-
-  <h1>
-    🫢
-  </h1>
 </article>
