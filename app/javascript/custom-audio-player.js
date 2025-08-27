@@ -21,6 +21,9 @@ class CustomAudioPlayer {
     this.volumeSlider = container.querySelector(
       ".custom-audio-player__volume-slider"
     );
+    this.speedSelector = container.querySelector(
+      ".custom-audio-player__speed-selector"
+    );
 
     this.isPlaying = false;
     this.isDragging = false;
@@ -33,6 +36,7 @@ class CustomAudioPlayer {
     this.bindEvents();
     this.updateTimeDisplay();
     this.updateVolumeIcon(); // This will set the initial volume icon state
+    this.updateVolumeSlider(); // Add this line
   }
 
   bindEvents() {
@@ -50,8 +54,16 @@ class CustomAudioPlayer {
 
     // Volume
     this.volumeButton.addEventListener("click", () => this.toggleMute());
-    this.volumeSlider.addEventListener("input", (e) =>
-      this.setVolume(e.target.value)
+    this.volumeSlider.addEventListener("input", (e) => {
+      const volume = e.target.value / 100;
+      this.audio.volume = volume;
+      this.updateVolumeIcon();
+      this.updateVolumeSlider(); // Add this line
+    });
+
+    // Speed
+    this.speedSelector.addEventListener("change", (e) =>
+      this.setPlaybackSpeed(e.target.value)
     );
 
     // Audio events
@@ -165,6 +177,12 @@ class CustomAudioPlayer {
     this.updateVolumeIcon();
   }
 
+  setPlaybackSpeed(speed) {
+    const speedValue = parseFloat(speed);
+    this.audio.playbackRate = speedValue;
+    console.log("Playback speed set to:", speedValue + "x");
+  }
+
   updateVolumeIcon() {
     // Remove all volume state classes
     this.volumeButton.classList.remove(
@@ -178,6 +196,38 @@ class CustomAudioPlayer {
     } else {
       this.volumeButton.classList.add("volume-high");
     }
+  }
+
+  updateVolumeSlider() {
+    const percentage = (this.audio.volume / 1) * 100;
+    const fillColor = this.getComputedStyle("--action-color", "#1246ff");
+    const trackColor = this.hexToRgba(
+      this.getComputedStyle("--action-color", "#1246ff"),
+      0.25
+    );
+    this.volumeSlider.value = percentage;
+
+    // Update the filled portion using gradient
+    this.volumeSlider.style.background = `linear-gradient(to right, ${fillColor} 0%, ${fillColor} ${percentage}%, ${trackColor} ${percentage}%, ${trackColor} 100%)`;
+  }
+
+  hexToRgba(hex, opacity) {
+    // Remove the # if present
+    hex = hex.replace("#", "");
+
+    // Parse the hex values
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
+
+  getComputedStyle(property, fallback) {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(
+      property
+    );
+    return value || fallback;
   }
 
   onEnded() {

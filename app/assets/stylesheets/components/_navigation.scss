@@ -33,7 +33,9 @@
       height: calc(100vh - #{$navigation-height-mobile});
       justify-content: center;
       padding-bottom: 5vh;
-      transition: left $base-duration, right $base-duration;
+      transition:
+        left $base-duration,
+        right $base-duration;
       z-index: 1;
 
       li {
@@ -77,6 +79,10 @@
 
     @include media(min-width $medium-screen) {
       height: $small-font-size;
+    }
+
+    path {
+      fill: map-get($colors, secondary);
     }
   }
 }

@@ -1,15 +1,14 @@
 <div class="custom-audio-player">
   <div class="custom-audio-player__title-container">
-    <strong class="custom-audio-player__title"><%= title %></strong>
+    <strong class="custom-audio-player__title"><%= title %> TL;DR.</strong>
   </div>
 
-
+  <audio preload="metadata">
+    <source src="<%= audio_source %>" type="audio/mpeg">
+    Your browser doesn't support audio playback.
+  </audio>
+  
   <div class="custom-audio-player__controls">
-    <audio preload="metadata">
-      <source src="<%= audio_source %>" type="audio/mpeg">
-      Your browser doesn't support audio playback.
-    </audio>
-    
     <button class="custom-audio-player__play-button" type="button">
       <%= inline_svg "icon-play.svg", class: "icon play-icon" %>
       <%= inline_svg "icon-pause.svg", class: "icon pause-icon" %>
@@ -23,8 +22,21 @@
     </div>
     
     <div class="custom-audio-player__time">0:00 / 0:00</div>
-      <div class="custom-audio-player__volume">
-      <button class="custom-audio-player__volume-button volume-high" type="button">
+    
+    <div class="custom-audio-player__speed">
+      <%= inline_svg "icon-gauge.svg", class: "icon speed-icon" %>
+      <select class="custom-audio-player__speed-selector">
+        <option value="0.5">0.5x</option>
+        <option value="0.75">0.75x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+      </select>
+    </div>
+    
+    <div class="custom-audio-player__volume">
+      <button class="custom-audio-player__volume-button" type="button">
         <%= inline_svg "icon-volume-x.svg", class: "icon volume-icon volume-icon--muted" %>
         <%= inline_svg "icon-play.svg", class: "icon volume-icon volume-icon--low" %>
         <%= inline_svg "icon-volume-2.svg", class: "icon volume-icon volume-icon--high" %>
