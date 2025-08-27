@@ -1,0 +1,15 @@
+In 2019, during Dropbox's summer hackweek, our team pursued an opportunity identified by our Head of International Research, Jen DiZio. In just one week, we built and shipped a prototype, tested it with users in Japan and Indonesia, won an award, and progressed towards securing funding and a patent.
+
+Jen's extensive research on global work habits revealed that over 2.5 billion people worldwide use chat apps daily, with over 1 billion using them for work. Most users rely on consumer chat apps like Line, WhatsApp, and Facebook Messenger, rather than dedicated work apps like Slack or Teams.
+
+We identified key pain points through user feedback and quantitative studies, finding three features that were deemed "most important" by over 80% of respondents: storing files across multiple conversations, sharing files with people outside the chat, and finding files shared in conversations.
+
+Our solution, Dropbox Flow, was designed to integrate seamlessly with existing chat workflows. We built a prototype that could be tested immediately with international users, focusing on the Japanese and Indonesian markets where chat apps are deeply integrated into daily work life.
+
+The validation process was incredibly fast - within one week we had user feedback, won a hackweek award, and secured initial funding. The project demonstrated how understanding international user behavior and building for existing workflows could unlock massive market opportunities.
+
+Key learnings: international markets have fundamentally different work patterns than the US, chat apps are the primary work tools for billions of people, and building integrations for existing workflows is often more valuable than creating new standalone products.
+
+Ultimately, the project secured 6 months of funding from Dropbox's internal incubator, Dynamo, and led to a patent application. The approach of "meet the customer where they are" became a core principle for future international product development.
+
+Thanks for listening!

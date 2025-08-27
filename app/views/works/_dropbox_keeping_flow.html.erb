@@ -4,6 +4,13 @@
   <div class="post-meta">
     <%= image_tag "works/dropbox-flow-title-card.png", class: "post-meta__image" %>
 
+    <%= 
+      render 'shared/custom_audio_player',
+      audio_source: '/assets/dropbox-flow-tldr.mp3',
+      title: 'Keeping Flow',
+      transcript_file: 'transcripts/dropbox-flow.txt'
+    %>
+
     <div class="post-meta__title">
       Keeping Flow
     </div>
@@ -17,6 +24,7 @@
       international market, and received a patent.
     </h2>
   </div>
+
 
   <h1>
     Contents
