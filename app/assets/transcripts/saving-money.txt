@@ -1,0 +1,17 @@
+In 2016, a friend and I discussed how difficult it is to save money. Our culture pushes us to spend daily but save only monthly. The internet has countless buttons to help you spend money, but very few to help you save. We wanted to change that with Piggy.
+
+We started with customer discovery, interviewing 5 people about their saving habits. Key findings: most people want to save more money, spend daily, have income, but half have poor saving habits. This validated our problem: people have extra money but bad saving habits.
+
+Looking at competition was eye-opening. Existing tools focused on monitoring spending, not building saving habits. We refined our approach: people's saving habits will improve if we engage them in saving daily.
+
+We built a prototype and tested it with 7 users who made $80K+ and wanted to save. The results were great - users found the daily prompts empowering and different from other tools. Half asked to be notified when we launched.
+
+However, we hit technical hurdles. Transferring funds between accounts would cost $10 per user per month. This made our solution unviable, so we explored alternatives including bank partnerships.
+
+The breakthrough came when we discovered the buyer. Through connections, we met with American Express and Citi Bank. We learned that banks pay heavily to acquire new accounts. If our app could guide people to open accounts, it became an acquisition play for banks.
+
+Key learnings: daily engagement builds saving habits better than monitoring, and banks will pay for customer acquisition in the savings space.
+
+Ultimately, Piggy offers a win-win solution: better saving habits for users and customer acquisition for banks.
+
+Thanks for listening!
