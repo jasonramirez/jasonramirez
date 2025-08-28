@@ -1,5 +1,27 @@
 <section class="content content--slim">
   <div>
+    <%= link_to "protected_works/intersession_experiences",
+      class: "work-link" do %>
+      <div class="work-link__video-container">
+        <video autoplay muted loop playsinline class="work-link__video">
+          <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
+          <!-- Fallback image for browsers that don't support video -->
+          <img src="<%= asset_path('works/grow-marketplace-excellence-title-card.png') %>" alt="Intersession Experiences">
+        </video>
+        <div class="work-link__logo-overlay">
+          <%= inline_svg "works/grow-therapy-logo.svg" %>
+        </div>
+      </div>
+      <h2 class="work-link__title">
+        Intersession Experiences, 2025
+      </h2>
+      <h3 class="work-link__description">
+        How we designed and implemented seamless intersession experiences that improved patient engagement, reduced no-shows, and enhanced therapeutic outcomes.
+      </h3>
+    <% end %>
+  </div>
+
+  <div>
     <%= link_to "protected_works/ai_tooling_for_providers",
       class: "work-link" do %>
       <%= image_tag "works/ai-tooling-for-providers-title-card.png" %>

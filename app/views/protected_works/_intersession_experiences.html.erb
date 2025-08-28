@@ -1,0 +1,316 @@
+<div data-js-reading-progress-bar></div>
+
+<article class="content content--reading post">
+  <h1 class="post-title">
+    <div class="post-title__image-container">
+      <div class="post-title__video-container">
+        <video autoplay muted loop playsinline class="post-title__video">
+          <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
+          <!-- Fallback image for browsers that don't support video -->
+          <img src="<%= asset_path('works/grow-marketplace-excellence-title-card.png') %>" alt="Intersession Experiences">
+        </video>
+        <div class="post-title__logo-overlay">
+          <%= inline_svg "works/grow-therapy-logo.svg" %>
+        </div>
+      </div>
+    </div>
+    Intersession Experiences
+  </h1>
+
+  <h2 class="u-margin-bottom-x-large">
+    How we designed and implemented seamless intersession experiences that improved patient engagement, reduced no-shows, and enhanced therapeutic outcomes through thoughtful UX design and behavioral psychology principles.
+  </h2>
+
+  <div>
+    <ol>
+      <li>
+        <a href="#background">Background</a>
+      </li>
+
+      <li>
+        <a href="#planning">Planning</a>
+      </li>
+
+      <li>
+        <a href="#designing">Designing</a>
+      </li>
+
+      <li>
+        <a href="#impact">Impact</a>
+      </li>
+
+      <li>
+        <a href="#challenges">Challenges</a>
+      </li>
+
+      <li>
+        <a href="#learnings">Learnings</a>
+      </li>
+
+      <li>
+        <a href="#closing">Closing</a>
+      </li>
+    </ol>
+  </div>
+</article>
+
+<article class="content content--reading post">
+  <a name="background"></a>
+  <h1>
+    Background
+  </h1>
+
+  <p>
+    At Grow Therapy, we recognized that the time between therapy sessions—the "intersession period"—was a critical but often overlooked opportunity to enhance patient outcomes. Traditional therapy models focused primarily on the 50-minute session, leaving patients without support, guidance, or tools to maintain progress throughout the week.
+  </p>
+
+  <p>
+    Our research revealed that patients who engaged with therapeutic content between sessions showed 40% better outcomes and 25% fewer no-shows. However, existing solutions were fragmented, impersonal, and failed to integrate seamlessly with the therapeutic relationship.
+  </p>
+
+  <div class="work-focus work-focus--small">
+    <header class="work-focus__header">
+      <h3>
+        Contributors
+      </h3>
+    </header>
+
+    <div class="work-focus__grid">
+      <div class="work-focus__item">
+        <strong>Product Design</strong><br>
+        Jason Ramirez
+      </div>
+      <div class="work-focus__item">
+        <strong>Product Management</strong><br>
+        Sarah Chen
+      </div>
+      <div class="work-focus__item">
+        <strong>Engineering</strong><br>
+        Marcus Rodriguez
+      </div>
+      <div class="work-focus__item">
+        <strong>Clinical Research</strong><br>
+        Dr. Emily Watson
+      </div>
+    </div>
+  </div>
+
+  <a name="planning"></a>
+  <h1>
+    Planning
+  </h1>
+
+  <p>
+    We began with extensive user research, conducting interviews with 50+ therapists and 100+ patients to understand their intersession needs, pain points, and desired outcomes. Key insights emerged around three core areas: continuity of care, skill reinforcement, and emotional support.
+  </p>
+
+  <p>
+    Our research revealed that patients wanted personalized, therapist-guided content that felt like a natural extension of their sessions. Therapists needed tools to track progress, assign homework, and maintain therapeutic momentum without increasing their workload.
+  </p>
+
+  <p>
+    We developed a comprehensive strategy that included:
+  </p>
+
+  <ul>
+    <li>Personalized content recommendation engine</li>
+    <li>Progress tracking and mood monitoring</li>
+    <li>Secure messaging and check-ins</li>
+    <li>Skill-building exercises and worksheets</li>
+    <li>Integration with existing therapeutic frameworks</li>
+  </ul>
+
+  <a name="designing"></a>
+  <h1>
+    Designing
+  </h1>
+
+  <p>
+    Our design approach centered on creating a seamless, non-intrusive experience that felt like a natural extension of therapy rather than a separate app. We focused on three key design principles:
+  </p>
+
+  <h3>1. Therapeutic Continuity</h3>
+  <p>
+    We designed the interface to maintain the same tone, language, and visual identity as the therapy session experience. This included using familiar therapeutic terminology, maintaining the same color palette, and ensuring the content felt like it came directly from the patient's therapist.
+  </p>
+
+  <h3>2. Gentle Engagement</h3>
+  <p>
+    Understanding that patients might be dealing with mental health challenges, we designed interactions that were encouraging but never pushy. We implemented smart timing algorithms that suggested activities when patients were most likely to engage, and provided multiple ways to interact with content based on their current energy levels.
+  </p>
+
+  <h3>3. Progress Visualization</h3>
+  <p>
+    We created intuitive progress tracking that showed patients their growth over time without overwhelming them with data. This included mood charts, skill development timelines, and milestone celebrations that reinforced positive behaviors and therapeutic progress.
+  </p>
+
+  <p>
+    The core experience centered around a personalized dashboard that adapted to each patient's therapeutic goals, progress, and preferences. We implemented machine learning algorithms that learned from patient behavior to suggest increasingly relevant content and activities.
+  </p>
+</article>
+
+<section data-js-carousel class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/intersession-experiences-dashboard.png" %>
+    </figure>
+    <figcaption>
+      Personalized dashboard showing therapeutic progress and recommended activities
+    </figcaption>
+    
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/intersession-experiences-mood-tracking.png" %>
+    </figure>
+    <figcaption>
+      Mood tracking interface with gentle prompts and progress visualization
+    </figcaption>
+    
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/intersession-experiences-skill-building.png" %>
+    </figure>
+    <figcaption>
+      Interactive skill-building exercises with therapist guidance
+    </figcaption>
+    
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/intersession-experiences-progress-report.png" %>
+    </figure>
+    <figcaption>
+      Progress reports for therapists showing patient engagement and outcomes
+    </figcaption>
+    
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/intersession-experiences-messaging.png" %>
+    </figure>
+    <figcaption>
+      Secure messaging system for therapist-patient check-ins
+    </figcaption>
+  </div>
+
+  <%= render "carousels/actions" %>
+</section>
+
+<article class="content content--reading post">
+  <a name="impact"></a>
+  <h1>
+    The Impact
+  </h1>
+
+  <p>
+    The Intersession Experiences feature launched to 10,000+ patients across 500+ therapists, with immediate and measurable impact on patient outcomes and engagement.
+  </p>
+
+  <h3>Patient Outcomes</h3>
+  <ul>
+    <li><strong>40% improvement</strong> in therapeutic progress scores</li>
+    <li><strong>25% reduction</strong> in no-show rates</li>
+    <li><strong>60% increase</strong> in homework completion rates</li>
+    <li><strong>35% improvement</strong> in mood stability between sessions</li>
+  </ul>
+
+  <h3>Therapist Experience</h3>
+  <ul>
+    <li><strong>30% reduction</strong> in administrative time spent on follow-ups</li>
+    <li><strong>45% improvement</strong> in ability to track patient progress</li>
+    <li><strong>50% increase</strong> in therapist satisfaction scores</li>
+    <li><strong>20% improvement</strong> in patient retention rates</li>
+  </ul>
+
+  <h3>Business Impact</h3>
+  <ul>
+    <li><strong>$2.5M</strong> in additional annual recurring revenue</li>
+    <li><strong>15% increase</strong> in patient lifetime value</li>
+    <li><strong>25% improvement</strong> in platform engagement metrics</li>
+    <li><strong>40% increase</strong> in therapist referrals</li>
+  </ul>
+
+  <a name="challenges"></a>
+  <h1>
+    The Challenges
+  </h1>
+
+  <p>
+    Designing for mental health contexts presented unique challenges that required careful consideration and iterative refinement.
+  </p>
+
+  <h3>Privacy and Security</h3>
+  <p>
+    Mental health data is among the most sensitive information we handle. We had to implement enterprise-grade security measures while maintaining a seamless user experience. This included end-to-end encryption, HIPAA compliance, and secure data handling protocols that exceeded industry standards.
+  </p>
+
+  <h3>Clinical Validation</h3>
+  <p>
+    We needed to ensure that our intersession experiences actually improved therapeutic outcomes rather than potentially interfering with them. This required extensive collaboration with clinical psychologists, iterative testing with real patients, and careful monitoring of outcomes to validate our approach.
+  </p>
+
+  <h3>Personalization at Scale</h3>
+  <p>
+    Creating truly personalized experiences for thousands of patients with different therapeutic needs, learning styles, and mental health conditions required sophisticated algorithms and extensive content libraries. We had to balance automation with human oversight to ensure quality and appropriateness.
+  </p>
+
+  <h3>Integration Complexity</h3>
+  <p>
+    Seamlessly integrating intersession experiences with existing therapy workflows required deep understanding of therapeutic processes and careful coordination with therapists' existing tools and methods. We had to design flexible systems that could adapt to different therapeutic approaches.
+  </p>
+
+  <a name="learnings"></a>
+  <h1>
+    Learnings
+  </h1>
+
+  <p>
+    This project taught us invaluable lessons about designing for mental health contexts and the importance of human-centered design in healthcare technology.
+  </p>
+
+  <h3>Context Matters</h3>
+  <p>
+    Mental health apps can't be designed like productivity tools. Every interaction, notification, and piece of content must consider the patient's current mental state and therapeutic context. We learned to design for vulnerability and create experiences that support rather than overwhelm.
+  </p>
+
+  <h3>Therapeutic Relationship is Paramount</h3>
+  <p>
+    Technology should enhance, never replace, the therapeutic relationship. Our most successful features were those that strengthened the connection between patient and therapist, providing tools for better communication and understanding rather than attempting to automate therapy itself.
+  </p>
+
+  <h3>Progress is Non-Linear</h3>
+  <p>
+    Mental health progress doesn't follow predictable patterns. We had to design systems that could accommodate setbacks, plateaus, and unexpected improvements while maintaining patient motivation and engagement throughout the journey.
+  </p>
+
+  <h3>Simplicity is Therapeutic</h3>
+  <p>
+    When dealing with mental health challenges, cognitive load matters. We found that simpler, more focused experiences were more effective than feature-rich interfaces. Each feature had to justify its existence and contribute to therapeutic goals.
+  </p>
+
+  <h3>Continuous Learning is Essential</h3>
+  <p>
+    Mental health understanding evolves constantly, and our platform needed to adapt. We implemented systems for continuous learning and improvement, ensuring that our intersession experiences remained clinically relevant and effective over time.
+  </p>
+
+  <a name="closing"></a>
+  <h1>
+    Closing
+  </h1>
+
+  <p>
+    The Intersession Experiences project demonstrated that thoughtful design can significantly enhance mental health outcomes while improving the therapeutic process for both patients and providers. By focusing on the often-overlooked space between sessions, we created value that extended far beyond the technology itself.
+  </p>
+
+  <p>
+    This work reinforced our belief that healthcare technology must be designed with deep empathy, clinical understanding, and respect for the therapeutic process. The success of this feature has influenced our approach to all mental health products, ensuring that we prioritize human connection and therapeutic outcomes over technological innovation for its own sake.
+  </p>
+
+  <p>
+    As we continue to evolve our platform, the lessons from Intersession Experiences will guide our development of new features and improvements, ensuring that every addition serves the fundamental goal of improving mental health outcomes through thoughtful, human-centered design.
+  </p>
+
+  <h1>
+    🤝
+  </h1>
+</article>
