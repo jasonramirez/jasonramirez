@@ -45,6 +45,7 @@
 .work-link__description {
   font-weight: $reading-font-weight;
   letter-spacing: $reading-letter-spacing;
+  line-height: $reading-line-height;
   width: 100%;
 
   @include media($medium-screen) {
