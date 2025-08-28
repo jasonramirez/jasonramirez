@@ -1,25 +1,38 @@
 <div data-js-reading-progress-bar></div>
 
 <article class="content content--reading post">
-  <h1 class="post-title">
-    <div class="post-title__image-container">
-      <div class="post-title__video-container">
-        <video autoplay muted loop playsinline class="post-title__video" onloadedmetadata="this.playbackRate=0.5;">
+  <div class="post-meta">
+      <div class="work-link__video-container">
+        <video autoplay muted loop playsinline class="work-link__video">
           <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
           <!-- Fallback image for browsers that don't support video -->
           <img src="<%= asset_path('works/grow-marketplace-excellence-title-card.png') %>" alt="Intersession Experiences">
         </video>
-        <div class="post-title__logo-overlay">
-          <%= inline_svg "works/grow-therapy-logo.svg" %>
+        <div class="work-link__logo-overlay">
+          <%= inline_svg "works/grow-therapy-logo-white.svg" %>
         </div>
       </div>
-    </div>
-    Intersession Experiences
-  </h1>
 
-  <h2 class="u-margin-bottom-x-large">
-    How we designed and implemented seamless intersession experiences that improved patient engagement, reduced no-shows, and enhanced therapeutic outcomes through thoughtful UX design and behavioral psychology principles.
-  </h2>
+    <%= 
+      render 'shared/custom_audio_player',
+      audio_source: 'intersession-experiences-tldr.mp3',
+      title: 'Intersession Experiences',
+      transcript_file: 'transcripts/intersession-experiences.txt'
+    %>
+
+    <div class="post-meta__title">Intersession Experiences</div>
+
+    <h2 class="post-meta__subtitle">Grow Therapy, 2025</h2>
+
+    <h2 class="post-meta__description">
+        How we designed and implemented seamless intersession experiences
+        that improved patient engagement, reduced no-shows, 
+        and enhanced therapeutic outcomes through thoughtful 
+        UX design and behavioral psychology principles.
+    </h2>
+  </div>
+
+  <h1>Contents</h1>
 
   <div>
     <ol>
@@ -28,27 +41,23 @@
       </li>
 
       <li>
-        <a href="#planning">Planning</a>
+        <a href="#team">The Team</a>
       </li>
 
       <li>
-        <a href="#designing">Designing</a>
+        <a href="#process">The Process</a>
       </li>
 
       <li>
-        <a href="#impact">Impact</a>
+        <a href="#output">The Output</a>
       </li>
 
       <li>
-        <a href="#challenges">Challenges</a>
+        <a href="#impact">The Impact</a>
       </li>
 
       <li>
-        <a href="#learnings">Learnings</a>
-      </li>
-
-      <li>
-        <a href="#closing">Closing</a>
+        <a href="#reflection">Reflection</a>
       </li>
     </ol>
   </div>
@@ -56,261 +65,125 @@
 
 <article class="content content--reading post">
   <a name="background"></a>
-  <h1>
-    Background
-  </h1>
+  <h1>Background</h1>
 
   <p>
-    At Grow Therapy, we recognized that the time between therapy sessions—the "intersession period"—was a critical but often overlooked opportunity to enhance patient outcomes. Traditional therapy models focused primarily on the 50-minute session, leaving patients without support, guidance, or tools to maintain progress throughout the week.
+    When I was leading Product Design at Grow Therapy, the company identified <strong>intersession engagement</strong> as one of its most important strategic priorities. We knew that the therapy experience couldn't just happen once a week in a one-hour session. If we wanted to deliver better care, support providers in getting paid for their time, and demonstrate outcomes strong enough to maintain and expand insurance contracts, we had to improve the quality of care that happened <em>between sessions</em>.
   </p>
 
   <p>
-    Our research revealed that patients who engaged with therapeutic content between sessions showed 40% better outcomes and 25% fewer no-shows. However, existing solutions were fragmented, impersonal, and failed to integrate seamlessly with the therapeutic relationship.
+    At the time, however, our product surfaces were focused narrowly on logistics: helping clients schedule their first appointment and make sure they showed up prepared. I had strong conviction this was far too limited. A logistics-first app would never survive. In conversations with our CTO, VP of Product, and Group PMs, I pushed hard that <strong>intersession engagement had to become the core value proposition</strong> of our mobile app and broader care strategy. I wanted to anchor the client experience around pairing them with their provider in a way that extended beyond the session, and leadership eventually aligned with me on that direction.
   </p>
 
-  <div class="work-focus work-focus--small">
-    <header class="work-focus__header">
-      <h3>
-        Contributors
-      </h3>
-    </header>
-
-    <div class="work-focus__grid">
-      <div class="work-focus__item">
-        <strong>Product Design</strong><br>
-        Jason Ramirez
-      </div>
-      <div class="work-focus__item">
-        <strong>Product Management</strong><br>
-        Sarah Chen
-      </div>
-      <div class="work-focus__item">
-        <strong>Engineering</strong><br>
-        Marcus Rodriguez
-      </div>
-      <div class="work-focus__item">
-        <strong>Clinical Research</strong><br>
-        Dr. Emily Watson
-      </div>
-    </div>
-  </div>
-
-  <a name="planning"></a>
-  <h1>
-    Planning
-  </h1>
+  <a name="team"></a>
+  <h1>The Team</h1>
 
   <p>
-    We began with extensive user research, conducting interviews with 50+ therapists and 100+ patients to understand their intersession needs, pain points, and desired outcomes. Key insights emerged around three core areas: continuity of care, skill reinforcement, and emotional support.
+    To make this real, I led design for a group that included <strong>Janice</strong>, a staff designer; <strong>Prabha</strong>, a staff PM; and later, <strong>Sophia</strong>, another designer who I pulled in for a specific strategy challenge. On the product side, <strong>Mayuri</strong> was my key partner and responsible for product side. My role as design leader became to set the ambition, coach the designers and product managers to think beyond narrow framing, and to secure executive alignment so the work could land as a core company initiative.
+  </p>
+
+  <a name="process"></a>
+  <h1>The Process</h1>
+
+  <h2>Recognizing Limited Ambition</h2>
+
+  <p>
+    The team's initial concept for <em>Session Topics</em> was tidy but small: twelve hours before a session, clients would get a prompt asking what they wanted to discuss. They could enter up to five short topics, which would then be shared with their provider.
   </p>
 
   <p>
-    Our research revealed that patients wanted personalized, therapist-guided content that felt like a natural extension of their sessions. Therapists needed tools to track progress, assign homework, and maintain therapeutic momentum without increasing their workload.
+    When I reviewed this, I recognized immediately that the <strong>problem space was not ambitious enough</strong>. It solved for the easy case — clients who already reflected and took notes — but not for the majority of clients who struggled most with reflection. It ignored the people who froze when prompted, who felt inhibited bringing up sensitive issues, or who simply didn't have the habit of reflecting at all.
   </p>
 
   <p>
-    We developed a comprehensive strategy that included:
+    I aligned with a Group PM, and together we agreed that the scope had to expand. I pushed the team to reframe their questions: <em>How might we help people who don't know how to reflect? How might we support those who don't have the habit of reflection?</em> This reframing generated a much richer set of problem statements — ones that were both more ambitious and more customer-centered.
+  </p>
+
+  <h2>Driving Exploration</h2>
+
+  <p>
+    Once the team had reframed the problems, I wanted to break them out of incremental solutioning. I introduced a set of <strong>exploration frameworks</strong> to help them think bigger. I encouraged Janice and Prabha to study competitors for patterns in reflection and preparation, to use AI tools like ChatGPT and Subframe to generate divergent ideas (even pitting two AIs against each other), and to validate not just <em>whether</em> clients forgot topics, but <em>why reflection was difficult in the first place</em>.
+  </p>
+
+  <p>
+    This push reframed the work and opened up a much more ambitious set of concepts. The team began exploring guided prompts pulled from past session transcripts to help clients "pick up where they left off." They tested visual reflection tools that allowed people to sketch or draw instead of writing. They built guided categories like <em>"Celebrate" → "a win at work"</em> or <em>"an improvement in my relationship."</em> They considered continuity prompts that nudged clients to build on prior reflections rather than starting from scratch.
+  </p>
+
+  <p>
+    By forcing the team to experiment with new methods and approaches, I helped shift Session Topics from a narrow note-taking tool into a set of solutions that actually addressed the needs of clients who struggled most with reflection — the very people our company strategy demanded we serve better.
+  </p>
+
+  <h2>Championing Innovation (and Practicing Pragmatism)</h2>
+
+  <p>
+    One of the most ambitious directions I personally championed was <strong>audio-first reflection</strong>. From our recent acquisition of Summit, I had learned that their most engaged clients weren't the ones who chatted with their AI life coach — they were the ones who spoke to it. This supported my own hypothesis that reading and typing text while reflecting inhibited free-flow expression, whereas voice would unlock more authentic, natural reflection.
+  </p>
+
+  <p>
+    I didn't leave this at gut instinct. I used <strong>ChatGPT's Deep Research feature</strong> to gather evidence from external sources on how conversational AI — particularly voice — could transform engagement. I then brought this evidence to our Group PM and our CTO, positioning audio-first not just as a feature idea, but as a <strong>strategic differentiator</strong> that could elevate Session Topics into something uniquely valuable.
+  </p>
+
+  <p>
+    The CTO ultimately pushed back, arguing that testing audio outside of the mobile app wouldn't yield insights relevant enough to justify the investment. I disagreed, but I also knew when to adapt. I committed to punting the standalone experiment while ensuring audio-first reflection stayed in the <strong>mobile app roadmap</strong>.
+  </p>
+
+  <p>
+    This moment highlighted two aspects of my leadership: my ability to <strong>champion innovation and scope expansion</strong>, pushing Session Topics beyond incremental improvements, and my ability to <strong>practice pragmatism and alignment</strong>, showing that even when I disagreed, I could commit to the organizational decision while preserving the long-term vision. It was a win: I broadened the scope of what Session Topics could mean strategically, introduced evidence-backed innovation, and kept the door open for future implementation.
+  </p>
+
+  <h2>Navigating Strategic Pivots</h2>
+
+  <p>
+    Two months into the work, Session Topics was folded into the <strong>mobile app roadmap</strong>, elevating it from a standalone feature into the foundation of the app's value proposition. This raised the stakes significantly.
+  </p>
+
+  <p>
+    But as technical, scope, and staffing challenges mounted, intersession engagement was pulled back out, and Session Topics returned to being an independent product. My job then became guiding the team through these pivots, ensuring continuity of vision while adjusting execution strategy.
+  </p>
+
+  <h2>Guiding Execution</h2>
+
+  <p>
+    As we pivoted back to an independent launch, I worked closely with Janice, Prabha, and Mayuri through multiple design reviews — some with leadership, many with my direct approval. We iterated heavily, refining both the client experience and the provider workflow.
+  </p>
+
+  <p>
+    Two interventions stand out:
   </p>
 
   <ul>
-    <li>Personalized content recommendation engine</li>
-    <li>Progress tracking and mood monitoring</li>
-    <li>Secure messaging and check-ins</li>
-    <li>Skill-building exercises and worksheets</li>
-    <li>Integration with existing therapeutic frameworks</li>
+    <li><strong>AI Summarization</strong>: Rather than limiting clients to short notes, I pushed for open reflections that we could then summarize with AI into discrete topics. Providers now received actionable summaries without being overwhelmed by raw text.</li>
+    <li><strong>Dynamic Prompting Strategy</strong>: The team's original plan was to prompt clients exactly twenty-four hours before a session. I asked Janice to collaborate with Sophia to rethink the strategy around the real client journey: how long between selecting a therapist and their first session, how long between recurring sessions, and how to avoid fatigue by reducing prompts when a client had already reflected. This produced a smarter, more contextual prompting system that meaningfully improved engagement.</li>
   </ul>
 
-  <a name="designing"></a>
-  <h1>
-    Designing
-  </h1>
+  <a name="output"></a>
+  <h1>The Output</h1>
 
   <p>
-    Our design approach centered on creating a seamless, non-intrusive experience that felt like a natural extension of therapy rather than a separate app. We focused on three key design principles:
-  </p>
-
-  <h3>1. Therapeutic Continuity</h3>
-  <p>
-    We designed the interface to maintain the same tone, language, and visual identity as the therapy session experience. This included using familiar therapeutic terminology, maintaining the same color palette, and ensuring the content felt like it came directly from the patient's therapist.
-  </p>
-
-  <h3>2. Gentle Engagement</h3>
-  <p>
-    Understanding that patients might be dealing with mental health challenges, we designed interactions that were encouraging but never pushy. We implemented smart timing algorithms that suggested activities when patients were most likely to engage, and provided multiple ways to interact with content based on their current energy levels.
-  </p>
-
-  <h3>3. Progress Visualization</h3>
-  <p>
-    We created intuitive progress tracking that showed patients their growth over time without overwhelming them with data. This included mood charts, skill development timelines, and milestone celebrations that reinforced positive behaviors and therapeutic progress.
-  </p>
-
-  <p>
-    The core experience centered around a personalized dashboard that adapted to each patient's therapeutic goals, progress, and preferences. We implemented machine learning algorithms that learned from patient behavior to suggest increasingly relevant content and activities.
+    The final version of Session Topics launched as a standalone experience. Clients could reflect openly, their responses were summarized by AI into topics, and providers received concise preparation material. It was simple, but it was ambitious: it turned raw client thoughts into structured, actionable conversation starters, and it did so in a way that aligned with both provider needs and payer outcomes.
   </p>
 </article>
 
-<section data-js-carousel class="carousel">
-  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
-  <div data-js-carousel-cards class="carousel__cards">
-    <figure data-js-carousel-card
-      class="carousel__card work-carousel-card">
-      <%= image_tag "works/intersession-experiences-dashboard.png" %>
-    </figure>
-    <figcaption>
-      Personalized dashboard showing therapeutic progress and recommended activities
-    </figcaption>
-    
-    <figure data-js-carousel-card
-      class="carousel__card work-carousel-card">
-      <%= image_tag "works/intersession-experiences-mood-tracking.png" %>
-    </figure>
-    <figcaption>
-      Mood tracking interface with gentle prompts and progress visualization
-    </figcaption>
-    
-    <figure data-js-carousel-card
-      class="carousel__card work-carousel-card">
-      <%= image_tag "works/intersession-experiences-skill-building.png" %>
-    </figure>
-    <figcaption>
-      Interactive skill-building exercises with therapist guidance
-    </figcaption>
-    
-    <figure data-js-carousel-card
-      class="carousel__card work-carousel-card">
-      <%= image_tag "works/intersession-experiences-progress-report.png" %>
-    </figure>
-    <figcaption>
-      Progress reports for therapists showing patient engagement and outcomes
-    </figcaption>
-    
-    <figure data-js-carousel-card
-      class="carousel__card work-carousel-card">
-      <%= image_tag "works/intersession-experiences-messaging.png" %>
-    </figure>
-    <figcaption>
-      Secure messaging system for therapist-patient check-ins
-    </figcaption>
-  </div>
-
-  <%= render "carousels/actions" %>
-</section>
-
 <article class="content content--reading post">
   <a name="impact"></a>
-  <h1>
-    The Impact
-  </h1>
+  <h1>The Impact</h1>
 
   <p>
-    The Intersession Experiences feature launched to 10,000+ patients across 500+ therapists, with immediate and measurable impact on patient outcomes and engagement.
-  </p>
-
-  <h3>Patient Outcomes</h3>
-  <ul>
-    <li><strong>40% improvement</strong> in therapeutic progress scores</li>
-    <li><strong>25% reduction</strong> in no-show rates</li>
-    <li><strong>60% increase</strong> in homework completion rates</li>
-    <li><strong>35% improvement</strong> in mood stability between sessions</li>
-  </ul>
-
-  <h3>Therapist Experience</h3>
-  <ul>
-    <li><strong>30% reduction</strong> in administrative time spent on follow-ups</li>
-    <li><strong>45% improvement</strong> in ability to track patient progress</li>
-    <li><strong>50% increase</strong> in therapist satisfaction scores</li>
-    <li><strong>20% improvement</strong> in patient retention rates</li>
-  </ul>
-
-  <h3>Business Impact</h3>
-  <ul>
-    <li><strong>$2.5M</strong> in additional annual recurring revenue</li>
-    <li><strong>15% increase</strong> in patient lifetime value</li>
-    <li><strong>25% improvement</strong> in platform engagement metrics</li>
-    <li><strong>40% increase</strong> in therapist referrals</li>
-  </ul>
-
-  <a name="challenges"></a>
-  <h1>
-    The Challenges
-  </h1>
-
-  <p>
-    Designing for mental health contexts presented unique challenges that required careful consideration and iterative refinement.
-  </p>
-
-  <h3>Privacy and Security</h3>
-  <p>
-    Mental health data is among the most sensitive information we handle. We had to implement enterprise-grade security measures while maintaining a seamless user experience. This included end-to-end encryption, HIPAA compliance, and secure data handling protocols that exceeded industry standards.
-  </p>
-
-  <h3>Clinical Validation</h3>
-  <p>
-    We needed to ensure that our intersession experiences actually improved therapeutic outcomes rather than potentially interfering with them. This required extensive collaboration with clinical psychologists, iterative testing with real patients, and careful monitoring of outcomes to validate our approach.
-  </p>
-
-  <h3>Personalization at Scale</h3>
-  <p>
-    Creating truly personalized experiences for thousands of patients with different therapeutic needs, learning styles, and mental health conditions required sophisticated algorithms and extensive content libraries. We had to balance automation with human oversight to ensure quality and appropriateness.
-  </p>
-
-  <h3>Integration Complexity</h3>
-  <p>
-    Seamlessly integrating intersession experiences with existing therapy workflows required deep understanding of therapeutic processes and careful coordination with therapists' existing tools and methods. We had to design flexible systems that could adapt to different therapeutic approaches.
-  </p>
-
-  <a name="learnings"></a>
-  <h1>
-    Learnings
-  </h1>
-
-  <p>
-    This project taught us invaluable lessons about designing for mental health contexts and the importance of human-centered design in healthcare technology.
-  </p>
-
-  <h3>Context Matters</h3>
-  <p>
-    Mental health apps can't be designed like productivity tools. Every interaction, notification, and piece of content must consider the patient's current mental state and therapeutic context. We learned to design for vulnerability and create experiences that support rather than overwhelm.
-  </p>
-
-  <h3>Therapeutic Relationship is Paramount</h3>
-  <p>
-    Technology should enhance, never replace, the therapeutic relationship. Our most successful features were those that strengthened the connection between patient and therapist, providing tools for better communication and understanding rather than attempting to automate therapy itself.
-  </p>
-
-  <h3>Progress is Non-Linear</h3>
-  <p>
-    Mental health progress doesn't follow predictable patterns. We had to design systems that could accommodate setbacks, plateaus, and unexpected improvements while maintaining patient motivation and engagement throughout the journey.
-  </p>
-
-  <h3>Simplicity is Therapeutic</h3>
-  <p>
-    When dealing with mental health challenges, cognitive load matters. We found that simpler, more focused experiences were more effective than feature-rich interfaces. Each feature had to justify its existence and contribute to therapeutic goals.
-  </p>
-
-  <h3>Continuous Learning is Essential</h3>
-  <p>
-    Mental health understanding evolves constantly, and our platform needed to adapt. We implemented systems for continuous learning and improvement, ensuring that our intersession experiences remained clinically relevant and effective over time.
-  </p>
-
-  <a name="closing"></a>
-  <h1>
-    Closing
-  </h1>
-
-  <p>
-    The Intersession Experiences project demonstrated that thoughtful design can significantly enhance mental health outcomes while improving the therapeutic process for both patients and providers. By focusing on the often-overlooked space between sessions, we created value that extended far beyond the technology itself.
+    The launch was a success. Clients engaged at high rates, providers valued the clarity of AI-generated topics, and most importantly, the initiative demonstrated that <strong>intersession engagement was not only possible but powerful</strong>. It advanced care quality, supported providers, and created measurable outcomes that Grow could use to strengthen its insurance partnerships.
   </p>
 
   <p>
-    This work reinforced our belief that healthcare technology must be designed with deep empathy, clinical understanding, and respect for the therapeutic process. The success of this feature has influenced our approach to all mental health products, ensuring that we prioritize human connection and therapeutic outcomes over technological innovation for its own sake.
+    It also set a precedent. Session Topics became the proving ground that validated intersession engagement as a <strong>pillar of Grow Therapy's product vision</strong>, influencing how we would design the mobile app and our long-term strategy.
+  </p>
+
+  <a name="reflection"></a>
+  <h1>Reflection</h1>
+
+  <p>
+    This project was never just about a feature. It was about recognizing when ambition was too small, aligning with leadership to expand scope, coaching a team into deeper exploration, and pushing for bold, innovative ideas backed by evidence. It was about navigating strategic pivots, practicing pragmatism when needed, and still delivering impact.
   </p>
 
   <p>
-    As we continue to evolve our platform, the lessons from Intersession Experiences will guide our development of new features and improvements, ensuring that every addition serves the fundamental goal of improving mental health outcomes through thoughtful, human-centered design.
+    For me, Session Topics was a demonstration of design leadership at its fullest: setting strategy, championing innovation, securing executive alignment, and raising the bar for my team. It showed how design can shape not just the product, but the company's direction.
   </p>
-
-  <h1>
-    🤝
-  </h1>
 </article>
