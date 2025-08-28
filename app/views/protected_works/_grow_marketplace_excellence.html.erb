@@ -1,24 +1,287 @@
 <div data-js-reading-progress-bar></div>
 
 <article class="content content--reading post">
-  <div class="post-title">
-    <div class="post-title__image-container">
-      <%= inline_svg "works/grow-marketplace-excellence-title-card.png" %>
-    </div>
-    Marketplace Excellence
+  <div class="post-meta">
+    <%= image_tag "works/grow-marketplace-excellence-title-card.png", class: "post-meta__image" %>
+
+    <%= 
+      render 'shared/custom_audio_player',
+      audio_source: 'marketplace-excellence-tldr.mp3',
+      title: 'Marketplace Excellence',
+      transcript_file: 'transcripts/marketplace-excellence.txt'
+    %>
+
+    <div class="post-meta__title">Marketplace Excellence</div>
+
+    <h2 class="post-meta__subtitle">Grow Therapy, 2024</h2>
+
+    <h2 class="post-meta__description">
+      Leading a Strategic Design Program that transformed client-provider matching and repositioned design as a business force multiplier.
+    </h2>
   </div>
 
-  <h2>
-    Grow, 2025
-  </h2>
+  <h1>Contents</h1>
 
-  <h2>
-    How we grew the Marketplace to $100M+ in annual recurring revenue by
-    focusing on user experience, strategic partnerships, and data-driven
-    optimization.
-  </h2>
+  <ol>
+    <li>
+      <a href="#background">Background</a>
+    </li>
 
-  <h1>
-    🤝
-  </h1>
+    <li>
+      <a href="#strategy">Strategy</a>
+    </li>
+
+    <li>
+      <a href="#evidence">Evidence Base</a>
+    </li>
+
+    <li>
+      <a href="#audits">Audits & Methodology</a>
+    </li>
+
+    <li>
+      <a href="#workstreams">Workstreams</a>
+    </li>
+
+    <li>
+      <a href="#initiatives">Special Initiatives</a>
+    </li>
+
+    <li>
+      <a href="#team">Team Development</a>
+    </li>
+
+    <li>
+      <a href="#impact">Impact</a>
+    </li>
+
+    <li>
+      <a href="#learnings">Learnings</a>
+    </li>
+
+    <li>
+      <a href="#closing">Closing</a>
+    </li>
+  </ol>
+
+  <a name="background"></a>
+  <h1>Background</h1>
+
+  <p>
+    When I first joined Grow Therapy, one of my earliest conversations with our CTO shaped the course of my work. I asked him where design could have the greatest impact. His answer was immediate: <em>"Help clients find the right providers on our marketplace."</em>
+  </p>
+
+  <p>
+    That conversation crystallized the foundation of <strong>Marketplace Excellence</strong>, a multi-year, multi-stream design program I created and led to address the company's biggest bottleneck: client-provider matching. We had a large, fast-growing network of providers, but our clients struggled to find a fit, to trust the process, and to complete booking. They often dropped off before their first session or churned after one or two sessions. Every failed match meant wasted acquisition spend, lost revenue, and a missed opportunity to get someone the care they needed.
+  </p>
+
+  <p>
+    Marketplace Excellence was my answer. It wasn't a single project or feature release. It was a <strong>strategic program</strong> that reframed design's role at Grow from being primarily executional to being at the center of business strategy — shaping conversion, retention, and client trust at the very heart of the marketplace.
+  </p>
+
+  <a name="strategy"></a>
+  <h1>Strategy</h1>
+
+  <h2>Framing the Strategy</h2>
+
+  <p>
+    I deliberately positioned Marketplace Excellence with short-, medium-, and long-term horizons.
+  </p>
+
+  <ul>
+    <li>In the <strong>short term</strong>, we would reduce friction by fixing usability issues in booking, clarifying costs, and eliminating errors that directly blocked conversion.</li>
+    <li>In the <strong>medium term</strong>, we would improve the ability of clients to explore and differentiate providers, making profiles, reviews, and filters more useful and trustworthy.</li>
+    <li>In the <strong>long term</strong>, we would tackle a harder challenge: codifying the intangible aspects of fit — the style, warmth, and trust signals that are central to successful therapy — and making them more visible within the marketplace.</li>
+  </ul>
+
+  <p>
+    I communicated this as a program through <strong>QBR presentations, structured opportunity briefs, and published strategy docs</strong>. My aim was to make the work legible not just to designers, but to product, engineering, and executives, so everyone understood that Marketplace Excellence wasn't just about improving UI — it was about creating a differentiated marketplace experience that would drive business growth.
+  </p>
+
+  <a name="evidence"></a>
+  <h1>Evidence Base</h1>
+
+  <h2>Building the Evidence Base</h2>
+
+  <p>
+    The first step was evidence. To shift the organization, I needed to show that the marketplace experience was a clear driver of lost revenue and retention.
+  </p>
+
+  <ul>
+    <li>On the <strong>booking page</strong>, 85% of clients who clicked "book" failed to complete. Twenty-eight percent abandoned at the insurance verification step. Another 27% failed due to preventable booking errors. Twenty percent dropped off because they couldn't figure out what they'd owe. Booking wasn't just inefficient; it was broken.</li>
+    <li>On the <strong>search results page</strong>, 85% of clients left without clicking into a profile. Availability wasn't clear, insurance coverage was confusing, and filters overwhelmed more than they helped.</li>
+    <li>In <strong>client exit research</strong>, we heard the voice of the customer loud and clear: <em>"Fit makes or breaks trust. I can forgive a bad fit, but I won't forgive a cancellation."</em> Clients described how exhausting it was to sift through undifferentiated provider profiles, and how disappointing it felt when providers canceled appointments or didn't seem to have read their intake forms.</li>
+    <li>In <strong>data analysis</strong>, we confirmed that exploration correlates directly with conversion and retention. Clients who viewed more profiles were significantly more likely to book and to stay past their second session.</li>
+  </ul>
+
+  <p>
+    The message was clear. Our biggest growth limiter wasn't supply, it was experience. If we wanted to grow sustainably, we needed to help clients explore confidently, make decisions with trust, and actually attend their sessions.
+  </p>
+
+  <a name="audits"></a>
+  <h1>Audits & Methodology</h1>
+
+  <h2>Audits: The Bridge Between Strategy and Experiments</h2>
+
+  <p>
+    Instead of rushing to solutions, I began with a series of <strong>audits</strong> across the critical surfaces of the marketplace: Search Results, Provider Profiles, Filters, and Booking.
+  </p>
+
+  <ul>
+    <li>In the <strong>Filter Experience Audit</strong>, we discovered that "insurance + specialty" dominated usage, while nuanced filters like life events, therapy style, and availability were ignored — not because they didn't matter, but because the interface made them too hard to use. Filters had become bloated, increasing decision fatigue instead of reducing it.</li>
+    <li>In the <strong>SRP audit and exit survey synthesis</strong>, we learned that most clients abandoned without clicking a profile. The reasons were strikingly consistent: lack of availability visibility, difficulty comparing providers, and confusion around insurance acceptance.</li>
+    <li>In the <strong>Provider Profile audit</strong>, we found profiles deprioritized the very things clients cared about most: specialties, therapeutic approach, availability, and cost clarity. Photos were often poor quality, reviews were hidden, and the pages felt more like résumés than introductions.</li>
+    <li>On the <strong>Booking flow</strong>, we saw that 55% of clients who clicked "book" encountered errors, many of them resolvable if the UI had been designed to guide rather than block.</li>
+  </ul>
+
+  <p>
+    These audits were more than usability reviews. They were a systematic way to <strong>diagnose barriers, synthesize insights, and translate them into opportunity briefs</strong>. Each audit became the seed for an experiment: an observable problem backed by data, tied to conversion and retention outcomes, and scoped into a testable solution. This gave designers structure and gave executives confidence that design was solving the right problems.
+  </p>
+
+  <p>
+    The audits became the <strong>bridge between strategy and experimentation</strong>. They turned principles like "reduce friction" and "increase trust" into a tangible pipeline of projects that could be shipped, measured, and scaled.
+  </p>
+
+  <a name="workstreams"></a>
+  <h1>Workstreams</h1>
+
+  <h2>Driving the Workstreams</h2>
+
+  <p>
+    From this foundation, I led the team through multiple sub-projects, each targeting a specific barrier in the client journey.
+  </p>
+
+  <h3>Booking UX</h3>
+
+  <p>
+    The most immediate opportunity was the booking flow. I guided the team in introducing standardized error handling, clearer validation, and autofill. We clarified the insurance step and eliminated dead ends. Beyond just fixing the funnel, I pushed for these fixes to become a <strong>pattern library</strong>, so we raised the baseline of every future booking experience.
+  </p>
+
+  <h3>Provider Reviews</h3>
+
+  <p>
+    We transformed reviews from buried testimonials into structured trust signals. By surfacing them earlier, organizing them into themes, and contextualizing them with client background, we gave clients confidence in their decisions — helping them feel they weren't choosing blindly.
+  </p>
+
+  <h3>Cost Clarity Vision</h3>
+
+  <p>
+    Clients repeatedly told us they didn't know what therapy would cost until it was too late. I led the design of a <strong>cost clarity vision</strong>, surfacing estimated costs earlier in the flow and tying them directly to insurance. While the full vision was staged over time, it set a roadmap for how cost transparency could become a differentiator in the marketplace.
+  </p>
+
+  <h3>Filtering Providers</h3>
+
+  <p>
+    Armed with the Filter Audit, we redesigned the filter system to reduce cognitive overload, reorganize categories, and make filters dynamic. Instead of scrolling through static, overwhelming lists, clients now engaged with a guided, progressive narrowing of results. This increased exploration and directly correlated with higher booking rates.
+  </p>
+
+  <h3>Provider Profile Improvements</h3>
+
+  <p>
+    We overhauled profiles to emphasize specialties, therapeutic style, and availability. We improved provider photos, even introducing AI upscaling to boost quality at scale. Profiles became scannable, professional, and differentiated — a far cry from the résumé-style pages clients had struggled with before.
+  </p>
+
+  <h3>Search Information Architecture</h3>
+
+  <p>
+    On SRP, we redesigned provider cards to emphasize availability, cost, reviews, and trust badges like "Frequently Rebooked." These changes improved scannability, encouraged profile clicks, and created a cleaner, more confident exploration path.
+  </p>
+
+  <a name="initiatives"></a>
+  <h1>Special Initiatives</h1>
+
+  <h2>Special Initiatives</h2>
+
+  <p>
+    Two special projects highlight the scale and creativity of Marketplace Excellence.
+  </p>
+
+  <h3>Provider Profile Quality with AI</h3>
+
+  <p>
+    Recognizing that many providers struggled to present themselves, I led a project to use AI/ML to raise baseline quality. We introduced AI-assisted bios, suggested specialties, and ML-powered photo enhancement. This gave providers better tools, improved client trust, and operationalized the long-term vision of codifying intangible qualities like warmth and style.
+  </p>
+
+  <h3>Reducing Provider Cancellations</h3>
+
+  <p>
+    Cancellations eroded client trust and retention. More than 60% of intake cancellations were provider-driven, often due to inaccurate calendars or capacity issues. I guided the redesign of availability tools, added proactive prompts when cancellation rates spiked, and built rebooking pathways for clients. These changes reduced preventable cancellations and strengthened the critical 0–2 retention metric.
+  </p>
+
+  <a name="team"></a>
+  <h1>Team Development</h1>
+
+  <h2>Upleveling the Team</h2>
+
+  <p>
+    Marketplace Excellence wasn't just about what we shipped — it was about how we grew as a design organization.
+  </p>
+
+  <p>
+    I used the program to <strong>teach designers new capabilities</strong>:
+  </p>
+
+  <ul>
+    <li>With <strong>AI enablement</strong>, I helped them adopt tools like Claude and Cursor to explore ideas faster and prototype logic without waiting for engineering. Designers began exploring 3–4x more options per sprint, shifting AI from a novelty to a creative partner.</li>
+    <li>By codifying <strong>cross-functional partnerships</strong>, I taught designers how to partner directly with Sales, Data Science, Support, and Community to source opportunities and validate solutions. Design stopped being a silo and started acting as connective tissue across the company.</li>
+    <li>Through <strong>concept testing evolution</strong>, I raised our rigor. We moved from "which design do you like better?" to testing for ingredients: "what elements actually create the best solution?" This shifted us from preference contests to evidence-based decision-making.</li>
+  </ul>
+
+  <p>
+    These changes didn't just support Marketplace Excellence. They raised the <strong>baseline capability of the design org</strong> — giving us speed, rigor, and influence that would extend well beyond this program.
+  </p>
+
+  <a name="impact"></a>
+  <h1>Impact</h1>
+
+  <h2>The Outcome</h2>
+
+  <p>
+    Marketplace Excellence repositioned design at Grow as a strategic driver. It created measurable impact: reduced booking abandonment, increased profile exploration, stronger trust signals, fewer cancellations, and improved 0–2 retention. But more importantly, it reframed design's role in the company.
+  </p>
+
+  <p>
+    Through audits, experiments, cross-functional leadership, and team upleveling, I showed that design could:
+  </p>
+
+  <ul>
+    <li>Lead <strong>company-level strategy</strong>, not just UI.</li>
+    <li>Drive <strong>business outcomes</strong> directly tied to growth and retention.</li>
+    <li>Build <strong>repeatable systems</strong> — audits, briefs, frameworks — that scaled beyond any single project.</li>
+    <li>Multiply the impact of the team by raising their craft, speed, and influence.</li>
+  </ul>
+
+  <p>
+    Marketplace Excellence wasn't just about fixing a funnel. It was about creating a <strong>trustworthy, differentiated marketplace</strong>, and proving that design could operate as a force multiplier for the entire business.
+  </p>
+
+  <a name="learnings"></a>
+  <h1>Learnings</h1>
+
+  <p>
+    Our biggest learning was that <strong>evidence-based strategy beats intuition</strong>. By starting with systematic audits and data analysis, we were able to identify the real barriers to conversion and retention, rather than making assumptions about what users wanted or needed.
+  </p>
+
+  <p>
+    We also learned that <strong>strategic programs require systematic execution</strong>. Marketplace Excellence wasn't a single project but a coordinated series of workstreams, each building on the insights from the previous phase. This systematic approach allowed us to create compounding impact across the entire marketplace experience.
+  </p>
+
+  <p>
+    Finally, we learned that <strong>design leadership is about creating systems, not just solutions</strong>. By building repeatable frameworks for audits, opportunity briefs, and cross-functional collaboration, we created lasting capability that extended far beyond the initial program scope.
+  </p>
+
+  <a name="closing"></a>
+  <h1>Closing</h1>
+
+  <p>
+    Marketplace Excellence demonstrated that design can be a strategic force multiplier when properly positioned and systematically executed. By combining evidence-based strategy with systematic workstreams and team development, we transformed not just the marketplace experience, but the role of design within the organization.
+  </p>
+
+  <p>
+    The program's success went beyond immediate metrics — it established a new model for how design can lead business strategy, create lasting organizational capability, and drive sustainable growth through user-centered innovation.
+  </p>
+
+  <p>
+    Thanks for reading. If you have any questions or comments, please don't hesitate to reach out to me at jason@jasonramirez.com.
+  </p>
 </article>
