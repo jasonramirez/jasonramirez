@@ -4,7 +4,7 @@
   <h1 class="post-title">
     <div class="post-title__image-container">
       <div class="post-title__video-container">
-        <video autoplay muted loop playsinline class="post-title__video">
+        <video autoplay muted loop playsinline class="post-title__video" onloadedmetadata="this.playbackRate=0.5;">
           <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
           <!-- Fallback image for browsers that don't support video -->
           <img src="<%= asset_path('works/grow-marketplace-excellence-title-card.png') %>" alt="Intersession Experiences">
