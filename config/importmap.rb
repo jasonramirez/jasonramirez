@@ -2,7 +2,6 @@
 
 pin "application", preload: true
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js", preload: true
-# pin "jquery_ujs", to: "https://ga.jspm.io/npm:jquery_ujs@1.2.2/src/rails.js", preload: true  # 404 - commented out
 pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin "@hotwired/turbo", to: "@hotwired--turbo.js", preload: true
