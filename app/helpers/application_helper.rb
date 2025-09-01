@@ -7,7 +7,7 @@ module ApplicationHelper
     stylesheet_link_tag(
       theme_stylesheet,
       media: "all",
-      "data-turbo-track": "reload"
+      "data-turbo-track": Rails.env.production? ? "reload" : ""
     )
   end
 
@@ -76,5 +76,34 @@ module ApplicationHelper
       title_slug = source['title'].downcase.gsub(/[^a-z0-9\s]/, '').gsub(/\s+/, '_')
       "/works/#{title_slug}"
     end
+  end
+
+  def inline_svg(path, options = {})
+    svg_path = Rails.root.join("app/assets/images", path)
+    if File.exist?(svg_path)
+      svg_content = File.read(svg_path)
+      # Extract the SVG tag and apply options
+      svg_tag = svg_content.match(/<svg[^>]*>/).to_s
+      
+      # Apply options to the SVG tag
+      options.each do |key, value|
+        if key == :class
+          svg_tag.gsub!(/class="([^"]*)"/, "class=\"\\1 #{value}\"")
+        elsif key == :style
+          svg_tag.gsub!(/style="([^"]*)"/, "style=\"\\1 #{value}\"")
+        else
+          svg_tag.gsub!(/>$/, " #{key}=\"#{value}\">")
+        end
+      end
+      
+      # Return the modified SVG content
+      svg_content.gsub(/<svg[^>]*>/, svg_tag).html_safe
+    else
+      "<!-- SVG not found: #{path} -->".html_safe
+    end
+  end
+
+  def inline_svg_tag(path, options = {})
+    inline_svg(path, options)
   end
 end

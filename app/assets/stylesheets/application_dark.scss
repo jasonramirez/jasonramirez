@@ -1,16 +1,4 @@
-@charset "utf-8";
-
-@import "normalize-rails";
-@import "bourbon";
-@import "neat";
-
+// Entry point for your Dart Sass build
+@import "themes/colors";
 @import "themes/dark";
-
-@import "variables/**/*";
-@import "animations/**/*";
-@import "mixins/**/*";
-@import "base/**/*";
-
-@import "admin/**/*";
-@import "components/**/*";
-@import "utilities/**/*";
+@import "index";

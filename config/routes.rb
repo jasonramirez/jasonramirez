@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   devise_for :admins
 
-  mount Lockup::Engine, at: "/lockup"
+  get "password_protection/unlock", to: "password_protection#unlock", as: :password_protection_unlock
+  post "password_protection/unlock", to: "password_protection#unlock"
 
   root "welcome#index"
 
   resources :followers, only: [:new, :create]
-  resources :posts, only: [:index, :show, :search]
+  resources :posts, only: [:index, :show] do
+    collection do
+      get :search
+    end
+  end
 
   match "/403", to: "errors#prohibited", via: :all
   match "/404", to: "errors#not_found", via: :all

@@ -11,7 +11,7 @@
     <title>
       <%= title %>
     </title>
-    <%= stylesheet %>
+    <%= stylesheet_link_tag theme_stylesheet, "data-turbo-track": (Rails.env.production? ? "reload" : ""), media: "all" %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>

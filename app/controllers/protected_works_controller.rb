@@ -1,5 +1,5 @@
 class ProtectedWorksController < ApplicationController
-  before_action :check_for_lockup
+  include PasswordProtectable
 
   def show
     @protected_work = params[:protected_work]

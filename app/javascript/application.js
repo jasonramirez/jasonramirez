@@ -6,7 +6,7 @@ import "jquery";
 import "jquery_ujs";
 
 // Rails libraries
-import "@hotwired/turbo-rails";
+import "@hotwired/turbo";
 import "controllers";
 
 // Custom libraries

@@ -12,3 +12,6 @@
 /public/assets
 /tags
 /tmp/*
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
