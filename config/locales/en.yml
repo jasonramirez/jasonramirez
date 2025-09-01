@@ -1,10 +1,8 @@
 en:
   date:
     formats:
-      default:
-        "%m/%d/%Y"
-      with_weekday:
-        "%a %m/%d/%y"
+      default: "%m/%d/%Y"
+      with_weekday: "%a %m/%d/%y"
 
   admins:
     flash:
@@ -54,12 +52,9 @@ en:
 
   time:
     formats:
-      default:
-        "%a, %b %-d, %Y at %r"
-      date:
-        "%b %-d, %Y"
-      short:
-        "%B %d"
+      default: "%a, %b %-d, %Y at %r"
+      date: "%b %-d, %Y"
+      short: "%B %d"
 
   navigation:
     admin: Admin
@@ -71,6 +66,7 @@ en:
     privacy_and_terms: Privacy & Terms
     principles: Principles
     values: Values
+    my_mind: My Mind
 
   titles:
     application: Jason Ramirez | Product Design Director

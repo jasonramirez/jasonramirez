@@ -1,0 +1,78 @@
+<% 
+  kb_data = local_assigns[:kb_influence] || message.metadata&.dig('knowledge_base_influence')
+%>
+
+<div class="my-mind-chat-message my-mind-chat-message--<%= message.message_type %>">
+  <div class="chat-message__content">
+    <%= message.content %>
+  </div>
+
+  <%= render_knowledge_sources(kb_data) %>
+
+  <div class="my-mind-chat-message__actions">
+    <a class="my-mind-chat-message__more" data-timestamp="<%= message.created_at.strftime("%B %d, %Y at %I:%M %p") %>">
+      <%= inline_svg "icon-ellipsis.svg", height: "16px", width: "16px" %>
+    </a>
+    <a class="my-mind-chat-message__copy">
+      <%= inline_svg "icon-copy.svg", height: "16px", width: "16px" %>
+    </a>
+    <% if kb_data %>
+      <div class="my-mind-chat-message__confidence-score" data-modal-trigger data-modal-id="kb-influence-<%= message.id %>">
+        <%= kb_data['confidence_score'] || 'N/A' %>%
+      </div>
+    <% end %>
+  </div>
+
+</div>
+      
+<% if kb_data %>
+  <%= render "shared/modal", id: "kb-influence-#{message.id}" do %>
+    <h4 class="u-margin-bottom-small">Response Quality Metrics</h4>
+    <code>
+      <%= kb_data['confidence_score'] || 'N/A' %>% Accurate
+    </code>
+    <br>
+    <% if kb_data['sources'] && kb_data['sources'].any? %>
+      <code>
+        <% total_relevance = kb_data['sources'].sum { |s| s['relevance_score'] } %>
+        <% avg_relevance = total_relevance / kb_data['sources'].length %>
+        <%= avg_relevance.round(1) %>%% Relevant
+      </code  >
+    <% end %>
+    <br>
+    <code>
+      <%= kb_data['influence_level']&.titleize %> knowledge base influence.
+    </code>
+    <br>
+    <code>
+      <%= kb_data['sources_count'] %> knowledge base sources.
+    </code>
+    <br>
+
+    <% if kb_data['sources'] && kb_data['sources'].any? %>
+      <h4 class="u-margin-bottom-small">Knowledge Base Sources</h4>
+      <ul class="my-mind-sources">
+        <% kb_data['sources'].each do |source| %>
+          <li class="my-mind-source">
+            <p>
+              Title: <%= source['title'] || 'N/A' %>
+              <br>
+              Category: <%= source['category'] || 'N/A' %>
+              <br>
+              Confidence: <%= source['confidence'] || 'N/A' %>
+              <br>
+              Relevance: <%= source['relevance_score'] || 'N/A'   %>
+              <br>
+              Mathing words: "<%= source['word_matches']&.join(', ') || 'N/A' %>"
+            </p>
+
+            <details>
+              <summary>Relevant content (click to expand)</summary>
+              <%= MarkdownParser.new(source['content_snippet'] || 'N/A').markdown_to_html.html_safe %>
+            </details>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+<% end %>

@@ -17,12 +17,15 @@ Rails.application.config.assets.precompile += %w(
   controllers/admin_post_controller.js
   application_dark.css
   application_light.css
+  admin-table-scroll.js
   carousel.js
   custom-audio-player.js
   drawer.js
   flexible_textarea.js
   jquery.min.js
   jquery_ujs.js
+  modal.js
+  my-mind.js
   reading-progress-bar.js
   sky_labels.js
   audios/*.mp3

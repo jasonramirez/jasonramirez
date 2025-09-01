@@ -1,0 +1,42 @@
+<section class="content-full-viewport my-mind">
+  <div class="my-mind-navigation">
+    <%= link_to root_path do %>
+      <%= inline_svg "icon-arrow-left.svg", height: "16px", width: "16px" %>
+    <% end %>
+
+    <%= link_to chat_logout_path, method: :delete do %>
+      <%= inline_svg "icon-log-out.svg", height: "16px", width: "16px" %>
+    <% end %>
+  </div>
+  
+  <div class="my-mind-chat-container" data-my-mind-chat-container="true">
+    <div class="my-mind-chat-history">
+      <% if @chat_messages.any? %>
+        <%= render partial: 'chat_message', collection: @chat_messages, as: :message %>
+      <% else %>
+        <%= render 'chat_message', message: OpenStruct.new(
+          message_type: 'answer',
+          content: "Hello! I'm Jason's AI assistant. Ask me anything about my work, experience, or thoughts on design and leadership.",
+          created_at: Time.current
+        ) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="my-mind-chat-prompt">
+    <%= form_with url: ask_my_mind_path,
+      local: false,
+      class: "my-mind-chat-prompt__form",
+      data: { my_mind_chat: true } do |form| %>
+      <%= form.text_field :question, 
+        placeholder: "What would you like to know about?",
+        required: true,
+        name: "question" %>
+      <%= form.button type: 'submit',
+        class: "my-mind-chat-prompt__button button",
+        data: { my_mind_chat_button: true } do %>
+        <%= inline_svg "icon-arrow-up.svg", height: "20px", width: "20px" %>
+      <% end %>
+    <% end %>
+  </div>
+</section>

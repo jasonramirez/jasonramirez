@@ -6,12 +6,14 @@ table {
   font-feature-settings: "kern", "liga", "tnum";
   font-size: $base-font-size;
   margin-bottom: $medium-spacing;
+  overflow-x: hidden;
   width: 100%;
 }
 
 th {
   background-color: $base-background-color;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: $small-font-size;
   padding: $small-spacing;
   text-align: left;
   white-space: nowrap;
@@ -20,12 +22,19 @@ th {
 td {
   padding: $small-spacing;
   text-align: center;
+  white-space: nowrap;
 }
 
 tr,
 td,
 th {
+  font-size: $small-font-size;
+  text-align: left;
   vertical-align: middle;
+
+  &:not(:last-child) {
+    border-right: solid 1px rgba($base-border-color, 0.1);
+  }
 }
 
 tr:nth-child(odd) {

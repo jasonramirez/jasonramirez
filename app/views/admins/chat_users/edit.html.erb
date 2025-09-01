@@ -1,0 +1,22 @@
+<div class="content content--slim">
+  <h1>Edit Chat User: <%= @chat_user.name %></h1>
+  
+  <div>
+    <%= simple_form_for [:admins, @chat_user], local: true do |form| %>
+      <%= form.input :name, disabled: true, wrapper_html: { class: "sky-label" } %>
+      <%= form.input :email, disabled: true, wrapper_html: { class: "sky-label" } %>
+      <%= form.input :approved, as: :boolean, input_html: { class: "form-checkbox__input" } %>
+
+      <%= form.input :login_expires_at, as: :datetime_local do %>
+        <p>
+          * This is automatically set to 48 hours from first login.<br>You can manually adjust if needed.
+        </p>
+      <% end %>
+      
+      <div>
+        <%= form.button :submit, "Update User", class: "button button--primary" %>
+        <%= link_to "Cancel", admins_chat_users_path, class: "button button--secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

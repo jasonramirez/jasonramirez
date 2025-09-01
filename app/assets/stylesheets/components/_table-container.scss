@@ -1,0 +1,29 @@
+.table-container {
+  position: relative;
+  width: 100%;
+
+  &.has-more-content &__overflow-cover {
+    opacity: 1;
+  }
+
+  &.at-end &__overflow-cover {
+    opacity: 0;
+  }
+}
+
+.table-container__table-wrapper {
+  overflow-x: auto;
+}
+
+.table-container__overflow-cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(to right, transparent, $base-background-color);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}

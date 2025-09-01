@@ -1,0 +1,19 @@
+<div class="modal" id="<%= local_assigns[:id] %>" data-modal-overlay>
+  <div class="modal__container">
+    <button class="modal__close-button" data-modal-close>
+      <%= inline_svg "icon-close.svg", height: "16px", width: "16px" %>
+    </button>
+
+    <% if local_assigns[:title] %>
+      <div class="modal__header">
+        <h3 class="modal__title"><%= title %></h3>
+      </div>
+    <% else %>
+
+    <% end %>
+    
+    <div class="modal__content">
+      <%= yield %>
+    </div>
+  </div>
+</div>

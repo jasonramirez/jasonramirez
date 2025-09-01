@@ -16,6 +16,14 @@
       <% end %>
     <% end %>
 
+    <% if current_page?(admins_chat_users_path) %>
+      <%= link_to new_admins_chat_user_path,
+        id: "new_chat_user_link",
+        class: "admin-floating-action__button" do %>
+        <%= inline_svg "icon-plus.svg" %>
+      <% end %>
+    <% end %>
+
     <% unless request.path.include?("admin") %>
       <%= link_to admin_path,
         id: "admin_edit_link",

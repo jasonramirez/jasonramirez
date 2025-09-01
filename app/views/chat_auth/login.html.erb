@@ -1,0 +1,35 @@
+<section class="content content--slim">
+  <h1>My Mind Login</h1>
+    
+  <% if flash[:alert] %>
+    <div class="alert alert--error">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  
+  <%= form_with url: chat_login_path, method: :post do |form|%>
+    <div>
+      <%= form.label :email, "Email" %>
+      <%= form.email_field :email, 
+          type: "email",
+          required: true,
+          placeholder: "Enter your email" %>
+    </div>
+    
+    <div>
+      <%= form.label :password, "Password" %>
+      <%= form.password_field :password, 
+          type: "password",
+          required: true,
+          placeholder: "Enter your password" %>
+    </div>
+    
+    <div class="u-margin-bottom-large">
+      <%= form.submit "Login", class: "button button--primary" %>
+    </div>
+  <% end %>
+  
+  <div>
+    <p>Don't have an account? <%= link_to "Register here", chat_register_path, class: "link" %></p>
+  </div>
+</section>

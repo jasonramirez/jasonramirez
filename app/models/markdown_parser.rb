@@ -6,7 +6,19 @@ class MarkdownParser
   end
 
   def markdown_to_html
-    processor.render(@markdown).html_safe
+    # Sanitize HTML output to prevent XSS
+    sanitize_html(processor.render(@markdown))
+  end
+
+  private
+
+  def sanitize_html(html)
+    # Use Rails' built-in sanitizer to allow safe HTML tags
+    ActionController::Base.helpers.sanitize(
+      html,
+      tags: %w[p br strong em code pre blockquote ul ol li h1 h2 h3 h4 h5 h6],
+      attributes: %w[class id style]
+    )
   end
 
   def processor

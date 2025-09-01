@@ -43,7 +43,7 @@ label {
 }
 
 #{$all-text-inputs},
-select[multiple=multiple] {
+select[multiple="multiple"] {
   background-color: $input-background-color;
   border: none;
   box-sizing: border-box;
@@ -68,10 +68,6 @@ select[multiple=multiple] {
   &:disabled {
     background-color: shade($base-background-color, 5%);
     cursor: not-allowed;
-
-    &:hover {
-      border: $base-border;
-    }
   }
 
   &.error {
@@ -154,7 +150,9 @@ select {
 }
 
 select {
-  @include padding($x-small-spacing $base-spacing $x-small-spacing $small-spacing);
+  @include padding(
+    $x-small-spacing $base-spacing $x-small-spacing $small-spacing
+  );
   background-color: $input-background-color;
   background-image: url("select-background.svg");
   background-position: calc(100% - #{$x-small-spacing}), center;

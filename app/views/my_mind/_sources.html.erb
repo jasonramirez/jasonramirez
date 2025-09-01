@@ -1,0 +1,6 @@
+<div class="my-mind-chat-message__source-links">
+  <% sources.each_with_index do |source, index| %>
+    <%= link_to index + 1, source_link_url(source), 
+        class: 'my-mind-source-link', target: '_blank' %>
+  <% end %>
+</div>

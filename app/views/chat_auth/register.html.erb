@@ -1,0 +1,53 @@
+<section class="content-full-viewport">
+  <div class="chat-auth-container">
+    <h1 class="chat-auth-container__title">Request Chat Account</h1>
+    
+    <div class="chat-auth-container__notice">
+      <p><strong>Note:</strong> All accounts are given 48 hours of access from the moment of first login. Account requests require admin approval before you can log in.</p>
+    </div>
+    
+    <% if @user&.errors.any? %>
+      <div class="alert alert--error">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <%= form_with model: @user, url: chat_register_path, method: :post, class: "chat-auth-form" do |form| %>
+      <div class="chat-auth-form__field">
+        <%= form.label :name, "Name", class: "chat-auth-form__label" %>
+        <%= form.text_field :name, 
+            class: "chat-auth-form__input",
+            required: true,
+            placeholder: "Enter your name" %>
+      </div>
+      
+      <div class="chat-auth-form__field">
+        <%= form.label :email, "Email", class: "chat-auth-form__label" %>
+        <%= form.email_field :email, 
+            class: "chat-auth-form__input",
+            required: true,
+            placeholder: "Enter your email" %>
+      </div>
+      
+      <div class="chat-auth-form__field">
+        <%= form.label :password, "Password", class: "chat-auth-form__label" %>
+        <%= form.password_field :password, 
+            class: "chat-auth-form__input",
+            required: true,
+            placeholder: "Enter your password (minimum 6 characters)" %>
+      </div>
+      
+      <div class="chat-auth-form__actions">
+        <%= form.submit "Request Account", class: "chat-auth-form__submit button button--primary" %>
+      </div>
+    <% end %>
+    
+    <div class="chat-auth-container__footer">
+      <p>Already have an account? <%= link_to "Login here", chat_login_path, class: "link" %></p>
+    </div>
+  </div>
+</section>

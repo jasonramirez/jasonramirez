@@ -1,0 +1,17 @@
+<!-- Example of how to use the modal component -->
+
+<!-- Modal with title -->
+<%= render 'shared/modal', title: 'Example Modal' do %>
+  <p>This is the modal content. You can put anything here!</p>
+  <button onclick="Modal.close('example-modal')">Close</button>
+<% end %>
+
+<!-- Modal without title -->
+<%= render 'shared/modal' do %>
+  <p>This modal has no title.</p>
+  <button onclick="Modal.close('example-modal-no-title')">Close</button>
+<% end %>
+
+<!-- Button to open modal -->
+<button onclick="Modal.open('example-modal')">Open Modal with Title</button>
+<button onclick="Modal.open('example-modal-no-title')">Open Modal without Title</button>

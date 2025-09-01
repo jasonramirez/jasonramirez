@@ -1,0 +1,455 @@
+class MyMindChat {
+  constructor() {
+    this.form = null;
+    this.submitButton = null;
+    this.input = null;
+    this.chatHistory = null;
+    this.init();
+  }
+
+  init() {
+    // Check if DOM is already loaded
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => this.setup());
+    } else {
+      this.setup();
+    }
+  }
+
+  setup() {
+    this.form = document.querySelector("[data-my-mind-chat='true']");
+
+    // Only proceed if the form exists (we're on the my-mind page)
+    if (!this.form) {
+      console.log("MyMindChat: Form not found, exiting setup");
+      return;
+    }
+
+    this.submitButton = this.form.querySelector(
+      "[data-my-mind-chat-button='true']"
+    );
+    this.input = this.form.querySelector("input[name='question']");
+    this.chatHistory = document.querySelector(".my-mind-chat-history");
+
+    // Validate all required elements exist
+    if (!this.submitButton || !this.input || !this.chatHistory) {
+      console.error("MyMindChat: Required elements not found:", {
+        submitButton: !!this.submitButton,
+        input: !!this.input,
+        chatHistory: !!this.chatHistory,
+      });
+      return;
+    }
+
+    this.bindEvents();
+    this.scrollToBottom();
+  }
+
+  bindEvents() {
+    // Add click event listeners to existing ellipsis elements
+    document.addEventListener("click", (e) => this.handleEllipsisClick(e));
+
+    // Add click event listeners for copy buttons
+    document.addEventListener("click", (e) => this.handleCopyClick(e));
+
+    // Add form submit handler
+    this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+
+    // Add Enter key handler for the input field
+    if (this.input) {
+      this.input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+
+          // Check if we're already loading before submitting
+          if (!this.submitButton.disabled) {
+            this.form.dispatchEvent(new Event("submit"));
+          }
+        }
+      });
+    }
+  }
+
+  handleEllipsisClick(e) {
+    if (e.target.closest(".my-mind-chat-message__more")) {
+      const more = e.target.closest(".my-mind-chat-message__more");
+      const timestamp = more.getAttribute("data-timestamp");
+      if (timestamp) {
+        alert(timestamp);
+      }
+    }
+  }
+
+  handleCopyClick(e) {
+    if (e.target.closest(".my-mind-chat-message__copy")) {
+      const copyButton = e.target.closest(".my-mind-chat-message__copy");
+      const messageElement = copyButton.closest(".my-mind-chat-message");
+      const contentElement = messageElement.querySelector(
+        ".chat-message__content"
+      );
+
+      if (contentElement) {
+        const textToCopy = contentElement.textContent.trim();
+
+        // Copy to clipboard
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            // Show flash message
+            this.showFlashMessage("Copied to clipboard");
+          })
+          .catch((err) => {
+            this.showFlashMessage("Failed to copy to clipboard");
+          });
+      }
+    }
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    // Check if button is disabled to prevent multiple submissions
+    if (this.submitButton.disabled) {
+      return;
+    }
+
+    const question = this.input.value.trim();
+    if (!question) {
+      return;
+    }
+
+    // Add user's question to chat immediately
+    await this.addUserQuestionToChat(question);
+
+    this.setLoadingState(true);
+    this.submitQuestion(question);
+  }
+
+  setLoadingState(loading) {
+    this.submitButton.disabled = loading;
+    this.input.disabled = loading;
+
+    if (loading) {
+      this.submitButton.classList.add("button--loading");
+      this.submitButton.value = "Asking...";
+    } else {
+      this.submitButton.classList.remove("button--loading");
+      this.submitButton.value = "Ask";
+      this.input.focus();
+    }
+  }
+
+  async submitQuestion(question) {
+    try {
+      const response = await fetch(this.form.action, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+            .content,
+        },
+        body: new URLSearchParams({
+          question: question,
+          authenticity_token: document.querySelector('meta[name="csrf-token"]')
+            .content,
+        }),
+      });
+
+      const data = await response.json();
+
+      // Reset form
+      this.input.value = "";
+
+      // Add response message to chat (question is already displayed)
+      this.addMessageToChat(
+        data.response_message,
+        true,
+        data.knowledge_base_influence
+      );
+
+      // Scroll to bottom after response is added
+      setTimeout(() => this.scrollToBottom(), 100);
+    } catch (error) {
+      console.error("Error:", error);
+      this.addMessageToChat(
+        {
+          content: "I'm sorry, I encountered an error. Please try again.",
+          message_type: "answer",
+          created_at: new Date(),
+        },
+        true
+      );
+
+      // Scroll to bottom after error message
+      setTimeout(() => this.scrollToBottom(), 100);
+    } finally {
+      this.setLoadingState(false);
+    }
+  }
+
+  async addUserQuestionToChat(question) {
+    // Create a message object for the user's question
+    const userMessage = {
+      content: question,
+      message_type: "question",
+      created_at: new Date().toISOString(),
+      id: "temp-" + Date.now(), // Temporary ID for user questions
+    };
+
+    // Use the same partial rendering system
+    await this.addMessageToChat(userMessage, false, null);
+  }
+
+  async addMessageToChat(
+    message,
+    isTypingResponse = false,
+    kbInfluence = null
+  ) {
+    if (!this.chatHistory) {
+      console.error("Chat history element not found!");
+      return;
+    }
+
+    try {
+      // Render the partial using Rails
+      const response = await fetch("/my_mind/render_message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+            .content,
+        },
+        body: JSON.stringify({
+          message: message,
+          kb_influence: kbInfluence,
+        }),
+      });
+
+      if (response.ok) {
+        const html = await response.text();
+
+        // Insert the HTML directly without creating an extra wrapper div
+        this.chatHistory.insertAdjacentHTML("beforeend", html);
+
+        this.scrollToBottom();
+      } else {
+        console.error("Failed to render message partial");
+      }
+    } catch (error) {
+      console.error("Error rendering message:", error);
+    }
+  }
+
+  createTypingMessage(messageElement, message) {
+    messageElement.innerHTML = `
+      <div class="my-mind-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
+        <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="19" cy="12" r="1"></circle>
+          <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+      </div>
+      <div class="chat-message__content">
+        <span class="typing-indicator">▋</span>
+      </div>
+      <div class="chat-message__timestamp">
+        ${new Date(message.created_at).toLocaleString()}
+      </div>
+    `;
+
+    this.startTypingEffect(messageElement, message.content);
+  }
+
+  createStaticMessage(messageElement, message) {
+    messageElement.innerHTML = `
+      <div class="my-mind-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
+        <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="19" cy="12" r="1"></circle>
+          <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+      </div>
+      <div class="chat-message__content">
+        ${message.content}
+      </div>
+      <div class="chat-message__timestamp">
+        ${new Date(message.created_at).toLocaleString()}
+      </div>
+    `;
+  }
+
+  startTypingEffect(messageElement, content) {
+    const words = content.split(" ");
+    let currentWordIndex = 0;
+
+    const typeNextWord = () => {
+      if (currentWordIndex < words.length) {
+        const contentElement = messageElement.querySelector(
+          ".chat-message__content"
+        );
+        const currentText = contentElement.innerHTML.replace(
+          '<span class="typing-indicator">▋</span>',
+          ""
+        );
+        const newText =
+          currentText +
+          (currentWordIndex > 0 ? " " : "") +
+          words[currentWordIndex];
+        contentElement.innerHTML =
+          newText + '<span class="typing-indicator">▋</span>';
+        currentWordIndex++;
+
+        const delay = Math.random() * 100 + 50;
+        setTimeout(typeNextWord, delay);
+      } else {
+        const contentElement = messageElement.querySelector(
+          ".chat-message__content"
+        );
+        contentElement.innerHTML = contentElement.innerHTML.replace(
+          '<span class="typing-indicator">▋</span>',
+          ""
+        );
+      }
+    };
+
+    setTimeout(typeNextWord, 500);
+  }
+
+  scrollToBottom() {
+    if (!this.chatHistory) {
+      console.log("MyMindChat: Chat history not found for scrolling");
+      return;
+    }
+
+    // Use requestAnimationFrame to ensure DOM is updated
+    requestAnimationFrame(() => {
+      // Try multiple scroll containers in order of preference
+      const scrollContainers = [
+        document.querySelector(".my-mind-chat-container"),
+        this.chatHistory,
+        document.querySelector(".my-mind"),
+      ].filter(Boolean);
+
+      if (scrollContainers.length === 0) {
+        console.log("MyMindChat: No scroll container found");
+        return;
+      }
+
+      const scrollContainer = scrollContainers[0];
+      console.log(
+        "MyMindChat: Scrolling to bottom of",
+        scrollContainer.className
+      );
+
+      // Get the current scroll position and height
+      const currentScrollTop = scrollContainer.scrollTop;
+      const scrollHeight = scrollContainer.scrollHeight;
+      const clientHeight = scrollContainer.clientHeight;
+      const maxScrollTop = scrollHeight - clientHeight;
+
+      // Only scroll if we're not already at the bottom (within 10px)
+      if (Math.abs(currentScrollTop - maxScrollTop) > 10) {
+        // Smooth scroll to bottom
+        scrollContainer.scrollTo({
+          top: scrollHeight,
+          behavior: "smooth",
+        });
+
+        // Fallback: ensure we're at the bottom after a delay
+        setTimeout(() => {
+          scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        }, 300);
+      } else {
+        console.log("MyMindChat: Already at bottom, skipping scroll");
+      }
+    });
+  }
+
+  showFlashMessage(message) {
+    // Create flash message element following existing pattern
+    const flashElement = document.createElement("div");
+    flashElement.className = "flashes";
+    flashElement.innerHTML = `<div class="flash-notice">${message}</div>`;
+
+    // Add to page (after the existing flashes if any)
+    const existingFlashes = document.querySelector(".flashes");
+    if (existingFlashes) {
+      existingFlashes.parentNode.insertBefore(
+        flashElement,
+        existingFlashes.nextSibling
+      );
+    } else {
+      // If no existing flashes, add to the top of the main content
+      const main = document.querySelector(".my-mind-main");
+      if (main) {
+        main.parentNode.insertBefore(flashElement, main);
+      } else {
+        document.body.insertBefore(flashElement, document.body.firstChild);
+      }
+    }
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+      if (flashElement.parentNode) {
+        flashElement.parentNode.removeChild(flashElement);
+      }
+    }, 3000);
+  }
+
+  addKnowledgeBaseIndicator(messageElement, kbInfluence) {
+    const indicator = document.createElement("div");
+    indicator.className = "my-mind-kb-indicator";
+
+    const influenceText = this.getInfluenceText(kbInfluence);
+    indicator.innerHTML = `
+      <div class="my-mind-kb-indicator__icon">📚</div>
+      <div class="my-mind-kb-indicator__content">
+        <div class="my-mind-kb-indicator__text">${influenceText}</div>
+        <div class="my-mind-kb-indicator__confidence">${kbInfluence.confidence_score}% confidence</div>
+      </div>
+    `;
+
+    // Replace the placeholder comment in the actions section
+    const actionsSection = messageElement.querySelector(
+      ".my-mind-chat-message__actions"
+    );
+    if (actionsSection) {
+      const placeholderDiv = actionsSection.querySelector("div");
+      if (
+        placeholderDiv &&
+        placeholderDiv.innerHTML.includes("<!-- Put confidence score here -->")
+      ) {
+        placeholderDiv.innerHTML = "";
+        placeholderDiv.appendChild(indicator);
+      }
+    }
+  }
+
+  getInfluenceText(kbInfluence) {
+    const level = kbInfluence.influence_level;
+    const count = kbInfluence.sources_count;
+
+    switch (level) {
+      case "high":
+        return `Based on ${count} knowledge base sources`;
+      case "medium":
+        return `Informed by ${count} knowledge base sources`;
+      case "low":
+        return `Partially informed by knowledge base`;
+      case "minimal":
+        return `Minimal knowledge base influence`;
+      default:
+        return "Knowledge base influence";
+    }
+  }
+}
+
+if (!window.myMindChatInitialized) {
+  window.myMindChatInitialized = true;
+  const initChat = () => new MyMindChat();
+
+  document.readyState === "loading"
+    ? document.addEventListener("DOMContentLoaded", initChat)
+    : initChat();
+}

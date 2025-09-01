@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content=("text/html; charset=UTF-8") http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta content="NOODP" name="ROBOTS">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="<%= theme_content %>">
+    <%= render "favicons" %>
+    <title>
+      <%= title %>
+    </title>
+    <%= stylesheet %>
+    <%= csrf_meta_tags %>
+    <%= javascript_importmap_tags %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
+  </head>
+  <body class="<%= body_class %> <%= cookies[:theme] %> my-mind-layout">
+    <%= render "flashes" %>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>
+

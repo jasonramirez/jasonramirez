@@ -4,4 +4,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   skip_before_action :check_for_lockup, raise: false
+  
+  # Custom error handling for Devise
+  rescue_from ActionController::InvalidAuthenticityToken do
+    flash[:alert] = "Session expired. Please try logging in again."
+    redirect_to new_admin_session_path
+  end
 end

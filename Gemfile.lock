@@ -141,7 +141,11 @@ GEM
       railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
+    elevenlabs (0.0.7)
+      faraday (~> 2.0)
+      faraday-multipart (~> 1.1)
     erubi (1.12.0)
+    event_stream_parser (1.0.0)
     execjs (2.9.1)
     factory_bot (6.4.6)
       activesupport (>= 5.0.0)
@@ -150,6 +154,8 @@ GEM
       railties (>= 5.0.0)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
+    faraday-multipart (1.1.1)
+      multipart-post (~> 2.0)
     faraday-net_http (3.1.0)
       net-http
     ffi (1.16.3)
@@ -210,6 +216,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.22.2)
     multi_json (1.15.0)
+    multipart-post (2.4.1)
     mutex_m (0.2.0)
     neat (1.7.4)
       bourbon (>= 4.0)
@@ -232,6 +239,7 @@ GEM
       racc (~> 1.4)
     normalize-rails (3.0.3)
     orm_adapter (0.5.0)
+    parity (3.5.0)
     pg (1.5.4)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -330,6 +338,10 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.13.0)
+    ruby-openai (8.2.0)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass (3.7.4)
@@ -425,6 +437,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   awesome_print
+  bcrypt
   bourbon
   browser
   bullet
@@ -433,6 +446,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   dotenv-rails
+  elevenlabs
   factory_bot_rails
   flutie
   formulaic
@@ -448,6 +462,7 @@ DEPENDENCIES
   lockup
   neat (~> 1.7.0)
   normalize-rails (~> 3.0.0)
+  parity (~> 3.5)
   pg
   pry-byebug
   pry-rails
@@ -460,6 +475,7 @@ DEPENDENCIES
   redis
   rouge-rails
   rspec-rails
+  ruby-openai
   sass-rails (~> 5.0)
   selenium-webdriver
   shoulda-matchers

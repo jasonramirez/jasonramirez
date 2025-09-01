@@ -59,6 +59,77 @@ From the command line:
 $ production restore-from development --force
 ```
 
+## Knowledge Base Management
+
+The AI chat system uses a knowledge base that's automatically updated from your published posts and case studies.
+
+### How Knowledge Base Updates Work
+
+**Automatic Updates**: The knowledge base is automatically updated daily via Heroku Scheduler.
+
+1. **Heroku Scheduler** runs daily at 2:00 AM UTC
+2. **Command**: `bundle exec rails knowledge:clear && bundle exec rails knowledge:import`
+3. **Process**: Clears old knowledge items and imports fresh data from:
+   - All published blog posts
+   - Case studies from the works directory
+
+### Manual Knowledge Base Updates
+
+If you need to update the knowledge base immediately:
+
+```bash
+# Clear and reimport all knowledge
+heroku run "bundle exec rails knowledge:clear && bundle exec rails knowledge:import"
+
+# Or just import new posts (without clearing)
+heroku run "bundle exec rails knowledge:import_posts"
+
+# Check knowledge base stats
+heroku run "bundle exec rails knowledge:stats"
+```
+
+### Knowledge Base Tasks
+
+Available rake tasks for knowledge management:
+
+```bash
+# Import all posts and case studies
+rails knowledge:import
+
+# Import only posts
+rails knowledge:import_posts
+
+# Import only case studies
+rails knowledge:import_case_studies
+
+# Clear all knowledge items
+rails knowledge:clear
+
+# Show statistics
+rails knowledge:stats
+```
+
+### Setting Up Heroku Scheduler
+
+1. **Add the addon** (if not already added):
+
+   ```bash
+   heroku addons:create scheduler:standard
+   ```
+
+2. **Open the scheduler dashboard**:
+
+   ```bash
+   heroku addons:open scheduler
+   ```
+
+3. **Add a new job**:
+   - **Command**: `bundle exec rails knowledge:clear && bundle exec rails knowledge:import`
+   - **Frequency**: Daily
+   - **Time**: 2:00 AM UTC (or your preferred time)
+
+This ensures your AI chat always has access to your latest content without manual intervention.
+
 ## Deployment
 
 ### Updating Production

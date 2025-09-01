@@ -30,6 +30,13 @@
       </li>
 
       <li class="navigation__link">
+        <%= link_to my_mind_path do %>
+          <%= t("navigation.my_mind") %>
+          <span class="badge">Beta</span>
+        <% end %>
+      </li>
+
+      <li class="navigation__link">
         <% if cookies[:theme] == "dark" %>
           <%= link_to set_theme_path(theme: "light") do %>
             <%= inline_svg "icon-theme-change.svg" %>

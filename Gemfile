@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "3.2.2"
 
 gem "autoprefixer-rails"
+gem "bcrypt"
 gem "bourbon"
 gem "browser"
 gem "delayed_job_active_record"
@@ -15,6 +16,8 @@ gem "importmap-rails", "~> 1.1"
 gem "inline_svg"
 gem "jquery-rails"
 gem "lockup"
+gem "ruby-openai"
+gem "elevenlabs"
 gem "neat", "~> 1.7.0"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
@@ -69,3 +72,5 @@ end
 group :staging, :production do
   gem "rack-timeout"
 end
+
+gem "parity", "~> 3.5", :group => :development

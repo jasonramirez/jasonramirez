@@ -1,0 +1,18 @@
+.badge {
+  align-items: center;
+  display: flex;
+  background-color: $action-color;
+  border-radius: 0.5rem;
+  color: $base-background-color;
+  font-size: 0.65rem;
+  justify-content: center;
+  margin-left: 0.25rem;
+  padding: 0.05rem 0.5rem;
+  transform: translateY(-0.05rem);
+
+  &:hover,
+  a:hover & {
+    background-color: darken($action-color, 20%);
+    color: $base-background-color;
+  }
+}

@@ -1,8 +1,27 @@
+/*
+ * Button Component with Loading State
+ * 
+ * Usage:
+ * 1. Add the 'button' class to any button element
+ * 2. Add 'loading' class to show loading state: <button class="button loading">Loading...</button>
+ * 3. Add 'disabled' class or disabled attribute to disable: <button class="button" disabled>Disabled</button>
+ * 
+ * JavaScript Integration:
+ * - Use LoadingButton.init(buttonElement) to add loading functionality
+ * - Use LoadingButton.initFormSubmit(formElement) for form submit buttons
+ * - Auto-initialize with data-loading="true" on forms: <form data-loading="true">
+ * 
+ * Loading State Features:
+ * - Spinning animation with CSS keyframes
+ * - Text becomes transparent, spinner appears
+ * - Button becomes disabled and unclickable
+ * - Works with both <button> and <input type="submit"> elements
+ */
+
 .button {
   background-color: $button-background-color;
   border: none;
   color: $button-color;
-  character-spacing: 0.05rem;
   display: inline-block;
   font-family: $button-font-family;
   font-weight: bold;
@@ -23,6 +42,40 @@
 
   & + & {
     margin-left: $base-spacing;
+  }
+
+  // Loading state
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.button--loading {
+  color: transparent;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

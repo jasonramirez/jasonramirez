@@ -1,0 +1,65 @@
+<div class="content">
+  <h1>Chat Users</h1>
+  
+  <div class="table-container">
+    <div class="table-container__overflow-cover"></div>
+    <div class="table-container__table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Access Started</th>
+          <th>Access Expires</th>
+          <th>Messages</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @chat_users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.approved? %>
+                <% if user.can_login? %>
+                  <span class="status-badge status-badge--active">Active</span>
+                <% else %>
+                  <span class="status-badge status-badge--expired">Expired</span>
+                <% end %>
+              <% else %>
+                <span class="status-badge status-badge--pending">Pending Approval</span>
+              <% end %>
+            </td>
+            <td>
+              <% if user.login_expires_at %>
+                <% access_started = user.login_expires_at - 48.hours %>
+                <%= access_started.strftime("%B %d, %Y at %I:%M %p") %>
+              <% else %>
+                <span class="text-muted">Never</span>
+              <% end %>
+            </td>
+            <td>
+              <% if user.login_expires_at %>
+                <%= user.login_expires_at.strftime("%B %d, %Y at %I:%M %p") %>
+              <% else %>
+                <span class="text-muted">Not set</span>
+              <% end %>
+            </td>
+            <td><%= user.chat_messages.count %></td>
+            <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+            <td>
+              <%= link_to "Edit", edit_admins_chat_user_path(user), class: "button button--small button--secondary" %>
+              <% unless user.approved? %>
+                <%= button_to "Approve", approve_admins_chat_user_path(user), method: :patch, class: "button button--small button--success", data: { confirm: "Approve this account? They will get 48 hours of access from their first login." } %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
