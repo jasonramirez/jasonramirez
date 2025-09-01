@@ -2,7 +2,7 @@
 // https://github.com/rails/importmap-rails
 
 // Standard libraries
-import "jquery";
+// jQuery removed - converted to vanilla JavaScript
 
 // Rails libraries
 import "@hotwired/turbo";
