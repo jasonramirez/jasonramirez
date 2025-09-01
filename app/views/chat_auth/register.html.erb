@@ -1,9 +1,13 @@
 <section class="content content--slim">
   <div>
-    <h1>Request Chat Account</h1>
+    <h1>Request Login</h1>
     
     <div>
-      <p><strong>Note:</strong> All accounts are given 48 hours of access from the moment of first login. Account requests require admin approval before you can log in.</p>
+      <p><strong>Note:</strong> All accounts are given 48 hours of access from the 
+      moment of first login. Account requests require admin approval before you can 
+      log in. If you haven't received an account within 24 hours, please email me at 
+      jason@jasonramirez.com.
+      </p>
     </div>
 
     <%= form_with model: @user, url: chat_register_path, method: :post do |form| %>
