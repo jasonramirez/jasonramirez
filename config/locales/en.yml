@@ -31,6 +31,7 @@ en:
         delete_confirmation: Are you sure?
     sessions:
       new:
+        submit: Sign in
         sign_in: Sign In
 
   followers:
