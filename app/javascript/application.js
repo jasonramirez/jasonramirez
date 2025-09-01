@@ -3,7 +3,7 @@
 
 // Standard libraries
 import "jquery";
-import "jquery_ujs";
+// import "jquery_ujs";  // Package not available - commented out
 
 // Rails libraries
 import "@hotwired/turbo";

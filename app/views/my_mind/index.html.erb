@@ -4,7 +4,7 @@
       <%= inline_svg "icon-arrow-left.svg", height: "16px", width: "16px" %>
     <% end %>
 
-    <%= link_to chat_logout_path, method: :delete do %>
+    <%= link_to chat_logout_path, data: { turbo_method: :delete } do %>
       <%= inline_svg "icon-log-out.svg", height: "16px", width: "16px" %>
     <% end %>
   </div>
