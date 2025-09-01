@@ -19,3 +19,4 @@ import "modal";
 import "my-mind";
 import "reading-progress-bar";
 import "sky-labels";
+import "controllers"
