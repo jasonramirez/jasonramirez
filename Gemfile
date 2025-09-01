@@ -13,7 +13,7 @@ gem "friendly_id"
 gem "gibbon"
 gem "high_voltage"
 gem "importmap-rails"
-gem "inline_svg"
+# gem "inline_svg"  # Removed - using custom Propshaft-compatible helper instead
 
 
 gem "ruby-openai"
