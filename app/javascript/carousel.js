@@ -1,49 +1,111 @@
 import "hammerjs";
 
-export default class Carousel {
+class Carousel {
   constructor(element) {
-    this.carouselIndexSelectedClass = "carousel__index--selected";
+    this.element = element;
     this.currentCard = 1;
-    this.disabledClass = "button--disabled";
     this.firstCard = 1;
-    this.hammer = new Hammer(element);
-    this.lastCard = $(element).find("[data-js-carousel-card]").length;
+    this.lastCard = element.querySelectorAll("[data-js-carousel-card]").length;
+    this.maxCardHeight = 0;
+    this.totalImages = element.querySelectorAll("img").length;
     this.imagesLoaded = 0;
-    this.totalImages = $(element).find("img").length;
 
-    this.$element = $(element);
-    this.$window = $(window);
-    this.$carouselCardsPlaceholder = $(element).find(
+    // Cache DOM elements
+    this.carouselCardsPlaceholder = element.querySelector(
       "[data-js-carousel-cards-placeholder]"
     );
-    this.$carouselCardsContainer = $(element).find("[data-js-carousel-cards]");
-    this.$carouselActions = $(element).find("[data-js-carousel-actions]");
-    this.$carouselCards = $(element).find("[data-js-carousel-card]");
-    this.$carouselIndex = $(element).find("[data-js-carousel-index]");
-    this.$nextCardTrigger = $(element).find(
-      "[data-js-carousel-next-card-trigger]"
+    this.carouselCardsContainer = element.querySelector(
+      "[data-js-carousel-cards]"
     );
-    this.$previousCardTrigger = $(element).find(
-      "[data-js-carousel-previous-card-trigger]"
+    this.carouselActions = element.querySelector("[data-js-carousel-actions]");
+    this.carouselCards = element.querySelectorAll("[data-js-carousel-card]");
+    this.carouselIndex = element.querySelector("[data-js-carousel-index]");
+    this.nextCardTrigger = element.querySelector("[data-js-carousel-next]");
+    this.previousCardTrigger = element.querySelector(
+      "[data-js-carousel-previous]"
     );
 
-    this._waitForImages();
+    // CSS classes
+    this.carouselIndexSelectedClass = "carousel__index--selected";
+    this.disabledClass = "disabled";
+
+    this._bindEvents();
+    this._setIndexContent();
+    this._setIndexSelected();
+    this._setTriggerState();
+    this._setContainerSize();
+
+    if (this.totalImages > 0) {
+      this._loadImages();
+    } else {
+      this._onImageLoad();
+    }
   }
 
-  _waitForImages() {
-    if (this.totalImages === 0) {
-      this._initialize();
-      return;
+  get atFirstCard() {
+    return this.currentCard === this.firstCard;
+  }
+
+  get atLastCard() {
+    return this.currentCard === this.lastCard;
+  }
+
+  get leftPosition() {
+    return (this.currentCard - 1) * 100;
+  }
+
+  _bindEvents() {
+    if (this.nextCardTrigger) {
+      this.nextCardTrigger.addEventListener("click", this._nextCard.bind(this));
+    }
+    if (this.previousCardTrigger) {
+      this.previousCardTrigger.addEventListener(
+        "click",
+        this._previousCard.bind(this)
+      );
     }
 
-    this.$element.find("img").each((index, img) => {
-      const $img = $(img);
+    // Add Hammer.js touch/swipe support
+    this._bindHammerEvents();
 
+    window.addEventListener(
+      "resize",
+      this._debounce(() => {
+        this._setContainerSize();
+      }, 250)
+    );
+  }
+
+  _bindHammerEvents() {
+    if (typeof Hammer !== "undefined") {
+      const hammer = new Hammer(this.element);
+
+      // Configure recognizers
+      hammer.get("swipe").set({ direction: Hammer.DIRECTION_HORIZONTAL });
+
+      // Bind swipe events
+      hammer.on("swipeleft", () => {
+        if (!this.atLastCard) {
+          this._nextCard();
+        }
+      });
+
+      hammer.on("swiperight", () => {
+        if (!this.atFirstCard) {
+          this._previousCard();
+        }
+      });
+    }
+  }
+
+  _loadImages() {
+    const images = this.element.querySelectorAll("img");
+    images.forEach((img) => {
       if (img.complete) {
         this._onImageLoad();
       } else {
-        $img.on("load", () => this._onImageLoad());
-        $img.on("error", () => this._onImageLoad()); // Continue even if image fails
+        img.addEventListener("load", () => this._onImageLoad());
+        img.addEventListener("error", () => this._onImageLoad()); // Continue even if image fails
       }
     });
   }
@@ -51,55 +113,15 @@ export default class Carousel {
   _onImageLoad() {
     this.imagesLoaded++;
     if (this.imagesLoaded >= this.totalImages) {
-      this._initialize();
+      this._setContainerSize();
     }
   }
 
-  _initialize() {
-    this._setTriggerState();
-    this._setContainerSize();
-    this._setIndexContent();
-    this._setIndexSelected();
-    this._bindEvents();
-
-    // Add a small delay to ensure DOM is ready
-    setTimeout(() => {
-      this._setLeftPosition();
-    }, 50);
-  }
-
-  get leftPosition() {
-    return (this.currentCard - 1) * 100;
-  }
-
-  get atLastCard() {
-    return this.currentCard >= this.lastCard;
-  }
-
-  get atFirstCard() {
-    return this.currentCard <= this.firstCard;
-  }
-
-  get maxCardHeight() {
-    const heightArray = this.$element
-      .find("[data-js-carousel-card]")
-      .map(function () {
-        return $(this).height();
-      })
-      .get();
-
-    return Math.max(...heightArray) || 400; // Fallback height
-  }
-
-  _bindEvents() {
-    this.hammer.on("swipeleft", this._nextCard.bind(this));
-    this.hammer.on("swiperight", this._previousCard.bind(this));
-    this.$nextCardTrigger.on("click", this._nextCard.bind(this));
-    this.$previousCardTrigger.on("click", this._previousCard.bind(this));
-    this.$window.on(
-      "resize",
-      this._debounce(this._setContainerSize.bind(this), 250)
-    );
+  _getMaxCardHeight() {
+    const heightArray = Array.from(this.carouselCards).map((card) => {
+      return card.offsetHeight;
+    });
+    return Math.max(...heightArray);
   }
 
   _debounce(func, wait) {
@@ -147,50 +169,73 @@ export default class Carousel {
   }
 
   _setIndexContent() {
-    for (let i = 0; i < this.lastCard; i++) {
-      this.$carouselIndex.append(this._indexItem(i));
+    if (this.carouselIndex) {
+      for (let i = 0; i < this.lastCard; i++) {
+        this.carouselIndex.appendChild(this._indexItem(i));
+      }
     }
   }
 
   _indexItem(index) {
-    return `<div data-js-carousel-index-item="${index}"
-      class="carousel__index"></div>`;
+    const div = document.createElement("div");
+    div.setAttribute("data-js-carousel-index-item", index);
+    div.className = "carousel__index";
+    return div;
   }
 
   _setIndexSelected() {
-    this.$carouselIndex.children().removeClass(this.carouselIndexSelectedClass);
+    if (this.carouselIndex) {
+      // Remove selected class from all index items
+      this.carouselIndex
+        .querySelectorAll("." + this.carouselIndexSelectedClass)
+        .forEach((item) => {
+          item.classList.remove(this.carouselIndexSelectedClass);
+        });
 
-    this.$element
-      .find(`[data-js-carousel-index-item="${this.currentCard - 1}"]`)
-      .addClass(this.carouselIndexSelectedClass);
+      // Add selected class to current index item
+      const currentIndexItem = this.element.querySelector(
+        `[data-js-carousel-index-item="${this.currentCard - 1}"]`
+      );
+      if (currentIndexItem) {
+        currentIndexItem.classList.add(this.carouselIndexSelectedClass);
+      }
+    }
   }
 
   _setContainerSize() {
-    const height = this.maxCardHeight;
-    this.$carouselCardsPlaceholder.css("min-height", `${height}px`);
+    this.maxCardHeight = this._getMaxCardHeight();
+    if (this.carouselCardsPlaceholder) {
+      this.carouselCardsPlaceholder.style.minHeight = `${this.maxCardHeight}px`;
+    }
   }
 
   _setTriggerState() {
-    if (this.atFirstCard) {
-      this.$carouselActions.find("a:first-child").addClass(this.disabledClass);
-    } else if (this.atLastCard) {
-      this.$carouselActions.find("a:last-child").addClass(this.disabledClass);
-    } else {
-      this.$carouselActions.find("a").removeClass(this.disabledClass);
+    if (this.carouselActions) {
+      const links = this.carouselActions.querySelectorAll("a");
+      if (this.atFirstCard) {
+        if (links[0]) links[0].classList.add(this.disabledClass);
+      } else if (this.atLastCard) {
+        if (links[links.length - 1])
+          links[links.length - 1].classList.add(this.disabledClass);
+      } else {
+        links.forEach((link) => link.classList.remove(this.disabledClass));
+      }
     }
   }
 
   _setLeftPosition() {
-    this.$carouselCardsContainer.css("left", `-${this.leftPosition}vw`);
+    if (this.carouselCardsContainer) {
+      this.carouselCardsContainer.style.left = `-${this.leftPosition}vw`;
+    }
   }
 }
 
 const initCarousels = () => {
-  $("[data-js-carousel]").each((index, element) => {
-    if (!$(element).data("carousel-initialized")) {
+  document.querySelectorAll("[data-js-carousel]").forEach((element) => {
+    if (!element.dataset.carouselInitialized) {
       try {
         new Carousel(element);
-        $(element).data("carousel-initialized", true);
+        element.dataset.carouselInitialized = "true";
       } catch (error) {
         console.error("Failed to initialize carousel:", error);
       }
@@ -198,4 +243,6 @@ const initCarousels = () => {
   });
 };
 
-$(document).on("turbo:load", initCarousels).ready(initCarousels);
+// Initialize on turbo:load and DOM ready
+document.addEventListener("turbo:load", initCarousels);
+document.addEventListener("DOMContentLoaded", initCarousels);
