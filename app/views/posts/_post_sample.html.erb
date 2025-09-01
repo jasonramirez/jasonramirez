@@ -6,12 +6,9 @@
   <div>
     <% post.hashtags.each_with_index do |hashtag, index| %>
       <div class="post-sample__hashtag">
-        <form action="<%= posts_path %>">
-          <%= search_field_tag :search, hashtag.label, hidden: :true %>
-          <button type="submit" id="search_posts_submit" class="link">
-            <%= hashtag.label %><%= hashtag_comma(post.hashtags.size, index)%>
-          </button>
-        </form>
+        <%= link_to "#{hashtag.label}#{hashtag_comma(post.hashtags.size, index)}",
+          posts_path(search: hashtag.label),
+          class: "link" if hashtag.label.present? %>
       </div>
     <% end %>
   </div>
