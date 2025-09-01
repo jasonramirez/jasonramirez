@@ -1,6 +1,6 @@
 .work-footer-navigation {
   @include padding(null $base-spacing);
-  align-item: flex-start;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   max-width: $reading-screen;
@@ -9,7 +9,7 @@
 
   @include media($large-screen) {
     @include padding(null 0);
-    align-item: space-between;
+    align-items: space-between;
     flex-direction: row;
   }
 
@@ -50,6 +50,12 @@
   &:focus,
   &:hover {
     color: $action-color;
+
+    svg {
+      path {
+        fill: $action-color;
+      }
+    }
   }
 
   svg {
