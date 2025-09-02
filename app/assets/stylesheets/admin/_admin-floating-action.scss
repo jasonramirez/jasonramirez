@@ -7,6 +7,7 @@
   appearance: none;
   align-items: center;
   background: $action-color;
+  border-radius: $button-border-radius;
   color: $button-color;
   display: flex;
   font-family: $heading-font-family;
@@ -23,9 +24,10 @@
     cursor: pointer;
 
     svg {
+      stroke: $button-color;
+
       path {
         transition: all $base-duration $base-timing;
-        fill: $button-color;
       }
     }
   }
@@ -33,9 +35,5 @@
   svg {
     height: 1.5rem;
     width: 1.5rem;
-
-    path {
-      fill: $button-color;
-    }
   }
 }

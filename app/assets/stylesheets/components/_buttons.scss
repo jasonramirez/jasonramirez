@@ -21,6 +21,7 @@
 .button {
   background-color: $button-background-color;
   border: none;
+  border-radius: $button-border-radius;
   color: $button-color;
   display: inline-block;
   font-family: $button-font-family;
@@ -103,10 +104,6 @@
   svg {
     height: 1.5rem;
     width: 1.5rem;
-
-    path {
-      fill: $button-color;
-    }
   }
 }
 

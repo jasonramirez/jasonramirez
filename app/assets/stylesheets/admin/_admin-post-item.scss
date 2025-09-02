@@ -6,6 +6,7 @@
 
 .admin-post-item__title {
   flex-grow: 1;
+  font-size: $base-font-size;
 
   .not-published & {
     color: rgba($base-font-color, 0.3);
