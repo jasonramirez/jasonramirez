@@ -69,24 +69,18 @@
         <% end %>
       </div>
 
-      <%= f.input(:title,
-        as: :text,
-        input_html: {
-          class: "admin-post-form__title post-title",
-          "data-js-flexible-textarea": "",
-          placeholder: "Title",
-        },
-        label: false,
-      ) %>
+      <div class="admin-post-form">
+        <%= f.input(:title,
+          as: :text,
+          input_html: {placeholder: "Title"}
+        ) %>
 
-      <%= f.input(:body,
-        input_html: {
-          class: "admin-post-form__body",
-          "data-js-flexible-textarea": "",
+        <%= f.input(:body,
+          input_html: {
+            "data-js-flexible-textarea": "",
           placeholder: "Body",
-        },
-        label: false,
-      ) %>
+        }) %>
+      </div>
     </section>
 
     <div class="admin-floating-action">

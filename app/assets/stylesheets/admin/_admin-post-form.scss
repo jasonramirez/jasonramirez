@@ -1,4 +1,9 @@
 .admin-post-form {
+  #{$all-text-inputs},
+  select[multiple="multiple"] {
+    font-family: $code-font-family;
+    line-height: $reading-line-height;
+  }
 }
 
 .admin-post-form__title {
