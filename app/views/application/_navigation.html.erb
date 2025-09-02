@@ -38,11 +38,13 @@
 
       <li class="navigation__link">
         <% if cookies[:theme] == "dark" %>
-          <%= link_to set_theme_path(theme: "light") do %>
+          <%= link_to set_theme_path(theme: "light"),
+            data: { turbo_method: :post } do %>
             <%= inline_svg "icon-theme-change.svg" %>
           <% end %>
         <% else %>
-          <%= link_to set_theme_path(theme: "dark") do %>
+          <%= link_to set_theme_path(theme: "dark"),
+            data: { turbo_method: :post } do %>
             <%= inline_svg "icon-theme-change.svg" %>
           <% end %>
         <% end %>

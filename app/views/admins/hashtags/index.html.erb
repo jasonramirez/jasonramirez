@@ -14,7 +14,8 @@
 
       <div class="admin-post-item__actions">
         <%= link_to [:admins, hashtag],
-          data: { turbo_method: :delete, confirm: "Are you sure?" } do %>
+          data: { turbo_method: :delete },
+          onclick: "return confirm('Are you sure?')" do %>
           <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
         <% end %>
       </div>
