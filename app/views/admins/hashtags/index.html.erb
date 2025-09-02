@@ -9,18 +9,10 @@
         <% end %>
       </div>
 
-      <div class="admin-post-item__delete">
-        <%= link_to edit_admins_hashtag_path(hashtag),
-          class: "button button--link" do %>
-          <%= t(".edit_hashtag") %>
-        <% end %>
-      </div>
-
-      <div class="admin-post-item__delete">
+      <div class="admin-post-item__actions">
         <%= link_to [:admins, hashtag],
-          class: "button button--link",
           data: { turbo_method: :delete, confirm: "Are you sure?" } do %>
-          <%= t(".delete_hashtag") %>
+          <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
         <% end %>
       </div>
     </div>
