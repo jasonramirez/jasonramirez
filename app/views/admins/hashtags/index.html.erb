@@ -5,8 +5,11 @@
     <div class="admin-post-item">
       <div class="admin-post-item__title">
         <%= link_to edit_admins_hashtag_path(hashtag) do %>
-          <%= hashtag.label%>
+          <%= hashtag.label%> 
         <% end %>
+        <span class="badge badge--small">
+          <%= hashtag.usage_count %>
+        </span>
       </div>
 
       <div class="admin-post-item__actions">

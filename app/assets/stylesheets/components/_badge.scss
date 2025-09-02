@@ -1,10 +1,10 @@
 .badge {
   align-items: center;
   display: flex;
-  background-color: $action-color;
+  background-color: rgba($base-border-color, 0.125);
   border-radius: 0.5rem;
   color: $base-background-color;
-  font-size: 0.65rem;
+  font-size: $base-font-size;
   justify-content: center;
   margin-left: 0.25rem;
   padding: 0.05rem 0.5rem;
@@ -15,4 +15,13 @@
     background-color: darken($action-color, 20%);
     color: $base-background-color;
   }
+}
+
+.badge--bright {
+  background-color: $action-color;
+  color: $base-background-color;
+}
+
+.badge--small {
+  font-size: 0.65rem;
 }

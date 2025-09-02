@@ -8,9 +8,7 @@ RSpec.feature "Admin deletes hashtag", js: true do
       hashtag_two = create(:hashtag, label: "hashtagtwo")
 
       visit admins_hashtags_path
-      first(".admin-post-item").click_link(
-        t("admins.hashtags.index.delete_hashtag")
-      )
+      first(".admin-post-item__actions a").click
 
       expect(page).to_not have_text hashtag_one.label
       expect(page).to have_text hashtag_two.label

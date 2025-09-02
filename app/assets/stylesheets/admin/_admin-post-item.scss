@@ -5,11 +5,21 @@
 }
 
 .admin-post-item__title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
   flex-grow: 1;
   font-size: $base-font-size;
 
   .not-published & {
     color: rgba($base-font-color, 0.3);
+  }
+
+  .badge {
+    margin-left: $x-small-spacing;
+    transform: translateY(1px);
+    color: $base-font-color;
   }
 }
 

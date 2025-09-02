@@ -4,7 +4,7 @@ class Admins::HashtagsController < ApplicationController
   layout "admin"
 
   def index
-    @hashtags = Hashtag.all
+    @hashtags = Hashtag.order(:label)
   end
 
   def new
