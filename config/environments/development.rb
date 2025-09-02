@@ -65,6 +65,7 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # Hotwire Livereload configuration
-  config.hotwire_livereload.reload_method = :turbo_stream
+  config.hotwire_livereload.reload_method = :page
   config.hotwire_livereload.debounce_delay_ms = 300
+  config.hotwire_livereload.assets = %w[ css js ]
 end

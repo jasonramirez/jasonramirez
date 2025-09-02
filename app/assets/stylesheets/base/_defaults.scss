@@ -3,6 +3,7 @@ html {
   @include size(100vw, 100vh);
   background-color: $base-background-color;
   font-size: $base-font-size * 0.9;
+  margin: 0;
   overflow: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -20,4 +21,3 @@ html {
     font-size: $base-font-size * 1.2;
   }
 }
-

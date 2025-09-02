@@ -28,7 +28,7 @@ $animation-total-duration: ($animation-count * $animation-delay);
 .hero-logo-mask {
   animation: hero-logo-mask-fade $animation-total-duration infinite;
   left: 0;
-  mask-image: asset-url("jason-ramirez-logo-white.svg");
+  mask-image: url("/jason-ramirez-logo-white.svg");
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -36,7 +36,7 @@ $animation-total-duration: ($animation-count * $animation-delay);
   position: absolute;
   top: 0;
   z-index: 1;
-  -webkit-mask-image: asset-url("jason-ramirez-logo-white.svg");
+  -webkit-mask-image: url("/jason-ramirez-logo-white.svg");
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
