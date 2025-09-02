@@ -3,4 +3,5 @@ module ApplicationHelper
   include ThemeHelper
   include SvgHelper
   include KnowledgeHelper
+  include FlashesHelper
 end

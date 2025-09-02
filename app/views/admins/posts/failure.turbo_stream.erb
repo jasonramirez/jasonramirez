@@ -1,7 +1,8 @@
 <turbo-stream action="replace" target="post_flash">
   <template>
-    <div class="flashes" id="post_flash" %>
+    <div class="flashes" id="post_flash">
       <div class="flash-alert">
+        <%= inline_svg "icon-exclamation.svg" %>
         <%= t("admins.flash.failed") %>
       </div>
     </div>
