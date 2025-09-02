@@ -12,19 +12,25 @@ module SvgHelper
       options.each do |key, value|
         case key
         when :class
-          if svg_tag.include?('class="')
-            svg_tag.gsub!(/class="([^"]*)"/, "class=\"\\1 #{value}\"")
-          else
+          # Always replace the class attribute
+          svg_tag.gsub!(/\bclass="[^"]*"/, "class=\"#{value}\"")
+          # If no class was found, add one
+          unless svg_tag.include?('class="')
             svg_tag.gsub!(/>$/, " class=\"#{value}\">")
           end
         when :style
           if svg_tag.include?('style="')
-            svg_tag.gsub!(/style="([^"]*)"/, "style=\"\\1 #{value}\"")
+            svg_tag.gsub!(/\bstyle="([^"]*)"/, "style=\"\\1 #{value}\"")
           else
             svg_tag.gsub!(/>$/, " style=\"#{value}\">")
           end
         when :height, :width
-          svg_tag.gsub!(/>$/, " #{key}=\"#{value}\">")
+          # Use precise pattern to match exact attribute names
+          svg_tag.gsub!(/(?<=\s|^)#{key}="[^"]*"/, "#{key}=\"#{value}\"")
+          # If no attribute was found, add one
+          unless svg_tag.include?("#{key}=\"")
+            svg_tag.gsub!(/>$/, " #{key}=\"#{value}\">")
+          end
         end
       end
       
