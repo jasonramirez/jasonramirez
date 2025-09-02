@@ -21,12 +21,16 @@
 .modal__container {
   background-color: $base-background-color;
   border-radius: $base-border-radius;
-  max-width: $medium-screen;
   max-height: 90vh;
+  max-width: 90vw;
   overflow-y: auto;
   padding: $base-spacing;
   position: relative;
   width: 100%;
+
+  @include media(min-width $medium-screen) {
+    max-width: $medium-screen;
+  }
 }
 
 .modal__header {

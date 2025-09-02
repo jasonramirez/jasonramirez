@@ -8,12 +8,25 @@
       <div class="modal__header">
         <h3 class="modal__title"><%= title %></h3>
       </div>
-    <% else %>
-
     <% end %>
     
     <div class="modal__content">
       <%= yield %>
     </div>
+
+    <% if local_assigns[:type] == "confirm" %>
+      <div class="modal__actions">
+        <% if local_assigns[:action] && local_assigns[:method] %>
+          <%= button_to "Confirm", local_assigns[:action], 
+              method: local_assigns[:method], 
+              class: "button button--primary",
+              data: { modal_close: local_assigns[:id] } %>
+        <% else %>
+          <button class="button button--primary" id="modal-confirm-button">Confirm</button>
+        <% end %>
+        
+        <button class="button button--secondary" data-modal-close>Cancel</button>
+      </div>
+    <% end %>
   </div>
 </div>

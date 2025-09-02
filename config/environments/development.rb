@@ -68,4 +68,8 @@ Rails.application.configure do
   config.hotwire_livereload.reload_method = :page
   config.hotwire_livereload.debounce_delay_ms = 300
   config.hotwire_livereload.assets = %w[ css js ]
+  config.hotwire_livereload.watch_paths = [
+    "app/assets/builds",
+    "app/assets/stylesheets"
+  ]
 end

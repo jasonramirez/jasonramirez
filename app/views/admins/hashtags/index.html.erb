@@ -13,12 +13,22 @@
       </div>
 
       <div class="admin-post-item__actions">
-        <%= link_to [:admins, hashtag],
-          data: { turbo_method: :delete },
-          onclick: "return confirm('Are you sure?')" do %>
+        <%= link_to "#", 
+          data: { 
+            modal: "delete_hashtag_modal",
+            hashtag_id: hashtag.id,
+            hashtag_label: hashtag.label,
+            delete_url: admins_hashtag_path(hashtag)} do %>
           <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
         <% end %>
       </div>
     </div>
+  <% end %>
+
+  <%= render "shared/modal",
+    id: "delete_hashtag_modal",
+    type: "confirm",
+    title: "Delete Hashtag" do %>
+    <p>Are you sure you want to delete "<span id="hashtag-label"></span>"?</p>
   <% end %>
 </section>
