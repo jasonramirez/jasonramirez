@@ -23,7 +23,7 @@ feature "Guest views protected case studies" do
 
       click_on works.first[0][:title]
 
-      expect(page).to have_text t("lockup.lockup.unlock.heading")
+      expect(page).to have_text t("password_protection.unlock.heading")
     end
   end
 
@@ -31,10 +31,17 @@ feature "Guest views protected case studies" do
     it "and is allowed to view it" do
       visit works_path
 
-      click_on works.first[0][:title]
+            click_on works.first[0][:title]
 
-      fill_in "lockup_codeword", with: ENV['LOCKUP_CODEWORD']
-      click_button t("lockup.lockup.unlock.submit")
+      # Check if we're on the password protection page
+      expect(page).to have_text t("password_protection.unlock.heading")
+      
+      # Check if the form is present
+      expect(page).to have_css("form")
+      expect(page).to have_field("codeword")
+
+      fill_in "codeword", with: ENV['LOCKUP_CODEWORD']
+      click_button t("password_protection.unlock.submit")
 
       expect(page).to have_text works.first[0][:title]
     end
@@ -45,12 +52,13 @@ feature "Guest views protected case studies" do
   def works
     [
       [
-        :title => "Smartifying Activation",
+        :title => "Smartifying Activation, 2023",
         :path => "dropbox_smartifying_activation"
       ],
       [
-        :title => "Enhancing Collaboration",
-        :path => "dropbox_enhancing_collaboration"],
+        :title => "Enhancing Collaboration, 2022",
+        :path => "dropbox_enhancing_collaboration"
+      ],
     ]
   end
 end

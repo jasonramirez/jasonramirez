@@ -26,9 +26,8 @@
       </div>
 
       <%= link_to [:admins, post],
-        data: { turbo_method: :delete },
-        class: "admin-post-item__delete",
-        data: {confirm: "Are you sure?"} do %>
+        data: { turbo_method: :delete, confirm: "Are you sure?" },
+        class: "admin-post-item__delete" do %>
         <%= inline_svg "icon-trashcan.svg" %>
       <% end %>
     </div>

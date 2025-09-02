@@ -2,7 +2,7 @@
   <section class="content">
     <p class="u-margin-bottom-large">
       <a href="/works" class="link">
-        <%= image_tag "icon-long-arrow-left.svg", alt: "icon-long-arrow-left" %>
+        <%= inline_svg "icon-arrow-left.svg", height: "24", width: "24" %>
       </a>
     </p>
 
@@ -16,11 +16,10 @@
 
     <%= form_for :password_protection, url: password_protection_unlock_path, method: :post, data: { turbo: false } do |form| %>
 
-      <% unless @wrong %>
-        <%= form.password_field "codeword", placeholder: "Password", autofocus: true %>
-      <% else %>
-        <%= form.password_field "codeword", class: "error", placeholder: "Password", autofocus: true %>
-      <% end %>
+      <%= form.password_field "codeword", 
+          placeholder: "Password", 
+          autofocus: true,
+          class: @wrong ? "error" : nil %>
 
       <% if @wrong %>
         <div class="form-error-message">

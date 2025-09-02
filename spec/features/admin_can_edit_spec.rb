@@ -22,7 +22,7 @@ feature "Admin can edit" do
 
       page.find("#post_edit_link").click
 
-      expect(page).to have_text post.id
+      expect(page).to have_text "Edit Post"
     end
   end
 

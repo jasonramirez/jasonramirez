@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Admin deletes post" do
+RSpec.feature "Admin deletes post", js: true do
   context "from the posts list" do
     it "removes the post" do
       sign_in_admin

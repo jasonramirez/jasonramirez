@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Admin deletes hashtag" do
+RSpec.feature "Admin deletes hashtag", js: true do
   context "from the hashtags list" do
     it "removes the hashtag" do
       sign_in_admin

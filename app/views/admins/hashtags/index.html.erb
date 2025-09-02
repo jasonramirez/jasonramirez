@@ -19,8 +19,7 @@
       <div class="admin-post-item__delete">
         <%= link_to [:admins, hashtag],
           class: "button button--link",
-          data: { turbo_method: :delete },
-          data: {confirm: "Are you sure?"} do %>
+          data: { turbo_method: :delete, confirm: "Are you sure?" } do %>
           <%= t(".delete_hashtag") %>
         <% end %>
       </div>

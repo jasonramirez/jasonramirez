@@ -114,5 +114,10 @@ module ApplicationHelper
     end
   end
 
+  # Alias for inline_svg to match the view calls
+  def inline_svg_tag(path, options = {})
+    inline_svg(path, options)
+  end
+
 
 end

@@ -22,16 +22,26 @@ RSpec.configure do |config|
   config.before :suite do
     Warden.test_mode!
   end
+  
+  # Set test environment variables
+  config.before(:each) do
+    ENV['LOCKUP_CODEWORD'] = 'test123'
+    ENV['MAILCHIMP_API_KEY'] = 'test_key'
+    ENV['MAILCHIMP_LIST_ID'] = 'test_list'
+  end
 end
 
-# Capybara.register_driver :selenium do |app|
-#   options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless'])
-#   Capybara::Selenium::Driver.new(
-#     app,
-#     browser: :firefox,
-#     options: options
-#   )
-# end
-#
-# Capybara.javascript_driver = :selenium
+# Configure Capybara to handle Turbo
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :selenium_chrome_headless
+
+# Register Chrome headless driver
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+  
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
 ActiveRecord::Migration.maintain_test_schema!

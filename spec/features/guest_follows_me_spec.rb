@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Guest follows me" do
+feature "Guest follows me", js: true do
   scenario "succesfully" do
     stub_request(:post, mailchimp_url).
       with(body: mailchimp_request_body).
