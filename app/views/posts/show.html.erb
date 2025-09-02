@@ -15,17 +15,15 @@
       </div>
     <% end %>
 
-    <div class="post-title" data-share-target="title">
+    <h1 class="post-title" data-share-target="title">
       <%= @post.title %>
-    </div>
+    </h1>
 
     <div data-share-target="text" hidden>
       <%= @post.summary %>
     </div>
 
     <div class="post-meta">
-      <%= image_tag "headshot-zoomed-in.png", class: "post-meta__avatar" %>
-
       <div class="post-meta__stats">
         <small class="post-meta__published">
           Jason Ramirez published <%= @post.pretty_published_date %>
@@ -36,12 +34,6 @@
         </small>
       </div>
     </div>
-
-    <%= button_to "", {
-      class: "link u-margin-bottom-large",
-      data: { action: "click->share#share" }} do %>
-      <%= inline_svg("icon-share.svg") %> Share
-    <% end %>
 
     <%= parsed_body %>
 
