@@ -1,9 +1,19 @@
-@import "variables/variables";
+.u-margin-top {
+  margin-top: $base-spacing;
+}
 
 .u-margin-top-none {
-  margin-top: 0 !important;
+  margin-top: 0;
+}
+
+.u-margin-top-medium {
+  margin-top: $medium-spacing;
 }
 
 .u-margin-top-large {
   margin-top: $large-spacing;
+}
+
+.u-margin-top-x-large {
+  margin-top: $x-large-spacing;
 }

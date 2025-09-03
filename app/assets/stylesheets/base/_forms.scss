@@ -41,7 +41,7 @@ label {
   font-size: $small-font-size;
   font-family: $form-font-family;
   font-weight: normal;
-  margin-bottom: $small-spacing / 2;
+  margin-bottom: math.div($small-spacing, 2);
 
   abbr {
     display: none;
@@ -121,7 +121,7 @@ select {
   }
 
   & + label {
-    padding-left: $base-spacing * 1.5;
+    padding-left: calc($base-spacing * 1.5);
     position: relative;
   }
 

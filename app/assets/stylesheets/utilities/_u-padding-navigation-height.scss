@@ -1,9 +1,3 @@
-@import "variables/variables";
-
 .u-padding-navigation-height {
-  height: $navigation-height-mobile;
-
-  @media ($large-screen) {
-    height: $navigation-height;
-  }
+  padding-top: $navigation-height;
 }
