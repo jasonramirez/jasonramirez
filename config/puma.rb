@@ -31,17 +31,17 @@ threads threads_count, threads_count
 port ENV.fetch("PORT", 3000)
 
 # Allow puma to be restarted by `bin/rails restart` command.
-plugin :tmp_restart
+# plugin :tmp_restart
 
 # Run the Solid Queue supervisor inside of Puma for single-server deployments
-plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
+# plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In development, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
 
 # Development environment: use single mode to avoid forking issues on macOS
-if Rails.env.development?
+if ENV["RAILS_ENV"] == "development"
   # Single mode (no workers) for development
   workers 0
   # Silence the single worker warning
