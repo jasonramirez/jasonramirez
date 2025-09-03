@@ -1,62 +1,96 @@
-# Jasonramirez
-
-# Tracking
-
-## Google Analytics
-
-We're using Google Analytics for tracking basic events like page views,
-scrolling to the end of a page, etc.
-Visit [Google Analytics](analytics.google.com) to
-review this site's activity.
-
-The tracking only happens on the production site where an environment
-variable is present.
-
-## Google Ads
-
-We've connected our Google Analytics to Google Ads for improved tracking
-of ads to conversions for actions like following.
-Visit [Google Ads](ads.google.com) to review ads running and ad performance.
-
 # Development
 
-## Getting Started
+## Setup and Start
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+These scripts automate the most common development tasks.
+Use them to quickly get your environment running or reset it when needed.
 
-    % ./bin/setup
+#### Set up your development environment
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+```
+$ ./bin/setup
+```
 
-[this script]: https://github.com/thoughtbot/laptop
+- Installs Ruby dependencies (bundler)
+- Installs JavaScript dependencies (yarn)
+- Prepares the database
+- Clears old logs and temp files
+- Optionally starts the development server
 
-After setting up, you can run the application using [Heroku Local]:
+#### Start the development environment
 
-    % rails s
+```
+$ bin/dev
+```
 
-## Removing Unused Images
+- Runs the Rails server on port 3000
+- Starts the DartSass CSS watcher for live CSS compilation
+- Uses foreman to manage both processes simultaneously
 
-I've built a rake task to delete any unused images. From the command line run:
+## Maintainence
+
+#### Removing Unused Images
 
 ```
 $ rake image_cleaner:find_unused_images
 ```
 
-It will remove the images. You can commit the change to finalize it.
+- Scans your codebase for image references in views, CSS, and other files
+- Identifies images in `app/assets/images/` that are no longer referenced anywhere
+- Removes the unused image files from your assets directory
+- **Note**: Run this carefully as it permanently deletes files
 
 ## Database Management
 
-Use the [parity](https://github.com/thoughtbot/parity) gem for database backups
-and copies.
+We use the [parity](https://github.com/thoughtbot/parity) gem for database
+operations across environments. Parity provides simple commands for backing
+up, restoring, and copying databases between development, staging, and
+production.
+
+#### Common Parity Commands
+
+```bash
+# Backup production database
+$ production backup
+
+# Backup local development
+$ development backup
+
+# Copy production database to local development
+$ development restore-from production
+```
 
 ### Copy Local Database to Production
 
-From the command line:
+**⚠️ Warning: This will overwrite your production database!**
 
-```
+```bash
 $ production restore-from development --force
+```
+
+**When to use this:**
+
+- Setting up production with fresh data for testing
+- Deploying a new feature that requires database changes
+- Resetting production to match development state
+
+**Before running:**
+
+1. Ensure your local database is in the desired state
+2. Make sure you have the latest production backup
+3. Consider the impact on live users
+
+### View Database Status
+
+```bash
+# Check production database size and status
+$ production psql
+
+# Check staging database
+$ staging psql
+
+# Check local database
+$ development psql
 ```
 
 ## Knowledge Base Management
@@ -153,53 +187,22 @@ To deploy updates to production:
    heroku run rake db:migrate
    ```
 
-3. **Verify the deployment:**
-   ```bash
-   heroku open
-   ```
+# Production
 
-### Rollback (if needed)
+## Tracking
 
-If you need to rollback to a previous version:
+### Google Analytics
 
-```bash
-heroku rollback
-```
+We're using Google Analytics for tracking basic events like page views,
+scrolling to the end of a page, etc.
+Visit [Google Analytics](analytics.google.com) to
+review this site's activity.
 
-### Check Deployment Status
+The tracking only happens on the production site where an environment
+variable is present.
 
-View recent deployments:
+### Google Ads
 
-```bash
-heroku releases
-```
-
-View current app status:
-
-```bash
-heroku ps
-```
-
-## Guidelines
-
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-- [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-- [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-- [Style](http://github.com/thoughtbot/guides/blob/master/style)
-
-# Creating Posts
-
-## Hosting Images
-
-We're using AWS S3 buckets to host images. Visit http://aws.amazon.com and login
-with jason@jasonramirez.com credentials to upload images.
-
-## Adding Images to a Post
-
-Using markdown:
-
-```
-![image alt text](https://s3.amazonaws.com/jasonramirez/image.png)
-```
+We've connected our Google Analytics to Google Ads for improved tracking
+of ads to conversions for actions like following.
+Visit [Google Ads](ads.google.com) to review ads running and ad performance.
