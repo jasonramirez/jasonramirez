@@ -5,71 +5,62 @@ class SkyLabels {
     this.focusedClass = "sky-label-focused";
 
     this._bindEvents();
-
-    setTimeout(() => this._hideLabelsIfInputHasText(), 150);
+    setTimeout(() => this._initializeLabels(), 150);
   }
 
   _bindEvents() {
-    document.addEventListener(
-      "focus",
-      (event) => {
-        if (event.target.matches(this.skyLabelSelector)) {
-          this._addOrRemoveHasTextClass(event);
-          this._addFocusedClass(event);
-        }
-      },
-      true
-    );
-
-    document.addEventListener(
-      "blur",
-      (event) => {
-        if (event.target.matches(this.skyLabelSelector)) {
-          this._addOrRemoveHasTextClass(event);
-          this._removeFocusedClass(event);
-        }
-      },
-      true
-    );
+    document.addEventListener("focus", this._handleFocus.bind(this), true);
+    document.addEventListener("blur", this._handleBlur.bind(this), true);
+    document.addEventListener("input", this._handleInput.bind(this), true);
   }
 
-  _addOrRemoveHasTextClass(event) {
-    const fieldWrapper = event.currentTarget;
-
-    if (this._fieldWrapperHasText(fieldWrapper)) {
-      fieldWrapper.classList.add(this.hasTextClass);
-    } else {
-      fieldWrapper.classList.remove(this.hasTextClass);
+  _handleFocus(event) {
+    const wrapper = event.target.closest(this.skyLabelSelector);
+    if (wrapper) {
+      this._updateClasses(wrapper, true);
     }
   }
 
-  _fieldWrapperHasText(fieldWrapper) {
-    const textField = fieldWrapper.querySelector("input, textarea");
-
-    return textField.value.trim().length !== 0;
+  _handleBlur(event) {
+    const wrapper = event.target.closest(this.skyLabelSelector);
+    if (wrapper) {
+      this._updateClasses(wrapper, false);
+    }
   }
 
-  _addFocusedClass(event) {
-    event.currentTarget.classList.add(this.focusedClass);
+  _handleInput(event) {
+    const wrapper = event.target.closest(this.skyLabelSelector);
+    if (wrapper) {
+      this._updateClasses(
+        wrapper,
+        wrapper.classList.contains(this.focusedClass)
+      );
+    }
   }
 
-  _removeFocusedClass(event) {
-    event.currentTarget.classList.remove(this.focusedClass);
+  _updateClasses(wrapper, isFocused) {
+    if (!wrapper) return;
+
+    const input = wrapper.querySelector("input, textarea");
+    if (!input) return;
+
+    const hasText = input.value.trim().length > 0;
+
+    wrapper.classList.toggle(this.hasTextClass, hasText);
+    wrapper.classList.toggle(this.focusedClass, isFocused);
   }
 
-  _hideLabelsIfInputHasText() {
-    const labels = document.querySelectorAll(this.skyLabelSelector);
-    labels.forEach((label) => {
-      const event = new Event("blur", { bubbles: true });
-      label.dispatchEvent(event);
+  _initializeLabels() {
+    document.querySelectorAll(this.skyLabelSelector).forEach((label) => {
+      const input = label.querySelector("input, textarea");
+      if (input && input.value.trim().length > 0) {
+        label.classList.add(this.hasTextClass);
+      }
     });
   }
 }
 
-const initSkyLabels = () => {
-  new SkyLabels();
-};
+const initSkyLabels = () => new SkyLabels();
 
-// Initialize on turbo:load and DOM ready
 document.addEventListener("turbo:load", initSkyLabels);
 document.addEventListener("DOMContentLoaded", initSkyLabels);
