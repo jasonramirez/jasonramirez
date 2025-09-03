@@ -12,9 +12,6 @@ gem "friendly_id"
 gem "gibbon"
 gem "high_voltage"
 gem "importmap-rails"
-# gem "inline_svg"  # Removed - using custom Propshaft-compatible helper instead
-
-
 gem "rack-canonical-host"
 gem "rack-rewrite"
 gem "rails", "~> 8.0"
@@ -31,18 +28,15 @@ gem "gemoji"
 gem "dartsass-rails"
 gem "simple_form"
 gem "slim"
-# gem "sprockets"           # Replaced with Propshaft
-# gem "sprockets-es6"       # Replaced with Propshaft  
-# gem "sprockets-rails"     # Replaced with Propshaft
 gem "propshaft"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "title"
-gem "uglifier"
 
 group :development do
   gem "bundler-audit"
   gem "hotwire-livereload"
+  gem "parity", "~> 3.5"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
@@ -59,7 +53,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem "cuprite"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
@@ -74,4 +67,3 @@ group :staging, :production do
   gem "rack-timeout"
 end
 
-gem "parity", "~> 3.5", :group => :development
