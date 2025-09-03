@@ -125,14 +125,14 @@
 }
 
 .navigation__mobile-trigger {
-  position: absolute;
-  top: 50%;
-  right: 0.75rem;
-  width: 2rem;
-  height: 2rem;
-  transform: translateY(-50%);
   cursor: pointer;
+  height: 2rem;
   opacity: 0;
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
   z-index: 1;
 
   @media (min-width: $medium-screen) {

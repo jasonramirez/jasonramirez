@@ -4,7 +4,7 @@
 
 .site-footer {
   border-top: $base-border-style $base-border-width
-    color.adjust($base-border-color, $alpha: -0.9);
+    color.adjust($base-border-color, $alpha: -0.1);
   padding: $xx-large-spacing 0;
   text-align: center;
 }
@@ -19,14 +19,17 @@
   color: $base-font-color;
   display: block;
   font-family: $heading-font-family;
-  font-size: $small-font-size;
-  font-weight: bold;
-  letter-spacing: 0.05rem;
+  font-size: $base-font-size;
+  font-weight: 600;
   text-transform: uppercase;
 
   @media (min-width: $small-screen) {
     display: inline;
     margin: $small-spacing;
+  }
+
+  @media (min-width: $medium-screen) {
+    font-size: $small-font-size;
   }
 
   a {

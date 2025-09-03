@@ -5,7 +5,7 @@
 
 .admin-chip {
   align-items: center;
-  background-color: color.adjust($secondary-font-color, $alpha: 0.04);
+  background-color: color.adjust($secondary-font-color, $alpha: -0.95);
   border-radius: 1rem;
   display: inline-flex;
   font-family: $base-font-family;
@@ -43,7 +43,7 @@
 }
 
 .admin-chip--published {
-  background-color: color.adjust($notice-background-color, $alpha: 0.125);
+  background-color: color.adjust($notice-background-color, $alpha: -0.875);
 
   &::before {
     background-color: $notice-background-color;
@@ -51,7 +51,7 @@
 }
 
 .admin-chip--not-published {
-  background-color: color.adjust($error-background-color, $alpha: 0.125);
+  background-color: color.adjust($error-background-color, $alpha: -0.875);
 
   &::before {
     background-color: $error-background-color;

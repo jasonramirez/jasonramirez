@@ -48,8 +48,7 @@ label {
   }
 }
 
-#{$all-text-inputs},
-select[multiple="multiple"] {
+#{$all-text-inputs} {
   background-color: $input-background-color;
   border: none;
   box-sizing: border-box;
