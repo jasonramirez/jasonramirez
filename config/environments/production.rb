@@ -30,6 +30,13 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
+  # Redirect non-www to www subdomain
+  config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+    r301 %r{.*}, 'https://www.jasonramirez.com$&', :if => Proc.new { |rack_env|
+      rack_env['SERVER_NAME'] == 'jasonramirez.com'
+    }
+  end
+
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
