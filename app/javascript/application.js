@@ -1,21 +1,5 @@
-// Configure your import map in config/importmap.rb. Read more:
-// https://github.com/rails/importmap-rails
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 
-// Standard libraries
-// jQuery removed - converted to vanilla JavaScript
-
-// Rails libraries
-import "@hotwired/turbo";
+import "@hotwired/turbo-rails";
 import "controllers";
-
-// Custom libraries
-import "admin-table-scroll";
 import "carousel";
-import "custom-audio-player";
-import "drawer";
-import "flexible-textarea";
-import "modal";
-import "my-mind";
-import "reading-progress-bar";
-import "sky-labels";
-import "controllers"

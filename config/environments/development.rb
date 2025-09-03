@@ -64,12 +64,12 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
-  # Hotwire Livereload configuration
-  config.hotwire_livereload.reload_method = :page
-  config.hotwire_livereload.debounce_delay_ms = 300
-  config.hotwire_livereload.assets = %w[ css js ]
-  config.hotwire_livereload.watch_paths = [
-    "app/assets/builds",
-    "app/assets/stylesheets"
-  ]
+  # Hotwire Livereload configuration (disabled to avoid WebSocket connections)
+  # config.hotwire_livereload.reload_method = :page
+  # config.hotwire_livereload.debounce_delay_ms = 300
+  # config.hotwire_livereload.assets = %w[ css js ]
+  # config.hotwire_livereload.watch_paths = [
+  #   "app/assets/builds",
+  #   "app/assets/stylesheets"
+  # ]
 end
