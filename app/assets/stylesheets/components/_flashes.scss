@@ -3,7 +3,7 @@
 @use "mixins/flash" as *;
 @use "sass:color";
 
-.flash {
+.flashes {
   align-items: center;
   animation-duration: 5s;
   animation-name: slide-in-out-from-bottom;
@@ -13,10 +13,10 @@
   color: $base-font-color;
   display: flex;
   font-size: $base-font-size;
-  height: 3rem;
+  height: 2rem;
   justify-content: center;
   margin: $base-spacing;
-  padding: $x-small-spacing $small-spacing;
+  padding: $xx-small-spacing $small-spacing;
   position: fixed;
   z-index: $z-index-flashes;
 
@@ -30,9 +30,15 @@
   }
 
   svg {
-    height: 1.5rem;
+    height: 1.25rem;
     margin-right: $x-small-spacing;
     width: auto;
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

@@ -1,5 +1,7 @@
 class ChatAuthController < ApplicationController
   def login
+    flash.clear if request.get?
+    
     if request.post?
       user = ChatUser.authenticate(params[:email], params[:password])
       
