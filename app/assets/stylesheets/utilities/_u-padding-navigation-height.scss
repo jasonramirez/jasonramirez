@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .u-padding-navigation-height {
   padding-top: $navigation-height;
 }

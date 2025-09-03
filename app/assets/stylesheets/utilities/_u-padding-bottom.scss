@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .u-padding-bottom {
   padding-bottom: $base-spacing;
 }

@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .u-margin-top {
   margin-top: $base-spacing;
 }
