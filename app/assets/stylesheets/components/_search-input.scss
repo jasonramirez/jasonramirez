@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .search-input {
   background-image: image-url("icon-search.svg");
   background-position: center left $small-spacing;

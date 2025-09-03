@@ -1,5 +1,9 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:math";
+
 .work-footer-navigation {
-  @include padding(null $base-spacing);
+  padding: 0 $base-spacing;
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -7,17 +11,17 @@
   transition: all 250ms ease;
   width: 100%;
 
-  @include media($large-screen) {
-    @include padding(null 0);
+  @media ($large-screen) {
+    padding: 0 0;
     align-items: space-between;
     flex-direction: row;
   }
 
-  @include media($x-large-screen) {
+  @media ($x-large-screen) {
     max-width: $reading-screen * 1.15;
   }
 
-  @include media($xx-large-screen) {
+  @media ($xx-large-screen) {
     max-width: $reading-screen * 1.25;
   }
 }
@@ -27,12 +31,12 @@
   display: flex;
   flex-direction: column;
   font-weight: normal;
-  line-height: $reading-line-height / 1.2;
+  line-height: math.div($reading-line-height, 1.2);
   text-decoration: none;
   width: 50%;
 
   &.left {
-    @include media($large-screen) {
+    @media ($large-screen) {
       align-items: flex-start;
     }
   }
@@ -40,7 +44,7 @@
   &.right {
     margin-top: $x-large-spacing;
 
-    @include media($large-screen) {
+    @media ($large-screen) {
       margin-top: 0;
       align-items: flex-end;
       text-align: right;
@@ -64,7 +68,7 @@
     width: auto;
     align-self: flex-start;
 
-    @include media($large-screen) {
+    @media ($large-screen) {
       align-self: auto;
     }
   }

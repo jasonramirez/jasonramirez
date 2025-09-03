@@ -1,3 +1,8 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+@use "sass:color";
+
 a {
   color: $base-font-color;
   text-decoration-color: $action-color;
@@ -40,8 +45,8 @@ a {
 }
 
 blockquote {
-  border-top: $base-border;
-  border-bottom: $base-border;
+  border-top: $base-border-style $base-border-width $base-border-color;
+  border-bottom: $base-border-style $base-border-width $base-border-color;
   font-style: italic;
   margin: $large-spacing 0;
   padding: $large-spacing 0 $base-spacing;
@@ -56,10 +61,10 @@ body {
 }
 
 code {
-  @include padding(0rem 0.5rem);
+  padding: 0 0.5rem;
   background-color: $code-background-color;
   color: $code-font-color;
-  border: $code-border;
+  border: $base-border-style $base-border-width $code-border-color;
   font-family: $code-font-family;
   font-size: $code-font-size;
 
@@ -71,16 +76,21 @@ code {
   }
 }
 
+// Typography
 del {
   display: inline-block;
   padding: 0 $base-spacing;
   position: relative;
 
   &::before {
-    @include position(absolute, 2px 0 2px 0);
-    background-color: lighten($mirage, 5%);
+    background-color: color.adjust($mirage, $lightness: 5%);
+    bottom: 2px;
     content: "";
+    left: 0;
     padding: 0 $base-spacing;
+    position: absolute;
+    right: 0;
+    top: 2px;
   }
 }
 
@@ -105,7 +115,7 @@ h6 {
 h1 {
   font-size: 2.25rem;
 
-  @include media($medium-screen) {
+  @media (min-width: $medium-screen) {
     font-size: 3rem;
   }
 }
@@ -119,7 +129,7 @@ h3 {
 }
 
 hr {
-  border-bottom: $base-border;
+  border-bottom: $base-border-style $base-border-width $base-border-color;
   border-left: 0;
   border-right: 0;
   border-top: 0;
@@ -145,10 +155,6 @@ pre {
   background-color: $code-background-color;
   line-height: $code-line-height;
   padding: $base-spacing;
-}
-
-li {
-  // margin-bottom: $base-spacing / 2;
 }
 
 mark {

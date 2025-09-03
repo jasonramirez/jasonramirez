@@ -1,3 +1,6 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
 /*
  * Button Component with Loading State
  * 
@@ -19,14 +22,16 @@
  */
 
 .button {
+  appearance: none;
   background-color: $button-background-color;
   border: none;
   border-radius: $button-border-radius;
   color: $button-color;
+  cursor: pointer;
   display: inline-block;
   font-family: $button-font-family;
-  font-weight: bold;
-  font-size: $small-font-size;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
   line-height: $button-line-height;
   letter-spacing: 0.025rem;
   outline: $action-color solid 0px;
@@ -35,7 +40,7 @@
   transition: all $base-duration;
 
   &:hover {
-    background-color: darken($button-background-color, 10%);
+    background-color: color.adjust($button-background-color, $lightness: -10%);
     color: $button-color;
     cursor: pointer;
     text-decoration: none;
@@ -81,7 +86,6 @@
 }
 
 .button--square {
-  @include size(3rem);
   align-items: center;
   display: flex;
   font-size: 2rem;
@@ -109,7 +113,7 @@
 
 .button--secondary {
   color: $base-font-color;
-  border: $base-border;
+  border: $base-border-style $base-border-width $base-border-color;
   text-decoration: none;
   background-color: transparent;
 }
@@ -146,11 +150,14 @@
 }
 
 .button__icon {
-  @include position(absolute, 50% $base-spacing null null);
-  @include size(1rem);
+  height: 1rem;
+  left: 50%;
   opacity: 0%;
+  position: absolute;
+  top: 50%;
   transform: translateY(-50%);
   transition-duration: $base-duration;
   transition-property: transform padding opacity;
+  width: 1rem;
   z-index: 1;
 }

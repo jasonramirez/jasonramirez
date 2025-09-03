@@ -1,3 +1,7 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:math";
+
 .admin-post-form {
   #{$all-text-inputs},
   select[multiple="multiple"] {
@@ -18,11 +22,11 @@
   background-color: transparent;
   font-family: $reading-font-family;
   font-size: $base-font-size;
-  line-height: $reading-line-height / 1.2;
+  line-height: math.div($reading-line-height, 1.2);
   padding: 0;
   resize: none;
 
-  @include media($medium-screen) {
+  @media ($medium-screen) {
     font-size: $reading-font-size;
     line-height: $reading-line-height;
   }

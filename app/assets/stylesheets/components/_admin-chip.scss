@@ -1,6 +1,11 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+@use "sass:map";
+
 .admin-chip {
   align-items: center;
-  background-color: rgba(map-get($colors, secondary), 4%);
+  background-color: color.adjust($secondary-font-color, $alpha: 0.04);
   border-radius: 1rem;
   display: inline-flex;
   font-family: $base-font-family;
@@ -26,16 +31,19 @@
   width: 1rem;
 
   &::before {
-    @include position(absolute, 50% null null 50%);
+    bottom: 50%;
     height: 0.5rem;
+    left: 50%;
     margin: 0;
-    transform: translateY(-50%) translateX(-50%);;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
     width: 0.5rem;
   }
 }
 
 .admin-chip--published {
-  background-color: rgba($notice-background-color, 0.125);
+  background-color: color.adjust($notice-background-color, $alpha: 0.125);
 
   &::before {
     background-color: $notice-background-color;
@@ -43,7 +51,7 @@
 }
 
 .admin-chip--not-published {
-  background-color: rgba($error-background-color, 0.125);
+  background-color: color.adjust($error-background-color, $alpha: 0.125);
 
   &::before {
     background-color: $error-background-color;

@@ -1,3 +1,6 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
 .form-error-message {
   color: $error-background-color;
   margin-bottom: $base-spacing;

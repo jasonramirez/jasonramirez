@@ -1,0 +1,26 @@
+@use "./colors";
+@use "sass:color";
+
+// All theme tokens must have !default
+$action-color: colors.$ultramarine-blue !default;
+$alert-background-color: colors.$salmon !default;
+$alert-color: colors.$warm-white !default;
+$base-background-color: colors.$warm-white !default;
+$base-font-color: colors.$mirage !default;
+$base-border-color: color.adjust(colors.$mirage, $alpha: 0.15) !default;
+$base-heading-font-color: colors.$mirage !default;
+$button-background-color: colors.$ultramarine-blue !default;
+$button-color: colors.$warm-white !default;
+$blockquote-color: colors.$mirage !default;
+$code-font-color: colors.$cream !default;
+$code-background-color: color.adjust(colors.$mirage, $alpha: 0.03) !default;
+$code-border-color: color.adjust(colors.$mirage, $alpha: 0.05) !default;
+$error-background-color: colors.$salmon !default;
+$error-color: colors.$warm-white !default;
+$heading-font-color: colors.$mirage !default;
+$input-background-color: color.adjust(colors.$mirage, $alpha: 0.05) !default;
+$mark-background-color: colors.$warm-white !default;
+$mark-color: colors.$mirage !default;
+$notice-background-color: colors.$forest-green !default;
+$notice-color: colors.$warm-white !default;
+$secondary-font-color: color.adjust(colors.$mirage, $alpha: 0.6) !default;

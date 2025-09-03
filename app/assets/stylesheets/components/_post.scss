@@ -1,3 +1,8 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+@use "sass:math";
+
 .post {
   font-family: $reading-font-family;
   font-size: $reading-font-size;
@@ -24,9 +29,9 @@
 
   p,
   table {
-    margin-bottom: $reading-paragraph-spacing / 1.2;
+    margin-bottom: math.div($reading-paragraph-spacing, 1.2);
 
-    @include media($large-screen) {
+    @media ($large-screen) {
       margin-bottom: $reading-paragraph-spacing;
     }
   }
@@ -46,7 +51,7 @@
 
       @media (min-width: $large-screen) {
         margin-right: $base-spacing;
-        width: calc(50% - (#{$base-spacing} / 2));
+        width: calc(50% - (#{math.div($base-spacing, 2)}));
       }
     }
   }

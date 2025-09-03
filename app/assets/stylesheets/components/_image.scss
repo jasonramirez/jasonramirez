@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .image--centered {
   margin: $base-spacing 0;
   text-align: center;

@@ -1,13 +1,17 @@
-[data-js-reading-progress-bar] {
-  @include position("sticky", $navigation-height-mobile null null 0);
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
+.reading-progress-bar {
   background-color: $action-color;
   height: 0.25rem;
+  left: 0;
   position: sticky;
+  top: $navigation-height-mobile;
   transition: width 100ms;
   width: 0%;
   z-index: 1;
 
-  @include media($small-screen) {
+  @media ($small-screen) {
     top: 0;
   }
 }

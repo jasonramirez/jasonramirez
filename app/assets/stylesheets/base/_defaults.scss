@@ -1,23 +1,27 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
 body,
 html {
-  @include size(100vw, 100vh);
   background-color: $base-background-color;
   font-size: $base-font-size * 0.9;
+  height: 100vh;
   margin: 0;
   overflow: auto;
   overflow-x: hidden;
+  width: 100vw;
   -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;
 
-  @include media($large-screen) {
+  @media (min-width: $large-screen) {
     font-size: $base-font-size;
   }
 
-  @include media($x-large-screen) {
+  @media (min-width: $x-large-screen) {
     font-size: $base-font-size * 1.1;
   }
 
-  @include media($xx-large-screen) {
+  @media (min-width: $xx-large-screen) {
     font-size: $base-font-size * 1.2;
   }
 }

@@ -1,3 +1,7 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
 .admin-post-item {
   align-items: center;
   display: flex;
@@ -13,7 +17,7 @@
   font-size: $base-font-size;
 
   .not-published & {
-    color: rgba($base-font-color, 0.3);
+    color: color.adjust($base-font-color, $alpha: 0.3);
   }
 
   .badge {
@@ -33,6 +37,6 @@
   width: 4rem;
 
   .not-published & {
-    color: rgba($base-font-color, 0.3);
+    color: color.adjust($base-font-color, $alpha: 0.3);
   }
 }

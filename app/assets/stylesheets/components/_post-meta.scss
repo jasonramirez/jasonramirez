@@ -1,3 +1,6 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
 .post-meta {
   align-items: start;
   display: flex;
@@ -37,7 +40,7 @@
   margin: $x-large-spacing 0 $large-spacing;
   text-transform: capitalize;
 
-  @include media($medium-screen) {
+  @media ($medium-screen) {
     font-size: 4rem;
   }
 }

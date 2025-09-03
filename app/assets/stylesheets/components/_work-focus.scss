@@ -1,6 +1,10 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:math";
+
 .work-focus {
-  border-bottom: $base-border;
-  border-top: $base-border;
+  border-bottom: $base-border-style $base-border-width $base-border-color;
+  border-top: $base-border-style $base-border-width $base-border-color;
   margin: $x-large-spacing 0;
   padding: $medium-spacing 0;
 
@@ -19,7 +23,7 @@
 }
 
 .work-focus__header {
-  margin-top: $reading-paragraph-spacing / 1.2;
+  margin-top: math.div($reading-paragraph-spacing, 1.2);
   margin-bottom: $base-spacing;
 }
 

@@ -1,4 +1,5 @@
-// Entry point for your Dart Sass build
-@import "themes/colors";
-@import "themes/light";
-@import "index";
+// Pick the theme first (this configures tokens for the whole build)
+@use "variables/light-token-setter";
+
+// Now import your app (components will read the already-configured tokens)
+@use "shared";

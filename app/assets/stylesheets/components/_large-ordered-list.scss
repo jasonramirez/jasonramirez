@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .large-ordered-list {
   counter-reset: counts;
   list-style: none;
@@ -11,12 +13,16 @@
   }
 
   li::before {
-    @include position(absolute, 0 null null 0);
-    content: counter(count, decimal) '. ';
+    content: counter(count, decimal) ". ";
+    bottom: 0;
     font-family: $heading-font-family;
     font-size: 1.17em;
     font-weight: bold;
+    left: 0;
     line-height: 1.4;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   h3 {

@@ -1,7 +1,9 @@
+@import "variables/variables";
+
 .u-padding-navigation-height {
   height: $navigation-height-mobile;
 
-  @include media($large-screen) {
+  @media ($large-screen) {
     height: $navigation-height;
   }
 }

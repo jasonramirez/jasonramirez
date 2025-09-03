@@ -1,3 +1,9 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+@use "sass:color";
+@use "sass:math";
+
 .my-mind-navigation {
   align-items: flex-start;
   display: flex;
@@ -16,7 +22,7 @@
   a {
     align-items: center;
     background-color: $base-background-color;
-    border: $base-border;
+    border: $base-border-style $base-border-width $base-border-color;
     border-radius: $base-border-radius;
     display: flex;
     padding: $x-small-spacing;
@@ -32,13 +38,17 @@
   position: relative;
   width: 100%;
 
-  @include media($medium-screen) {
+  @media ($medium-screen) {
     height: calc(100vh - #{$my-mind-chat-prompt-height});
   }
 
   &::before {
     content: "";
-    background: linear-gradient(to bottom, transparent, $base-background-color);
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      color.adjust($base-background-color, $alpha: 0.25)
+    );
     display: block;
     height: 9rem;
     left: 0;
@@ -208,7 +218,7 @@
   color: rgba($base-font-color, 0.5);
   display: flex;
   font-family: $code-font-family;
-  font-size: $small-font-size / 1.5;
+  font-size: math.div($small-font-size, 1.5);
   justify-content: center;
   margin-right: $xx-small-spacing;
   padding: 0.25rem 0.5rem 0.2rem 0.5rem;

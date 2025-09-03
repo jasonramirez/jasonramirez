@@ -1,14 +1,38 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
+.navigation {
+  align-items: center;
+  background-color: $base-background-color;
+  border-bottom: $base-border-style $base-border-width $base-border-color;
+  display: flex;
+  height: $navigation-height-mobile;
+  justify-content: space-between;
+  padding: 0 $base-spacing;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-drawers;
+
+  @media ($medium-screen) {
+    height: $navigation-height;
+  }
+}
+
 .navigation--left {
   flex-grow: 1;
 }
 
 .navigation--mobile-trigger-icon::after {
-  @include position(absolute, 50% 1.5rem null null);
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
   content: $hamburger-icon;
   font-size: 1.5rem;
   transform: translateY(-55%);
 
-  @include media($medium-screen) {
+  @media (min-width: $medium-screen) {
     content: "";
   }
 }
@@ -24,8 +48,11 @@
   }
 
   .navigation--right & {
-    @include media(max-width $medium-screen) {
-      @include position(fixed, $navigation-height-mobile -120% 0 120%);
+    @media (max-width: $medium-screen) {
+      position: fixed;
+      top: calc($navigation-height-mobile - 120%);
+      right: 120%;
+      align-items: center;
       align-items: center;
       background-color: $base-background-color;
       display: flex;
@@ -33,9 +60,7 @@
       height: calc(100vh - #{$navigation-height-mobile});
       justify-content: center;
       padding-bottom: 5vh;
-      transition:
-        left $base-duration,
-        right $base-duration;
+      transition: left $base-duration, right $base-duration;
       z-index: 1;
 
       li {
@@ -46,8 +71,12 @@
   }
 
   .navigation__mobile-trigger:checked + & {
-    @include media(max-width $medium-screen) {
-      @include position(fixed, $navigation-height-mobile 0 0 0);
+    @media (max-width: $medium-screen) {
+      position: fixed;
+      top: $navigation-height-mobile;
+      right: 0;
+      bottom: 0;
+      left: 0;
     }
   }
 }
@@ -60,7 +89,7 @@
   font-weight: 600;
   text-transform: uppercase;
 
-  @include media(min-width $medium-screen) {
+  @media (min-width: $medium-screen) {
     font-size: $small-font-size;
   }
 
@@ -77,12 +106,12 @@
   svg {
     height: $base-font-size;
 
-    @include media(min-width $medium-screen) {
+    @media (min-width: $medium-screen) {
       height: $small-font-size;
     }
 
     path {
-      fill: map-get($colors, secondary);
+      fill: color.adjust($base-font-color, $alpha: 0.6);
     }
   }
 
@@ -96,14 +125,17 @@
 }
 
 .navigation__mobile-trigger {
-  @include position(absolute, 50% 0.75rem null null);
-  @include size(2rem);
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
   transform: translateY(-50%);
   cursor: pointer;
   opacity: 0;
   z-index: 1;
 
-  @include media($medium-screen) {
+  @media (min-width: $medium-screen) {
     display: none;
   }
 }

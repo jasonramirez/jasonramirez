@@ -1,9 +1,11 @@
+@use "variables/variables" as *;
+
 .content {
   margin: $large-spacing auto;
   max-width: $large-screen;
   padding: 0 $base-spacing;
 
-  @include media($large-screen) {
+  @media ($large-screen) {
     padding: 0;
   }
 
@@ -15,11 +17,11 @@
 .content--slim {
   max-width: $reading-screen;
 
-  @include media($large-screen) {
+  @media ($large-screen) {
     max-width: $reading-screen * 1.1;
   }
 
-  @include media($x-large-screen) {
+  @media ($x-large-screen) {
     max-width: $reading-screen * 1.2;
   }
 }
@@ -36,11 +38,11 @@
   max-width: $reading-screen;
   transition: all 250ms ease;
 
-  @include media($large-screen) {
+  @media ($large-screen) {
     max-width: $reading-screen * 1.1;
   }
 
-  @include media($x-large-screen) {
+  @media ($x-large-screen) {
     max-width: $reading-screen * 1.2;
   }
 }

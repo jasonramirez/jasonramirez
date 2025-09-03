@@ -1,11 +1,14 @@
+@use "variables/tokens" as *;
+@use "sass:color";
+
 .leading-line {
   height: 15vh;
   width: 100%;
 
   &::after {
-    background-color: map-get($colors, tertiary);
-    display: block;
+    background-color: color.adjust($base-border-color, $alpha: -0.8);
     content: " ";
+    display: block;
     height: 100%;
     margin: 0 auto;
     width: 1px;

@@ -1,5 +1,11 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
 .admin-floating-action {
-  @include position(fixed, null $base-spacing $base-spacing null);
+  bottom: $base-spacing;
+  position: fixed;
+  right: $base-spacing;
   z-index: $z-index-floating-actions;
 }
 
@@ -20,7 +26,7 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: darken($button-background-color, 10%);
+    background-color: color.adjust($button-background-color, $lightness: -10%);
     cursor: pointer;
 
     svg {

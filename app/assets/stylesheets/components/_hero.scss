@@ -1,22 +1,19 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:math";
+@use "sass:color";
+@use "sass:map";
+
 .hero {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - #{$navigation-height-mobile});
+  height: calc(100vh - $navigation-height-mobile);
   min-height: 600px;
 
-  @include media($medium-screen) {
+  @media (min-width: $medium-screen) {
     height: calc(100vh - #{$navigation-height});
     min-height: 800px;
-  }
-}
-
-.hero_headshot {
-  min-height: 240px;
-  height: 50vh;
-
-  @include media($medium-screen) {
-    min-height: 300px;
   }
 }
 
@@ -36,7 +33,7 @@
   text-align: center;
   overflow: visible;
 
-  @include media($medium-screen) {
+  @media (min-width: $medium-screen) {
     font-size: 10rem;
   }
 }
@@ -69,8 +66,8 @@
 .hero_leading-line {
   background: linear-gradient(
     0deg,
-    map-get($colors, tertiary),
-    transparentize(map-get($colors, tertiary), 1)
+    color.adjust($base-border-color, $alpha: -0.8),
+    color.adjust($base-border-color, $alpha: -1)
   );
   height: 100%;
   width: 1px;
@@ -83,7 +80,6 @@
   animation-timing-function: linear;
   background: $base-font-color;
   border-radius: 50%;
-  //box-shadow: 0 0 1rem 0 $action-color;
   content: "";
   height: 0.35rem;
   opacity: 0;

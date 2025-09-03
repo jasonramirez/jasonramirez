@@ -1,3 +1,5 @@
+@use "variables/variables" as *;
+
 .checkbox {
   display: block;
   margin-right: $base-spacing;

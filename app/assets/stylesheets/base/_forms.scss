@@ -1,3 +1,9 @@
+@use "variables/variables" as *;
+@use "variables/tokens" as *;
+@use "variables/colors" as *;
+@use "sass:math";
+@use "sass:color";
+
 button {
   border: none;
   background: none;
@@ -9,7 +15,7 @@ button {
 
 fieldset {
   background-color: $base-background-color;
-  border: $base-border;
+  border: $base-border-style $base-border-width $base-border-color;
   margin: 0 0 $small-spacing;
   padding: $base-spacing;
 }
@@ -58,21 +64,21 @@ select[multiple="multiple"] {
   width: 100%;
 
   &:hover {
-    border-color: shade($base-border-color, 20%);
+    border-color: color.adjust($base-border-color, $alpha: 0.25);
   }
 
   &:focus {
-    border-color: $action-color;
+    border-color: color.adjust($action-color, $alpha: 0.25);
     outline: none;
   }
 
   &:disabled {
-    background-color: shade($base-background-color, 5%);
+    background-color: color.adjust($base-background-color, $lightness: -5%);
     cursor: not-allowed;
   }
 
   &.error {
-    box-shadow: 0 0 1px 1px $error-background-color;
+    box-shadow: 0 0 1px 1px color.adjust($error-background-color, $alpha: 0.25);
   }
 }
 
@@ -88,7 +94,7 @@ input[type="search"] {
 
 input[type="checkbox"],
 input[type="radio"] {
-  margin-right: $small-spacing / 2;
+  margin-right: math.div($small-spacing, 2);
 
   + label {
     display: inline-block;
@@ -108,7 +114,8 @@ select {
 
 .input input[type="checkbox"],
 .checkbox input[type="checkbox"] {
-  @include position(absolute, null null null -999px);
+  position: absolute;
+  left: -999px;
 
   & + label:hover {
     cursor: pointer;
@@ -120,22 +127,29 @@ select {
   }
 
   & + label::before {
-    @include position(absolute, 0 null 0 0);
-    @include size(1.25rem);
-    content: "";
     background-color: $input-background-color;
+    bottom: 0;
+    content: "";
+    height: 1.25rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1.25rem;
   }
 
   & + label::after {
-    @include position(absolute, 0 null 0 0);
-    @include size(1.25rem);
+    content: "";
     background-color: $action-color;
     background-image: asset-url("icon-checkmark.svg");
     background-size: 0.85rem;
     background-repeat: no-repeat;
     background-position: center center;
-    content: "";
+    height: 1.25rem;
+    left: 0;
+    position: absolute;
+    top: 0;
     transition: all $base-duration;
+    width: 1.25rem;
   }
 
   &:not(:checked) + label::after {
@@ -146,23 +160,22 @@ select {
   &:checked + label::after {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0.25rem 0.75rem rgba($action-color, 0.25);
+    box-shadow: 0 0.25rem 0.75rem color.adjust($action-color, $alpha: 0.25);
   }
 }
 
 select {
-  @include padding(
-    $x-small-spacing $base-spacing $x-small-spacing $small-spacing
-  );
+  appearance: none;
   background-color: $input-background-color;
   background-image: url("select-background.svg");
   background-position: calc(100% - #{$x-small-spacing}), center;
   background-repeat: no-repeat;
   border-radius: 0;
   border: none;
-  box-shadow: 0 0.25rem 0.75rem rgba($black, 0.05);
+  box-shadow: 0 0.25rem 0.75rem color.adjust($black, $alpha: 0.05);
   font-family: $base-font-family;
   font-size: $small-font-size;
+  padding: $x-small-spacing $base-spacing $x-small-spacing $small-spacing;
   position: relative;
   -webkit-appearance: none;
 }

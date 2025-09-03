@@ -1,7 +1,9 @@
+@use "variables/variables" as *;
+
 .page {
   margin-bottom: $xx-large-spacing;
 
-  @include media(max-width $small-screen) {
+  @media (max-width $small-screen) {
     padding-top: $navigation-height-mobile;
   }
 }

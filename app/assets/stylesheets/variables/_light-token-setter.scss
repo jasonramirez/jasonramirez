@@ -1,0 +1,27 @@
+@use "colors" as *;
+@use "sass:color";
+
+@forward "./tokens" with (
+  $action-color: $ultramarine-blue,
+  $alert-background-color: $salmon,
+  $alert-color: $warm-white,
+  $base-background-color: $warm-white,
+  $base-font-color: $mirage,
+  $base-border-color: color.adjust($mirage, $alpha: 0.15),
+  $base-heading-font-color: $mirage,
+  $button-background-color: $ultramarine-blue,
+  $button-color: $warm-white,
+  $blockquote-color: $mirage,
+  $code-font-color: $cream,
+  $code-background-color: color.adjust($mirage, $alpha: 0.03),
+  $code-border-color: color.adjust($mirage, $alpha: 0.05),
+  $error-background-color: $salmon,
+  $error-color: $warm-white,
+  $heading-font-color: $mirage,
+  $input-background-color: color.adjust($mirage, $alpha: 0.05),
+  $mark-background-color: $warm-white,
+  $mark-color: $mirage,
+  $notice-background-color: $forest-green,
+  $notice-color: $warm-white,
+  $secondary-font-color: color.adjust($mirage, $alpha: 0.6)
+);

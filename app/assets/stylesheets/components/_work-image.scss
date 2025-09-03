@@ -1,7 +1,9 @@
+@use "variables/variables" as *;
+
 .work-image-container {
   margin: $large-spacing 0;
 
-  @include media($large-screen) {
+  @media ($large-screen) {
     margin: $x-large-spacing -10vw;
   }
 }

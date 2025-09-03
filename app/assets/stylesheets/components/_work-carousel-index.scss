@@ -1,9 +1,13 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
 .carousel-index {
   display: inline-flex;
 }
 
 .carousel__index {
-  background-color: transparentize($base-font-color, 0.75);
+  background-color: color.adjust($base-font-color, $alpha: -0.75);
   border-radius: 50%;
   height: 0.25rem;
   margin: 0 $xx-small-spacing;

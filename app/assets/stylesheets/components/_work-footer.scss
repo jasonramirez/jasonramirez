@@ -1,5 +1,8 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
 .work-footer {
-  border-top: $base-border;
+  border-top: $base-border-style $base-border-width $base-border-color;
   display: flex;
   justify-content: center;
   margin-top: $xx-large-spacing;

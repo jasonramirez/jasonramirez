@@ -1,7 +1,11 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
 table {
   background-color: $base-background-color;
   border-collapse: collapse;
-  border: $base-border;
+  border: 1px solid $base-border-color;
   font-family: $table-font-family;
   font-feature-settings: "kern", "liga", "tnum";
   font-size: $base-font-size;
@@ -38,5 +42,5 @@ th {
 }
 
 tr:nth-child(odd) {
-  background-color: $input-background-color;
+  background-color: color.adjust($base-border-color, $alpha: -0.95);
 }

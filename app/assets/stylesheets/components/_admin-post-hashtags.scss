@@ -1,3 +1,7 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
 .admin-post-hashtags {
   .checkbox {
     display: inline;
@@ -6,14 +10,14 @@
 
   input[type="checkbox"] + label,
   input[type="checkbox"]:checked + label {
-    background-color: rgba(map-get($colors, secondary), 4%);
+    background-color: color.adjust($secondary-font-color, $alpha: 0.04);
     border-radius: 1rem;
     padding: $x-small-spacing $small-spacing $x-small-spacing $medium-spacing;
     text-transform: lowercase;
   }
 
   input[type="checkbox"]:checked + label {
-    background-color: rgba($action-color, 25%);
+    background-color: color.adjust($action-color, $alpha: 0.25);
   }
 
   input[type="checkbox"] + label::before,

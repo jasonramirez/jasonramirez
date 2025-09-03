@@ -1,4 +1,5 @@
-// Rotating Text Animation
+@use "variables/variables" as *;
+
 @keyframes rotate-text {
   0%,
   20% {
@@ -34,7 +35,7 @@
   position: relative;
   width: 100vw;
 
-  @include media($medium-screen) {
+  @media (min-width: $medium-screen) {
     min-height: 14rem;
   }
 

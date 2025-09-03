@@ -1,15 +1,27 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+@use "sass:color";
+
 .custom-audio-player {
-  align-items: center;
-  background: transparent;
+  background-color: $base-background-color;
+  border: $base-border-style $base-border-width $base-border-color;
+  border-radius: $base-border-radius;
+  box-shadow: 0 0 2rem 0 $black;
   display: flex;
   flex-direction: column;
-  margin-top: $x-large-spacing;
+  max-width: $reading-screen;
+  padding: $base-spacing;
+  position: fixed;
+  right: $base-spacing;
+  top: $base-spacing;
   width: 100%;
+  z-index: 100;
 }
 
 .custom-audio-player__title-container {
   align-items: center;
-  border-bottom: 1px solid rgba($base-border-color, 0.05);
+  border-bottom: 1px solid color.adjust($base-border-color, $alpha: 0.05);
   display: flex;
   margin-bottom: $x-small-spacing;
   padding-bottom: $small-spacing;
@@ -74,7 +86,7 @@
 }
 
 .custom-audio-player__progress-bar {
-  background: rgba($action-color, 0.25);
+  background: color.adjust($action-color, $alpha: 0.25);
   border-radius: 4px;
   cursor: pointer;
   height: 4px;
@@ -183,7 +195,7 @@
 .custom-audio-player__volume-slider {
   -webkit-appearance: none;
   appearance: none;
-  background: rgba($base-font-color, 0.15);
+  background: color.adjust($base-font-color, $alpha: 0.15);
   border: none;
   border-radius: $base-border-radius;
   cursor: pointer;
@@ -209,7 +221,7 @@
   }
 
   &::-moz-range-track {
-    background: rgba($base-font-color, 0.1);
+    background: color.adjust($base-font-color, $alpha: 0.1);
     border: none;
     border-radius: 2px;
     height: 4px;
@@ -289,16 +301,17 @@ select.custom-audio-player__speed-selector {
   transition: all $base-duration $base-timing;
 
   &:hover {
-    color: lighten($action-color, 10%);
+    color: color.adjust($action-color, $lightness: 10%);
   }
 
   &.active {
-    color: darken($action-color, 10%);
+    color: color.adjust($action-color, $lightness: -10%);
   }
 }
 
 .custom-audio-player__transcript-content {
-  border-top: 1px solid rgba($base-border-color, 0.05);
+  border-top: $base-border-style $base-border-width
+    color.adjust($base-border-color, $alpha: 0.05);
   display: none;
   margin-top: $small-spacing;
   padding-top: $small-spacing;

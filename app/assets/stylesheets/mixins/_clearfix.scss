@@ -1,0 +1,8 @@
+// Clearfix mixin (replaces Bourbon's @include clearfix)
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

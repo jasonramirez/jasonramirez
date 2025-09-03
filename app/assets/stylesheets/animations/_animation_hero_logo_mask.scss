@@ -1,8 +1,8 @@
 // Hero Logo Mask Animation
 $animation-count: 7;
 $animation-delay: 3s;
-$animation-interval: (100 / $animation-count);
-$animation-total-duration: ($animation-count * $animation-delay);
+$animation-interval: calc(100 / $animation-count);
+$animation-total-duration: calc($animation-count * $animation-delay);
 
 @keyframes hero-logo-mask-fade {
   0% {

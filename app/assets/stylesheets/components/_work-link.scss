@@ -1,3 +1,7 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "mixins/media" as *;
+
 .work-link {
   align-items: flex-start;
   display: inline-flex;
@@ -34,12 +38,14 @@
 }
 
 .work-link__protected {
-  @include position(absolute, null -0.25rem -0.25rem null);
   background-color: $base-background-color;
   border-radius: $base-font-size;
   display: flex;
   font-size: $small-font-size;
   padding: $x-small-spacing;
+  position: absolute;
+  right: -0.25rem;
+  top: -0.25rem;
 }
 
 .work-link__description {
@@ -48,7 +54,7 @@
   line-height: $reading-line-height;
   width: 100%;
 
-  @include media($medium-screen) {
+  @media ($medium-screen) {
     width: 75%;
   }
 }
@@ -74,12 +80,14 @@
 }
 
 .work-link__logo-overlay {
-  @include position(absolute, 50% null null 50%);
+  left: 50%;
+  position: absolute;
+  top: 50%;
   z-index: 1;
 
   svg {
+    height: 60%;
     transform: translate(-50%, -50%);
     width: 60%;
-    height: 60%;
   }
 }

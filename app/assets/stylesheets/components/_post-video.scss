@@ -1,3 +1,6 @@
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+
 .post-video {
   border-radius: 1rem;
   box-shadow: 0 1.5rem 2rem $black;
@@ -6,9 +9,13 @@
   position: relative;
 
   .post-video__video {
-    @include position(absolute, 0 0 0 0);
     border-radius: 1rem;
+    bottom: 0;
     height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
     width: 100%;
   }
 }

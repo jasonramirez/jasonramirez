@@ -1,9 +1,14 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+@use "sass:color";
+
 .modal {
   align-items: center;
-  background-color: rgba($black, 0.25);
+  background-color: color.adjust($black, $alpha: 0.25);
   backdrop-filter: blur(8px) brightness(1);
   bottom: 0;
-  box-shadow: 0 0 2rem 0 $black;
+  box-shadow: 0 0 2rem 0 color.adjust($black, $alpha: 0.25);
   display: none;
   justify-content: center;
   left: 0;
@@ -19,7 +24,7 @@
 }
 
 .modal__container {
-  background-color: $base-background-color;
+  background-color: color.adjust($base-background-color, $alpha: 0.25);
   border-radius: $base-border-radius;
   max-height: 90vh;
   max-width: 90vw;
@@ -28,7 +33,7 @@
   position: relative;
   width: 100%;
 
-  @include media(min-width $medium-screen) {
+  @media ($medium-screen) {
     max-width: $medium-screen;
   }
 }
@@ -39,9 +44,9 @@
 }
 
 .modal__close-button {
-  position: absolute;
-  top: $x-small-spacing;
-  right: $x-small-spacing;
   padding: 0;
+  position: absolute;
+  right: $x-small-spacing;
+  top: $x-small-spacing;
   width: 16px;
 }

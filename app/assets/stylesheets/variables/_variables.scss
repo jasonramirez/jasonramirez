@@ -1,3 +1,22 @@
+// All text inputs
+$all-text-inputs: (
+  'input[type="color"]',
+  'input[type="date"]',
+  'input[type="datetime"]',
+  'input[type="datetime-local"]',
+  'input[type="email"]',
+  'input[type="month"]',
+  'input[type="number"]',
+  'input[type="password"]',
+  'input[type="search"]',
+  'input[type="tel"]',
+  'input[type="text"]',
+  'input[type="time"]',
+  'input[type="url"]',
+  'input[type="week"]',
+  'select[multiple="multiple"]'
+);
+
 // Font families
 $base-font-family: "Calibre", sans-serif;
 $heading-font-family: "Passo", sans-serif;
@@ -52,32 +71,6 @@ $large-spacing: 3rem;
 $x-large-spacing: 6rem;
 $xx-large-spacing: 9rem;
 
-// Colors
-$base-background-color: map-get($colors, primary);
-$base-font-color: map-get($colors, secondary);
-$base-border-color: map-get($colors, tertiary);
-$secondary-font-color: rgba(map-get($colors, secondary), 0.6);
-$base-heading-font-color: map-get($colors, secondary);
-$blockquote-color: map-get($colors, secondary);
-$code-font-color: #f5e3b5;
-$code-background-color: lighten($mirage, 3%);
-$code-border-color: lighten($mirage, 5%);
-$heading-font-color: map-get($colors, secondary);
-$mark-background-color: map-get($colors, primary);
-$mark-color: map-get($colors, secondary);
-$input-background-color: map-get($colors, quaternary);
-
-// Colors for all themes
-$action-color: $ultramarine-blue;
-$alert-background-color: $sun;
-$alert-color: $mirage;
-$button-background-color: $action-color;
-$button-color: $warm-white;
-$error-background-color: $salmon;
-$error-color: $mirage;
-$notice-background-color: $forest-green;
-$notice-color: $mirage;
-
 // Unicode Characters
 $hamburger-icon: "\2630";
 
@@ -89,9 +82,9 @@ $link-text-underline-offset: 0.15em;
 $base-duration: 250ms;
 $base-timing: ease;
 
-// Borders
-$base-border: 1px solid $base-border-color;
-$code-border: 1px solid $code-border-color;
+// Border
+$base-border-style: solid;
+$base-border-width: 1px;
 
 // Border Radius
 $base-border-radius: 0.15rem;

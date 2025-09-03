@@ -1,0 +1,14 @@
+@use "sass:meta";
+
+// Media query mixin (replaces Neat's @include media)
+@mixin media($query) {
+  @if meta.type-of($query) == "string" {
+    @media #{$query} {
+      @content;
+    }
+  } @else if meta.type-of($query) == "number" {
+    @media (min-width: $query) {
+      @content;
+    }
+  }
+}

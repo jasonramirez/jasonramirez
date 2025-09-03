@@ -1,7 +1,11 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
 .badge {
   align-items: center;
   display: flex;
-  background-color: rgba($base-border-color, 0.125);
+  background-color: color.adjust($base-border-color, $alpha: 0.125);
   border-radius: 0.5rem;
   color: $base-background-color;
   font-size: $base-font-size;
@@ -12,7 +16,7 @@
 
   &:hover,
   a:hover & {
-    background-color: darken($action-color, 20%);
+    background-color: color.adjust($action-color, $lightness: -20%);
     color: $base-background-color;
   }
 }

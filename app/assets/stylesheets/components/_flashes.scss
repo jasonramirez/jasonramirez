@@ -1,11 +1,16 @@
-@mixin flash($background-color, $color) {
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "mixins/flash" as *;
+@use "sass:color";
+
+.flash {
   align-items: center;
   animation-duration: 5s;
   animation-name: slide-in-out-from-bottom;
-  background-color: $background-color;
+  background-color: $base-background-color;
   border-radius: $base-border-radius;
   bottom: -100%;
-  color: $color;
+  color: $base-font-color;
   display: flex;
   font-size: $base-font-size;
   height: 3rem;
@@ -16,11 +21,11 @@
   z-index: $z-index-flashes;
 
   a {
-    color: darken($color, 70%);
+    color: color.adjust($base-font-color, $lightness: -70%);
 
     &:focus,
     &:hover {
-      color: darken($color, 90%);
+      color: color.adjust($base-font-color, $lightness: -90%);
     }
   }
 

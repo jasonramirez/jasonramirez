@@ -1,3 +1,6 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
 .sky-label {
   margin: $base-spacing 0;
   position: relative;
@@ -8,11 +11,13 @@
 }
 
 .sky-label label {
-  @include position(absolute, 0 null null 0);
   color: $secondary-font-color;
   cursor: text;
+  left: 0;
   line-height: $sky-label-line-height;
   padding: 1rem;
+  position: absolute;
+  top: 0;
   transition-property: background-color color left opacity top transform;
   transition-duration: $base-duration;
 }

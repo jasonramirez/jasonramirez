@@ -1,3 +1,6 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
 .history-item {
   align-items: center;
   display: flex;
@@ -5,7 +8,7 @@
   justify-content: center;
   width: 100%;
 
-  @include media($large-screen) {
+  @media (min-width: $large-screen) {
     flex-direction: row;
   }
 }
@@ -17,7 +20,7 @@
   text-align: center;
   width: 50%;
 
-  @include media($large-screen) {
+  @media (min-width: $large-screen) {
     padding: 0 1rem 0;
     text-align: left;
   }
@@ -34,8 +37,8 @@
 }
 
 .history-item__filler {
-  @include media($large-screen) {
-    width: 50%;
+  @media (min-width: $large-screen) {
+    width: calc(50% + 2rem);
   }
 }
 
