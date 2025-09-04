@@ -1,5 +1,8 @@
 // Pick the theme first (this configures tokens for the whole build)
 @use "variables/dark-token-setter";
 
-// Now import your app (components will read the already-configured tokens)
-@use "shared";
+// Import components only once
+@use "components";
+
+// Import shared styles (without components to avoid duplication)
+@use "shared-no-components";
