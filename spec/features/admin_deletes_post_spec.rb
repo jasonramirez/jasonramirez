@@ -9,7 +9,9 @@ RSpec.feature "Admin deletes post", js: true do
 
       visit admins_posts_path
       within first(".admin-post-item") do
-        find(".admin-post-item__delete").click
+        accept_confirm do
+          find("a[data-turbo-method='delete']").click
+        end
       end
 
       expect(page).to_not have_text post_one.title
