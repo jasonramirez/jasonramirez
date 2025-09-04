@@ -5,17 +5,25 @@
 .navigation {
   align-items: center;
   background-color: $base-background-color;
-  border-bottom: $base-border-style $base-border-width $base-border-color;
+  box-sizing: border-box;
   display: flex;
   height: $navigation-height-mobile;
   justify-content: space-between;
+  left: 0;
+  max-width: $large-screen;
+  margin: 0 auto;
   padding: 0 $base-spacing;
   position: fixed;
+  right: 0;
   top: 0;
   width: 100%;
   z-index: $z-index-drawers;
 
-  @media ($medium-screen) {
+  @media (min-width: $small-screen) {
+    position: relative;
+  }
+
+  @media (min-width: $medium-screen) {
     height: $navigation-height;
   }
 }

@@ -8,12 +8,19 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - $navigation-height-mobile);
-  min-height: 600px;
+  height: 100vh;
+  justify-content: center;
+  min-height: 500px;
+  position: relative;
+
+  @media (min-width: $small-screen) {
+    height: calc(100vh - (#{$navigation-height-mobile} * 2));
+    margin: 0 0 $navigation-height-mobile;
+  }
 
   @media (min-width: $medium-screen) {
-    height: calc(100vh - #{$navigation-height});
-    min-height: 800px;
+    height: calc(100vh - (#{$navigation-height} * 2));
+    margin: 0 0 $navigation-height;
   }
 }
 
@@ -47,33 +54,24 @@
   opacity: 0.5;
 }
 
-.hero_filler {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-
-  &:first-child {
-    height: 35%;
-  }
-
-  &:last-child {
-    height: 65%;
-  }
-}
-
-.hero_leading-line {
+.hero-leading-guide {
   background: linear-gradient(
     0deg,
     color.adjust($base-border-color, $alpha: -0.05),
     color.adjust($base-border-color, $alpha: -1)
   );
-  height: 100%;
+  bottom: -$navigation-height-mobile;
+  height: 30vh;
+  left: 50%;
+  position: absolute;
   width: 1px;
+
+  @media (min-width: $medium-screen) {
+    bottom: -$navigation-height;
+  }
 }
 
-.hero_guiding-light {
+.hero-leading-guide__light {
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
   animation-name: guiding-light;
