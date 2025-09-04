@@ -47,17 +47,60 @@ operations across environments. Parity provides simple commands for backing
 up, restoring, and copying databases between development, staging, and
 production.
 
-#### Common Parity Commands
+### Environment Setup
+
+- **Production**: `jasonramirez` (main Heroku app)
+- **Staging**: `jasonramirez-staging` (staging Heroku app)
+- **Development**: Local PostgreSQL database
+
+### Common Parity Commands
 
 ```bash
-# Backup production database
-$ production backup
+# Database backups
+./bin/parity production backup
+./bin/parity staging backup
 
-# Backup local development
-$ development backup
+# Restore production data to development
+./bin/parity development restore production
+./bin/parity development restore staging
 
-# Copy production database to local development
-$ development restore-from production
+# Deploy to environments
+./bin/parity production deploy
+./bin/parity staging deploy
+
+# Access consoles
+./bin/parity production console
+./bin/parity staging console
+
+# View logs
+./bin/parity production tail
+./bin/parity staging tail
+
+# Check dyno status
+./bin/parity production ps
+./bin/parity staging ps
+```
+
+### Database Restore Workflow
+
+**Restore production data to development:**
+
+```bash
+# 1. Create a fresh backup of production
+./bin/parity production backup
+
+# 2. Restore to development
+./bin/parity development restore production
+```
+
+**Deploy to staging:**
+
+```bash
+# 1. Deploy current branch to staging
+./bin/parity staging deploy
+
+# 2. Copy production data to staging (if needed)
+./bin/parity staging restore production
 ```
 
 ### Copy Local Database to Production
@@ -65,7 +108,7 @@ $ development restore-from production
 **⚠️ Warning: This will overwrite your production database!**
 
 ```bash
-$ production restore-from development --force
+./bin/parity production restore development
 ```
 
 **When to use this:**
@@ -79,19 +122,6 @@ $ production restore-from development --force
 1. Ensure your local database is in the desired state
 2. Make sure you have the latest production backup
 3. Consider the impact on live users
-
-### View Database Status
-
-```bash
-# Check production database size and status
-$ production psql
-
-# Check staging database
-$ staging psql
-
-# Check local database
-$ development psql
-```
 
 ## Knowledge Base Management
 
