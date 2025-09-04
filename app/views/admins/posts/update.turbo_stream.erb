@@ -32,6 +32,18 @@
     <% end %>
   </template>
 </turbo-stream>
+
+<turbo-stream action="update" target="post_form">
+  <template>
+    <script>
+      // Update the form action URL to reflect the new slug
+      const form = document.querySelector('form[action*="/admins/posts/"]');
+      if (form) {
+        form.action = '<%= admins_post_path(@post) %>';
+      }
+    </script>
+  </template>
+</turbo-stream>
 <% end %>
 
 <turbo-stream action="update" target="published_chip">

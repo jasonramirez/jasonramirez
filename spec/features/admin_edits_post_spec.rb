@@ -83,6 +83,29 @@ feature "Admin edits post", js: true do
       expect(new_preview_url).to_not eq(original_preview_url)
       expect(new_preview_url).to include("new-title")
     end
+
+    it "updates form action URL when title changes" do
+      post = create(:post, title: "Original Title")
+      sign_in_admin
+
+      visit edit_admins_post_path(post)
+
+      # Get the original form action URL
+      original_form_action = find("form")[:action]
+
+      # Change the title
+      fill_form(:post, title: "New Title")
+
+      page.find("#save_post").click
+
+      expect(page).to have_text t("admins.flash.updated")
+
+      # Check that the form action URL has been updated
+      new_form_action = find("form")[:action]
+      expect(new_form_action).to_not eq(original_form_action)
+      expect(new_form_action).to include("new-title")
+      expect(new_form_action).to_not include("/edit")
+    end
   end
 
   private
