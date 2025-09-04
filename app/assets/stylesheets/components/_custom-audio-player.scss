@@ -254,18 +254,23 @@
 }
 
 select.custom-audio-player__speed-selector {
+  align-items: center;
   background: transparent;
   border: none;
   border-radius: $base-border-radius;
   box-shadow: none;
   color: $base-font-color;
   cursor: pointer;
+  display: flex;
   font-family: $base-font-family;
   font-size: $small-font-size;
-  font-weight: $heading-font-weight;
+  font-weight: $reading-font-weight;
+  height: 20px;
+  line-height: 1;
   margin-bottom: 0;
-  padding: 4px 0px 4px 6px;
+  padding: 0 0 0 6px;
   transition: all $base-duration $base-timing;
+  vertical-align: middle;
 
   &:hover {
     border-color: $action-color;

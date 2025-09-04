@@ -1,32 +1,46 @@
-<div class="custom-audio-player">
+<div class="custom-audio-player" 
+     data-controller="custom-audio-player"
+     data-custom-audio-player-audio-src-value="<%= asset_path(audio_source) %>"
+     data-custom-audio-player-preload-value="metadata">
   <div class="custom-audio-player__title-container">
     <%= inline_svg "icon-headphones.svg", class: "custom-audio-player__title-icon", style: "width: 24px; height: 24px;" %>
     <strong class="custom-audio-player__title"><%= title %> TL;DR.</strong>
   </div>
 
-  <audio preload="metadata">
+  <audio data-custom-audio-player-target="audio" preload="metadata">
     <source src="<%= asset_path(audio_source) %>" type="audio/mpeg">
     Your browser doesn't support audio playback.
   </audio>
   
   <div class="custom-audio-player__controls">
-    <button class="custom-audio-player__play-button" type="button">
+    <button class="custom-audio-player__play-button" 
+            type="button"
+            data-action="click->custom-audio-player#togglePlay"
+            data-custom-audio-player-target="playButton">
       <%= inline_svg "icon-play.svg", class: "icon play-icon" %>
       <%= inline_svg "icon-pause.svg", class: "icon pause-icon" %>
     </button>
     
     <div class="custom-audio-player__progress-container">
-      <div class="custom-audio-player__progress-bar">
-        <div class="custom-audio-player__progress-bar-fill"></div>
-        <div class="custom-audio-player__progress-bar-handle"></div>
+      <div class="custom-audio-player__progress-bar"
+           data-action="click->custom-audio-player#seek"
+           data-custom-audio-player-target="progressBar">
+        <div class="custom-audio-player__progress-bar-fill"
+             data-custom-audio-player-target="progressFill"></div>
+        <div class="custom-audio-player__progress-bar-handle"
+             data-action="mousedown->custom-audio-player#startDragging"
+             data-custom-audio-player-target="progressHandle"></div>
       </div>
     </div>
     
-    <div class="custom-audio-player__time">0:00 / 0:00</div>
+    <div class="custom-audio-player__time"
+         data-custom-audio-player-target="timeDisplay">0:00 / 0:00</div>
     
     <div class="custom-audio-player__speed">
       <%= inline_svg "icon-gauge.svg", class: "icon speed-icon" %>
-      <select class="custom-audio-player__speed-selector">
+      <select class="custom-audio-player__speed-selector"
+              data-action="change->custom-audio-player#setPlaybackSpeed"
+              data-custom-audio-player-target="speedSelector">
         <option value="0.5">0.5x</option>
         <option value="0.75">0.75x</option>
         <option value="1" selected>1x</option>
@@ -37,17 +51,29 @@
     </div>
     
     <div class="custom-audio-player__volume">
-      <button class="custom-audio-player__volume-button" type="button">
+      <button class="custom-audio-player__volume-button" 
+              type="button"
+              data-action="click->custom-audio-player#toggleMute"
+              data-custom-audio-player-target="volumeButton">
         <%= inline_svg "icon-volume-x.svg", class: "icon volume-icon volume-icon--muted" %>
         <%= inline_svg "icon-play.svg", class: "icon volume-icon volume-icon--low" %>
         <%= inline_svg "icon-volume-2.svg", class: "icon volume-icon volume-icon--high" %>
       </button>
-      <input class="custom-audio-player__volume-slider" type="range" min="0" max="100" value="100">
+      <input class="custom-audio-player__volume-slider" 
+             type="range" 
+             min="0" 
+             max="100" 
+             value="100"
+             data-action="input->custom-audio-player#setVolume"
+             data-custom-audio-player-target="volumeSlider">
     </div>
 
     <% if local_assigns[:transcript_file] %>
       <div class="custom-audio-player__transcript">
-        <button class="custom-audio-player__transcript-button" type="button">
+        <button class="custom-audio-player__transcript-button" 
+                type="button"
+                data-action="click->custom-audio-player#toggleTranscript"
+                data-custom-audio-player-target="transcriptButton">
           <%= inline_svg "icon-transcript.svg", class: "icon transcript-icon", style: "width: 16px; height: 16px;" %>
         </button>
       </div>
@@ -55,7 +81,8 @@
   </div>
 
   <% if local_assigns[:transcript_file] %>
-    <div class="custom-audio-player__transcript-content">
+    <div class="custom-audio-player__transcript-content"
+         data-custom-audio-player-target="transcriptContent">
       <%= read_transcript_file(transcript_file) %>
     </div>
   <% end %>
