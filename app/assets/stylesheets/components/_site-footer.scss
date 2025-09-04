@@ -3,8 +3,7 @@
 @use "sass:color";
 
 .site-footer {
-  border-top: $base-border-style $base-border-width
-    color.adjust($base-border-color, $alpha: -0.1);
+  border-top: $base-border-style $base-border-width $base-border-color;
   padding: $xx-large-spacing 0;
   text-align: center;
 }
