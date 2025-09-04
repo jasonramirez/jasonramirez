@@ -16,7 +16,7 @@
   $code-background-color: color.adjust($warm-white, $alpha: -0.95),
   $code-border-color: color.adjust($warm-white, $alpha: -0.95),
   $error-background-color: $salmon,
-  $error-color: $mirage,
+  $error-color: color.adjust($salmon, $lightness: -0.9),
   $heading-font-color: $warm-white,
   $input-background-color: color.adjust($warm-white, $alpha: -0.9),
   $mark-background-color: $mirage,

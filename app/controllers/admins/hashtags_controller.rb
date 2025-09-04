@@ -43,17 +43,20 @@ class Admins::HashtagsController < ApplicationController
     hashtag = find_hashtag
     replacement_hashtag_id = params[:replacement_hashtag_id]
 
-    if replacement_hashtag_id.present?
-      # Replace the hashtag with another one
-      replacement_hashtag = Hashtag.find(replacement_hashtag_id)
-      replace_hashtag(hashtag, replacement_hashtag)
+    # Require a replacement hashtag
+    if replacement_hashtag_id.blank?
+      redirect_to admins_hashtags_path,
+        alert: "Please select a hashtag to replace with."
+      return
     end
 
+    # Replace the hashtag with another one
+    replacement_hashtag = Hashtag.find(replacement_hashtag_id)
+    replace_hashtag(hashtag, replacement_hashtag)
+
     if hashtag.destroy
-      message = replacement_hashtag_id.present? ? 
-        "Hashtag replaced and deleted successfully." : 
-        t("admins.flash.destroyed")
-      redirect_to admins_hashtags_path, notice: message
+      redirect_to admins_hashtags_path, 
+        notice: "Hashtag replaced and deleted successfully."
     else
       redirect_to admins_hashtags_path,
         alert: t("admins.flash.failed")

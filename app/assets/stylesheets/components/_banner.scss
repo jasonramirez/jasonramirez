@@ -1,0 +1,26 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
+.banner {
+  align-items: center;
+  background-color: $base-background-color;
+  border-radius: $base-border-radius;
+  color: $base-font-color;
+  display: flex;
+  font-size: $base-font-size;
+  justify-content: center;
+  line-height: $base-line-height;
+  margin-bottom: $base-spacing;
+  padding: $small-spacing;
+  text-align: center;
+
+  svg {
+    margin-right: $small-spacing;
+  }
+}
+
+.banner--warning {
+  background-color: color.adjust($error-background-color, $alpha: -0.9);
+  color: $error-color;
+}

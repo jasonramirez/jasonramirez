@@ -29,11 +29,10 @@
   max-height: 90vh;
   max-width: 90vw;
   overflow-y: auto;
-  padding: $base-spacing;
   position: relative;
   width: 100%;
 
-  @media ($medium-screen) {
+  @media (min-width: $medium-screen) {
     max-width: $medium-screen;
   }
 }
@@ -41,6 +40,8 @@
 .modal__header {
   display: flex;
   justify-content: space-between;
+  padding: 0 $base-spacing;
+  border-bottom: $base-border-style $base-border-width $base-border-color;
 }
 
 .modal__close-button {
@@ -49,4 +50,13 @@
   right: $x-small-spacing;
   top: $x-small-spacing;
   width: 16px;
+}
+
+.modal__content {
+  padding: $base-spacing;
+}
+
+.modal__actions {
+  border-top: $base-border-style $base-border-width $base-border-color;
+  padding: $base-spacing;
 }

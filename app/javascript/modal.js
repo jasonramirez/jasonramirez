@@ -183,6 +183,13 @@ class Modal {
 
   handleDynamicConfirm(modal) {
     if (modal.modalData && modal.modalData.deleteUrl) {
+      // Validate that a replacement hashtag is selected
+      const replacementSelect = modal.querySelector("#replacement-hashtag");
+      if (replacementSelect && !replacementSelect.value) {
+        alert("Please select a hashtag to replace with.");
+        return;
+      }
+
       this.submitDeleteForm(modal);
       this.close(modal);
     }

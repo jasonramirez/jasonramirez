@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Admin deletes hashtag", js: true do
   context "from the hashtags list" do
-    it "removes the hashtag" do
+    it "requires a replacement hashtag to be selected" do
       sign_in_admin
       hashtag_one = create(:hashtag, label: "hashtagone")
       hashtag_two = create(:hashtag, label: "hashtagtwo")
@@ -10,11 +10,13 @@ RSpec.feature "Admin deletes hashtag", js: true do
       visit admins_hashtags_path
       first(".admin-post-item__actions a").click
       
-      # Confirm deletion in modal
-      click_button "Confirm"
-
-      expect(page).to_not have_text hashtag_one.label
-      expect(page).to have_text hashtag_two.label
+      # Try to confirm deletion without selecting a replacement
+      accept_alert "Please select a hashtag to replace with." do
+        click_button "Confirm"
+      end
+      
+      # Hashtag should still be there
+      expect(page).to have_text hashtag_one.label
     end
 
     it "replaces hashtag with another one when replacement is selected" do
