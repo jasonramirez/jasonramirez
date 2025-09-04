@@ -38,6 +38,10 @@
   max-width: $reading-screen;
   transition: all 250ms ease;
 
+  & + & {
+    margin-top: 0;
+  }
+
   @media ($large-screen) {
     max-width: $reading-screen * 1.1;
   }
