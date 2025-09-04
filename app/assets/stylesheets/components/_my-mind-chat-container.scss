@@ -1,0 +1,32 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
+.my-mind-chat-container {
+  height: calc(100vh - #{$my-mind-chat-prompt-height});
+  margin: 0 auto;
+  overflow-y: auto;
+  padding: $base-spacing;
+  position: relative;
+  width: 100%;
+
+  @media ($medium-screen) {
+    height: calc(100vh - #{$my-mind-chat-prompt-height});
+  }
+
+  &::before {
+    content: "";
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      color.adjust($base-background-color, $alpha: 0.25)
+    );
+    display: block;
+    height: 9rem;
+    left: 0;
+    bottom: $my-mind-chat-prompt-height;
+    right: 0;
+    position: fixed;
+    z-index: 1;
+  }
+}

@@ -31,7 +31,13 @@
 @use "components/link";
 @use "components/minimal-unordered-list";
 @use "components/modal";
-@use "components/my-mind";
+@use "components/my-mind-chat-container";
+@use "components/my-mind-chat-history";
+@use "components/my-mind-chat-message";
+@use "components/my-mind-chat-prompt";
+@use "components/my-mind-navigation";
+@use "components/my-mind-source";
+@use "components/my-mind-title-image";
 @use "components/navigation";
 @use "components/page";
 @use "components/post-meta";

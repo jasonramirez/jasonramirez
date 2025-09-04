@@ -1,0 +1,83 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "variables/colors" as *;
+
+.my-mind-chat-message {
+  font-family: $reading-font-family;
+  font-size: $reading-font-size;
+  font-weight: $reading-font-weight;
+  line-height: $reading-line-height;
+  max-width: 80%;
+  margin: $base-spacing 0;
+}
+
+.my-mind-chat-message--answer {
+  align-self: flex-start;
+}
+
+.my-mind-chat-message--question {
+  align-self: flex-end;
+  background-color: $black;
+  color: $warm-white;
+  padding: $small-spacing;
+  border-radius: 1.25rem;
+
+  .light & a {
+    color: $warm-white;
+  }
+}
+
+.my-mind-chat-message__actions {
+  align-items: center;
+  display: flex;
+  gap: $x-small-spacing;
+  height: 16px;
+  margin-top: $x-small-spacing;
+  opacity: 0.5;
+  transition: opacity $base-duration $base-timing;
+  width: 100%;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .my-mind-chat-message--answer & {
+    justify-content: flex-start;
+  }
+
+  .my-mind-chat-message--question & {
+    justify-content: flex-end;
+  }
+
+  & *:hover {
+    cursor: pointer;
+  }
+}
+
+.my-mind-chat-message__copy {
+  .my-mind-chat-message--question & {
+    display: none;
+  }
+}
+
+.my-mind-chat-message__confidence-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  font-family: $code-font-family;
+  transition: all $base-duration $base-timing;
+  transform: translateY(-2px);
+
+  &:hover {
+    color: $action-color;
+    cursor: pointer;
+  }
+}
+
+.my-mind-chat-message__source-links {
+  display: flex;
+  flex-direction: row;
+  margin: $x-small-spacing 0 $small-spacing;
+}

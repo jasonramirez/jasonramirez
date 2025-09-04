@@ -1,0 +1,40 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
+.my-mind-chat-prompt {
+  align-items: center;
+  bottom: $base-spacing;
+  display: flex;
+  height: $my-mind-chat-prompt-height;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1;
+}
+
+.my-mind-chat-prompt__form {
+  background-color: $base-background-color;
+  border: solid 1px $base-border-color;
+  border-radius: 1.95rem;
+  display: flex;
+  max-width: $medium-screen;
+  padding: $small-spacing;
+  gap: $small-spacing;
+  width: 100%;
+
+  input[type="text"] {
+    margin-bottom: 0;
+  }
+
+  input {
+    border-radius: 1.25rem;
+  }
+}
+
+.my-mind-chat-prompt__button {
+  align-items: center;
+  border-radius: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
