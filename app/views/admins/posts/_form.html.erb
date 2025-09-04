@@ -42,6 +42,7 @@
             as: :check_boxes,
             label_method: :label,
             value_method: :id,
+            collection: Hashtag.order(:label),
           ) %>
         </div>
       </div>
