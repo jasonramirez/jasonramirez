@@ -24,7 +24,7 @@
   }
 }
 
-.hero_title {
+.hero-title {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -55,11 +55,7 @@
 }
 
 .hero-leading-guide {
-  background: linear-gradient(
-    0deg,
-    color.adjust($base-border-color, $alpha: -0.05),
-    color.adjust($base-border-color, $alpha: -1)
-  );
+  background: linear-gradient(0deg, $base-border-color, transparent);
   bottom: -$navigation-height-mobile;
   height: 30vh;
   left: 50%;
@@ -83,6 +79,7 @@
   opacity: 0;
   position: absolute;
   top: 0;
+  transform: translateX(-50%);
   width: 0.35rem;
   z-index: 100;
 }

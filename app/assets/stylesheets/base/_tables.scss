@@ -37,10 +37,10 @@ th {
   vertical-align: middle;
 
   &:not(:last-child) {
-    border-right: solid 1px rgba($base-border-color, 0.1);
+    border-right: solid 1px $base-border-color;
   }
 }
 
 tr:nth-child(odd) {
-  background-color: color.adjust($base-border-color, $alpha: -0.95);
+  background-color: $base-border-color;
 }

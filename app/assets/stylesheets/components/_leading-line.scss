@@ -6,7 +6,7 @@
   width: 100%;
 
   &::after {
-    background-color: color.adjust($base-border-color, $alpha: -0.05);
+    background-color: $base-border-color;
     content: " ";
     display: block;
     height: 100%;

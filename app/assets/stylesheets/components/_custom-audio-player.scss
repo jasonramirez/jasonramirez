@@ -6,7 +6,7 @@
 .custom-audio-player {
   background-color: color.adjust($base-background-color, $alpha: -0.15);
   border-radius: $base-border-radius;
-  border: 1px solid color.adjust($base-border-color, $alpha: -0.1);
+  border: 1px solid $base-border-color;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
 
 .custom-audio-player__title-container {
   align-items: center;
-  border-bottom: 1px solid color.adjust($base-border-color, $alpha: 0.05);
+  border-bottom: 1px solid $base-border-color;
   display: flex;
   margin-bottom: $x-small-spacing;
   padding-bottom: $small-spacing;
@@ -350,8 +350,7 @@ select.custom-audio-player__speed-selector {
 }
 
 .custom-audio-player__transcript-content {
-  border-top: $base-border-style $base-border-width
-    color.adjust($base-border-color, $alpha: 0.05);
+  border-top: $base-border-style $base-border-width $base-border-color;
   display: none;
   margin-top: $small-spacing;
   padding-top: $small-spacing;

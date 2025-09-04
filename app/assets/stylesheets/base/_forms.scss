@@ -64,7 +64,7 @@ label {
   width: 100%;
 
   &:hover {
-    border-color: color.adjust($base-border-color, $alpha: 0.25);
+    border-color: $base-border-color;
   }
 
   &:focus {
