@@ -130,14 +130,14 @@
 .navigation__link--fixed {
   background-color: color.adjust($base-background-color, $alpha: -0.3);
   border-radius: $base-border-radius;
-  padding: $x-small-spacing;
+  padding: $x-small-spacing 0;
   position: fixed;
   top: $x-small-spacing;
   right: $x-small-spacing;
 
   @media (min-width: $medium-screen) {
-    top: $base-spacing;
-    right: $base-spacing;
+    top: $small-spacing;
+    right: $small-spacing;
   }
 }
 
