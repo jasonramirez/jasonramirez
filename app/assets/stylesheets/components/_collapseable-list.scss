@@ -1,0 +1,32 @@
+@use "variables/variables" as *;
+@use "variables/tokens" as *;
+
+.collapseable-list {
+  li {
+    border-bottom: 1px solid $base-border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.collapseable__trigger-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  svg {
+    path {
+      stroke: $base-font-color;
+    }
+  }
+
+  &:hover svg {
+    path {
+      fill: none;
+      stroke: $action-color;
+    }
+  }
+}
