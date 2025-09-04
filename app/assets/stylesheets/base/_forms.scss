@@ -83,6 +83,7 @@ label {
 }
 
 textarea {
+  line-height: $reading-line-height;
   resize: vertical;
 }
 
@@ -112,7 +113,6 @@ input[readonly] {
   border-radius: $base-border-radius;
   box-sizing: border-box;
   color: $base-font-color;
-
   font-family: $form-font-family;
   font-size: $base-font-size;
   font-weight: normal;
