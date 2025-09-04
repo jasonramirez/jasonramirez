@@ -8,16 +8,39 @@ export default class extends Controller {
   };
 
   connect() {
-    this.initializeTheme();
+    // Only initialize if this is the body controller (not the button controller)
+    if (this.element === document.body) {
+      this.initializeTheme();
+
+      // Listen for Turbo navigation events to reinitialize theme
+      this.turboLoadHandler = () => {
+        this.initializeTheme();
+      };
+      document.addEventListener("turbo:load", this.turboLoadHandler);
+    }
+  }
+
+  disconnect() {
+    // Clean up event listener
+    if (this.turboLoadHandler) {
+      document.removeEventListener("turbo:load", this.turboLoadHandler);
+    }
   }
 
   initializeTheme() {
     // Get theme from localStorage or default to dark
     const savedTheme = localStorage.getItem("theme") || "dark";
-    this.setTheme(savedTheme);
 
-    // Ensure proper initial state
+    // Apply theme immediately without triggering setTheme (to avoid duplicate work)
+    document.body.classList.remove("light", "dark");
+    document.body.classList.add(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    // Update stylesheet
     this.updateStylesheet(savedTheme);
+
+    // Update meta theme-color
+    this.updateMetaThemeColor(savedTheme);
   }
 
   toggle() {
@@ -30,11 +53,10 @@ export default class extends Controller {
     // Update localStorage
     localStorage.setItem("theme", theme);
 
-    // Update body class
-    document.body.className = document.body.className.replace(
-      /light|dark/g,
-      theme
-    );
+    // Update body class and document attribute
+    document.body.classList.remove("light", "dark");
+    document.body.classList.add(theme);
+    document.documentElement.setAttribute("data-theme", theme);
 
     // Update stylesheet
     this.updateStylesheet(theme);

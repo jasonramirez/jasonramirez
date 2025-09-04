@@ -11,11 +11,29 @@
     <title>
       <%= t(".titles.application") %>
     </title>
-    <%= stylesheet_link_tag "application_dark", "data-turbo-track": Rails.env.production? ? "reload" : nil %>
+    
+    <script>
+      // Set theme immediately to prevent flash
+      (function() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.className = document.body.className.replace(/light|dark/g, '') + ' ' + theme;
+        
+        // Load the correct stylesheet immediately
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = theme === 'light' ? '<%= asset_path("application_light.css") %>' : '<%= asset_path("application_dark.css") %>';
+        link.setAttribute('data-turbo-track', '<%= Rails.env.production? ? "reload" : nil %>');
+        document.head.appendChild(link);
+      })();
+    </script>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="<%= body_class %> dark">
+  <body class="<%= body_class %>" 
+        data-controller="theme"
+        data-theme-light-stylesheet-value="<%= asset_path('application_light.css') %>"
+        data-theme-dark-stylesheet-value="<%= asset_path('application_dark.css') %>">
     <main class="page">
       <%= yield %>
     </main>

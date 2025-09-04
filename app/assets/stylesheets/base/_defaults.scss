@@ -13,10 +13,6 @@ html {
   -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;
 
-  .light {
-    -webkit-font-smoothing: subpixel-antialiased;
-  }
-
   @media (min-width: $large-screen) {
     font-size: $base-font-size;
   }
