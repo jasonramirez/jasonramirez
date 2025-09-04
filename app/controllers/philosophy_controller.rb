@@ -1,0 +1,2 @@
+class PhilosophyController < ApplicationController
+end

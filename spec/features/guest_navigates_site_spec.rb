@@ -27,26 +27,16 @@ RSpec.feature "Guest navigates site" do
       end
     end
 
-    describe "clicking on principles" do
-      it "takes you to my design principles" do
+    describe "clicking on philosophy" do
+      it "takes you to my design philosophy including principles and values" do
         visit root_path
 
         within ".site-header" do
-          click_link t("navigation.principles")
+          click_link t("navigation.philosophy")
         end
 
+        expect(page).to have_text "Philosophy"
         expect(page).to have_text "My principles influence"
-      end
-    end
-
-    describe "clicking on values" do
-      it "takes you to my design values" do
-        visit root_path
-
-        within ".site-header" do
-          click_link t("navigation.values")
-        end
-
         expect(page).to have_text "I establish values"
       end
     end

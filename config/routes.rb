@@ -27,11 +27,11 @@ Rails.application.routes.draw do
   get "protected_works/:protected_work", to: "protected_works#show"
   get "privacy_and_terms", to: "privacy_and_terms#index"
   get "resume", to: "resume#show"  
-  get "principles", to: "principles#index"
-  get "values", to: "values#index"
+  get "philosophy", to: "philosophy#index"
+  
   get "works", to: "works#index"
   get "works/:work", to: "works#show"
-
+  
   post "chat/login", to: "chat_auth#login"
   post "chat/register", to: "chat_auth#register"
   post "my_mind/ask", to: "my_mind#ask", as: :ask_my_mind
@@ -46,4 +46,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Redirects for old URLs that may have been indexed or bookmarked
+  get "principles", to: redirect("/philosophy")
+  get "values", to: redirect("/philosophy")
 end
