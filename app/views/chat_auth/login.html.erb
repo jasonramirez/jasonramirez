@@ -1,6 +1,6 @@
 <section class="content content--slim">
   <div class="my-mind-title-image">
-    <h1>My Mind</h1>
+    <%= image_tag "my-mind-logo.png", alt: "My Mind" %>
   </div>
 
   <%= form_with url: chat_login_path, method: :post, data: { turbo: false } do |form|%>

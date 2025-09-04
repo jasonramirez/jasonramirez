@@ -244,3 +244,31 @@
     font-family: $code-font-family;
   }
 }
+
+.my-mind-title-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("my-mind-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: $base-border-radius * 4;
+  height: 25vh;
+  margin-bottom: $x-large-spacing;
+  width: 100%;
+
+  box-shadow: 1rem -1rem 2rem rgba(139, 195, 74, 0.4),
+    -1rem -1rem 2rem rgba(244, 67, 54, 0.4), 0 1rem 2rem rgba(23, 125, 209, 0.4);
+
+  .dark & {
+    box-shadow: 1rem -1rem 2rem rgba(139, 195, 74, 0.15),
+      -1rem -1rem 2rem rgba(244, 67, 54, 0.15),
+      0 1rem 2rem rgba(23, 125, 209, 0.15);
+  }
+
+  img {
+    transform: translateY(0.5rem);
+    width: 50%;
+  }
+}
