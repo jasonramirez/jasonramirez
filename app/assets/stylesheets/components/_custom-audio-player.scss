@@ -38,7 +38,7 @@
   flex-direction: column;
   width: 100%;
 
-  @media ($small-screen) {
+  @media (min-width: $small-screen) {
     flex-direction: row;
   }
 }
@@ -46,12 +46,23 @@
 .custom-audio-player__control {
   align-items: center;
   display: flex;
+  flex-grow: 1;
   flex-direction: row;
+  height: 2rem;
+  justify-content: flex-start;
+  width: 100%;
 
-  @media (max-width: $small-screen) {
-    height: 2rem;
-    justify-content: flex-start;
-    width: 100%;
+  @media (min-width: $small-screen) {
+    height: unset;
+    width: unset;
+
+    &:first-child {
+      flex: 1;
+    }
+
+    &:not(:first-child) {
+      flex: 0 0 auto;
+    }
   }
 }
 
