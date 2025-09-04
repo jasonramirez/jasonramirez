@@ -3,9 +3,9 @@
 }
 
 .post-search__form {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   input {
     flex-grow: 0;
@@ -15,7 +15,7 @@
   a {
     flex-grow: 1;
     margin-left: $small-spacing;
-    padding: ($x-small-spacing * 1.5) $small-spacing;;
+    padding: ($x-small-spacing * 1.5) $small-spacing;
   }
 }
 
