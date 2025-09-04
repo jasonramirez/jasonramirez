@@ -30,10 +30,11 @@
   cursor: pointer;
   display: inline-block;
   font-family: $button-font-family;
-  font-size: $button-font-size;
+  font-size: $small-font-size;
   font-weight: $button-font-weight;
   line-height: $button-line-height;
   letter-spacing: 0.025rem;
+  word-spacing: 0.1rem;
   outline: $action-color solid 0px;
   padding: $xx-small-spacing $small-spacing;
   text-transform: uppercase;
@@ -54,6 +55,11 @@
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  @media (max-width: $medium-screen) {
+    font-size: $base-font-size;
+    word-spacing: 0.15rem;
   }
 }
 

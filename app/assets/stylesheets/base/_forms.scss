@@ -51,6 +51,7 @@ label {
 #{$all-text-inputs} {
   background-color: $input-background-color;
   border: none;
+  border-radius: $base-border-radius;
   box-sizing: border-box;
   color: $base-font-color;
   font-family: $form-font-family;
