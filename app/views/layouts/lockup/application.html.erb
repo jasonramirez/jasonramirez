@@ -17,7 +17,15 @@
       (function() {
         const theme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', theme);
-        document.body.className = document.body.className.replace(/light|dark/g, '') + ' ' + theme;
+        // Set body class when body is available
+        if (document.body) {
+          document.body.className = document.body.className.replace(/light|dark/g, '') + ' ' + theme;
+        } else {
+          // If body doesn't exist yet, wait for it
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.className = document.body.className.replace(/light|dark/g, '') + ' ' + theme;
+          });
+        }
         
         // Load the correct stylesheet immediately
         const link = document.createElement('link');
