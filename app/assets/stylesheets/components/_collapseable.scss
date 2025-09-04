@@ -62,3 +62,23 @@
     }
   }
 }
+
+.collapseable__trigger-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  svg {
+    path {
+      stroke: $base-font-color;
+    }
+  }
+
+  &:hover svg {
+    path {
+      fill: none;
+      stroke: $action-color;
+    }
+  }
+}
