@@ -6,8 +6,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#181923">
     <title>Jason Ramirez - Resume</title>
+    <style>
+      /* Font declarations for resume */
+      @font-face {
+        font-family: "Charter";
+        src: url("<%= asset_path('charter_regular.woff') %>") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: "Charter";
+        src: url("<%= asset_path('charter_italic.woff') %>") format("woff");
+        font-weight: normal;
+        font-style: italic;
+      }
+      
+      @font-face {
+        font-family: "Charter";
+        src: url("<%= asset_path('charter_bold.woff') %>") format("woff");
+        font-weight: bold;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: "Passo";
+        src: url("<%= asset_path('passo_regular.woff2') %>") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: "Passo";
+        src: url("<%= asset_path('passo_medium.woff2') %>") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: "Passo";
+        src: url("<%= asset_path('passo_semi_bold.woff2') %>") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: "Passo";
+        src: url("<%= asset_path('passo_bold.woff2') %>") format("woff2");
+        font-weight: bold;
+        font-style: normal;
+      }
+      
+      /* Resume-specific styles - completely isolated */
+      body {
+        font-family: "Charter", 'Helvetica', sans-serif;
+      }
+      
+      .resume {
+        font-family: "Charter", 'Times New Roman', serif;
+        max-width: 8.5in;
+        margin: 0 auto;
+        padding: 0.5in;
+        line-height: 1.4;
+      }
+      
+      .resume h1 {
+        font-family: "Passo", sans-serif;
+        font-weight: bold;
+        font-size: 24pt;
+        margin-bottom: 12pt;
+      }
+      
+      .resume h2 {
+        font-family: "Passo", sans-serif;
+        font-weight: 600;
+        font-size: 14pt;
+        margin-top: 18pt;
+        margin-bottom: 6pt;
+      }
+      
+      .resume h3 {
+        font-family: "Passo", sans-serif;
+        font-weight: 500;
+        font-size: 12pt;
+        margin-top: 12pt;
+        margin-bottom: 3pt;
+      }
+      
+      .resume p {
+        margin: 6pt 0;
+      }
+      
+      .resume ul {
+        margin: 6pt 0;
+        padding-left: 20pt;
+      }
+      
+      .resume li {
+        margin-bottom: 3pt;
+      }
+      
+      @media print {
+        .resume {
+          max-width: 600px;
+          margin: 0.75in;
+          padding: 0;
+        }
+        
+        .resume h1 { font-size: 18pt; }
+        .resume h2 { font-size: 12pt; }
+        .resume h3 { font-size: 11pt; }
+      }
+    </style>
   </head>
-  <body>
+  <body class="resume">
     <%= yield %>
   </body>
 </html>
