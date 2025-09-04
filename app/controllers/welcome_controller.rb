@@ -2,6 +2,6 @@ class WelcomeController < ApplicationController
   include HistoryHelper
 
   def index
-    @hashtags = Hashtag.all
+    @hashtags = Hashtag.order(:label)
   end
 end
