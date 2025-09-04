@@ -15,12 +15,10 @@
   transition: right $base-duration $base-timing;
   padding: $base-spacing ($x-large-spacing + $base-spacing)
     $base-spacing$base-spacing;
-  width: 100vw;
   z-index: $z-index-drawers;
 
   &.open {
     bottom: 0;
-    left: null;
     right: 0;
     top: 0;
     position: fixed;

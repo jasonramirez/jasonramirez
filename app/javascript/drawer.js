@@ -28,12 +28,8 @@ class Drawer {
   }
 }
 
-const initDrawers = () => {
+export const initDrawers = () => {
   document.querySelectorAll("[data-js-drawer]").forEach((element) => {
     new Drawer(element);
   });
 };
-
-// Initialize on turbo:load and DOM ready
-document.addEventListener("turbo:load", initDrawers);
-document.addEventListener("DOMContentLoaded", initDrawers);

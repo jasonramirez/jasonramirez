@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "form-frame" do %>
   <%= simple_form_for [:admins, @post] do |f| %>
-    <section class="admin-drawer" data-js-drawer>
+    <section class="admin-drawer" data-controller="drawer" data-js-drawer>
       <a class="admin-drawer__close-trigger button button--square"
         data-js-drawer-close-trigger>
         <%= inline_svg_tag "icon-close.svg" %>

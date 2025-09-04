@@ -106,10 +106,21 @@ input[type="file"] {
   width: 100%;
 }
 
-select {
+input[readonly] {
+  background-color: $base-background-color;
+  border: $base-border-style $base-border-width $base-border-color;
+  border-radius: $base-border-radius;
+  box-sizing: border-box;
+  color: $base-font-color;
+
+  font-family: $form-font-family;
+  font-size: $base-font-size;
+  font-weight: normal;
+  line-height: 1;
   margin-bottom: $base-spacing;
-  max-width: 100%;
-  width: auto;
+  padding: $input-padding;
+  transition: border-color $base-duration $base-timing;
+  width: 100%;
 }
 
 .input input[type="checkbox"],
@@ -167,16 +178,19 @@ select {
 select {
   appearance: none;
   background-color: $input-background-color;
-  background-image: url("select-background.svg");
+  // background-image: url("select-background.svg");
   background-position: calc(100% - #{$x-small-spacing}), center;
   background-repeat: no-repeat;
   border-radius: 0;
   border: none;
-  box-shadow: 0 0.25rem 0.75rem color.adjust($black, $alpha: 0.05);
   font-family: $base-font-family;
-  font-size: $small-font-size;
+  color: $base-font-color;
+  //font-size: $small-font-size;
+  margin-bottom: $base-spacing;
+  max-width: 100%;
   padding: $x-small-spacing $base-spacing $x-small-spacing $small-spacing;
   position: relative;
+  width: auto;
   -webkit-appearance: none;
 }
 

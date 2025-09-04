@@ -10,14 +10,14 @@
 
   input[type="checkbox"] + label,
   input[type="checkbox"]:checked + label {
-    background-color: color.adjust($secondary-font-color, $alpha: 0.04);
+    background-color: color.adjust($secondary-font-color, $alpha: -0.56);
     border-radius: 1rem;
     padding: $x-small-spacing $small-spacing $x-small-spacing $medium-spacing;
     text-transform: lowercase;
   }
 
   input[type="checkbox"]:checked + label {
-    background-color: color.adjust($action-color, $alpha: 0.25);
+    background-color: color.adjust($action-color, $alpha: -0.8);
   }
 
   input[type="checkbox"] + label::before,
