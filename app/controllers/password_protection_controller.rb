@@ -3,12 +3,15 @@ class PasswordProtectionController < ApplicationController
 
   def unlock
     if request.post?
-      if params[:codeword] == ENV['LOCKUP_CODEWORD']
+      codeword = params[:password_protection][:codeword]
+      return_to = params[:password_protection][:return_to]
+      
+      if codeword == ENV['LOCKUP_CODEWORD']
         session[:unlocked] = true
-        redirect_to params[:return_to] || root_path
+        redirect_to return_to || root_path
       else
         @wrong = true
-        @return_to = params[:return_to]
+        @return_to = return_to
         render :unlock
       end
     end

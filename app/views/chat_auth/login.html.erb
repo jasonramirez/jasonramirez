@@ -1,6 +1,8 @@
 <section class="content content--slim">
-  <h1>My Mind Login</h1>
-  
+  <div class="my-mind-title-image">
+    <h1>My Mind</h1>
+  </div>
+
   <%= form_with url: chat_login_path, method: :post, data: { turbo: false } do |form|%>
     <div class="sky-label">
       <%= form.label :email, "Email" %>
