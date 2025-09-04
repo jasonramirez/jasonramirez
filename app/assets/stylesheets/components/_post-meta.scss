@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   font: $base-font-family;
+  gap: $large-spacing;
   justify-content: flex-start;
   margin-bottom: $large-spacing;
 }
@@ -28,16 +29,11 @@
   font-family: $base-font-family;
 }
 
-.post-meta__image {
-  margin-bottom: $xx-large-spacing;
-}
-
 .post-meta__title {
   font-family: $heading-font-family;
   font-size: 3rem;
   font-weight: $heading-font-weight;
   line-height: $heading-line-height * 0.9;
-  margin: $x-large-spacing 0 $large-spacing;
   text-transform: capitalize;
 
   @media ($medium-screen) {
@@ -48,8 +44,7 @@
 .post-meta__subtitle,
 .post-meta__description {
   font-size: 1.5rem;
-  line-height: $heading-line-height;
-  margin-bottom: $x-large-spacing;
   font-weight: $reading-font-weight;
+  margin: 0;
   width: 100%;
 }

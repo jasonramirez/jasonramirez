@@ -6,9 +6,11 @@
 .custom-audio-player {
   background-color: color.adjust($base-background-color, $alpha: -0.15);
   border-radius: $base-border-radius;
+  border: 1px solid color.adjust($base-border-color, $alpha: -0.1);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-top: $base-spacing;
+  padding: $small-spacing;
   width: 100%;
 }
 
