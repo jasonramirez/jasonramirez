@@ -24,7 +24,7 @@
 
       <div class="admin-post-meta">
         <%= f.input :summary, class: "admin-post-form__textarea",
-          input_html: { "data-js-flexible-textarea": true } %>
+          input_html: { "data-controller": "flexible-textarea", "data-js-flexible-textarea": true } %>
       </div>
 
       <div class="admin-post-meta">
@@ -77,6 +77,7 @@
 
         <%= f.input(:body,
           input_html: {
+            "data-controller": "flexible-textarea",
             "data-js-flexible-textarea": "",
           placeholder: "Body",
         }) %>

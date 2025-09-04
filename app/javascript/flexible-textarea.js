@@ -20,14 +20,10 @@ class FlexibleTextarea {
   }
 }
 
-const initFlexibleTextareas = () => {
+export const initFlexibleTextareas = () => {
   document
     .querySelectorAll("[data-js-flexible-textarea]")
     .forEach((element) => {
       new FlexibleTextarea(element);
     });
 };
-
-// Initialize on turbo:load and DOM ready
-document.addEventListener("turbo:load", initFlexibleTextareas);
-document.addEventListener("DOMContentLoaded", initFlexibleTextareas);
