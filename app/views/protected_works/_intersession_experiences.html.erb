@@ -1,15 +1,17 @@
 <article class="content content--reading post">
   <div class="post-meta">
-      <div class="work-link__video-container">
-        <video autoplay muted loop playsinline class="work-link__video">
-          <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
-          <!-- Fallback image for browsers that don't support video -->
-          <img src="<%= asset_path('works/grow-intersession-experiences-title-card.png') %>" alt="Intersession Experiences">
-        </video>
-        <div class="work-link__logo-overlay">
-          <%= inline_svg "works/grow-therapy-logo-white.svg" %>
-        </div>
+    <div class="work-link__video-container">
+      <video autoplay muted loop playsinline class="work-link__video">
+        <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
+        <!-- Fallback image for browsers that don't support video -->
+        <img src="<%= asset_path('works/grow-intersession-experiences-title-card.png') %>" alt="Intersession Experiences">
+      </video>
+      <div class="work-link__logo-overlay">
+        <%= inline_svg "works/grow-therapy-logo-white.svg" %>
       </div>
+    </div>
+
+    <div class="post-meta__title">Intersession Experiences</div>
 
     <%= 
       render 'shared/custom_audio_player',
@@ -17,8 +19,6 @@
       title: 'Intersession Experiences',
       transcript_file: 'transcripts/intersession-experiences.txt'
     %>
-
-    <div class="post-meta__title">Intersession Experiences</div>
 
     <h2 class="post-meta__subtitle">Grow Therapy, 2025</h2>
 
