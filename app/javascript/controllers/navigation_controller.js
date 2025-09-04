@@ -4,6 +4,8 @@ export default class extends Controller {
   static targets = ["header", "themeSwitcher"];
 
   connect() {
+    // Ensure theme switcher starts in normal position
+    this.showThemeSwitcherInNav();
     this.setupIntersectionObserver();
     this.setupScrollListener();
   }
@@ -31,7 +33,6 @@ export default class extends Controller {
       },
       {
         threshold: 0.1, // Trigger when 10% of header is visible
-        rootMargin: "0px 0px -50px 0px", // Add some margin for better UX
       }
     );
 

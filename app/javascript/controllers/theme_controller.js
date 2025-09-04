@@ -15,6 +15,9 @@ export default class extends Controller {
     // Get theme from localStorage or default to dark
     const savedTheme = localStorage.getItem("theme") || "dark";
     this.setTheme(savedTheme);
+
+    // Ensure proper initial state
+    this.updateStylesheet(savedTheme);
   }
 
   toggle() {
@@ -45,20 +48,36 @@ export default class extends Controller {
   }
 
   updateStylesheet(theme) {
-    // Enable/disable stylesheets based on theme
     const darkStylesheet = document.querySelector(
       'link[href*="application_dark"]'
     );
-    const lightStylesheet = document.querySelector(
+    let lightStylesheet = document.querySelector(
       'link[href*="application_light"]'
     );
 
-    if (darkStylesheet && lightStylesheet) {
-      if (theme === "dark") {
+    if (theme === "dark") {
+      // Ensure dark theme is active
+      if (darkStylesheet) {
         darkStylesheet.disabled = false;
+      }
+      if (lightStylesheet) {
         lightStylesheet.disabled = true;
-      } else {
+      }
+    } else {
+      // Load light stylesheet if not already loaded
+      if (!lightStylesheet) {
+        lightStylesheet = document.createElement("link");
+        lightStylesheet.rel = "stylesheet";
+        lightStylesheet.href = this.lightStylesheetValue;
+        lightStylesheet.setAttribute("data-theme-stylesheet", "light");
+        document.head.appendChild(lightStylesheet);
+      }
+
+      // Switch to light theme
+      if (darkStylesheet) {
         darkStylesheet.disabled = true;
+      }
+      if (lightStylesheet) {
         lightStylesheet.disabled = false;
       }
     }

@@ -12,7 +12,6 @@
       <%= t(".titles.application") %>
     </title>
     <%= stylesheet_link_tag "application_dark", "data-turbo-track": Rails.env.production? ? "reload" : nil %>
-    <%= stylesheet_link_tag "application_light", "data-turbo-track": Rails.env.production? ? "reload" : nil, disabled: true %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
   </head>
