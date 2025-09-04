@@ -190,6 +190,7 @@ class Modal {
 
   submitDeleteForm(modal) {
     const form = this.createDeleteForm(modal.modalData.deleteUrl);
+    this.addReplacementHashtag(form, modal);
     this.submitForm(form);
   }
 
@@ -220,6 +221,17 @@ class Modal {
       csrfInput.name = "authenticity_token";
       csrfInput.value = csrfToken;
       form.appendChild(csrfInput);
+    }
+  }
+
+  addReplacementHashtag(form, modal) {
+    const replacementSelect = modal.querySelector("#replacement-hashtag");
+    if (replacementSelect && replacementSelect.value) {
+      const replacementInput = document.createElement("input");
+      replacementInput.type = "hidden";
+      replacementInput.name = "replacement_hashtag_id";
+      replacementInput.value = replacementSelect.value;
+      form.appendChild(replacementInput);
     }
   }
 

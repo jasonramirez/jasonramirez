@@ -30,5 +30,16 @@
     type: "confirm",
     title: "Delete Hashtag" do %>
     <p>Are you sure you want to delete "<span id="hashtag-label"></span>"?</p>
+    <p><strong>Warning:</strong> This will remove the hashtag from all posts that use it.</p>
+    
+    <div class="form-group">
+      <label for="replacement-hashtag">Replace with existing hashtag (optional):</label>
+      <select id="replacement-hashtag" name="replacement_hashtag_id" class="form-control">
+        <option value="">No replacement (delete completely)</option>
+        <% @hashtags.each do |hashtag| %>
+          <option value="<%= hashtag.id %>"><%= hashtag.label %></option>
+        <% end %>
+      </select>
+    </div>
   <% end %>
 </section>

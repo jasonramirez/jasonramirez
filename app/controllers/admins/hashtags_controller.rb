@@ -41,10 +41,19 @@ class Admins::HashtagsController < ApplicationController
 
   def destroy
     hashtag = find_hashtag
+    replacement_hashtag_id = params[:replacement_hashtag_id]
+
+    if replacement_hashtag_id.present?
+      # Replace the hashtag with another one
+      replacement_hashtag = Hashtag.find(replacement_hashtag_id)
+      replace_hashtag(hashtag, replacement_hashtag)
+    end
 
     if hashtag.destroy
-      redirect_to admins_hashtags_path,
-        notice: t("admins.flash.destroyed")
+      message = replacement_hashtag_id.present? ? 
+        "Hashtag replaced and deleted successfully." : 
+        t("admins.flash.destroyed")
+      redirect_to admins_hashtags_path, notice: message
     else
       redirect_to admins_hashtags_path,
         alert: t("admins.flash.failed")
@@ -59,5 +68,16 @@ class Admins::HashtagsController < ApplicationController
 
   def hashtag_params
     params.require(:hashtag).permit(:label)
+  end
+
+  def replace_hashtag(old_hashtag, new_hashtag)
+    # Find all posts that have the old hashtag
+    posts_with_old_hashtag = Post.joins(:hashtags).where(hashtags: { id: old_hashtag.id })
+    
+    posts_with_old_hashtag.each do |post|
+      # Remove the old hashtag and add the new one
+      post.hashtags.delete(old_hashtag)
+      post.hashtags << new_hashtag unless post.hashtags.include?(new_hashtag)
+    end
   end
 end
