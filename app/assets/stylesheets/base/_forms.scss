@@ -178,19 +178,16 @@ input[readonly] {
 select {
   appearance: none;
   background-color: $input-background-color;
-  // background-image: url("select-background.svg");
   background-position: calc(100% - #{$x-small-spacing}), center;
   background-repeat: no-repeat;
   border-radius: 0;
   border: none;
   font-family: $base-font-family;
   color: $base-font-color;
-  //font-size: $small-font-size;
   margin-bottom: $base-spacing;
   max-width: 100%;
   padding: $x-small-spacing $base-spacing $x-small-spacing $small-spacing;
   position: relative;
-  width: 100%;
   -webkit-appearance: none;
 }
 
