@@ -55,7 +55,7 @@ $reading-line-height: 1.6;
 $sky-label-line-height: 1.6;
 
 // Other Sizes
-$base-border-radius: 3px;
+$base-border-radius: 0.25rem;
 $button-border-radius: $base-border-radius;
 $reading-paragraph-spacing: 1.5rem;
 $navigation-height: 8rem;
@@ -86,9 +86,6 @@ $base-timing: ease;
 // Border
 $base-border-style: solid;
 $base-border-width: 1px;
-
-// Border Radius
-$base-border-radius: 0.15rem;
 
 // Forms
 $input-padding: 1rem;
