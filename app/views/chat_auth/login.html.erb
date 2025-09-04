@@ -12,10 +12,14 @@
       <%= form.password_field :password, type: "password", required: true %>
     </div>
     
-    <%= form.submit "Login", class: "button button--primary u-margin-bottom-large" %>
+    <div class="form-actions">
+      <div class="form-actions__left">
+        <%= form.submit "Login", class: "button button--primary" %>
+      </div>
+      <div class="form-actions__right">
+        Don't have an account? &nbsp;
+        <%= link_to "Register here", chat_register_path, class: "link" %>
+      </div>
+    </div>
   <% end %>
-  
-  <div>
-    <p>Don't have an account? <%= link_to "Register here", chat_register_path, class: "link" %></p>
-  </div>
 </section>

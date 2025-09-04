@@ -10,6 +10,27 @@
   </div>
   
   <div class="my-mind-chat-container" data-my-mind-chat-container="true">
+    <% unless @chat_messages.any? %>
+      <div class="my-mind-intro">
+        <h1 class="my-mind-intro__title">
+          My Mind
+        </h1>
+        <p class="my-mind-intro__description">
+          This is my AI-powered knowledge base, trained on my thoughts, experiences, and insights from years of building products and leading teams. Ask me anything about design, leadership, product development, or my professional journey.
+        </p>
+        <div class="my-mind-intro__suggestions">
+          <h3>Try asking about:</h3>
+          <ul>
+            <li>My approach to product design and user experience</li>
+            <li>Leadership principles and team building</li>
+            <li>My experience at companies like Dropbox and thoughtbot</li>
+            <li>Thoughts on AI, technology, and the future of work</li>
+            <li>Specific projects or case studies I've worked on</li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    
     <div class="my-mind-chat-history">
       <% if @chat_messages.any? %>
         <%= render partial: 'chat_message', collection: @chat_messages, as: :message %>

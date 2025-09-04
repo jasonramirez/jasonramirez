@@ -1,0 +1,23 @@
+@use "variables/variables" as *;
+
+.form-actions {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-actions__left {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.form-actions__right {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+}
