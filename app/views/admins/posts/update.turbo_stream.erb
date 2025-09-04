@@ -18,6 +18,20 @@
     </script>
   </template>
 </turbo-stream>
+
+<turbo-stream action="update" target="post_preview_button">
+  <template>
+    <% if @post.id.present? %>
+      <%= link_to(post_path(@post),
+        data: { turbo: :false },
+        id: "preview_post",
+        class: "admin-floating-action__button",
+      ) do %>
+        <%= inline_svg_tag "icon-preview.svg" %>
+      <% end %>
+    <% end %>
+  </template>
+</turbo-stream>
 <% end %>
 
 <turbo-stream action="update" target="published_chip">

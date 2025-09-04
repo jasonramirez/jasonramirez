@@ -61,6 +61,28 @@ feature "Admin edits post", js: true do
       # Should still be on the edit page with the updated title
       expect(page).to have_field("post[title]", with: "My New Post Title")
     end
+
+    it "updates preview button URL when title changes" do
+      post = create(:post, title: "Original Title")
+      sign_in_admin
+
+      visit edit_admins_post_path(post)
+
+      # Get the original preview URL
+      original_preview_url = find("#preview_post")[:href]
+
+      # Change the title
+      fill_form(:post, title: "New Title")
+
+      page.find("#save_post").click
+
+      expect(page).to have_text t("admins.flash.updated")
+
+      # Check that the preview button URL has been updated
+      new_preview_url = find("#preview_post")[:href]
+      expect(new_preview_url).to_not eq(original_preview_url)
+      expect(new_preview_url).to include("new-title")
+    end
   end
 
   private
