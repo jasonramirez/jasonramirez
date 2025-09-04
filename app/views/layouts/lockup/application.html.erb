@@ -6,17 +6,17 @@
     <meta content="NOODP" name="ROBOTS">
     <meta name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color"
-      content="<%= cookies[:theme] == "dark" ? "#181923" : "#fffaed" %>">
+    <meta name="theme-color" content="#181923">
     <%= render "application/favicons" %>
     <title>
       <%= t(".titles.application") %>
     </title>
-    <%= stylesheet_link_tag "application_#{cookies[:theme]}", media: "all" %>
+    <%= stylesheet_link_tag "application_dark", "data-turbo-track": Rails.env.production? ? "reload" : nil %>
+    <%= stylesheet_link_tag "application_light", "data-turbo-track": Rails.env.production? ? "reload" : nil, disabled: true %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="<%= body_class %> <%= cookies[:theme] %>">
+  <body class="<%= body_class %> dark">
     <main class="page">
       <%= yield %>
     </main>

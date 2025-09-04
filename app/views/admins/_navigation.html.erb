@@ -1,4 +1,6 @@
-<header class="site-header">
+<header class="site-header" 
+        data-controller="navigation"
+        data-navigation-target="header">
   <nav class="navigation--left">
     <ul class="navigation__links">
       <li class="navigation__link">
@@ -26,18 +28,16 @@
         <%= link_to t(".sign_out"), destroy_admin_session_path, data: { turbo_method: :delete } %>
       </li>
 
-      <li class="navigation__link">
-        <% if cookies[:theme] == "dark" %>
-          <%= link_to set_theme_path(theme: "light"),
-            data: { turbo_method: :post } do %>
-            <%= inline_svg "icon-theme-change.svg" %>
-          <% end %>
-        <% else %>
-          <%= link_to set_theme_path(theme: "dark"),
-            data: { turbo_method: :post } do %>
-            <%= inline_svg "icon-theme-change.svg" %>
-          <% end %>
-        <% end %>
+      <li class="navigation__link"
+          data-navigation-target="themeSwitcher">
+        <button type="button"
+            data-controller="theme"
+            data-action="click->theme#toggle"
+            data-theme-light-stylesheet-value="<%= asset_path('application_light.css') %>"
+            data-theme-dark-stylesheet-value="<%= asset_path('application_dark.css') %>"
+            class="navigation__link theme-toggle-button">
+          <%= inline_svg "icon-theme-change.svg" %>
+        </button>
       </li>
     </ul>
   </nav>
