@@ -35,13 +35,34 @@
 .custom-audio-player__controls {
   align-items: center;
   display: flex;
+  flex-direction: column;
   width: 100%;
+
+  @media ($small-screen) {
+    flex-direction: row;
+  }
+}
+
+.custom-audio-player__control {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: $small-screen) {
+    height: 2rem;
+    justify-content: flex-start;
+    width: 100%;
+  }
 }
 
 .custom-audio-player__play-button {
   color: $base-font-color;
   margin-right: $small-spacing;
   padding: 0;
+
+  @media (max-width: $small-screen) {
+    margin-left: $xx-small-spacing;
+  }
 
   .icon {
     height: 16px;
@@ -251,6 +272,10 @@
   display: flex;
   justify-content: center;
   margin-left: $small-spacing;
+
+  @media (max-width: $small-screen) {
+    margin-left: $xx-small-spacing;
+  }
 }
 
 select.custom-audio-player__speed-selector {
@@ -299,6 +324,10 @@ select.custom-audio-player__speed-selector {
   margin-left: $base-spacing;
   padding: 4px;
   transition: all $base-duration $base-timing;
+
+  @media (max-width: $small-screen) {
+    margin-left: 0;
+  }
 
   &:hover {
     color: color.adjust($action-color, $lightness: 10%);
