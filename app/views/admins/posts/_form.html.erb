@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "form-frame" do %>
+  <div id="browser-url"></div>
   <%= simple_form_for [:admins, @post] do |f| %>
     <section class="admin-drawer" data-controller="drawer" data-js-drawer>
       <a class="admin-drawer__close-trigger button button--square"

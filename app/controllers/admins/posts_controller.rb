@@ -33,8 +33,10 @@ class Admins::PostsController < ApplicationController
 
   def update
     @post = find_post
+    @old_slug = @post.slug
 
     if @post.update(post_params)
+      @slug_changed = @old_slug != @post.slug
       render_turbo_steam("update")
     else
       render_turbo_steam("failure")
@@ -89,6 +91,7 @@ class Admins::PostsController < ApplicationController
     params.require(:post).permit(
       :body,
       :summary,
+      :tldr_transcript,
       :published,
       :published_date,
       :title,

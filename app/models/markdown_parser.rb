@@ -6,6 +6,9 @@ class MarkdownParser
   end
 
   def markdown_to_html
+    # Return empty string if markdown is nil or empty
+    return "" if @markdown.nil? || @markdown.empty?
+    
     # Sanitize HTML output to prevent XSS
     sanitize_html(processor.render(@markdown))
   end

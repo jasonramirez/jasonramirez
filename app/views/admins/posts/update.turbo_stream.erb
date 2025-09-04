@@ -3,11 +3,22 @@
     <div class="flashes" id="post_flash">
       <div class="flash-notice">
         <%= inline_svg "icon-checkmark.svg" %>
-        <%= t("admins.flash.created") %>
+        <%= t("admins.flash.updated") %>
       </div>
     </div>
   </template>
 </turbo-stream>
+
+<% if @slug_changed %>
+<turbo-stream action="update" target="browser-url">
+  <template>
+    <script>
+      // Update the browser URL to reflect the new slug
+      window.history.replaceState(null, null, '<%= edit_admins_post_path(@post) %>');
+    </script>
+  </template>
+</turbo-stream>
+<% end %>
 
 <turbo-stream action="update" target="published_chip">
   <template>
