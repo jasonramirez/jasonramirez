@@ -4,17 +4,17 @@
 @use "sass:color";
 
 .custom-audio-player {
-  background-color: $base-background-color;
-  border: $base-border-style $base-border-width $base-border-color;
+  background-color: color.adjust($base-border-color, $alpha: -0.15);
+  //border: $base-border-style $base-border-width $base-border-color;
   border-radius: $base-border-radius;
-  box-shadow: 0 0 2rem 0 $black;
   display: flex;
   flex-direction: column;
-  max-width: $reading-screen;
-  padding: $base-spacing;
-  position: fixed;
-  right: $base-spacing;
-  top: $base-spacing;
+  //max-width: $reading-screen;
+  margin-top: $base-spacing;
+  padding: $small-spacing;
+  // position: fixed;
+  // right: $base-spacing;
+  // top: $base-spacing;
   width: 100%;
   z-index: 100;
 }

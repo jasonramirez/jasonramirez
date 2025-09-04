@@ -108,9 +108,9 @@
     As with most successful projects, it takes a village. I was lucky to be surrounded with amazing thoughtbot designers and engineers, and a Mayo Clinic administrative duo. The Mayo Clinic also provided us with world-class doctors to create the case content, as well as a board to lobby for investment.
   </p>
 
-  <h1>
+  <h2>
     Collaborators
-  </h1>
+  </h2>
 
   <div class="work-focus__grid">
     <strong>Board</strong>
@@ -154,21 +154,26 @@
     </ul>
   </div>
 
+  <h2>
+  Process
+  </h2>
   <p>
     For this project I chose a lean product approach. We would
     discover a problem, identify the business, develop the customer, identify
     risks and assumptions, then build measure and learn from the solutions 
     you ship.
   </p>
+</article>
 
-  <div class="work-image-container">
-    <figure class="work-image">
-      <%= image_tag "works/mayo-clinic-educational-game-process.png" %>
-      <figcaption>
-      </figcaption>
-    </figure>
-  </div>
+<div class="work-image-container">
+  <figure class="work-image">
+    <%= image_tag "works/mayo-clinic-educational-game-process.png" %>
+    <figcaption>
+    </figcaption>
+  </figure>
+</div>
 
+<article class="content content--reading post">
   <p>
     The first phase of the project was dedicated to refining the problem space,
     testing the business idea, establishing goals, and honing in on
@@ -213,36 +218,40 @@
     gave us a sense of market size, and illuminated our
     unique value proposition: world class doctors creating content.
   </p>
+</article>
 
-  <div class="work-image-container">
-    <figure class="work-image">
-      <%= image_tag "works/mayo-clinic-educational-game-copetitive-audit.png" %>
-      <figcaption>
-      </figcaption>
-    </figure>
-  </div>
+<div class="work-image-container">
+  <figure class="work-image">
+    <%= image_tag "works/mayo-clinic-educational-game-copetitive-audit.png" %>
+    <figcaption>
+    </figcaption>
+  </figure>
+</div>
 
+<article class="content content--reading post">
   <p>
     With an understanding of our problem, our goals, and our competition,
     we kicked off a design sprint to test our assumptions. The Google Venture
     Design Sprint emphasizes effective problem identification and iterative
     testing. It accelerates learning and provides clear direction. 
   </p>
+</article>
 
-  <div class="work-image-container">
-    <figure class="work-image">
-      <%= image_tag "works/dropbox-activation-design-sprint.png" %>
-      <figcaption>
-        An abstraction of the 5-day Design Sprint Process
-        made famous by Jake Knapp. Created while Jake Knapp
-        was at Google Ventures. This was used to demonstrate the
-        similarities to design thinking and
-        get alignment on using the process
-        for vague problem spaces.
-      </figcaption>
-    </figure>
-  </div>
+<div class="work-image-container">
+  <figure class="work-image">
+    <%= image_tag "works/dropbox-activation-design-sprint.png" %>
+    <figcaption>
+      An abstraction of the 5-day Design Sprint Process
+      made famous by Jake Knapp. Created while Jake Knapp
+      was at Google Ventures. This was used to demonstrate the
+      similarities to design thinking and
+      get alignment on using the process
+      for vague problem spaces.
+    </figcaption>
+  </figure>
+</div>
 
+<article class="content content--reading post">
   <a name="designing"></a>
   <h1>
     Designing
@@ -255,15 +264,17 @@
     clinician, and professionalism. The initial prototype was a physical card
     game made using index cards.
   </p>
+</article>
 
-  <div class="work-image-container">
-    <figure class="work-image">
-      <%= image_tag "works/mayo-clinic-educational-game-prototype.png" %>
-      <figcaption>
-      </figcaption>
-    </figure>
-  </div>
+<div class="work-image-container">
+  <figure class="work-image">
+    <%= image_tag "works/mayo-clinic-educational-game-prototype.png" %>
+    <figcaption>
+    </figcaption>
+  </figure>
+</div>
 
+<article class="content content--reading post">
   <p>
     We set out to test the card game with 15 doctors in the Mayo Clinic. We
     ended up testing it with around 40. Doctors were not only eager to play, but
@@ -297,35 +308,29 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel">
-    <div data-js-carousel-cards-placeholder
-         class="carousel__cards-placeholder"></div>
+<section data-controller="carousel" data-js-carousel class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card class="carousel__card">
+      <%= image_tag "works/mayo-clinic-educational-game-case-picker-v1.png" %>
+      <figcaption>
+        Version 1 of the case selection screen. Allowing users to pick a case,
+        view par for that case, and get a little detail as to the patient
+        presenting.
+      </figcaption>
+    </figure>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-case-picker-v1.png" %>
-        <figcaption>
-          Version 1 of the case selection screen. Allowing users to pick a case,
-          view par for that case, and get a little detail as to the patient
-          presenting.
-        </figcaption>
-      </figure>
+    <figure data-js-carousel-card class="carousel__card">
+      <%= image_tag "works/mayo-clinic-educational-game-case-picker-v4.png" %>
+      <figcaption>
+        Version 4 showing how we emphaised "real case" to drive engagement, 
+        leveraged the Mayo logo to build trust and drive retention, and finally
+        highlighted par to drive more engagement.
+      </figcaption>
+    </figure>
+  </div>
 
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-case-picker-v4.png" %>
-        <figcaption>
-          Version 4 showing how we emphaised "real case" to drive engagement, 
-          leveraged the Mayo logo to build trust and drive retention, and finally
-          highlighted par to drive more engagement.
-        </figcaption>
-      </figure>
-    </div>
-
-    <%= render "carousels/actions" %>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -356,29 +361,27 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel">
-    <div data-js-carousel-cards-placeholder
-         class="carousel__cards-placeholder"></div>
+<section data-controller="carousel" data-js-carousel class="carousel">
+  <div data-js-carousel-cards-placeholder
+       class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-patient-information-v1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/mayo-clinic-educational-game-patient-information-v1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-patient-information-v3.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/mayo-clinic-educational-game-patient-information-v3.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <%= render "carousels/actions" %>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -402,29 +405,27 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel">
-    <div data-js-carousel-cards-placeholder
-         class="carousel__cards-placeholder"></div>
+<section data-controller="carousel" data-js-carousel class="carousel">
+  <div data-js-carousel-cards-placeholder
+       class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-play-v1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/mayo-clinic-educational-game-play-v1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-play-v5.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/mayo-clinic-educational-game-play-v5.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <%= render "carousels/actions" %>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">
@@ -449,29 +450,27 @@
   </p>
 </article>
 
-<section>
-  <section data-js-carousel class="carousel">
-    <div data-js-carousel-cards-placeholder
-         class="carousel__cards-placeholder"></div>
+<section data-controller="carousel" data-js-carousel class="carousel">
+  <div data-js-carousel-cards-placeholder
+       class="carousel__cards-placeholder"></div>
 
-    <div data-js-carousel-cards class="carousel__cards">
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-diagnose-v1.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/mayo-clinic-educational-game-diagnose-v1.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
 
-      <figure data-js-carousel-card
-        class="carousel__card work-carousel-card">
-        <%= image_tag "works/mayo-clinic-educational-game-diagnose-v4.png" %>
-        <figcaption>
-        </figcaption>
-      </figure>
-    </div>
+    <figure data-js-carousel-card
+      class="carousel__card work-carousel-card">
+      <%= image_tag "works/mayo-clinic-educational-game-diagnose-v4.png" %>
+      <figcaption>
+      </figcaption>
+    </figure>
+  </div>
 
-    <%= render "carousels/actions" %>
-  </section>
+  <%= render "carousels/actions" %>
 </section>
 
 <article class="content content--reading post">

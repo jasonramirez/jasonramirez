@@ -33,7 +33,6 @@ class Carousel {
     this._setIndexContent();
     this._setIndexSelected();
     this._setTriggerState();
-    this._setContainerSize();
 
     if (this.totalImages > 0) {
       this._loadImages();
@@ -113,14 +112,28 @@ class Carousel {
   _onImageLoad() {
     this.imagesLoaded++;
     if (this.imagesLoaded >= this.totalImages) {
-      this._setContainerSize();
+      // Use requestAnimationFrame to ensure layout is fully rendered
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          this._setContainerSize();
+        });
+      });
     }
   }
 
   _getMaxCardHeight() {
+    // Temporarily remove absolute positioning to get natural height
+    const originalPosition = this.carouselCardsContainer.style.position;
+    this.carouselCardsContainer.style.position = "static";
+
     const heightArray = Array.from(this.carouselCards).map((card) => {
-      return card.offsetHeight;
+      const rect = card.getBoundingClientRect();
+      return rect.height > 0 ? rect.height : card.offsetHeight;
     });
+
+    // Restore original positioning
+    this.carouselCardsContainer.style.position = originalPosition;
+
     return Math.max(...heightArray);
   }
 
@@ -225,24 +238,12 @@ class Carousel {
 
   _setLeftPosition() {
     if (this.carouselCardsContainer) {
-      this.carouselCardsContainer.style.left = `-${this.leftPosition}vw`;
+      this.carouselCardsContainer.style.left = `-${this.leftPosition}%`;
     }
   }
 }
 
-const initCarousels = () => {
-  document.querySelectorAll("[data-js-carousel]").forEach((element) => {
-    if (!element.dataset.carouselInitialized) {
-      try {
-        new Carousel(element);
-        element.dataset.carouselInitialized = "true";
-      } catch (error) {
-        console.error("Failed to initialize carousel:", error);
-      }
-    }
-  });
-};
-
-// Initialize on turbo:load and DOM ready
-document.addEventListener("turbo:load", initCarousels);
-document.addEventListener("DOMContentLoaded", initCarousels);
+// Initialize carousel when called from Stimulus controller
+export function initCarousel(element) {
+  return new Carousel(element);
+}

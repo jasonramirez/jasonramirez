@@ -8,22 +8,37 @@
 }
 
 .carousel__cards {
-  border-radius: $base-border-radius;
   display: flex;
   left: 0;
   position: absolute;
   top: 0;
   transition: left 500ms ease;
+  width: 100vw;
 }
 
 .carousel__card {
   align-items: center;
+  border-radius: $base-border-radius;
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
   text-align: center;
   width: 100vw;
+  flex-shrink: 0;
+  height: auto;
+
+  img {
+    pointer-events: none;
+    user-select: none;
+    max-width: $large-screen;
+    width: calc(100% - #{$base-spacing});
+  }
+
+  figcaption {
+    margin-top: $small-spacing;
+    max-width: $reading-screen;
+  }
 }
 
 .carousel__cards-placeholder {
@@ -34,6 +49,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-top: $base-spacing;
   width: 100%;
 
   a {

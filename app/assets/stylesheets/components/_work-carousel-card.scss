@@ -1,38 +1,38 @@
-@use "mixins/media" as *;
+// @use "mixins/media" as *;
 
-.work-carousel-card {
-  margin: 0;
+// .work-carousel-card {
+//   margin: 0;
 
-  img {
-    border: 1px solid $base-border-color;
-    border-radius: $base-border-radius;
-    pointer-events: none;
-    user-select: none;
-    width: 100%;
+//   img {
+//     border: 1px solid $base-border-color;
+//     border-radius: $base-border-radius;
+//     pointer-events: none;
+//     user-select: none;
+//     width: 100%;
 
-    @include media($large-screen) {
-      max-width: calc(#{$reading-screen} * 1.1 + 20vw);
-    }
+//     @include media($large-screen) {
+//       max-width: calc(#{$reading-screen} * 1.1 + 20vw);
+//     }
 
-    @include media($x-large-screen) {
-      max-width: calc(#{$reading-screen} * 1.2 + 20vw);
-    }
-  }
+//     @include media($x-large-screen) {
+//       max-width: calc(#{$reading-screen} * 1.2 + 20vw);
+//     }
+//   }
 
-  figcaption {
-    font-family: $reading-font-family;
-    font-weight: $reading-font-weight;
-    line-height: $reading-line-height;
-    margin-top: $small-spacing;
-    text-align: center;
-    width: 100%;
+//   figcaption {
+//     font-family: $reading-font-family;
+//     font-weight: $reading-font-weight;
+//     line-height: $reading-line-height;
+//     margin-top: $small-spacing;
+//     text-align: center;
+//     width: 100%;
 
-    @include media($large-screen) {
-      max-width: calc(#{$reading-screen} * 1.1 + 20vw);
-    }
+//     @include media($large-screen) {
+//       max-width: calc(#{$reading-screen} * 1.1 + 20vw);
+//     }
 
-    @include media($x-large-screen) {
-      max-width: calc(#{$reading-screen} * 1.2 + 20vw);
-    }
-  }
-}
+//     @include media($x-large-screen) {
+//       max-width: calc(#{$reading-screen} * 1.2 + 20vw);
+//     }
+//   }
+// }
