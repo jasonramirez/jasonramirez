@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get "privacy_and_terms", to: "privacy_and_terms#index"
   get "resume", to: "resume#show"  
   get "principles", to: "principles#index"
-  post "set_theme", to: "theme#update"
   get "values", to: "values#index"
   get "works", to: "works#index"
   get "works/:work", to: "works#show"

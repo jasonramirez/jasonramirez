@@ -6,17 +6,18 @@
     <meta content="NOODP" name="ROBOTS">
     <meta name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="<%= theme_content %>">
+    <meta name="theme-color" content="#181923">
     <%= render "favicons" %>
     <title>
       <%= title %>
     </title>
-    <%= stylesheet_link_tag theme_stylesheet, "data-turbo-track": Rails.env.production? ? "reload" : nil %>
+    <%= stylesheet_link_tag "application_dark", "data-turbo-track": Rails.env.production? ? "reload" : nil %>
+    <%= stylesheet_link_tag "application_light", "data-turbo-track": Rails.env.production? ? "reload" : nil, disabled: true %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
     <%= javascript_import_module_tag "application" %>
   </head>
-  <body class="<%= body_class %> <%= cookies[:theme] %>">
+  <body class="<%= body_class %> dark">
     <%= render "flashes" %>
     <%= render "navigation" %>
     <main class="page">

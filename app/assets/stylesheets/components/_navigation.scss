@@ -53,7 +53,6 @@
       top: calc($navigation-height-mobile - 120%);
       right: 120%;
       align-items: center;
-      align-items: center;
       background-color: $base-background-color;
       display: flex;
       flex-direction: column;
@@ -82,6 +81,7 @@
 }
 
 .navigation__link {
+  align-items: center;
   color: $base-font-color;
   display: flex;
   font-family: $heading-font-family;
@@ -116,12 +116,20 @@
   }
 
   &:hover {
+    cursor: pointer;
+
     svg {
       path {
         fill: $action-color;
       }
     }
   }
+}
+
+.navigation__link--fixed {
+  position: fixed;
+  top: $base-spacing;
+  right: $base-spacing;
 }
 
 .navigation__mobile-trigger {
