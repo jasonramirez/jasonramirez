@@ -13,9 +13,12 @@
   }
 
   iframe {
+    border-radius: $base-border-radius;
     $zoom-level-small: 0.65;
     $zoom-level-small-transform: 50% 0;
     $zoom-level-large: 0.8;
+    max-width: $large-screen;
+    width: calc(100% - #{$base-spacing});
 
     -moz-transform: scale($zoom-level-small);
     -o-transform: scale($zoom-level-small);
