@@ -10,49 +10,52 @@ export default class extends Controller {
   connect() {
     // Only initialize if this is the body controller (not the button controller)
     if (this.element === document.body) {
-      this.initializeTheme();
+      this.ensureThemeConsistency();
 
-      // Listen for Turbo navigation events to reinitialize theme
+      // Listen for Turbo navigation events to ensure theme consistency
       this.turboLoadHandler = () => {
-        this.initializeTheme();
+        // Use a small delay to ensure DOM is ready
+        requestAnimationFrame(() => {
+          this.ensureThemeConsistency();
+        });
       };
+
+      // Listen to multiple Turbo events for better coverage
       document.addEventListener("turbo:load", this.turboLoadHandler);
+      document.addEventListener("turbo:render", this.turboLoadHandler);
     }
   }
 
   disconnect() {
-    // Clean up event listener
+    // Clean up event listeners
     if (this.turboLoadHandler) {
       document.removeEventListener("turbo:load", this.turboLoadHandler);
+      document.removeEventListener("turbo:render", this.turboLoadHandler);
     }
   }
 
-  initializeTheme() {
-    // Get theme from localStorage or default to dark
-    const savedTheme = localStorage.getItem("theme") || "dark";
+  ensureThemeConsistency() {
+    try {
+      // Get theme from localStorage or default to dark
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      const currentBodyTheme = document.body.classList.contains("light")
+        ? "light"
+        : "dark";
+      const currentDataTheme =
+        document.documentElement.getAttribute("data-theme");
 
-    // Apply theme immediately without triggering setTheme (to avoid duplicate work)
-    document.body.classList.remove("light", "dark");
-    document.body.classList.add(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-
-    // Update stylesheet
-    this.updateStylesheet(savedTheme);
-
-    // Update meta theme-color
-    this.updateMetaThemeColor(savedTheme);
+      // Only update if there's an inconsistency
+      if (currentBodyTheme !== savedTheme || currentDataTheme !== savedTheme) {
+        this.applyTheme(savedTheme);
+      }
+    } catch (error) {
+      console.error("Theme consistency check failed:", error);
+      // Fallback: apply dark theme
+      this.applyTheme("dark");
+    }
   }
 
-  toggle() {
-    const currentTheme = this.getCurrentTheme();
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    this.setTheme(newTheme);
-  }
-
-  setTheme(theme) {
-    // Update localStorage
-    localStorage.setItem("theme", theme);
-
+  applyTheme(theme) {
     // Update body class and document attribute
     document.body.classList.remove("light", "dark");
     document.body.classList.add(theme);
@@ -65,43 +68,60 @@ export default class extends Controller {
     this.updateMetaThemeColor(theme);
   }
 
+  toggle() {
+    try {
+      const currentTheme = this.getCurrentTheme();
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      this.setTheme(newTheme);
+    } catch (error) {
+      console.error("Theme toggle failed:", error);
+      // Fallback: try to apply dark theme
+      this.setTheme("dark");
+    }
+  }
+
+  setTheme(theme) {
+    // Update localStorage
+    localStorage.setItem("theme", theme);
+
+    // Apply the theme
+    this.applyTheme(theme);
+  }
+
   getCurrentTheme() {
     return localStorage.getItem("theme") || "dark";
   }
 
   updateStylesheet(theme) {
-    const darkStylesheet = document.querySelector(
-      'link[href*="application_dark"]'
+    // Find existing stylesheets by ID and data attributes
+    const currentStylesheet = document.getElementById(
+      `theme-stylesheet-${theme}`
     );
-    let lightStylesheet = document.querySelector(
-      'link[href*="application_light"]'
+    const otherTheme = theme === "dark" ? "light" : "dark";
+    const otherStylesheet = document.getElementById(
+      `theme-stylesheet-${otherTheme}`
     );
 
-    if (theme === "dark") {
-      // Ensure dark theme is active
-      if (darkStylesheet) {
-        darkStylesheet.disabled = false;
-      }
-      if (lightStylesheet) {
-        lightStylesheet.disabled = true;
-      }
+    // Disable the other theme's stylesheet
+    if (otherStylesheet) {
+      otherStylesheet.disabled = true;
+    }
+
+    // Enable or create the current theme's stylesheet
+    if (currentStylesheet) {
+      currentStylesheet.disabled = false;
     } else {
-      // Load light stylesheet if not already loaded
-      if (!lightStylesheet) {
-        lightStylesheet = document.createElement("link");
-        lightStylesheet.rel = "stylesheet";
-        lightStylesheet.href = this.lightStylesheetValue;
-        lightStylesheet.setAttribute("data-theme-stylesheet", "light");
-        document.head.appendChild(lightStylesheet);
-      }
-
-      // Switch to light theme
-      if (darkStylesheet) {
-        darkStylesheet.disabled = true;
-      }
-      if (lightStylesheet) {
-        lightStylesheet.disabled = false;
-      }
+      // Create new stylesheet for the theme
+      const link = document.createElement("link");
+      link.id = `theme-stylesheet-${theme}`;
+      link.rel = "stylesheet";
+      link.href =
+        theme === "light"
+          ? this.lightStylesheetValue
+          : this.darkStylesheetValue;
+      link.setAttribute("data-theme-stylesheet", theme);
+      link.setAttribute("data-turbo-track", "reload");
+      document.head.appendChild(link);
     }
   }
 

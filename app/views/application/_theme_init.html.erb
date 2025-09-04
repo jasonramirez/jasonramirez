@@ -3,21 +3,31 @@
   (function() {
     const theme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', theme);
+    
     // Set body class when body is available
-    if (document.body) {
-      document.body.className = document.body.className.replace(/light|dark/g, '') + ' ' + theme;
-    } else {
-      // If body doesn't exist yet, wait for it
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.className = document.body.className.replace(/light|dark/g, '') + ' ' + theme;
-      });
+    function setBodyClass() {
+      if (document.body) {
+        document.body.classList.remove('light', 'dark');
+        document.body.classList.add(theme);
+      }
     }
     
-    // Load the correct stylesheet immediately
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = theme === 'light' ? '<%= asset_path("application_light.css") %>' : '<%= asset_path("application_dark.css") %>';
-    link.setAttribute('data-turbo-track', '<%= Rails.env.production? ? "reload" : nil %>');
-    document.head.appendChild(link);
+    if (document.body) {
+      setBodyClass();
+    } else {
+      document.addEventListener('DOMContentLoaded', setBodyClass);
+    }
+    
+    // Load the correct stylesheet immediately (only if not already loaded)
+    const stylesheetId = 'theme-stylesheet-' + theme;
+    if (!document.getElementById(stylesheetId)) {
+      const link = document.createElement('link');
+      link.id = stylesheetId;
+      link.rel = 'stylesheet';
+      link.href = theme === 'light' ? '<%= asset_path("application_light.css") %>' : '<%= asset_path("application_dark.css") %>';
+      link.setAttribute('data-theme-stylesheet', theme);
+      link.setAttribute('data-turbo-track', '<%= Rails.env.production? ? "reload" : nil %>');
+      document.head.appendChild(link);
+    }
   })();
 </script>
