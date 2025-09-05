@@ -1,8 +1,9 @@
-// Hero Logo Mask Animation
+@use "sass:math";
+
 $animation-items: 9;
 $animation-delay: 6s;
 $animation-interval: 2s;
-$animation-duration-as-a-percentage: (100 / $animation-items);
+$animation-duration-as-a-percentage: Math.div(100, $animation-items);
 $animation-interval-start: $animation-duration-as-a-percentage * 0.25;
 $animation-interval-end: $animation-duration-as-a-percentage * 1.25;
 $animation-fade-duration: $animation-duration-as-a-percentage * 0.25;
