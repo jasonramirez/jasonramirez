@@ -22,18 +22,16 @@
     </div>
 
     <%= form_with model: @user, url: chat_register_path, method: :post, data: { turbo: false } do |form| %>
-      <div class="sky-label" data-controller="lowercase-input">
-        <%= form.text_field :name,
-          required: true,
-          style: "text-transform: lowercase;",
-          pattern: "[a-z0-9_.-]+",
-          title: "Username must be lowercase letters, numbers, underscores, periods, or hyphens only",
-          data: { lowercase_input_target: "field" } %>
-        <%= form.label :name, "Username" %>
+      <div class="sky-label">
+        <%= form.text_field :name, required: true %>
+        <%= form.label :name, "Name" %>
       </div>
 
-      <div class="sky-label">
-        <%= form.email_field :email, required: true %>
+      <div class="sky-label" data-controller="lowercase-input">
+        <%= form.text_field :email, 
+          required: true, 
+          style: "text-transform: lowercase;", 
+          data: { lowercase_input_target: "field" } %>
         <%= form.label :email, "Email" %>
       </div>
 
