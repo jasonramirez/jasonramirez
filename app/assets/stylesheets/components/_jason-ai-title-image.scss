@@ -16,10 +16,12 @@
   min-height: 20rem;
   width: 100%;
 
-  box-shadow: 1rem -1rem 2rem rgba(0, 30, 255, 0.2),
-    -2rem -1rem 3rem rgba(55, 255, 188, 0.2),
-    1rem 1rem 2rem rgba(39, 18, 231, 0.2),
-    -1rem 1rem 2rem rgba(31, 29, 100, 0.2);
+  .light & {
+    box-shadow: 1rem -1rem 2rem rgba(0, 30, 255, 0.2),
+      -2rem -1rem 3rem rgba(55, 255, 188, 0.2),
+      1rem 1rem 2rem rgba(39, 18, 231, 0.2),
+      -1rem 1rem 2rem rgba(31, 29, 100, 0.2);
+  }
 
   .dark & {
     box-shadow: 1rem -1rem 2rem rgba(21, 26, 66, 0.05),
