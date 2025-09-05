@@ -51,7 +51,9 @@ class PostsController < ApplicationController
     if params[:search].present? && params[:search].strip.present?
       post_ids = search_title | search_body | search_hashtags
 
-      @searched_posts = post_ids.present? ? @posts.find(post_ids) : []
+      @searched_posts = post_ids.present? ? @posts.where(id: post_ids) : []
+    else
+      @searched_posts = []
     end
   end
 
