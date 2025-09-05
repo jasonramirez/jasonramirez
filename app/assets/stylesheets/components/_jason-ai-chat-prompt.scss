@@ -23,12 +23,10 @@
   gap: $small-spacing;
   width: 100%;
 
+  input,
   input[type="text"] {
-    margin-bottom: 0;
-  }
-
-  input {
     border-radius: 1.25rem;
+    margin-bottom: 0;
   }
 }
 
