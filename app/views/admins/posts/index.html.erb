@@ -3,6 +3,10 @@
     <%= t(".all_posts") %>
   </h1>
 
+  <div class="u-margin-bottom-large">
+    <span><%= @posts.count %> posts</span>
+  </div>
+
   <% @posts.each do |post| %>
     <div class="admin-post-item <%= post.published_state_class %>">
       <div class="admin-post-item__published-status">
