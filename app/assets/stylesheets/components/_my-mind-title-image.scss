@@ -1,5 +1,6 @@
 @use "variables/tokens" as *;
 @use "variables/variables" as *;
+@use "variables/colors" as *;
 
 .my-mind-title-image {
   display: flex;
@@ -30,4 +31,12 @@
     transform: translateY(0.5rem);
     width: 50%;
   }
+}
+
+.my-mind-title-image__text {
+  color: $warm-white;
+  font-family: $code-font-family;
+  font-size: 3rem;
+  letter-spacing: -0.1rem;
+  font-weight: 600;
 }

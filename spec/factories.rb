@@ -34,4 +34,23 @@ FactoryBot.define do
 
   factory :follower do
   end
+
+  factory :chat_user do
+    name { "Test User" }
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password { "password123" }
+    approved { true }
+    login_expires_at { 48.hours.from_now }
+    
+    # Don't set password for traits that shouldn't trigger encryption
+    trait :without_expiration do
+      login_expires_at { nil }
+    end
+  end
+
+  factory :chat_message do
+    association :chat_user
+    content { "Hello, this is a test message." }
+    message_type { "user" }
+  end
 end
