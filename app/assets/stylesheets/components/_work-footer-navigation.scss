@@ -11,17 +11,17 @@
   transition: all 250ms ease;
   width: 100%;
 
-  @media ($large-screen) {
+  @media (min-width: $large-screen) {
     padding: 0 0;
-    align-items: space-between;
     flex-direction: row;
+    gap: $medium-spacing;
   }
 
-  @media ($x-large-screen) {
+  @media (min-width: $x-large-screen) {
     max-width: $reading-screen * 1.15;
   }
 
-  @media ($xx-large-screen) {
+  @media (min-width: $xx-large-screen) {
     max-width: $reading-screen * 1.25;
   }
 }
@@ -33,21 +33,23 @@
   font-weight: normal;
   line-height: math.div($reading-line-height, 1.2);
   text-decoration: none;
-  width: 50%;
+  width: 100%;
 
   &.left {
-    @media ($large-screen) {
+    @media (min-width: $large-screen) {
       align-items: flex-start;
+      width: 50%;
     }
   }
 
   &.right {
     margin-top: $x-large-spacing;
 
-    @media ($large-screen) {
+    @media (min-width: $large-screen) {
       margin-top: 0;
       align-items: flex-end;
       text-align: right;
+      width: 50%;
     }
   }
 
@@ -68,7 +70,7 @@
     width: auto;
     align-self: flex-start;
 
-    @media ($large-screen) {
+    @media (min-width: $large-screen) {
       align-self: auto;
     }
   }
