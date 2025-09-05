@@ -1,6 +1,10 @@
 <div class="jason-ai-chat-message__source-links">
   <% sources.each_with_index do |source, index| %>
-    <%= link_to index + 1, source_link_url(source), 
-        class: 'jason-ai-source-link', target: '_blank' %>
+    <% link_class = 'jason-ai-source-link' %>
+    <% link_class += ' jason-ai-source-link--framework' if source['is_framework'] %>
+    <% link_text = (index + 1).to_s %>
+    <%= link_to link_text, source_link_url(source), 
+        class: link_class, target: '_blank', 
+        title: source['is_framework'] ? "#{source['title']} (Framework)" : source['title'] %>
   <% end %>
 </div>

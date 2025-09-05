@@ -4,7 +4,7 @@
 
 <div class="jason-ai-chat-message jason-ai-chat-message--<%= message.message_type %>">
   <div class="chat-message__content">
-    <%= message.content %>
+    <%= parse_framework_links(message.content).html_safe %>
   </div>
 
   <%= render_knowledge_sources(kb_data) %>
@@ -22,7 +22,6 @@
       </div>
     <% end %>
   </div>
-
 </div>
       
 <% if kb_data %>
@@ -48,17 +47,27 @@
       <%= kb_data['sources_count'] %> knowledge base sources.
     </code>
     <br>
+    <% if kb_data['frameworks_available'] %>
+      <code>
+        <%= kb_data['framework_count'] %> framework(s) referenced.
+      </code>
+      <br>
+    <% end %>
 
     <% if kb_data['sources'] && kb_data['sources'].any? %>
       <h4 class="u-margin-bottom-small">Knowledge Base Sources</h4>
       <ul class="jason-ai-sources">
         <% kb_data['sources'].each do |source| %>
-          <li class="jason-ai-source">
+          <li class="jason-ai-source<%= ' jason-ai-source--framework' if source['is_framework'] %>">
             <p>
               Title: <%= source['title'] || 'N/A' %>
               <br>
-              Category: <%= source['category'] || 'N/A' %>
+              Category: <%= source['category'] || 'N/A' %><%= source['is_framework'] ? ' (Framework)' : '' %>
               <br>
+              <% if source['is_framework'] && source['tags'] %>
+                Tags: <%= source['tags'] %>
+                <br>
+              <% end %>
               Confidence: <%= source['confidence'] || 'N/A' %>
               <br>
               Relevance: <%= source['relevance_score'] || 'N/A'   %>

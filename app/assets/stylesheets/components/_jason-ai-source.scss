@@ -1,5 +1,6 @@
 @use "variables/tokens" as *;
 @use "variables/variables" as *;
+@use "variables/colors" as *;
 @use "sass:math";
 
 .jason-ai-source-link {
@@ -11,9 +12,15 @@
   font-family: $code-font-family;
   font-size: math.div($small-font-size, 1.5);
   justify-content: center;
-  margin-right: $xx-small-spacing;
+  margin: 0 $xx-small-spacing $xx-small-spacing 0;
   padding: 0.25rem 0.5rem 0.2rem 0.5rem;
   text-decoration: none;
+  width: 1rem;
+
+  &:hover {
+    background-color: $action-color;
+    color: $warm-white;
+  }
 }
 
 .jason-ai-sources {

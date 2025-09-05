@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class JasonAiController < ApplicationController
   before_action :require_chat_auth
   layout 'jason_ai'

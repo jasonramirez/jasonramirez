@@ -64,8 +64,15 @@ class ConversationService
   end
 
   def build_response(text, kb_influence)
+    # Add inline links to framework mentions if frameworks are available
+    linked_text = if kb_influence[:frameworks_available] && kb_influence[:sources]
+      add_inline_framework_links(text, kb_influence[:sources])
+    else
+      text
+    end
+
     {
-      text: text,
+      text: linked_text,
       audio_path: nil,
       knowledge_base_influence: kb_influence
     }
@@ -95,22 +102,22 @@ class ConversationService
     # Tier 1: Strict search - all question words must be present
     strict_results = search_with_all_words(question_words)
     Rails.logger.info "  Tier 1 (strict) results: #{strict_results.count}"
-    return strict_results if strict_results.count >= 2
+    return prioritize_frameworks(strict_results, question) if strict_results.count >= 2
     
     # Tier 2: Medium search - at least 50% of question words must be present
     medium_results = search_with_percentage_words(question_words, 0.5)
     Rails.logger.info "  Tier 2 (medium) results: #{medium_results.count}"
-    return medium_results if medium_results.count >= 2
+    return prioritize_frameworks(medium_results, question) if medium_results.count >= 2
     
     # Tier 3: Loose search - any question word present (original behavior)
     loose_results = search_with_any_words(question_words)
     Rails.logger.info "  Tier 3 (loose) results: #{loose_results.count}"
-    return loose_results if loose_results.count >= 1
+    return prioritize_frameworks(loose_results, question) if loose_results.count >= 1
     
     # Tier 4: Fallback - use original search method
     fallback_results = KnowledgeItem.search(question)
     Rails.logger.info "  Tier 4 (fallback) results: #{fallback_results.count}"
-    fallback_results
+    prioritize_frameworks(fallback_results, question)
   end
   
   def search_with_all_words(question_words)
@@ -159,18 +166,61 @@ class ConversationService
     KnowledgeItem.where(conditions.join(' OR '), values)
   end
 
+  def prioritize_frameworks(results, question)
+    return results if results.empty?
+    
+    framework_keywords = ['framework', 'process', 'method', 'approach', 'strategy', 'system']
+    question_lower = question.downcase
+    
+    # Check if the question is asking about frameworks/processes
+    asking_about_frameworks = framework_keywords.any? { |keyword| question_lower.include?(keyword) }
+    
+    # Separate framework items from other items
+    framework_items = results.select { |item| item.tags.to_s.downcase.include?('framework') }
+    other_items = results.reject { |item| item.tags.to_s.downcase.include?('framework') }
+    
+    Rails.logger.info "Framework prioritization:"
+    Rails.logger.info "  Asking about frameworks: #{asking_about_frameworks}"
+    Rails.logger.info "  Framework items found: #{framework_items.count}"
+    Rails.logger.info "  Other items found: #{other_items.count}"
+    
+    # If asking about frameworks or processes, prioritize framework items
+    if asking_about_frameworks && framework_items.any?
+      # Put framework items first, then other items
+      framework_items + other_items
+    else
+      # Normal ordering, but still include frameworks if they're relevant
+      results
+    end
+  end
+
   def build_context(items)
     return "No relevant information found in knowledge base." if items.empty?
 
+    framework_items = items.select { |item| item.tags.to_s.downcase.include?('framework') }
+    
+    context_parts = []
+    
+    # Add framework notice if we have frameworks
+    if framework_items.any?
+      context_parts << "FRAMEWORKS AVAILABLE: #{framework_items.count} framework(s) found that may provide structured approaches to this topic."
+      context_parts << ""
+    end
+
     items.map do |item|
+      is_framework = item.tags.to_s.downcase.include?('framework')
+      
       [
-        "Title: #{item.title}",
+        "Title: #{item.title}#{is_framework ? ' [FRAMEWORK]' : ''}",
         "Category: #{item.category}",
         "Content: #{item.content}",
+        "Tags: #{item.tags}" + (is_framework ? " (This is a framework that provides a structured approach)" : ""),
         "Confidence: #{(item.confidence_score * 100).round}%",
         "---"
       ]
-    end.flatten.join("\n")
+    end.flatten.each { |line| context_parts << line }
+    
+    context_parts.join("\n")
   end
 
   def generate_llm_response(question, context)
@@ -214,6 +264,12 @@ class ConversationService
       - Focus on the most important point from the context
       - DECLARATIVE - end with statements, not questions
 
+      FRAMEWORK GUIDANCE:
+      - When you see "[FRAMEWORK]" in the context, prioritize referencing those structured approaches
+      - If frameworks are available, mention them as practical tools the person can use
+      - Present frameworks as actionable systems, not just concepts
+      - When multiple frameworks are relevant, briefly mention the most applicable one
+
       IMPORTANT: For non-career questions, don't bring up work or professional topics unless specifically asked.
 
       Use the knowledge base context to provide accurate, specific information. If the context doesn't fully answer the question, acknowledge what you know and suggest what else might be helpful to explore.
@@ -223,6 +279,14 @@ class ConversationService
   end
 
   def build_prompt(question, context)
+    has_frameworks = context.include?('[FRAMEWORK]')
+    
+    framework_guidance = if has_frameworks
+      "\n- IMPORTANT: Reference available frameworks as practical tools when relevant to the question"
+    else
+      ""
+    end
+    
     <<~PROMPT
       Question: #{question}
 
@@ -233,7 +297,7 @@ class ConversationService
       Please provide a conversational response that matches the energy and complexity of the question:
       - For simple greetings/personal questions: 1 sentence, casual and warm
       - For career/professional questions: 2-3 sentences with relevant context
-      - For non-career questions: don't mention work or professional topics
+      - For non-career questions: don't mention work or professional topics#{framework_guidance}
       
       Make it sound natural and personal, as if we're having a real conversation. End with a statement, not a question.
     PROMPT
@@ -268,6 +332,8 @@ class ConversationService
     
     return empty_kb_influence if valid_items.empty?
 
+    framework_items = valid_items.select { |item| item.tags.to_s.downcase.include?('framework') }
+    
     avg_confidence = valid_items.sum(&:confidence_score) / valid_items.count
     avg_relevance = valid_items.sum { |item| calculate_relevance_score(item, question) } / valid_items.count
     adjusted_confidence = avg_confidence * (avg_relevance / 100.0)
@@ -284,6 +350,7 @@ class ConversationService
     Rails.logger.info "KB Influence Debug:"
     Rails.logger.info "  Question: #{question}"
     Rails.logger.info "  Items found: #{valid_items.count}"
+    Rails.logger.info "  Framework items: #{framework_items.count}"
     Rails.logger.info "  Avg confidence: #{avg_confidence}"
     Rails.logger.info "  Avg relevance: #{avg_relevance}"
     Rails.logger.info "  Adjusted confidence: #{adjusted_confidence}"
@@ -297,7 +364,10 @@ class ConversationService
       influence_level: influence_level,
       raw_confidence: (avg_confidence * 100).round(1),
       avg_relevance: avg_relevance.round(1),
-      sources: build_sources(valid_items, question)
+      sources: build_sources(valid_items, question),
+      frameworks_available: framework_items.count > 0,
+      framework_count: framework_items.count,
+      framework_titles: framework_items.map(&:title)
     }
   end
 
@@ -312,6 +382,8 @@ class ConversationService
 
   def build_sources(items, question)
     items.map do |item|
+      is_framework = item.tags.to_s.downcase.include?('framework')
+      
       {
         id: item.id,
         title: item.title,
@@ -319,7 +391,9 @@ class ConversationService
         confidence: (item.confidence_score * 100).round(1),
         relevance_score: calculate_relevance_score(item, question),
         content_snippet: extract_relevant_snippet(item.content, question),
-        word_matches: find_word_matches(item.content, question)
+        word_matches: find_word_matches(item.content, question),
+        is_framework: is_framework,
+        tags: item.tags
       }
     end
   end
@@ -401,5 +475,95 @@ class ConversationService
     content_lower = content.downcase
     
     question_words.select { |word| content_lower.include?(word) }.uniq
+  end
+
+  def add_inline_framework_links(text, sources)
+    return text if text.blank? || sources.nil?
+    
+    framework_sources = sources.select { |s| s[:is_framework] }
+    return text if framework_sources.empty?
+    
+    linked_text = text.dup
+    
+    framework_sources.each do |source|
+      # Get the post URL for linking
+      post_url = get_framework_post_url(source)
+      next unless post_url
+      
+      # Create different patterns to match framework mentions
+      patterns = build_framework_patterns(source[:title])
+      
+      patterns.each do |pattern|
+        # Only replace if it's not already linked
+        linked_text.gsub!(pattern) do |match|
+          # Check if this text is already inside a markdown link
+          if $`.include?('[') && !$`.rindex('[').nil? && $`.rindex('[') > ($`.rindex(']') || -1)
+            match # Don't link if already inside a link
+          else
+            "[#{match}](#{post_url})"
+          end
+        end
+      end
+    end
+    
+    linked_text
+  end
+  
+  def get_framework_post_url(source)
+    return nil unless source[:category] == 'Blog Post'
+    
+    # Try exact match first, then try with stripped spaces
+    title = source[:title]
+    post = Post.where(published: true).find_by(title: title) ||
+           Post.where(published: true).find_by(title: title.strip)
+    
+    return nil unless post
+    
+    # Generate the post URL (this will be processed by the frontend)
+    "/posts/#{post.slug}"
+  end
+  
+  def build_framework_patterns(title)
+    patterns = []
+    
+    # Clean up the title
+    clean_title = title.strip
+    
+    # Exact title match (case insensitive) - but only if it's reasonable length
+    if clean_title.length < 50
+      patterns << /\b#{Regexp.escape(clean_title)}\b/i
+    end
+    
+    # Common framework naming patterns based on how AI actually references them
+    case clean_title.downcase
+    when /simple framework for building impactful relationships/
+      patterns << /\bthree-step framework\b/i
+      patterns << /\bsimple framework\b/i
+      patterns << /\bset expectations,?\s*understand motivators,?\s*(?:and\s+)?achieve together\b/i
+      patterns << /\bSet expectations,?\s*Understand motivators,?\s*(?:and\s+)?Achieve together\b/i
+    when /validation with facebook ads/
+      patterns << /\bfacebook ads experiment\b/i
+      patterns << /\bfacebook ads framework\b/i
+      patterns << /\bFacebook ads experiment\b/i
+    when /running a lean experiment/
+      patterns << /\blean experiment framework\b/i
+      patterns << /\blean experiments?\b/i
+      patterns << /\bstructured approach\b/i
+    when /ways to pivot/
+      patterns << /\bkill, pivot or preserve\b/i
+      patterns << /\bkill,? pivot,? or preserve\b/i
+      patterns << /\bKill, Pivot or Preserve\b/i
+    when /turning constraints into better outcomes/
+      patterns << /\bconstraints framework\b/i
+    when /turning a team framework into company-wide impact/
+      patterns << /\bteam framework\b/i
+    when /from ineffective to inspired/
+      patterns << /\bdiagnosis.*principles.*actions\b/i
+    end
+    
+    # Add generic patterns that might match
+    patterns << /\b#{Regexp.escape(clean_title.split.first(3).join(' '))}\b/i if clean_title.split.length >= 3
+    
+    patterns.compact.uniq
   end
 end

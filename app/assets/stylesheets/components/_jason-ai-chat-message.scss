@@ -80,4 +80,10 @@
   display: flex;
   flex-direction: row;
   margin: $x-small-spacing 0 $small-spacing;
+  max-width: 80%;
+  flex-wrap: wrap;
+
+  @media (min-width: $medium-screen) {
+    max-width: 50%;
+  }
 }
