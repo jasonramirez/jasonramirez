@@ -1,0 +1,61 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+@use "sass:color";
+
+.navigation-primary {
+  align-items: center;
+  background-color: $base-background-color;
+  box-sizing: border-box;
+  display: flex;
+  height: $navigation-height-mobile;
+  justify-content: space-between;
+  max-width: $large-screen;
+  margin: 0 auto;
+  padding: $small-spacing 0;
+
+  @media (min-width: $medium-screen) {
+    height: $navigation-height;
+    padding: $base-spacing;
+  }
+}
+
+.navigation-primary__left {
+  flex-grow: 1;
+}
+
+.navigation-primary__right {
+  display: none;
+
+  @media (min-width: $medium-screen) {
+    display: flex;
+  }
+}
+
+.navigation-primary__links {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.navigation-primary__link {
+  align-items: center;
+  color: $base-font-color;
+  display: flex;
+  font-family: $heading-font-family;
+  font-size: $small-font-size;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: $base-spacing;
+
+  a {
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+  }
+}

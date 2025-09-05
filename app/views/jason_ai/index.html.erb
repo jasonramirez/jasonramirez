@@ -37,15 +37,18 @@
   </div>
 
   <div class="jason-ai-chat-prompt">
+
+
     <%= form_with url: ask_jason_ai_path,
       local: false,
       class: "jason-ai-chat-prompt__form",
       data: { jason_ai_chat: true } do |form| %>
-
-      <label for="jason-ai-nav-trigger" class="jason-ai-mobile-nav-trigger button button--secondary">
+      <button type="button" 
+        class="jason-ai-mobile-nav-trigger button button--secondary"
+        data-action="click->navigation-drawer#toggle"
+        onclick="console.log('Button clicked!')">
         <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>
-      </label>
-
+      </button>
       <%= form.text_field :question, 
         placeholder: "What would you like to know?",
         required: true,

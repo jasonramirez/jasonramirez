@@ -1,0 +1,48 @@
+<nav class="navigation-primary">
+  <!-- Mobile trigger button -->
+  <button class="navigation-drawer__trigger-button" 
+    data-action="click->navigation-drawer#toggle">
+    <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>
+  </button>
+
+  <div class="navigation-primary__left">
+    <ul class="navigation-primary__links">
+      <li class="navigation-primary__link">
+        <%= link_to root_path do %>
+          <%= t("navigation.home") %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="navigation-primary__right">
+    <ul class="navigation-primary__links">
+      <li class="navigation-primary__link">
+        <%= link_to t("navigation.works"), works_path %>
+      </li>
+
+      <li class="navigation-primary__link">
+        <%= link_to t("navigation.posts"), posts_path %>
+      </li>
+
+      <li class="navigation-primary__link">
+        <%= link_to t("navigation.philosophy"), philosophy_path %>
+      </li>
+
+      <li class="navigation-primary__link">
+        <%= link_to jason_ai_path do %>
+          <%= t("navigation.jason_ai") %>
+          <span class="badge badge--jason-ai badge--small">Beta</span>
+        <% end %> 
+      </li>
+
+      <li class="navigation-primary__link" data-navigation-target="themeSwitcher">
+        <button type="button"
+            data-action="click->theme#toggle"
+            class="navigation-primary__theme-toggle">
+          <%= inline_svg "icon-theme-change.svg" %>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>

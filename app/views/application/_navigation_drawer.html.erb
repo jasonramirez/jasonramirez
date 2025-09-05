@@ -1,0 +1,54 @@
+<nav class="navigation-drawer">
+
+  <!-- Drawer overlay and content -->
+    <div class="navigation-drawer__overlay" 
+       data-navigation-drawer-target="overlay"
+       data-action="click->navigation-drawer#overlayClick">
+
+
+    <div class="navigation-drawer__content">
+      <button class="navigation-drawer__close" 
+        data-action="click->navigation-drawer#close">
+        <%= inline_svg "icon-x.svg", height: "20px", width: "20px" %>
+      </button>
+
+      <ul class="navigation-drawer__links">
+        <li class="navigation-drawer__link">
+          <%= link_to t("navigation.works"), works_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to t("navigation.posts"), posts_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to t("navigation.philosophy"), philosophy_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to jason_ai_path do %>
+            <%= t("navigation.jason_ai") %>
+            <span class="badge badge--jason-ai badge--small">BETA</span>
+          <% end %> 
+        </li>
+
+        <li class="navigation-drawer__link navigation-drawer__link--theme">
+          <button type="button"
+              data-action="click->theme#toggle"
+              class="navigation-drawer__theme-toggle">
+            <%= inline_svg "icon-theme-change.svg" %>
+          </button>
+        </li>
+
+        <% if current_chat_user && controller_name == 'jason_ai' %>
+          <li class="navigation-drawer__link navigation-drawer__link--separator">
+            <%= link_to chat_logout_path, data: { turbo_method: :delete } do %>
+              <%= inline_svg "icon-log-out.svg", height: "16px", width: "16px" %>
+              Logout
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

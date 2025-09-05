@@ -22,10 +22,18 @@
         data-theme-light-stylesheet-value="<%= asset_path('application_light.css') %>"
         data-theme-dark-stylesheet-value="<%= asset_path('application_dark.css') %>">
     <%= render "flashes" %>
-    <%= render "navigation" %>
-    <main>
-      <%= yield %>
-    </main>
+    <div data-controller="navigation-drawer"
+         data-navigation-drawer-open-class="navigation-drawer--open"
+         data-navigation-drawer-closed-class="navigation-drawer--closed"
+         data-action="keydown@window->navigation-drawer#keydown">
+      
+      <%= render "navigation_drawer" %>
+      
+      <main>
+        <%= yield %>
+      </main>
+    </div>
+    
     <%= javascript_import_module_tag "jason-ai" %>
   </body>
 </html>
