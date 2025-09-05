@@ -145,7 +145,6 @@ input[readonly] {
     position: absolute;
     width: 1.25rem;
     left: $x-small-spacing;
-    top: 50%;
   }
 
   & + label::after {
@@ -159,7 +158,6 @@ input[readonly] {
     height: 1.25rem;
     left: $x-small-spacing;
     position: absolute;
-    top: 50%;
     transition: all $base-duration;
     width: 1.25rem;
   }
