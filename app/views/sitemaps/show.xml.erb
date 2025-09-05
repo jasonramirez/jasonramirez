@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.jasonramirez.com/</loc>
+    <lastmod><%= Time.current.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Posts Index -->
+  <url>
+    <loc>https://www.jasonramirez.com/posts</loc>
+    <lastmod><%= @posts.first&.updated_at&.strftime("%Y-%m-%d") || Time.current.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Philosophy Page -->
+  <url>
+    <loc>https://www.jasonramirez.com/philosophy</loc>
+    <lastmod><%= Time.current.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Works Page -->
+  <url>
+    <loc>https://www.jasonramirez.com/works</loc>
+    <lastmod><%= Time.current.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Resume Page -->
+  <url>
+    <loc>https://www.jasonramirez.com/resume</loc>
+    <lastmod><%= Time.current.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Privacy and Terms -->
+  <url>
+    <loc>https://www.jasonramirez.com/privacy_and_terms</loc>
+    <lastmod><%= Time.current.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Individual Posts -->
+  <% @posts.each do |post| %>
+  <url>
+    <loc>https://www.jasonramirez.com/posts/<%= post.slug %></loc>
+    <lastmod><%= post.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <% end %>
+</urlset>

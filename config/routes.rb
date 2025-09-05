@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get "works", to: "works#index"
   get "works/:work", to: "works#show"
   
+  get "sitemap.xml", to: "sitemaps#show", format: :xml
+  
   post "chat/login", to: "chat_auth#login"
   post "chat/register", to: "chat_auth#register"
   post "jason_ai/ask", to: "jason_ai#ask", as: :ask_jason_ai
