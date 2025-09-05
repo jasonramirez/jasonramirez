@@ -169,7 +169,7 @@ class JasonAiChat {
       );
 
       // Scroll to bottom after response is added
-      setTimeout(() => this.scrollToBottom(), 100);
+      setTimeout(() => this.scrollToBottom(), 300);
     } catch (error) {
       console.error("Error:", error);
       this.addMessageToChat(
@@ -182,7 +182,7 @@ class JasonAiChat {
       );
 
       // Scroll to bottom after error message
-      setTimeout(() => this.scrollToBottom(), 100);
+      setTimeout(() => this.scrollToBottom(), 300);
     } finally {
       this.setLoadingState(false);
     }
@@ -213,7 +213,7 @@ class JasonAiChat {
 
     try {
       // Render the partial using Rails
-      const response = await fetch("/my_mind/render_message", {
+      const response = await fetch("/jason_ai/render_message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -243,7 +243,9 @@ class JasonAiChat {
 
   createTypingMessage(messageElement, message) {
     messageElement.innerHTML = `
-      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
+      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(
+        message.created_at
+      ).toLocaleString()}">
         <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="1"></circle>
           <circle cx="19" cy="12" r="1"></circle>
@@ -263,7 +265,9 @@ class JasonAiChat {
 
   createStaticMessage(messageElement, message) {
     messageElement.innerHTML = `
-      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
+      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(
+        message.created_at
+      ).toLocaleString()}">
         <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="1"></circle>
           <circle cx="19" cy="12" r="1"></circle>
@@ -324,45 +328,28 @@ class JasonAiChat {
 
     // Use requestAnimationFrame to ensure DOM is updated
     requestAnimationFrame(() => {
-      // Try multiple scroll containers in order of preference
-      const scrollContainers = [
-        document.querySelector(".jason-ai-chat-container"),
-        this.chatHistory,
-        document.querySelector(".jason-ai"),
-      ].filter(Boolean);
+      const scrollContainer = document.querySelector(
+        ".jason-ai-chat-container"
+      );
 
-      if (scrollContainers.length === 0) {
-        console.log("JasonAiChat: No scroll container found");
+      if (!scrollContainer) {
+        console.log("JasonAiChat: Chat container not found for scrolling");
         return;
       }
 
-      const scrollContainer = scrollContainers[0];
-      console.log(
-        "JasonAiChat: Scrolling to bottom of",
-        scrollContainer.className
-      );
+      console.log("JasonAiChat: Scrolling to bottom of chat container");
 
-      // Get the current scroll position and height
-      const currentScrollTop = scrollContainer.scrollTop;
-      const scrollHeight = scrollContainer.scrollHeight;
-      const clientHeight = scrollContainer.clientHeight;
-      const maxScrollTop = scrollHeight - clientHeight;
+      // Always scroll to bottom without checking current position
+      // This ensures consistency especially when new content is added
+      scrollContainer.scrollTo({
+        top: scrollContainer.scrollHeight,
+        behavior: "smooth",
+      });
 
-      // Only scroll if we're not already at the bottom (within 10px)
-      if (Math.abs(currentScrollTop - maxScrollTop) > 10) {
-        // Smooth scroll to bottom
-        scrollContainer.scrollTo({
-          top: scrollHeight,
-          behavior: "smooth",
-        });
-
-        // Fallback: ensure we're at the bottom after a delay
-        setTimeout(() => {
-          scrollContainer.scrollTop = scrollContainer.scrollHeight;
-        }, 300);
-      } else {
-        console.log("JasonAiChat: Already at bottom, skipping scroll");
-      }
+      // Fallback: force scroll to bottom after animation
+      setTimeout(() => {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }, 500);
     });
   }
 
