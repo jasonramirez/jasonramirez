@@ -151,7 +151,7 @@ input[readonly] {
   & + label::after {
     content: "";
     background-color: $action-color;
-    background-image: asset-url("icon-checkmark.svg");
+    background-image: url("icon-checkmark.svg");
     background-size: 0.85rem;
     background-repeat: no-repeat;
     background-position: center center;

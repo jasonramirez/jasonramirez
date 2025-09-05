@@ -1,7 +1,7 @@
 class ChatUser < ActiveRecord::Base
   has_many :chat_messages, dependent: :destroy
   
-  attr_accessor :password
+  attr_accessor :password, :access_type
   
   validates :name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -37,6 +37,37 @@ class ChatUser < ActiveRecord::Base
     return if login_expires_at.present?
     
     update!(login_expires_at: 48.hours.from_now)
+  end
+  
+  def expired?
+    login_expires_at.present? && login_expires_at <= Time.current
+  end
+  
+  def extend_access_by_days(days)
+    if login_expires_at.present?
+      # If already has expiration, extend from current expiration or now (whichever is later)
+      base_time = [login_expires_at, Time.current].max
+      update!(login_expires_at: base_time + days.days)
+    else
+      # If no expiration set, start from now
+      update!(login_expires_at: days.days.from_now)
+    end
+  end
+  
+  def set_unlimited_access
+    update!(login_expires_at: nil)
+  end
+  
+  def access_status
+    return "pending" unless approved?
+    return "unlimited" if login_expires_at.nil?
+    return "expired" if expired?
+    "active"
+  end
+  
+  def current_access_type
+    return nil unless approved?
+    login_expires_at.nil? ? 'unlimited' : '48_hours'
   end
   
   def authenticate_password(password)

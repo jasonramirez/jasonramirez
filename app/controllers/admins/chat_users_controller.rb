@@ -31,8 +31,20 @@ class Admins::ChatUsersController < ApplicationController
   def update
     @chat_user = ChatUser.find(params[:id])
     
-    if @chat_user.update(chat_user_params)
-      redirect_to admins_chat_user_path(@chat_user), notice: "Chat user updated successfully."
+    # Handle access_type if provided
+    if params[:chat_user] && params[:chat_user][:access_type].present?
+      case params[:chat_user][:access_type]
+      when '48_hours'
+        @chat_user.assign_attributes(chat_user_params.except(:access_type))
+        @chat_user.login_expires_at = 48.hours.from_now
+      when 'unlimited'
+        @chat_user.assign_attributes(chat_user_params.except(:access_type))
+        @chat_user.login_expires_at = nil
+      end
+    end
+    
+    if @chat_user.update(chat_user_params.except(:access_type))
+      redirect_to edit_admins_chat_user_path(@chat_user), notice: "MyMind user updated successfully."
     else
       render :edit
     end
@@ -43,10 +55,11 @@ class Admins::ChatUsersController < ApplicationController
     @chat_user.approve!
     redirect_to admins_chat_users_path, notice: "Account approved for #{@chat_user.name}. Access will start when they first log in and expire 48 hours later."
   end
+  
 
   private
 
   def chat_user_params
-    params.require(:chat_user).permit(:name, :email, :password, :approved)
+    params.require(:chat_user).permit(:name, :email, :password, :approved, :login_expires_at, :access_type)
   end
 end

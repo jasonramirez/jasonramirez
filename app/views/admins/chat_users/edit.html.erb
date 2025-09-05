@@ -1,22 +1,50 @@
 <div class="content content--slim">
-  <h1>Edit Chat User: <%= @chat_user.name %></h1>
-  
-  <div>
-    <%= simple_form_for [:admins, @chat_user], local: true do |form| %>
-      <%= form.input :name, disabled: true, wrapper_html: { class: "sky-label" } %>
-      <%= form.input :email, disabled: true, wrapper_html: { class: "sky-label" } %>
-      <%= form.input :approved, as: :boolean, input_html: { class: "form-checkbox__input" } %>
+  <h1>Edit MyMind User</h1>
+    
+  <%= simple_form_for [:admins, @chat_user], local: true do |form| %>
 
-      <%= form.input :login_expires_at, as: :datetime_local do %>
-        <p>
-          * This is automatically set to 48 hours from first login.<br>You can manually adjust if needed.
-        </p>
-      <% end %>
+    <div class="u-margin-top-large">
+      <span>User Details</span>
+      <%= form.input :name, wrapper_html: { class: "sky-label" } %>
+      <%= form.input :email,  wrapper_html: { class: "sky-label" } %>
+      <%= form.input :approved, as: :boolean, input_html: { class: "form-checkbox__input" } %>
+    </div>
+
+    <div class= "u-margin-top-large">
+      <span>Access Management</span>
       
-      <div>
-        <%= form.button :submit, "Update User", class: "button button--primary" %>
-        <%= link_to "Cancel", admins_chat_users_path, class: "button button--secondary" %>
-      </div>
+      <% if @chat_user.approved? %>
+        <p>
+          <% case @chat_user.access_status %>
+          <% when "active" %>
+            <span class="admin-chip admin-chip--published">
+              Active: Expires <%= @chat_user.login_expires_at.strftime("%B %d, %Y at %I:%M %p") %>
+            </span>
+          <% when "expired" %>
+            <span class="admin-chip admin-chip--not-published">
+            Expired
+            </span>
+          <% when "unlimited" %>
+            <span class="admin-chip admin-chip--published">
+              Active: Unlimited access
+            </span> 
+          <% end %>
+        </p>
+        
+        <%= form.input :access_type, 
+          collection: [['48 hours from login', '48_hours'], ['Unlimited access', 'unlimited']], 
+          prompt: 'Select', 
+          selected: @chat_user.current_access_type
+        %> 
+      <% end %>
+    </div>
+      
+    <%= form.input :login_expires_at, as: :datetime_local, label: false do %>
     <% end %>
-  </div>
+      
+    <div class="u-margin-top-large">
+      <%= form.button :submit, "Update User", class: "button button--primary" %>
+      <%= link_to "Cancel", admins_chat_users_path, class: "button button--secondary" %>
+    </div>
+  <% end %>
 </div>

@@ -1,0 +1,16 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $xx-small-spacing;
+
+  .button {
+    margin-left: 0;
+
+    &:not(:last-child) {
+      margin-right: $xx-small-spacing;
+    }
+  }
+}

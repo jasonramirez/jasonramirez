@@ -23,13 +23,14 @@
             <td><%= user.name %></td>
             <td><%= user.email %></td>
             <td>
-              <% if user.approved? %>
-                <% if user.can_login? %>
-                  <span class="status-badge status-badge--active">Active</span>
-                <% else %>
-                  <span class="status-badge status-badge--expired">Expired</span>
-                <% end %>
-              <% else %>
+              <% case user.access_status %>
+              <% when "active" %>
+                <span class="status-badge status-badge--active">Active</span>
+              <% when "expired" %>
+                <span class="status-badge status-badge--expired">Expired</span>
+              <% when "unlimited" %>
+                <span class="status-badge status-badge--success">Unlimited</span>
+              <% when "pending" %>
                 <span class="status-badge status-badge--pending">Pending Approval</span>
               <% end %>
             </td>
@@ -45,7 +46,7 @@
               <% if user.login_expires_at %>
                 <%= user.login_expires_at.strftime("%B %d, %Y at %I:%M %p") %>
               <% else %>
-                <span class="text-muted">Not set</span>
+                <span class="text-muted">Unlimited</span>
               <% end %>
             </td>
             <td><%= user.chat_messages.count %></td>
