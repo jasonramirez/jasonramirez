@@ -1,20 +1,26 @@
-<header class="site-header navigation" 
-        data-controller="navigation"
-        data-navigation-target="header">
+<header class="navigation <%= 'navigation--jason-ai' if controller_name == 'jason_ai' %>" data-controller="navigation" data-navigation-target="header">
   <nav class="navigation--left">
     <ul class="navigation__links">
-      <li class="navigation__link">
-        <%= link_to root_path do %>
-          <%= t("navigation.home") %>
-        <% end %>
-      </li>
+      <% unless current_chat_user && controller_name == 'jason_ai' %>
+        <li class="navigation__link">
+          <%= link_to root_path do %>
+            <%= t("navigation.home") %>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 
   <nav class="navigation--right navigation--mobile-trigger-icon">
-    <input class="navigation__mobile-trigger" type="checkbox" />
+    <input class="navigation__mobile-trigger" type="checkbox" id="jason-ai-nav-trigger" />
 
     <ul class="navigation__links">
+      <li class="navigation__close">
+        <label for="jason-ai-nav-trigger" class="navigation__close-button">
+          <%= inline_svg "icon-x.svg", height: "20px", width: "20px" %>
+        </label>
+      </li>
+
       <li class="navigation__link">
         <%= link_to t("navigation.works"), works_path %>
       </li>
@@ -42,6 +48,15 @@
           <%= inline_svg "icon-theme-change.svg" %>
         </button>
       </li>
+
+      <% if current_chat_user && controller_name == 'jason_ai' %>
+        <li class="navigation__link navigation__link--separator">
+          <%= link_to chat_logout_path, data: { turbo_method: :delete } do %>
+            <%= inline_svg "icon-log-out.svg", height: "16px", width: "16px" %>
+            Logout
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </header>

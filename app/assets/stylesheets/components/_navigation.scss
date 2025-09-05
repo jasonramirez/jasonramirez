@@ -28,6 +28,12 @@
   }
 }
 
+.navigation--jason-ai {
+  @media (max-width: $medium-screen) {
+    top: -100%;
+  }
+}
+
 .navigation--left {
   flex-grow: 1;
 }
@@ -57,16 +63,16 @@
 
   .navigation--right & {
     @media (max-width: $medium-screen) {
-      position: fixed;
-      top: calc($navigation-height-mobile - 120%);
-      right: 120%;
       align-items: center;
       background-color: $base-background-color;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - #{$navigation-height-mobile});
+      height: 100vh;
       justify-content: center;
       padding-bottom: 5vh;
+      position: fixed;
+      right: 120%;
+      top: 0;
       transition: left $base-duration, right $base-duration;
       z-index: 1;
     }
@@ -79,7 +85,7 @@
       left: 0;
       position: fixed;
       right: 0;
-      top: $navigation-height-mobile;
+      top: 0;
       z-index: 10;
     }
   }
@@ -162,5 +168,29 @@
 
   @media (min-width: $medium-screen) {
     display: none;
+  }
+
+  &:checked + .navigation__close {
+    @media (max-width: $medium-screen) {
+      display: flex;
+    }
+  }
+}
+
+.navigation__close {
+  display: none;
+
+  @media (max-width: $medium-screen) {
+    position: absolute;
+    right: $base-spacing;
+    top: $base-spacing;
+    display: flex;
+  }
+}
+
+// Only show close button when drawer is open
+.navigation__mobile-trigger:checked + .navigation__links .navigation__close {
+  @media (max-width: $medium-screen) {
+    display: flex;
   }
 }

@@ -1,13 +1,5 @@
 <section class="content-full-viewport jason-ai">
-  <div class="jason-ai-navigation">
-    <%= link_to root_path do %>
-      <%= inline_svg "icon-arrow-left.svg", height: "16px", width: "16px" %>
-    <% end %>
-
-    <%= link_to chat_logout_path, data: { turbo_method: :delete } do %>
-      <%= inline_svg "icon-log-out.svg", height: "16px", width: "16px" %>
-    <% end %>
-  </div>
+  <!-- Navigation trigger will be positioned via CSS -->
   
   <div class="jason-ai-chat-container" data-jason-ai-chat-container="true">
     <% unless @chat_messages.any? %>
@@ -49,6 +41,11 @@
       local: false,
       class: "jason-ai-chat-prompt__form",
       data: { jason_ai_chat: true } do |form| %>
+
+      <label for="jason-ai-nav-trigger" class="jason-ai-mobile-nav-trigger button button--secondary">
+        <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>
+      </label>
+
       <%= form.text_field :question, 
         placeholder: "What would you like to know?",
         required: true,

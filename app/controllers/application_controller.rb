@@ -10,4 +10,16 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "Session expired. Please try logging in again."
     redirect_to new_admin_session_path
   end
+  
+  private
+  
+  def current_chat_user
+    return nil unless session[:chat_user_id]
+    @current_chat_user ||= ChatUser.find_by(id: session[:chat_user_id])
+  rescue => e
+    Rails.logger.error "Error finding chat user: #{e.message}"
+    nil
+  end
+  
+  helper_method :current_chat_user
 end

@@ -1,28 +1,16 @@
 @use "variables/tokens" as *;
 @use "variables/variables" as *;
+@use "sass:color";
 
-.jason-ai-navigation {
-  align-items: flex-start;
+.jason-ai-mobile-nav-trigger {
+  align-items: center;
+  background-color: color.adjust($base-background-color, $alpha: -0.1);
+  border-radius: 1.25rem;
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
-  gap: $small-spacing;
-  height: 3rem;
-  justify-content: flex-start;
-  left: 0;
+  justify-content: center;
+  margin: 0;
   padding: $small-spacing;
-  position: fixed;
-  right: 0;
-  top: $x-small-spacing;
-  width: 100%;
-  z-index: 2;
-
-  a {
-    align-items: center;
-    background-color: $base-background-color;
-    border: $base-border-style $base-border-width $base-border-color;
-    border-radius: $base-border-radius;
-    display: flex;
-    padding: $x-small-spacing;
-    justify-content: center;
-  }
+  transition: all $base-duration;
+  z-index: 10;
 }
