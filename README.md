@@ -107,8 +107,29 @@ production.
 
 **⚠️ Warning: This will overwrite your production database!**
 
+Parity restore commands may fail due to system errors. Use the manual process below:
+
 ```bash
-./bin/parity production restore development
+# 1. Create a backup of production first
+heroku pg:backup --app jasonramirez
+
+# 2. Create a dump of your local development database
+pg_dump jasonramirez_development > latest.dump
+
+# 3. Reset production database
+heroku pg:reset DATABASE_URL --app jasonramirez --confirm jasonramirez
+
+# 4. Restore your local data to production
+DATABASE_URL=$(heroku config:get DATABASE_URL --app jasonramirez) && psql "$DATABASE_URL" < latest.dump
+
+# 5. Run migrations (if needed)
+heroku run rails db:migrate --app jasonramirez
+```
+
+**Alternative using Parity (if working):**
+
+```bash
+./bin/parity production restore development --force
 ```
 
 **When to use this:**

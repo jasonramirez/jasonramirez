@@ -28,7 +28,10 @@
   border-radius: $button-border-radius;
   color: $button-color;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  height: $input-height;
+  justify-content: center;
   font-family: $button-font-family;
   font-size: $small-font-size;
   font-weight: $button-font-weight;
@@ -36,7 +39,7 @@
   letter-spacing: 0.025rem;
   word-spacing: 0.1rem;
   outline: $action-color solid 0px;
-  padding: $xx-small-spacing $small-spacing;
+  padding: $xx-small-spacing $base-spacing;
   text-transform: uppercase;
   transition: all $base-duration;
 

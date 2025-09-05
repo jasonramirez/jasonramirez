@@ -8,11 +8,13 @@
       %>
 
       <% unless params[:search].blank? %>
-        <%= link_to "Clear", posts_path, class: "button button--secondary" %>
+        <%= link_to posts_path, class: "button button--secondary" do %>
+          <%= inline_svg "icon-x.svg", height: "16px", width: "16px" %>
+        <% end %>
       <% end %>
 
-      <button type="submit" id="search_posts_submit" hidden>
-        Search
+      <button type="submit" id="search_posts_submit" class="button button--primary">
+        <%= inline_svg "icon-search.svg", height: "16px", width: "16px" %>
       </button>
     </form>
 

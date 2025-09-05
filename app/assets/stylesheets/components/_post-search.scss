@@ -1,3 +1,6 @@
+@use "variables/variables" as *;
+@use "variables/tokens" as *;
+
 .post-search {
   padding-bottom: $large-spacing;
 }
@@ -6,10 +9,11 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
 
-  input {
-    flex-grow: 0;
-    margin-bottom: 0;
+  input[type="search"] {
+    border-radius: $base-border-radius;
+    margin: 0 $small-spacing 0 0;
   }
 
   a {

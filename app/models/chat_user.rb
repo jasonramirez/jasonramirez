@@ -8,6 +8,7 @@ class ChatUser < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   
   before_save :encrypt_password
+  before_save :downcase_name
   
   def self.authenticate(email, password)
     user = find_by(email: email)
@@ -79,5 +80,9 @@ class ChatUser < ActiveRecord::Base
   def encrypt_password
     return if password.blank?
     self.password_digest = BCrypt::Password.create(password)
+  end
+  
+  def downcase_name
+    self.name = name.downcase if name.present?
   end
 end

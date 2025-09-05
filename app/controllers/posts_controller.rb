@@ -48,10 +48,10 @@ class PostsController < ApplicationController
   end
 
   def search_posts
-    if params[:search]
+    if params[:search].present? && params[:search].strip.present?
       post_ids = search_title | search_body | search_hashtags
 
-      @searched_posts = @posts.find(post_ids)
+      @searched_posts = post_ids.present? ? @posts.find(post_ids) : []
     end
   end
 
