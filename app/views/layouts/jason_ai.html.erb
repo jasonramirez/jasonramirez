@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta content=("text/html; charset=UTF-8") http-equiv="Content-Type">
     <meta charset="utf-8">
     <meta content="NOODP" name="ROBOTS">
     <meta name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="theme-color" content="#181923">
+    <meta name="author" content="Jason Ramirez">
+    <%= render "page_metadata" %>
+    <%= render "open_graph" %>
+    <%= render "twitter_card" %>
+    <%= render "schema_org" %>
     <%= render "favicons" %>
-    <title>
-      <%= title %>
-    </title >
     <%= render "theme_init" %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>

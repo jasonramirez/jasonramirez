@@ -64,6 +64,11 @@ label {
   transition: border-color $base-duration $base-timing;
   width: 100%;
 
+  // Prevent mobile zoom on focus by ensuring minimum 16px font size
+  @media (max-width: 768px) {
+    font-size: max(1rem, 16px);
+  }
+
   &:hover {
     border-color: $base-border-color;
   }
