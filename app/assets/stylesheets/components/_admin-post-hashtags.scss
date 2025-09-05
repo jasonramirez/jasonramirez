@@ -6,6 +6,7 @@
   .checkbox {
     display: inline;
     margin-right: $small-spacing;
+    position: relative;
   }
 
   input[type="checkbox"] + label,
@@ -23,12 +24,6 @@
   input[type="checkbox"] + label::before,
   input[type="checkbox"]:checked + label::after {
     border-radius: 1rem;
-    left: $x-small-spacing;
-    top: 50%;
     transform: translateY(-50%);
-  }
-
-  input[type="checkbox"]:checked + label::after {
-    outline: solid 0.15rem $action-color;
   }
 }
