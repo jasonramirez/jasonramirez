@@ -25,12 +25,14 @@
   appearance: none;
   background-color: $button-background-color;
   border: none;
+  box-sizing: border-box;
   border-radius: $button-border-radius;
   color: $button-color;
   cursor: pointer;
   display: flex;
   align-items: center;
   height: $input-height;
+  min-width: $input-height;
   justify-content: center;
   font-family: $button-font-family;
   font-size: $small-font-size;
@@ -39,7 +41,7 @@
   letter-spacing: 0.025rem;
   word-spacing: 0.1rem;
   outline: $action-color solid 0px;
-  padding: $xx-small-spacing $base-spacing;
+  padding: $xx-small-spacing $small-spacing;
   text-transform: uppercase;
   transition: all $base-duration;
 
@@ -51,7 +53,7 @@
   }
 
   & + & {
-    margin-left: $base-spacing;
+    margin-left: $small-spacing;
   }
 
   // Loading state
@@ -63,6 +65,11 @@
   @media (max-width: $medium-screen) {
     font-size: $base-font-size;
     word-spacing: 0.15rem;
+  }
+
+  svg {
+    height: $base-font-size;
+    width: $base-font-size;
   }
 }
 

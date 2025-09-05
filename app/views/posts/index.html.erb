@@ -1,20 +1,22 @@
 <section class="content content--slim u-margin-top-none">
-  <div class="post-search">
+  <div class="post-search" data-controller="search-clear">
     <form id="search_form" action="<%= posts_path %>" class="post-search__form">
       <%= search_field_tag :search,
         params[:search],
         class: "search-input",
-        placeholder: "Search"
+        placeholder: "Search",
+        data: { 
+          search_clear_target: "input",
+          action: "input->search-clear#inputChanged"
+        }
       %>
 
-      <% unless params[:search].blank? %>
-        <%= link_to posts_path, class: "button button--secondary" do %>
-          <%= inline_svg "icon-x.svg", height: "16px", width: "16px" %>
-        <% end %>
+      <%= link_to posts_path, class: "button button--secondary", data: { search_clear_target: "clearButton" }, style: (params[:search].blank? ? "display: none;" : "") do %>
+        <%= inline_svg "icon-x.svg" %>
       <% end %>
 
       <button type="submit" id="search_posts_submit" class="button button--primary">
-        <%= inline_svg "icon-search.svg", height: "16px", width: "16px" %>
+        <%= inline_svg "icon-search.svg" %>
       </button>
     </form>
 
