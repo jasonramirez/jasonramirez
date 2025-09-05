@@ -1,5 +1,5 @@
-<section class="content-full-viewport my-mind">
-  <div class="my-mind-navigation">
+<section class="content-full-viewport jason-ai">
+  <div class="jason-ai-navigation">
     <%= link_to root_path do %>
       <%= inline_svg "icon-arrow-left.svg", height: "16px", width: "16px" %>
     <% end %>
@@ -9,16 +9,16 @@
     <% end %>
   </div>
   
-  <div class="my-mind-chat-container" data-my-mind-chat-container="true">
+  <div class="jason-ai-chat-container" data-jason-ai-chat-container="true">
     <% unless @chat_messages.any? %>
-      <div class="my-mind-intro">
-        <h1 class="my-mind-intro__title">
-          My Mind
+      <div class="jason-ai-intro">
+        <h1 class="jason-ai-intro__title">
+          Jason AI
         </h1>
-        <p class="my-mind-intro__description">
+        <p class="jason-ai-intro__description">
           This is my AI-powered knowledge base, trained on my thoughts, experiences, and insights from years of building products and leading teams. Ask me anything about design, leadership, product development, or my professional journey.
         </p>
-        <div class="my-mind-intro__suggestions">
+        <div class="jason-ai-intro__suggestions">
           <h3>Try asking about:</h3>
           <ul>
             <li>My approach to product design and user experience</li>
@@ -31,7 +31,7 @@
       </div>
     <% end %>
     
-    <div class="my-mind-chat-history">
+    <div class="jason-ai-chat-history">
       <% if @chat_messages.any? %>
         <%= render partial: 'chat_message', collection: @chat_messages, as: :message %>
       <% else %>
@@ -44,18 +44,18 @@
     </div>
   </div>
 
-  <div class="my-mind-chat-prompt">
-    <%= form_with url: ask_my_mind_path,
+  <div class="jason-ai-chat-prompt">
+    <%= form_with url: ask_jason_ai_path,
       local: false,
-      class: "my-mind-chat-prompt__form",
-      data: { my_mind_chat: true } do |form| %>
+      class: "jason-ai-chat-prompt__form",
+      data: { jason_ai_chat: true } do |form| %>
       <%= form.text_field :question, 
         placeholder: "What would you like to know about?",
         required: true,
         name: "question" %>
       <%= form.button type: 'submit',
-        class: "my-mind-chat-prompt__button button",
-        data: { my_mind_chat_button: true } do %>
+        class: "jason-ai-chat-prompt__button button",
+        data: { jason_ai_chat_button: true } do %>
         <%= inline_svg "icon-arrow-up.svg", height: "20px", width: "20px" %>
       <% end %>
     <% end %>

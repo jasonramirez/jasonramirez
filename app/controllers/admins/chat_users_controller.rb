@@ -44,7 +44,7 @@ class Admins::ChatUsersController < ApplicationController
     end
     
     if @chat_user.update(chat_user_params.except(:access_type))
-      redirect_to edit_admins_chat_user_path(@chat_user), notice: "MyMind user updated successfully."
+      redirect_to edit_admins_chat_user_path(@chat_user), notice: "Jason AI user updated successfully."
     else
       render :edit
     end

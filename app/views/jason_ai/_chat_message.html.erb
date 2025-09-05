@@ -2,22 +2,22 @@
   kb_data = local_assigns[:kb_influence] || message.metadata&.dig('knowledge_base_influence')
 %>
 
-<div class="my-mind-chat-message my-mind-chat-message--<%= message.message_type %>">
+<div class="jason-ai-chat-message jason-ai-chat-message--<%= message.message_type %>">
   <div class="chat-message__content">
     <%= message.content %>
   </div>
 
   <%= render_knowledge_sources(kb_data) %>
 
-  <div class="my-mind-chat-message__actions">
-    <a class="my-mind-chat-message__more" data-timestamp="<%= message.created_at.strftime("%B %d, %Y at %I:%M %p") %>">
+  <div class="jason-ai-chat-message__actions">
+    <a class="jason-ai-chat-message__more" data-timestamp="<%= message.created_at.strftime("%B %d, %Y at %I:%M %p") %>">
       <%= inline_svg "icon-ellipsis.svg", height: "16px", width: "16px" %>
     </a>
-    <a class="my-mind-chat-message__copy">
+    <a class="jason-ai-chat-message__copy">
       <%= inline_svg "icon-copy.svg", height: "16px", width: "16px" %>
     </a>
     <% if kb_data %>
-      <div class="my-mind-chat-message__confidence-score" data-modal-trigger data-modal-id="kb-influence-<%= message.id %>">
+      <div class="jason-ai-chat-message__confidence-score" data-modal-trigger data-modal-id="kb-influence-<%= message.id %>">
         <%= kb_data['confidence_score'] || 'N/A' %>%
       </div>
     <% end %>
@@ -51,9 +51,9 @@
 
     <% if kb_data['sources'] && kb_data['sources'].any? %>
       <h4 class="u-margin-bottom-small">Knowledge Base Sources</h4>
-      <ul class="my-mind-sources">
+      <ul class="jason-ai-sources">
         <% kb_data['sources'].each do |source| %>
-          <li class="my-mind-source">
+          <li class="jason-ai-source">
             <p>
               Title: <%= source['title'] || 'N/A' %>
               <br>

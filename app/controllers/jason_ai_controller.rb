@@ -1,6 +1,6 @@
-class MyMindController < ApplicationController
+class JasonAiController < ApplicationController
   before_action :require_chat_auth
-  layout 'my_mind'
+  layout 'jason_ai'
   
   def index
     @chat_messages = current_chat_user.chat_messages.ordered

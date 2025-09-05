@@ -1,4 +1,4 @@
-class MyMindChat {
+class JasonAiChat {
   constructor() {
     this.form = null;
     this.submitButton = null;
@@ -17,23 +17,23 @@ class MyMindChat {
   }
 
   setup() {
-    this.form = document.querySelector("[data-my-mind-chat='true']");
+    this.form = document.querySelector("[data-jason-ai-chat='true']");
 
-    // Only proceed if the form exists (we're on the my-mind page)
+    // Only proceed if the form exists (we're on the jason-ai page)
     if (!this.form) {
-      console.log("MyMindChat: Form not found, exiting setup");
+      console.log("JasonAiChat: Form not found, exiting setup");
       return;
     }
 
     this.submitButton = this.form.querySelector(
-      "[data-my-mind-chat-button='true']"
+      "[data-jason-ai-chat-button='true']"
     );
     this.input = this.form.querySelector("input[name='question']");
-    this.chatHistory = document.querySelector(".my-mind-chat-history");
+    this.chatHistory = document.querySelector(".jason-ai-chat-history");
 
     // Validate all required elements exist
     if (!this.submitButton || !this.input || !this.chatHistory) {
-      console.error("MyMindChat: Required elements not found:", {
+      console.error("JasonAiChat: Required elements not found:", {
         submitButton: !!this.submitButton,
         input: !!this.input,
         chatHistory: !!this.chatHistory,
@@ -71,8 +71,8 @@ class MyMindChat {
   }
 
   handleEllipsisClick(e) {
-    if (e.target.closest(".my-mind-chat-message__more")) {
-      const more = e.target.closest(".my-mind-chat-message__more");
+    if (e.target.closest(".jason-ai-chat-message__more")) {
+      const more = e.target.closest(".jason-ai-chat-message__more");
       const timestamp = more.getAttribute("data-timestamp");
       if (timestamp) {
         alert(timestamp);
@@ -81,9 +81,9 @@ class MyMindChat {
   }
 
   handleCopyClick(e) {
-    if (e.target.closest(".my-mind-chat-message__copy")) {
-      const copyButton = e.target.closest(".my-mind-chat-message__copy");
-      const messageElement = copyButton.closest(".my-mind-chat-message");
+    if (e.target.closest(".jason-ai-chat-message__copy")) {
+      const copyButton = e.target.closest(".jason-ai-chat-message__copy");
+      const messageElement = copyButton.closest(".jason-ai-chat-message");
       const contentElement = messageElement.querySelector(
         ".chat-message__content"
       );
@@ -243,7 +243,7 @@ class MyMindChat {
 
   createTypingMessage(messageElement, message) {
     messageElement.innerHTML = `
-      <div class="my-mind-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
+      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
         <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="1"></circle>
           <circle cx="19" cy="12" r="1"></circle>
@@ -263,7 +263,7 @@ class MyMindChat {
 
   createStaticMessage(messageElement, message) {
     messageElement.innerHTML = `
-      <div class="my-mind-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
+      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(message.created_at).toLocaleString()}">
         <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="1"></circle>
           <circle cx="19" cy="12" r="1"></circle>
@@ -318,7 +318,7 @@ class MyMindChat {
 
   scrollToBottom() {
     if (!this.chatHistory) {
-      console.log("MyMindChat: Chat history not found for scrolling");
+      console.log("JasonAiChat: Chat history not found for scrolling");
       return;
     }
 
@@ -326,19 +326,19 @@ class MyMindChat {
     requestAnimationFrame(() => {
       // Try multiple scroll containers in order of preference
       const scrollContainers = [
-        document.querySelector(".my-mind-chat-container"),
+        document.querySelector(".jason-ai-chat-container"),
         this.chatHistory,
-        document.querySelector(".my-mind"),
+        document.querySelector(".jason-ai"),
       ].filter(Boolean);
 
       if (scrollContainers.length === 0) {
-        console.log("MyMindChat: No scroll container found");
+        console.log("JasonAiChat: No scroll container found");
         return;
       }
 
       const scrollContainer = scrollContainers[0];
       console.log(
-        "MyMindChat: Scrolling to bottom of",
+        "JasonAiChat: Scrolling to bottom of",
         scrollContainer.className
       );
 
@@ -361,7 +361,7 @@ class MyMindChat {
           scrollContainer.scrollTop = scrollContainer.scrollHeight;
         }, 300);
       } else {
-        console.log("MyMindChat: Already at bottom, skipping scroll");
+        console.log("JasonAiChat: Already at bottom, skipping scroll");
       }
     });
   }
@@ -381,7 +381,7 @@ class MyMindChat {
       );
     } else {
       // If no existing flashes, add to the top of the main content
-      const main = document.querySelector(".my-mind-main");
+      const main = document.querySelector(".jason-ai-main");
       if (main) {
         main.parentNode.insertBefore(flashElement, main);
       } else {
@@ -399,20 +399,20 @@ class MyMindChat {
 
   addKnowledgeBaseIndicator(messageElement, kbInfluence) {
     const indicator = document.createElement("div");
-    indicator.className = "my-mind-kb-indicator";
+    indicator.className = "jason-ai-kb-indicator";
 
     const influenceText = this.getInfluenceText(kbInfluence);
     indicator.innerHTML = `
-      <div class="my-mind-kb-indicator__icon">📚</div>
-      <div class="my-mind-kb-indicator__content">
-        <div class="my-mind-kb-indicator__text">${influenceText}</div>
-        <div class="my-mind-kb-indicator__confidence">${kbInfluence.confidence_score}% confidence</div>
+      <div class="jason-ai-kb-indicator__icon">📚</div>
+      <div class="jason-ai-kb-indicator__content">
+        <div class="jason-ai-kb-indicator__text">${influenceText}</div>
+        <div class="jason-ai-kb-indicator__confidence">${kbInfluence.confidence_score}% confidence</div>
       </div>
     `;
 
     // Replace the placeholder comment in the actions section
     const actionsSection = messageElement.querySelector(
-      ".my-mind-chat-message__actions"
+      ".jason-ai-chat-message__actions"
     );
     if (actionsSection) {
       const placeholderDiv = actionsSection.querySelector("div");
@@ -447,7 +447,7 @@ class MyMindChat {
 
 if (!window.myMindChatInitialized) {
   window.myMindChatInitialized = true;
-  const initChat = () => new MyMindChat();
+  const initChat = () => new JasonAiChat();
 
   document.readyState === "loading"
     ? document.addEventListener("DOMContentLoaded", initChat)

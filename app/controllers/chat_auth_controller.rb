@@ -8,7 +8,7 @@ class ChatAuthController < ApplicationController
       if user
         session[:chat_user_id] = user.id
         session[:chat_user_name] = user.name
-        redirect_to my_mind_path, notice: "Welcome back, #{user.name}!"
+        redirect_to jason_ai_path, notice: "Welcome back, #{user.name}!"
       else
         flash.now[:alert] = "Invalid email or password, your account hasn't been approved, or your login has expired."
         render :login

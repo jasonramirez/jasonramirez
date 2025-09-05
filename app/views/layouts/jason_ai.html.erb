@@ -15,7 +15,7 @@
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="<%= body_class %> my-mind-layout" 
+  <body class="<%= body_class %> jason-ai-layout" 
         data-controller="theme"
         data-theme-light-stylesheet-value="<%= asset_path('application_light.css') %>"
         data-theme-dark-stylesheet-value="<%= asset_path('application_dark.css') %>">
@@ -23,6 +23,7 @@
     <main>
       <%= yield %>
     </main>
+    <%= javascript_import_module_tag "jason-ai" %>
   </body>
 </html>
 

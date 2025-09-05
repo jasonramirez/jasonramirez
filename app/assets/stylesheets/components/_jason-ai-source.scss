@@ -2,7 +2,7 @@
 @use "variables/variables" as *;
 @use "sass:math";
 
-.my-mind-source-link {
+.jason-ai-source-link {
   align-items: center;
   background-color: $base-border-color;
   border-radius: $base-border-radius;
@@ -16,13 +16,13 @@
   text-decoration: none;
 }
 
-.my-mind-sources {
+.jason-ai-sources {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.my-mind-source {
+.jason-ai-source {
   background-color: $base-border-color;
   border-radius: $base-border-radius;
   padding: $base-spacing;

@@ -17,7 +17,7 @@ module KnowledgeHelper
     public_sources = filter_public_sources(kb_data['sources'])
     return unless public_sources.any?
     
-    render partial: 'my_mind/sources', locals: { 
+    render partial: 'jason_ai/sources', locals: { 
       sources: public_sources, 
       count: public_sources.count 
     }
