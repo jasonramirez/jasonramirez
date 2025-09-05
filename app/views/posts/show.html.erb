@@ -24,13 +24,12 @@
 
     <div class="post-meta">
       <div class="post-meta__stats">
-        <p class="post-meta__published">
+        <span class="post-meta__published">
           Jason Ramirez published on <%= @post.pretty_published_date %>
-        </p>
-
-        <p class="post-meta__updated">
+        </span>
+        <span class="post-meta__updated">
           Updated <%= time_ago_in_words(@post.updated_at) %> ago
-        </p>
+        </span>
       </div>
     </div>
 
