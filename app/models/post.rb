@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+  
+  after_save :ping_sitemap_if_published, if: :saved_change_to_published?
 
   def parsed_body
     MarkdownParser.new(self.body).markdown_to_html
@@ -24,5 +26,14 @@ class Post < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     title_changed?
+  end
+  
+  private
+  
+  def ping_sitemap_if_published
+    return unless published?
+    
+    # Use delayed job to ping search engines asynchronously
+    SitemapPingJob.perform_later if defined?(SitemapPingJob)
   end
 end
