@@ -1,36 +1,30 @@
 @use "variables/variables" as *;
 
 @keyframes rotate-text {
-  0%,
-  20% {
+  0% {
     opacity: 0;
   }
-  25%,
-  35% {
+  20%,
+  80% {
     opacity: 1;
   }
-  40%,
   100% {
     opacity: 0;
   }
 }
 
 @keyframes rotate-text-last {
-  0%,
-  20% {
+  0% {
     opacity: 0;
   }
-  25%,
-  35% {
-    opacity: 1;
-  }
-  40%,
   100% {
     opacity: 1;
   }
 }
 
 .rotating-text {
+  $animation-duration: 2s;
+
   height: 100%;
   min-height: 32vw;
   position: relative;
@@ -42,8 +36,6 @@
 
   &__item {
     align-items: center;
-    animation: rotate-text 8s;
-    animation-iteration-count: 1;
     bottom: 0;
     display: flex;
     flex-direction: column;
@@ -56,20 +48,31 @@
     width: 100%;
 
     &:nth-child(1) {
-      animation-delay: 0s;
+      animation-delay: 0;
+      animation-name: rotate-text;
+      animation-duration: $animation-duration;
+      animation-iteration-count: 1;
     }
 
     &:nth-child(2) {
-      animation-delay: 2s;
+      animation-delay: $animation-duration;
+      animation-name: rotate-text;
+      animation-duration: $animation-duration;
+      animation-iteration-count: 1;
     }
 
     &:nth-child(3) {
-      animation-delay: 4s;
+      animation-delay: $animation-duration * 2;
+      animation-name: rotate-text;
+      animation-duration: $animation-duration;
+      animation-iteration-count: 1;
     }
 
     &:nth-child(4) {
-      animation: rotate-text-last 8s;
-      animation-delay: 6s;
+      animation-delay: $animation-duration * 3;
+      animation-name: rotate-text-last;
+      animation-duration: $animation-duration;
+      animation-iteration-count: 1;
       animation-fill-mode: forwards;
     }
   }

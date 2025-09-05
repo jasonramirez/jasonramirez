@@ -1,24 +1,11 @@
 // Hero Logo Mask Animation
-$animation-count: 7;
-$animation-delay: 3s;
-$animation-interval: calc(100 / $animation-count);
-$animation-total-duration: calc($animation-count * $animation-delay);
-
 @keyframes hero-logo-mask-fade {
   0% {
     opacity: 0;
   }
-  #{$animation-interval * 0.5}% {
-    opacity: 0;
-  }
-  #{$animation-interval * 0.5}% {
+  20%,
+  80% {
     opacity: 1;
-  }
-  #{$animation-interval * 1.25}% {
-    opacity: 1;
-  }
-  #{$animation-interval * 1.5}% {
-    opacity: 0;
   }
   100% {
     opacity: 0;
@@ -26,7 +13,9 @@ $animation-total-duration: calc($animation-count * $animation-delay);
 }
 
 .hero-logo-mask {
-  animation: hero-logo-mask-fade $animation-total-duration infinite;
+  $animation-duration: 3s;
+  $animation-count: 9;
+
   left: 0;
   mask-image: url("/jason-ramirez-logo-white.svg");
   mask-size: contain;
@@ -43,8 +32,10 @@ $animation-total-duration: calc($animation-count * $animation-delay);
 
   @for $i from 1 through $animation-count {
     &:nth-child(#{$i}) {
-      animation-delay: 0s +
-        ($animation-delay * $i); // 8s offset to wait for rotating text
+      animation-delay: $animation-duration * $i;
+      animation-name: hero-logo-mask-fade;
+      animation-duration: $animation-duration;
+      animation-iteration-count: 1;
     }
   }
 }
