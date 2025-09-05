@@ -1,4 +1,32 @@
 <script type="application/ld+json">
+<% if defined?(@post) && @post %>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "<%= @post.title %>",
+    "description": "<%= @post.summary %>",
+    "author": {
+      "@type": "Person",
+      "name": "Jason Ramirez",
+      "url": "https://www.jasonramirez.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jason Ramirez",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.jasonramirez.com/images/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.jasonramirez.com/posts/<%= @post.slug %>"
+    },
+    "image": "https://www.jasonramirez.com/images/preview.jpg",
+    "datePublished": "<%= @post.published_date.iso8601 %>",
+    "dateModified": "<%= @post.updated_at.iso8601 %>"
+  }
+<% else %>
   {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -10,7 +38,8 @@
       "name": "Jason Ramirez"
     },
     "sameAs": [
-      "https://www.linkedin.com/in/jasondramirez",
+      "https://www.linkedin.com/in/jasondramirez"
     ]
   }
+<% end %>
 </script>

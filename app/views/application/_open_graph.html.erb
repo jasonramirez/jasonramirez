@@ -1,5 +1,13 @@
+<% if defined?(@post) && @post %>
+  <meta property="og:title" content="<%= @post.title %> – Jason Ramirez">
+  <meta property="og:description" content="<%= @post.summary %>">
+  <meta property="og:url" content="https://www.jasonramirez.com/posts/<%= @post.slug %>">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://www.jasonramirez.com/images/preview.jpg">
+<% else %>
   <meta property="og:title" content="Jason Ramirez – Product Design Leader">
   <meta property="og:description" content="Portfolio and leadership stories from Jason Ramirez, building purpose-driven teams and principle-led products.">
   <meta property="og:url" content="https://www.jasonramirez.com">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.jasonramirez.com/images/preview.jpg">
+<% end %>
