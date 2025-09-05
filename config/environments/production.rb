@@ -31,10 +31,24 @@ Rails.application.configure do
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Redirect non-www to www subdomain
-  config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-    r301 %r{.*}, 'https://www.jasonramirez.com$&', :if => Proc.new { |rack_env|
-      rack_env['SERVER_NAME'] == 'jasonramirez.com'
-    }
+  config.middleware.insert_before Rack::Runtime, Rack::Rewrite do
+    # 1) Force HTTPS for requests that already hit 'www'
+    r301 %r{.*},
+      'https://www.jasonramirez.com$&',
+      :if => proc { |env|
+        env['HTTP_HOST'] == 'www.jasonramirez.com' &&
+        env['HTTP_X_FORWARDED_PROTO'] != 'https'
+      }
+
+    # 2) Canonical host: anything NOT 'www.jasonramirez.com' -> 
+    # 'https://www.jasonramirez.com'
+    # (covers apex, herokuapp, or any other host)
+    r301 %r{.*},
+      'https://www.jasonramirez.com$&',
+      :if => proc { |env|
+        host = env['HTTP_HOST'] || env['SERVER_NAME']
+        host != 'www.jasonramirez.com'
+      }
   end
 
   # Log to STDOUT with the current request id as a default log tag.
