@@ -30,12 +30,6 @@ class Post < ActiveRecord::Base
   # Automatically populate post_text when post_markdown changes
   before_save :update_post_text, if: :post_markdown_changed?
 
-  private
-
-  def update_post_text
-    self.post_text = generate_post_text
-  end
-
   def pretty_published_date
     published_date.strftime("%-m/%-d/%y")
   end
@@ -46,6 +40,12 @@ class Post < ActiveRecord::Base
 
   def published_state
     published ? "Published" : "Not Published"
+  end
+
+  private
+
+  def update_post_text
+    self.post_text = generate_post_text
   end
 
   def should_generate_new_friendly_id?

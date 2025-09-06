@@ -7,8 +7,7 @@ RSpec.describe Hashtag, type: :model do
   end
 
   describe "associations" do
-    it { should have_many(:post_hashtags).dependent(:destroy) }
-    it { should have_many(:posts).through(:post_hashtags) }
+    it { should have_and_belong_to_many(:posts) }
   end
 
   describe "scopes" do
@@ -19,7 +18,7 @@ RSpec.describe Hashtag, type: :model do
     describe ".ordered_by_label" do
       it "orders hashtags alphabetically by label" do
         expect(Hashtag.ordered_by_label.first).to eq(hashtag3) # javascript
-        expect(Hashtag.ordered_by_label.last).to eq(hashtag2)  # rails
+        expect(Hashtag.ordered_by_label.last).to eq(hashtag1)  # ruby
       end
     end
   end

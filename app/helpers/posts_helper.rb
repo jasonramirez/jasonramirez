@@ -8,7 +8,7 @@ module PostsHelper
   end
 
   def parsed_body
-    MarkdownParser.new(@post.body).markdown_to_html
+    MarkdownParser.new(@post.post_markdown).markdown_to_html
   end
 
   def video_src

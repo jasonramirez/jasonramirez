@@ -61,7 +61,7 @@ RSpec.describe Post, type: :model do
     end
 
     describe "#parsed_body" do
-      let(:post) { create(:post, body: "# Hello\n\nThis is **bold** text.") }
+      let(:post) { create(:post, post_markdown: "# Hello\n\nThis is **bold** text.") }
       
       it "converts markdown to HTML" do
         expect(post.parsed_body).to include("<h1>")

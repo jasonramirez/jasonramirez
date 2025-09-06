@@ -18,7 +18,6 @@ FactoryBot.define do
     category { "Blog Post" }
     tags { "#design, #process" }
     source { "post_123" }
-    published { true }
     confidence_score { 0.9 }
   end
 
@@ -84,7 +83,9 @@ FactoryBot.define do
     
     trait :with_embedding do
       after(:create) do |message|
-        message.update_column(:content_embedding, '[0.1,0.2,0.3,0.4,0.5]')
+        # Create a valid 1536-dimension embedding
+        embedding = Array.new(1536, 0.1)
+        message.update_column(:content_embedding, "[#{embedding.join(',')}]")
       end
     end
   end
