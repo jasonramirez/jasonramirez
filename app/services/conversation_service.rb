@@ -301,7 +301,7 @@ class ConversationService
       
       if conversation_context[:recent_messages].any?
         context_parts << "Recent conversation:"
-        conversation_context[:recent_messages].last(3).each do |msg|
+        conversation_context[:recent_messages].first(3).each do |msg|
           context_parts << "- #{msg.message_type.capitalize}: #{msg.content.truncate(100)}"
         end
         context_parts << ""

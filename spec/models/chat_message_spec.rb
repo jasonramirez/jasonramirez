@@ -34,7 +34,26 @@ RSpec.describe ChatMessage, type: :model do
 
     describe ".recent" do
       it "limits results to specified number" do
-        expect(ChatMessage.for_user(user.id).recent(2)).to eq([question1, answer1])
+        expect(ChatMessage.for_user(user.id).recent(2)).to eq([question2, answer1])
+      end
+
+      it "returns messages in reverse chronological order (newest first)" do
+        # This test would have caught our bug!
+        result = ChatMessage.for_user(user.id).recent(3)
+        expect(result).to eq([question2, answer1, question1])
+        
+        # Verify timestamps are in descending order
+        timestamps = result.map(&:created_at)
+        expect(timestamps).to eq(timestamps.sort.reverse)
+      end
+
+      it "returns most recent messages when more exist than limit" do
+        # Create additional older message
+        old_message = create(:chat_message, chat_user: user, created_at: 2.hours.ago)
+        
+        result = ChatMessage.for_user(user.id).recent(2)
+        expect(result).to eq([question2, answer1])
+        expect(result).not_to include(old_message)
       end
     end
 

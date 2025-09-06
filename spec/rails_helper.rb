@@ -45,3 +45,22 @@ Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 # ActiveRecord::Migration.maintain_test_schema! # Disabled due to pgvector SQL schema format
+
+# Mock OpenAI API calls in tests
+WebMock.disable_net_connect!(allow_localhost: true)
+
+RSpec.configure do |config|
+  config.before(:each) do
+    # Stub OpenAI embeddings API to prevent real API calls during tests
+    stub_request(:post, "https://api.openai.com/v1/embeddings")
+      .to_return(
+        status: 200,
+        body: {
+          data: [
+            { embedding: Array.new(1536) { rand(-1.0..1.0) } }
+          ]
+        }.to_json,
+        headers: { 'Content-Type' => 'application/json' }
+      )
+  end
+end

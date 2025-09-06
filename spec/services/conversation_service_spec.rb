@@ -66,16 +66,45 @@ RSpec.describe ConversationService, type: :service do
     let!(:user) { create(:chat_user) }
     
     context "with recent messages" do
-      before do
-        create(:chat_message, chat_user: user, content: "First question", created_at: 2.hours.ago)
-        create(:chat_message, :answer, chat_user: user, content: "First answer", created_at: 1.hour.ago)
-      end
+      let!(:oldest_message) { create(:chat_message, chat_user: user, content: "Oldest question", created_at: 3.hours.ago) }
+      let!(:middle_message) { create(:chat_message, :answer, chat_user: user, content: "Middle answer", created_at: 2.hours.ago) }
+      let!(:newest_message) { create(:chat_message, chat_user: user, content: "Latest question", created_at: 1.hour.ago) }
       
-      it "retrieves recent conversation history" do
+      it "retrieves recent conversation history in correct order" do
         context = service.send(:get_conversation_context, "Follow-up question", user.id)
         
-        expect(context[:recent_messages].count).to eq(2)
+        expect(context[:recent_messages].count).to eq(3)
         expect(context[:has_context]).to be true
+        
+        # Should be in reverse chronological order (newest first)
+        messages = context[:recent_messages].first(3)
+        expect(messages[0]).to eq(newest_message)
+        expect(messages[1]).to eq(middle_message) 
+        expect(messages[2]).to eq(oldest_message)
+      end
+
+      it "limits recent messages to specified count" do
+        # Create more messages than we want to retrieve
+        5.times { |i| create(:chat_message, chat_user: user, content: "Message #{i}", created_at: i.minutes.ago) }
+        
+        context = service.send(:get_conversation_context, "Follow-up question", user.id)
+        
+        expect(context[:recent_messages].count).to eq(10) # Default limit in get_conversation_context
+      end
+    end
+
+    context "with conversation about design systems" do
+      before do
+        create(:chat_message, chat_user: user, content: "How do you think about design systems?", created_at: 30.minutes.ago)
+        create(:chat_message, :answer, chat_user: user, content: "Design systems are essential for creating consistency...", created_at: 25.minutes.ago)
+      end
+
+      it "finds design systems context for follow-up questions" do
+        context = service.send(:get_conversation_context, "Say more", user.id)
+        
+        expect(context[:has_context]).to be true
+        recent_content = context[:recent_messages].map(&:content).join(" ")
+        expect(recent_content).to include("design systems")
       end
     end
 
@@ -144,10 +173,12 @@ RSpec.describe ConversationService, type: :service do
   describe "#build_context" do
     context "with conversation context" do
       let!(:user) { create(:chat_user) }
-      let!(:recent_message) { create(:chat_message, chat_user: user, content: "Recent question") }
+      let!(:oldest_message) { create(:chat_message, chat_user: user, content: "Oldest question", created_at: 2.hours.ago) }
+      let!(:newest_message) { create(:chat_message, :answer, chat_user: user, content: "Most recent answer about design systems", created_at: 1.hour.ago) }
+      
       let(:conversation_context) do
         {
-          recent_messages: [recent_message],
+          recent_messages: [newest_message, oldest_message], # Newest first
           similar_messages: [],
           has_context: true
         }
@@ -158,7 +189,39 @@ RSpec.describe ConversationService, type: :service do
         
         expect(result).to include("CONVERSATION CONTEXT:")
         expect(result).to include("Recent conversation:")
-        expect(result).to include("Recent question")
+        expect(result).to include("Most recent answer about design systems")
+      end
+
+      it "uses the most recent messages first (not last)" do
+        result = service.send(:build_context, [], conversation_context)
+        
+        # Should include the newest message first
+        lines = result.split("\n")
+        recent_conversation_index = lines.find_index("Recent conversation:")
+        first_message_line = lines[recent_conversation_index + 1]
+        
+        expect(first_message_line).to include("Most recent answer about design systems")
+      end
+    end
+
+    context "with design systems conversation" do
+      let!(:user) { create(:chat_user) }
+      let!(:design_question) { create(:chat_message, chat_user: user, content: "How do you think about design systems?") }
+      let!(:design_answer) { create(:chat_message, :answer, chat_user: user, content: "Design systems are essential for creating consistency...") }
+      
+      let(:conversation_context) do
+        {
+          recent_messages: [design_answer, design_question],
+          similar_messages: [],
+          has_context: true
+        }
+      end
+
+      it "preserves design systems context for follow-up questions" do
+        result = service.send(:build_context, [], conversation_context)
+        
+        expect(result).to include("design systems")
+        expect(result).to include("consistency")
       end
     end
 

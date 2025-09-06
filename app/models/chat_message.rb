@@ -8,7 +8,7 @@ class ChatMessage < ActiveRecord::Base
   
   scope :for_user, ->(user_id) { where(chat_user_id: user_id) }
   scope :ordered, -> { order(created_at: :asc) }
-  scope :recent, ->(limit = 10) { ordered.limit(limit) }
+  scope :recent, ->(limit = 10) { order(created_at: :desc).limit(limit) }
   scope :questions, -> { where(message_type: 'question') }
   scope :answers, -> { where(message_type: 'answer') }
   scope :with_embeddings, -> { where.not(content_embedding: nil) }
