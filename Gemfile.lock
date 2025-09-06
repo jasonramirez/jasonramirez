@@ -247,6 +247,7 @@ GEM
     pg (1.6.1-arm64-darwin)
     pg (1.6.1-x86_64-darwin)
     pg (1.6.1-x86_64-linux)
+    pgvector (0.3.2)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -462,6 +463,7 @@ DEPENDENCIES
   normalize-rails (~> 3.0.0)
   parity (~> 3.5)
   pg
+  pgvector
   propshaft
   pry-byebug
   pry-rails

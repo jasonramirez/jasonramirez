@@ -27,11 +27,12 @@
 }
 
 .navigation-drawer {
+  border-left: $base-border-width solid $base-font-color;
+  pointer-events: none;
   position: fixed;
   top: 0;
   right: 0;
   z-index: $z-index-drawers + 1;
-  pointer-events: none;
 
   [data-controller="navigation-drawer"].navigation-drawer--open & {
     pointer-events: auto;
@@ -57,7 +58,6 @@
 }
 
 .navigation-drawer__overlay {
-  background-color: rgba($base-font-color, 0.8);
   height: 100vh;
   left: 0;
   opacity: 0;

@@ -7,17 +7,23 @@ class KnowledgeImportService
     puts "🌱 Starting comprehensive knowledge base import..."
     
     # Import published posts
-    import_published_posts
+    imported_post_ids = import_published_posts
     
     # Import case studies
-    import_case_studies
+    imported_case_study_ids = import_case_studies
+    
+    # Queue chunk generation for all imported items
+    all_imported_ids = imported_post_ids + imported_case_study_ids
+    queue_chunk_generation(all_imported_ids)
     
     puts "✅ Knowledge base import complete!"
     puts "📊 Total knowledge items: #{KnowledgeItem.count}"
+    puts "🧩 Queued chunk generation for #{all_imported_ids.count} items"
   end
 
   def import_published_posts
     puts "📝 Importing published posts..."
+    imported_ids = []
     
     Post.where(published: true).each do |post|
       knowledge_item = KnowledgeItem.find_or_initialize_by(
@@ -34,12 +40,16 @@ class KnowledgeImportService
       )
       
       knowledge_item.save!
+      imported_ids << knowledge_item.id
       puts "  ✅ Imported post: #{post.title}"
     end
+    
+    imported_ids
   end
 
   def import_case_studies
     puts "📊 Importing case studies..."
+    imported_ids = []
     
     case_studies = [
       {
@@ -79,7 +89,22 @@ class KnowledgeImportService
       )
       
       knowledge_item.save!
+      imported_ids << knowledge_item.id
       puts "  ✅ Imported case study: #{study[:title]}"
+    end
+    
+    imported_ids
+  end
+
+  private
+
+  def queue_chunk_generation(knowledge_item_ids)
+    return if knowledge_item_ids.empty?
+    
+    puts "🧩 Queueing chunk generation for #{knowledge_item_ids.count} knowledge items..."
+    
+    knowledge_item_ids.each do |id|
+      GenerateChunksJob.perform_later(id)
     end
   end
 

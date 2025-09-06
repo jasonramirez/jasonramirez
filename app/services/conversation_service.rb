@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class ConversationService
   STOP_WORDS = %w[
     a an and are as at be by for from has he in is it its of on that the they to was will with
@@ -16,6 +18,9 @@ class ConversationService
 
   def respond_to_question(question, user_id = nil)
     begin
+      # Get conversation context if user_id is provided
+      conversation_context = user_id ? get_conversation_context(question, user_id) : nil
+      
       relevant_items = search_knowledge_base(question)
       
       # First check if we have relevant items before calculating influence
@@ -26,8 +31,8 @@ class ConversationService
         )
       end
       
-      context = build_context(relevant_items)
-      response = generate_llm_response(question, context)
+      context = build_context(relevant_items, conversation_context)
+      response = generate_llm_response(question, context, conversation_context)
       store_conversation(question, response, user_id)
       
       # Calculate influence after generating response
@@ -42,13 +47,22 @@ class ConversationService
         empty_kb_influence
       )
     rescue => e
-      Rails.logger.error "Error in ConversationService#respond_to_question: #{e.message}"
-      Rails.logger.error e.backtrace.join("\n")
+      Rails.logger.error "Error in ConversationService#respond_to_question: #{e.class.name}: #{e.message}"
+      Rails.logger.error "Question: #{question}"
+      Rails.logger.error "User ID: #{user_id}"
+      Rails.logger.error "Backtrace: #{e.backtrace.first(10).join("\n")}"
       
-      build_response(
-        "I'm sorry, I encountered an error processing your question. Please try again.",
-        empty_kb_influence
-      )
+      # Check if it's a specific type of error we can handle
+      error_message = case e
+      when OpenAI::Error, Net::OpenTimeout, Net::ReadTimeout
+        "I'm experiencing connectivity issues with my AI service. Please try again in a moment."
+      when ActiveRecord::StatementInvalid
+        "I'm having trouble accessing my knowledge base. Please try again."
+      else
+        "I'm sorry, I encountered an error processing your question. Please try again."
+      end
+      
+      build_response(error_message, empty_kb_influence)
     end
   end
 
@@ -91,12 +105,78 @@ class ConversationService
   end
 
   def search_knowledge_base(question)
+    Rails.logger.info "Search Debug:"
+    Rails.logger.info "  Question: #{question}"
+    
+    # Try chunk-based semantic search first for more precise results
+    chunk_results = KnowledgeChunk.semantic_search(question, limit: 8)
+    
+    if chunk_results.any? && chunk_results.first.respond_to?(:similarity_score)
+      Rails.logger.info "  Chunk search results: #{chunk_results.count}"
+      
+      # Filter chunks by similarity threshold
+      good_chunks = chunk_results.select do |chunk|
+        similarity = chunk.similarity_score.to_f
+        similarity < 0.6  # Slightly more lenient for chunks
+      end
+      
+      Rails.logger.info "  High-quality chunk results: #{good_chunks.count}"
+      
+      # Convert chunks to a format compatible with existing code
+      if good_chunks.any?
+        chunk_items = good_chunks.map { |chunk| convert_chunk_to_item_format(chunk) }
+        return prioritize_frameworks(chunk_items, question)
+      end
+    end
+    
+    # Fallback to full knowledge item search
+    Rails.logger.info "  Falling back to full item search"
+    semantic_results = KnowledgeItem.semantic_search(question, limit: 6)
+    
+    if semantic_results.any? && semantic_results.first.respond_to?(:similarity_score)
+      Rails.logger.info "  Full item semantic search results: #{semantic_results.count}"
+      good_results = semantic_results.select do |item|
+        similarity = item.similarity_score.to_f
+        similarity < 0.5
+      end
+      
+      Rails.logger.info "  High-quality full item results: #{good_results.count}"
+      return prioritize_frameworks(good_results, question) if good_results.any?
+    end
+    
+    # Final fallback to progressive keyword search
+    Rails.logger.info "  Falling back to keyword search"
+    progressive_keyword_search(question)
+  end
+
+  def convert_chunk_to_item_format(chunk)
+    # Create an object that behaves like a KnowledgeItem for compatibility
+    begin
+      ::OpenStruct.new(
+        id: "chunk_#{chunk.id}",
+        title: chunk.title || "Untitled Chunk",
+        content: chunk.content || "",
+        category: chunk.category || "Unknown",
+        tags: chunk.tags || "",
+        confidence_score: chunk.confidence_score || 0.9,
+        similarity_score: chunk.respond_to?(:similarity_score) ? chunk.similarity_score : nil,
+        source: chunk.source || "",
+        chunk_type: chunk.chunk_type || "unknown",
+        chunk_index: chunk.chunk_index || 0,
+        knowledge_item_id: chunk.knowledge_item_id
+      )
+    rescue => e
+      Rails.logger.error "Error converting chunk to item format: #{e.message}"
+      Rails.logger.error "Chunk: #{chunk.inspect}"
+      raise e
+    end
+  end
+
+  def progressive_keyword_search(question)
     # Progressive search strategy: start strict, then loosen
     question_words = process_question_words(question)
     return [] if question_words.empty?
     
-    Rails.logger.info "Progressive Search Debug:"
-    Rails.logger.info "  Question: #{question}"
     Rails.logger.info "  Question words: #{question_words}"
     
     # Tier 1: Strict search - all question words must be present
@@ -194,12 +274,48 @@ class ConversationService
     end
   end
 
-  def build_context(items)
+  def get_conversation_context(question, user_id)
+    # Get recent conversation history
+    recent_messages = ChatMessage.for_user(user_id).recent(10)
+    
+    # Find similar previous questions/topics
+    similar_messages = ChatMessage.find_similar_messages(question, user_id, limit: 3)
+    
+    {
+      recent_messages: recent_messages,
+      similar_messages: similar_messages,
+      has_context: recent_messages.any? || similar_messages.any?
+    }
+  end
+
+  def build_context(items, conversation_context = nil)
     return "No relevant information found in knowledge base." if items.empty?
 
     framework_items = items.select { |item| item.tags.to_s.downcase.include?('framework') }
     
     context_parts = []
+    
+    # Add conversation context if available
+    if conversation_context&.dig(:has_context)
+      context_parts << "CONVERSATION CONTEXT:"
+      
+      if conversation_context[:recent_messages].any?
+        context_parts << "Recent conversation:"
+        conversation_context[:recent_messages].last(3).each do |msg|
+          context_parts << "- #{msg.message_type.capitalize}: #{msg.content.truncate(100)}"
+        end
+        context_parts << ""
+      end
+      
+      if conversation_context[:similar_messages].any?
+        context_parts << "Similar previous topics:"
+        conversation_context[:similar_messages].each do |msg|
+          similarity = msg.respond_to?(:similarity_score) ? " (#{(1 - msg.similarity_score.to_f).round(2)} similarity)" : ""
+          context_parts << "- #{msg.content.truncate(80)}#{similarity}"
+        end
+        context_parts << ""
+      end
+    end
     
     # Add framework notice if we have frameworks
     if framework_items.any?
@@ -223,15 +339,15 @@ class ConversationService
     context_parts.join("\n")
   end
 
-  def generate_llm_response(question, context)
-    prompt = build_prompt(question, context)
+  def generate_llm_response(question, context, conversation_context = nil)
+    prompt = build_prompt(question, context, conversation_context)
     
     begin
       response = @client.chat(
         parameters: {
           model: "gpt-4o-mini",
           messages: [
-            { role: "system", content: system_prompt },
+            { role: "system", content: system_prompt(conversation_context) },
             { role: "user", content: prompt }
           ],
           max_tokens: 150,
@@ -246,8 +362,8 @@ class ConversationService
     end
   end
 
-  def system_prompt
-    <<~PROMPT
+  def system_prompt(conversation_context = nil)
+    base_prompt = <<~PROMPT
       You are Jason Ramirez, a Product Design Director with extensive experience in product design, leadership, and strategic thinking. You're having a conversation with someone who wants to learn from your expertise.
 
       CRITICAL: You will ONLY receive questions that have relevant knowledge base content. If you receive a question, it means there IS relevant information available.
@@ -276,13 +392,34 @@ class ConversationService
 
       Always speak in the first person ("I", "my", "me") as Jason Ramirez.
     PROMPT
+
+    if conversation_context&.dig(:has_context)
+      base_prompt += <<~CONTEXT_PROMPT
+
+        CONVERSATION CONTEXT GUIDANCE:
+        - You have access to our recent conversation history and similar topics we've discussed
+        - Reference previous discussions naturally when relevant (e.g., "Building on what we talked about earlier...")
+        - If the question seems to be a follow-up, acknowledge the connection
+        - Use conversation context to provide more personalized and coherent responses
+        - Don't repeat information unnecessarily, but do build upon previous exchanges
+      CONTEXT_PROMPT
+    end
+
+    base_prompt
   end
 
-  def build_prompt(question, context)
+  def build_prompt(question, context, conversation_context = nil)
     has_frameworks = context.include?('[FRAMEWORK]')
+    has_conversation_context = conversation_context&.dig(:has_context)
     
     framework_guidance = if has_frameworks
       "\n- IMPORTANT: Reference available frameworks as practical tools when relevant to the question"
+    else
+      ""
+    end
+
+    context_guidance = if has_conversation_context
+      "\n- Use conversation context to provide continuity and build on previous discussions"
     else
       ""
     end
@@ -297,7 +434,7 @@ class ConversationService
       Please provide a conversational response that matches the energy and complexity of the question:
       - For simple greetings/personal questions: 1 sentence, casual and warm
       - For career/professional questions: 2-3 sentences with relevant context
-      - For non-career questions: don't mention work or professional topics#{framework_guidance}
+      - For non-career questions: don't mention work or professional topics#{framework_guidance}#{context_guidance}
       
       Make it sound natural and personal, as if we're having a real conversation. End with a statement, not a question.
     PROMPT

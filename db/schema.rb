@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_04_034539) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_06_020546) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
+  enable_extension "vector"
 
   create_table "admins", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,17 +27,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_034539) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "chat_messages", force: :cascade do |t|
-    t.bigint "chat_user_id", null: false
-    t.text "content", null: false
-    t.string "message_type", null: false
-    t.string "audio_path"
-    t.jsonb "metadata"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_user_id", "created_at"], name: "index_chat_messages_on_chat_user_id_and_created_at"
-    t.index ["chat_user_id"], name: "index_chat_messages_on_chat_user_id"
-  end
+# Could not dump table "chat_messages" because of following StandardError
+#   Unknown type 'vector(1536)' for column 'content_embedding'
+
 
   create_table "chat_users", force: :cascade do |t|
     t.string "name", null: false
@@ -89,17 +82,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_034539) do
     t.index ["post_id"], name: "index_hashtags_posts_on_post_id"
   end
 
-  create_table "knowledge_items", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.string "category"
-    t.text "tags"
-    t.decimal "confidence_score"
-    t.string "source"
-    t.datetime "last_updated"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "knowledge_chunks" because of following StandardError
+#   Unknown type 'vector(1536)' for column 'content_embedding'
+
+
+# Could not dump table "knowledge_items" because of following StandardError
+#   Unknown type 'vector(1536)' for column 'content_embedding'
+
 
   create_table "posts", id: :serial, force: :cascade do |t|
     t.string "title"
@@ -129,4 +118,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_034539) do
   end
 
   add_foreign_key "chat_messages", "chat_users"
+  add_foreign_key "knowledge_chunks", "knowledge_items"
 end

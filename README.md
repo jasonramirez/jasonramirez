@@ -144,38 +144,80 @@ heroku run rails db:migrate --app jasonramirez
 2. Make sure you have the latest production backup
 3. Consider the impact on live users
 
-## Knowledge Base Management
+## AI Chat System & Knowledge Base Management
 
-The AI chat system uses a knowledge base that's automatically updated from your published posts and case studies.
+The AI chat system uses semantic search with embeddings to provide intelligent responses based on your content.
 
-### How Knowledge Base Updates Work
+### System Architecture
 
-**Automatic Updates**: The knowledge base is automatically updated daily via Heroku Scheduler.
+- **Knowledge Base**: Blog posts and case studies stored as searchable items
+- **Content Chunks**: Large content automatically split into focused chunks for precise retrieval
+- **Embeddings**: Vector representations enable semantic search (understanding meaning, not just keywords)
+- **Conversation Memory**: Chat history provides context for follow-up questions
 
-1. **Heroku Scheduler** runs daily at 2:00 AM UTC
-2. **Command**: `bundle exec rails knowledge:clear && bundle exec rails knowledge:import`
-3. **Process**: Clears old knowledge items and imports fresh data from:
-   - All published blog posts
-   - Case studies from the works directory
+### Automatic Updates (Daily via Heroku Scheduler)
+
+**Current Heroku Scheduler Job**: Runs daily at 2:00 AM UTC
+
+```bash
+bundle exec rails knowledge:clear && bundle exec rails knowledge:import
+```
+
+**✅ ENHANCED**: Your Heroku Scheduler job now uses background processing:
+
+```bash
+bundle exec rails knowledge:clear && bundle exec rails knowledge:import
+```
+
+**What happens automatically:**
+
+1. Fresh knowledge items are imported
+2. **Background jobs** generate embeddings for new items (no blocking)
+3. **Background jobs** create content chunks with embeddings
+4. Chat responses improve as jobs complete
+
+**Why this is better:**
+
+- ⚡ Faster daily updates (no waiting for embedding generation)
+- 🔄 Non-blocking processing (jobs run in parallel)
+- 💪 Resilient (failed jobs retry automatically)
+- 📊 Better resource usage (spreads load over time)
 
 ### Manual Knowledge Base Updates
 
-If you need to update the knowledge base immediately:
+**Full system refresh** (use when adding new content types):
 
 ```bash
-# Clear and reimport all knowledge
+# Production - Background jobs handle embeddings automatically
 heroku run "bundle exec rails knowledge:clear && bundle exec rails knowledge:import"
 
-# Or just import new posts (without clearing)
-heroku run "bundle exec rails knowledge:import_posts"
-
-# Check knowledge base stats
-heroku run "bundle exec rails knowledge:stats"
+# Development - Same automatic background processing
+rails knowledge:clear && rails knowledge:import
 ```
 
-### Knowledge Base Tasks
+**Quick content update** (for new posts only):
 
-Available rake tasks for knowledge management:
+```bash
+# Production - New posts get embeddings automatically
+heroku run "bundle exec rails knowledge:import_posts"
+
+# Development - Same automatic processing
+rails knowledge:import_posts
+```
+
+**Force immediate processing** (if you need embeddings right away):
+
+```bash
+# Production - Only use if you can't wait for background jobs
+heroku run "bundle exec rails embeddings:generate_all && bundle exec rails embeddings:generate_chunks"
+
+# Development
+rails embeddings:generate_all && rails embeddings:generate_chunks
+```
+
+### Available Rake Tasks
+
+**Knowledge Base Management:**
 
 ```bash
 # Import all posts and case studies
@@ -194,26 +236,81 @@ rails knowledge:clear
 rails knowledge:stats
 ```
 
-### Setting Up Heroku Scheduler
+**Embedding & Search Management:**
 
-1. **Add the addon** (if not already added):
+```bash
+# Generate embeddings for all knowledge items (one-time setup)
+rails embeddings:generate_all
 
-   ```bash
-   heroku addons:create scheduler:standard
-   ```
+# Generate content chunks with embeddings (one-time setup)
+rails embeddings:generate_chunks
 
-2. **Open the scheduler dashboard**:
+# Generate embeddings for chat messages (one-time setup)
+rails embeddings:generate_chat_embeddings
 
-   ```bash
-   heroku addons:open scheduler
-   ```
+# Test semantic search
+rails 'embeddings:test_search[your query here]'
 
-3. **Add a new job**:
-   - **Command**: `bundle exec rails knowledge:clear && bundle exec rails knowledge:import`
-   - **Frequency**: Daily
-   - **Time**: 2:00 AM UTC (or your preferred time)
+# Test chunk-based search
+rails 'embeddings:test_chunk_search[your query here]'
+```
 
-This ensures your AI chat always has access to your latest content without manual intervention.
+### One-Time Setup (Already Done)
+
+These were needed to set up the enhanced chat system but shouldn't need to be run again:
+
+1. ✅ Generate embeddings for existing knowledge items
+2. ✅ Create content chunks from existing items
+3. ✅ Generate embeddings for existing chat messages
+4. ✅ Set up vector indexes for fast similarity search
+
+### Troubleshooting
+
+**If chat responses seem outdated:**
+
+```bash
+heroku run "bundle exec rails knowledge:import && bundle exec rails embeddings:generate_all"
+```
+
+**If search results are poor:**
+
+```bash
+heroku run "bundle exec rails embeddings:generate_chunks"
+```
+
+**Check system health:**
+
+```bash
+heroku run "bundle exec rails knowledge:stats"
+# Should show: Knowledge items, chunks, and embedding counts
+```
+
+### Setting Up Enhanced Heroku Scheduler
+
+**Your existing job is now optimized**:
+
+1. Open scheduler: `heroku addons:open scheduler`
+2. Verify your daily job command is: `bundle exec rails knowledge:clear && bundle exec rails knowledge:import`
+3. **That's it!** Background jobs now handle embeddings automatically
+
+**What changed:**
+
+- ✅ Faster daily updates (scheduler job completes quickly)
+- ✅ Automatic embedding generation (happens in background)
+- ✅ Automatic chunk creation (happens in background)
+- ✅ Better error handling (jobs retry on failure)
+
+**Monitor background jobs:**
+
+```bash
+# Check job status
+heroku run "bundle exec rails runner 'puts Delayed::Job.count'"
+
+# View recent jobs
+heroku logs --tail | grep "GenerateEmbeddingsJob\|GenerateChunksJob"
+```
+
+This ensures your AI chat system stays current with semantic search capabilities while being more efficient and resilient.
 
 ## Deployment
 

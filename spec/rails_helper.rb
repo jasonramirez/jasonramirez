@@ -44,4 +44,4 @@ Capybara.register_driver :selenium_chrome_headless do |app|
   
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
-ActiveRecord::Migration.maintain_test_schema!
+# ActiveRecord::Migration.maintain_test_schema! # Disabled due to pgvector SQL schema format

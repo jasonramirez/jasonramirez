@@ -1,4 +1,27 @@
 FactoryBot.define do
+  factory :knowledge_chunk do
+    association :knowledge_item
+    content { "This is sample chunk content about design principles and best practices." }
+    chunk_index { 0 }
+    chunk_type { "semantic" }
+    title { "Sample Knowledge Chunk" }
+    category { "Blog Post" }
+    tags { "#design, #principles, #process" }
+    confidence_score { 0.9 }
+    source { "post_123" }
+    last_updated { 1.day.ago }
+  end
+
+  factory :knowledge_item do
+    title { "Sample Knowledge Item" }
+    content { "This is sample content for testing knowledge base functionality." }
+    category { "Blog Post" }
+    tags { "#design, #process" }
+    source { "post_123" }
+    published { true }
+    confidence_score { 0.9 }
+  end
+
   factory :post_tag do
     text { "MyString" }
   end
@@ -51,6 +74,17 @@ FactoryBot.define do
   factory :chat_message do
     association :chat_user
     content { "Hello, this is a test message." }
-    message_type { "user" }
+    message_type { "question" }
+    
+    trait :answer do
+      message_type { "answer" }
+      content { "This is a response from the AI assistant." }
+    end
+    
+    trait :with_embedding do
+      after(:create) do |message|
+        message.update_column(:content_embedding, '[0.1,0.2,0.3,0.4,0.5]')
+      end
+    end
   end
 end
