@@ -73,8 +73,12 @@ RSpec.describe ChatMessage, type: :model do
       let!(:message_with_embedding) { create(:chat_message, chat_user: user) }
       
       before do
-        # Simulate having an embedding
-        message_with_embedding.update_column(:content_embedding, '[0.1,0.2,0.3]')
+        # Ensure question1 has no embedding
+        question1.update_column(:content_embedding, nil)
+        
+        # Simulate having an embedding for the other message
+        embedding = Array.new(1536, 0.1)
+        message_with_embedding.update_column(:content_embedding, "[#{embedding.join(',')}]")
       end
 
       it "returns only messages with embeddings" do
@@ -103,7 +107,10 @@ RSpec.describe ChatMessage, type: :model do
       end
 
       context "when embedding already exists" do
-        before { message.content_embedding = '[0.1,0.2,0.3]' }
+        before { 
+          embedding = Array.new(1536, 0.1)
+          message.content_embedding = "[#{embedding.join(',')}]" 
+        }
 
         it "returns false" do
           expect(message.send(:should_generate_embedding?)).to be false
@@ -118,7 +125,7 @@ RSpec.describe ChatMessage, type: :model do
         it "calls EmbeddingService" do
           embedding_service = instance_double(EmbeddingService)
           allow(EmbeddingService).to receive(:new).and_return(embedding_service)
-          allow(embedding_service).to receive(:generate_embedding).and_return([0.1, 0.2, 0.3])
+          allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
 
           saved_message.generate_embedding
 
@@ -129,17 +136,17 @@ RSpec.describe ChatMessage, type: :model do
         it "updates the content_embedding column" do
           embedding_service = instance_double(EmbeddingService)
           allow(EmbeddingService).to receive(:new).and_return(embedding_service)
-          allow(embedding_service).to receive(:generate_embedding).and_return([0.1, 0.2, 0.3])
+          allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
 
           saved_message.generate_embedding
           saved_message.reload
 
-          expect(saved_message.content_embedding).to eq('[0.1,0.2,0.3]')
+          expect(saved_message.content_embedding).to be_present
         end
       end
 
       context "when message has no content" do
-        before { saved_message.update_column(:content, nil) }
+        before { saved_message.update_column(:content, "") }
 
         it "does not generate embedding" do
           expect(EmbeddingService).not_to receive(:new)

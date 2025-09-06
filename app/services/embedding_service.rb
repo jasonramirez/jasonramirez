@@ -20,6 +20,7 @@ class EmbeddingService
         }
       )
       
+      return nil unless response.is_a?(Hash)
       response.dig("data", 0, "embedding")
     rescue => e
       Rails.logger.error "Embedding generation error: #{e.message}"

@@ -124,8 +124,22 @@ RSpec.describe ConversationService, type: :service do
       let!(:chunk) { create(:knowledge_chunk, knowledge_item: knowledge_item, content: "Chunk about design") }
       
       it "attempts chunk search first" do
-        allow(KnowledgeChunk).to receive(:semantic_search).and_return([chunk])
-        allow(chunk).to receive(:similarity_score).and_return(0.3)
+        # Create chunk doubles with similarity scores
+        chunk_with_score = double('KnowledgeChunk',
+          id: 1,
+          title: 'Test Chunk',
+          content: 'Test content',
+          category: 'Test',
+          tags: '#test',
+          confidence_score: 0.9,
+          similarity_score: 0.3,
+          source: 'test_source',
+          chunk_type: 'semantic',
+          chunk_index: 0,
+          knowledge_item_id: 1
+        )
+        
+        allow(KnowledgeChunk).to receive(:semantic_search).and_return([chunk_with_score])
         
         result = service.send(:search_knowledge_base, "design principles")
         
@@ -162,9 +176,22 @@ RSpec.describe ConversationService, type: :service do
     end
 
     it "handles chunks with similarity scores" do
-      allow(chunk).to receive(:similarity_score).and_return(0.75)
+      # Create a double that responds to similarity_score
+      chunk_with_score = double('KnowledgeChunk',
+        id: 1,
+        title: 'Test Chunk',
+        content: 'Test content',
+        category: 'Test',
+        tags: '#test',
+        confidence_score: 0.9,
+        similarity_score: 0.75,
+        source: 'test_source',
+        chunk_type: 'semantic',
+        chunk_index: 0,
+        knowledge_item_id: 1
+      )
       
-      result = service.send(:convert_chunk_to_item_format, chunk)
+      result = service.send(:convert_chunk_to_item_format, chunk_with_score)
       
       expect(result.similarity_score).to eq(0.75)
     end
@@ -226,7 +253,14 @@ RSpec.describe ConversationService, type: :service do
     end
 
     context "with framework items" do
-      let(:framework_item) { double("KnowledgeItem", tags: "#framework, #design", title: "Design Framework") }
+      let(:framework_item) { 
+        double("KnowledgeItem", 
+               tags: "#framework, #design", 
+               title: "Design Framework",
+               category: "Framework",
+               content: "Framework content",
+               confidence_score: 0.9) 
+      }
       
       it "adds framework notice" do
         result = service.send(:build_context, [framework_item])

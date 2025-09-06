@@ -38,12 +38,13 @@ RSpec.describe KnowledgeChunk, type: :model do
     end
 
     describe ".ordered" do
-      let!(:chunk_a) { create(:knowledge_chunk, knowledge_item: knowledge_item, chunk_index: 0) }
-      let!(:chunk_b) { create(:knowledge_chunk, knowledge_item: knowledge_item, chunk_index: 1) }
+      let!(:specific_knowledge_item) { create(:knowledge_item, title: "Ordering Test Item") }
+      let!(:chunk_a) { create(:knowledge_chunk, knowledge_item: specific_knowledge_item, chunk_index: 0) }
+      let!(:chunk_b) { create(:knowledge_chunk, knowledge_item: specific_knowledge_item, chunk_index: 1) }
 
       it "orders by knowledge_item_id and chunk_index" do
-        expect(KnowledgeChunk.ordered.where(knowledge_item: knowledge_item))
-          .to eq([chunk_a, chunk_b])
+        result = KnowledgeChunk.ordered.where(knowledge_item: specific_knowledge_item)
+        expect(result.to_a).to eq([chunk_a, chunk_b])
       end
     end
   end

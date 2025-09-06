@@ -77,7 +77,7 @@ class KnowledgeChunk < ActiveRecord::Base
   private
 
   def should_generate_embeddings?
-    content_changed? && content.present?
+    content.present? && content_embedding.blank?
   end
 
   def generate_embeddings_async
