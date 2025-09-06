@@ -31,8 +31,11 @@ class KnowledgeImportService
         source: "post_#{post.id}"
       )
       
+      # Use post_text for content if available, fallback to post_markdown
+      content_text = post.post_text.present? ? post.post_text : post.post_markdown
+      
       knowledge_item.assign_attributes(
-        content: post.body,
+        content: content_text,
         category: 'Blog Post',
         tags: post.hashtags.map(&:label).join(', '),
         confidence_score: 0.9,

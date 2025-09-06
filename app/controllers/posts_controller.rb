@@ -11,6 +11,47 @@ class PostsController < ApplicationController
     @previous_post = previous_post
   end
 
+  def feed
+    @posts = Post.where(published: true)
+                 .order(published_date: :desc)
+    
+    render json: {
+      version: "https://jsonfeed.org/version/1.1",
+      title: "Jason Ramirez - Blog Posts",
+      home_page_url: root_url,
+      feed_url: url_for(controller: 'posts', action: 'feed', format: :json, only_path: false),
+      description: "Latest blog posts and insights from Jason Ramirez on product design, leadership, and innovation",
+      copyright: "© #{Date.current.year} Jason Ramirez. All rights reserved.",
+      license: "All content copyright Jason Ramirez. Please link back to the original post when referencing.",
+      author: {
+        name: "Jason Ramirez",
+        url: root_url,
+        bio: "Product Design Leader"
+      },
+      items: @posts.map do |post|
+        {
+          id: post_url(post),
+          url: post_url(post),
+          external_url: post_url(post), # Canonical URL for attribution
+          title: post.title,
+          content_text: post.post_text,
+          content_html: post.parsed_body,
+          summary: post.summary,
+          date_published: post.published_date&.iso8601,
+          date_modified: post.updated_at.iso8601,
+          tags: post.hashtags.map(&:label),
+          authors: [
+            {
+              name: "Jason Ramirez",
+              url: root_url
+            }
+          ],
+          attribution: "Originally published at #{post_url(post)}"
+        }
+      end
+    }
+  end
+
   private
 
   def find_post
@@ -62,7 +103,10 @@ class PostsController < ApplicationController
   end
 
   def search_body
-    @posts.where("body ilike ?", "%#{params[:search]}%").pluck(:id)
+    # Search both post_text (plain text) and post_markdown for better coverage
+    text_ids = @posts.where("post_text ilike ?", "%#{params[:search]}%").pluck(:id)
+    markdown_ids = @posts.where("post_markdown ilike ?", "%#{params[:search]}%").pluck(:id)
+    (text_ids + markdown_ids).uniq
   end
 
   def search_hashtags

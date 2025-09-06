@@ -9,7 +9,31 @@ class Post < ActiveRecord::Base
   after_save :ping_sitemap_if_published, if: :saved_change_to_published?
 
   def parsed_body
-    MarkdownParser.new(self.body).markdown_to_html
+    MarkdownParser.new(self.post_markdown).markdown_to_html
+  end
+
+  # Generate plain text version of the markdown content
+  def generate_post_text
+    return '' if post_markdown.blank?
+    
+    # Parse markdown to HTML first, then strip HTML tags for plain text
+    html_content = MarkdownParser.new(post_markdown).markdown_to_html
+    
+    # Remove HTML tags and clean up whitespace
+    plain_text = html_content.gsub(/<[^>]*>/, ' ')
+                            .gsub(/\s+/, ' ')
+                            .strip
+    
+    plain_text
+  end
+
+  # Automatically populate post_text when post_markdown changes
+  before_save :update_post_text, if: :post_markdown_changed?
+
+  private
+
+  def update_post_text
+    self.post_text = generate_post_text
   end
 
   def pretty_published_date

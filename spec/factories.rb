@@ -38,7 +38,8 @@ FactoryBot.define do
   factory :post do
     title { "Post" }
     summary { "This is the summary of the post." }
-    body { "This is a great post." }
+    post_markdown { "This is a **great** post with *markdown*." }
+    post_text { "This is a great post with markdown." }
     tldr_transcript { "This is the TLDR transcript of the post." }
     published { true }
     published_date { "2016-07-19 07:34:28" }

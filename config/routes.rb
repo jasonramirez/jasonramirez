@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "works/:work", to: "works#show"
   
   get "sitemap.xml", to: "sitemaps#show", format: :xml
+  get "feed.json", to: "posts#feed", format: :json
   
   post "chat/login", to: "chat_auth#login"
   post "chat/register", to: "chat_auth#register"
