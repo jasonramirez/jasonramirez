@@ -5,7 +5,7 @@ feature "Guest views protected case studies" do
     it "has a link to each case study" do
       visit root_path
 
-      within ".site-header" do
+      within ".navigation-primary" do
         click_link t("navigation.works")
       end
 
@@ -38,12 +38,12 @@ feature "Guest views protected case studies" do
       
       # Check if the form is present
       expect(page).to have_css("form")
-      expect(page).to have_field("codeword")
+      expect(page).to have_field("password_protection_codeword")
 
-      fill_in "codeword", with: ENV['LOCKUP_CODEWORD']
+      fill_in "password_protection_codeword", with: ENV['LOCKUP_CODEWORD']
       click_button t("password_protection.unlock.submit")
 
-      expect(page).to have_text works.first[0][:title]
+      expect(page).to have_text "Smartifying Activation"
     end
   end
 

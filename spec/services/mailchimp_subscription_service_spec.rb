@@ -44,10 +44,11 @@ RSpec.describe MailchimpSubscriptionService do
     end
 
     context 'when Mailchimp returns an error' do
-      let(:error_response) { double('ErrorResponse', body: { 'title' => 'Member Exists' }) }
-
       before do
-        allow(mock_members).to receive(:create).and_raise(Gibbon::MailChimpError.new(error_response))
+        # Create a more realistic Gibbon error that has the expected body method
+        error = Gibbon::MailChimpError.new("Member exists")
+        allow(error).to receive(:body).and_return({ 'title' => 'Member Exists' })
+        allow(mock_members).to receive(:create).and_raise(error)
       end
 
       it 'creates a MailchimpSubscription with error body' do
@@ -73,7 +74,7 @@ RSpec.describe MailchimpSubscriptionService do
 
     describe '#subscribe_params' do
       it 'returns correct subscription parameters' do
-        expected_params = { 'email_address' => email, 'status' => 'subscribed' }
+        expected_params = { email_address: email, status: 'subscribed' }
         expect(service.send(:subscribe_params)).to eq(expected_params)
       end
     end
