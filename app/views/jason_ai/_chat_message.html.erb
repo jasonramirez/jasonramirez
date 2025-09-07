@@ -17,7 +17,7 @@
       <%= inline_svg "icon-copy.svg", height: "16px", width: "16px" %>
     </a>
     <% if kb_data %>
-      <div class="jason-ai-chat-message__confidence-score" data-modal-trigger data-modal-id="kb-influence-<%= message.id %>">
+      <div class="jason-ai-chat-message__confidence-score" data-modal="kb-influence-<%= message.id %>">
         <%= kb_data['confidence_score'] || 'N/A' %>%
       </div>
     <% end %>

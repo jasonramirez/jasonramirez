@@ -45,11 +45,19 @@
 }
 
 .modal__close-button {
-  padding: 0;
+  padding: $base-spacing;
   position: absolute;
   right: $x-small-spacing;
   top: $x-small-spacing;
-  width: 16px;
+
+  svg {
+    cursor: pointer;
+    stroke: $base-font-color;
+
+    &:hover {
+      stroke: $action-color;
+    }
+  }
 }
 
 .modal__content {
