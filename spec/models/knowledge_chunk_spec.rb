@@ -107,11 +107,6 @@ RSpec.describe KnowledgeChunk, type: :model do
     end
 
     context "with valid embeddings", :skip_embedding_test do
-      # Note: This would require a more complex setup with actual embeddings
-      # For now, we'll skip this test in CI but keep it for documentation
-      it "finds semantically similar chunks" do
-        skip "Requires OpenAI API key and pgvector setup"
-      end
     end
   end
 
