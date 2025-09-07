@@ -64,6 +64,17 @@
     &:hover svg {
       stroke: $action-color;
     }
+
+    &:disabled svg {
+      opacity: 0.1;
+      stroke: $base-font-color;
+
+      &:hover {
+        opacity: 0.1;
+        stroke: $base-font-color;
+        cursor: auto;
+      }
+    }
   }
 }
 

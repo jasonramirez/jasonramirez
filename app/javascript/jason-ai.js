@@ -372,14 +372,20 @@ class JasonAiChat {
     // Prevent double-clicking the same feedback
     if (feedbackBtn.dataset.selected === "true") return;
 
+    // Prevent multiple clicks while processing
+    if (feedbackBtn.disabled) return;
+
+    // Create animation burst immediately for responsive feel
+    this.createFeedbackBurst(feedbackBtn, feedbackRating);
+
+    // Disable buttons immediately to prevent double-clicking
+    this.setFeedbackButtonsState(feedbackContainer, "loading");
+
     this.submitFeedback(messageId, feedbackRating, feedbackContainer);
   }
 
   async submitFeedback(messageId, rating, container) {
     try {
-      // Disable feedback buttons to prevent double submission
-      this.setFeedbackButtonsState(container, "loading");
-
       const response = await fetch("/jason_ai/feedback", {
         method: "POST",
         headers: {
@@ -432,8 +438,8 @@ class JasonAiChat {
         btn.dataset.selected = "false";
       }
 
-      // Re-enable button
-      btn.disabled = false;
+      // Disable both buttons permanently after feedback is submitted
+      btn.disabled = true;
     });
   }
 
@@ -453,6 +459,79 @@ class JasonAiChat {
           break;
       }
     });
+  }
+
+  createFeedbackBurst(button, rating) {
+    const isThumbsUp = rating === "thumbs_up";
+    const burstCount = 8; // Number of SVG particles
+
+    // Get the SVG from the clicked button to clone it
+    const buttonSvg = button.querySelector("svg");
+    if (!buttonSvg) return; // Safety check
+
+    // Get button position
+    const buttonRect = button.getBoundingClientRect();
+    const centerX = buttonRect.left + buttonRect.width / 2;
+    const centerY = buttonRect.top + buttonRect.height / 2;
+
+    // Create burst container
+    const burstContainer = document.createElement("div");
+    burstContainer.className = "feedback-burst-container";
+    burstContainer.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 10000;
+    `;
+    document.body.appendChild(burstContainer);
+
+    // Create individual particles
+    for (let i = 0; i < burstCount; i++) {
+      const particle = document.createElement("div");
+      particle.className = "feedback-particle";
+
+      // Clone the SVG from the button
+      const svgClone = buttonSvg.cloneNode(true);
+      svgClone.style.cssText = `
+        width: 16px;
+        height: 16px;
+        display: block;
+      `;
+      particle.appendChild(svgClone);
+
+      // Random angle and distance for burst effect
+      const angle =
+        (i / burstCount) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
+      const distance = 40 + Math.random() * 60;
+      const endX = centerX + Math.cos(angle) * distance;
+      const endY = centerY + Math.sin(angle) * distance;
+
+      particle.style.cssText = `
+        position: absolute;
+        left: ${centerX}px;
+        top: ${centerY}px;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        pointer-events: none;
+      `;
+
+      burstContainer.appendChild(particle);
+
+      // Animate particle
+      requestAnimationFrame(() => {
+        particle.style.transform = `translate(-50%, -50%) translate(${
+          endX - centerX
+        }px, ${endY - centerY}px) rotate(${Math.random() * 360}deg) scale(0.3)`;
+        particle.style.opacity = "0";
+      });
+    }
+
+    // Clean up after animation
+    setTimeout(() => {
+      burstContainer.remove();
+    }, 800);
   }
 
   showFlashMessage(message) {
