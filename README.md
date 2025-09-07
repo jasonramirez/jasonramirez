@@ -312,6 +312,135 @@ heroku logs --tail | grep "GenerateEmbeddingsJob\|GenerateChunksJob"
 
 This ensures your AI chat system stays current with semantic search capabilities while being more efficient and resilient.
 
+## AI Chat Feedback System
+
+The AI chat system includes an aggregative feedback mechanism that learns from user responses to improve the quality of future answers.
+
+### How It Works
+
+**Aggregative Learning**: When any user provides feedback (thumbs up/down), it improves the knowledge base for everyone by adjusting how content is ranked in future searches.
+
+**Feedback Flow**:
+
+1. User receives AI response with thumbs up/down buttons
+2. Feedback updates the source knowledge items' quality scores
+3. Better-rated content appears higher in future search results
+4. Poor-rated content is penalized in ranking
+
+### Feedback Scoring
+
+**Knowledge Item Scores**:
+
+- `feedback_score`: Decimal (0.0-1.0) representing content quality
+- `total_feedback_count`: Total feedback submissions for this item
+- `positive_feedback_count`: Number of positive (thumbs up) submissions
+- Default score: 0.5 (neutral)
+
+**Score Calculation**:
+
+- Raw score = positive_feedback / total_feedback
+- Confidence weighting applied based on feedback volume
+- Minimum 3 feedback submissions needed for scoring to take effect
+
+**Search Enhancement**:
+
+- Content with good feedback (≥0.7 score, ≥3 submissions) gets boosted in search
+- Content with poor feedback (≤0.3 score, ≥3 submissions) gets penalized
+- Insufficient feedback (< 3 submissions) remains neutral
+
+### Technical Implementation
+
+**Database Schema**:
+
+```sql
+-- Added to knowledge_items table
+feedback_score         DECIMAL(3,2) DEFAULT 0.5
+total_feedback_count   DECIMAL(8,2) DEFAULT 0.0
+positive_feedback_count DECIMAL(8,2) DEFAULT 0.0
+last_feedback_at       TIMESTAMP
+```
+
+**API Endpoint**:
+
+```bash
+POST /jason_ai/feedback
+{
+  "message_id": 123,
+  "rating": "thumbs_up" | "thumbs_down"
+}
+```
+
+**Enhanced Search**:
+
+- `KnowledgeItem.semantic_search()` incorporates feedback scores
+- `KnowledgeChunk.semantic_search()` uses parent item's feedback scores
+- Search results ranked by: semantic similarity × feedback adjustment
+
+### Feedback Data
+
+**Message Metadata** (stored in `chat_messages.metadata`):
+
+```json
+{
+  "user_feedback": {
+    "rating": "thumbs_up",
+    "submitted_at": "2025-01-06T12:00:00Z",
+    "user_id": 123
+  },
+  "knowledge_base_influence": {
+    "sources": [
+      {
+        "id": 456,
+        "title": "Knowledge Item Title",
+        "relevance_score": 0.9
+      }
+    ]
+  }
+}
+```
+
+**Aggregative Processing**:
+
+- Feedback applies to all knowledge sources that influenced the response
+- Relevance score determines feedback weight (higher relevance = more impact)
+- Multiple sources in one response each receive proportional feedback
+
+### Monitoring Feedback
+
+**Check feedback stats**:
+
+```bash
+# Production
+heroku run rails runner "
+  puts 'Well-rated items: ' + KnowledgeItem.well_rated.count.to_s
+  puts 'Poorly-rated items: ' + KnowledgeItem.poorly_rated.count.to_s
+  puts 'Items with feedback: ' + KnowledgeItem.where('total_feedback_count > 0').count.to_s
+"
+
+# Development
+rails runner "
+  puts 'Well-rated items: ' + KnowledgeItem.well_rated.count.to_s
+  puts 'Poorly-rated items: ' + KnowledgeItem.poorly_rated.count.to_s
+  puts 'Items with feedback: ' + KnowledgeItem.where('total_feedback_count > 0').count.to_s
+"
+```
+
+**View feedback details**:
+
+```bash
+# See items by feedback score
+rails runner "KnowledgeItem.by_feedback_score.limit(10).each { |item| puts \"#{item.title}: #{item.feedback_score} (#{item.total_feedback_count} feedback)\" }"
+```
+
+### Benefits
+
+- **Self-Improving**: Content quality improves automatically based on user satisfaction
+- **Collective Intelligence**: All users benefit from each other's feedback
+- **Quality Control**: Poor content gets naturally demoted over time
+- **No User Tracking**: Feedback improves the system without personalizing results
+
+This feedback system ensures that the AI chat continuously learns and improves the relevance and quality of responses based on real user interactions.
+
 ## Deployment
 
 ### Updating Production

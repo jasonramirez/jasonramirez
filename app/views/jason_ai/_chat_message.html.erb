@@ -21,6 +21,23 @@
         <%= kb_data['confidence_score'] || 'N/A' %>%
       </div>
     <% end %>
+    
+    <% if message.message_type == 'answer' %>
+      <div data-message-id="<%= message.id %>" data-feedback-container>
+        <button data-feedback-button
+                data-feedback="thumbs_up" 
+                title="This response was helpful"
+                <%= 'data-selected="true"' if message.metadata&.dig('user_feedback', 'rating') == 'thumbs_up' %>>
+          <%= inline_svg "icon-thumbs-up.svg", height: "16px", width: "16px" %>
+        </button>
+        <button data-feedback-button
+                data-feedback="thumbs_down" 
+                title="This response needs improvement"
+                <%= 'data-selected="true"' if message.metadata&.dig('user_feedback', 'rating') == 'thumbs_down' %>>
+          <%= inline_svg "icon-thumbs-down.svg", height: "16px", width: "16px" %>
+        </button>
+      </div>
+    <% end %>
   </div>
 </div>
       

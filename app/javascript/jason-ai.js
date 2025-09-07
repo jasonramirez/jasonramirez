@@ -42,6 +42,7 @@ class JasonAiChat {
     }
 
     this.bindEvents();
+    this.bindFeedbackEvents();
     this.scrollToBottom();
   }
 
@@ -350,6 +351,107 @@ class JasonAiChat {
       setTimeout(() => {
         scrollContainer.scrollTop = scrollContainer.scrollHeight;
       }, 500);
+    });
+  }
+
+  bindFeedbackEvents() {
+    // Add click event listeners for feedback buttons
+    document.addEventListener("click", (e) => this.handleFeedbackClick(e));
+  }
+
+  handleFeedbackClick(e) {
+    const feedbackBtn = e.target.closest("[data-feedback-button]");
+    if (!feedbackBtn) return;
+
+    e.preventDefault();
+
+    const feedbackContainer = feedbackBtn.closest("[data-feedback-container]");
+    const messageId = feedbackContainer.dataset.messageId;
+    const feedbackRating = feedbackBtn.dataset.feedback;
+
+    // Prevent double-clicking the same feedback
+    if (feedbackBtn.dataset.selected === "true") return;
+
+    this.submitFeedback(messageId, feedbackRating, feedbackContainer);
+  }
+
+  async submitFeedback(messageId, rating, container) {
+    try {
+      // Disable feedback buttons to prevent double submission
+      this.setFeedbackButtonsState(container, "loading");
+
+      const response = await fetch("/jason_ai/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document
+            .querySelector('[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+        body: JSON.stringify({
+          message_id: messageId,
+          rating: rating,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Update UI to show selected feedback
+        this.updateFeedbackUI(container, rating);
+        console.log("Feedback submitted successfully:", result);
+      } else {
+        console.error("Feedback submission failed:", result.error);
+        this.setFeedbackButtonsState(container, "error");
+        // Re-enable buttons after a delay
+        setTimeout(
+          () => this.setFeedbackButtonsState(container, "enabled"),
+          2000
+        );
+      }
+    } catch (error) {
+      console.error("Network error submitting feedback:", error);
+      this.setFeedbackButtonsState(container, "error");
+      // Re-enable buttons after a delay
+      setTimeout(
+        () => this.setFeedbackButtonsState(container, "enabled"),
+        2000
+      );
+    }
+  }
+
+  updateFeedbackUI(container, selectedRating) {
+    const buttons = container.querySelectorAll("[data-feedback-button]");
+
+    buttons.forEach((btn) => {
+      const isSelected = btn.dataset.feedback === selectedRating;
+
+      if (isSelected) {
+        btn.dataset.selected = "true";
+      } else {
+        btn.dataset.selected = "false";
+      }
+
+      // Re-enable button
+      btn.disabled = false;
+    });
+  }
+
+  setFeedbackButtonsState(container, state) {
+    const buttons = container.querySelectorAll("[data-feedback-button]");
+
+    buttons.forEach((btn) => {
+      switch (state) {
+        case "loading":
+          btn.disabled = true;
+          break;
+        case "error":
+          btn.disabled = true;
+          break;
+        case "enabled":
+          btn.disabled = false;
+          break;
+      }
     });
   }
 

@@ -211,6 +211,34 @@ RSpec.describe ConversationService, type: :service do
         expect(KnowledgeItem).to have_received(:semantic_search)
       end
     end
+
+    context "with feedback-aware search" do
+      it "passes search query to enhanced semantic search methods" do
+        # Mock the enhanced semantic search methods
+        expect(KnowledgeChunk).to receive(:semantic_search).with("design feedback test", limit: 8).and_return([])
+        expect(KnowledgeItem).to receive(:semantic_search).with("design feedback test", limit: 6).and_return([])
+        allow(service).to receive(:progressive_keyword_search).and_return([])
+        
+        service.send(:search_knowledge_base, "design feedback test")
+      end
+
+      it "prioritizes chunks and items with good feedback scores in search results" do
+        # This test verifies that the search methods are called with the query
+        # The actual feedback-aware ranking is tested in the model specs
+        good_chunk = double('KnowledgeChunk',
+          id: 1, title: 'Good Content', content: 'Well-rated content', 
+          category: 'Test', tags: '#test', confidence_score: 0.9,
+          similarity_score: 0.3, source: 'test', chunk_type: 'semantic',
+          chunk_index: 0, knowledge_item_id: 1
+        )
+        
+        allow(KnowledgeChunk).to receive(:semantic_search).and_return([good_chunk])
+        
+        result = service.send(:search_knowledge_base, "test query")
+        
+        expect(result).to include(satisfy { |item| item.respond_to?(:title) && item.title == 'Good Content' })
+      end
+    end
   end
 
   describe "#convert_chunk_to_item_format" do
@@ -246,6 +274,33 @@ RSpec.describe ConversationService, type: :service do
       result = service.send(:convert_chunk_to_item_format, chunk_with_score)
       
       expect(result.similarity_score).to eq(0.75)
+    end
+
+    context "with feedback integration" do
+      let!(:knowledge_item_with_feedback) { 
+        create(:knowledge_item, 
+               feedback_score: 0.8, 
+               total_feedback_count: 5.0, 
+               positive_feedback_count: 4.0) 
+      }
+      let(:chunk_with_feedback) { create(:knowledge_chunk, knowledge_item: knowledge_item_with_feedback) }
+
+      it "includes feedback scores from parent KnowledgeItem" do
+        result = service.send(:convert_chunk_to_item_format, chunk_with_feedback)
+        
+        expect(result.feedback_score).to eq(0.8)
+        expect(result.total_feedback_count).to eq(5.0)
+        expect(result.positive_feedback_count).to eq(4.0)
+        expect(result.knowledge_item_id).to eq(knowledge_item_with_feedback.id)
+      end
+
+      it "handles chunks when parent item has no feedback" do
+        result = service.send(:convert_chunk_to_item_format, chunk)
+        
+        expect(result.feedback_score).to eq(0.5) # Default score
+        expect(result.total_feedback_count).to eq(0.0)
+        expect(result.positive_feedback_count).to eq(0.0)
+      end
     end
   end
 
@@ -326,6 +381,86 @@ RSpec.describe ConversationService, type: :service do
         result = service.send(:build_context, [])
         
         expect(result).to eq("No relevant information found in knowledge base.")
+      end
+    end
+  end
+
+  describe "#build_sources" do
+    let(:mock_item) do
+      double("KnowledgeItem",
+        id: 1,
+        title: "Test Item",
+        content: "Test content about design patterns",
+        category: "Design",
+        tags: "#design, #patterns",
+        confidence_score: 0.9,
+        feedback_score: 0.75,
+        total_feedback_count: 8.0,
+        positive_feedback_count: 6.0,
+        similarity_score: 0.4
+      )
+    end
+
+    it "includes feedback data in source information" do
+      sources = service.send(:build_sources, [mock_item], "design patterns")
+      
+      expect(sources).to be_an(Array)
+      expect(sources.length).to eq(1)
+      
+      source = sources.first
+      expect(source[:id]).to eq(1)
+      expect(source[:title]).to eq("Test Item")
+      expect(source[:feedback_score]).to eq(0.75)
+      expect(source[:total_feedback_count]).to eq(8.0)
+      expect(source[:similarity_score]).to eq(0.4)
+    end
+
+    context "with chunk items" do
+      let(:mock_chunk_item) do
+        double("ConvertedChunk",
+          id: "chunk_5",
+          title: "Chunk Title",
+          content: "Chunk content",
+          category: "Design",
+          tags: "#framework",
+          confidence_score: 0.8,
+          knowledge_item_id: 10,
+          feedback_score: 0.9,
+          total_feedback_count: 12.0,
+          similarity_score: 0.3
+        )
+      end
+
+      it "uses parent KnowledgeItem ID for chunks" do
+        sources = service.send(:build_sources, [mock_chunk_item], "test query")
+        
+        source = sources.first
+        expect(source[:id]).to eq(10) # Parent KnowledgeItem ID, not chunk ID
+        expect(source[:feedback_score]).to eq(0.9)
+        expect(source[:is_framework]).to be true
+      end
+    end
+
+    context "with items missing feedback data" do
+      let(:mock_item_no_feedback) do
+        double("KnowledgeItem",
+          id: 2,
+          title: "Item Without Feedback",
+          content: "Some content",
+          category: "Test",
+          tags: "#test",
+          confidence_score: 0.7
+        )
+      end
+
+      it "handles items without feedback gracefully" do
+        sources = service.send(:build_sources, [mock_item_no_feedback], "test")
+        
+        source = sources.first
+        expect(source[:id]).to eq(2)
+        expect(source[:feedback_score]).to be_nil
+        expect(source[:total_feedback_count]).to be_nil
+        expect(source[:similarity_score]).to be_nil
       end
     end
   end

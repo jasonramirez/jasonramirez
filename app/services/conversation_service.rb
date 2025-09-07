@@ -151,19 +151,27 @@ class ConversationService
 
   def convert_chunk_to_item_format(chunk)
     # Create an object that behaves like a KnowledgeItem for compatibility
+    # Fetch parent KnowledgeItem to get feedback scores and other missing fields
     begin
+      parent_item = KnowledgeItem.find_by(id: chunk.knowledge_item_id)
+      
       ::OpenStruct.new(
         id: "chunk_#{chunk.id}",
-        title: chunk.title || "Untitled Chunk",
+        title: chunk.title || parent_item&.title || "Untitled Chunk",
         content: chunk.content || "",
-        category: chunk.category || "Unknown",
-        tags: chunk.tags || "",
-        confidence_score: chunk.confidence_score || 0.9,
+        category: chunk.category || parent_item&.category || "Unknown",
+        tags: chunk.tags || parent_item&.tags || "",
+        confidence_score: chunk.confidence_score || parent_item&.confidence_score || 0.9,
         similarity_score: chunk.respond_to?(:similarity_score) ? chunk.similarity_score : nil,
-        source: chunk.source || "",
+        source: chunk.source || parent_item&.source || "",
         chunk_type: chunk.chunk_type || "unknown",
         chunk_index: chunk.chunk_index || 0,
-        knowledge_item_id: chunk.knowledge_item_id
+        knowledge_item_id: chunk.knowledge_item_id,
+        # Include feedback scores from parent KnowledgeItem
+        feedback_score: parent_item&.feedback_score,
+        total_feedback_count: parent_item&.total_feedback_count,
+        positive_feedback_count: parent_item&.positive_feedback_count,
+        last_feedback_at: parent_item&.last_feedback_at
       )
     rescue => e
       Rails.logger.error "Error converting chunk to item format: #{e.message}"
@@ -524,8 +532,15 @@ class ConversationService
     items.map do |item|
       is_framework = item.tags.to_s.downcase.include?('framework')
       
+      # Handle both KnowledgeItem and KnowledgeChunk (converted to OpenStruct)
+      actual_id = if item.respond_to?(:knowledge_item_id) && item.knowledge_item_id.present?
+        item.knowledge_item_id  # Use parent KnowledgeItem ID for chunks
+      else
+        item.id
+      end
+      
       {
-        id: item.id,
+        id: actual_id,
         title: item.title,
         category: item.category,
         confidence: (item.confidence_score * 100).round(1),
@@ -533,7 +548,11 @@ class ConversationService
         content_snippet: extract_relevant_snippet(item.content, question),
         word_matches: find_word_matches(item.content, question),
         is_framework: is_framework,
-        tags: item.tags
+        tags: item.tags,
+        # Include feedback-related data for the feedback processing
+        feedback_score: item.respond_to?(:feedback_score) ? item.feedback_score : nil,
+        total_feedback_count: item.respond_to?(:total_feedback_count) ? item.total_feedback_count : nil,
+        similarity_score: item.respond_to?(:similarity_score) ? item.similarity_score : nil
       }
     end
   end

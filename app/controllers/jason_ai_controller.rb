@@ -124,6 +124,43 @@ class JasonAiController < ApplicationController
       kb_influence: @kb_influence 
     }
   end
+
+  def feedback
+    message = current_chat_user.chat_messages.find(params[:message_id])
+    feedback_rating = params[:rating] # 'thumbs_up' or 'thumbs_down'
+    
+    unless ['thumbs_up', 'thumbs_down'].include?(feedback_rating)
+      render json: { error: 'Invalid feedback rating' }, status: :bad_request
+      return
+    end
+    
+    # Update message metadata with user feedback
+    metadata = message.metadata || {}
+    metadata['user_feedback'] = {
+      rating: feedback_rating,
+      submitted_at: Time.current,
+      user_id: current_chat_user.id
+    }
+    
+    message.update!(metadata: metadata)
+    
+    # Process aggregative feedback for knowledge sources
+    process_aggregative_feedback(message, feedback_rating)
+    
+    render json: { 
+      status: 'success', 
+      message: 'Feedback submitted successfully',
+      feedback: {
+        rating: feedback_rating,
+        submitted_at: metadata['user_feedback']['submitted_at']&.iso8601
+      }
+    }
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Message not found' }, status: :not_found
+  rescue => e
+    Rails.logger.error "Error processing feedback: #{e.message}"
+    render json: { error: 'Failed to process feedback' }, status: :internal_server_error
+  end
   
   private
   
@@ -138,4 +175,46 @@ class JasonAiController < ApplicationController
   end
   
   helper_method :current_chat_user
+
+  def process_aggregative_feedback(message, rating)
+    kb_influence = message.metadata&.dig('knowledge_base_influence')
+    return unless kb_influence&.dig('sources')&.any?
+
+    is_positive = rating == 'thumbs_up'
+    
+    kb_influence['sources'].each do |source_data|
+      knowledge_item = find_knowledge_item(source_data)
+      next unless knowledge_item
+      
+      # Weight feedback by relevance - more relevant sources get more impact
+      relevance_weight = calculate_relevance_weight(source_data)
+      
+      # Apply weighted feedback to knowledge item
+      knowledge_item.update_feedback_score(is_positive, relevance_weight)
+    end
+  end
+
+  def find_knowledge_item(source_data)
+    # Try to find by ID if available, otherwise by title
+    if source_data['id']
+      KnowledgeItem.find_by(id: source_data['id'])
+    elsif source_data['title']
+      KnowledgeItem.find_by(title: source_data['title'])
+    end
+  end
+
+  def calculate_relevance_weight(source_data)
+    relevance_score = source_data['relevance_score'] || 0.5
+    
+    case relevance_score
+    when 0.8..1.0
+      1.0  # High relevance gets full weight
+    when 0.6...0.8
+      0.7  # Medium-high relevance gets partial weight
+    when 0.4...0.6
+      0.4  # Medium relevance gets reduced weight
+    else
+      0.1  # Low relevance gets minimal weight
+    end
+  end
 end

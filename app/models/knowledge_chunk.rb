@@ -14,7 +14,7 @@ class KnowledgeChunk < ActiveRecord::Base
 
   after_save :generate_embeddings_async, if: :should_generate_embeddings?
 
-  # Semantic search using embeddings
+  # Semantic search using embeddings with feedback-aware ranking
   def self.semantic_search(query, limit: 20)
     return [] if query.blank?
     
@@ -27,12 +27,24 @@ class KnowledgeChunk < ActiveRecord::Base
     formatted_embedding = "[#{query_embedding.join(',')}]"
     
     # Use raw SQL to avoid ActiveRecord conflicts with AS clauses
+    # Join with knowledge_items to use parent item's feedback scores
     sql = <<~SQL
       SELECT knowledge_chunks.*, 
-             content_embedding <=> '#{formatted_embedding}' AS similarity_score
+             knowledge_chunks.content_embedding <=> '#{formatted_embedding}' AS similarity_score,
+             (knowledge_chunks.content_embedding <=> '#{formatted_embedding}') * 
+             CASE 
+               WHEN knowledge_items.total_feedback_count >= 3 THEN 
+                 CASE 
+                   WHEN knowledge_items.feedback_score >= 0.7 THEN 0.8  -- Boost good content
+                   WHEN knowledge_items.feedback_score <= 0.3 THEN 1.2  -- Penalize poor content
+                   ELSE 1.0  -- Neutral
+                 END
+               ELSE 1.0  -- No adjustment for items with insufficient feedback
+             END AS adjusted_similarity_score
       FROM knowledge_chunks 
-      WHERE content_embedding IS NOT NULL
-      ORDER BY content_embedding <=> '#{formatted_embedding}'
+      LEFT JOIN knowledge_items ON knowledge_chunks.knowledge_item_id = knowledge_items.id
+      WHERE knowledge_chunks.content_embedding IS NOT NULL
+      ORDER BY adjusted_similarity_score
       LIMIT #{limit}
     SQL
     
@@ -41,6 +53,7 @@ class KnowledgeChunk < ActiveRecord::Base
     results.map do |row|
       # Remove similarity_score from attributes since it's not a column
       similarity = row.delete('similarity_score').to_f
+      adjusted_similarity = row.delete('adjusted_similarity_score').to_f
       
       # Create a proper ActiveRecord object
       chunk = new(row)
@@ -48,6 +61,7 @@ class KnowledgeChunk < ActiveRecord::Base
       
       # Add similarity_score as a method
       chunk.define_singleton_method(:similarity_score) { similarity }
+      chunk.define_singleton_method(:adjusted_similarity_score) { adjusted_similarity }
       
       chunk
     end

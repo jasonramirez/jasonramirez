@@ -29,6 +29,7 @@
 
 .jason-ai-chat-message__actions {
   align-items: center;
+  color: $base-font-color;
   display: flex;
   gap: $x-small-spacing;
   height: 16px;
@@ -36,10 +37,6 @@
   opacity: 0.5;
   transition: opacity $base-duration $base-timing;
   width: 100%;
-
-  &:hover {
-    opacity: 1;
-  }
 
   .jason-ai-chat-message--answer & {
     justify-content: flex-start;
@@ -49,8 +46,24 @@
     justify-content: flex-end;
   }
 
+  &:hover {
+    opacity: 1;
+  }
+
   & *:hover {
     cursor: pointer;
+  }
+
+  button {
+    padding: 0;
+
+    svg {
+      stroke: $base-font-color;
+    }
+
+    &:hover svg {
+      stroke: $action-color;
+    }
   }
 }
 
@@ -68,7 +81,6 @@
   font-size: 14px;
   font-family: $code-font-family;
   transition: all $base-duration $base-timing;
-  transform: translateY(-2px);
 
   &:hover {
     color: $action-color;
