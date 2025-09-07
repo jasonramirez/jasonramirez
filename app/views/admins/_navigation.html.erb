@@ -1,39 +1,39 @@
-<header class="site-header navigation" 
+<header class="navigation-primary" 
         data-controller="navigation"
         data-navigation-target="header">
-  <nav class="navigation--left">
-    <ul class="navigation__links">
-      <li class="navigation__link">
+  <nav class="navigation-primary__left">
+    <ul class="navigation-primary__links">
+      <li class="navigation-primary__link">
         <%= link_to t(".posts"), admins_posts_path %>
       </li>
 
-      <li class="navigation__link">
+      <li class="navigation-primary__link">
         <%= link_to t(".hashtags"), admins_hashtags_path %>
       </li>
       
-      <li class="navigation__link">
+      <li class="navigation-primary__link">
         <%= link_to "Chat Users", admins_chat_users_path %>
       </li>
     </ul>
   </nav>
 
-  <nav class="navigation--right navigation--mobile-trigger-icon">
-    <input class="navigation__mobile-trigger" type="checkbox">
-    <ul class="navigation__links">
-      <li class="navigation__link">
+  <nav class="navigation-primary__right navigation-primary__mobile-trigger-icon">
+    <input class="navigation-primary__mobile-trigger" type="checkbox">
+    <ul class="navigation-primary__links">
+      <li class="navigation-primary__link">
         <%= link_to "site", root_path %>
       </li>
 
-      <li class="navigation__link">
+      <li class="navigation-primary__link">
         <%= link_to t(".sign_out"), destroy_admin_session_path, data: { turbo_method: :delete } %>
       </li>
 
-      <li class="navigation__link"
+      <li class="navigation-primary__link"
           data-navigation-target="themeSwitcher">
         <button type="button"
             data-action="click->theme#toggle"
-            class="navigation__link theme-toggle-button">
-          <%= inline_svg "icon-theme-change.svg" %>
+            class="theme-toggle-button">
+          <%= inline_svg "icon-theme-change.svg", width: "16px", height: "16px" %>
         </button>
       </li>
     </ul>
