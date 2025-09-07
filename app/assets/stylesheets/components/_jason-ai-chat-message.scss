@@ -70,9 +70,9 @@
       stroke: $base-font-color;
 
       &:hover {
+        cursor: auto;
         opacity: 0.1;
         stroke: $base-font-color;
-        cursor: auto;
       }
     }
   }
