@@ -6,7 +6,7 @@ RSpec.feature "Guest navigates site" do
       it "takes you to the list of case studies" do
         visit root_path
 
-        within ".site-header" do
+        within ".navigation-primary" do
           click_link t("navigation.works")
         end
 
@@ -19,7 +19,7 @@ RSpec.feature "Guest navigates site" do
         post = create(:post, title: "Post One", published: true)
         visit root_path
 
-        within ".site-header" do
+        within ".navigation-primary" do
           click_link t("navigation.posts")
         end
 
@@ -31,7 +31,7 @@ RSpec.feature "Guest navigates site" do
       it "takes you to my design philosophy including principles and values" do
         visit root_path
 
-        within ".site-header" do
+        within ".navigation-primary" do
           click_link t("navigation.philosophy")
         end
 

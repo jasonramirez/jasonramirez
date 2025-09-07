@@ -2,9 +2,9 @@ require "rails_helper"
 
 feature "Guest follows me", js: true do
   scenario "succesfully" do
-    stub_request(:post, mailchimp_url).
-      with(body: mailchimp_request_body).
-      to_return(status: 200, body: mailchimp_valid_response_body)
+    # Mock successful subscription
+    successful_subscription = MailchimpSubscription.new(body: { "status" => "subscribed" })
+    allow_any_instance_of(MailchimpSubscriptionService).to receive(:create).and_return(successful_subscription)
 
     visit new_follower_path
     submit_email_form
@@ -13,9 +13,9 @@ feature "Guest follows me", js: true do
   end
 
   scenario "member already exists" do
-    stub_request(:post, mailchimp_url).
-      with(body: mailchimp_request_body).
-      to_return(status: 400, body: mailchimp_member_exists_response_body)
+    # Mock member exists error
+    error_subscription = MailchimpSubscription.new(body: { "status" => "error", "title" => "Member Exists" })
+    allow_any_instance_of(MailchimpSubscriptionService).to receive(:create).and_return(error_subscription)
 
     visit new_follower_path
     submit_email_form

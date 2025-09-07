@@ -26,7 +26,7 @@ feature "Admin previews post" do
   context "with nil body" do
     it "shows the post without error" do
       sign_in_admin
-      post = create(:post, body: nil)
+      post = create(:post, post_markdown: nil)
 
       visit post_path(post)
 

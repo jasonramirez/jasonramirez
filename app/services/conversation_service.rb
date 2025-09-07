@@ -289,8 +289,6 @@ class ConversationService
   end
 
   def build_context(items, conversation_context = nil)
-    return "No relevant information found in knowledge base." if items.empty?
-
     framework_items = items.select { |item| item.tags.to_s.downcase.include?('framework') }
     
     context_parts = []
@@ -315,6 +313,11 @@ class ConversationService
         end
         context_parts << ""
       end
+    end
+    
+    # If no items but we have conversation context, return just the conversation context
+    if items.empty?
+      return context_parts.any? ? context_parts.join("\n") : "No relevant information found in knowledge base."
     end
     
     # Add framework notice if we have frameworks

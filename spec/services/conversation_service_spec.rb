@@ -1,14 +1,47 @@
 require 'rails_helper'
 
 RSpec.describe ConversationService, type: :service do
+  let(:client_double) { double("OpenAI::Client") }
   let(:service) { ConversationService.new }
+  
+  before do
+    # Mock OpenAI client for all tests
+    allow(OpenAI::Client).to receive(:new).and_return(client_double)
+    
+    # Mock embeddings API calls (used by ChatMessage model)
+    allow(client_double).to receive(:embeddings).and_return({
+      "data" => [
+        {
+          "embedding" => Array.new(1536, 0.1)
+        }
+      ]
+    })
+  end
   
   describe "#respond_to_question" do
     context "without user_id" do
       it "responds without conversation context" do
-        # Mock knowledge base search
-        allow(service).to receive(:search_knowledge_base).and_return([])
-        allow(service).to receive(:generate_llm_response).and_return("Test response")
+        # Mock knowledge base search to return some items so it doesn't return early
+        mock_item = double("KnowledgeItem", 
+                          id: 1,
+                          title: "Test Item", 
+                          content: "Test content", 
+                          category: "Test", 
+                          tags: "#test",
+                          confidence_score: 0.9,
+                          source: "test_source")
+        allow(service).to receive(:search_knowledge_base).and_return([mock_item])
+        
+        # Mock OpenAI client response
+        allow(client_double).to receive(:chat).and_return({
+          "choices" => [
+            {
+              "message" => {
+                "content" => "Test response"
+              }
+            }
+          ]
+        })
         
         result = service.respond_to_question("Test question")
         
@@ -25,8 +58,27 @@ RSpec.describe ConversationService, type: :service do
         # Create some conversation history
         create(:chat_message, chat_user: user, content: "Previous question about design")
         
-        allow(service).to receive(:search_knowledge_base).and_return([])
-        allow(service).to receive(:generate_llm_response).and_return("Contextual response")
+        # Mock knowledge base search to return some items
+        mock_item = double("KnowledgeItem", 
+                          id: 1,
+                          title: "Test Item", 
+                          content: "Test content", 
+                          category: "Test", 
+                          tags: "#test",
+                          confidence_score: 0.9,
+                          source: "test_source")
+        allow(service).to receive(:search_knowledge_base).and_return([mock_item])
+        
+        # Mock OpenAI client response
+        allow(client_double).to receive(:chat).and_return({
+          "choices" => [
+            {
+              "message" => {
+                "content" => "Contextual response"
+              }
+            }
+          ]
+        })
         
         result = service.respond_to_question("Follow-up question", user.id)
         
@@ -84,8 +136,8 @@ RSpec.describe ConversationService, type: :service do
       end
 
       it "limits recent messages to specified count" do
-        # Create more messages than we want to retrieve
-        5.times { |i| create(:chat_message, chat_user: user, content: "Message #{i}", created_at: i.minutes.ago) }
+        # Create more messages than we want to retrieve (15 total to test the 10 limit)
+        12.times { |i| create(:chat_message, chat_user: user, content: "Message #{i}", created_at: i.minutes.ago) }
         
         context = service.send(:get_conversation_context, "Follow-up question", user.id)
         

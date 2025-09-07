@@ -21,8 +21,8 @@ feature "Admin edits hashtag" do
       create(:hashtag)
 
       visit admins_hashtags_path
-      within(find(".admin-post-item:first-of-type")) do
-        click_on t("admins.hashtags.index.edit_hashtag")
+      within(find(".admin-post-item:first-of-type .admin-post-item__title")) do
+        click_link
       end
       fill_form_and_submit(:hashtag, :edit, label: "#newhashtag")
 

@@ -19,7 +19,7 @@ class Hashtag < ActiveRecord::Base
 
   def remove_special_characters(string)
     return "" if string.nil?
-    string.downcase.gsub(special_characters, "")
+    string.downcase.gsub(special_characters, "").gsub(/\s+/, " ").strip
   end
 
   def add_hashtag(string)
