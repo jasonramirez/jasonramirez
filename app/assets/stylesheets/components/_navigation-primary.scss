@@ -11,7 +11,7 @@
   justify-content: space-between;
   max-width: $large-screen;
   margin: 0 auto;
-  padding: $small-spacing 0;
+  padding: $small-spacing;
 
   @media (min-width: $medium-screen) {
     height: $navigation-height;
