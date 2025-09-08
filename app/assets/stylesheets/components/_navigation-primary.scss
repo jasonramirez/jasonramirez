@@ -51,7 +51,14 @@
   font-size: $small-font-size;
   font-weight: 600;
   text-transform: uppercase;
-  margin-left: $base-spacing;
+
+  .navigation-primary__left & {
+    margin-right: $base-spacing;
+  }
+
+  .navigation-primary__right & {
+    margin-left: $base-spacing;
+  }
 
   a,
   button {

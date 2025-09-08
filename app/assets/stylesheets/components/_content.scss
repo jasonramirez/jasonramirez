@@ -26,6 +26,11 @@
   }
 }
 
+.content--medium {
+  max-width: $medium-screen;
+  padding: 0 $base-spacing;
+}
+
 .content--wide {
   max-width: 100%;
 }
