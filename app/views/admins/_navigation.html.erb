@@ -1,6 +1,12 @@
 <header class="navigation-primary" 
         data-controller="navigation"
         data-navigation-target="header">
+  <!-- Mobile trigger button -->
+  <button class="navigation-drawer__trigger-button" 
+    data-action="click->navigation-drawer#toggle">
+    <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>
+  </button>
+
   <nav class="navigation-primary__left">
     <ul class="navigation-primary__links">
       <li class="navigation-primary__link">
@@ -17,8 +23,7 @@
     </ul>
   </nav>
 
-  <nav class="navigation-primary__right navigation-primary__mobile-trigger-icon">
-    <input class="navigation-primary__mobile-trigger" type="checkbox">
+  <nav class="navigation-primary__right">
     <ul class="navigation-primary__links">
       <li class="navigation-primary__link">
         <%= link_to "site", root_path %>
