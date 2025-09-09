@@ -57,6 +57,12 @@
   }
 }
 
+.post__blurred-text {
+  filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+}
+
 .content__title {
   font-size: 6rem;
 }
