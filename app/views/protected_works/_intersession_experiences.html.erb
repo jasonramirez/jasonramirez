@@ -66,18 +66,31 @@
   <h1>Background</h1>
 
   <p>
-    When I was leading Product Design at Grow Therapy, the company identified <strong>intersession engagement</strong> as one of its most important strategic priorities. We knew that the therapy experience couldn't just happen once a week in a one-hour session. If we wanted to deliver better care, support providers in getting paid for their time, and demonstrate outcomes strong enough to maintain and expand insurance contracts, we had to improve the quality of care that happened <em>between sessions</em>.
-  </p>
-
-  <p>
-    At the time, however, our product surfaces were focused narrowly on logistics: helping clients schedule their first appointment and make sure they showed up prepared. I had strong conviction this was far too limited. A logistics-first app would never survive. In conversations with our CTO, VP of Product, and Group PMs, I pushed hard that <strong>intersession engagement had to become the core value proposition</strong> of our mobile app and broader care strategy. I wanted to anchor the client experience around pairing them with their provider in a way that extended beyond the session, and leadership eventually aligned with me on that direction.
+    When I was leading Product Design at Grow Therapy, the company identified 
+    <strong>intersession engagement</strong> as one of the most important 
+    strategic priorities. We knew that to deliver better care, to 
+    support providers in getting paid for their time, and demonstrate 
+    outcomes strong enough to maintain and expand insurance contracts, 
+    we had to improve the quality of care in general. 
+    We could do this by helping clients engaging in personal reflections,
+    activities provided by providers,
+    and parparing for their upcoming session by capturing
+    important insights and topics.
+    <em>between sessions</em>.
   </p>
 
   <a name="team"></a>
   <h1>The Team</h1>
 
   <p>
-    To make this real, I led design for a group that included <strong>Janice</strong>, a staff designer; <strong>Prabha</strong>, a staff PM; and later, <strong>Sophia</strong>, another designer who I pulled in for a specific strategy challenge. On the product side, <strong>Mayuri</strong> was my key partner and responsible for product side. My role as design leader became to set the ambition, coach the designers and product managers to think beyond narrow framing, and to secure executive alignment so the work could land as a core company initiative.
+    To make this real, I led design for a group that included <strong>Janice</strong>, 
+    a staff designer; <strong>Prabha</strong>, a staff PM; and later, <strong>Sofia</strong>, 
+    another designer who I pulled in for a specific strategy challenge. 
+    On the product side, <strong>Mayuri</strong> was my key partner and 
+    responsible for product side. My role as design leader became to 
+    set the ambition, coach the designers and product managers to think 
+    beyond narrow framing, and to secure executive alignment so the work 
+    could land as a core company initiative.
   </p>
 
   <a name="process"></a>
@@ -86,79 +99,291 @@
   <h2>Recognizing Limited Ambition</h2>
 
   <p>
-    The team's initial concept for <em>Session Topics</em> was tidy but small: twelve hours before a session, clients would get a prompt asking what they wanted to discuss. They could enter up to five short topics, which would then be shared with their provider.
+    The team's initial concept for <em>Session Topics</em> was tidy but small: 
+    twelve to twenty-four hours before a session, clients would get a prompt asking what 
+    they wanted to discuss in their upcoming session. They could enter up to five short topics, 
+    each maxed our at 75 characters to prevent overwhelming clients with too many options.
+    Eventyally, the client would be asled to share their topics with their provider. 
+    Here is the initial concept:
+  </p>
+</article>
+
+<section data-controller="carousel" class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-client-side-pre-session-ux-cover.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-client-side-pre-session-ux-2.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-client-side-pre-session-ux-3.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-client-side-pre-session-ux-4.png" %>
+    </figure>
+  </div>
+
+  <%= render "carousels/actions" %>
+</section>
+
+<div class="u-margin-bottom-large"></div>
+
+<section data-controller="carousel" class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-provider-side-pre-session-ux-cover.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-provider-side-pre-session-ux-2.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-provider-side-pre-session-ux-3.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-provider-side-pre-session-ux-4.png" %>
+    </figure>
+  </div>
+
+  <%= render "carousels/actions" %>
+</section>
+
+<article class="content content--reading post">
+  <p>
+    When I reviewed this, I observed that the 
+    <strong>solution space was centered around logistig; helping people who
+    already refleced take their notes and make them easily accessible to their
+    therapist.</strong>. 
+    It solved for the easy case — clients who already reflected and took notes — 
+    but not for the majority of clients who struggled most with reflection. 
+    It ignored the people who froze when prompted, 
+    who felt inhibited bringing up sensitive issues, 
+    or who simply didn't have the habit of reflecting at all.
+    I believe the problem they were solving for was an optimziation.
   </p>
 
   <p>
-    When I reviewed this, I recognized immediately that the <strong>problem space was not ambitious enough</strong>. It solved for the easy case — clients who already reflected and took notes — but not for the majority of clients who struggled most with reflection. It ignored the people who froze when prompted, who felt inhibited bringing up sensitive issues, or who simply didn't have the habit of reflecting at all.
-  </p>
-
-  <p>
-    I aligned with a Group PM, and together we agreed that the scope had to expand. I pushed the team to reframe their questions: <em>How might we help people who don't know how to reflect? How might we support those who don't have the habit of reflection?</em> This reframing generated a much richer set of problem statements — ones that were both more ambitious and more customer-centered.
+    I aligned with a Group PM, and together we agreed that the scope had to expand. 
+    I took the lead and prompted the team to reframe their problem. I gave them
+    some general direction to get them started:
+    <em>How might we help people who don't know how to reflect? 
+    How might we support those who don't have the habit of reflection?</em> 
+    This reframing process eventually generated a much richer set of problem statements — 
+    ones that were both more ambitious and more customer-centered.
   </p>
 
   <h2>Driving Exploration</h2>
 
   <p>
-    Once the team had reframed the problems, I wanted to break them out of incremental solutioning. I introduced a set of <strong>exploration frameworks</strong> to help them think bigger. I encouraged Janice and Prabha to study competitors for patterns in reflection and preparation, to use AI tools like ChatGPT and Subframe to generate divergent ideas (even pitting two AIs against each other), and to validate not just <em>whether</em> clients forgot topics, but <em>why reflection was difficult in the first place</em>.
+    Once the team had reframed the problems, They were able to break out of
+    incremental solutioning. I worked directly with Janice during 
+    the <strong>solution exploration </strong> phase to continue to keep 
+    Janice a little more high level. Janice and Prabha would study 
+    competitors for patterns in reflection and preparation, 
+    to use AI tools like ChatGPT and Subframe to generate divergent ideas 
+    and prototype and test with customers to validate not just 
+    <em>whether</em> clients forgot topics, but <em>why reflection was 
+    difficult in the first place</em> and what about these ideas
+    worked for them.
   </p>
 
   <p>
-    This push reframed the work and opened up a much more ambitious set of concepts. The team began exploring guided prompts pulled from past session transcripts to help clients "pick up where they left off." They tested visual reflection tools that allowed people to sketch or draw instead of writing. They built guided categories like <em>"Celebrate" → "a win at work"</em> or <em>"an improvement in my relationship."</em> They considered continuity prompts that nudged clients to build on prior reflections rather than starting from scratch.
+    This push reframed the work and opened up a much more ambitious set of concepts.
+    The team began exploring guided prompts pulled from past session 
+    transcripts to help clients "pick up where they left off." 
+    They tested visual reflection tools that allowed people to 
+    sketch or draw instead of writing. They built guided categories 
+    like <em>"Celebrate" → "a win at work"</em> or <em>"an 
+    improvement in my relationship.
+    "</em> They considered continuity prompts that nudged clients to build 
+    on prior reflections rather than starting from scratch.
   </p>
 
   <p>
-    By forcing the team to experiment with new methods and approaches, I helped shift Session Topics from a narrow note-taking tool into a set of solutions that actually addressed the needs of clients who struggled most with reflection — the very people our company strategy demanded we serve better.
+    By forcing the team to experiment with new methods and approaches, 
+    I helped shift Session Topics from a narrow note-sharing tool into a
+     set of solutions that addressed the needs of clients 
+     who struggled to reflect as a habit.
   </p>
+</article>
 
+<section data-controller="carousel" class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-solutions-cover.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-solutions-1.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-solutions-2.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-solutions-3.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-solutions-4.png" %>
+    </figure> 
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-solutions-5.png" %>
+    </figure>
+  </div>
+
+  <%= render "carousels/actions" %>
+</section>
+
+<article class="content content--reading post">
   <h2>Championing Innovation (and Practicing Pragmatism)</h2>
 
   <p>
-    One of the most ambitious directions I personally championed was <strong>audio-first reflection</strong>. From our recent acquisition of Summit, I had learned that their most engaged clients weren't the ones who chatted with their AI life coach — they were the ones who spoke to it. This supported my own hypothesis that reading and typing text while reflecting inhibited free-flow expression, whereas voice would unlock more authentic, natural reflection.
+    One of the most ambitious directions I personally championed was 
+    <strong>audio-first reflection</strong>. From our recent 
+    acquisition of Summit (a life coach startup) I had learned 
+    that their most engaged clients weren't the ones who chatted 
+    with their AI life coach — they were the ones who spoke to it. 
+    This supported my own hypothesis that reading and typing 
+    text while reflecting inhibited free-flow expression, 
+    whereas voice would unlock more authentic, natural reflection.
   </p>
 
   <p>
-    I didn't leave this at gut instinct. I used <strong>ChatGPT's Deep Research feature</strong> to gather evidence from external sources on how conversational AI — particularly voice — could transform engagement. I then brought this evidence to our Group PM and our CTO, positioning audio-first not just as a feature idea, but as a <strong>strategic differentiator</strong> that could elevate Session Topics into something uniquely valuable.
+    I didn't leave this at gut instinct. I used 
+    <strong>ChatGPT's Deep Research feature</strong> 
+    and worked with my research partner Hannah to gather 
+    evidence from external sources on how conversational 
+    AI — particularly voice — could transform engagement. 
+    I then brought this evidence to our Group PM and our CTO, 
+    positioning audio-first not just as a feature idea, 
+    but as a <strong>strategic differentiator</strong> 
+    that could elevate Session Topics into something 
+    uniquely valuable.
+  </p>
+</article>
+
+<div class="work-image-container">
+  <figure class="work-image">  
+  <%= image_tag "works/grow-intersession-audio-first.png" %>
+  <figcaption>
+  </figcaption>
+  </figure>
+</div>
+
+<article class="content content--reading post">
+  <p>
+    The CTO ultimately pushed back, arguing that testing audio 
+    was expensive and wouldn't sway our decision to experiment
+    with audio in general on a mobile app - he didn't field
+    that experimenting now would yield insights relevant
+    enough to justify the investment. 
+    I disagreed, but I also knew when to adapt. 
+    I committed to punting the standalone experiment 
+    while continuing to push for audio-first reflection
+    as part of the
+    <strong>mobile app roadmap</strong>.
   </p>
 
   <p>
-    The CTO ultimately pushed back, arguing that testing audio outside of the mobile app wouldn't yield insights relevant enough to justify the investment. I disagreed, but I also knew when to adapt. I committed to punting the standalone experiment while ensuring audio-first reflection stayed in the <strong>mobile app roadmap</strong>.
-  </p>
-
-  <p>
-    This moment highlighted two aspects of my leadership: my ability to <strong>champion innovation and scope expansion</strong>, pushing Session Topics beyond incremental improvements, and my ability to <strong>practice pragmatism and alignment</strong>, showing that even when I disagreed, I could commit to the organizational decision while preserving the long-term vision. It was a win: I broadened the scope of what Session Topics could mean strategically, introduced evidence-backed innovation, and kept the door open for future implementation.
-  </p>
-
-  <h2>Navigating Strategic Pivots</h2>
-
-  <p>
-    Two months into the work, Session Topics was folded into the <strong>mobile app roadmap</strong>, elevating it from a standalone feature into the foundation of the app's value proposition. This raised the stakes significantly.
-  </p>
-
-  <p>
-    But as technical, scope, and staffing challenges mounted, intersession engagement was pulled back out, and Session Topics returned to being an independent product. My job then became guiding the team through these pivots, ensuring continuity of vision while adjusting execution strategy.
+    This moment highlighted two aspects of my leadership: 
+    my ability to <strong>champion innovation and scope 
+    expansion</strong>, pushing Session Topics 
+    beyond incremental improvements, 
+    and my ability to <strong>practice pragmatism a
+    nd alignment</strong>, showing that even when I disagreed, 
+    I could commit to the organizational decision while preserving 
+    the long-term vision. It was a win: 
+    I broadened the scope of what Session Topics could mean strategically, 
+    introduced evidence-backed innovation, 
+    and kept the door open for future implementation.
   </p>
 
   <h2>Guiding Execution</h2>
 
   <p>
-    As we pivoted back to an independent launch, I worked closely with Janice, Prabha, and Mayuri through multiple design reviews — some with leadership, many with my direct approval. We iterated heavily, refining both the client experience and the provider workflow.
+    As we continued toward the launch, 
+    I worked closely with the team through multiple design reviews,
+    alignment presentations, and design reviews.
+    We iterated, refining both the 
+    client experience and the provider workflow.
   </p>
 
   <p>
     Two interventions stand out:
   </p>
 
-  <ul>
-    <li><strong>AI Summarization</strong>: Rather than limiting clients to short notes, I pushed for open reflections that we could then summarize with AI into discrete topics. Providers now received actionable summaries without being overwhelmed by raw text.</li>
-    <li><strong>Dynamic Prompting Strategy</strong>: The team's original plan was to prompt clients exactly twenty-four hours before a session. I asked Janice to collaborate with Sophia to rethink the strategy around the real client journey: how long between selecting a therapist and their first session, how long between recurring sessions, and how to avoid fatigue by reducing prompts when a client had already reflected. This produced a smarter, more contextual prompting system that meaningfully improved engagement.</li>
+  <strong>AI Summarization</strong>
+  <p>Rather than 
+    limiting clients to short notes, 
+    and focusing on people who already have the habit of reflection, 
+    I pushed for open 
+    reflections that we could then summarize with 
+    AI into discrete topics. Providers now received 
+    actionable summaries without being overwhelmed by raw text.</p>
+  
+  <strong>Dynamic Prompting Strategy</strong>
+  <p>
+    The team's original plan was to prompt clients 
+    exactly twenty-four hours before a session. 
+    I asked Janice to collaborate with Sofia to 
+    rethink the strategy around the real client journey: 
+    how long between selecting a therapist and their 
+    first session, how long between recurring sessions, 
+    and how to avoid fatigue by reducing prompts when a 
+    client had already reflected. 
+    This produced a smarter, 
+    more contextual prompting system that 
+    meaningfully improved engagement.</p>
   </ul>
 
   <a name="output"></a>
   <h1>The Output</h1>
+</article>
 
+<section data-controller="carousel" class="carousel">
+  <div data-js-carousel-cards-placeholder class="carousel__cards-placeholder"></div>
+  <div data-js-carousel-cards class="carousel__cards">
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-cover.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-1.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-2.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-3.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-4.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-5.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-6.png" %>
+    </figure>
+    <figure data-js-carousel-card class="carousel__card work-carousel-card">
+      <%= image_tag "works/grow-intersession-shipped-solution-7.png" %>
+    </figure>
+  </div>
+
+  <%= render "carousels/actions" %>
+</section>
+
+<article class="content content--reading post">
   <p>
-    The final version of Session Topics launched as a standalone experience. Clients could reflect openly, their responses were summarized by AI into topics, and providers received concise preparation material. It was simple, but it was ambitious: it turned raw client thoughts into structured, actionable conversation starters, and it did so in a way that aligned with both provider needs and payer outcomes.
+    The version of Session Topics we
+    launched as a standalone experience. 
+    Clients could reflect openly, their 
+    responses were summarized by AI into topics, 
+    and providers received concise preparation material. 
+    It was simple, but it expanded the ambition: 
+    it turned raw client thoughts into structured, 
+    actionable conversation starters, and it did so in a way 
+    that aligned with both providers and clients.
   </p>
 </article>
 
@@ -167,21 +392,45 @@
   <h1>The Impact</h1>
 
   <p>
-    The launch was a success. Clients engaged at high rates, providers valued the clarity of AI-generated topics, and most importantly, the initiative demonstrated that <strong>intersession engagement was not only possible but powerful</strong>. It advanced care quality, supported providers, and created measurable outcomes that Grow could use to strengthen its insurance partnerships.
+    The launch seemed a success. 
+    Clients engaged and providers valued 
+    the clarity of AI-generated topics, 
+    and most importantly, the initiative demonstrated that 
+    <strong>intersession engagement was not only possible b
+    ut powerful</strong>. It can advance care quality, 
+    support providers, and create measurable outcomes 
+    that Grow will be able to use to strengthen its 
+    insurance partnerships.
   </p>
 
   <p>
-    It also set a precedent. Session Topics became the proving ground that validated intersession engagement as a <strong>pillar of Grow Therapy's product vision</strong>, influencing how we would design the mobile app and our long-term strategy.
+    It also set a precedent. Session Topics will be the first 
+    step to the proving ground that will validate intersession 
+    engagement as a 
+    <strong>pillar of Grow Therapy's product vision</strong>, 
+    influencing how Grow will design the mobile app and 
+    evolve their long-term Technical strategy.
   </p>
 
   <a name="reflection"></a>
   <h1>Reflection</h1>
 
   <p>
-    This project was never just about a feature. It was about recognizing when ambition was too small, aligning with leadership to expand scope, coaching a team into deeper exploration, and pushing for bold, innovative ideas backed by evidence. It was about navigating strategic pivots, practicing pragmatism when needed, and still delivering impact.
+    This project was never just about a feature. 
+    It was about recognizing when ambition was too small, 
+    aligning with leadership to expand scope, 
+    coaching a team into deeper exploration, 
+    and pushing for bold, innovative ideas backed by evidence. 
+    It was about navigating strategic pivots, 
+    practicing pragmatism when needed, and still delivering impact.
   </p>
 
   <p>
-    For me, Session Topics was a demonstration of design leadership at its fullest: setting strategy, championing innovation, securing executive alignment, and raising the bar for my team. It showed how design can shape not just the product, but the company's direction.
+    For me, Session Topics was a demonstration of
+    design leadership at its fullest: setting strategy, c
+    hampioning innovation, securing executive alignment, 
+    and raising the bar for my team. 
+    It showed how design can shape not just the product, 
+    but the company's direction.
   </p>
 </article>
