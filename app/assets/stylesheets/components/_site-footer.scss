@@ -20,6 +20,7 @@
   font-family: $heading-font-family;
   font-size: $base-font-size;
   font-weight: 600;
+  margin: $base-spacing 0;
   text-transform: uppercase;
 
   @media (min-width: $small-screen) {

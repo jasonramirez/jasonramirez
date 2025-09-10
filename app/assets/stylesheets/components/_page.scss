@@ -2,8 +2,4 @@
 
 .page {
   margin-bottom: $xx-large-spacing;
-
-  @media (max-width $small-screen) {
-    padding-top: $navigation-height-mobile;
-  }
 }
