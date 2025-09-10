@@ -16,16 +16,7 @@
   <div>
     <%= link_to "protected_works/intersession_experiences",
       class: "work-link" do %>
-      <div class="work-link__video-container">
-        <video autoplay muted loop playsinline class="work-link__video">
-          <source src="<%= asset_path('intersession-experiences-title-video.mp4') %>" type="video/mp4">
-          <!-- Fallback image for browsers that don't support video -->
-          <img src="<%= asset_path('works/grow-intersession-experiences-title-card.png') %>" alt="Intersession Experiences">
-        </video>
-        <div class="work-link__logo-overlay">
-          <%= inline_svg "works/grow-therapy-logo-white.svg" %>
-        </div>
-      </div>
+      <%= image_tag "works/grow-intersession-experiences-title-card.png" %>
       <h2 class="work-link__title">
         Intersession Experiences, 2025
       </h2>
