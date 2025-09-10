@@ -1,0 +1,16 @@
+<section class="content content--medium">
+  <h1>Documents</h1>
+  
+  <p>Available documents for viewing and printing:</p>
+  
+  <ul>
+    <% @documents.each do |document| %>
+      <li>
+        <%= link_to document.humanize, 
+        admins_document_path(document),
+        target: "_blank",
+        class: "link" %>
+      </li>
+    <% end %>
+  </ul>
+</section>

@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#181923">
-    <title>Jason Ramirez - Resume</title>
+    <title>Jason Ramirez - Documents</title>
     <style>
-      /* Font declarations for resume */
+      /* Font declarations for documents */
       @font-face {
         font-family: "Charter";
         src: url("<%= asset_path('charter_regular.woff') %>") format("woff");
@@ -57,12 +57,12 @@
         font-style: normal;
       }
       
-      /* Resume-specific styles - completely isolated */
+      /* Document-specific styles */
       body {
         font-family: "Charter", 'Helvetica', sans-serif;
       }
       
-      .resume {
+      .document {
         font-family: "Charter", 'Times New Roman', serif;
         max-width: 8.5in;
         margin: 0 auto;
@@ -70,14 +70,14 @@
         line-height: 1.4;
       }
       
-      .resume h1 {
+      .document h1 {
         font-family: "Passo", sans-serif;
         font-weight: bold;
         font-size: 24pt;
         margin-bottom: 12pt;
       }
       
-      .resume h2 {
+      .document h2 {
         font-family: "Passo", sans-serif;
         font-weight: 600;
         font-size: 14pt;
@@ -85,7 +85,7 @@
         margin-bottom: 6pt;
       }
       
-      .resume h3 {
+      .document h3 {
         font-family: "Passo", sans-serif;
         font-weight: 500;
         font-size: 12pt;
@@ -93,33 +93,42 @@
         margin-bottom: 3pt;
       }
       
-      .resume p {
+      .document p {
         margin: 6pt 0;
       }
       
-      .resume ul {
+      .document ul {
         margin: 6pt 0;
         padding-left: 20pt;
       }
       
-      .resume li {
+      .document li {
         margin-bottom: 3pt;
       }
       
+      .document code {
+        font-family: "JetBrains Mono", monospace;
+        background-color: #f5f5f5;
+        padding: 2pt 4pt;
+        border-radius: 2pt;
+      }
+      
       @media print {
-        .resume {
+        .document {
           max-width: 600px;
           margin: 0.75in;
           padding: 0;
         }
         
-        .resume h1 { font-size: 18pt; }
-        .resume h2 { font-size: 12pt; }
-        .resume h3 { font-size: 11pt; }
+        .document h1 { font-size: 18pt; }
+        .document h2 { font-size: 12pt; }
+        .document h3 { font-size: 11pt; }
       }
     </style>
   </head>
-  <body class="resume">
-    <%= yield %>
+  <body>
+    <div class="document">
+      <%= yield %>
+    </div>
   </body>
 </html>
