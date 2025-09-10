@@ -1,5 +1,13 @@
-About 9 months into my time at Grow, the CTO told me design could have the greatest impact by helping clients find the right providers. That conversation sparked Marketplace Excellence, a multi-phased strategic program I created to solve a significant challenge and opportunity: client-provider matching. Our marketplace had thousands of providers, but clients struggled to find good fits and often dropped off before booking or churned after a few sessions.
+At Grow Therapy, I led a program called Marketplace Excellence to tackle one of our toughest challenges: helping people not just find a provider, but feel confident they’d found the right one.
 
-I started with evidence-based audits that revealed shocking numbers: 85% of clients who clicked "book" failed to complete, and 85% left search results without clicking a profile. Armed with this data, I built systematic workstreams across booking UX, provider profiles, reviews, and filtering. I introduced AI-powered profile quality improvements and reduced provider cancellations. Along the way, I up leveled the design team with AI enablement and cross-functional partnerships.
+It all came from a conversation I had with Alan, the CTO and co-founder, when I asked where design could have the biggest impact. His answer was immediate: help clients find the right providers in our marketplace. That conversation became the spark for Marketplace Excellence — a design-led program I created and led to tackle a tough challenge: helping people not just find a provider, but feel confident they’d found the right one.
 
-The result? Marketplace Excellence repositioned design as a strategic driver at Grow, improving conversion, retention, and trust while creating repeatable systems that scaled beyond the program. It proved that design could operate as a force multiplier for the entire business.
+When we dug in, we realized clients faced friction everywhere. Booking was confusing, profiles felt flat and undifferentiated, and cancellations broke trust. So instead of treating these as isolated issues, I designed a multi-phase program that attacked the whole journey.
+
+In the short term, we focused on reducing obvious pain points in booking and cost clarity. Next, we improved exploration by rethinking search, profiles, filters, and reviews. And looking further ahead, we started building ways to bring out the more human side of therapy — things like provider style, warmth, and trust.
+
+We ran audits, tested concepts with real clients, and pulled in signals from data, social conversations, and clinical experts. One highlight was the decision-making framework we developed, a five-tier model of how clients prioritize their choices. That framework directed how we'd redesign search and profiles.
+
+The results? Clients could explore more confidently, providers were better differentiated, and the overall marketplace experience felt more trustworthy. And just as important, the program showed how design could lead, to how we partner across functions, to how we validate concepts.
+
+Marketplace Excellence wasn’t just a design project. It was design proving it could lead strategy, drive growth, and ultimately make care more accessible.
