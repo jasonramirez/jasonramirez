@@ -12,43 +12,43 @@
         <%= link_to t("navigation.posts"), posts_path %>
       </li>
       <li class="site-footer__link">
-        <%= link_to t("navigation.values"), values_path %>
-      </li>
-      <li class="site-footer__link">
-        <%= link_to t("navigation.principles"), principles_path %>
+        <%= link_to t("navigation.philosophy"), philosophy_path %>
       </li>
       <li class="site-footer__link">
         <%= link_to t("navigation.privacy_and_terms"), "/privacy_and_terms" %>
       </li>
-
-      <% if admin_signed_in? %>
-        <li class="site-footer__link">
-          <%= link_to t("navigation.admin"), "/admin" %>
-        </li>
-      <% end %>
     </ul>
   </nav>
 
-  <nav class="u-margin-bottom-x-large">
+  <nav class="u-margin-bottom-large">
     <ul class="site-footer__links">
       <li class="site-footer__link">
         <%= link_to "LinkedIn", "https://www.linkedin.com/in/jasondramirez/" %>
       </li>
 
       <li class="site-footer__link">
-        <%= link_to "Book time with me on ADPList",
+        <%= link_to "Book me on ADPList",
           "https://adplist.org/mentors/jason-ramirez" %>
       </li>
     </ul>
   </nav>
 
-  <p>
-    jason@jasonramirez.com
-  </p>
+  <nav class="u-margin-bottom-x-large site-footer__link">
+    <%= link_to jason_ai_path do %>
+      <div class="u-margin-bottom-small">
+        Try jason.ai
+      </div>
+      <div class="jason-ai-title-image jason-ai-title-image--small">
+        <span class="jason-ai-title-image__text">jason.ai</span>
+      </div>
+    <% end %>
+  </nav>
 
-  <p>
-    &copy; <%= Time.new.year %>
-  </p>
+  <div class="u-margin-top-large">
+    <p>
+      jason@jasonramirez.com &copy; <%= Time.new.year %>
+    </p>
+  </div>
 </footer>
 
 <%= render "admin_actions" %>

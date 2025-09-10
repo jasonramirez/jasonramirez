@@ -36,10 +36,27 @@
   }
 }
 
+.jason-ai-title-image--small {
+  height: 6rem;
+  min-height: 6rem;
+  margin: 0 auto;
+  width: 10rem;
+
+  .light &,
+  .dark & {
+    box-shadow: none;
+  }
+}
+
 .jason-ai-title-image__text {
   color: $warm-white;
-  font-family: $code-font-family;
+  font-family: $code-font-family !important;
+  text-transform: none !important;
   font-size: 3rem;
   letter-spacing: -0.1rem;
   font-weight: 600;
+
+  .jason-ai-title-image--small & {
+    font-size: 1.25rem;
+  }
 }

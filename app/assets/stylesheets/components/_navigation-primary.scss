@@ -60,11 +60,17 @@
     margin-left: $base-spacing;
   }
 
-  a,
-  button {
+  a {
     align-items: center;
     color: $base-font-color;
     display: flex;
     text-decoration: none;
+  }
+
+  .theme-toggle-button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transform: translateY(-1px);
   }
 }
