@@ -8,18 +8,20 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(
+    100vh - (#{$navigation-height-mobile} * 2)
+  ); // Fallback for older browsers
+  height: calc(100dvh - (#{$navigation-height-mobile} * 2));
   justify-content: center;
-  min-height: 400px;
   position: relative;
-
-  @media (min-width: $small-screen) {
-    height: calc(100vh - (#{$navigation-height-mobile} * 2));
-    margin: 0 0 $navigation-height-mobile;
-  }
+  margin: 0 0 $navigation-height-mobile;
+  min-height: 100px;
 
   @media (min-width: $medium-screen) {
-    height: calc(100vh - (#{$navigation-height} * 2));
+    height: calc(
+      100vh - (#{$navigation-height} * 2)
+    ); // Fallback for older browsers
+    height: calc(100dvh - (#{$navigation-height} * 2));
     margin: 0 0 $navigation-height;
   }
 }
