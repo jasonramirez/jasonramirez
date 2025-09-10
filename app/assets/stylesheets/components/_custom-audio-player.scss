@@ -127,7 +127,7 @@
 }
 
 .custom-audio-player__progress-bar {
-  background: color.adjust($action-color, $alpha: 0.25);
+  background: color.adjust($action-color, $alpha: -0.85);
   border-radius: 4px;
   cursor: pointer;
   height: 4px;
@@ -265,7 +265,7 @@
   }
 
   &::-moz-range-track {
-    background: color.adjust($base-font-color, $alpha: 0.1);
+    background: color.adjust($action-color, $alpha: -0.85);
     border: none;
     border-radius: 2px;
     height: 4px;
