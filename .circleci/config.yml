@@ -13,7 +13,7 @@ executors:
           DATABASE_URL: postgresql://circleci:@localhost:5432/jasonramirez_test
           CC_TEST_REPORTER_ID: # Add your CodeClimate reporter ID if you have one
           NODE_ENV: test
-      - image: cimg/postgres:15.4
+      - image: cimg/postgres:15.8
         environment:
           POSTGRES_USER: circleci
           POSTGRES_DB: jasonramirez_test
@@ -74,7 +74,7 @@ jobs:
       # Restore pgvector cache if available
       - restore_cache:
           keys:
-            - v1-pgvector-compiled-{{ arch }}
+            - v1-pgvector15-compiled-{{ arch }}
             
       # Install pgvector extension
       - run:
@@ -95,17 +95,23 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y postgresql-client postgresql-contrib
             
-            # Install pgvector from source
+            # Install pgvector from source - use version 15 to match CircleCI's PostgreSQL
             sudo apt-get install -y build-essential postgresql-server-dev-15
+            
+            # Compile pgvector with explicit PostgreSQL 15 paths
             cd /tmp
             git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
             cd pgvector
-            make
-            sudo make install
+            
+            # Use PostgreSQL 15 specifically
+            export PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config
+            make clean || true
+            make PG_CONFIG=$PG_CONFIG
+            sudo make install PG_CONFIG=$PG_CONFIG
             
       # Cache the compiled pgvector
       - save_cache:
-          key: v1-pgvector-compiled-{{ arch }}
+          key: v1-pgvector15-compiled-{{ arch }}
           paths:
             - /usr/lib/postgresql/15/lib/vector.so
             - /usr/share/postgresql/15/extension/vector*
