@@ -2,6 +2,11 @@
 set -euo pipefail
 
 echo "🔧 Setting up test database..."
+echo "📊 Environment info:"
+echo "  - RAILS_ENV: ${RAILS_ENV:-not set}"
+echo "  - DATABASE_URL: ${DATABASE_URL:-not set}"
+echo "  - PWD: $(pwd)"
+echo "  - PostgreSQL version: $(psql --version 2>/dev/null || echo 'psql not found')"
 
 # Database configuration
 DB_NAME=${DATABASE_NAME:-jasonramirez_test}
@@ -10,7 +15,18 @@ DB_HOST=${DATABASE_HOST:-localhost}
 
 # Create database if it doesn't exist
 echo "📝 Creating database: $DB_NAME"
-createdb -h "$DB_HOST" -U "$DB_USER" "$DB_NAME" 2>/dev/null || echo "Database already exists"
+if createdb -h "$DB_HOST" -U "$DB_USER" "$DB_NAME" 2>/dev/null; then
+    echo "✅ Database created successfully"
+else
+    echo "⚠️  Database already exists or creation failed"
+    # Check if database actually exists
+    if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT 1;" >/dev/null 2>&1; then
+        echo "✅ Database exists and is accessible"
+    else
+        echo "❌ Database exists but is not accessible"
+        exit 1
+    fi
+fi
 
 # Enable pgvector extension (optional for CI)
 echo "🔌 Attempting to enable pgvector extension..."
@@ -29,12 +45,18 @@ psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "CREATE EXTENSION IF NOT EXIST
 # Create a CI-friendly structure.sql loader
 echo "📋 Loading database schema..."
 if [ -f "db/structure.sql" ]; then
+    echo "📄 Found structure.sql file ($(wc -l < db/structure.sql) lines)"
     # Filter out problematic lines for CI
-    cat db/structure.sql | \
+    if cat db/structure.sql | \
         grep -v "transaction_timeout" | \
-        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" --no-psqlrc 2>/dev/null || {
-        echo "⚠️  Some schema loading issues occurred, but continuing..."
-    }
+        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" --no-psqlrc 2>/dev/null; then
+        echo "✅ Schema loaded successfully"
+    else
+        echo "⚠️  Schema loading had issues, but continuing..."
+        # Try to see what tables exist
+        echo "📊 Current tables in database:"
+        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\dt" 2>/dev/null || echo "Could not list tables"
+    fi
 else
     echo "❌ db/structure.sql not found"
     exit 1
@@ -42,18 +64,33 @@ fi
 
 # Add migration versions using SQL (more reliable than Rails runner in CI)
 echo "📊 Adding migration versions..."
-migration_versions=$(ls db/migrate/*.rb | sed 's/.*\/\([0-9]*\)_.*/\1/' | tr '\n' ',' | sed 's/,$//')
+migration_versions=$(ls db/migrate/*.rb | sed 's/.*\/\([0-9]*\)_.*/\1/' | sort)
 
 if [ -n "$migration_versions" ]; then
-    # Convert to SQL VALUES format
-    sql_values=$(echo "$migration_versions" | sed "s/,/',('/g" | sed "s/^/('/" | sed "s/$/');/")
+    echo "📋 Found $(echo "$migration_versions" | wc -l) migration files"
     
-    psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-        INSERT INTO schema_migrations (version) VALUES $sql_values
-        ON CONFLICT (version) DO NOTHING;
-    " && echo "✅ Migration versions added successfully" || {
+    # Create a temporary SQL file for better error handling
+    temp_sql=$(mktemp)
+    echo "BEGIN;" > "$temp_sql"
+    
+    for version in $migration_versions; do
+        echo "INSERT INTO schema_migrations (version) VALUES ('$version') ON CONFLICT (version) DO NOTHING;" >> "$temp_sql"
+    done
+    
+    echo "COMMIT;" >> "$temp_sql"
+    
+    if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -f "$temp_sql" 2>/dev/null; then
+        echo "✅ Migration versions added successfully"
+    else
         echo "⚠️  Could not add migration versions, but continuing..."
-    }
+        # Show what we tried to insert
+        echo "📄 Migration versions attempted:"
+        echo "$migration_versions" | head -5
+    fi
+    
+    rm -f "$temp_sql"
+else
+    echo "⚠️  No migration files found"
 fi
 
 # Add any missing columns that might cause transaction failures
@@ -118,5 +155,19 @@ export RAILS_ENV=test
 if command -v bundle >/dev/null 2>&1; then
     bundle exec rails db:environment:set 2>/dev/null || echo "⚠️  Could not set Rails environment"
 fi
+
+# Final verification
+echo "🔍 Final database verification..."
+echo "📊 Tables in database:"
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\dt" 2>/dev/null || echo "Could not list tables"
+
+echo "📊 Schema migrations status:"
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT COUNT(*) as migration_count FROM schema_migrations;" 2>/dev/null || echo "Could not check schema_migrations"
+
+echo "📊 Key table structures:"
+for table in posts admins knowledge_items chat_messages knowledge_chunks; do
+    echo "  - $table:"
+    psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\d $table" 2>/dev/null | head -5 || echo "    Table not found or inaccessible"
+done
 
 echo "✅ Test database setup complete!"
