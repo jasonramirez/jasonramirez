@@ -56,6 +56,37 @@ if [ -n "$migration_versions" ]; then
     }
 fi
 
+# Add any missing columns that might cause transaction failures
+echo "🔧 Adding missing database columns..."
+
+# Add missing feedback columns to knowledge_items
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
+    ALTER TABLE knowledge_items 
+    ADD COLUMN IF NOT EXISTS feedback_score DECIMAL(3,2) DEFAULT 0.5,
+    ADD COLUMN IF NOT EXISTS total_feedback_count DECIMAL(10,2) DEFAULT 0,
+    ADD COLUMN IF NOT EXISTS positive_feedback_count DECIMAL(10,2) DEFAULT 0,
+    ADD COLUMN IF NOT EXISTS last_feedback_at TIMESTAMP;
+" 2>/dev/null && echo "✅ Feedback columns added to knowledge_items" || echo "⚠️  Feedback columns may already exist"
+
+# Add missing embedding columns to knowledge_items  
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
+    ALTER TABLE knowledge_items 
+    ADD COLUMN IF NOT EXISTS content_embedding vector,
+    ADD COLUMN IF NOT EXISTS title_embedding vector;
+" 2>/dev/null && echo "✅ Embedding columns added to knowledge_items" || echo "⚠️  Embedding columns may already exist"
+
+# Add missing embedding columns to chat_messages
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
+    ALTER TABLE chat_messages 
+    ADD COLUMN IF NOT EXISTS content_embedding vector;
+" 2>/dev/null && echo "✅ Embedding column added to chat_messages" || echo "⚠️  Embedding column may already exist"
+
+# Add missing embedding column to knowledge_chunks
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
+    ALTER TABLE knowledge_chunks 
+    ADD COLUMN IF NOT EXISTS content_embedding vector;
+" 2>/dev/null && echo "✅ Embedding column added to knowledge_chunks" || echo "⚠️  Embedding column may already exist"
+
 # Set Rails environment
 echo "🌍 Setting Rails test environment..."
 export RAILS_ENV=test
