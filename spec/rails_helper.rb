@@ -53,7 +53,11 @@ RSpec.configure do |config|
     
     # Skip ChatMessage embedding generation in tests to avoid transaction conflicts
     # Individual test files can override this behavior if needed
-    allow_any_instance_of(ChatMessage).to receive(:should_generate_embedding?).and_return(false)
+    begin
+      allow_any_instance_of(ChatMessage).to receive(:should_generate_embedding?).and_return(false)
+    rescue NameError, ActiveRecord::StatementInvalid
+      # Ignore if ChatMessage model isn't loaded yet or database issues
+    end
   end
 end
 
