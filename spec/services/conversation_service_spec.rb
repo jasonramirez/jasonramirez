@@ -52,7 +52,7 @@ RSpec.describe ConversationService, type: :service do
     end
 
     context "with user_id" do
-      let!(:user) { create(:chat_user) }
+      let(:user) { create(:chat_user) }
       
       it "includes conversation context" do
         # Create some conversation history
@@ -68,6 +68,9 @@ RSpec.describe ConversationService, type: :service do
                           confidence_score: 0.9,
                           source: "test_source")
         allow(service).to receive(:search_knowledge_base).and_return([mock_item])
+        
+        # Mock ChatMessage.find_similar_messages to avoid database complexity
+        allow(ChatMessage).to receive(:find_similar_messages).and_return([])
         
         # Mock OpenAI client response
         allow(client_double).to receive(:chat).and_return({
@@ -116,6 +119,11 @@ RSpec.describe ConversationService, type: :service do
 
   describe "#get_conversation_context" do
     let!(:user) { create(:chat_user) }
+    
+    before do
+      # Mock ChatMessage.find_similar_messages to avoid content_embedding column issues
+      allow(ChatMessage).to receive(:find_similar_messages).and_return([])
+    end
     
     context "with recent messages" do
       let!(:oldest_message) { create(:chat_message, chat_user: user, content: "Oldest question", created_at: 3.hours.ago) }

@@ -13,6 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "vector"
 
   create_table "admins", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -88,6 +89,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
     t.index ["post_id"], name: "index_hashtags_posts_on_post_id"
   end
 
+# Could not dump table "knowledge_chunks" because of following StandardError
+#   Unknown type 'vector(1536)' for column 'content_embedding'
+
+
   create_table "knowledge_items", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -123,4 +128,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
   end
 
   add_foreign_key "chat_messages", "chat_users"
+  add_foreign_key "knowledge_chunks", "knowledge_items"
 end

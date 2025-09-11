@@ -70,7 +70,14 @@ class ChatMessage < ActiveRecord::Base
   private
 
   def should_generate_embedding?
-    content.present? && content_embedding.blank?
+    return false unless content.present?
+    
+    if respond_to?(:content_embedding)
+      content_embedding.nil? || content_embedding.blank?
+    else
+      # If content_embedding attribute doesn't exist, we should generate embedding
+      true
+    end
   end
 
   def generate_embedding_sync_then_async

@@ -1,5 +1,8 @@
 <section class="content content--slim u-margin-top-none">
-  <%= render "post_featured", post: @posts.find(33) %>
+  <% featured_post = @posts.find_by(id: 33) %>
+  <% if featured_post %>
+    <%= render "post_featured", post: featured_post %>
+  <% end %>
 
   <div class="post-search" data-controller="search-clear">
     <form id="search_form" action="<%= posts_path %>" class="post-search__form">

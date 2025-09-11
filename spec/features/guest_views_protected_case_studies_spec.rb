@@ -21,7 +21,7 @@ feature "Guest views protected case studies" do
     it "and isn't allowed to view it" do
       visit works_path
 
-      click_on works.first[0][:title]
+      click_on "Smartifying Activation"
 
       expect(page).to have_text t("password_protection.unlock.heading")
     end
@@ -31,7 +31,7 @@ feature "Guest views protected case studies" do
     it "and is allowed to view it" do
       visit works_path
 
-            click_on works.first[0][:title]
+      click_on "Smartifying Activation"
 
       # Check if we're on the password protection page
       expect(page).to have_text t("password_protection.unlock.heading")

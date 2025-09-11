@@ -1,5 +1,5 @@
 class CreateKnowledgeChunks < ActiveRecord::Migration[8.0]
-  def change
+  def up
     create_table :knowledge_chunks do |t|
       t.references :knowledge_item, null: false, foreign_key: true
       t.text :content
@@ -18,5 +18,9 @@ class CreateKnowledgeChunks < ActiveRecord::Migration[8.0]
     
     add_index :knowledge_chunks, :category
     add_index :knowledge_chunks, :chunk_type
+  end
+
+  def down
+    drop_table :knowledge_chunks if table_exists?(:knowledge_chunks)
   end
 end
