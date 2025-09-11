@@ -87,6 +87,31 @@ psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
     ADD COLUMN IF NOT EXISTS content_embedding vector;
 " 2>/dev/null && echo "✅ Embedding column added to knowledge_chunks" || echo "⚠️  Embedding column may already exist"
 
+# Add missing columns to posts table
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
+    ALTER TABLE posts 
+    ADD COLUMN IF NOT EXISTS tldr_transcript TEXT,
+    ADD COLUMN IF NOT EXISTS post_text TEXT,
+    ADD COLUMN IF NOT EXISTS video_src VARCHAR,
+    ADD COLUMN IF NOT EXISTS audio_src VARCHAR;
+" 2>/dev/null && echo "✅ Missing columns added to posts" || echo "⚠️  Posts columns may already exist"
+
+# Handle column rename from body to post_markdown (if needed)
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
+    DO \$\$
+    BEGIN
+        IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'posts' AND column_name = 'body') THEN
+            ALTER TABLE posts RENAME COLUMN body TO post_markdown;
+        END IF;
+        
+        -- Ensure post_markdown exists even if rename wasn't needed
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'posts' AND column_name = 'post_markdown') THEN
+            ALTER TABLE posts ADD COLUMN post_markdown TEXT;
+        END IF;
+    END
+    \$\$;
+" 2>/dev/null && echo "✅ Posts column structure verified" || echo "⚠️  Posts column structure check completed"
+
 # Set Rails environment
 echo "🌍 Setting Rails test environment..."
 export RAILS_ENV=test
