@@ -89,7 +89,7 @@ class Admins::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :body,
+      :post_markdown,
       :summary,
       :tldr_transcript,
       :published,

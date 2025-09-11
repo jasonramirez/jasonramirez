@@ -18,6 +18,45 @@ feature "Admin edits post", js: true do
       expect(page).to have_text "New Title"
     end
 
+    it "successfully updates post content (post_markdown)" do
+      post = create(:post, post_markdown: "# Original Content")
+      sign_in_admin
+
+      visit edit_admins_post_path(post)
+
+      # Update the markdown content
+      fill_in "post[post_markdown]", with: "# Updated Content\n\nThis is **new** markdown content."
+
+      page.find("#save_post").click
+
+      expect(page).to have_text t("admins.flash.updated")
+
+      # Verify the content was saved
+      post.reload
+      expect(post.post_markdown).to eq("# Updated Content\n\nThis is **new** markdown content.")
+      expect(post.post_text).to include("Updated Content")
+      expect(post.post_text).to include("new")
+    end
+
+    it "updates both title and content simultaneously" do
+      post = create(:post, title: "Original Title", post_markdown: "# Original Content")
+      sign_in_admin
+
+      visit edit_admins_post_path(post)
+
+      fill_form(:post, title: "Updated Title")
+      fill_in "post[post_markdown]", with: "# Updated Content\n\nBoth title and content changed."
+
+      page.find("#save_post").click
+
+      expect(page).to have_text t("admins.flash.updated")
+
+      # Verify both fields were saved
+      post.reload
+      expect(post.title).to eq("Updated Title")
+      expect(post.post_markdown).to eq("# Updated Content\n\nBoth title and content changed.")
+    end
+
     it "allows page refresh after title change without 505 error" do
       post = create(:post, title: "Original Title")
       sign_in_admin
