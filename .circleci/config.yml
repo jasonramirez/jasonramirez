@@ -80,8 +80,9 @@ jobs:
       - run:
           name: Install pgvector extension
           command: |
-            # Check if pgvector is already installed
-            if sudo find /usr -name "vector.so" 2>/dev/null | grep -q vector.so; then
+            # Check if pgvector is already installed (check both .so and .control files)
+            if sudo find /usr -name "vector.so" 2>/dev/null | grep -q vector.so && \
+               sudo find /usr -name "vector.control" 2>/dev/null | grep -q vector.control; then
               echo "✅ pgvector already installed from cache"
               exit 0
             fi
@@ -105,9 +106,19 @@ jobs:
             
             # Use PostgreSQL 15 specifically
             export PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config
+            
+            # Verify pg_config works
+            echo "Using pg_config: $PG_CONFIG"
+            $PG_CONFIG --version
+            
             make clean || true
             make PG_CONFIG=$PG_CONFIG
             sudo make install PG_CONFIG=$PG_CONFIG
+            
+            # Verify installation
+            echo "Checking pgvector installation..."
+            sudo find /usr -name "vector.so" -ls 2>/dev/null || echo "No vector.so found"
+            sudo find /usr -name "vector.control" -ls 2>/dev/null || echo "No vector.control found"
             
       # Cache the compiled pgvector
       - save_cache:
