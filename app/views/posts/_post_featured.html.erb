@@ -13,7 +13,9 @@
     <%= post.published_date.strftime("%B %d, %Y") %>
   </p>
 
-  <h3 class="post-feature__summary">
-    <%= "#{post.summary.strip}.." %>  
-  </h3>
+  <% if post.summary.present? %>
+    <h3 class="post-feature__summary">
+      <%= "#{post.summary.strip}.." %>  
+    </h3>
+  <% end %>
 <% end %>
