@@ -5,9 +5,9 @@
 
 .badge {
   align-items: center;
-  display: flex;
+  display: inline-flex;
   background-color: $base-border-color;
-  border-radius: 0.5rem;
+  border-radius: $small-border-radius;
   color: $base-background-color;
   font-family: $code-font-family;
   justify-content: center;
@@ -37,4 +37,9 @@
   background-color: unset;
   color: $base-font-color;
   padding: 0;
+}
+
+.badge--action {
+  background-color: $action-color;
+  color: $warm-white;
 }

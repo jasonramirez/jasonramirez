@@ -45,8 +45,8 @@
     <% @hashtags.each_with_index do |hashtag, index| %>
       <%= link_to posts_path(search: hashtag.label), class: "hero-description__hashtag link" do %>
         <span class="hero-description__hashtag-link">
-          <%= hashtag.label %>
-          <span class="hero-description__hashtag-count">
+          <%= hashtag.label.strip %>
+          <span class="badge badge--small badge--action">
             <%= hashtag.usage_count %>
           </span>
         </span>
