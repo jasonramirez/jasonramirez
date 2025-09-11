@@ -4,28 +4,26 @@
 .post-sample {
   align-items: top;
   color: $base-font-color;
-  margin: 0 0 $large-spacing;
+  margin: 0 0 $x-large-spacing;
   padding-bottom: $base-spacing;
   text-decoration: none;
 }
 
 .post-sample__title {
   text-transform: capitalize;
-  line-height: $reading-line-height;
-  margin-bottom: 0;
+  margin-bottom: $small-spacing;
 
   a {
     text-decoration: none;
   }
 }
 
-.post-sample__date {
-  font-family: $code-font-family;
-  //font-size: $small-font-size;
-}
-
 .post-sample__hashtag {
   display: inline-flex;
-  margin: $x-small-spacing 0;
+  margin-bottom: $small-spacing;
   text-decoration: none;
+}
+
+.post-sample__date {
+  font-family: $code-font-family;
 }

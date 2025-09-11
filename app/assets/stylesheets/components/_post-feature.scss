@@ -16,12 +16,13 @@
 }
 
 .post-feature__image {
-  width: 100%;
   height: 100%;
+  margin-bottom: $base-spacing;
+  width: 100%;
 }
 
 .post-feature__title {
-  margin-bottom: $large-spacing;
+  margin-bottom: $base-spacing;
 }
 
 .post-feature__date {

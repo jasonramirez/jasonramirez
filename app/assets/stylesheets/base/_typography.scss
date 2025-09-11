@@ -107,13 +107,13 @@ h4,
 h5,
 h6 {
   font-family: $heading-font-family;
-  line-height: $heading-line-height;
 }
 
 h1,
 h2 {
   font-weight: $title-font-weight;
   letter-spacing: -0.0125em;
+  line-height: $title-line-height;
 }
 
 h3,
@@ -122,6 +122,7 @@ h5,
 h6 {
   font-weight: $reading-font-weight;
   letter-spacing: 0.025em;
+  line-height: $reading-line-height;
 }
 
 h1 {
