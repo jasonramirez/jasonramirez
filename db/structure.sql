@@ -337,7 +337,11 @@ CREATE TABLE public.knowledge_items (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     content_embedding public.vector(1536),
-    title_embedding public.vector(1536)
+    title_embedding public.vector(1536),
+    feedback_score numeric(3,2) DEFAULT 0.5 NOT NULL,
+    total_feedback_count numeric(8,2) DEFAULT 0.0 NOT NULL,
+    positive_feedback_count numeric(8,2) DEFAULT 0.0 NOT NULL,
+    last_feedback_at timestamp without time zone
 );
 
 
@@ -367,7 +371,7 @@ ALTER SEQUENCE public.knowledge_items_id_seq OWNED BY public.knowledge_items.id;
 CREATE TABLE public.posts (
     id integer NOT NULL,
     title character varying,
-    body text,
+    post_markdown text,
     published boolean DEFAULT false,
     published_date timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -375,7 +379,9 @@ CREATE TABLE public.posts (
     summary text,
     slug character varying,
     video_src character varying,
-    tldr_transcript text
+    tldr_transcript text,
+    post_text text,
+    audio_src character varying
 );
 
 
@@ -614,13 +620,6 @@ CREATE INDEX delayed_jobs_priority ON public.delayed_jobs USING btree (priority,
 
 
 --
--- Name: idx_knowledge_chunks_content_embedding; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_knowledge_chunks_content_embedding ON public.knowledge_chunks USING hnsw (content_embedding public.vector_cosine_ops);
-
-
---
 -- Name: index_admins_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -709,6 +708,20 @@ CREATE INDEX index_knowledge_chunks_on_chunk_type ON public.knowledge_chunks USI
 --
 
 CREATE INDEX index_knowledge_chunks_on_knowledge_item_id ON public.knowledge_chunks USING btree (knowledge_item_id);
+
+
+--
+-- Name: index_knowledge_items_on_feedback_score; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_knowledge_items_on_feedback_score ON public.knowledge_items USING btree (feedback_score);
+
+
+--
+-- Name: index_knowledge_items_on_last_feedback_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_knowledge_items_on_last_feedback_at ON public.knowledge_items USING btree (last_feedback_at);
 
 
 --

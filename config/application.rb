@@ -40,6 +40,6 @@ module Jasonramirez
     config.generators.system_tests = nil
     
     # Use SQL schema format to support pgvector types
-    config.active_record.schema_format = :ruby
+    config.active_record.schema_format = :sql
   end
 end
