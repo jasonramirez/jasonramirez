@@ -84,4 +84,7 @@ end
 # Mock OpenAI API calls in tests
 WebMock.disable_net_connect!(allow_localhost: true)
 
-ActiveRecord::Migration.maintain_test_schema!
+# Skip automatic schema maintenance in CI to avoid database conflicts
+unless ENV["CI"] || ENV["CIRCLECI"]
+  ActiveRecord::Migration.maintain_test_schema!
+end

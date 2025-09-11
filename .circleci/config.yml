@@ -152,7 +152,7 @@ jobs:
 
   run_tests:
     executor: rails-executor
-    parallelism: 4
+    parallelism: 1
     steps:
       - attach_workspace:
           at: ~/repo
@@ -170,16 +170,16 @@ jobs:
           name: Precompile assets
           command: RAILS_ENV=test bundle exec rails assets:precompile
 
-      # Run tests in parallel
+      # Run tests
       - run:
           name: Run RSpec tests
           command: |
+            mkdir -p test_results
             bundle exec rspec \
               --profile 10 \
               --format RspecJunitFormatter \
               --out test_results/rspec.xml \
-              --format progress \
-              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+              --format progress
 
       # Store test results
       - store_test_results:
