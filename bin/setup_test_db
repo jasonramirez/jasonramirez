@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "🔧 Setting up test database..."
-echo "📊 Environment info:"
+echo "Setting up test database..."
+echo "Environment info:"
 echo "  - RAILS_ENV: ${RAILS_ENV:-not set}"
 echo "  - DATABASE_URL: ${DATABASE_URL:-not set}"
 echo "  - PWD: $(pwd)"
-echo "  - PostgreSQL version: $(psql --version 2>/dev/null || echo 'psql not found')"
+echo "  - PostgreSQL version: $(psql --version)"
 
 # Database configuration
 DB_NAME=${DATABASE_NAME:-jasonramirez_test}
@@ -14,151 +14,70 @@ DB_USER=${DATABASE_USER:-circleci}
 DB_HOST=${DATABASE_HOST:-localhost}
 
 # Create database if it doesn't exist
-echo "📝 Creating database: $DB_NAME"
+echo "Creating database: $DB_NAME"
 if createdb -h "$DB_HOST" -U "$DB_USER" "$DB_NAME" 2>/dev/null; then
     echo "✅ Database created successfully"
 else
-    echo "⚠️  Database already exists or creation failed"
-    # Check if database actually exists
+    # Check if database actually exists (creation might have failed for other reasons)
     if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT 1;" >/dev/null 2>&1; then
-        echo "✅ Database exists and is accessible"
+        echo "✅ Database already exists and is accessible"
     else
-        echo "❌ Database exists but is not accessible"
+        echo "❌ Database creation failed and database is not accessible"
+        echo "❌ This is a critical error - cannot continue"
         exit 1
     fi
 fi
 
-# Enable pgvector extension (optional for CI)
-echo "🔌 Attempting to enable pgvector extension..."
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "CREATE EXTENSION IF NOT EXISTS vector;" 2>/dev/null && {
-    echo "✅ pgvector extension enabled"
-} || {
-    echo "⚠️  pgvector extension not available - using fallback schema"
-    # Create a mock vector type for CI
-    psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-        DROP DOMAIN IF EXISTS vector CASCADE;
-        CREATE DOMAIN vector AS text;
-        COMMENT ON DOMAIN vector IS 'Mock vector type for CI testing';
-    " || echo "Warning: Could not create mock vector type"
-}
+# Enable pgvector extension - REQUIRED for application functionality
+echo "Enabling pgvector extension..."
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "CREATE EXTENSION IF NOT EXISTS vector;"
+echo "✅ pgvector extension enabled"
 
-# Create a CI-friendly structure.sql loader
-echo "📋 Loading database schema..."
+# Load database schema - CRITICAL: must succeed
+echo "Loading database schema..."
 if [ -f "db/structure.sql" ]; then
     echo "📄 Found structure.sql file ($(wc -l < db/structure.sql) lines)"
     # Filter out problematic lines for CI
-    if cat db/structure.sql | \
+    cat db/structure.sql | \
         grep -v "transaction_timeout" | \
-        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" --no-psqlrc 2>/dev/null; then
-        echo "✅ Schema loaded successfully"
-    else
-        echo "⚠️  Schema loading had issues, but continuing..."
-        # Try to see what tables exist
-        echo "📊 Current tables in database:"
-        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\dt" 2>/dev/null || echo "Could not list tables"
-    fi
+        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" --no-psqlrc
+    echo "✅ Schema loaded successfully"
 else
     echo "❌ db/structure.sql not found"
     exit 1
 fi
 
-# Run migrations instead of just marking them as run
-echo "📊 Running Rails migrations..."
-if command -v bundle >/dev/null 2>&1; then
-    export RAILS_ENV=test
-    if bundle exec rails db:migrate 2>/dev/null; then
-        echo "✅ Migrations run successfully"
-    else
-        echo "⚠️  Migration run had issues, but continuing..."
-        # Fallback: just mark migrations as run
-        echo "📊 Adding migration versions as fallback..."
-        migration_versions=$(ls db/migrate/*.rb | sed 's/.*\/\([0-9]*\)_.*/\1/' | sort)
-        if [ -n "$migration_versions" ]; then
-            temp_sql=$(mktemp)
-            echo "BEGIN;" > "$temp_sql"
-            for version in $migration_versions; do
-                echo "INSERT INTO schema_migrations (version) VALUES ('$version') ON CONFLICT (version) DO NOTHING;" >> "$temp_sql"
-            done
-            echo "COMMIT;" >> "$temp_sql"
-            psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -f "$temp_sql" 2>/dev/null || echo "Could not add migration versions"
-            rm -f "$temp_sql"
-        fi
-    fi
-else
-    echo "⚠️  Bundle not available, skipping migrations"
-fi
-
-# Add any missing columns that might cause transaction failures
-echo "🔧 Adding missing database columns..."
-
-# Add missing feedback columns to knowledge_items
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-    ALTER TABLE knowledge_items 
-    ADD COLUMN IF NOT EXISTS feedback_score DECIMAL(3,2) DEFAULT 0.5,
-    ADD COLUMN IF NOT EXISTS total_feedback_count DECIMAL(10,2) DEFAULT 0,
-    ADD COLUMN IF NOT EXISTS positive_feedback_count DECIMAL(10,2) DEFAULT 0,
-    ADD COLUMN IF NOT EXISTS last_feedback_at TIMESTAMP;
-" 2>/dev/null && echo "✅ Feedback columns added to knowledge_items" || echo "⚠️  Feedback columns may already exist"
-
-# Add missing embedding columns to knowledge_items  
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-    ALTER TABLE knowledge_items 
-    ADD COLUMN IF NOT EXISTS content_embedding vector,
-    ADD COLUMN IF NOT EXISTS title_embedding vector;
-" 2>/dev/null && echo "✅ Embedding columns added to knowledge_items" || echo "⚠️  Embedding columns may already exist"
-
-# Add missing embedding columns to chat_messages
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-    ALTER TABLE chat_messages 
-    ADD COLUMN IF NOT EXISTS content_embedding vector;
-" 2>/dev/null && echo "✅ Embedding column added to chat_messages" || echo "⚠️  Embedding column may already exist"
-
-# Note: Tables will be created by running migrations above
-
-# Add missing columns to posts table
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-    ALTER TABLE posts 
-    ADD COLUMN IF NOT EXISTS tldr_transcript TEXT,
-    ADD COLUMN IF NOT EXISTS post_text TEXT,
-    ADD COLUMN IF NOT EXISTS video_src VARCHAR,
-    ADD COLUMN IF NOT EXISTS audio_src VARCHAR;
-" 2>/dev/null && echo "✅ Missing columns added to posts" || echo "⚠️  Posts columns may already exist"
-
-# Handle column rename from body to post_markdown (if needed)
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-    DO \$\$
-    BEGIN
-        IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'posts' AND column_name = 'body') THEN
-            ALTER TABLE posts RENAME COLUMN body TO post_markdown;
-        END IF;
-        
-        -- Ensure post_markdown exists even if rename wasn't needed
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'posts' AND column_name = 'post_markdown') THEN
-            ALTER TABLE posts ADD COLUMN post_markdown TEXT;
-        END IF;
-    END
-    \$\$;
-" 2>/dev/null && echo "✅ Posts column structure verified" || echo "⚠️  Posts column structure check completed"
-
-# Set Rails environment
-echo "🌍 Setting Rails test environment..."
+# Run migrations - CRITICAL: must succeed
+echo "Running Rails migrations..."
 export RAILS_ENV=test
-if command -v bundle >/dev/null 2>&1; then
-    bundle exec rails db:environment:set 2>/dev/null || echo "⚠️  Could not set Rails environment"
-fi
+bundle exec rails db:migrate
+echo "✅ Migrations run successfully"
 
-# Final verification
-echo "🔍 Final database verification..."
-echo "📊 Tables in database:"
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\dt" 2>/dev/null || echo "Could not list tables"
+# Note: All tables and columns should be created by migrations above
 
-echo "📊 Schema migrations status:"
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT COUNT(*) as migration_count FROM schema_migrations;" 2>/dev/null || echo "Could not check schema_migrations"
+# Set Rails environment - CRITICAL: must succeed
+echo "Setting Rails test environment..."
+export RAILS_ENV=test
+bundle exec rails db:environment:set
+echo "✅ Rails environment set successfully"
 
-echo "📊 Key table structures:"
+# Final verification - CRITICAL: all tables must exist
+echo "Final database verification..."
+echo "Tables in database:"
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\dt"
+
+echo "Schema migrations status:"
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT COUNT(*) as migration_count FROM schema_migrations;"
+
+echo "Verifying critical tables exist:"
 for table in posts admins knowledge_items chat_messages knowledge_chunks; do
-    echo "  - $table:"
-    psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\d $table" 2>/dev/null | head -5 || echo "    Table not found or inaccessible"
+    echo "- Checking $table:"
+    if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\d $table" >/dev/null 2>&1; then
+        echo "  ✅ $table exists"
+    else
+        echo "  ❌ $table MISSING - CRITICAL ERROR"
+        exit 1
+    fi
 done
 
 echo "✅ Test database setup complete!"
