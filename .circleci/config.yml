@@ -7,7 +7,7 @@ orbs:
 executors:
   rails-executor:
     docker:
-      - image: cimg/ruby:3.2.2-node
+      - image: cimg/ruby:3.2.9-node
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgresql://circleci:@localhost:5432/jasonramirez_test
@@ -27,7 +27,7 @@ jobs:
 
       # Ruby dependencies
       - ruby/install-deps:
-          bundler-version: "2.4.10"
+          bundler-version: "2.7.1"
 
       # Node dependencies
       - node/install-packages:
@@ -52,7 +52,7 @@ jobs:
           at: ~/repo
 
       - ruby/install-deps:
-          bundler-version: "2.4.10"
+          bundler-version: "2.7.1"
 
       # Wait for PostgreSQL
       - run:
@@ -84,7 +84,7 @@ jobs:
           at: ~/repo
 
       - ruby/install-deps:
-          bundler-version: "2.4.10"
+          bundler-version: "2.7.1"
 
       # Wait for PostgreSQL
       - run:
@@ -128,7 +128,7 @@ jobs:
           at: ~/repo
 
       - ruby/install-deps:
-          bundler-version: "2.4.10"
+          bundler-version: "2.7.1"
 
       # Run bundler-audit for security vulnerabilities
       - run:
