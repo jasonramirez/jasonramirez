@@ -16,7 +16,11 @@
   <% if post.audio_src.present? %>
     <div class="post-feature__audio">
       <%= inline_svg "icon-headphones.svg", class: "post-feature__audio-icon" %>
-      <%= format_duration(post.audio_src.length) %>
+       <span class="audio-duration" 
+         data-controller="audio-duration" 
+         data-audio-duration-audio-src-value="<%= asset_path(post.audio_src) %>">
+         00:00
+       </span>
     </div>
   <% end %>
 
