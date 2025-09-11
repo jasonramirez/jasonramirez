@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔧 Setting up test database..."
+
+# Database configuration
+DB_NAME=${DATABASE_NAME:-jasonramirez_test}
+DB_USER=${DATABASE_USER:-circleci}
+DB_HOST=${DATABASE_HOST:-localhost}
+
+# Create database if it doesn't exist
+echo "📝 Creating database: $DB_NAME"
+createdb -h "$DB_HOST" -U "$DB_USER" "$DB_NAME" 2>/dev/null || echo "Database already exists"
+
+# Enable pgvector extension
+echo "🔌 Enabling pgvector extension..."
+psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "CREATE EXTENSION IF NOT EXISTS vector;" || {
+    echo "❌ Failed to enable pgvector extension"
+    echo "Make sure postgresql-*-pgvector is installed"
+    exit 1
+}
+
+# Load schema from structure.sql
+echo "📋 Loading database schema..."
+if [ -f "db/structure.sql" ]; then
+    psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" --no-psqlrc --file db/structure.sql > /dev/null || {
+        echo "❌ Failed to load structure.sql"
+        exit 1
+    }
+else
+    echo "❌ db/structure.sql not found"
+    exit 1
+fi
+
+# Add migration versions using Rails
+echo "📊 Adding migration versions..."
+RAILS_ENV=test bundle exec rails runner "
+  migration_versions = Dir[Rails.root.join('db', 'migrate', '*.rb')].map do |file|
+    File.basename(file).split('_').first
+  end
+  
+  migration_versions.each do |version|
+    begin
+      ActiveRecord::SchemaMigration.create!(version: version)
+    rescue ActiveRecord::RecordNotUnique
+      # Version already exists, skip
+    end
+  end
+  
+  puts '✅ Migration versions added successfully'
+" || {
+    echo "❌ Failed to add migration versions"
+    exit 1
+}
+
+# Set Rails environment
+echo "🌍 Setting Rails test environment..."
+RAILS_ENV=test bundle exec rails db:environment:set || {
+    echo "❌ Failed to set Rails environment"
+    exit 1
+}
+
+echo "✅ Test database setup complete!"

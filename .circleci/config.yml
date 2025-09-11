@@ -1,0 +1,189 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@2.1.0
+  node: circleci/node@5.1.0
+
+executors:
+  rails-executor:
+    docker:
+      - image: cimg/ruby:3.2.2-node
+        environment:
+          RAILS_ENV: test
+          DATABASE_URL: postgresql://circleci:@localhost:5432/jasonramirez_test
+          CC_TEST_REPORTER_ID: # Add your CodeClimate reporter ID if you have one
+      - image: cimg/postgres:15.4
+        environment:
+          POSTGRES_USER: circleci
+          POSTGRES_DB: jasonramirez_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+    working_directory: ~/repo
+
+jobs:
+  checkout_and_install:
+    executor: rails-executor
+    steps:
+      - checkout
+
+      # Ruby dependencies
+      - ruby/install-deps:
+          bundler-version: "2.4.10"
+
+      # Node dependencies
+      - node/install-packages:
+          pkg-manager: yarn
+
+      # Cache node_modules
+      - save_cache:
+          key: v1-node-modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+      # Persist workspace for other jobs
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+
+  setup_database:
+    executor: rails-executor
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - ruby/install-deps:
+          bundler-version: "2.4.10"
+
+      # Wait for PostgreSQL
+      - run:
+          name: Wait for PostgreSQL
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Install pgvector extension
+      - run:
+          name: Install pgvector extension
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y postgresql-client postgresql-15-pgvector
+
+      # Setup test database using our script
+      - run:
+          name: Setup test database
+          command: ./bin/setup_test_db
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+
+  run_tests:
+    executor: rails-executor
+    parallelism: 4
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - ruby/install-deps:
+          bundler-version: "2.4.10"
+
+      # Wait for PostgreSQL
+      - run:
+          name: Wait for PostgreSQL
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Precompile assets for feature tests
+      - run:
+          name: Precompile assets
+          command: RAILS_ENV=test bundle exec rails assets:precompile
+
+      # Run tests in parallel
+      - run:
+          name: Run RSpec tests
+          command: |
+            bundle exec rspec \
+              --profile 10 \
+              --format RspecJunitFormatter \
+              --out test_results/rspec.xml \
+              --format progress \
+              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      # Store test results
+      - store_test_results:
+          path: test_results
+
+      # Store test artifacts
+      - store_artifacts:
+          path: test_results
+          destination: test-results
+
+      # Store coverage reports (if you use SimpleCov)
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+
+  lint_and_security:
+    executor: rails-executor
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - ruby/install-deps:
+          bundler-version: "2.4.10"
+
+      # Run bundler-audit for security vulnerabilities
+      - run:
+          name: Security audit
+          command: |
+            bundle exec bundle-audit check --update || true
+
+      # Run brakeman for security scanning (if you have it)
+      - run:
+          name: Security scan with Brakeman
+          command: |
+            if bundle list | grep -q brakeman; then
+              bundle exec brakeman --no-pager
+            else
+              echo "Brakeman not installed, skipping security scan"
+            fi
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - checkout_and_install:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+                - /feature\/.*/
+
+      - setup_database:
+          requires:
+            - checkout_and_install
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+                - /feature\/.*/
+
+      - run_tests:
+          requires:
+            - setup_database
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+                - /feature\/.*/
+
+      - lint_and_security:
+          requires:
+            - checkout_and_install
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+                - /feature\/.*/
