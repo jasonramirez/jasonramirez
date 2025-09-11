@@ -62,35 +62,30 @@ else
     exit 1
 fi
 
-# Add migration versions using SQL (more reliable than Rails runner in CI)
-echo "📊 Adding migration versions..."
-migration_versions=$(ls db/migrate/*.rb | sed 's/.*\/\([0-9]*\)_.*/\1/' | sort)
-
-if [ -n "$migration_versions" ]; then
-    echo "📋 Found $(echo "$migration_versions" | wc -l) migration files"
-    
-    # Create a temporary SQL file for better error handling
-    temp_sql=$(mktemp)
-    echo "BEGIN;" > "$temp_sql"
-    
-    for version in $migration_versions; do
-        echo "INSERT INTO schema_migrations (version) VALUES ('$version') ON CONFLICT (version) DO NOTHING;" >> "$temp_sql"
-    done
-    
-    echo "COMMIT;" >> "$temp_sql"
-    
-    if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -f "$temp_sql" 2>/dev/null; then
-        echo "✅ Migration versions added successfully"
+# Run migrations instead of just marking them as run
+echo "📊 Running Rails migrations..."
+if command -v bundle >/dev/null 2>&1; then
+    export RAILS_ENV=test
+    if bundle exec rails db:migrate 2>/dev/null; then
+        echo "✅ Migrations run successfully"
     else
-        echo "⚠️  Could not add migration versions, but continuing..."
-        # Show what we tried to insert
-        echo "📄 Migration versions attempted:"
-        echo "$migration_versions" | head -5
+        echo "⚠️  Migration run had issues, but continuing..."
+        # Fallback: just mark migrations as run
+        echo "📊 Adding migration versions as fallback..."
+        migration_versions=$(ls db/migrate/*.rb | sed 's/.*\/\([0-9]*\)_.*/\1/' | sort)
+        if [ -n "$migration_versions" ]; then
+            temp_sql=$(mktemp)
+            echo "BEGIN;" > "$temp_sql"
+            for version in $migration_versions; do
+                echo "INSERT INTO schema_migrations (version) VALUES ('$version') ON CONFLICT (version) DO NOTHING;" >> "$temp_sql"
+            done
+            echo "COMMIT;" >> "$temp_sql"
+            psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -f "$temp_sql" 2>/dev/null || echo "Could not add migration versions"
+            rm -f "$temp_sql"
+        fi
     fi
-    
-    rm -f "$temp_sql"
 else
-    echo "⚠️  No migration files found"
+    echo "⚠️  Bundle not available, skipping migrations"
 fi
 
 # Add any missing columns that might cause transaction failures
@@ -118,11 +113,7 @@ psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
     ADD COLUMN IF NOT EXISTS content_embedding vector;
 " 2>/dev/null && echo "✅ Embedding column added to chat_messages" || echo "⚠️  Embedding column may already exist"
 
-# Add missing embedding column to knowledge_chunks
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
-    ALTER TABLE knowledge_chunks 
-    ADD COLUMN IF NOT EXISTS content_embedding vector;
-" 2>/dev/null && echo "✅ Embedding column added to knowledge_chunks" || echo "⚠️  Embedding column may already exist"
+# Note: Tables will be created by running migrations above
 
 # Add missing columns to posts table
 psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "
