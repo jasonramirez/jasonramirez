@@ -1,101 +1,58 @@
 <section class="content content--slim">
-  <div>
-    <%= link_to "protected_works/grow_marketplace_excellence",
-      class: "work-link" do %>
-      <%= image_tag "works/grow-marketplace-excellence-title-card.png" %>
-      <h2 class="work-link__title">
-        Marketplace Excellence, 2025
-      </h2>
-      <h3 class="work-link__description">
-        A design led initiative to improve the Marketplace experience
-        and help clients find the right therapist.
-      </h3>
-    <% end %>
-  </div>
+  <%= render "work_title_card",
+    link_path: "protected_works/grow_marketplace_excellence",
+    image_path: "works/grow-marketplace-excellence-title-card.png",
+    title: "Marketplace Excellence",
+    subtitle: "2025",
+    description: "A design led initiative to improve the 
+      Marketplace experience and help clients find the right therapist." %>
 
-  <div>
-    <%= link_to "protected_works/intersession_experiences",
-      class: "work-link" do %>
-      <%= image_tag "works/grow-intersession-experiences-title-card.png" %>
-      <h2 class="work-link__title">
-        Intersession Experiences, 2025
-      </h2>
-      <h3 class="work-link__description">
-        How we designed and implemented seamless intersession 
-        experiences that improved patient engagement, 
-        reduced no-shows, and enhanced therapeutic outcomes.
-      </h3>
-    <% end %>
-  </div>
+  <%= render "work_title_card",
+    link_path: "protected_works/intersession_experiences",
+    image_path: "works/grow-intersession-experiences-title-card.png",
+    title: "Intersession Experiences",
+    subtitle: "2025",
+    description: "A design led initiative to improve the 
+      Marketplace experience and help clients find the right therapist." %>
 
-  <div>
-    <%= link_to "protected_works/dropbox_smartifying_activation",
-      class: "work-link" do %>
-      <%= image_tag "works/dropbox-activation-title-card.png" %>
-      <h2 class="work-link__title">
-        Smartifying Activation, 2023
-      </h2>
-      <h3 class="work-link__description">
-        How we used relevancy to connect customers to the full value of Dropbox
-        resulting in $50M+ of annual recurring revenue.
-      </h3>
-    <% end %>
-  </div>
+  <%= render "work_title_card",
+    link_path: "protected_works/dropbox_smartifying_activation",
+    image_path: "works/dropbox-activation-title-card.png",
+    title: "Smartifying Activation",
+    subtitle: "2023",
+    description: "How we used relevancy to connect customers to the full value of Dropbox
+      resulting in $50M+ of annual recurring revenue." %>
 
-  <div>
-    <%= link_to "protected_works/dropbox_enhancing_collaboration",
-      class: "work-link" do %>
-      <%= image_tag "works/dropbox-collaboration-title-card.png" %>
-      <h2 class="work-link__title">
-        Enhancing Collaboration, 2022
-      </h2>
-      <h3 class="work-link__description">
-        How we opened up new revenue streams and improved retention by bringing
-        new value to freelancers and Teams by focusing on collaboration and
-        relationships.
-      </h3>
-    <% end %>
-  </div>
 
-  <div>
-    <%= link_to "works/dropbox_keeping_flow", class: "work-link" do %>
-      <%= image_tag "works/dropbox-flow-title-card.png" %>
-      <h2 class="work-link__title">
-        Keeping Flow, 2019
-      </h2>
-      <h3 class="work-link__description">
-        How in one week we validated an idea, got funding to go after an
-        international market, and received a patent.
-      </h3>
-    <% end %>
-  </div>
+  <%= render "work_title_card",
+    link_path: "protected_works/dropbox_enhancing_collaboration",
+    image_path: "works/dropbox-collaboration-title-card.png",
+    title: "Enhancing Collaboration",
+    subtitle: "2022",
+    description: "How we opened up new revenue streams and improved retention by bringing
+      new value to freelancers and Teams by focusing on collaboration and relationships." %>
 
-  <div>
-    <%= link_to "works/mayo_gamifying_medical_education",
-      class: "work-link" do %>
-      <%= image_tag "works/mayo-clinic-educational-game-title-card.png" %>
-      <h2 class="work-link__title">
-        Gamifying Medical Education, 2017
-      </h2>
-      <h3 class="work-link__description">
-        How we opened up new revenue streams and improved retention by bringing
-        new value to freelancers and Teams by focusing on collaboration and
-        relationships.
-      </h2>
-    <% end %>
-  </div>
+  <%= render "work_title_card",
+    link_path: "protected_works/dropbox_keeping_flow",
+    image_path: "works/dropbox-flow-title-card.png",
+    title: "Keeping Flow",
+    subtitle: "2019",
+    description: "How in one week we validated an idea, got funding to go after an
+      international market, and received a patent." %>
 
-  <div>
-    <%= link_to "works/we_ate_the_web_saving_money",
-      class: "work-link" do %>
-      <%= image_tag "works/jason-ramirez-piggy-title-card.png" %>
-      <h2 class="work-link__title">
-        Saving Money, 2016
-      </h2>
-      <h3 class="work-link__description">
-        How two friends quickly tested the idea of a button to save money and
-        learned of a monetization path.
-      </h2>
-    <% end %>
-  </div>
+  <%= render "work_title_card",
+    link_path: "protected_works/mayo_gamifying_medical_education",
+    image_path: "works/mayo-clinic-educational-game-title-card.png",
+    title: "Gamifying Medical Education",
+    subtitle: "2017",
+    description: "How we opened up new revenue streams and improved retention by bringing
+      new value to freelancers and Teams by focusing on collaboration and relationships." %>  
+
+  <%= render "work_title_card",
+    link_path: "protected_works/jason_ramirez_piggy",
+    image_path: "works/jason-ramirez-piggy-title-card.png",
+    title: "Saving Money",
+    subtitle: "2016",
+    description: "How two friends quickly tested the idea of a button to save money and
+      learned of a monetization path." %>
 </section>

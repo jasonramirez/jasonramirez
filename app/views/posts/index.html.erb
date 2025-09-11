@@ -1,4 +1,6 @@
 <section class="content content--slim u-margin-top-none">
+  <%= render "post_featured", post: @posts.find(82) %>
+
   <div class="post-search" data-controller="search-clear">
     <form id="search_form" action="<%= posts_path %>" class="post-search__form">
       <%= search_field_tag :search,
@@ -11,7 +13,11 @@
         }
       %>
 
-      <%= link_to posts_path, class: "button button--secondary", data: { search_clear_target: "clearButton" }, style: (params[:search].blank? ? "display: none;" : "") do %>
+      <%= link_to posts_path, 
+        class: "button button--secondary", 
+        data: { search_clear_target: "clearButton" }, 
+        style: (params[:search].blank? ? "display: none;" : ""),
+        aria: { label: "Clear search" } do %>
         <%= inline_svg "icon-x.svg" %>
       <% end %>
 
@@ -28,13 +34,7 @@
       <% end %>
     </div>
   </div>
-</section>
 
-<section class="content content--slim">
-<!-- latest post -->
-</section>
-
-<section class="content content--slim">
   <% if params[:search].blank? %>
     <% @posts.each do |post| %>
       <%= render "post_sample", post: post %>

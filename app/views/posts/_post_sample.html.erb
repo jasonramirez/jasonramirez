@@ -3,19 +3,18 @@
     <%= link_to post.title, post_path(post) %>
   </h2>
 
-  <div>
-    <% post.hashtags.each_with_index do |hashtag, index| %>
-      <div class="post-sample__hashtag">
-        <%= link_to "#{hashtag.label}#{hashtag_comma(post.hashtags.size, index)}",
+  <% if post.hashtags.any? %>
+    <div>
+      <% post.hashtags.each_with_index do |hashtag, index| %>
+        <%= link_to "#{hashtag.label}#{hashtag_comma(post.hashtags.count, index)}",
           posts_path(search: hashtag.label),
-          class: "link" if hashtag.label.present? %>
-      </div>
-    <% end %>
-  </div>
+          class: "post-sample__hashtag badge badge--ghost" 
+        %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="post-sample__date">
-    Published <%= post.pretty_published_date %>
-    and
-    updated <%= time_ago_in_words(post.updated_at) %> ago
+    <%= post.pretty_published_date %>
   </div>
 </article>

@@ -3,7 +3,7 @@
     <nav class="work-footer-navigation">
       <%= link_to post_path(@previous_post),
         class: "work-footer-navigation__link left" do %>
-        <%= inline_svg "icon-long-arrow-left.svg" %>
+        <%= inline_svg "icon-move-left.svg" %>
         <h3>
           <%= @previous_post.title %>
         </h3>
@@ -14,7 +14,7 @@
 
       <%= link_to post_path(@next_post),
         class: "work-footer-navigation__link right" do %>
-        <%= inline_svg "icon-long-arrow-right.svg" %>
+        <%= inline_svg "icon-move-right.svg" %>
         <h3>
           <%= @next_post.title %>
         </h3>

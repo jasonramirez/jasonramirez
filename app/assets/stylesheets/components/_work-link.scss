@@ -34,6 +34,13 @@
 
 .work-link__title {
   margin-top: 3.5rem;
+  margin-bottom: $small-spacing;
+}
+
+.work-link__subtitle {
+  font-family: $code-font-family;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .work-link__protected {
@@ -48,9 +55,6 @@
 }
 
 .work-link__description {
-  font-weight: $reading-font-weight;
-  letter-spacing: $reading-letter-spacing;
-  line-height: $reading-line-height;
   width: 100%;
 
   @media ($medium-screen) {

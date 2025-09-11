@@ -12,23 +12,20 @@
 .post-sample__title {
   text-transform: capitalize;
   line-height: $reading-line-height;
-  margin-bottom: $small-spacing;
+  margin-bottom: 0;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .post-sample__date {
-  color: $secondary-font-color;
-  margin: $x-small-spacing 0;
+  font-family: $code-font-family;
+  //font-size: $small-font-size;
 }
 
 .post-sample__hashtag {
   display: inline-flex;
-
-  & button {
-    font-size: $small-font-size;
-    font-weight: normal;
-    margin-right: $xx-small-spacing;
-    padding: 0;
-    text-transform: lowercase;
-    transform: translateX(-$xx-small-spacing);
-  }
+  margin: $x-small-spacing 0;
+  text-decoration: none;
 }

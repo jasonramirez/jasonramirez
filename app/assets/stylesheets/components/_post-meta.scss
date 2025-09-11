@@ -8,11 +8,17 @@
   font: $base-font-family;
   gap: $large-spacing;
   justify-content: flex-start;
-  margin-bottom: $large-spacing;
+  margin: $x-large-spacing 0 $x-large-spacing;
+}
+
+.post-meta__title {
+  font-family: $heading-font-family;
+  font-weight: $title-font-weight;
+  line-height: $heading-line-height * 0.9;
+  text-transform: capitalize;
 }
 
 .post-meta__stats {
-  color: $secondary-font-color;
   display: flex;
   flex-direction: column;
 
@@ -22,23 +28,11 @@
 }
 
 .post-meta__published {
-  font-family: $base-font-family;
+  font-family: $code-font-family;
 }
 
 .post-meta__updated {
-  font-family: $base-font-family;
-}
-
-.post-meta__title {
-  font-family: $heading-font-family;
-  font-size: 3rem;
-  font-weight: $title-font-weight;
-  line-height: $heading-line-height * 0.9;
-  text-transform: capitalize;
-
-  @media ($medium-screen) {
-    font-size: 4rem;
-  }
+  font-family: $code-font-family;
 }
 
 .post-meta__subtitle,

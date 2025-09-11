@@ -1,0 +1,19 @@
+<%= link_to post_path(post), class: "post-feature" do %>
+  <h4 class="post-feature__date u-margin-bottom-small">
+    Featured Post
+  </h4>
+
+  <%= image_tag "posts/post-leadership-lessons-title-card.png", class: "post-feature__image" %>
+  
+  <h1 class="post-feature__title">
+    <%= post.title %>
+  </h1>
+
+  <p class="post-feature__date">
+    <%= post.published_date.strftime("%B %d, %Y") %>
+  </p>
+
+  <h3 class="post-feature__summary">
+    <%= "#{post.summary.strip}.." %>  
+  </h3>
+<% end %>

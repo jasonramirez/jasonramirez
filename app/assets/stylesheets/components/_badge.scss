@@ -9,9 +9,8 @@
   background-color: $base-border-color;
   border-radius: 0.5rem;
   color: $base-background-color;
-  font-size: $base-font-size;
+  font-family: $code-font-family;
   justify-content: center;
-  margin-left: 0.25rem;
   padding: 0.05rem 0.5rem;
   transform: translateY(-0.05rem);
 
@@ -25,9 +24,16 @@
 .badge--jason-ai {
   background-image: url("jason-ai-badge-background.png");
   background-size: cover;
+  margin-left: 0.25rem;
   color: $warm-white;
 }
 
 .badge--small {
   font-size: 0.65rem;
+}
+
+.badge--ghost {
+  background-color: unset;
+  color: $base-font-color;
+  padding: 0;
 }

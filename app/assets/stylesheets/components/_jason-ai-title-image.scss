@@ -10,10 +10,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: $base-border-radius * 4;
-  height: 25vh;
+  border-radius: $base-border-radius;
+  height: 10vh;
   margin-bottom: $x-large-spacing;
-  min-height: 20rem;
+  min-height: 17rem;
   width: 100%;
 
   .light & {
