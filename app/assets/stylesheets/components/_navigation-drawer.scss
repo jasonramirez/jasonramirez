@@ -128,4 +128,9 @@
     display: flex;
     justify-content: center;
   }
+
+  svg {
+    height: $base-font-size;
+    width: $base-font-size;
+  }
 }

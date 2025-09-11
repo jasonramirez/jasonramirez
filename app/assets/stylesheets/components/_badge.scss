@@ -12,6 +12,7 @@
   font-family: $code-font-family;
   justify-content: center;
   padding: 0.05rem 0.5rem;
+  text-transform: lowercase;
   transform: translateY(-0.05rem);
 
   &:hover,

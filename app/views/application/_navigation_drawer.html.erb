@@ -28,9 +28,17 @@
         <li class="navigation-drawer__link">
           <%= link_to jason_ai_path do %>
             <%= t("navigation.jason_ai") %>
-            <span class="badge badge--jason-ai badge--small">BETA</span>
+            <span class="badge badge--jason-ai badge--small">beta</span>
           <% end %> 
         </li>
+
+        <% if current_chat_user && controller_name == 'jason_ai' %>
+          <li class="navigation-drawer__link navigation-drawer__link--separator">
+            <%= link_to chat_logout_path, data: { turbo_method: :delete } do %>
+              Logout
+            <% end %>
+          </li>
+        <% end %>
 
         <li class="navigation-drawer__link navigation-drawer__link--theme">
           <button type="button"
@@ -39,15 +47,6 @@
             <%= inline_svg "icon-theme-change.svg" %>
           </button>
         </li>
-
-        <% if current_chat_user && controller_name == 'jason_ai' %>
-          <li class="navigation-drawer__link navigation-drawer__link--separator">
-            <%= link_to chat_logout_path, data: { turbo_method: :delete } do %>
-              <%= inline_svg "icon-log-out.svg", height: "16px", width: "16px" %>
-              Logout
-            <% end %>
-          </li>
-        <% end %>
       </ul>
     </div>
   </div>

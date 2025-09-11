@@ -18,18 +18,14 @@
   color: $base-font-color;
   display: block;
   font-family: $heading-font-family;
-  font-size: $base-font-size;
+  font-size: $small-font-size;
   font-weight: 600;
   margin: $base-spacing 0;
   text-transform: uppercase;
 
-  @media (min-width: $small-screen) {
+  @media (min-width: $medium-screen) {
     display: inline;
     margin: $small-spacing;
-  }
-
-  @media (min-width: $medium-screen) {
-    font-size: $small-font-size;
   }
 
   a {
