@@ -16,7 +16,7 @@
   <% if post.audio_src.present? %>
     <div class="post-feature__audio">
       <%= inline_svg "icon-headphones.svg", class: "post-feature__audio-icon" %>
-      <%= post.audio_src.length %> seconds.
+      <%= format_duration(post.audio_src.length) %>
     </div>
   <% end %>
 

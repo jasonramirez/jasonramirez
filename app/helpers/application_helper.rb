@@ -5,6 +5,15 @@ module ApplicationHelper
   include KnowledgeHelper
   include FlashesHelper
 
+  def format_duration(seconds)
+    return "0:00" if seconds.nil? || seconds <= 0
+    
+    minutes = seconds / 60
+    remaining_seconds = seconds % 60
+    
+    sprintf("%d:%02d", minutes, remaining_seconds)
+  end
+
   def parse_framework_links(content)
     return content if content.blank?
     
