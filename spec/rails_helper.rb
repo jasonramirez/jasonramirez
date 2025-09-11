@@ -1,7 +1,11 @@
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../../config/environment", __FILE__)
-abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]
+# Safety check: prevent running tests against production database
+# Allow DATABASE_URL in CI environments (CircleCI, GitHub Actions, etc.)
+if ENV["DATABASE_URL"] && !ENV["CI"] && !ENV["CIRCLECI"]
+  abort("DATABASE_URL environment variable is set. This could be dangerous in local development.")
+end
 
 require "rspec/rails"
 require "rails-controller-testing"
