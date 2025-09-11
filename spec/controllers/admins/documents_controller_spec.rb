@@ -5,7 +5,7 @@ RSpec.describe Admins::DocumentsController, type: :controller do
   let(:documents_path) { Rails.root.join('app', 'views', 'admins', 'documents') }
   
   before do
-    sign_in admin
+    sign_in admin, scope: :admin
     
     # Ensure documents directory exists
     FileUtils.mkdir_p(documents_path)
@@ -98,7 +98,7 @@ RSpec.describe Admins::DocumentsController, type: :controller do
 
   describe "authentication" do
     before do
-      sign_out admin
+      sign_out admin, scope: :admin
     end
 
     it "redirects to admin sign in for index" do

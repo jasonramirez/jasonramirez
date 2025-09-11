@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe Admins::PostsController, type: :controller do
   let(:admin) { create(:admin) }
-  let(:post) { create(:post) }
+  let(:blog_post) { create(:post) }
 
   before do
-    sign_in admin
+    sign_in admin, scope: :admin
   end
 
   describe "POST #create" do
@@ -21,25 +21,25 @@ RSpec.describe Admins::PostsController, type: :controller do
     context "with valid parameters" do
       it "creates a new post" do
         expect {
-          post :create, params: { post: valid_attributes }, format: :turbo_stream
+          post :create, params: { post: valid_attributes, format: :turbo_stream }
         }.to change(Post, :count).by(1)
       end
 
       it "saves the post_markdown content" do
-        post :create, params: { post: valid_attributes }, format: :turbo_stream
+        post :create, params: { post: valid_attributes, format: :turbo_stream }
         created_post = Post.last
         expect(created_post.post_markdown).to eq("# Hello\n\nThis is **test** content.")
       end
 
       it "renders the save turbo stream" do
-        post :create, params: { post: valid_attributes }, format: :turbo_stream
+        post :create, params: { post: valid_attributes, format: :turbo_stream }
         expect(response).to render_template("save")
       end
     end
 
     context "with invalid parameters" do
       it "renders the failure turbo stream" do
-        post :create, params: { post: { title: "" } }, format: :turbo_stream
+        post :create, params: { post: { title: "" }, format: :turbo_stream }
         expect(response).to render_template("failure")
       end
     end
@@ -56,22 +56,22 @@ RSpec.describe Admins::PostsController, type: :controller do
 
     context "with valid parameters" do
       it "updates the post" do
-        patch :update, params: { id: post.to_param, post: new_attributes }, format: :turbo_stream
-        post.reload
-        expect(post.title).to eq("Updated Title")
-        expect(post.post_markdown).to eq("# Updated Content\n\nThis is **updated** markdown.")
-        expect(post.summary).to eq("Updated summary")
+        process :update, method: :patch, params: { id: blog_post.to_param, post: new_attributes }
+        blog_post.reload
+        expect(blog_post.title).to eq("Updated Title")
+        expect(blog_post.post_markdown).to eq("# Updated Content\n\nThis is **updated** markdown.")
+        expect(blog_post.summary).to eq("Updated summary")
       end
 
       it "automatically updates post_text when post_markdown changes" do
-        patch :update, params: { id: post.to_param, post: new_attributes }, format: :turbo_stream
-        post.reload
+        patch :update, params: { id: post.to_param, post: new_attributes, format: :turbo_stream }
+        blog_post.reload
         expect(post.post_text).to include("Updated Content")
         expect(post.post_text).to include("updated")
       end
 
       it "renders the update turbo stream" do
-        patch :update, params: { id: post.to_param, post: new_attributes }, format: :turbo_stream
+        patch :update, params: { id: post.to_param, post: new_attributes, format: :turbo_stream }
         expect(response).to render_template("update")
       end
 
@@ -91,15 +91,15 @@ RSpec.describe Admins::PostsController, type: :controller do
       it "does not update the post" do
         original_title = post.title
         patch :update, params: { id: post.to_param, post: { title: "" } }, format: :turbo_stream
-        post.reload
-        expect(post.title).to eq(original_title)
+        blog_post.reload
+        expect(blog_post.title).to eq(original_title)
       end
     end
 
     context "parameter filtering" do
       it "permits post_markdown parameter" do
         expect(controller).to receive(:post_params).and_call_original
-        patch :update, params: { id: post.to_param, post: new_attributes }, format: :turbo_stream
+        patch :update, params: { id: post.to_param, post: new_attributes, format: :turbo_stream }
       end
 
       it "filters out unpermitted parameters" do
@@ -108,7 +108,7 @@ RSpec.describe Admins::PostsController, type: :controller do
           post: new_attributes.merge(unpermitted_param: "should be filtered")
         }, format: :turbo_stream
         
-        post.reload
+        blog_post.reload
         expect(post).not_to respond_to(:unpermitted_param)
       end
     end
