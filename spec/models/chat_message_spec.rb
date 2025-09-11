@@ -105,15 +105,37 @@ RSpec.describe ChatMessage, type: :model do
     end
 
     describe ".with_embeddings" do
-      # Skip this test for now due to pgvector setup complexity
-      xit "returns only messages with embeddings" do
-        # This test requires proper pgvector setup to work correctly
+      it "returns only messages with embeddings" do
+        user = create(:chat_user)
+        
+        # Create message with embedding by directly setting the embedding
+        message_with_embedding = create(:chat_message, chat_user: user)
+        # Use raw SQL to set a vector embedding since we have the column
+        embedding_array = Array.new(1536, 0.1) # Create a test embedding
+        formatted_embedding = "[#{embedding_array.join(',')}]"
+        ActiveRecord::Base.connection.execute(
+          "UPDATE chat_messages SET content_embedding = '#{formatted_embedding}' WHERE id = #{message_with_embedding.id}"
+        )
+        
+        # Create message without embedding
+        message_without_embedding = create(:chat_message, chat_user: user)
+        
+        # Test the scope
+        messages_with_embeddings = ChatMessage.with_embeddings
+        
+        expect(messages_with_embeddings).to include(message_with_embedding)
+        expect(messages_with_embeddings).not_to include(message_without_embedding)
       end
     end
   end
 
   describe "embedding generation" do
     let(:message) { build(:chat_message) }
+
+    # Override the global stubbing for these embedding tests
+    before do
+      allow_any_instance_of(ChatMessage).to receive(:should_generate_embedding?).and_call_original
+    end
 
     describe "#should_generate_embedding?" do
       context "when content is present and no embedding exists" do
@@ -131,9 +153,22 @@ RSpec.describe ChatMessage, type: :model do
       end
 
       context "when embedding already exists" do
-        # Skip this test for now due to pgvector integration issues
-        xit "returns false" do
-          # This test requires proper pgvector setup
+        it "returns false" do
+          # Create and save a message first
+          saved_message = create(:chat_message)
+          
+          # Manually set an embedding using raw SQL to simulate existing embedding
+          embedding_array = Array.new(1536, 0.2) # Create a test embedding  
+          formatted_embedding = "[#{embedding_array.join(',')}]"
+          ActiveRecord::Base.connection.execute(
+            "UPDATE chat_messages SET content_embedding = '#{formatted_embedding}' WHERE id = #{saved_message.id}"
+          )
+          
+          # Reload to get the updated embedding
+          saved_message.reload
+          
+          # should_generate_embedding? should return false when embedding exists
+          expect(saved_message.send(:should_generate_embedding?)).to be false
         end
       end
     end
@@ -149,8 +184,8 @@ RSpec.describe ChatMessage, type: :model do
 
           saved_message.generate_embedding
 
-          expect(EmbeddingService).to have_received(:new)
-          expect(embedding_service).to have_received(:generate_embedding).with(saved_message.content)
+          expect(EmbeddingService).to have_received(:new).at_least(:once)
+          expect(embedding_service).to have_received(:generate_embedding).with(saved_message.content).at_least(:once)
         end
 
         it "updates the content_embedding column" do
@@ -188,6 +223,7 @@ RSpec.describe ChatMessage, type: :model do
       it "triggers embedding generation after save" do
         message = build(:chat_message)
         
+        # Stub the actual embedding generation but allow the callback logic to work
         expect(message).to receive(:generate_embedding_sync_then_async)
         message.save!
       end

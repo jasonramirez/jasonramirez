@@ -52,6 +52,7 @@ RSpec.configure do |config|
     FactoryBot.rewind_sequences
     
     # Skip ChatMessage embedding generation in tests to avoid transaction conflicts
+    # Individual test files can override this behavior if needed
     allow_any_instance_of(ChatMessage).to receive(:should_generate_embedding?).and_return(false)
   end
 end
