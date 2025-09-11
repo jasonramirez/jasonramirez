@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@2.1.0
-  node: circleci/node@5.1.0
+  node: circleci/node@5.2.0
 
 executors:
   rails-executor:
@@ -12,6 +12,7 @@ executors:
           RAILS_ENV: test
           DATABASE_URL: postgresql://circleci:@localhost:5432/jasonramirez_test
           CC_TEST_REPORTER_ID: # Add your CodeClimate reporter ID if you have one
+          NODE_ENV: test
       - image: cimg/postgres:15.4
         environment:
           POSTGRES_USER: circleci
@@ -29,13 +30,24 @@ jobs:
       - ruby/install-deps:
           bundler-version: "2.7.1"
 
+      # Install specific Node.js and Yarn versions to match package.json
+      - node/install:
+          node-version: "24.3.0"
+      
+      - run:
+          name: Install specific Yarn version
+          command: |
+            sudo corepack enable
+            corepack prepare yarn@1.22.22 --activate
+            
       # Node dependencies
       - node/install-packages:
           pkg-manager: yarn
+          override-ci-command: yarn install --frozen-lockfile
 
-      # Cache node_modules
+      # Cache node_modules with Node.js version
       - save_cache:
-          key: v1-node-modules-{{ checksum "yarn.lock" }}
+          key: v1-node24-modules-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
 
