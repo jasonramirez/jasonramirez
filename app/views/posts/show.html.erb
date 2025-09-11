@@ -33,6 +33,15 @@
       </div>
     </div>
 
+    <% unless @post.audio_src.blank? %>
+      <div class="u-margin-bottom-x-large">
+      <%= render 'shared/custom_audio_player',
+        audio_source: @post.audio_src,
+          title: @post.title,
+          tldr_transcript: @post.tldr_transcript %>
+      </div>
+    <% end %>
+
     <article class="post">
       <%= parsed_body %>
     </article>

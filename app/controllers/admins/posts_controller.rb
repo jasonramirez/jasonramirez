@@ -96,6 +96,7 @@ class Admins::PostsController < ApplicationController
       :published_date,
       :title,
       :video_src,
+      :audio_src,
       hashtag_ids: [],
     )
   end

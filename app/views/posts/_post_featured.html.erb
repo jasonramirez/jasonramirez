@@ -13,6 +13,13 @@
     <%= post.published_date.strftime("%B %d, %Y") %>
   </p>
 
+  <% if post.audio_src.present? %>
+    <div class="post-feature__audio">
+      <%= inline_svg "icon-headphones.svg", class: "post-feature__audio-icon" %>
+      <%= post.audio_src.length %> seconds.
+    </div>
+  <% end %>
+
   <% if post.summary.present? %>
     <h3 class="post-feature__summary">
       <%= "#{post.summary.strip}.." %>  

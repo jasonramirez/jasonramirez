@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_06_181932) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -98,6 +98,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_06_181932) do
     t.datetime "last_updated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "feedback_score", precision: 3, scale: 2, default: "0.5", null: false
+    t.decimal "total_feedback_count", precision: 8, scale: 2, default: "0.0", null: false
+    t.decimal "positive_feedback_count", precision: 8, scale: 2, default: "0.0", null: false
+    t.datetime "last_feedback_at", precision: nil
+    t.index ["feedback_score"], name: "index_knowledge_items_on_feedback_score"
+    t.index ["last_feedback_at"], name: "index_knowledge_items_on_last_feedback_at"
   end
 
   create_table "posts", id: :serial, force: :cascade do |t|
@@ -112,6 +118,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_06_181932) do
     t.text "summary"
     t.text "tldr_transcript"
     t.string "video_src"
+    t.string "audio_src"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 

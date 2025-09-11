@@ -13,16 +13,6 @@
   text-align: left;
   text-decoration: none;
   margin-top: -($large-spacing + $small-spacing);
-
-  &:hover {
-    color: currentColor;
-
-    svg {
-      path {
-        color: $action-color;
-      }
-    }
-  }
 }
 
 .post-feature__image {
@@ -37,6 +27,18 @@
 .post-feature__date {
   font-size: $reading-font-size;
   font-family: $code-font-family;
+}
+
+.post-feature__audio {
+  align-items: center;
+  display: inline-flex;
+  font-family: $code-font-family;
+  gap: $x-small-spacing;
+
+  svg {
+    height: $base-font-size;
+    width: $base-font-size;
+  }
 }
 
 .post-feature__summary {
