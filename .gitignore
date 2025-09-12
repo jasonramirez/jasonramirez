@@ -20,3 +20,6 @@ db/schema.rb
 
 # CircleCI test results
 /test_results/*
+
+# Database backups
+/.dbbackups/*
