@@ -89,6 +89,13 @@ jobs:
 
             echo "🔧 Installing pgvector extension..."
 
+            # Show system info
+            echo "System information:"
+            echo "  - OS: $(lsb_release -a 2>/dev/null || echo 'Unknown')"
+            echo "  - Architecture: $(uname -m)"
+            echo "  - Available PostgreSQL versions:"
+            ls -la /usr/lib/postgresql/ 2>/dev/null || echo "    No PostgreSQL installations found"
+
             # Install dependencies
             sudo apt-get update
             sudo apt-get install -y wget ca-certificates build-essential
@@ -100,6 +107,14 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y postgresql-client postgresql-contrib postgresql-server-dev-16
 
+            # Verify PostgreSQL installation
+            echo "PostgreSQL installation verification:"
+            echo "  - postgresql-client version: $(psql --version 2>/dev/null || echo 'Not found')"
+            echo "  - Available pg_config versions:"
+            find /usr -name "pg_config" 2>/dev/null | head -5 || echo "    No pg_config found"
+            echo "  - PostgreSQL server status:"
+            sudo systemctl status postgresql 2>/dev/null || echo "    Service not found or not running"
+
             # Compile pgvector - REQUIRED for application functionality
             cd /tmp
             git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
@@ -107,13 +122,45 @@ jobs:
             cd pgvector
             export PG_CONFIG=/usr/lib/postgresql/16/bin/pg_config
 
+            # Show pgvector source info
+            echo "pgvector source information:"
+            echo "  - Git commit: $(git rev-parse HEAD 2>/dev/null || echo 'Unknown')"
+            echo "  - Branch: $(git branch --show-current 2>/dev/null || echo 'Unknown')"
+            echo "  - Source files:"
+            ls -la *.c *.h 2>/dev/null | head -5 || echo "    No source files found"
+
             if [ -f "$PG_CONFIG" ]; then
               echo "Using pg_config: $PG_CONFIG"
               $PG_CONFIG --version
               
+              # Show what we're about to install
+              echo "PostgreSQL installation directories:"
+              $PG_CONFIG --pkglibdir
+              $PG_CONFIG --sharedir
+              
               make clean
               make PG_CONFIG=$PG_CONFIG
               sudo make install PG_CONFIG=$PG_CONFIG
+              
+              # Verify installation
+              echo "Verifying pgvector installation:"
+              if [ -f "$($PG_CONFIG --sharedir)/extension/vector.control" ]; then
+                echo "✅ vector.control found at $($PG_CONFIG --sharedir)/extension/vector.control"
+              else
+                echo "❌ vector.control NOT found at $($PG_CONFIG --sharedir)/extension/"
+                echo "Contents of extension directory:"
+                ls -la "$($PG_CONFIG --sharedir)/extension/" || echo "Directory does not exist"
+                exit 1
+              fi
+              
+              if [ -f "$($PG_CONFIG --pkglibdir)/vector.so" ]; then
+                echo "✅ vector.so found at $($PG_CONFIG --pkglibdir)/vector.so"
+              else
+                echo "❌ vector.so NOT found at $($PG_CONFIG --pkglibdir)/"
+                echo "Contents of lib directory:"
+                ls -la "$($PG_CONFIG --pkglibdir)/" || echo "Directory does not exist"
+                exit 1
+              fi
               
               echo "✅ pgvector compiled and installed successfully"
             else
@@ -127,6 +174,7 @@ jobs:
           paths:
             - /usr/lib/postgresql/16/lib/vector.so
             - /usr/share/postgresql/16/extension/vector*
+            - /usr/lib/postgresql/16/share/extension/vector*
 
       # Setup test database using our script
       - run:
