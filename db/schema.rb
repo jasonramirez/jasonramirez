@@ -27,7 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
   end
 
 # Could not dump table "chat_messages" because of following StandardError
-#   Unknown type 'vector(1536)' for column 'content_embedding'
+#   Unknown type 'vector' for column 'content_embedding'
 
 
   create_table "chat_users", force: :cascade do |t|
@@ -82,11 +82,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
   end
 
 # Could not dump table "knowledge_chunks" because of following StandardError
-#   Unknown type 'vector(1536)' for column 'content_embedding'
+#   Unknown type 'vector' for column 'content_embedding'
 
 
 # Could not dump table "knowledge_items" because of following StandardError
-#   Unknown type 'vector(1536)' for column 'content_embedding'
+#   Unknown type 'vector' for column 'content_embedding'
 
 
   create_table "posts", id: :serial, force: :cascade do |t|
@@ -103,19 +103,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
     t.text "post_text"
     t.string "audio_src"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
-  end
-
-  create_table "posts_tags", id: false, force: :cascade do |t|
-    t.bigint "posts_id"
-    t.bigint "tags_id"
-    t.index ["posts_id"], name: "index_posts_tags_on_posts_id"
-    t.index ["tags_id"], name: "index_posts_tags_on_tags_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "chat_messages", "chat_users"

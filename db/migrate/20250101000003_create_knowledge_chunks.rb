@@ -11,7 +11,7 @@ class CreateKnowledgeChunks < ActiveRecord::Migration[8.0]
       t.decimal :confidence_score
       t.string :source
       t.datetime :last_updated
-      t.vector :content_embedding, limit: 1536
+      t.column :content_embedding, :vector, limit: 1536
 
       t.timestamps
     end
