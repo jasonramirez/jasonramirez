@@ -43,7 +43,7 @@
       I also love to share:
     </h1>
     <% @hashtags.each_with_index do |hashtag, index| %>
-      <%= link_to posts_path(search: hashtag.label), class: "hero-description__hashtag link" do %>
+      <%= link_to posts_path(search: hashtag.label, anchor: "search"), class: "hero-description__hashtag link" do %>
         <span class="hero-description__hashtag-link">
           <%= hashtag.label.strip %>
           <span class="badge badge--small badge--action">

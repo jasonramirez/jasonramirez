@@ -2,7 +2,13 @@
 @use "variables/tokens" as *;
 
 .post-search {
-  padding-bottom: $large-spacing;
+  padding-top: $x-large-spacing;
+
+  a[name="search"] {
+    display: block;
+    margin-top: -$x-large-spacing;
+    padding-top: $x-large-spacing;
+  }
 }
 
 .post-search__form {

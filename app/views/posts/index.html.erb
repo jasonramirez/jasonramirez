@@ -5,6 +5,7 @@
   <% end %>
 
   <div class="post-search" data-controller="search-clear">
+    <a name="search"></a>
     <form id="search_form" action="<%= posts_path %>" class="post-search__form">
       <%= search_field_tag :search,
         params[:search],
