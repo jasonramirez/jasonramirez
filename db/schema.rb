@@ -13,6 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_stat_statements"
   enable_extension "vector"
 
   create_table "admins", id: :serial, force: :cascade do |t|
@@ -26,17 +27,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "chat_messages", force: :cascade do |t|
-    t.bigint "chat_user_id", null: false
-    t.text "content", null: false
-    t.string "message_type", null: false
-    t.string "audio_path"
-    t.jsonb "metadata"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_user_id", "created_at"], name: "index_chat_messages_on_chat_user_id_and_created_at"
-    t.index ["chat_user_id"], name: "index_chat_messages_on_chat_user_id"
-  end
+# Could not dump table "chat_messages" because of following StandardError
+#   Unknown type 'vector(1536)' for column 'content_embedding'
+
 
   create_table "chat_users", force: :cascade do |t|
     t.string "name", null: false
@@ -93,23 +86,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
 #   Unknown type 'vector(1536)' for column 'content_embedding'
 
 
-  create_table "knowledge_items", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.string "category"
-    t.text "tags"
-    t.decimal "confidence_score"
-    t.string "source"
-    t.datetime "last_updated"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal "feedback_score", precision: 3, scale: 2, default: "0.5", null: false
-    t.decimal "total_feedback_count", precision: 8, scale: 2, default: "0.0", null: false
-    t.decimal "positive_feedback_count", precision: 8, scale: 2, default: "0.0", null: false
-    t.datetime "last_feedback_at", precision: nil
-    t.index ["feedback_score"], name: "index_knowledge_items_on_feedback_score"
-    t.index ["last_feedback_at"], name: "index_knowledge_items_on_last_feedback_at"
-  end
+# Could not dump table "knowledge_items" because of following StandardError
+#   Unknown type 'vector(1536)' for column 'content_embedding'
+
 
   create_table "posts", id: :serial, force: :cascade do |t|
     t.string "title"
@@ -118,13 +97,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_175123) do
     t.datetime "published_date", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.text "post_text"
-    t.string "slug"
     t.text "summary"
-    t.text "tldr_transcript"
+    t.string "slug"
     t.string "video_src"
+    t.text "tldr_transcript"
+    t.text "post_text"
     t.string "audio_src"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
+  end
+
+  create_table "posts_tags", id: false, force: :cascade do |t|
+    t.bigint "posts_id"
+    t.bigint "tags_id"
+    t.index ["posts_id"], name: "index_posts_tags_on_posts_id"
+    t.index ["tags_id"], name: "index_posts_tags_on_tags_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "chat_messages", "chat_users"
