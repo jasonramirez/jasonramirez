@@ -98,39 +98,27 @@ jobs:
             echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
 
             sudo apt-get update
-            sudo apt-get install -y postgresql-client postgresql-contrib postgresql-server-dev-15 || {
-              echo "⚠️  Could not install PostgreSQL dev packages"
-              exit 0  # Don't fail the build
-            }
+            sudo apt-get install -y postgresql-client postgresql-contrib postgresql-server-dev-15
 
-            # Try to compile pgvector
+            # Compile pgvector - REQUIRED for application functionality
             cd /tmp
-            git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git || {
-              echo "⚠️  Could not clone pgvector repository"
-              exit 0
-            }
+            git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
 
             cd pgvector
             export PG_CONFIG=/usr/lib/postgresql/15/bin/pg_config
 
             if [ -f "$PG_CONFIG" ]; then
               echo "Using pg_config: $PG_CONFIG"
-              $PG_CONFIG --version || true
+              $PG_CONFIG --version
               
-              make clean || true
-              make PG_CONFIG=$PG_CONFIG || {
-                echo "⚠️  pgvector compilation failed - tests will use mock vector type"
-                exit 0
-              }
-              
-              sudo make install PG_CONFIG=$PG_CONFIG || {
-                echo "⚠️  pgvector installation failed - tests will use mock vector type" 
-                exit 0
-              }
+              make clean
+              make PG_CONFIG=$PG_CONFIG
+              sudo make install PG_CONFIG=$PG_CONFIG
               
               echo "✅ pgvector compiled and installed successfully"
             else
-              echo "⚠️  pg_config not found - tests will use mock vector type"
+              echo "❌ pg_config not found at $PG_CONFIG - CRITICAL ERROR"
+              exit 1
             fi
 
       # Cache the compiled pgvector
