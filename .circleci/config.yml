@@ -85,7 +85,7 @@ jobs:
       # Setup test database using our script
       - run:
           name: Setup test database
-          command: ./bin/setup_test_db
+          command: ./bin/setup_circleci_test_db
 
       - persist_to_workspace:
           root: ~/repo

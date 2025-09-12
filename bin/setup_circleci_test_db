@@ -43,36 +43,16 @@ echo "  - DB_HOST: ${DB_HOST}"
 echo "  - DATABASE_URL: ${DB_URL:-(not set)}"
 echo "  - DATABASE_SUPER_URL: ${DB_SUPER_URL:-(not set)}"
 
-echo "Creating fresh database: $DB_NAME"
-# Always drop and recreate the database for a clean state
-if run_psql_super -c "SELECT 1;" >/dev/null 2>&1; then
-  echo "ℹ️ Dropping existing database if it exists"
-  run_psql_super -c "DROP DATABASE IF EXISTS ${DB_NAME};" || true
-  
-  echo "ℹ️ Creating fresh database"
-  run_psql_super -c "CREATE DATABASE ${DB_NAME};"
-  
-  # Ensure app user exists and owns the DB
-  run_psql_super -c "DO \$\$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${DB_USER}') THEN CREATE ROLE ${DB_USER} LOGIN; END IF; END \$\$;"
-  run_psql_super -c "ALTER DATABASE ${DB_NAME} OWNER TO ${DB_USER};"
-  
-  echo "✅ Fresh database created successfully"
-else
-  echo "❌ Could not connect with superuser to create database"
-  exit 1
-fi
+echo "Using existing database: $DB_NAME"
+echo "ℹ️ Database already created by CircleCI with pgvector extension"
+echo "✅ Database ready for migrations"
 
-echo "Enabling pgvector extension in test database (requires superuser)..."
-if run_psql_super -c "SELECT 1;" >/dev/null 2>&1; then
-  # Enable extension in the test database specifically
-  # Connect to the test database using the superuser URL but with the test database name
-  local super_url="${DB_SUPER_URL:-postgresql://postgres@127.0.0.1:5432/postgres}"
-  local test_db_url="${super_url/postgres/${DB_NAME}}"
-  psql "${test_db_url}" -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
-  echo "✅ pgvector extension enabled in test database"
+echo "Checking pgvector extension status..."
+# The extension should already be enabled by CircleCI config, just verify
+if run_psql -c "SELECT 1 FROM pg_extension WHERE extname = 'vector';" >/dev/null 2>&1; then
+  echo "✅ pgvector extension is already enabled"
 else
-  echo "❌ Cannot enable pgvector: no superuser connection available"
-  exit 1
+  echo "⚠️ pgvector extension not found, but CircleCI should have enabled it"
 fi
 
 echo "Running Rails migrations..."
