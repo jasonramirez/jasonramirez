@@ -50,8 +50,8 @@ else
     echo "ℹ️ Attempting to create DB with superuser"
     if run_psql_super -c "SELECT 1;" >/dev/null 2>&1; then
       run_psql_super -c "CREATE DATABASE ${DB_NAME};" || echo "ℹ️ DB may already exist"
-      # Ensure app user exists and owns the DB
-      run_psql_super -c "DO $$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${DB_USER}') THEN CREATE ROLE ${DB_USER} LOGIN; END IF; END $$;"
+       # Ensure app user exists and owns the DB
+       run_psql_super -c "DO \$\$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${DB_USER}') THEN CREATE ROLE ${DB_USER} LOGIN; END IF; END \$\$;"
       run_psql_super -c "ALTER DATABASE ${DB_NAME} OWNER TO ${DB_USER};" || true
       echo "✅ Database ensured via superuser"
     else
