@@ -1,56 +1,82 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Helper to run psql with a URL or discrete params
+run_psql() {
+  local url="${1:-}"
+  shift || true
+  if [[ -n "${url}" ]]; then
+    psql "${url}" "$@"
+  else
+    psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" "$@"
+  fi
+}
+
+run_psql_super() {
+  # Use explicit SUPERUSER URL if provided, else fall back to POSTGRES defaults
+  local url="${DB_SUPER_URL:-}"
+  if [[ -n "${url}" ]]; then
+    psql "${url}" "$@"
+  else
+    PGPASSWORD="${POSTGRES_PASSWORD:-postgres}" psql -h "${POSTGRES_HOST:-$DB_HOST}" -U "${POSTGRES_USER:-postgres}" -d "${POSTGRES_DB:-postgres}" "$@"
+  fi
+}
+
 echo "Setting up test database..."
 echo "Environment info:"
 echo "  - RAILS_ENV: ${RAILS_ENV:-not set}"
 echo "  - DATABASE_URL: ${DATABASE_URL:-not set}"
 echo "  - PWD: $(pwd)"
 echo "  - PostgreSQL version: $(psql --version)"
-
 # Database configuration
 DB_NAME=${DATABASE_NAME:-jasonramirez_test}
 DB_USER=${DATABASE_USER:-circleci}
 DB_HOST=${DATABASE_HOST:-localhost}
+DB_URL=${DATABASE_URL:-}
+# Optional superuser connection (recommended in CI): e.g., postgresql://postgres:postgres@127.0.0.1:5432/postgres
+DB_SUPER_URL=${DATABASE_SUPER_URL:-}
 
-# Create database if it doesn't exist
+echo "Connection:"
+echo "  - DB_NAME: ${DB_NAME}"
+echo "  - DB_USER: ${DB_USER}"
+echo "  - DB_HOST: ${DB_HOST}"
+echo "  - DATABASE_URL: ${DB_URL:-(not set)}"
+echo "  - DATABASE_SUPER_URL: ${DB_SUPER_URL:-(not set)}"
+
 echo "Creating database: $DB_NAME"
-if createdb -h "$DB_HOST" -U "$DB_USER" "$DB_NAME" 2>/dev/null; then
-    echo "✅ Database created successfully"
+if run_psql "${DB_URL}" -c "SELECT 1;" >/dev/null 2>&1; then
+    echo "✅ Database already exists and is accessible (app user)"
 else
-    # Check if database actually exists (creation might have failed for other reasons)
-    if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT 1;" >/dev/null 2>&1; then
-        echo "✅ Database already exists and is accessible"
+    echo "ℹ️ Attempting to create DB with superuser"
+    if run_psql_super -c "SELECT 1;" >/dev/null 2>&1; then
+      run_psql_super -c "CREATE DATABASE ${DB_NAME};" || echo "ℹ️ DB may already exist"
+      # Ensure app user exists and owns the DB
+      run_psql_super -c "DO $$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${DB_USER}') THEN CREATE ROLE ${DB_USER} LOGIN; END IF; END $$;"
+      run_psql_super -c "ALTER DATABASE ${DB_NAME} OWNER TO ${DB_USER};" || true
+      echo "✅ Database ensured via superuser"
     else
-        echo "❌ Database creation failed and database is not accessible"
-        echo "❌ This is a critical error - cannot continue"
-        exit 1
+      echo "❌ Could not connect with superuser to create database"
+      exit 1
     fi
 fi
 
-# Enable pgvector extension - REQUIRED for application functionality
-echo "Enabling pgvector extension..."
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "CREATE EXTENSION IF NOT EXISTS vector;"
-echo "✅ pgvector extension enabled"
-
-# Load database schema - CRITICAL: must succeed
-echo "Loading database schema..."
-if [ -f "db/structure.sql" ]; then
-    echo "📄 Found structure.sql file ($(wc -l < db/structure.sql) lines)"
-    # Filter out problematic lines for CI
-    cat db/structure.sql | \
-        grep -v "transaction_timeout" | \
-        psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" --no-psqlrc
-    echo "✅ Schema loaded successfully"
+echo "Enabling pgvector extension (requires superuser)..."
+if run_psql_super -c "SELECT 1;" >/dev/null 2>&1; then
+  run_psql_super -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
+  echo "✅ pgvector extension enabled"
 else
-    echo "❌ db/structure.sql not found"
-    exit 1
+  echo "❌ Cannot enable pgvector: no superuser connection available"
+  exit 1
 fi
 
-# Run migrations - CRITICAL: must succeed
 echo "Running Rails migrations..."
 export RAILS_ENV=test
-bundle exec rails db:migrate
+# Ensure Rails uses the same DB_URL if provided
+if [[ -n "${DB_URL}" ]]; then
+  DATABASE_URL="${DB_URL}" bundle exec rails db:migrate
+else
+  bundle exec rails db:migrate
+fi
 echo "✅ Migrations run successfully"
 
 # Note: All tables and columns should be created by migrations above
@@ -64,15 +90,15 @@ echo "✅ Rails environment set successfully"
 # Final verification - CRITICAL: all tables must exist
 echo "Final database verification..."
 echo "Tables in database:"
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\dt"
+run_psql "${DB_URL}" -c "\dt"
 
 echo "Schema migrations status:"
-psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "SELECT COUNT(*) as migration_count FROM schema_migrations;"
+run_psql "${DB_URL}" -c "SELECT COUNT(*) as migration_count FROM schema_migrations;"
 
 echo "Verifying critical tables exist:"
 for table in posts admins knowledge_items chat_messages knowledge_chunks; do
     echo "- Checking $table:"
-    if psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -c "\d $table" >/dev/null 2>&1; then
+    if run_psql "${DB_URL}" -c "\d $table" >/dev/null 2>&1; then
         echo "  ✅ $table exists"
     else
         echo "  ❌ $table MISSING - CRITICAL ERROR"

@@ -10,12 +10,13 @@ executors:
       - image: cimg/ruby:3.2.9-node
         environment:
           RAILS_ENV: test
-          DATABASE_URL: postgresql://circleci:@localhost:5432/jasonramirez_test
+          DATABASE_URL: postgresql://circleci@127.0.0.1:5432/jasonramirez_test
+          DATABASE_SUPER_URL: postgresql://postgres@127.0.0.1:5432/postgres
           CC_TEST_REPORTER_ID: # Add your CodeClimate reporter ID if you have one
           NODE_ENV: test
       - image: pgvector/pgvector:pg16
         environment:
-          POSTGRES_USER: circleci
+          POSTGRES_USER: postgres
           POSTGRES_DB: jasonramirez_test
           POSTGRES_HOST_AUTH_METHOD: trust
     working_directory: ~/repo
@@ -76,9 +77,10 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y postgresql-client
-            psql "postgresql://circleci@localhost:5432/jasonramirez_test" -c "SELECT version();"
-            psql "postgresql://circleci@localhost:5432/jasonramirez_test" -c "CREATE EXTENSION IF NOT EXISTS vector;"
-            psql "postgresql://circleci@localhost:5432/jasonramirez_test" -c "\dx+ vector"
+            psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "SELECT version();"
+            psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "CREATE DATABASE jasonramirez_test;" || true
+            psql "postgresql://postgres@127.0.0.1:5432/jasonramirez_test" -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
+            psql "postgresql://postgres@127.0.0.1:5432/jasonramirez_test" -c "\dx"
 
       # Setup test database using our script
       - run:
