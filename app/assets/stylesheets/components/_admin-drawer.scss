@@ -3,8 +3,9 @@
 @use "sass:color";
 
 .admin-drawer {
-  background-color: color.adjust($base-background-color, $lightness: -2%);
+  background-color: $base-background-color;
   bottom: 0;
+  box-shadow: 0 0 2rem 0 color.scale(black, $alpha: -90%);
   position: fixed;
   left: null;
   max-width: $large-screen;
@@ -25,7 +26,7 @@
   }
 
   &::before {
-    background-color: color.adjust($base-background-color, $lightness: -2%);
+    background-color: $base-background-color;
     border-left: solid 1px $base-border-color;
     bottom: 0;
     content: "";

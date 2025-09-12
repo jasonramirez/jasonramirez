@@ -13,6 +13,14 @@
   text-align: left;
   text-decoration: none;
   margin-top: -($large-spacing + $small-spacing);
+
+  &:hover {
+    color: inherit;
+
+    .post-feature__title {
+      color: $action-color;
+    }
+  }
 }
 
 .post-feature__image {

@@ -78,7 +78,7 @@
         </div>
       </div>
       
-      <% if local_assigns[:transcript_file] %>
+      <% if local_assigns[:transcript_file] || tldr_transcript.present? %>
         <div class="custom-audio-player__control">
           <div class="custom-audio-player__transcript">
             <button class="custom-audio-player__transcript-button" 
@@ -93,10 +93,14 @@
     </div>
   </div>
 
-  <% if local_assigns[:transcript_file] %>
-    <div class="custom-audio-player__transcript-content"
+  <% if local_assigns[:transcript_file] || tldr_transcript.present? %>
+    <div class="custom-audio-player__transcript-content post"
          data-custom-audio-player-target="transcriptContent">
-      <%= read_transcript_file(transcript_file) %>
+        <% if local_assigns[:transcript_file] %>
+          <%= read_transcript_file(transcript_file) %>
+        <% elsif tldr_transcript.present? %>
+          <%= simple_format(tldr_transcript) %>
+        <% end %>
     </div>
   <% end %>
 </div>
