@@ -37,7 +37,6 @@ gem "title"
 group :development do
   gem "bundler-audit"
   gem "hotwire-livereload"
-  gem "parity", "~> 3.5"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
