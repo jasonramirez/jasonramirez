@@ -14,7 +14,7 @@ if ENV['CI'] || ENV['CIRCLECI']
     options.add_argument('--disable-extensions')
     options.add_argument('--disable-plugins')
     options.add_argument('--disable-images')
-    options.add_argument('--disable-javascript')
+    # options.add_argument('--disable-javascript') # Commented out to allow turbo-streams
     
     Capybara::Selenium::Driver.new(
       app,

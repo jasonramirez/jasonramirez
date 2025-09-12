@@ -84,7 +84,14 @@ end
 # Mock OpenAI API calls in tests
 WebMock.disable_net_connect!(allow_localhost: true)
 
-# Skip automatic schema maintenance in CI to avoid database conflicts
-unless ENV["CI"] || ENV["CIRCLECI"]
+# Ensure test database is up to date with migrations
+begin
+  ActiveRecord::Migration.maintain_test_schema!
+rescue ActiveRecord::PendingMigrationError => e
+  puts "Running pending migrations for test database..."
+  # Enable pgvector extension first
+  system("RAILS_ENV=test rails runner \"ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS vector;')\"")
+  # Run migrations
+  system("RAILS_ENV=test rails db:migrate")
   ActiveRecord::Migration.maintain_test_schema!
 end

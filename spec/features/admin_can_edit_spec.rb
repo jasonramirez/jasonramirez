@@ -22,7 +22,10 @@ feature "Admin can edit" do
 
       page.find("#post_edit_link").click
 
-      expect(page).to have_text "Post Details", visible: :all
+      # Open the drawer to see the Post Details
+      page.find("[data-js-drawer-open-trigger]").click
+
+      expect(page).to have_css("h2", text: "Post Details")
     end
   end
 

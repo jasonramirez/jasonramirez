@@ -11,11 +11,18 @@ feature "Admin adds post" do
       # Fill out the form
       fill_in "Title", with: "Test Post"
       fill_in "Body", with: "This is a test post"
-      click_button "Save"
+      
+      click_button "save_post"
 
-      expect(page).to have_field("post-id", with: Post.all.first.id)
-      expect(page).to have_field("post-url", with: /draft/i)
+      # Wait for the form submission to complete and the post to be updated
       expect(page).to have_text t("admins.flash.created")
+      
+      # Open the drawer to see the post-id and post-url fields
+      page.find("[data-js-drawer-open-trigger]").click
+      
+      # Check for the post-id and post-url fields after the post is saved
+      expect(page).to have_field("post-id", with: Post.all.first.id, wait: 5)
+      expect(page).to have_field("post-url", with: /draft/i, wait: 5)
     end
   end
 
