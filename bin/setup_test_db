@@ -65,7 +65,10 @@ fi
 echo "Enabling pgvector extension in test database (requires superuser)..."
 if run_psql_super -c "SELECT 1;" >/dev/null 2>&1; then
   # Enable extension in the test database specifically
-  run_psql_super -d "${DB_NAME}" -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
+  # Connect to the test database using the superuser URL but with the test database name
+  local super_url="${DB_SUPER_URL:-postgresql://postgres@127.0.0.1:5432/postgres}"
+  local test_db_url="${super_url/postgres/${DB_NAME}}"
+  psql "${test_db_url}" -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
   echo "✅ pgvector extension enabled in test database"
 else
   echo "❌ Cannot enable pgvector: no superuser connection available"
