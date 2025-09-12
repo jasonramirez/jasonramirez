@@ -44,6 +44,9 @@ rails db:drop db:create
 # Restore from production backup
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U jasonramirez -d jasonramirez_development latest.dump
 
+# Run any pending migrations
+rails db:migrate
+
 # Restore from development backup (uncompressed)
 psql jasonramirez_development < .dbbackups/development_backup_YYYYMMDD_HHMMSS.sql
 
@@ -62,6 +65,39 @@ heroku pg:backups:restore --app jasonramirez
 - **Automatic**: Heroku creates daily backups automatically
 - **Manual**: Download important backups before major deployments
 - **Retention**: Keep 3-5 recent backups locally
+
+## Quick Restore Script
+
+For convenience, you can create a quick restore script:
+
+```bash
+#!/bin/bash
+# quick-restore.sh - Restore production data to development
+
+echo "🔄 Restoring production data to development..."
+
+# Create fresh backup
+echo "📦 Creating fresh production backup..."
+heroku pg:backups:capture --app jasonramirez
+
+# Download backup
+echo "⬇️  Downloading backup..."
+heroku pg:backups:download --app jasonramirez
+
+# Drop and recreate database
+echo "🗑️  Dropping development database..."
+rails db:drop db:create
+
+# Restore data
+echo "📥 Restoring production data..."
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U jasonramirez -d jasonramirez_development latest.dump
+
+# Run migrations
+echo "🔄 Running migrations..."
+rails db:migrate
+
+echo "✅ Restore complete!"
+```
 
 ## Security Note
 

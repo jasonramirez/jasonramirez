@@ -42,10 +42,9 @@ $ rake image_cleaner:find_unused_images
 
 ## Database Management
 
-We use the [parity](https://github.com/thoughtbot/parity) gem for database
-operations across environments. Parity provides simple commands for backing
-up, restoring, and copying databases between development, staging, and
-production.
+We use Heroku CLI for database operations across environments. This provides
+simple commands for backing up, restoring, and copying databases between
+development, staging, and production.
 
 ### Environment Setup
 
@@ -53,32 +52,40 @@ production.
 - **Staging**: `jasonramirez-staging` (staging Heroku app)
 - **Development**: Local PostgreSQL database
 
-### Common Parity Commands
+### Common Heroku Commands
 
 ```bash
 # Database backups
-./bin/parity production backup
-./bin/parity staging backup
+heroku pg:backups:capture --app jasonramirez
+heroku pg:backups:capture --app jasonramirez-staging
+
+# Download production backup
+heroku pg:backups:download --app jasonramirez
 
 # Restore production data to development
-./bin/parity development restore production
-./bin/parity development restore staging
+cd .dbbackups
+heroku pg:backups:capture --app jasonramirez
+heroku pg:backups:download --app jasonramirez
+cd ..
+rails db:drop db:create
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U jasonramirez -d jasonramirez_development .dbbackups/latest.dump
+rails db:migrate
 
 # Deploy to environments
-./bin/parity production deploy
-./bin/parity staging deploy
+git push heroku main
+git push heroku-staging main
 
 # Access consoles
-./bin/parity production console
-./bin/parity staging console
+heroku run rails console --app jasonramirez
+heroku run rails console --app jasonramirez-staging
 
 # View logs
-./bin/parity production tail
-./bin/parity staging tail
+heroku logs --tail --app jasonramirez
+heroku logs --tail --app jasonramirez-staging
 
 # Check dyno status
-./bin/parity production ps
-./bin/parity staging ps
+heroku ps --app jasonramirez
+heroku ps --app jasonramirez-staging
 ```
 
 ### Database Restore Workflow
@@ -87,20 +94,31 @@ production.
 
 ```bash
 # 1. Create a fresh backup of production
-./bin/parity production backup
+cd .dbbackups
+heroku pg:backups:capture --app jasonramirez
 
-# 2. Restore to development
-./bin/parity development restore production
+# 2. Download the backup
+heroku pg:backups:download --app jasonramirez
+
+# 3. Drop and recreate development database
+cd ..
+rails db:drop db:create
+
+# 4. Restore production data
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U jasonramirez -d jasonramirez_development .dbbackups/latest.dump
+
+# 5. Run any pending migrations
+rails db:migrate
 ```
 
 **Deploy to staging:**
 
 ```bash
 # 1. Deploy current branch to staging
-./bin/parity staging deploy
+git push heroku-staging main
 
 # 2. Copy production data to staging (if needed)
-./bin/parity staging restore production
+heroku pg:backups:restore --app jasonramirez-staging
 ```
 
 ### Copy Local Database to Production
