@@ -88,6 +88,25 @@ jobs:
             export RAILS_ENV=test
             bundle exec rails db:migrate
 
+      # Setup browser for feature tests
+      - run:
+          name: Setup Chrome for feature tests
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y wget gnupg
+            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+            sudo apt-get update
+            sudo apt-get install -y google-chrome-stable
+            google-chrome --version
+
+      # Set test environment variables
+      - run:
+          name: Set test environment variables
+          command: |
+            echo 'export OPENAI_API_KEY="test-key-for-ci"' >> $BASH_ENV
+            echo 'export RAILS_ENV=test' >> $BASH_ENV
+
       # Precompile assets for feature tests
       - run:
           name: Precompile assets

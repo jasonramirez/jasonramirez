@@ -23,7 +23,7 @@ RSpec.describe "Admin Documents", type: :request do
   describe "GET /admins/documents" do
     context "when authenticated" do
       before do
-        post admin_session_path, params: { admin: { email: admin.email, password: admin.password } }
+        sign_in_admin(admin)
       end
 
       it "returns a successful response" do
@@ -48,7 +48,7 @@ RSpec.describe "Admin Documents", type: :request do
   describe "GET /admins/documents/:document" do
     context "when authenticated" do
       before do
-        post admin_session_path, params: { admin: { email: admin.email, password: admin.password } }
+        sign_in_admin(admin)
       end
 
       it "returns a successful response for resume" do

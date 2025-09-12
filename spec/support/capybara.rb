@@ -1,0 +1,36 @@
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'selenium-webdriver'
+
+# Configure Capybara for CI
+if ENV['CI'] || ENV['CIRCLECI']
+  Capybara.register_driver :selenium_chrome_headless do |app|
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=1280,720')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-plugins')
+    options.add_argument('--disable-images')
+    options.add_argument('--disable-javascript')
+    
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      options: options
+    )
+  end
+
+  Capybara.default_driver = :selenium_chrome_headless
+  Capybara.javascript_driver = :selenium_chrome_headless
+else
+  # Local development configuration
+  Capybara.default_driver = :selenium_chrome
+  Capybara.javascript_driver = :selenium_chrome
+end
+
+# Configure Capybara
+Capybara.default_max_wait_time = 10
+Capybara.server = :puma, { Silent: true }
