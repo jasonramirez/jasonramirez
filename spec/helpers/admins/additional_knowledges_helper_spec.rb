@@ -1,15 +1,13 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the Admins::AdditionalKnowledgesHelper. For example:
-#
-# describe Admins::AdditionalKnowledgesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe Admins::AdditionalKnowledgesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'helper methods' do
+    it 'is available' do
+      expect(helper).to be_present
+    end
+
+    it 'includes the helper module' do
+      expect(helper.class.ancestors).to include(Admins::AdditionalKnowledgesHelper)
+    end
+  end
 end

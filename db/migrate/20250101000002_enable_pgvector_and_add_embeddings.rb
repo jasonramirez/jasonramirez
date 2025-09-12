@@ -1,7 +1,8 @@
   class EnablePgvectorAndAddEmbeddings < ActiveRecord::Migration[8.0]
     def change
       # Note: pgvector extension must be enabled by superuser before running this migration
-      # This is handled in the CI setup script
+      # This is handled in the CI setup script and rails_helper.rb for tests
+      # The neighbor gem provides Rails support for vector columns
       
       # Add embedding columns to knowledge_items (OpenAI text-embedding-3-small uses 1536 dimensions)
       add_column :knowledge_items, :content_embedding, :vector, limit: 1536

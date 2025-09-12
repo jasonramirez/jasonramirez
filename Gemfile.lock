@@ -219,6 +219,8 @@ GEM
     minitest (5.25.5)
     multi_json (1.17.0)
     multipart-post (2.4.1)
+    neighbor (0.6.0)
+      activerecord (>= 7.1)
     net-http (0.6.0)
       uri
     net-imap (0.5.10)
@@ -453,6 +455,7 @@ DEPENDENCIES
   hotwire-livereload
   importmap-rails
   launchy
+  neighbor
   normalize-rails (~> 3.0.0)
   pg
   pgvector

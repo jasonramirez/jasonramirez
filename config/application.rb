@@ -39,7 +39,7 @@ module Jasonramirez
     # Don't generate system test files.
     config.generators.system_tests = nil
     
-    # Use Ruby schema format for better compatibility
+    # Use Ruby schema format with neighbor gem for pgvector compatibility
     config.active_record.schema_format = :ruby
   end
 end

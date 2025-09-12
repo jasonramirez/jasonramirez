@@ -90,7 +90,7 @@ unless ENV["CI"] || ENV["CIRCLECI"]
     ActiveRecord::Migration.maintain_test_schema!
   rescue ActiveRecord::PendingMigrationError => e
     puts "Running pending migrations for test database..."
-    # Enable pgvector extension first
+    # Enable pgvector extension first (requires superuser)
     system("RAILS_ENV=test rails runner \"ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS vector;')\"")
     # Run migrations
     system("RAILS_ENV=test rails db:migrate")
