@@ -129,6 +129,10 @@ class ConversationService
       end
     end
     
+    # Search additional knowledge (private knowledge for AI)
+    additional_knowledge_results = AdditionalKnowledge.search_by_similarity(question, limit: 4)
+    Rails.logger.info "  Additional knowledge results: #{additional_knowledge_results.count}"
+    
     # Fallback to full knowledge item search
     Rails.logger.info "  Falling back to full item search"
     semantic_results = KnowledgeItem.semantic_search(question, limit: 6)
@@ -141,7 +145,16 @@ class ConversationService
       end
       
       Rails.logger.info "  High-quality full item results: #{good_results.count}"
-      return prioritize_frameworks(good_results, question) if good_results.any?
+      
+      # Combine additional knowledge with public knowledge
+      combined_results = good_results + convert_additional_knowledge_to_item_format(additional_knowledge_results)
+      return prioritize_frameworks(combined_results, question) if combined_results.any?
+    end
+    
+    # If no semantic results, try additional knowledge alone
+    if additional_knowledge_results.any?
+      Rails.logger.info "  Using additional knowledge only"
+      return prioritize_frameworks(convert_additional_knowledge_to_item_format(additional_knowledge_results), question)
     end
     
     # Final fallback to progressive keyword search
@@ -177,6 +190,29 @@ class ConversationService
       Rails.logger.error "Error converting chunk to item format: #{e.message}"
       Rails.logger.error "Chunk: #{chunk.inspect}"
       raise e
+    end
+  end
+
+  def convert_additional_knowledge_to_item_format(additional_knowledge_items)
+    additional_knowledge_items.map do |item|
+      ::OpenStruct.new(
+        id: "additional_#{item.id}",
+        title: item.title,
+        content: item.content,
+        category: item.category,
+        tags: "additional-knowledge",
+        confidence_score: 0.95, # High confidence for private knowledge
+        similarity_score: item.respond_to?(:similarity_score) ? item.similarity_score : nil,
+        source: "Additional Knowledge",
+        chunk_type: "additional",
+        chunk_index: 0,
+        knowledge_item_id: nil,
+        # No feedback scores for additional knowledge
+        feedback_score: nil,
+        total_feedback_count: nil,
+        positive_feedback_count: nil,
+        last_feedback_at: nil
+      )
     end
   end
 

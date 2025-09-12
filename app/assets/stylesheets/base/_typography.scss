@@ -158,12 +158,18 @@ ol {
 
 p {
   margin: 0 0 $base-spacing;
+  font-size: $reading-font-size;
 }
 
 pre {
   background-color: $code-background-color;
   line-height: $code-line-height;
   padding: $base-spacing;
+}
+
+strong {
+  font-weight: $title-font-weight;
+  font-size: $reading-font-size;
 }
 
 mark {

@@ -1,0 +1,30 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
+.table {
+  width: 100%;
+}
+
+.table--tight {
+  th,
+  td {
+    padding: $x-small-spacing $small-spacing;
+  }
+}
+
+.table--last-col-small {
+  table-layout: fixed;
+  width: 100%;
+
+  th:last-child,
+  td:last-child {
+    width: 60px;
+  }
+
+  td:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+  }
+}

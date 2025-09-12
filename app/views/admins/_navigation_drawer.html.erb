@@ -1,0 +1,53 @@
+<nav class="navigation-drawer">
+
+  <!-- Drawer overlay and content -->
+  <div class="navigation-drawer__overlay" 
+       data-navigation-drawer-target="overlay"
+       data-action="click->navigation-drawer#overlayClick">
+
+    <div class="navigation-drawer__content">
+      <button class="navigation-drawer__close" 
+        data-action="click->navigation-drawer#close">
+        <%= inline_svg "icon-x.svg", height: "20px", width: "20px" %>
+      </button>
+
+      <ul class="navigation-drawer__links">
+        <li class="navigation-drawer__link">
+          <%= link_to "Posts", admins_posts_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to "Hashtags", admins_hashtags_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to "Knowledge", admins_additional_knowledges_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to "Chat Users", admins_chat_users_path %>
+        </li>
+
+        <li class="navigation-drawer__link">
+          <%= link_to "Docs", admins_documents_path %>
+        </li>
+
+        <li class="navigation-drawer__link navigation-drawer__link--separator">
+          <%= link_to "View Site", root_path %>
+        </li>
+
+        <li class="navigation-drawer__link navigation-drawer__link--separator">
+          <%= link_to "Sign Out", destroy_admin_session_path, data: { turbo_method: :delete } %>
+        </li>
+
+        <li class="navigation-drawer__link navigation-drawer__link--theme">
+          <button type="button"
+              data-action="click->theme#toggle"
+              class="navigation-drawer__theme-toggle">
+            <%= inline_svg "icon-theme-change.svg" %>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

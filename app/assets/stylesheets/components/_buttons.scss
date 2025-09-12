@@ -41,8 +41,9 @@
   letter-spacing: 0.025rem;
   word-spacing: 0.1rem;
   outline: $action-color solid 0px;
-  padding: $xx-small-spacing $small-spacing;
-  text-transform: uppercase;
+  padding: $x-small-spacing $base-spacing;
+  text-transform: capitalize;
+  text-decoration: none;
   transition: all $base-duration;
 
   &:hover {
@@ -71,6 +72,12 @@
     height: $base-font-size;
     width: $base-font-size;
   }
+}
+
+.button--small {
+  font-size: $small-font-size;
+  height: $input-height / 1.5;
+  padding: $x-small-spacing $small-spacing;
 }
 
 .button--loading {

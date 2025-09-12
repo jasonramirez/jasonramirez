@@ -20,11 +20,19 @@
         data-theme-light-stylesheet-value="<%= asset_path('application_light.css') %>"
         data-theme-dark-stylesheet-value="<%= asset_path('application_dark.css') %>">
     <%= render "flashes" %>
-    <%= render "admins/navigation" %>
+    
+    <div data-controller="navigation-drawer"
+         data-navigation-drawer-open-class="navigation-drawer--open"
+         data-navigation-drawer-closed-class="navigation-drawer--closed"
+         data-action="keydown@window->navigation-drawer#keydown">
+      <%= render "admins/navigation" %>
+      <%= render "admins/navigation_drawer" %>
+    </div>
+    
     <main class="page">
       <%= yield %>
     </main>
-    <%= render "footer" %>
+   <%= render "admin_actions" %>
     <%= render "javascript" %>
   </body>
 </html>

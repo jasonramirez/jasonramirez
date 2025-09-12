@@ -16,6 +16,7 @@ table {
 
 th {
   background-color: $base-background-color;
+  border-bottom: $base-border-width $base-border-style $base-border-color;
   font-weight: 400;
   font-size: $small-font-size;
   padding: $small-spacing;
@@ -37,10 +38,10 @@ th {
   vertical-align: middle;
 
   &:not(:last-child) {
-    border-right: solid 1px $base-border-color;
+    border-right: $base-border-width $base-border-style $base-border-color;
   }
 }
 
 tr:nth-child(odd) {
-  background-color: $base-border-color;
+  background-color: color.change($base-border-color, $alpha: 0.02);
 }

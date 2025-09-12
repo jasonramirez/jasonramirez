@@ -26,6 +26,14 @@
       <% end %>
     <% end %>
 
+    <% if current_page?(admins_additional_knowledges_path) %>
+      <%= link_to new_admins_additional_knowledge_path,
+        id: "new_additional_knowledge_link",
+        class: "admin-floating-action__button" do %>
+        <%= inline_svg "icon-plus.svg" %>
+      <% end %>
+    <% end %>
+
     <% unless request.path.include?("admin") %>
       <%= link_to admin_path,
         id: "admin_edit_link",

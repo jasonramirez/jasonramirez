@@ -14,3 +14,14 @@
     }
   }
 }
+
+.admin-pending__list {
+  margin-top: $small-spacing;
+  padding-left: $large-spacing;
+
+  li {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+}

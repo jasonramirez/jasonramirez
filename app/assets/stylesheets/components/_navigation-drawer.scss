@@ -55,6 +55,20 @@
   &:hover {
     color: $action-color;
   }
+
+  .navigation-primary--side & {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: $base-spacing;
+    left: $base-spacing;
+    right: unset;
+    z-index: 100;
+    border: $base-border-width $base-border-style $base-border-color;
+    background-color: $base-background-color;
+    padding: $small-spacing;
+    border-radius: $base-border-radius;
+  }
 }
 
 .navigation-drawer__overlay {

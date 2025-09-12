@@ -51,6 +51,8 @@
 @use "components/search-input";
 @use "components/site-footer";
 @use "components/sky-label";
+@use "components/stat-card";
+@use "components/table";
 @use "components/table-container";
 @use "components/work-carousel-index";
 @use "components/work-focus";
@@ -61,6 +63,7 @@
 @use "components/work-prototype";
 
 // Utilities
+@use "utilities/u-grid";
 @use "utilities/u-margin-bottom";
 @use "utilities/u-margin-top";
 @use "utilities/u-padding-bottom";

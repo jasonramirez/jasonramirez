@@ -41,6 +41,11 @@ Rails.application.routes.draw do
   namespace "admins" do
     resources :posts
     resources :hashtags
+    resources :additional_knowledges, except: [:show] do
+      collection do
+        post :update_knowledge_base
+      end
+    end
     resources :chat_users do
       member do
         patch :approve

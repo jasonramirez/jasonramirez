@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :additional_knowledge do
+    title { "MyString" }
+    content { "MyText" }
+    category { "MyString" }
+    priority { 1 }
+  end
+
   factory :knowledge_chunk do
     association :knowledge_item
     content { "This is sample chunk content about design principles and best practices." }

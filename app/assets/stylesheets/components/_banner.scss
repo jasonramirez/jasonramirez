@@ -16,6 +16,7 @@
   text-align: center;
 
   svg {
+    font-size: $base-font-size;
     margin-right: $small-spacing;
   }
 }
@@ -23,4 +24,9 @@
 .banner--warning {
   background-color: color.adjust($error-background-color, $alpha: -0.9);
   color: $error-color;
+}
+
+.banner--notice {
+  background-color: color.adjust($notice-background-color, $alpha: -0.9);
+  color: $notice-color;
 }

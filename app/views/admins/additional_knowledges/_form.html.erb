@@ -1,0 +1,30 @@
+<%= simple_form_for [:admins, @additional_knowledge], html: { class: "admin-post-form" } do |f| %>
+  <% if @additional_knowledge.errors.any? %>
+    <div class="admin-errors">
+      <h3><%= pluralize(@additional_knowledge.errors.count, "error") %> prohibited this knowledge from being saved:</h3>
+      <ul>
+        <% @additional_knowledge.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :title, 
+      label: "Title",
+      placeholder: "Brief, descriptive title" %>
+
+  <%= f.input :content, 
+      label: "Content",
+      placeholder: "The knowledge content that JasonAI can use...",
+      input_html: { 
+        rows: 10,
+        "data-controller": "flexible-textarea",
+        "data-js-flexible-textarea": true
+      } %>
+
+  <div class="form-actions form-actions--align-left">
+    <%= f.submit "Save", class: "button button--primary" %>
+    <%= link_to "Cancel", admins_additional_knowledges_path, class: "button button--secondary" %>
+  </div>
+<% end %>

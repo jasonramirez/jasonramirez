@@ -1,13 +1,17 @@
-<header class="navigation-primary" 
-        data-controller="navigation"
-        data-navigation-target="header">
-  <!-- Mobile trigger button -->
   <button class="navigation-drawer__trigger-button" 
     data-action="click->navigation-drawer#toggle">
     <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>
   </button>
 
+<header class="navigation-primary navigation-primary--side" 
+        data-controller="navigation"
+        data-navigation-target="header">
+  <!-- Mobile trigger button -->
+
   <nav class="navigation-primary__left">
+  </nav>
+
+  <nav class="navigation-primary__right">
     <ul class="navigation-primary__links">
       <li class="navigation-primary__link">
         <%= link_to t(".posts"), admins_posts_path %>
@@ -18,17 +22,17 @@
       </li>
       
       <li class="navigation-primary__link">
+        <%= link_to "Knowledge", admins_additional_knowledges_path %>
+      </li>
+      
+      <li class="navigation-primary__link">
         <%= link_to "Chat Users", admins_chat_users_path %>
       </li>
       
       <li class="navigation-primary__link">
         <%= link_to "Docs", admins_documents_path %>
       </li>
-    </ul>
-  </nav>
 
-  <nav class="navigation-primary__right">
-    <ul class="navigation-primary__links">
       <li class="navigation-primary__link">
         <%= link_to "site", root_path %>
       </li>

@@ -1,0 +1,21 @@
+<section class="content content--medium">
+  <h1>Edit <%= @additional_knowledge.title %></h1>
+  
+  <div class="u-margin-bottom-medium">
+    <span>Created: <%= @additional_knowledge.created_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+  </div>
+
+   <div class="u-margin-bottom-small">
+    <% if @additional_knowledge.content_embedding.present? %>
+      <div class="admin-chip admin-chip--published">
+        <span>Embedding generated. This knowledge is available for AI search</span>
+      </div>
+    <% else %>
+      <div class="admin-chip admin-chip--not-published">
+        <span>Embedding pending. Embedding will be generated automatically</span>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render 'form' %>
+</section>

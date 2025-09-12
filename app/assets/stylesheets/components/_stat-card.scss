@@ -1,0 +1,29 @@
+@use "variables/tokens" as *;
+@use "variables/variables" as *;
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: $small-spacing 0 $x-small-spacing;
+}
+
+.stat-card__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: $base-border-radius;
+  background-color: $base-border-color;
+  margin-bottom: $xx-small-spacing;
+  padding: $small-spacing 0;
+  font-family: $code-font-family;
+  min-width: 3rem;
+  width: 100%;
+}
+
+.stat-card__label {
+  font-size: $small-font-size;
+  white-space: nowrap;
+}

@@ -1,0 +1,154 @@
+<section class="content content--medium">
+  <h1>Knowledge</h1>
+
+  <div class="u-margin-bottom-x-large">
+    <strong >Overview</strong>
+    <p>
+      Both public (posts and case studies) as well as
+      private (additional knowledge) that feeds jason.ai.
+    </p>
+    <div class="u-grid">
+      <div class="stat-card">
+        <div class="stat-card__number"><%= @posts_count %></div>
+        <div class="stat-card__label">Posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number"><%= @case_studies_count %></div>
+        <div class="stat-card__label">Case Studies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number"><%= @additional_knowledge_count %></div>
+        <div class="stat-card__label">Additional</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number"><%= @total_knowledge_items %></div>
+        <div class="stat-card__label">Total</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-margin-bottom-x-large">
+    <strong>Chunks</strong>
+    <p>
+      Focused pieces of content 
+      that are automatically created from your 
+      larger knowledge items (posts and case studies) that make your 
+      content more searchable and relevant.
+    </p>
+    <div class="u-grid ">
+      <div class="stat-card">
+        <div class="stat-card__number"><%= @total_chunks %></div>
+        <div class="stat-card__label">Chunks</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-margin-bottom-x-large">
+    <strong>Pending Posts</strong>
+    <p>
+      Posts aren't automatically added to the knowledge base, 
+      so until you add them by hitting the button below, 
+      they will not be searchable in the knowledge base.
+    </p>
+    <% if @total_pending > 0 %>
+      <div class="admin-pending">
+        <span class="banner banner--warning">
+          <%= inline_svg "icon-warning.svg" %>
+          Pending Items
+        </span>
+        <p>The following posts need to be added to the knowledge base:</p>
+        <% if @pending_posts_count > 0 %>
+          <table class="table--tight u-margin-bottom-large">
+            <thead>
+              <tr>
+                <th>Title</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @pending_posts.each do |post| %>
+              <tr>
+                <td><%= post.title %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+
+      <%= form_with url: update_knowledge_base_admins_additional_knowledges_path, method: :post, local: true, class: "inline-form" do |form| %>
+        <%= form.submit "Update Knowledge Base", class: "button button--primary", 
+            data: { confirm: "This will import all published posts and case studies. Continue?" } %>
+      <% end %>
+    <% else %>
+      <div class="banner banner--notice">
+        <%= inline_svg "icon-badge-check.svg" %>
+        No pending items
+      </div>
+    <% end %>
+  </div>
+
+  <div class="u-margin-bottom-x-large">
+    <strong>Pending Case Studies</strong>
+    <p>
+      Case studies aren't automatically added to the knowledge base.
+      If you don't see a case study below, it hasn't been added to the knowledge base.
+      You'll need to add them manually by hitting the button below.
+    </p>
+
+    <table class="table--tight u-margin-bottom-large">
+      <thead>
+        <tr>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @knowledge_base_case_studies.each do |case_study| %>
+          <tr>
+            <td><%= case_study.title %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= form_with url: update_knowledge_base_admins_additional_knowledges_path, method: :post, local: true, class: "inline-form" do |form| %>
+      <%= form.submit "Update Knowledge Base", class: "button button--secondary", 
+          data: { confirm: "This will import all published posts and case studies. Continue?" } %>
+    <% end %>
+  </div>
+
+  <!-- Additional Knowledge Section -->
+  <div class="admin-section" id="additional-knowledge">
+    <strong>Additional Knowledge</strong>
+    <p>Private knowledge that informs JasonAI but isn't public content.</p>
+
+    <% if @additional_knowledges.any? %>
+      <table class="table--tight table--last-col-small">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @additional_knowledges.each do |knowledge| %>
+            <tr>
+              <td>
+                <%= link_to knowledge.title, edit_admins_additional_knowledge_path(knowledge) %>
+              </td>
+              <td>
+                <%= knowledge.created_at.strftime("%b %d, %Y") %>
+              </td>
+              <td>
+                <%= link_to admins_additional_knowledge_path(knowledge), 
+                    method: :delete, 
+                    data: { confirm: "Are you sure?" } do %>
+                  <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</section>
