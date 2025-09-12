@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   get "password_protection/unlock", to: "password_protection#unlock", as: :password_protection_unlock
   post "password_protection/unlock", to: "password_protection#unlock"
