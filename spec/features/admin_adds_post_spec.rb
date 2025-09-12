@@ -8,6 +8,11 @@ feature "Admin adds post" do
 
       page.find("#new_post_link").click
 
+      # Fill out the form
+      fill_in "Title", with: "Test Post"
+      fill_in "Body", with: "This is a test post"
+      click_button "Save"
+
       expect(page).to have_field("post-id", with: Post.all.first.id)
       expect(page).to have_field("post-url", with: /draft/i)
       expect(page).to have_text t("admins.flash.created")

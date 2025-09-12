@@ -1,9 +1,9 @@
 # Mock OpenAI services for testing
 RSpec.configure do |config|
   config.before(:each) do
-    # Mock OpenAI API key for tests
+    # Mock OpenAI API key for tests (unless explicitly unset in test)
     allow(ENV).to receive(:[]).and_call_original
-    allow(ENV).to receive(:[]).with('OPENAI_API_KEY').and_return('test-key-for-ci')
+    allow(ENV).to receive(:[]).with('OPENAI_API_KEY').and_return(ENV['OPENAI_API_KEY'] || 'test-key-for-ci')
     
     # Mock OpenAI API responses
     if defined?(OpenAI)

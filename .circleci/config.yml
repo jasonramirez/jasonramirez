@@ -105,6 +105,8 @@ jobs:
           name: Set test environment variables
           command: |
             echo 'export OPENAI_API_KEY="test-key-for-ci"' >> $BASH_ENV
+            echo 'export MAILCHIMP_API_KEY="test-mailchimp-key"' >> $BASH_ENV
+            echo 'export LOCKUP_CODEWORD="test-password"' >> $BASH_ENV
             echo 'export RAILS_ENV=test' >> $BASH_ENV
 
       # Precompile assets for feature tests

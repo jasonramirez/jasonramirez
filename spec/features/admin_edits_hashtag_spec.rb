@@ -8,7 +8,8 @@ feature "Admin edits hashtag" do
 
       visit admins_hashtags_path
       click_on hashtag.label
-      fill_form_and_submit(:hashtag, :edit, label: "newhashtag")
+      fill_in "Label", with: "newhashtag"
+      click_button "Save"
 
       expect(page).to have_selector("input[value='#newhashtag']")
       expect(page).to have_text t("admins.flash.updated")
@@ -24,7 +25,8 @@ feature "Admin edits hashtag" do
       within(find(".admin-post-item:first-of-type .admin-post-item__title")) do
         click_link
       end
-      fill_form_and_submit(:hashtag, :edit, label: "#newhashtag")
+      fill_in "Label", with: "#newhashtag"
+      click_button "Save"
 
       expect(page).to have_selector("input[value='#newhashtag']")
       expect(page).to have_text t("admins.flash.updated")
