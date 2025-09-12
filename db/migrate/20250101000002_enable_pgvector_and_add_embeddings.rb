@@ -1,7 +1,6 @@
   class EnablePgvectorAndAddEmbeddings < ActiveRecord::Migration[8.0]
     def change
-      # Enable pgvector extension
-      enable_extension "vector"
+      # Note: pgvector extension is enabled by superuser in setup script
       
       # Add embedding columns to knowledge_items (OpenAI text-embedding-3-small uses 1536 dimensions)
       add_column :knowledge_items, :content_embedding, :vector, limit: 1536
