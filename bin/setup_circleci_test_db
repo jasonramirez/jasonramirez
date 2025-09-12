@@ -43,16 +43,21 @@ echo "  - DB_HOST: ${DB_HOST}"
 echo "  - DATABASE_URL: ${DB_URL:-(not set)}"
 echo "  - DATABASE_SUPER_URL: ${DB_SUPER_URL:-(not set)}"
 
-echo "Using existing database: $DB_NAME"
-echo "ℹ️ Database already created by CircleCI with pgvector extension"
-echo "✅ Database ready for migrations"
+echo "Verifying database setup..."
+# CircleCI config should have already set up the database, user, and extensions
+if run_psql -c "SELECT 1;" >/dev/null 2>&1; then
+  echo "✅ Database connection successful"
+else
+  echo "❌ Cannot connect to database - CircleCI setup may have failed"
+  exit 1
+fi
 
 echo "Checking pgvector extension status..."
-# The extension should already be enabled by CircleCI config, just verify
 if run_psql -c "SELECT 1 FROM pg_extension WHERE extname = 'vector';" >/dev/null 2>&1; then
-  echo "✅ pgvector extension is already enabled"
+  echo "✅ pgvector extension is enabled"
 else
-  echo "⚠️ pgvector extension not found, but CircleCI should have enabled it"
+  echo "❌ pgvector extension not found - CircleCI setup may have failed"
+  exit 1
 fi
 
 echo "Running Rails migrations..."

@@ -73,13 +73,16 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run:
-          name: Verify pgvector in PG16 and enable extension
+          name: Setup PostgreSQL database and users
           command: |
             sudo apt-get update
             sudo apt-get install -y postgresql-client
             psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "SELECT version();"
             psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "CREATE DATABASE jasonramirez_test;" || true
             psql "postgresql://postgres@127.0.0.1:5432/jasonramirez_test" -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
+            psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "DO \$\$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'circleci') THEN CREATE ROLE circleci LOGIN; END IF; END \$\$;"
+            psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "GRANT ALL PRIVILEGES ON DATABASE jasonramirez_test TO circleci;"
+            psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "ALTER DATABASE jasonramirez_test OWNER TO circleci;"
             psql "postgresql://postgres@127.0.0.1:5432/jasonramirez_test" -c "\dx"
 
       # Setup test database using our script
