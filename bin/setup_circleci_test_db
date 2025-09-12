@@ -45,7 +45,7 @@ echo "  - DATABASE_SUPER_URL: ${DB_SUPER_URL:-(not set)}"
 
 echo "Verifying database setup..."
 # CircleCI config should have already set up the database, user, and extensions
-if run_psql -c "SELECT 1;" >/dev/null 2>&1; then
+if run_psql "${DATABASE_URL}" -c "SELECT 1;" >/dev/null 2>&1; then
   echo "✅ Database connection successful"
 else
   echo "❌ Cannot connect to database - CircleCI setup may have failed"
@@ -53,7 +53,7 @@ else
 fi
 
 echo "Checking pgvector extension status..."
-if run_psql -c "SELECT 1 FROM pg_extension WHERE extname = 'vector';" >/dev/null 2>&1; then
+if run_psql "${DATABASE_URL}" -c "SELECT 1 FROM pg_extension WHERE extname = 'vector';" >/dev/null 2>&1; then
   echo "✅ pgvector extension is enabled"
 else
   echo "❌ pgvector extension not found - CircleCI setup may have failed"

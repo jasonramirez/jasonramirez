@@ -14,11 +14,12 @@ executors:
           DATABASE_SUPER_URL: postgresql://postgres@127.0.0.1:5432/postgres
           CC_TEST_REPORTER_ID: # Add your CodeClimate reporter ID if you have one
           NODE_ENV: test
-      - image: pgvector/pgvector:pg16
+      - image: postgres:16
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: jasonramirez_test
           POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_PASSWORD: postgres
     working_directory: ~/repo
 
 jobs:
@@ -73,10 +74,17 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run:
-          name: Setup PostgreSQL database and users
+          name: Install pgvector and setup database
           command: |
             sudo apt-get update
-            sudo apt-get install -y postgresql-client
+            sudo apt-get install -y postgresql-client postgresql-server-dev-16
+            # Install pgvector
+            cd /tmp
+            git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
+            cd pgvector
+            make
+            sudo make install
+            # Setup database
             psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "SELECT version();"
             psql "postgresql://postgres@127.0.0.1:5432/postgres" -c "CREATE DATABASE jasonramirez_test;" || true
             psql "postgresql://postgres@127.0.0.1:5432/jasonramirez_test" -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
