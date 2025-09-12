@@ -13,7 +13,7 @@ executors:
           DATABASE_URL: postgresql://circleci:@localhost:5432/jasonramirez_test
           CC_TEST_REPORTER_ID: # Add your CodeClimate reporter ID if you have one
           NODE_ENV: test
-      - image: cimg/postgres:17.6
+      - image: cimg/postgres:16.0
         environment:
           POSTGRES_USER: circleci
           POSTGRES_DB: jasonramirez_test
@@ -98,14 +98,14 @@ jobs:
             echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
 
             sudo apt-get update
-            sudo apt-get install -y postgresql-client postgresql-contrib postgresql-server-dev-17
+            sudo apt-get install -y postgresql-client postgresql-contrib postgresql-server-dev-16
 
             # Compile pgvector - REQUIRED for application functionality
             cd /tmp
             git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
 
             cd pgvector
-            export PG_CONFIG=/usr/lib/postgresql/17/bin/pg_config
+            export PG_CONFIG=/usr/lib/postgresql/16/bin/pg_config
 
             if [ -f "$PG_CONFIG" ]; then
               echo "Using pg_config: $PG_CONFIG"
@@ -123,10 +123,10 @@ jobs:
 
       # Cache the compiled pgvector
       - save_cache:
-          key: v1-pgvector17-compiled-{{ arch }}
+          key: v1-pgvector16-compiled-{{ arch }}
           paths:
-            - /usr/lib/postgresql/17/lib/vector.so
-            - /usr/share/postgresql/17/extension/vector*
+            - /usr/lib/postgresql/16/lib/vector.so
+            - /usr/share/postgresql/16/extension/vector*
 
       # Setup test database using our script
       - run:
