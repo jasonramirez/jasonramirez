@@ -34,13 +34,17 @@
 
 .work-link__title {
   margin-top: 3.5rem;
-  margin-bottom: $small-spacing;
+  margin-bottom: $base-spacing;
+
+  &:hover {
+    color: $action-color;
+  }
 }
 
 .work-link__subtitle {
   font-family: $code-font-family;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: $base-spacing;
 }
 
 .work-link__protected {
@@ -52,6 +56,18 @@
   position: absolute;
   right: -0.25rem;
   top: -0.25rem;
+}
+
+.work-link__audio {
+  align-items: center;
+  display: inline-flex;
+  font-family: $code-font-family;
+  gap: $x-small-spacing;
+
+  svg {
+    height: $base-font-size;
+    width: $base-font-size;
+  }
 }
 
 .work-link__description {

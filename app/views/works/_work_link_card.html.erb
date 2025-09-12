@@ -1,0 +1,25 @@
+ <div>
+    <%= link_to "#{link_path}",
+      class: "work-link" do %>
+      <%= image_tag "#{image_path}" %>
+      <h1 class="work-link__title">
+        <%= title %>
+      </h1>
+      <h3 class="work-link__subtitle">
+        <%= subtitle %>
+      </h3>
+      <% if local_assigns[:tldr_audio_file].present? %>
+        <div class="work-link__audio">
+          <%= inline_svg "icon-headphones.svg" %>
+          <span class="audio-duration" 
+            data-controller="audio-duration" 
+            data-audio-duration-audio-src-value="<%= asset_path(local_assigns[:tldr_audio_file]) %>">
+            00:00
+          </span>
+        </div>
+      <% end %>
+      <h3 class="work-link__description">
+        <%= description %>
+      </h3>
+    <% end %>
+  </div>

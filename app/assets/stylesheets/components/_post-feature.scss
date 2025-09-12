@@ -16,10 +16,6 @@
 
   &:hover {
     color: inherit;
-
-    .post-feature__title {
-      color: $action-color;
-    }
   }
 }
 
@@ -31,6 +27,10 @@
 
 .post-feature__title {
   margin-bottom: $base-spacing;
+
+  &:hover {
+    color: $action-color;
+  }
 }
 
 .post-feature__date {
