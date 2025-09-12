@@ -27,6 +27,6 @@ RSpec.feature "Guest views posts" do
     click_link "Slugged Title"
 
     expect(page).to have_text post.title
-    expect(current_path).to have_content(expected_path)
+    expect(current_path).to eq(expected_path)
   end
 end
