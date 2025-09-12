@@ -12,9 +12,11 @@
 /public/assets
 /tags
 /tmp/*
-
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Database schema
+db/schema.rb
 
 # CircleCI test results
 /test_results/*

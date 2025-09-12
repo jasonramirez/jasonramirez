@@ -73,6 +73,14 @@ fi
 
 echo "Running Rails migrations..."
 export RAILS_ENV=test
+
+# Remove schema file to prevent Rails from trying to load it during migrations
+# The schema will be regenerated after migrations complete
+if [[ -f "db/schema.rb" ]]; then
+  echo "ℹ️ Removing schema file to prevent extension conflicts"
+  rm db/schema.rb
+fi
+
 # Ensure Rails uses the same DB_URL if provided
 if [[ -n "${DB_URL}" ]]; then
   DATABASE_URL="${DB_URL}" bundle exec rails db:migrate
