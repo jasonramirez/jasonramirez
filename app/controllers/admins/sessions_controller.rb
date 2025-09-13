@@ -1,7 +1,6 @@
 class Admins::SessionsController < Devise::SessionsController
   def new
-    # Clear any existing flash messages when showing the login page
-    flash.clear
+    # Don't clear flash messages - we want to show authentication errors
     super
   end
 end
