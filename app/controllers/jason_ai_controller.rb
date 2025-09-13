@@ -69,7 +69,7 @@ class JasonAiController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to my_mind_path }
+      format.html { redirect_to jason_ai_path }
       format.json { 
         if question_message && response_message
           render json: {

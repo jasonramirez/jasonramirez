@@ -1,44 +1,46 @@
-<section class="content-full-viewport jason-ai">
-  <!-- Navigation trigger will be positioned via CSS -->
-  
+<section class="content-full-viewport jason-ai">  
   <div class="jason-ai-chat-container" data-jason-ai-chat-container="true">
-    <% unless @chat_messages.any? %>
-      <div class="jason-ai-intro">
-        <h1 class="jason-ai-intro__title">
-          Jason AI
-        </h1>
-        <p class="jason-ai-intro__description">
-          This is my AI-powered knowledge base, trained on my thoughts, experiences, and insights from years of building products and leading teams. Ask me anything about design, leadership, product development, or my professional journey.
-        </p>
-        <div class="jason-ai-intro__suggestions">
-          <h3>Try asking about:</h3>
-          <ul>
-            <li>My approach to product design and user experience</li>
-            <li>Leadership principles and team building</li>
-            <li>My experience at companies like Dropbox and thoughtbot</li>
-            <li>Thoughts on AI, technology, and the future of work</li>
-            <li>Specific projects or case studies I've worked on</li>
-          </ul>
+    <div class="jason-ai-chat-history">
+      <h1 class="jason-ai-title-image__text u-margin-bottom-large">
+        jason.ai
+      </h1>
+
+      <div>
+        <div class="jason-ai-hand-wave">
+          <%= inline_svg "icon-brain.svg", height: "20px", width: "20px" %>
         </div>
       </div>
-    <% end %>
+
+      <%= render 'chat_message', message: OpenStruct.new(
+          message_type: 'answer',
+          content: "This is my AI-powered knowledge base, trained on my thoughts, 
+            experiences, and insights from years of building products and leading teams. 
+            I'm here to try an offer mentorship, frameworks, and ideas that might
+            help you on your journey.",
+          created_at: Time.current
+        ) %>
     
-    <div class="jason-ai-chat-history">
       <% if @chat_messages.any? %>
         <%= render partial: 'chat_message', collection: @chat_messages, as: :message %>
       <% else %>
         <%= render 'chat_message', message: OpenStruct.new(
           message_type: 'answer',
-          content: "Hello! I'm Jason's AI assistant. Ask me anything about my work, experience, or thoughts on design and leadership.",
+          content: "Ask me anything about my work, experience, or thoughts on design and leadership.",
           created_at: Time.current
         ) %>
       <% end %>
     </div>
+        <!-- Scroll to bottom button -->
+    <button type="button" 
+      class="jason-ai-scroll-to-bottom button button--secondary"
+      data-scroll-to-bottom="true"
+      style="display: none;">
+      <%= inline_svg "icon-arrow-down.svg", height: "16px", width: "16px" %>
+      <span>New message</span>
+    </button>
   </div>
 
   <div class="jason-ai-chat-prompt">
-
-
     <%= form_with url: ask_jason_ai_path,
       local: false,
       class: "jason-ai-chat-prompt__form",
@@ -54,9 +56,9 @@
         required: true,
         name: "question" %>
       <%= form.button type: 'submit',
-        class: "jason-ai-chat-prompt__button button",
+        class: "button button--square",
         data: { jason_ai_chat_button: true } do %>
-        <%= inline_svg "icon-arrow-up.svg", height: "20px", width: "20px" %>
+        <%= inline_svg "icon-arrow-up.svg" %>
       <% end %>
     <% end %>
   </div>

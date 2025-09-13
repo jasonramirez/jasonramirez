@@ -5,7 +5,7 @@
 .jason-ai-mobile-nav-trigger {
   align-items: center;
   background-color: color.adjust($base-background-color, $alpha: -0.1);
-  border-radius: 1.25rem;
+  border-radius: $base-border-radius;
   cursor: pointer;
   display: flex;
   justify-content: center;

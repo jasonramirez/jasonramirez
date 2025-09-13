@@ -5,35 +5,89 @@
   align-items: center;
   bottom: $base-spacing;
   display: flex;
-  height: $jason-ai-chat-prompt-height;
+  flex-direction: column;
+  height: auto;
   justify-content: center;
   left: 0;
   margin: 0 $small-spacing;
   position: fixed;
   right: 0;
   z-index: 1;
+  gap: $small-spacing;
 }
 
 .jason-ai-chat-prompt__form {
   background-color: $base-background-color;
   border: solid 1px $base-border-color;
-  border-radius: 1.95rem;
+  border-radius: 1.75rem;
   display: flex;
-  max-width: $large-screen;
+  max-width: $medium-screen;
   padding: $small-spacing;
   gap: $small-spacing;
   width: 100%;
 
   input,
   input[type="text"] {
-    border-radius: 1.25rem;
+    border-radius: $base-border-radius;
     margin-bottom: 0;
   }
 }
 
 .jason-ai-chat-prompt__button {
   align-items: center;
-  border-radius: 1.25rem;
+  border-radius: $base-border-radius;
   display: flex;
   justify-content: center;
+}
+
+.jason-ai-scroll-to-bottom {
+  align-items: center;
+  background-color: $base-background-color;
+  border: solid 1px $base-border-color;
+  border-radius: $base-border-radius;
+  display: flex;
+  gap: $small-spacing;
+  justify-content: center;
+  padding: $small-spacing $base-spacing;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $base-border-color;
+    transform: translateY(-2px);
+  }
+
+  span {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+// Override button--loading for chat prompt buttons
+.jason-ai-chat-prompt {
+  .button--loading {
+    // Override global button--loading styles
+    color: inherit !important;
+
+    // Remove the global pseudo-element spinner
+    &::after {
+      display: none !important;
+    }
+
+    .loading-spinner {
+      animation: spin 1s linear infinite;
+    }
+
+    // Ensure loading state is visible without hover
+    opacity: 1;
+    pointer-events: none;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -7,8 +7,8 @@
   opacity: 0;
   animation: fadeIn 2.5s ease-in-out forwards;
   width: 100%;
-  max-width: $large-screen;
-  margin: $x-large-spacing auto;
+  max-width: $medium-screen;
+  padding-bottom: $x-large-spacing;
 
   &::after {
     content: "";

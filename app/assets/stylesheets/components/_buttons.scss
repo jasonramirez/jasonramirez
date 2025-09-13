@@ -67,11 +67,6 @@
     font-size: $base-font-size;
     word-spacing: 0.15rem;
   }
-
-  svg {
-    height: $base-font-size;
-    width: $base-font-size;
-  }
 }
 
 .button--loading {
@@ -106,25 +101,14 @@
   align-items: center;
   display: flex;
   font-size: 2rem;
-  height: 3rem;
+  height: $input-height;
   justify-content: center;
   padding: 0;
-  width: 3rem;
-
-  &:active,
-  &:focus,
-  &:hover {
-    svg {
-      path {
-        transition: all $base-duration $base-timing;
-        fill: $button-color;
-      }
-    }
-  }
+  width: $input-height;
 
   svg {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.25rem;
+    width: 1.25rem;
   }
 }
 

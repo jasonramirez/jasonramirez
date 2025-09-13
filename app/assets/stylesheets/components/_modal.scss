@@ -24,7 +24,7 @@
 .modal__container {
   background-color: $base-background-color;
   border-radius: $base-border-radius;
-  box-shadow: 0 0 2rem 1rem color.adjust($black, $alpha: -0.15);
+  box-shadow: 0 0 3rem 3rem color.change($black, $alpha: 0.4);
   max-height: 90vh;
   max-height: 90dvh;
   max-width: 90vw;

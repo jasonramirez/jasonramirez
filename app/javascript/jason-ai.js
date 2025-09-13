@@ -4,6 +4,8 @@ class JasonAiChat {
     this.submitButton = null;
     this.input = null;
     this.chatHistory = null;
+    this.scrollToBottomButton = null;
+    this.scrollContainer = null;
     this.init();
   }
 
@@ -30,6 +32,12 @@ class JasonAiChat {
     );
     this.input = this.form.querySelector("input[name='question']");
     this.chatHistory = document.querySelector(".jason-ai-chat-history");
+    this.scrollToBottomButton = document.querySelector(
+      "[data-scroll-to-bottom='true']"
+    );
+    this.scrollContainer = document.querySelector(
+      "[data-jason-ai-chat-container='true']"
+    );
 
     // Validate all required elements exist
     if (!this.submitButton || !this.input || !this.chatHistory) {
@@ -43,7 +51,9 @@ class JasonAiChat {
 
     this.bindEvents();
     this.bindFeedbackEvents();
+    this.bindScrollEvents();
     this.scrollToBottom();
+    this.scrollToLatestMessage();
   }
 
   bindEvents() {
@@ -69,6 +79,77 @@ class JasonAiChat {
         }
       });
     }
+
+    // Add scroll-to-bottom button click handler
+    if (this.scrollToBottomButton) {
+      this.scrollToBottomButton.addEventListener("click", () => {
+        this.scrollToBottom(true);
+        this.hideScrollToBottomButton();
+      });
+    }
+  }
+
+  bindScrollEvents() {
+    if (this.scrollContainer) {
+      this.scrollContainer.addEventListener("scroll", () => {
+        this.handleScroll();
+      });
+    }
+  }
+
+  handleScroll() {
+    if (!this.scrollContainer) return;
+
+    const isNearBottom =
+      this.scrollContainer.scrollTop + this.scrollContainer.clientHeight >=
+      this.scrollContainer.scrollHeight - 100;
+
+    if (isNearBottom) {
+      this.hideScrollToBottomButton();
+    } else {
+      this.showScrollToBottomButton();
+    }
+  }
+
+  showScrollToBottomButton() {
+    if (this.scrollToBottomButton) {
+      this.scrollToBottomButton.style.display = "flex";
+    }
+  }
+
+  hideScrollToBottomButton() {
+    if (this.scrollToBottomButton) {
+      this.scrollToBottomButton.style.display = "none";
+    }
+  }
+
+  scrollToLatestMessage() {
+    if (!this.scrollContainer) {
+      console.log(
+        "JasonAiChat: Scroll container not found for latest message scroll"
+      );
+      return;
+    }
+
+    // Find the most recent chat message
+    const chatMessages = this.chatHistory.querySelectorAll(
+      ".jason-ai-chat-message"
+    );
+    if (chatMessages.length === 0) {
+      console.log("JasonAiChat: No chat messages found");
+      return;
+    }
+
+    const latestMessage = chatMessages[chatMessages.length - 1];
+
+    // Scroll to the very bottom of the container immediately (no animation)
+    this.scrollContainer.scrollTo({
+      top:
+        this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight,
+      behavior: "instant",
+    });
+
+    console.log("JasonAiChat: Scrolled to latest message on page load");
   }
 
   handleEllipsisClick(e) {
@@ -132,10 +213,24 @@ class JasonAiChat {
 
     if (loading) {
       this.submitButton.classList.add("button--loading");
-      this.submitButton.value = "Asking...";
+      // Store original content and show loading state
+      if (!this.originalButtonContent) {
+        this.originalButtonContent = this.submitButton.innerHTML;
+      }
+      this.submitButton.innerHTML = `
+        <svg height="20" width="20" viewBox="0 0 24 24" fill="none" class="loading-spinner">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="60" stroke-dashoffset="60">
+            <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" values="0 12 12;360 12 12"/>
+          </circle>
+        </svg>
+      `;
     } else {
       this.submitButton.classList.remove("button--loading");
-      this.submitButton.value = "Ask";
+      // Restore original content
+      if (this.originalButtonContent) {
+        this.submitButton.innerHTML = this.originalButtonContent;
+      }
       this.input.focus();
     }
   }
@@ -170,7 +265,7 @@ class JasonAiChat {
       );
 
       // Scroll to bottom after response is added
-      setTimeout(() => this.scrollToBottom(), 300);
+      setTimeout(() => this.scrollToBottom(true), 300);
     } catch (error) {
       console.error("Error:", error);
       this.addMessageToChat(
@@ -183,7 +278,7 @@ class JasonAiChat {
       );
 
       // Scroll to bottom after error message
-      setTimeout(() => this.scrollToBottom(), 300);
+      setTimeout(() => this.scrollToBottom(true), 300);
     } finally {
       this.setLoadingState(false);
     }
@@ -233,7 +328,8 @@ class JasonAiChat {
         // Insert the HTML directly without creating an extra wrapper div
         this.chatHistory.insertAdjacentHTML("beforeend", html);
 
-        this.scrollToBottom();
+        // Force scroll to bottom for new messages
+        this.scrollToBottom(true);
       } else {
         console.error("Failed to render message partial");
       }
@@ -321,7 +417,7 @@ class JasonAiChat {
     setTimeout(typeNextWord, 500);
   }
 
-  scrollToBottom() {
+  scrollToBottom(force = false) {
     if (!this.chatHistory) {
       console.log("JasonAiChat: Chat history not found for scrolling");
       return;
@@ -330,7 +426,7 @@ class JasonAiChat {
     // Use requestAnimationFrame to ensure DOM is updated
     requestAnimationFrame(() => {
       const scrollContainer = document.querySelector(
-        ".jason-ai-chat-container"
+        "[data-jason-ai-chat-container='true']"
       );
 
       if (!scrollContainer) {
@@ -338,19 +434,30 @@ class JasonAiChat {
         return;
       }
 
-      console.log("JasonAiChat: Scrolling to bottom of chat container");
+      // Check if user is near the bottom (within 100px) or if force is true
+      const isNearBottom =
+        scrollContainer.scrollTop + scrollContainer.clientHeight >=
+        scrollContainer.scrollHeight - 100;
 
-      // Always scroll to bottom without checking current position
-      // This ensures consistency especially when new content is added
-      scrollContainer.scrollTo({
-        top: scrollContainer.scrollHeight,
-        behavior: "smooth",
-      });
+      if (isNearBottom || force) {
+        console.log("JasonAiChat: Scrolling to bottom of chat container");
 
-      // Fallback: force scroll to bottom after animation
-      setTimeout(() => {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
-      }, 500);
+        // Scroll to the very bottom of the container
+        scrollContainer.scrollTo({
+          top: scrollContainer.scrollHeight - scrollContainer.clientHeight,
+          behavior: "smooth",
+        });
+
+        // Fallback: force scroll to bottom after animation
+        setTimeout(() => {
+          scrollContainer.scrollTop =
+            scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        }, 500);
+      } else {
+        console.log(
+          "JasonAiChat: User is not near bottom, skipping auto-scroll"
+        );
+      }
     });
   }
 
