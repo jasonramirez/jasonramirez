@@ -1,27 +1,25 @@
-<div class="content">
+<div class="content content--medium">
   <h1>Chat Users</h1>
   
   <div class="table-container">
     <div class="table-container__overflow-cover"></div>
     <div class="table-container__table-wrapper">
-    <table>
+    <table class="table table--tight table--last-col-small">
       <thead>
         <tr>
-          <th>Name</th>
           <th>Email</th>
           <th>Status</th>
-          <th>Access Started</th>
-          <th>Access Expires</th>
-          <th>Messages</th>
-          <th>Created</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @chat_users.each do |user| %>
           <tr>
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
+            <td>
+              <%= link_to edit_admins_chat_user_path(user) do %>
+                <%= user.email %>
+              <% end %>
+            </td>
             <td>
               <% case user.access_status %>
               <% when "active" %>
@@ -35,26 +33,13 @@
               <% end %>
             </td>
             <td>
-              <% if user.login_expires_at %>
-                <% access_started = user.login_expires_at - 48.hours %>
-                <%= access_started.strftime("%B %d, %Y at %I:%M %p") %>
-              <% else %>
-                <span class="text-muted">Never</span>
+              <%= link_to edit_admins_chat_user_path(user) do %>
+                <%= inline_svg "icon-pencil.svg", height: "16", width: "16" %>
               <% end %>
-            </td>
-            <td>
-              <% if user.login_expires_at %>
-                <%= user.login_expires_at.strftime("%B %d, %Y at %I:%M %p") %>
-              <% else %>
-                <span class="text-muted">Unlimited</span>
-              <% end %>
-            </td>
-            <td><%= user.chat_messages.count %></td>
-            <td><%= user.created_at.strftime("%B %d, %Y") %></td>
-            <td>
-              <%= link_to "Edit", edit_admins_chat_user_path(user), class: "button button--small button--secondary" %>
               <% unless user.approved? %>
-                <%= button_to "Approve", approve_admins_chat_user_path(user), method: :patch, class: "button button--small button--success", data: { confirm: "Approve this account? They will get 48 hours of access from their first login." } %>
+                <%= button_to approve_admins_chat_user_path(user), method: :patch, class: "button button--small button--success", data: { confirm: "Approve this account? They will get 48 hours of access from their first login." } do %>
+                  <%= inline_svg "icon-check.svg", height: "16", width: "16" %>
+                <% end %>
               <% end %>
             </td>
           </tr>
