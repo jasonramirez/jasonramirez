@@ -1,0 +1,24 @@
+<section class="content content--medium">
+  <h1>Documents</h1>
+  
+  <% if @documents.any? %>
+    <table class="table table--tight">
+      <thead>
+        <tr>
+          <th>Document Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @documents.each do |document| %>
+          <tr>
+            <td>
+              <%= link_to document.humanize, admins_document_path(document), target: "_blank" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No documents available.</p>
+  <% end %>
+</section>
