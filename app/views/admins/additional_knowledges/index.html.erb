@@ -54,7 +54,7 @@
       <div class="admin-pending">
         <span class="banner banner--warning">
           <%= inline_svg "icon-warning.svg" %>
-          Pending Items
+          Pending Posts
         </span>
         <p>The following posts need to be added to the knowledge base:</p>
         <% if @pending_posts_count > 0 %>
@@ -110,13 +110,13 @@
     </table>
 
     <%= form_with url: update_knowledge_base_admins_additional_knowledges_path, method: :post, local: true, class: "inline-form" do |form| %>
-      <%= form.submit "Update Knowledge Base", class: "button button--secondary", 
+      <%= form.submit "Update Knowledge Base", class: "button button--primary", 
           data: { confirm: "This will import all published posts and case studies. Continue?" } %>
     <% end %>
   </div>
 
   <!-- Additional Knowledge Section -->
-  <div class="admin-section" id="additional-knowledge">
+  <div class="u-margin-bottom-x-large">
     <strong>Additional Knowledge</strong>
     <p>Private knowledge that informs JasonAI but isn't public content.</p>
 
@@ -150,5 +150,9 @@
         </tbody>
       </table>
     <% end %>
+
+    <%= link_to "New Knowledge",
+      new_admins_additional_knowledge_path,
+      class: "button button--primary" %>
   </div>
 </section>
