@@ -7,16 +7,14 @@ RSpec.describe Admins::DocumentsController, type: :controller do
     # Ensure documents directory exists
     FileUtils.mkdir_p(documents_path)
     
-    # Create test document files
-    File.write(documents_path.join('resume.html.erb'), '<h1>Resume</h1>')
-    File.write(documents_path.join('cover_letter.html.erb'), '<h1>Cover Letter</h1>')
+    # Create test document file (won't conflict with real documents)
     File.write(documents_path.join('test_doc.html.erb'), '<h1>Test Document</h1>')
-    File.write(documents_path.join('index.html.erb'), '<h1>Index</h1>')
   end
   
   after do
-    # Clean up test files
-    FileUtils.rm_rf(documents_path) if documents_path.exist?
+    # Clean up only the test document file
+    test_file = documents_path.join('test_doc.html.erb')
+    File.delete(test_file) if File.exist?(test_file)
   end
 
   describe "private methods" do
@@ -47,8 +45,6 @@ RSpec.describe Admins::DocumentsController, type: :controller do
 
     describe "#document_file_exists?" do
       it "returns true for existing documents" do
-        expect(controller_instance.send(:document_file_exists?, "resume")).to be true
-        expect(controller_instance.send(:document_file_exists?, "cover_letter")).to be true
         expect(controller_instance.send(:document_file_exists?, "test_doc")).to be true
       end
 

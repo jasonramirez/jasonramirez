@@ -8,16 +8,14 @@ RSpec.describe "Admin Documents", type: :request do
     # Ensure documents directory exists
     FileUtils.mkdir_p(documents_path)
     
-    # Create test document files
-    File.write(documents_path.join('resume.html.erb'), '<h1>Resume</h1><p>Experience</p>')
-    File.write(documents_path.join('cover_letter.html.erb'), '<h1>Cover Letter</h1>')
-    File.write(documents_path.join('test_doc.html.erb'), '<h1>Test Document</h1>')
-    File.write(documents_path.join('index.html.erb'), '<h1>Index</h1>')
+    # Create test document file (won't conflict with real documents)
+    File.write(documents_path.join('test_doc.html.erb'), '<h1>Test Document</h1><p>Test content.</p>')
   end
   
   after do
-    # Clean up test files
-    FileUtils.rm_rf(documents_path) if documents_path.exist?
+    # Clean up only the test document file
+    test_file = documents_path.join('test_doc.html.erb')
+    File.delete(test_file) if File.exist?(test_file)
   end
 
   describe "GET /admins/documents" do
@@ -51,20 +49,15 @@ RSpec.describe "Admin Documents", type: :request do
         sign_in_admin(admin)
       end
 
-      it "returns a successful response for resume" do
-        get admins_document_path("resume")
-        expect(response).to be_successful
-      end
-
-      it "returns a successful response for cover_letter" do
-        get admins_document_path("cover_letter")
+      it "returns a successful response for test_doc" do
+        get admins_document_path("test_doc")
         expect(response).to be_successful
       end
 
       it "shows the document content" do
-        get admins_document_path("resume")
-        expect(response.body).to include("Resume")
-        expect(response.body).to include("Experience")
+        get admins_document_path("test_doc")
+        expect(response.body).to include("Test Document")
+        expect(response.body).to include("Test content.")
       end
 
       it "redirects when document doesn't exist" do
@@ -76,7 +69,7 @@ RSpec.describe "Admin Documents", type: :request do
 
     context "when not authenticated" do
       it "redirects to admin sign in" do
-        get admins_document_path("resume")
+        get admins_document_path("test_doc")
         expect(response).to redirect_to(new_admin_session_path)
       end
     end
