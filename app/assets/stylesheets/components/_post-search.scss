@@ -2,7 +2,10 @@
 @use "variables/tokens" as *;
 
 .post-search {
+  border-bottom: $base-border-style $base-border-width $base-border-color;
   padding-top: $x-large-spacing;
+  margin-bottom: $x-large-spacing;
+  padding-bottom: $x-large-spacing;
 
   a[name="search"] {
     display: block;
@@ -14,8 +17,8 @@
 .post-search__form {
   align-items: center;
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
+  justify-content: space-between;
 
   a {
     margin-left: $small-spacing;
