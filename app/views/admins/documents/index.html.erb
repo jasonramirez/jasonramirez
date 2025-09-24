@@ -1,1 +1,26 @@
-<h1>Index</h1>
+<section class="content content--reading">
+  <h2>Documents</h2>
+  
+  <% if @documents.any? %>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Document Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @documents.each do |document| %>
+            <tr>
+              <td>
+                <%= link_to document.humanize, admins_document_path(document),class: "link"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p>No documents available.</p>
+  <% end %>
+</section>
