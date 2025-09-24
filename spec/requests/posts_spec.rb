@@ -67,4 +67,28 @@ RSpec.describe "Posts", type: :request do
       expect(response).to be_successful
     end
   end
+
+  describe "GET /posts with Turbo Stream format" do
+    let!(:searchable_post) { create(:post, title: "Searchable Content", published: true) }
+
+    it "returns turbo stream for search requests" do
+      get posts_path, params: { search: "Searchable" }, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response).to be_successful
+      expect(response.content_type).to include("text/vnd.turbo-stream.html")
+      expect(response.body).to include("turbo-stream")
+    end
+
+    it "returns turbo stream for clear requests" do
+      get posts_path, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response).to be_successful
+      expect(response.content_type).to include("text/vnd.turbo-stream.html")
+      expect(response.body).to include("turbo-stream")
+    end
+
+    it "includes search-results and posts-results targets" do
+      get posts_path, params: { search: "Searchable" }, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response.body).to include('target="search-results"')
+      expect(response.body).to include('target="posts-results"')
+    end
+  end
 end

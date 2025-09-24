@@ -3,6 +3,11 @@ class PostsController < ApplicationController
     @posts = Post.where(published: true).order(published_date: :desc)
 
     @searched_posts = search_posts
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def show

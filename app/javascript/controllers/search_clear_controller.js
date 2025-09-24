@@ -18,4 +18,9 @@ export default class extends Controller {
       this.clearButtonTarget.style.display = "none";
     }
   }
+
+  clearSearch() {
+    this.inputTarget.value = "";
+    this.toggleClearButton();
+  }
 }

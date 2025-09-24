@@ -1,0 +1,24 @@
+
+<%= turbo_stream.replace "search-results" do %>
+  <div class="post-search__results">
+    <% unless params[:search].blank? %>
+      <%= pluralize(@searched_posts.count, "post", "posts") %>
+      found for search
+      "<%= params[:search] %>".
+    <% else %>
+      <%= pluralize(@posts.count, "post", "posts") %> to peruse.
+    <% end %>
+  </div>
+<% end %>
+
+<%= turbo_stream.replace "posts-results" do %>
+  <% if params[:search].blank? %>
+    <% @posts.each do |post| %>
+      <%= render "post_sample", post: post %>
+    <% end %>
+  <% else %>
+    <% @searched_posts.each do |searched_post| %>
+      <%= render "post_sample", post: searched_post %>
+    <% end %>
+  <% end %>
+<% end %>
