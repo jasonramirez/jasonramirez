@@ -11,7 +11,7 @@
   max-width: $large-screen;
   overflow-x: hidden;
   overflow-y: scroll;
-  right: -200%;
+  right: -300%;
   top: 0;
   transition: right $base-duration $base-timing;
   padding: $base-spacing ($x-large-spacing + $base-spacing)
@@ -47,7 +47,7 @@
   bottom: null;
   left: null;
   position: fixed;
-  right: -100%;
+  right: -300%;
   top: $base-spacing;
 
   .open & {
