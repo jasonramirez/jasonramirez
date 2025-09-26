@@ -1,10 +1,18 @@
-<section class="content content--slim" %>
-  <%= simple_form_for [:admins, @hashtag] do |f| %>
-    <%= f.input :label %>
-
-    <%= f.button :button, class: "button button--with-icon" do %>
-      <%= t(".save") %>
-      <%= inline_svg_tag "icon-checkmark.svg", class: "button__icon" %>
-    <% end %>
+<section class="content content--medium" %>
+  <%= link_to admins_hashtags_path,
+    class: "button button--square button--secondary", 
+    data: { turbo_frame: "_top" } do %>
+    <%= inline_svg_tag "icon-arrow-left.svg" %>
   <% end %>
+
+  <div class="u-margin-top-medium">
+    <%= simple_form_for [:admins, @hashtag] do |f| %>
+      <%= f.input :label %>
+
+      <%= f.button :button, class: "button button--with-icon" do %>
+        <%= t(".save") %>
+        <%= inline_svg_tag "icon-checkmark.svg", class: "button__icon" %>
+      <% end %>
+    <% end %>
+  </div>
 </section>
