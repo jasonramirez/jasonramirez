@@ -49,11 +49,12 @@
 }
 
 .jason-ai-title-image__text {
-  color: $warm-white;
+  color: $base-font-color;
   font-family: $code-font-family !important;
   text-transform: none !important;
   font-size: 3rem;
   letter-spacing: -0.1rem;
+  margin-top: $x-large-spacing;
   font-weight: 600;
 
   .jason-ai-title-image--small & {
