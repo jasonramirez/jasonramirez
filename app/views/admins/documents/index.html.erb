@@ -1,25 +1,18 @@
-<section class="content content--reading">
-  <h2>Documents</h2>
+<section class="content content--medium">
+  <h1>Documents</h1>
   
+  <div class="u-margin-bottom-large">
+    <span><%= @documents.count %> documents</span>
+  </div>
+
   <% if @documents.any? %>
-    <div class="table-container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Document Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @documents.each do |document| %>
-            <tr>
-              <td>
-                <%= link_to document.humanize, admins_document_path(document),class: "link"%>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% @documents.each do |document| %>
+      <div class="admin-post-item">
+        <div class="admin-post-item__title">
+          <%= link_to document.humanize, admins_document_path(document),class: "link"%>
+        </div>
+      </div>
+    <% end %>
   <% else %>
     <p>No documents available.</p>
   <% end %>

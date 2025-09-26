@@ -1,6 +1,10 @@
 <section class="content content--medium">
   <h1>Hashtags</h1>
 
+  <div class="u-margin-bottom-large">
+    <span><%= @hashtags.count %> hashtags</span>
+  </div>
+
   <% @hashtags.each do |hashtag| %>
     <div class="admin-post-item">
       <div class="admin-post-item__title">

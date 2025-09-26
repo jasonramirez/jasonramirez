@@ -69,8 +69,14 @@
       </div>
     </section>
 
-    <section class="content content--medium u-margin-top-x-large">
-      <div id="published_chip">
+    <section class="content content--medium u-margin-top-xx-large">
+      <%= link_to admins_posts_path,
+        class: "button button--square button--secondary", 
+        data: { turbo_frame: "_top" } do %>
+        <%= inline_svg_tag "icon-arrow-left.svg" %>
+      <% end %>
+
+      <div id="published_chip" class="u-margin-top-medium">
         <% if @post.published %>
           <div class="admin-chip admin-chip--published">
             Published
