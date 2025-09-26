@@ -37,3 +37,18 @@
 .sky-label-has-text.sky-label-focused label {
   opacity: 1;
 }
+
+// Handle pre-filled values and validation errors
+.sky-label input:not(:placeholder-shown) + label,
+.sky-label input[value]:not([value=""]) + label {
+  color: $secondary-font-color;
+  cursor: default;
+  left: -(1rem);
+  opacity: 0;
+  top: -($base-spacing * 1.65);
+}
+
+.sky-label input:not(:placeholder-shown):focus + label,
+.sky-label input[value]:not([value=""]):focus + label {
+  opacity: 1;
+}

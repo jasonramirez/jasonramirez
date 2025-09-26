@@ -58,9 +58,29 @@ class SkyLabels {
       }
     });
   }
+
+  // Force re-initialization for dynamically loaded content
+  reinitialize() {
+    this._initializeLabels();
+  }
 }
 
-const initSkyLabels = () => new SkyLabels();
+const initSkyLabels = () => {
+  window.skyLabelsInstance = new SkyLabels();
+};
 
 document.addEventListener("turbo:load", initSkyLabels);
 document.addEventListener("DOMContentLoaded", initSkyLabels);
+document.addEventListener("turbo:frame-load", () => {
+  // Reinitialize sky-labels when Turbo frames load
+  if (window.skyLabelsInstance) {
+    window.skyLabelsInstance.reinitialize();
+  }
+});
+
+// Reinitialize sky-labels on DOMContentLoaded for pre-filled forms
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.skyLabelsInstance) {
+    window.skyLabelsInstance.reinitialize();
+  }
+});
