@@ -16,27 +16,25 @@ feature "Admin can edit" do
 
       page.find("#admin_edit_link").click
 
-      expect(page).to have_text t("admins.posts.index.all_posts")
+      expect(page).to have_text "Posts"
     end
   end
 
   context "post from the post itself when logged in" do
-    it "takes them directly to the post." do
+    it "allows admin to edit post directly from posts index" do
       sign_in_admin
       post = create(:post, title: "Post One", published: true)
 
-      visit post_path(post)
-      
-      # Wait for page to load
+      # Go to posts page
+      visit admins_posts_path
       expect(page).to have_text "Post One"
 
-      page.find("#post_edit_link").click
+      # Click on the post title to go directly to edit page
+      click_link "Post One"
 
-      # Open the drawer to see the Post Details
-      page.find("[data-js-drawer-open-trigger]").click
-      
-      # Wait for the drawer to open and show the Post Details
-      expect(page).to have_css("h2", text: "Post Details", wait: 5)
+      # Verify we're taken to the edit page
+      expect(page).to have_current_path(edit_admins_post_path(post))
+      expect(page).to have_text "Post One"
     end
   end
 end

@@ -46,11 +46,19 @@
       <%= parsed_body %>
     </article>
 
-    <%= button_to "", {
-      class: "link u-margin-top-large",
-      data: { action: "click->share#share" }} do %>
-      <%= inline_svg("icon-share.svg") %> Share
-    <% end %>
+    <div class="u-margin-top-large">
+      <%= button_to "", {
+        class: "link",
+        data: { action: "click->share#share" }} do %>
+        <%= inline_svg("icon-share.svg") %> Share
+      <% end %>
+      
+      <% if admin_signed_in? %>
+        <%= link_to "Edit", edit_admins_post_path(@post), 
+            id: "post_edit_link",
+            class: "link u-margin-left-medium" %>
+      <% end %>
+    </div>
   </section>
 <% end %>
 

@@ -56,8 +56,10 @@ RSpec.configure do |config|
     rescue NameError, ActiveRecord::StatementInvalid
       # Ignore if ChatMessage model isn't loaded yet or database issues
     end
-    
-    # Stub OpenAI embeddings API to prevent real API calls during tests
+  end
+
+  # Stub OpenAI embeddings API to prevent real API calls during tests
+  config.before(:each, type: :feature) do
     stub_request(:post, "https://api.openai.com/v1/embeddings")
       .to_return(
         status: 200,

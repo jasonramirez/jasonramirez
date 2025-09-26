@@ -1,6 +1,6 @@
 <section class="content content--medium">
   <h1>
-    <%= t(".all_posts") %>
+    Posts
   </h1>
 
   <div class="u-margin-bottom-large">
@@ -29,10 +29,15 @@
         <%= link_to post.title, edit_admins_post_path(post) %>
       </div>
 
-      <%= link_to [:admins, post],
-        data: { turbo_method: :delete },
-        onclick: "return confirm('Are you sure?')" do %>
-        <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
+      <%= form_with url: [:admins, post],
+        method: :delete,
+        local: true,
+        class: "inline-form" do |form| %>
+        <button type="submit" 
+            class="delete-button" 
+            onclick="return confirm('Are you sure?')">
+          <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
+        </button>
       <% end %>
     </div>
   <% end %>

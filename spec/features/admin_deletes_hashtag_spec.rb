@@ -1,8 +1,17 @@
 require "rails_helper"
 
-RSpec.feature "Admin deletes hashtag", js: true do
+feature "Admin deletes hashtag", js: true do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "from the hashtags list" do
     it "requires a replacement hashtag to be selected" do
+      # THIS TEST SEEMS TO BREAK:
+      # rspec ./spec/features/admin_can_edit_spec.rb:17 #
       sign_in_admin
       hashtag_one = create(:hashtag, label: "hashtagone")
       hashtag_two = create(:hashtag, label: "hashtagtwo")
@@ -47,10 +56,5 @@ RSpec.feature "Admin deletes hashtag", js: true do
       expect(post.hashtags).to include(new_hashtag)
       expect(post.hashtags).to_not include(old_hashtag)
     end
-  end
-
-  def sign_in_admin
-    admin = create(:admin)
-    login_as admin, scope: :admin
   end
 end

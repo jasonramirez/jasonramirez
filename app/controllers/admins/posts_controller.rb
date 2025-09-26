@@ -17,6 +17,10 @@ class Admins::PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = find_post
+  end
+
   def edit
     @post = find_post
   end
@@ -47,9 +51,9 @@ class Admins::PostsController < ApplicationController
     post = find_post
 
     if post.destroy
-      redirect_after_success(admins_posts_path, "destroyed")
+      redirect_to admins_posts_path, notice: t("admins.flash.destroyed")
     else
-      redirect_after_failure(edit_admins_posts_path(@post))
+      redirect_to edit_admins_post_path(post), alert: t("admins.flash.failed")
     end
   end
 
