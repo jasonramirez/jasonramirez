@@ -24,7 +24,7 @@
         data-theme-dark-stylesheet-value="<%= asset_path('application_dark.css') %>">
     <%= render "flashes" %>
     <%= render "navigation" %>
-    <main class="page">
+    <main class="page<%= ' admin-sidebar' if admin_signed_in? && !mobile? %>">
       <%= yield %>
     </main>
     <%= render "footer" %>

@@ -3,3 +3,11 @@
 .page {
   margin-bottom: $xx-large-spacing;
 }
+
+.page--with-sidebar {
+  padding-left: 0;
+
+  @media (min-width: $medium-screen) {
+    padding-left: $sidebar-width;
+  }
+}

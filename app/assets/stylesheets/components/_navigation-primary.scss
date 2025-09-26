@@ -30,7 +30,7 @@
   margin: unset;
   position: fixed;
   top: 0;
-  width: unset;
+  width: $sidebar-width;
   z-index: 1;
 
   @media (min-width: $medium-screen) {
