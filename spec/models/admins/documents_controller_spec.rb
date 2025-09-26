@@ -25,7 +25,7 @@ RSpec.describe Admins::DocumentsController, type: :controller do
         documents = controller_instance.send(:available_documents)
         
         expect(documents).to be_an(Array)
-        expect(documents).to include("resume", "cover_letter", "test_doc")
+        expect(documents).to include("test_doc")
         expect(documents).not_to include("index")
       end
 

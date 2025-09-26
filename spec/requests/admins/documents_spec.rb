@@ -31,7 +31,7 @@ RSpec.describe "Admin Documents", type: :request do
 
       it "shows the documents index page" do
         get admins_documents_path
-        expect(response.body).to include("Index")
+        expect(response.body).to include("Documents")
       end
     end
 
