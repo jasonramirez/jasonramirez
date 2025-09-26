@@ -51,6 +51,12 @@
 
   @media (min-width: $medium-screen) {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .navigation-primary--side & {
+    height: 100%;
   }
 }
 
@@ -90,9 +96,6 @@
 
   .navigation-primary--side & {
     margin: 0 0 $base-spacing 0;
-    text-transform: capitalize;
-    font-weight: 400;
-    font-family: $code-font-family;
   }
 
   a {
@@ -111,12 +114,13 @@
     display: flex;
     justify-content: center;
     transform: translateY(-1px);
+  }
+}
 
-    .navigation-primary--side & {
-      border: $base-border-width $base-border-style $base-border-color;
-      border-radius: $base-border-radius;
-      padding: $small-spacing;
-      width: 100%;
-    }
+.navigation-primary__link--logo {
+  svg {
+    height: 2rem;
+    width: 2rem;
+    stroke: none;
   }
 }

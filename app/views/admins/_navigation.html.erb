@@ -13,6 +13,12 @@
 
   <nav class="navigation-primary__right">
     <ul class="navigation-primary__links">
+      <li class="navigation-primary__link navigation-primary__link--logo">
+        <%= link_to admins_posts_path do %>
+          <%= inline_svg "jason-ramirez-logo-blue.svg" %>
+        <% end %>
+      </li>
+
       <li class="navigation-primary__link">
         <%= link_to t(".posts"), admins_posts_path %>
       </li>
@@ -36,16 +42,22 @@
       <li class="navigation-primary__link">
         <%= link_to "site", root_path %>
       </li>
+    </ul>
 
+    <ul class="navigation-primary__links">
       <li class="navigation-primary__link">
-        <%= link_to t(".sign_out"), destroy_admin_session_path, data: { turbo_method: :delete } %>
+        <%= link_to destroy_admin_session_path,
+          class: "button button--secondary",
+          data: { turbo_method: :delete } do %>
+         <%= inline_svg "icon-log-out.svg", width: "16px", height: "16px" %>
+        <% end %>
       </li>
 
       <li class="navigation-primary__link"
           data-navigation-target="themeSwitcher">
         <button type="button"
             data-action="click->theme#toggle"
-            class="theme-toggle-button">
+            class="theme-toggle-button button button--secondary">
           <%= inline_svg "icon-theme-change.svg", width: "16px", height: "16px" %>
         </button>
       </li>
