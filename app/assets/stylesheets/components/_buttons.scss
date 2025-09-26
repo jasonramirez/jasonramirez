@@ -112,6 +112,23 @@
   }
 }
 
+.button--small {
+  border-radius: $button-border-radius / 2;
+  font-size: $small-font-size;
+  height: $input-height / 2;
+
+  svg {
+    height: 0.8rem;
+    width: 0.8rem;
+  }
+
+  &.button--square {
+    height: $input-height / 2;
+    min-width: $input-height / 2;
+    width: $input-height / 2;
+  }
+}
+
 .button--secondary {
   color: $base-font-color;
   border: $base-border-style $base-border-width $base-border-color;
