@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature "Admin edits post", js: true do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "from the post's page" do
     it "successfully updates the post and shows a success flash." do
       post = create(:post)
@@ -147,10 +154,4 @@ feature "Admin edits post", js: true do
     end
   end
 
-  private
-
-  def sign_in_admin
-    admin = create(:admin)
-    login_as admin, scope: :admin
-  end
 end

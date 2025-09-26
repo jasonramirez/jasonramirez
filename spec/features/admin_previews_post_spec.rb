@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature "Admin previews post" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "when it is published" do
     it "shows the post" do
       sign_in_admin
@@ -55,10 +62,4 @@ feature "Admin previews post" do
     end
   end
 
-  private
-
-  def sign_in_admin
-    admin = create(:admin)
-    login_as admin, scope: :admin
-  end
 end

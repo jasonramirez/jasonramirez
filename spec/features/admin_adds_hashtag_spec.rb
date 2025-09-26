@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature "Admin adds hashtag" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "from the navigation" do
     it "shows a list of all hashtags" do
       sign_in_admin
@@ -55,10 +62,5 @@ feature "Admin adds hashtag" do
   def fill_new_hashtag_form
     fill_form(:hashtag, label: "hashtagone")
     click_button t("admins.hashtags.form.save")
-  end
-
-  def sign_in_admin
-    admin = create(:admin)
-    login_as admin, scope: :admin
   end
 end

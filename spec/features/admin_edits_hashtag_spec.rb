@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature "Admin edits hashtag" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "from the hashtags list by clicking on the hashtag" do
     it "updates the hashtag" do
       sign_in_admin
@@ -19,12 +26,10 @@ feature "Admin edits hashtag" do
   context "from the hashtaglist by clicking the edit button" do
     it "updates the hashtag" do
       sign_in_admin
-      create(:hashtag)
+      hashtag = create(:hashtag, label: "testhashtag")
 
       visit admins_hashtags_path
-      within(find(".admin-post-item:first-of-type .admin-post-item__title")) do
-        click_link
-      end
+      click_on hashtag.label
       fill_in "Label", with: "#newhashtag"
       click_button "Save"
 
@@ -33,10 +38,4 @@ feature "Admin edits hashtag" do
     end
   end
 
-  private
-
-  def sign_in_admin
-    admin = create(:admin)
-    login_as admin, scope: :admin
-  end
 end

@@ -1,6 +1,13 @@
 require "rails_helper"
 
 RSpec.feature "Guest views posts" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   scenario "published" do
     post_one = create(:post, title: "Post One", published: true)
     create(:post, title: "Post Two", published: true)

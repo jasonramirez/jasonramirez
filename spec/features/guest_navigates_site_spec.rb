@@ -1,6 +1,13 @@
 require "rails_helper"
 
 RSpec.feature "Guest navigates site" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "from the header navigation" do
     describe "clicking on work" do
       it "takes you to the list of case studies" do

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Run RSpec tests with headless browser and quiet output
+# Usage: bin/test-quiet [rspec-args...]
+
+export RSPEC_FORMATTER=progress
+export RSPEC_VERBOSE=false
+
+# Run the tests with the provided arguments
+bundle exec rspec "$@"

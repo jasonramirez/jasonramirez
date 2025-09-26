@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature "Guest searches posts" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "doesn't add search parameters" do
     it "doesn't add search paramet" do
       post = create(:post)
@@ -11,7 +18,7 @@ feature "Guest searches posts" do
         find("button[type='submit']").click
       end
 
-      within ".post-search__results" do
+      within "#search-results" do
         expect(page).not_to have_text post.title
       end
     end

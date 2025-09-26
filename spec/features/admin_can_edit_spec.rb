@@ -1,6 +1,13 @@
 require "rails_helper"
 
 feature "Admin can edit" do
+  before(:each) do
+    # Ensure clean state before each test
+    Post.destroy_all
+    Hashtag.destroy_all
+    Admin.destroy_all
+  end
+
   context "when logged in, and by clicking the admin button" do
     it "takes them to the admin posts index page." do
       sign_in_admin
@@ -19,20 +26,17 @@ feature "Admin can edit" do
       post = create(:post, title: "Post One", published: true)
 
       visit post_path(post)
+      
+      # Wait for page to load
+      expect(page).to have_text "Post One"
 
       page.find("#post_edit_link").click
 
       # Open the drawer to see the Post Details
       page.find("[data-js-drawer-open-trigger]").click
-
-      expect(page).to have_css("h2", text: "Post Details")
+      
+      # Wait for the drawer to open and show the Post Details
+      expect(page).to have_css("h2", text: "Post Details", wait: 5)
     end
-  end
-
-  private
-
-  def sign_in_admin
-    admin = create(:admin)
-    login_as admin, scope: :admin
   end
 end

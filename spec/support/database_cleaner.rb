@@ -6,7 +6,6 @@ RSpec.configure do |config|
     )
   end
 
-
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
@@ -21,5 +20,11 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  # Ensure clean state for feature tests
+  config.before(:each, type: :feature) do
+    # Clear any cached data that might interfere
+    Rails.cache.clear if Rails.cache.respond_to?(:clear)
   end
 end

@@ -18,6 +18,21 @@ RSpec.configure do |config|
 
   config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
   config.order = :random
+  
+  # Configure output format for quieter tests
+  config.default_formatter = 'progress' unless ENV['RSPEC_FORMATTER']
+  
+  # Suppress verbose output unless explicitly requested
+  unless ENV['RSPEC_VERBOSE']
+    config.filter_gems_from_backtrace 'capybara', 'selenium-webdriver'
+    config.backtrace_exclusion_patterns = [
+      /\/lib\/ruby\/gems/,
+      /\/gems\//,
+      /\/vendor\/bundle/,
+      /\/\.rvm\//,
+      /\/\.rbenv\//
+    ]
+  end
 end
 
 WebMock.disable_net_connect!(allow_localhost: true)
