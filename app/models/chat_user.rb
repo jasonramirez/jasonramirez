@@ -31,7 +31,7 @@ class ChatUser < ActiveRecord::Base
   end
   
   def approve!
-    update!(approved: true)
+    update!(approved: true, login_expires_at: 48.hours.from_now)
   end
   
   def set_login_expiration_on_first_login
@@ -69,6 +69,38 @@ class ChatUser < ActiveRecord::Base
   def current_access_type
     return nil unless approved?
     login_expires_at.nil? ? 'unlimited' : '48_hours'
+  end
+  
+  def access_status_time_left
+    return nil unless approved?
+    return nil if login_expires_at.nil?  # Don't show anything for unlimited access
+    return "expired" if expired?
+    
+    # Calculate time remaining
+    time_left = login_expires_at - Time.current
+    return "expired" if time_left <= 0
+    
+    # Format time remaining
+    if time_left >= 1.day
+      days = (time_left / 1.day).floor
+      hours = ((time_left % 1.day) / 1.hour).floor
+      if hours > 0
+        "#{days}d #{hours}h left"
+      else
+        "#{days}d left"
+      end
+    elsif time_left >= 1.hour
+      hours = (time_left / 1.hour).floor
+      minutes = ((time_left % 1.hour) / 1.minute).floor
+      if minutes > 0
+        "#{hours}h #{minutes}m left"
+      else
+        "#{hours}h left"
+      end
+    else
+      minutes = (time_left / 1.minute).floor
+      "#{minutes}m left"
+    end
   end
   
   def authenticate_password(password)

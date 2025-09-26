@@ -95,7 +95,9 @@
   }
 
   .navigation-primary--side & {
-    margin: 0 0 $base-spacing 0;
+    margin: $base-spacing 0 0;
+    font-weight: 500;
+    font-size: $x-small-font-size;
   }
 
   a {
@@ -118,9 +120,11 @@
 }
 
 .navigation-primary__link--logo {
+  padding-bottom: $base-spacing;
+
   svg {
-    height: 2rem;
-    width: 2rem;
+    height: 1.5rem;
     stroke: none;
+    width: 1.5rem;
   }
 }

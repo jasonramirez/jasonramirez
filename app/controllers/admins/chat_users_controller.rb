@@ -13,9 +13,13 @@ class Admins::ChatUsersController < ApplicationController
     @chat_user = ChatUser.new(chat_user_params)
     
     if @chat_user.save
-      redirect_to admins_chat_users_path, notice: "Chat user '#{@chat_user.name}' created successfully. They can now log in with their credentials."
+      redirect_to admins_chat_users_path, 
+        notice: "Chat user '#{@chat_user.name}' created successfully. They can now log in with their credentials."
     else
-      render :new
+      respond_to do |format|
+        format.turbo_stream { render :create }
+        format.html { render :new }
+      end
     end
   end
 
@@ -44,7 +48,8 @@ class Admins::ChatUsersController < ApplicationController
     end
     
     if @chat_user.update(chat_user_params.except(:access_type))
-      redirect_to edit_admins_chat_user_path(@chat_user), notice: "Jason AI user updated successfully."
+      redirect_to edit_admins_chat_user_path(@chat_user), 
+        notice: "Jason AI user updated successfully."
     else
       render :edit
     end

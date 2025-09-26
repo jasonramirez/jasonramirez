@@ -86,8 +86,32 @@ RSpec.describe "Admin routes", type: :routing do
       expect(get: "/admins/chat_users").to route_to(controller: "admins/chat_users", action: "index")
     end
 
+    it "routes GET /admins/chat_users/new to admins/chat_users#new" do
+      expect(get: "/admins/chat_users/new").to route_to(controller: "admins/chat_users", action: "new")
+    end
+
+    it "routes POST /admins/chat_users to admins/chat_users#create" do
+      expect(post: "/admins/chat_users").to route_to(controller: "admins/chat_users", action: "create")
+    end
+
     it "routes GET /admins/chat_users/:id to admins/chat_users#show" do
       expect(get: "/admins/chat_users/123").to route_to(controller: "admins/chat_users", action: "show", id: "123")
+    end
+
+    it "routes GET /admins/chat_users/:id/edit to admins/chat_users#edit" do
+      expect(get: "/admins/chat_users/123/edit").to route_to(controller: "admins/chat_users", action: "edit", id: "123")
+    end
+
+    it "routes PATCH /admins/chat_users/:id to admins/chat_users#update" do
+      expect(patch: "/admins/chat_users/123").to route_to(controller: "admins/chat_users", action: "update", id: "123")
+    end
+
+    it "routes PUT /admins/chat_users/:id to admins/chat_users#update" do
+      expect(put: "/admins/chat_users/123").to route_to(controller: "admins/chat_users", action: "update", id: "123")
+    end
+
+    it "routes PATCH /admins/chat_users/:id/approve to admins/chat_users#approve" do
+      expect(patch: "/admins/chat_users/123/approve").to route_to(controller: "admins/chat_users", action: "approve", id: "123")
     end
   end
 end

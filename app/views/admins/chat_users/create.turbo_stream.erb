@@ -1,0 +1,23 @@
+<%= turbo_stream.replace "flash-messages" do %>
+  <%= render "application/flashes" %>
+<% end %>
+
+<%= turbo_stream.replace "main-content" do %>
+  <div class="content content--slim" id="main-content">
+    <h1>New Chat User</h1>
+    
+    <div>
+      <%= simple_form_for [:admins, @chat_user] do |form| %>
+        <%= form.input :name, required: true, wrapper_html: { class: "sky-label" } %>
+        <%= form.input :email, required: true, wrapper_html: { class: "sky-label" } %>
+        <%= form.input :password, as: :password, required: true, wrapper_html: { class: "sky-label" }, input_html: { autocomplete: "new-password" } %>
+        <%= form.input :approved, as: :boolean, input_html: { class: "form-checkbox__input" } %>
+        
+        <div class="u-margin-top-large">
+          <%= form.button :submit, "Create User", class: "button button--primary" %>
+          <%= link_to "Cancel", admins_chat_users_path, class: "button button--secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<div class="content content--medium">
+  <h1><%= @chat_user.name %></h1>
+
+  <div class="u-margin-bottom-large">
+    <div class="admin-post-item">
+      <div class="admin-post-item__title">
+        <strong>Email:</strong> <%= @chat_user.email %>
+        <span class="badge badge--small">
+          <%= @chat_user.access_status %>
+          <% if @chat_user.access_status_time_left.present? %>
+            &mdash; <%= @chat_user.access_status_time_left %>
+          <% end %>
+        </span>
+      </div>
+      
+      <div class="admin-post-item__actions">
+        <%= link_to "Edit", edit_admins_chat_user_path(@chat_user), class: "button button--secondary button--small" %>
+        <%= link_to "Back to Users", admins_chat_users_path, class: "button button--secondary button--small" %>
+      </div>
+    </div>
+  </div>
+
+  <h2>Chat Messages</h2>
+  
+  <% if @chat_messages.any? %>
+    <div class="u-margin-bottom-large">
+      <% @chat_messages.each do |message| %>
+        <div class="admin-post-item">
+          <div class="admin-post-item__title">
+            <strong><%= message.message_type.humanize %>:</strong>
+            <span class="u-text-muted">
+              <%= message.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+            </span>
+          </div>
+          <div class="admin-post-item__content">
+            <%= simple_format(message.content) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="u-text-muted">No messages yet.</p>
+  <% end %>
+</div>
