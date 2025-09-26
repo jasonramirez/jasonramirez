@@ -1,6 +1,8 @@
 @use "variables/tokens" as *;
 @use "variables/variables" as *;
 @use "sass:color";
+@use "sass:math";
+
 /*
  * Button Component with Loading State
  * 
@@ -113,9 +115,9 @@
 }
 
 .button--small {
-  border-radius: $button-border-radius / 2;
+  border-radius: math.div($button-border-radius, 2);
   font-size: $small-font-size;
-  height: $input-height / 2;
+  height: math.div($input-height, 2);
 
   svg {
     height: 0.8rem;
@@ -123,9 +125,9 @@
   }
 
   &.button--square {
-    height: $input-height / 2;
-    min-width: $input-height / 2;
-    width: $input-height / 2;
+    height: math.div($input-height, 2);
+    min-width: math.div($input-height, 2);
+    width: math.div($input-height, 2);
   }
 }
 
