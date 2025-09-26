@@ -7,7 +7,7 @@
 
       <div>
         <div class="jason-ai-hand-wave">
-          <%= inline_svg "icon-brain.svg", height: "20px", width: "20px" %>
+          <%= inline_svg "icon-brain.svg", height: "20px", width: "20px", stroke_width: 1 %>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
       class: "jason-ai-chat-prompt__form",
       data: { jason_ai_chat: true } do |form| %>
       <button type="button" 
-        class="jason-ai-mobile-nav-trigger button button--secondary"
+        class="jason-ai-mobile-nav-trigger button button--tertiary"
         data-action="click->navigation-drawer#toggle"
         onclick="console.log('Button clicked!')">
         <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>

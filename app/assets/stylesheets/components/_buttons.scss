@@ -138,6 +138,16 @@
   background-color: transparent;
 }
 
+.button--tertiary {
+  color: $base-font-color;
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+    color: $action-color;
+  }
+}
+
 .button--with-icon {
   overflow: hidden;
   position: relative;

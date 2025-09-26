@@ -15,15 +15,13 @@
   width: 100vw;
 
   &::before {
-    background: linear-gradient(
-      transparent 0%,
-      $base-background-color 25%,
-      $base-background-color 100%
-    );
+    background-color: color.adjust($base-background-color, $alpha: -0.1);
+    backdrop-filter: blur(0.5rem);
+    -webkit-backdrop-filter: blur(0.5rem);
     bottom: 0;
     content: "";
     display: block;
-    height: 8rem;
+    height: 6rem;
     left: 0;
     right: 0;
     position: fixed;
