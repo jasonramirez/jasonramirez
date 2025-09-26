@@ -57,6 +57,7 @@
 
   .navigation-primary--side & {
     height: 100%;
+    width: 100%;
   }
 }
 
@@ -98,6 +99,18 @@
     margin: $base-spacing 0 0;
     font-weight: 500;
     font-size: $x-small-font-size;
+    width: 100%;
+  }
+
+  .theme-toggle-button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transform: translateY(-1px);
+  }
+
+  .button {
+    width: 100%;
   }
 
   a {
@@ -109,13 +122,6 @@
 
   svg {
     stroke: $base-font-color;
-  }
-
-  .theme-toggle-button {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    transform: translateY(-1px);
   }
 }
 
