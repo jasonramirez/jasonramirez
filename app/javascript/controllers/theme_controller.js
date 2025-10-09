@@ -66,6 +66,9 @@ export default class extends Controller {
 
     // Update meta theme-color
     this.updateMetaThemeColor(theme);
+
+    // Update favicons
+    this.updateFavicons(theme);
   }
 
   toggle() {
@@ -136,6 +139,31 @@ export default class extends Controller {
       metaThemeColor.name = "theme-color";
       metaThemeColor.content = themeColor;
       document.head.appendChild(metaThemeColor);
+    }
+  }
+
+  updateFavicons(theme) {
+    const faviconLinks = document.querySelectorAll('link[rel*="icon"]');
+    faviconLinks.forEach((link) => {
+      const darkHref = link.getAttribute("data-dark-href");
+      const lightHref = link.getAttribute("data-light-href");
+      if (darkHref && lightHref) {
+        link.setAttribute("href", theme === "light" ? lightHref : darkHref);
+      }
+    });
+
+    const msTileImage = document.querySelector(
+      'meta[name="msapplication-TileImage"]'
+    );
+    if (msTileImage) {
+      const darkHref = msTileImage.getAttribute("data-dark-href");
+      const lightHref = msTileImage.getAttribute("data-light-href");
+      if (darkHref && lightHref) {
+        msTileImage.setAttribute(
+          "content",
+          theme === "light" ? lightHref : darkHref
+        );
+      }
     }
   }
 }
