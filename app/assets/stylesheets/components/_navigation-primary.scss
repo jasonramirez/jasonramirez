@@ -132,5 +132,9 @@
     height: 1.5rem;
     stroke: none;
     width: 1.5rem;
+
+    path {
+      fill: $base-font-color;
+    }
   }
 }
