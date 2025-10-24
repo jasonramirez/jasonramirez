@@ -107,26 +107,24 @@ class Admins::AdditionalKnowledgesController < ApplicationController
 
   def generate_embeddings
     begin
-      # Generate embeddings for all knowledge items that don't have them
+      # Queue embedding generation for all knowledge items that don't have them
       items_without_embeddings = KnowledgeItem.where(content_embedding: nil)
-      items_processed = 0
+      items_queued = 0
       
-      items_without_embeddings.find_each(batch_size: 5) do |item|
-        item.generate_embeddings
-        items_processed += 1
-        sleep(0.5) # Small delay to avoid overwhelming the API
+      items_without_embeddings.find_each(batch_size: 10) do |item|
+        GenerateEmbeddingsJob.perform_later('KnowledgeItem', item.id)
+        items_queued += 1
       end
       
-      # Also generate embeddings for additional knowledge items
+      # Also queue embeddings for additional knowledge items
       additional_knowledge_without_embeddings = AdditionalKnowledge.where(content_embedding: nil)
-      additional_knowledge_without_embeddings.find_each(batch_size: 5) do |item|
-        item.generate_embeddings
-        items_processed += 1
-        sleep(0.5)
+      additional_knowledge_without_embeddings.find_each(batch_size: 10) do |item|
+        GenerateEmbeddingsJob.perform_later('AdditionalKnowledge', item.id)
+        items_queued += 1
       end
       
       redirect_to admins_additional_knowledges_path, 
-                  notice: "Embeddings generated successfully for #{items_processed} items!"
+                  notice: "Embedding generation queued for #{items_queued} items! This will run in the background."
     rescue => e
       Rails.logger.error "Embedding generation error: #{e.message}"
       redirect_to admins_additional_knowledges_path, 
