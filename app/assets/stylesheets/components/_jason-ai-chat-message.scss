@@ -22,9 +22,10 @@
 .jason-ai-chat-message--question {
   align-self: flex-end;
   background-color: $black;
+  border-radius: 1.25rem;
+  border-bottom-right-radius: 0;
   color: $warm-white;
   padding: $small-spacing;
-  border-radius: 1.25rem;
 
   .light & a {
     color: $warm-white;

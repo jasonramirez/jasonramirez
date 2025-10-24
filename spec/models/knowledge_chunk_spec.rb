@@ -18,8 +18,8 @@ RSpec.describe KnowledgeChunk, type: :model do
 
     before do
       # Simulate having an embedding
-        # Create a valid 1536-dimension embedding
-        embedding = Array.new(1536, 0.1)
+        # Create a valid 3072-dimension embedding
+        embedding = Array.new(3072, 0.1)
         chunk_with_embedding.update_column(:content_embedding, "[#{embedding.join(',')}]")
     end
 

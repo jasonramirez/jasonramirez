@@ -7,22 +7,20 @@
     <%= parse_framework_links(message.content).html_safe %>
   </div>
 
-  <%= render_knowledge_sources(kb_data) %>
+  <% if message.message_type == 'answer' %>
+    <%= render_knowledge_sources(kb_data) %>
 
-  <div class="jason-ai-chat-message__actions">
-    <a class="jason-ai-chat-message__more" data-timestamp="<%= message.created_at.strftime("%B %d, %Y at %I:%M %p") %>">
-      <%= inline_svg "icon-ellipsis.svg", height: "16px", width: "16px" %>
-    </a>
-    <a class="jason-ai-chat-message__copy">
-      <%= inline_svg "icon-copy.svg", height: "16px", width: "16px" %>
-    </a>
-    <% if kb_data %>
-      <div class="jason-ai-chat-message__confidence-score" data-modal="kb-influence-<%= message.id %>">
-        <%= kb_data['confidence_score'] || 'N/A' %>%
-      </div>
-    <% end %>
+    <div class="jason-ai-chat-message__actions">
+      <a class="jason-ai-chat-message__copy">
+        <%= inline_svg "icon-copy.svg", height: "16px", width: "16px" %>
+      </a>
+
+      <% if kb_data %>
+        <div class="jason-ai-chat-message__confidence-score" data-modal="kb-influence-<%= message.id %>">
+          <%= kb_data['confidence_score'] || 'N/A' %>%
+        </div>
+      <% end %>
     
-    <% if message.message_type == 'answer' %>
       <div data-message-id="<%= message.id %>" data-feedback-container>
         <button data-feedback-button
                 data-feedback="thumbs_up" 
@@ -37,8 +35,8 @@
           <%= inline_svg "icon-thumbs-down.svg", height: "16px", width: "16px" %>
         </button>
       </div>
-    <% end %>
-  </div>
+    </div>
+<% end %>
 </div>
       
 <% if kb_data %>

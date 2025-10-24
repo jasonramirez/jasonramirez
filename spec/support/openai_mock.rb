@@ -14,7 +14,7 @@ RSpec.configure do |config|
         {
           'data' => [
             {
-              'embedding' => Array.new(1536) { rand(-1.0..1.0) }
+              'embedding' => Array.new(3072) { rand(-1.0..1.0) }
             }
           ]
         }

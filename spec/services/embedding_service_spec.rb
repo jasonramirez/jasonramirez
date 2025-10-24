@@ -10,7 +10,7 @@ RSpec.describe EmbeddingService, skip: "Skipped - using OllamaEmbeddingService" 
         {
           "data" => [
             {
-              "embedding" => Array.new(1536) { rand(-1.0..1.0) }
+              "embedding" => Array.new(3072) { rand(-1.0..1.0) }
             }
           ]
         }
@@ -27,7 +27,7 @@ RSpec.describe EmbeddingService, skip: "Skipped - using OllamaEmbeddingService" 
         result = service.generate_embedding("Test text for embedding")
         
         expect(result).to be_an(Array)
-        expect(result.length).to eq(1536)
+        expect(result.length).to eq(3072)
         expect(result.all? { |val| val.is_a?(Numeric) }).to be true
       end
       

@@ -35,7 +35,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
         # Clear any existing embeddings first
         AdditionalKnowledge.update_all(content_embedding: nil)
         
-        embedding = Array.new(1536, 0.1)
+        embedding = Array.new(3072, 0.1)
         knowledge1.update_column(:content_embedding, embedding)
         expect(AdditionalKnowledge.for_ai).to include(knowledge1)
         expect(AdditionalKnowledge.for_ai).not_to include(knowledge2)
@@ -49,8 +49,8 @@ RSpec.describe AdditionalKnowledge, type: :model do
     end
 
     before do
-      # Create a valid 1536-dimension embedding
-      embedding = Array.new(1536, 0.1)
+      # Create a valid 3072-dimension embedding
+      embedding = Array.new(3072, 0.1)
       knowledge_with_embedding.update_column(:content_embedding, embedding)
     end
 
@@ -60,7 +60,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     end
 
     it 'returns similar knowledge items' do
-      embedding = Array.new(1536, 0.1)
+      embedding = Array.new(3072, 0.1)
       allow_any_instance_of(EmbeddingService).to receive(:generate_embedding).and_return(embedding)
       
       results = AdditionalKnowledge.search_by_similarity('design')
@@ -68,7 +68,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     end
 
     it 'respects limit parameter' do
-      embedding = Array.new(1536, 0.1)
+      embedding = Array.new(3072, 0.1)
       allow_any_instance_of(EmbeddingService).to receive(:generate_embedding).and_return(embedding)
       
       results = AdditionalKnowledge.search_by_similarity('design', limit: 1)
@@ -85,7 +85,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
 
   describe 'callbacks' do
     it 'generates embedding after save when content changes' do
-      embedding = Array.new(1536, 0.1)
+      embedding = Array.new(3072, 0.1)
       allow_any_instance_of(OllamaEmbeddingService).to receive(:generate_embedding).and_return(embedding)
       
       additional_knowledge = create(:additional_knowledge, content: 'Initial content')
@@ -94,7 +94,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
 
     it 'does not generate embedding when content does not change' do
       additional_knowledge = create(:additional_knowledge, content: 'Initial content')
-      embedding = Array.new(1536, 0.1)
+      embedding = Array.new(3072, 0.1)
       additional_knowledge.update_column(:content_embedding, embedding)
       
       expect_any_instance_of(EmbeddingService).not_to receive(:generate_embedding)

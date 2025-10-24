@@ -10,7 +10,7 @@ RSpec.describe OllamaConversationService, type: :service do
     
     # Mock Ollama API calls
     allow(ollama_service_double).to receive(:chat).and_return("Mock response")
-    allow(ollama_service_double).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
+    allow(ollama_service_double).to receive(:generate_embedding).and_return(Array.new(3072, 0.1))
   end
   
   describe "#respond_to_question" do

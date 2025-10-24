@@ -30,7 +30,7 @@ class JasonAiChat {
     this.submitButton = this.form.querySelector(
       "[data-jason-ai-chat-button='true']"
     );
-    this.input = this.form.querySelector("input[name='question']");
+    this.input = this.form.querySelector("textarea[name='question']");
     this.chatHistory = document.querySelector(".jason-ai-chat-history");
     this.scrollToBottomButton = document.querySelector(
       "[data-scroll-to-bottom='true']"
@@ -59,9 +59,6 @@ class JasonAiChat {
   }
 
   bindEvents() {
-    // Add click event listeners to existing ellipsis elements
-    document.addEventListener("click", (e) => this.handleEllipsisClick(e));
-
     // Add click event listeners for copy buttons
     document.addEventListener("click", (e) => this.handleCopyClick(e));
 
@@ -155,16 +152,6 @@ class JasonAiChat {
     console.log("JasonAiChat: Scrolled to latest message on page load");
   }
 
-  handleEllipsisClick(e) {
-    if (e.target.closest(".jason-ai-chat-message__more")) {
-      const more = e.target.closest(".jason-ai-chat-message__more");
-      const timestamp = more.getAttribute("data-timestamp");
-      if (timestamp) {
-        alert(timestamp);
-      }
-    }
-  }
-
   handleCopyClick(e) {
     if (e.target.closest(".jason-ai-chat-message__copy")) {
       const copyButton = e.target.closest(".jason-ai-chat-message__copy");
@@ -227,8 +214,8 @@ class JasonAiChat {
       }
       this.submitButton.innerHTML = `
         <svg height="20" width="20" viewBox="0 0 24 24" fill="none" class="loading-spinner">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="60" stroke-dashoffset="60">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none" opacity="0.3"/>
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="60" stroke-dashoffset="60">
             <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" values="0 12 12;360 12 12"/>
           </circle>
         </svg>
@@ -348,20 +335,8 @@ class JasonAiChat {
 
   createTypingMessage(messageElement, message) {
     messageElement.innerHTML = `
-      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(
-        message.created_at
-      ).toLocaleString()}">
-        <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
-          <circle cx="12" cy="12" r="1"></circle>
-          <circle cx="19" cy="12" r="1"></circle>
-          <circle cx="5" cy="12" r="1"></circle>
-        </svg>
-      </div>
       <div class="chat-message__content">
         <span class="typing-indicator">▋</span>
-      </div>
-      <div class="chat-message__timestamp">
-        ${new Date(message.created_at).toLocaleString()}
       </div>
     `;
 
@@ -370,20 +345,8 @@ class JasonAiChat {
 
   createStaticMessage(messageElement, message) {
     messageElement.innerHTML = `
-      <div class="jason-ai-chat-message__more" data-timestamp="${new Date(
-        message.created_at
-      ).toLocaleString()}">
-        <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor">
-          <circle cx="12" cy="12" r="1"></circle>
-          <circle cx="19" cy="12" r="1"></circle>
-          <circle cx="5" cy="12" r="1"></circle>
-        </svg>
-      </div>
       <div class="chat-message__content">
         ${message.content}
-      </div>
-      <div class="chat-message__timestamp">
-        ${new Date(message.created_at).toLocaleString()}
       </div>
     `;
   }

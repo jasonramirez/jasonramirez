@@ -65,7 +65,7 @@ RSpec.configure do |config|
         status: 200,
         body: {
           data: [
-            { embedding: Array.new(1536) { rand(-1.0..1.0) } }
+            { embedding: Array.new(3072) { rand(-1.0..1.0) } }
           ]
         }.to_json,
         headers: { 'Content-Type' => 'application/json' }

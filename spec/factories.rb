@@ -88,8 +88,8 @@ FactoryBot.define do
     
     trait :with_embedding do
       after(:create) do |message|
-        # Create a valid 1536-dimension embedding
-        embedding = Array.new(1536, 0.1)
+        # Create a valid 3072-dimension embedding
+        embedding = Array.new(3072, 0.1)
         # Now that we have neighbor gem, we can update embeddings in tests
         message.update_column(:content_embedding, "[#{embedding.join(',')}]")
       end
