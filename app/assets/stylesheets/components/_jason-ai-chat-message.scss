@@ -9,6 +9,10 @@
   line-height: $reading-line-height;
   max-width: 80%;
   margin: $base-spacing 0;
+
+  @media (min-width: $large-screen) {
+    font-size: $base-font-size;
+  }
 }
 
 .jason-ai-chat-message--answer {
