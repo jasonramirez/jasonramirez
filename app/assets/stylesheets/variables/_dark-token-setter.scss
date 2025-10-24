@@ -22,6 +22,6 @@
   $mark-background-color: $mirage,
   $mark-color: $warm-white,
   $notice-background-color: $forest-green,
-  $notice-color: $warm-white,
+  $notice-color: color.adjust($forest-green, $alpha: -0.1),
   $secondary-font-color: color.adjust($warm-white, $alpha: -0.4)
 );

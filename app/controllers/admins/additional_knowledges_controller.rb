@@ -27,7 +27,19 @@ class Admins::AdditionalKnowledgesController < ApplicationController
     @knowledge_base_case_studies = KnowledgeItem.where(category: 'Case Study').order(:title)
     @knowledge_base_case_studies_count = @knowledge_base_case_studies.count
     
-    @total_pending = @pending_posts_count
+    # Define expected case studies (hardcoded files that should be in knowledge base)
+    expected_case_studies = [
+      "Dropbox Keeping Flow",
+      "Mayo Clinic Gamifying Medical Education", 
+      "We Ate The Web Saving Money"
+    ]
+    
+    # Find case studies that are missing from knowledge base
+    existing_case_study_titles = @knowledge_base_case_studies.pluck(:title)
+    @pending_case_studies = expected_case_studies - existing_case_study_titles
+    @pending_case_studies_count = @pending_case_studies.count
+    
+    @total_pending = @pending_posts_count + @pending_case_studies_count
   end
 
 
@@ -119,6 +131,27 @@ class Admins::AdditionalKnowledgesController < ApplicationController
       Rails.logger.error "Embedding generation error: #{e.message}"
       redirect_to admins_additional_knowledges_path, 
                   alert: "Embedding generation failed: #{e.message}"
+    end
+  end
+
+  def generate_chunks
+    begin
+      # Generate chunks for all knowledge items
+      total_items = KnowledgeItem.count
+      items_processed = 0
+      
+      KnowledgeItem.find_each(batch_size: 3) do |item|
+        GenerateChunksJob.perform_later(item.id)
+        items_processed += 1
+        sleep(0.2) # Small delay to avoid overwhelming the job queue
+      end
+      
+      redirect_to admins_additional_knowledges_path, 
+                  notice: "Chunk generation queued for #{items_processed} knowledge items! This will run in the background."
+    rescue => e
+      Rails.logger.error "Chunk generation error: #{e.message}"
+      redirect_to admins_additional_knowledges_path, 
+                  alert: "Chunk generation failed: #{e.message}"
     end
   end
 

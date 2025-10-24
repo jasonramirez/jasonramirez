@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       collection do
         post :update_knowledge_base
         post :generate_embeddings
+        post :generate_chunks
       end
     end
     resources :chat_users do
