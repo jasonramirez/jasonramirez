@@ -1,5 +1,5 @@
 class AddContentEmbeddingToKnowledgeItems < ActiveRecord::Migration[8.0]
   def change
-    add_column :knowledge_items, :content_embedding, :text
+    add_column :knowledge_items, :content_embedding, :text unless column_exists?(:knowledge_items, :content_embedding)
   end
 end
