@@ -36,7 +36,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
         AdditionalKnowledge.update_all(content_embedding: nil)
         
         embedding = Array.new(1536, 0.1)
-        knowledge1.update_column(:content_embedding, embedding)
+        knowledge1.update_column(:content_embedding, embedding.to_json)
         expect(AdditionalKnowledge.for_ai).to include(knowledge1)
         expect(AdditionalKnowledge.for_ai).not_to include(knowledge2)
       end
@@ -51,7 +51,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     before do
       # Create a valid 1536-dimension embedding
       embedding = Array.new(1536, 0.1)
-      knowledge_with_embedding.update_column(:content_embedding, embedding)
+      knowledge_with_embedding.update_column(:content_embedding, embedding.to_json)
     end
 
     it 'returns none for blank query' do
@@ -95,7 +95,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     it 'does not generate embedding when content does not change' do
       additional_knowledge = create(:additional_knowledge, content: 'Initial content')
       embedding = Array.new(1536, 0.1)
-      additional_knowledge.update_column(:content_embedding, embedding)
+      additional_knowledge.update_column(:content_embedding, embedding.to_json)
       
       expect_any_instance_of(EmbeddingService).not_to receive(:generate_embedding)
       additional_knowledge.update(title: 'New title')
@@ -109,19 +109,4 @@ RSpec.describe AdditionalKnowledge, type: :model do
     end
   end
 
-  describe 'private methods' do
-    let(:additional_knowledge) { build(:additional_knowledge) }
-
-    describe '#format_embedding_for_db' do
-      it 'formats array as string' do
-        result = additional_knowledge.send(:format_embedding_for_db, [0.1, 0.2, 0.3])
-        expect(result).to eq('[0.1,0.2,0.3]')
-      end
-
-      it 'returns nil for non-array input' do
-        result = additional_knowledge.send(:format_embedding_for_db, 'not an array')
-        expect(result).to be_nil
-      end
-    end
-  end
 end

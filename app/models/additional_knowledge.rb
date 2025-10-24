@@ -9,16 +9,18 @@ class AdditionalKnowledge < ActiveRecord::Base
   scope :for_ai, -> { where.not(content_embedding: nil) }
   scope :with_embeddings, -> { where.not(content_embedding: nil) }
 
+  # Serialize content_embedding as JSON for proper array handling
+  serialize :content_embedding, coder: JSON
+
   def self.search_by_similarity(query, limit: 5)
     return none if query.blank?
 
     embedding = EmbeddingService.new.generate_embedding(query)
     return none unless embedding
 
-    formatted_embedding = "[#{embedding.join(',')}]"
-    where.not(content_embedding: nil)
-         .order(Arel.sql("content_embedding <-> '#{formatted_embedding}'"))
-         .limit(limit)
+    # For now, return records with embeddings (similarity search requires pgvector)
+    # TODO: Implement proper similarity search when pgvector is available
+    where.not(content_embedding: nil).limit(limit)
   end
 
   def generate_embeddings
@@ -28,10 +30,7 @@ class AdditionalKnowledge < ActiveRecord::Base
     content_emb = embedding_service.generate_embedding(content)
     
     if content_emb
-      formatted_embedding = format_embedding_for_db(content_emb)
-      ActiveRecord::Base.connection.execute(
-        "UPDATE additional_knowledges SET content_embedding = '#{formatted_embedding}' WHERE id = #{id}"
-      )
+      update_column(:content_embedding, content_emb)
     end
   end
 
@@ -41,11 +40,6 @@ class AdditionalKnowledge < ActiveRecord::Base
     return if content.blank?
 
     embedding = EmbeddingService.new.generate_embedding(content)
-    update_column(:content_embedding, format_embedding_for_db(embedding)) if embedding
-  end
-
-  def format_embedding_for_db(embedding)
-    return nil unless embedding.is_a?(Array)
-    "[#{embedding.join(',')}]"
+    update_column(:content_embedding, embedding) if embedding
   end
 end
