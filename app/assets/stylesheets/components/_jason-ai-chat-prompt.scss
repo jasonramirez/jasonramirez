@@ -26,10 +26,16 @@
   gap: $small-spacing;
   width: 100%;
 
-  input,
-  input[type="text"] {
+  textarea.jason-ai-chat-prompt__textarea {
     border-radius: $base-border-radius;
     margin-bottom: 0;
+    resize: none;
+    overflow: hidden;
+    min-height: $input-height;
+    max-height: 8rem;
+    padding: $small-spacing * 0.8;
+    padding-left: $small-spacing;
+    padding-right: $small-spacing;
   }
 }
 

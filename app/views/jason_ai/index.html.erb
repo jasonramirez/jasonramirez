@@ -51,10 +51,16 @@
         onclick="console.log('Button clicked!')">
         <%= inline_svg "icon-menu.svg", height: "20px", width: "20px" %>
       </button>
-      <%= form.text_field :question, 
+      <%= form.text_area :question, 
         placeholder: "What would you like to know?",
         required: true,
-        name: "question" %>
+        name: "question",
+        rows: 1,
+        class: "jason-ai-chat-prompt__textarea",
+        data: { 
+          controller: "flexible-textarea",
+          "js-flexible-textarea": true
+        } %>
       <%= form.button type: 'submit',
         class: "button button--square",
         data: { jason_ai_chat_button: true } do %>
