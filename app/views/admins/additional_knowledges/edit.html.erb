@@ -6,7 +6,7 @@
   </div>
 
    <div class="u-margin-bottom-small">
-    <% if @additional_knowledge.content_embedding.present? %>
+    <% if @additional_knowledge.content_embedding.present? && !@additional_knowledge.content_embedding.empty? %>
       <div class="admin-chip admin-chip--published">
         <span>Embedding generated. This knowledge is available for AI search</span>
       </div>

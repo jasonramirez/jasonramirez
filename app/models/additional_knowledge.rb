@@ -9,8 +9,7 @@ class AdditionalKnowledge < ActiveRecord::Base
   scope :for_ai, -> { where.not(content_embedding: nil) }
   scope :with_embeddings, -> { where.not(content_embedding: nil) }
 
-  # Serialize content_embedding as JSON for proper array handling
-  serialize :content_embedding, coder: JSON
+  # content_embedding is a vector column - no serialization needed
 
   def self.search_by_similarity(query, limit: 5)
     return none if query.blank?

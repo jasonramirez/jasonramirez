@@ -36,7 +36,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
         AdditionalKnowledge.update_all(content_embedding: nil)
         
         embedding = Array.new(1536, 0.1)
-        knowledge1.update_column(:content_embedding, embedding.to_json)
+        knowledge1.update_column(:content_embedding, embedding)
         expect(AdditionalKnowledge.for_ai).to include(knowledge1)
         expect(AdditionalKnowledge.for_ai).not_to include(knowledge2)
       end
@@ -51,7 +51,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     before do
       # Create a valid 1536-dimension embedding
       embedding = Array.new(1536, 0.1)
-      knowledge_with_embedding.update_column(:content_embedding, embedding.to_json)
+      knowledge_with_embedding.update_column(:content_embedding, embedding)
     end
 
     it 'returns none for blank query' do
@@ -95,7 +95,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     it 'does not generate embedding when content does not change' do
       additional_knowledge = create(:additional_knowledge, content: 'Initial content')
       embedding = Array.new(1536, 0.1)
-      additional_knowledge.update_column(:content_embedding, embedding.to_json)
+      additional_knowledge.update_column(:content_embedding, embedding)
       
       expect_any_instance_of(EmbeddingService).not_to receive(:generate_embedding)
       additional_knowledge.update(title: 'New title')
