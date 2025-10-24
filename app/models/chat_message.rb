@@ -22,9 +22,7 @@ class ChatMessage < ActiveRecord::Base
     embedding = embedding_service.generate_embedding(content)
     
     if embedding
-      ActiveRecord::Base.connection.execute(
-        "UPDATE chat_messages SET content_embedding = '#{format_embedding_for_db(embedding)}' WHERE id = #{id}"
-      )
+      update_column(:content_embedding, format_embedding_for_db(embedding))
     end
   end
 
@@ -37,34 +35,22 @@ class ChatMessage < ActiveRecord::Base
     
     return [] if query_embedding.nil?
     
-    formatted_embedding = "[#{query_embedding.join(',')}]"
+    # Get all messages with embeddings for the user
+    messages = where(chat_user_id: user_id)
+                .where.not(content_embedding: nil)
+                .limit(limit * 3) # Get more than needed for similarity calculation
     
-    # Use raw SQL to avoid ActiveRecord conflicts with AS clauses
-    sql = <<~SQL
-      SELECT chat_messages.*, 
-             content_embedding <=> '#{formatted_embedding}' AS similarity_score
-      FROM chat_messages 
-      WHERE chat_user_id = #{user_id.to_i}
-        AND content_embedding IS NOT NULL
-      ORDER BY content_embedding <=> '#{formatted_embedding}'
-      LIMIT #{limit.to_i}
-    SQL
-    
-    # Execute raw SQL and map to ActiveRecord objects
-    results = connection.exec_query(sql)
-    results.map do |row|
-      # Remove similarity_score from attributes since it's not a column
-      similarity = row.delete('similarity_score').to_f
+    # Calculate similarity scores and sort
+    messages_with_similarity = messages.map do |message|
+      stored_embedding = parse_embedding_from_text(message.content_embedding)
+      next nil unless stored_embedding
       
-      # Create a proper ActiveRecord object
-      message = new(row)
-      message.instance_variable_set(:@new_record, false)
-      
-      # Add similarity_score as a method
+      similarity = calculate_cosine_similarity(query_embedding, stored_embedding)
       message.define_singleton_method(:similarity_score) { similarity }
-      
-      message
-    end
+      [message, similarity]
+    end.compact.sort_by { |_, similarity| -similarity }.first(limit)
+    
+    messages_with_similarity.map(&:first)
   end
 
   private
@@ -101,5 +87,31 @@ class ChatMessage < ActiveRecord::Base
   def format_embedding_for_db(embedding)
     return nil unless embedding.is_a?(Array)
     "[#{embedding.join(',')}]"
+  end
+
+  def self.parse_embedding_from_text(embedding_text)
+    return nil if embedding_text.blank?
+    
+    # Parse the embedding from text format "[1.0,2.0,3.0]"
+    embedding_text.gsub(/[\[\]]/, '').split(',').map(&:to_f)
+  rescue
+    nil
+  end
+
+  def self.calculate_cosine_similarity(embedding1, embedding2)
+    return 0.0 if embedding1.nil? || embedding2.nil?
+    return 0.0 if embedding1.length != embedding2.length
+    
+    # Calculate dot product
+    dot_product = embedding1.zip(embedding2).map { |a, b| a * b }.sum
+    
+    # Calculate magnitudes
+    magnitude1 = Math.sqrt(embedding1.map { |x| x * x }.sum)
+    magnitude2 = Math.sqrt(embedding2.map { |x| x * x }.sum)
+    
+    return 0.0 if magnitude1 == 0 || magnitude2 == 0
+    
+    # Return cosine similarity
+    dot_product / (magnitude1 * magnitude2)
   end
 end

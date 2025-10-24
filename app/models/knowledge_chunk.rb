@@ -23,48 +23,35 @@ class KnowledgeChunk < ActiveRecord::Base
     
     return [] if query_embedding.nil?
     
-    # Format embedding for database query
-    formatted_embedding = "[#{query_embedding.join(',')}]"
+    # Get all chunks with embeddings
+    chunks = joins(:knowledge_item)
+              .where.not(content_embedding: nil)
+              .limit(limit * 3) # Get more than needed for similarity calculation
     
-    # Use raw SQL to avoid ActiveRecord conflicts with AS clauses
-    # Join with knowledge_items to use parent item's feedback scores
-    sql = <<~SQL
-      SELECT knowledge_chunks.*, 
-             knowledge_chunks.content_embedding <=> '#{formatted_embedding}' AS similarity_score,
-             (knowledge_chunks.content_embedding <=> '#{formatted_embedding}') * 
-             CASE 
-               WHEN knowledge_items.total_feedback_count >= 3 THEN 
-                 CASE 
-                   WHEN knowledge_items.feedback_score >= 0.7 THEN 0.8  -- Boost good content
-                   WHEN knowledge_items.feedback_score <= 0.3 THEN 1.2  -- Penalize poor content
-                   ELSE 1.0  -- Neutral
-                 END
-               ELSE 1.0  -- No adjustment for items with insufficient feedback
-             END AS adjusted_similarity_score
-      FROM knowledge_chunks 
-      LEFT JOIN knowledge_items ON knowledge_chunks.knowledge_item_id = knowledge_items.id
-      WHERE knowledge_chunks.content_embedding IS NOT NULL
-      ORDER BY adjusted_similarity_score
-      LIMIT #{limit}
-    SQL
-    
-    # Execute raw SQL and map to ActiveRecord objects
-    results = connection.exec_query(sql)
-    results.map do |row|
-      # Remove similarity_score from attributes since it's not a column
-      similarity = row.delete('similarity_score').to_f
-      adjusted_similarity = row.delete('adjusted_similarity_score').to_f
+    # Calculate similarity scores and sort
+    chunks_with_similarity = chunks.map do |chunk|
+      stored_embedding = self.parse_embedding_from_text(chunk.content_embedding)
+      next nil unless stored_embedding
       
-      # Create a proper ActiveRecord object
-      chunk = new(row)
-      chunk.instance_variable_set(:@new_record, false)
+      similarity = self.calculate_cosine_similarity(query_embedding, stored_embedding)
       
-      # Add similarity_score as a method
+      # Apply feedback-based adjustment
+      adjusted_similarity = similarity
+      if chunk.knowledge_item.total_feedback_count >= 3
+        if chunk.knowledge_item.feedback_score >= 0.7
+          adjusted_similarity *= 0.8  # Boost good content
+        elsif chunk.knowledge_item.feedback_score <= 0.3
+          adjusted_similarity *= 1.2  # Penalize poor content
+        end
+      end
+      
       chunk.define_singleton_method(:similarity_score) { similarity }
       chunk.define_singleton_method(:adjusted_similarity_score) { adjusted_similarity }
       
-      chunk
-    end
+      [chunk, adjusted_similarity]
+    end.compact.sort_by { |_, adjusted_similarity| -adjusted_similarity }.first(limit)
+    
+    chunks_with_similarity.map(&:first)
   end
 
   def generate_embeddings
@@ -102,5 +89,31 @@ class KnowledgeChunk < ActiveRecord::Base
   def format_embedding_for_db(embedding)
     return nil unless embedding.is_a?(Array)
     "[#{embedding.join(',')}]"
+  end
+
+  def self.parse_embedding_from_text(embedding_text)
+    return nil if embedding_text.blank?
+
+    # Parse the embedding from text format "[1.0,2.0,3.0]"
+    embedding_text.gsub(/[\[\]]/, '').split(',').map(&:to_f)
+  rescue
+    nil
+  end
+
+  def self.calculate_cosine_similarity(embedding1, embedding2)
+    return 0.0 if embedding1.nil? || embedding2.nil?
+    return 0.0 if embedding1.length != embedding2.length
+
+    # Calculate dot product
+    dot_product = embedding1.zip(embedding2).map { |a, b| a * b }.sum
+
+    # Calculate magnitudes
+    magnitude1 = Math.sqrt(embedding1.map { |x| x * x }.sum)
+    magnitude2 = Math.sqrt(embedding2.map { |x| x * x }.sum)
+
+    return 0.0 if magnitude1 == 0 || magnitude2 == 0
+
+    # Return cosine similarity
+    dot_product / (magnitude1 * magnitude2)
   end
 end

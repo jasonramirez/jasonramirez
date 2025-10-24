@@ -44,6 +44,48 @@
   </div>
 
   <div class="u-margin-bottom-x-large">
+    <strong>Embeddings</strong>
+    <p>
+      Vector embeddings enable semantic search in your knowledge base. 
+      Generate embeddings for all knowledge items to improve AI search accuracy.
+    </p>
+    <div class="u-grid">
+      <div class="stat-card">
+        <div class="stat-card__number"><%= KnowledgeItem.with_embeddings.count %></div>
+        <div class="stat-card__label">Posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number"><%= AdditionalKnowledge.with_embeddings.count %></div>
+        <div class="stat-card__label">Additional</div>
+      </div>
+    </div>
+    
+    <% items_without_embeddings = KnowledgeItem.where(content_embedding: nil).count %>
+    <% additional_without_embeddings = AdditionalKnowledge.where(content_embedding: nil).count %>
+    <% total_without_embeddings = items_without_embeddings + additional_without_embeddings %>
+    
+    <% if total_without_embeddings > 0 %>
+      <div class="admin-pending">
+        <span class="banner banner--warning">
+          <%= inline_svg "icon-warning.svg" %>
+          Missing Embeddings
+        </span>
+        <p><%= total_without_embeddings %> items need embeddings generated for optimal search performance.</p>
+      </div>
+      
+      <%= form_with url: generate_embeddings_admins_additional_knowledges_path, method: :post, local: true, class: "inline-form" do |form| %>
+        <%= form.submit "Generate Embeddings", class: "button button--primary", 
+            data: { confirm: "This will generate embeddings for all items without them. This may take a few minutes. Continue?" } %>
+      <% end %>
+    <% else %>
+      <div class="banner banner--notice u-margin-top-medium">
+        <%= inline_svg "icon-badge-check.svg" %>
+        All items have embeddings
+      </div>
+    <% end %>
+  </div>
+
+  <div class="u-margin-bottom-x-large">
     <strong>Pending Posts</strong>
     <p>
       Posts aren't automatically added to the knowledge base, 

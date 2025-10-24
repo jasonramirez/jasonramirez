@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :additional_knowledges, except: [:show] do
       collection do
         post :update_knowledge_base
+        post :generate_embeddings
       end
     end
     resources :chat_users do

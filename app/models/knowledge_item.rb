@@ -115,26 +115,19 @@ class KnowledgeItem < ActiveRecord::Base
   end
 
   def generate_embeddings
-    return if content.blank? && title.blank?
+    return if content.blank?
     
     embedding_service = EmbeddingService.new
     
-    # Generate embeddings for both content and title
+    # Generate embedding for content only
     content_emb = embedding_service.generate_embedding(content) if content.present?
-    title_emb = embedding_service.generate_embedding(title) if title.present?
     
-    # Convert arrays to proper format for pgvector
-    updates = {}
-    updates[:content_embedding] = format_embedding_for_db(content_emb) if content_emb
-    updates[:title_embedding] = format_embedding_for_db(title_emb) if title_emb
-    
-    if updates.any?
+    if content_emb
       # Use raw SQL to properly insert vector data
-      updates.each do |column, embedding|
-        ActiveRecord::Base.connection.execute(
-          "UPDATE knowledge_items SET #{column} = '#{embedding}' WHERE id = #{id}"
-        )
-      end
+      formatted_embedding = format_embedding_for_db(content_emb)
+      ActiveRecord::Base.connection.execute(
+        "UPDATE knowledge_items SET content_embedding = '#{formatted_embedding}' WHERE id = #{id}"
+      )
     end
   end
 

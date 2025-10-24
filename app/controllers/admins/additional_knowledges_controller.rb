@@ -93,6 +93,35 @@ class Admins::AdditionalKnowledgesController < ApplicationController
     end
   end
 
+  def generate_embeddings
+    begin
+      # Generate embeddings for all knowledge items that don't have them
+      items_without_embeddings = KnowledgeItem.where(content_embedding: nil)
+      items_processed = 0
+      
+      items_without_embeddings.find_each(batch_size: 5) do |item|
+        item.generate_embeddings
+        items_processed += 1
+        sleep(0.5) # Small delay to avoid overwhelming the API
+      end
+      
+      # Also generate embeddings for additional knowledge items
+      additional_knowledge_without_embeddings = AdditionalKnowledge.where(content_embedding: nil)
+      additional_knowledge_without_embeddings.find_each(batch_size: 5) do |item|
+        item.generate_embeddings
+        items_processed += 1
+        sleep(0.5)
+      end
+      
+      redirect_to admins_additional_knowledges_path, 
+                  notice: "Embeddings generated successfully for #{items_processed} items!"
+    rescue => e
+      Rails.logger.error "Embedding generation error: #{e.message}"
+      redirect_to admins_additional_knowledges_path, 
+                  alert: "Embedding generation failed: #{e.message}"
+    end
+  end
+
   private
 
   def set_additional_knowledge

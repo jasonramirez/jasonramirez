@@ -7,6 +7,7 @@ class AdditionalKnowledge < ActiveRecord::Base
   scope :by_category, ->(category) { where(category: category) }
   scope :by_created, -> { order(created_at: :desc) }
   scope :for_ai, -> { where.not(content_embedding: nil) }
+  scope :with_embeddings, -> { where.not(content_embedding: nil) }
 
   def self.search_by_similarity(query, limit: 5)
     return none if query.blank?
@@ -18,6 +19,20 @@ class AdditionalKnowledge < ActiveRecord::Base
     where.not(content_embedding: nil)
          .order(Arel.sql("content_embedding <-> '#{formatted_embedding}'"))
          .limit(limit)
+  end
+
+  def generate_embeddings
+    return if content.blank?
+    
+    embedding_service = EmbeddingService.new
+    content_emb = embedding_service.generate_embedding(content)
+    
+    if content_emb
+      formatted_embedding = format_embedding_for_db(content_emb)
+      ActiveRecord::Base.connection.execute(
+        "UPDATE additional_knowledges SET content_embedding = '#{formatted_embedding}' WHERE id = #{id}"
+      )
+    end
   end
 
   private
