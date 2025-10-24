@@ -433,8 +433,7 @@ class OllamaConversationService
       ]
       
       response = @ollama_service.chat(messages, {
-        temperature: 0.7,
-        max_tokens: 500
+        temperature: 0.7
       })
       
       response || "I'm sorry, I couldn't generate a response at the moment."
