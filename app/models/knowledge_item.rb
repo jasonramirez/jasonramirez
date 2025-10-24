@@ -88,26 +88,33 @@ class KnowledgeItem < ActiveRecord::Base
     
     return fallback_search(query, limit) if query_embedding.nil?
     
-    # Format embedding for database query
-    formatted_embedding = "[#{query_embedding.join(',')}]"
+    # Get all items with embeddings and calculate similarity in Ruby
+    items = with_embeddings.limit(limit * 3)
     
-    # Use pgvector for cosine similarity search with Arel.sql for vector operations
-    # Incorporate feedback scores into ranking: boost items with good feedback
-    with_embeddings
-      .select(Arel.sql("*, 
-                       content_embedding <=> '#{formatted_embedding}' AS similarity_score,
-                       (content_embedding <=> '#{formatted_embedding}') * 
-                       CASE 
-                         WHEN total_feedback_count >= 3 THEN 
-                           CASE 
-                             WHEN feedback_score >= 0.7 THEN 0.8  -- Boost good content (lower distance = better)
-                             WHEN feedback_score <= 0.3 THEN 1.2  -- Penalize poor content (higher distance = worse)
-                             ELSE 1.0  -- Neutral
-                           END
-                         ELSE 1.0  -- No adjustment for items with insufficient feedback
-                       END AS adjusted_similarity_score"))
-      .order(Arel.sql("adjusted_similarity_score"))
-      .limit(limit)
+    # Calculate similarity for each item
+    items_with_similarity = items.map do |item|
+      stored_embedding = parse_embedding_from_text(item.content_embedding)
+      next nil unless stored_embedding
+      
+      similarity = calculate_cosine_similarity(query_embedding, stored_embedding)
+      
+      # Apply feedback-based adjustment
+      adjusted_similarity = similarity
+      if item.total_feedback_count && item.total_feedback_count >= 3
+        if item.feedback_score && item.feedback_score >= 0.7
+          adjusted_similarity *= 0.8  # Boost good content
+        elsif item.feedback_score && item.feedback_score <= 0.3
+          adjusted_similarity *= 1.2  # Penalize poor content
+        end
+      end
+      
+      item.define_singleton_method(:similarity_score) { similarity }
+      item.define_singleton_method(:adjusted_similarity_score) { adjusted_similarity }
+      
+      [item, adjusted_similarity]
+    end.compact.sort_by { |_, adjusted_similarity| -adjusted_similarity }.first(limit)
+    
+    items_with_similarity.map(&:first)
   end
 
   def self.fallback_search(query, limit = 10)
@@ -171,5 +178,31 @@ class KnowledgeItem < ActiveRecord::Base
   def format_embedding_for_db(embedding)
     return nil unless embedding.is_a?(Array)
     "[#{embedding.join(',')}]"
+  end
+
+  def self.parse_embedding_from_text(embedding_text)
+    return nil if embedding_text.blank?
+
+    # Parse the embedding from text format "[1.0,2.0,3.0]"
+    embedding_text.gsub(/[\[\]]/, '').split(',').map(&:to_f)
+  rescue
+    nil
+  end
+
+  def self.calculate_cosine_similarity(embedding1, embedding2)
+    return 0.0 if embedding1.nil? || embedding2.nil?
+    return 0.0 if embedding1.length != embedding2.length
+
+    # Calculate dot product
+    dot_product = embedding1.zip(embedding2).map { |a, b| a * b }.sum
+
+    # Calculate magnitudes
+    magnitude1 = Math.sqrt(embedding1.map { |x| x * x }.sum)
+    magnitude2 = Math.sqrt(embedding2.map { |x| x * x }.sum)
+
+    return 0.0 if magnitude1 == 0 || magnitude2 == 0
+
+    # Return cosine similarity
+    dot_product / (magnitude1 * magnitude2)
   end
 end

@@ -26,7 +26,7 @@ class KnowledgeChunk < ActiveRecord::Base
     # Get all chunks with embeddings
     chunks = joins(:knowledge_item)
               .where.not(content_embedding: nil)
-              .limit(limit * 3) # Get more than needed for similarity calculation
+              .limit(limit * 10) # Get more chunks to ensure we find the best matches
     
     # Calculate similarity scores and sort
     chunks_with_similarity = chunks.map do |chunk|

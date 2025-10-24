@@ -223,7 +223,7 @@ RSpec.describe ConversationService, type: :service do
     context "with feedback-aware search" do
       it "passes search query to enhanced semantic search methods" do
         # Mock the enhanced semantic search methods
-        expect(KnowledgeChunk).to receive(:semantic_search).with("design feedback test", limit: 8).and_return([])
+        expect(KnowledgeChunk).to receive(:semantic_search).with("design feedback test", limit: 15).and_return([])
         expect(KnowledgeItem).to receive(:semantic_search).with("design feedback test", limit: 6).and_return([])
         allow(service).to receive(:progressive_keyword_search).and_return([])
         
@@ -236,7 +236,7 @@ RSpec.describe ConversationService, type: :service do
         good_chunk = double('KnowledgeChunk',
           id: 1, title: 'Good Content', content: 'Well-rated content', 
           category: 'Test', tags: '#test', confidence_score: 0.9,
-          similarity_score: 0.3, source: 'test', chunk_type: 'semantic',
+          similarity_score: 0.4, source: 'test', chunk_type: 'semantic',
           chunk_index: 0, knowledge_item_id: 1
         )
         

@@ -109,7 +109,7 @@ class ConversationService
     Rails.logger.info "  Question: #{question}"
     
     # Try chunk-based semantic search first for more precise results
-    chunk_results = KnowledgeChunk.semantic_search(question, limit: 8)
+    chunk_results = KnowledgeChunk.semantic_search(question, limit: 15)
     
     if chunk_results.any? && chunk_results.first.respond_to?(:similarity_score)
       Rails.logger.info "  Chunk search results: #{chunk_results.count}"
@@ -117,7 +117,7 @@ class ConversationService
       # Filter chunks by similarity threshold
       good_chunks = chunk_results.select do |chunk|
         similarity = chunk.similarity_score.to_f
-        similarity < 0.6  # Slightly more lenient for chunks
+        similarity > 0.3  # More lenient threshold for chunks
       end
       
       Rails.logger.info "  High-quality chunk results: #{good_chunks.count}"
@@ -477,6 +477,8 @@ class ConversationService
       Here's relevant information from my knowledge base:
 
       #{context}
+
+      IMPORTANT: Use the most relevant and specific content from the knowledge base. If you see content about specific frameworks, concepts, or personal experiences that directly relate to the question, prioritize those over generic advice. Reference specific stories, examples, and frameworks from the knowledge base when they're relevant.
 
       Please provide a conversational response that matches the energy and complexity of the question:
       - For simple greetings/personal questions: 1 sentence, casual and warm
