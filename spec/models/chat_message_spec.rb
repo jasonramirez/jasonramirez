@@ -177,20 +177,20 @@ RSpec.describe ChatMessage, type: :model do
       let(:saved_message) { create(:chat_message) }
 
       context "when message has content" do
-        it "calls EmbeddingService" do
-          embedding_service = instance_double(EmbeddingService)
-          allow(EmbeddingService).to receive(:new).and_return(embedding_service)
+        it "calls OllamaEmbeddingService" do
+          embedding_service = instance_double(OllamaEmbeddingService)
+          allow(OllamaEmbeddingService).to receive(:new).and_return(embedding_service)
           allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
 
           saved_message.generate_embedding
 
-          expect(EmbeddingService).to have_received(:new).at_least(:once)
+          expect(OllamaEmbeddingService).to have_received(:new).at_least(:once)
           expect(embedding_service).to have_received(:generate_embedding).with(saved_message.content).at_least(:once)
         end
 
         it "updates the content_embedding column" do
-          embedding_service = instance_double(EmbeddingService)
-          allow(EmbeddingService).to receive(:new).and_return(embedding_service)
+          embedding_service = instance_double(OllamaEmbeddingService)
+          allow(OllamaEmbeddingService).to receive(:new).and_return(embedding_service)
           allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
 
           saved_message.generate_embedding

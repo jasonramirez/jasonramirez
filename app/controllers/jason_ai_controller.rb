@@ -22,7 +22,7 @@ class JasonAiController < ApplicationController
       question_message.reload  # Get any embedding that was created synchronously
       
       begin
-        @conversation_service = ConversationService.new
+        @conversation_service = OllamaConversationService.new
         result = @conversation_service.respond_to_question(@question, current_chat_user.id)
         
         # Handle both old string format and new hash format

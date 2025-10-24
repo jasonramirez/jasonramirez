@@ -19,8 +19,9 @@ gem "recipient_interceptor"
 gem "redcarpet"
 gem "redis"
 gem "rouge-rails"
-gem "ruby-openai"
-gem "elevenlabs"
+# AI/LLM Services - Migrating to Ollama
+# gem "ruby-openai"  # Commented out during Ollama migration
+# gem "elevenlabs"   # Commented out during Ollama migration
 gem "pgvector"
 gem "neighbor"
 gem "normalize-rails", "~> 3.0.0"

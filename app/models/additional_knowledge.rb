@@ -14,7 +14,7 @@ class AdditionalKnowledge < ActiveRecord::Base
   def self.search_by_similarity(query, limit: 5)
     return none if query.blank?
 
-    embedding = EmbeddingService.new.generate_embedding(query)
+    embedding = OllamaEmbeddingService.new.generate_embedding(query)
     return none unless embedding
 
     # For now, return records with embeddings (similarity search requires pgvector)
@@ -25,7 +25,7 @@ class AdditionalKnowledge < ActiveRecord::Base
   def generate_embeddings
     return if content.blank?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     content_emb = embedding_service.generate_embedding(content)
     
     if content_emb
@@ -38,7 +38,7 @@ class AdditionalKnowledge < ActiveRecord::Base
   def generate_embedding
     return if content.blank?
 
-    embedding = EmbeddingService.new.generate_embedding(content)
+    embedding = OllamaEmbeddingService.new.generate_embedding(content)
     update_column(:content_embedding, embedding) if embedding
   end
 end

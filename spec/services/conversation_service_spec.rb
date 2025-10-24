@@ -1,21 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe ConversationService, type: :service do
-  let(:client_double) { double("OpenAI::Client") }
-  let(:service) { ConversationService.new }
+RSpec.describe OllamaConversationService, type: :service do
+  let(:ollama_service_double) { double("OllamaService") }
+  let(:service) { OllamaConversationService.new }
   
   before do
-    # Mock OpenAI client for all tests
-    allow(OpenAI::Client).to receive(:new).and_return(client_double)
+    # Mock OllamaService for all tests
+    allow(OllamaService).to receive(:new).and_return(ollama_service_double)
     
-    # Mock embeddings API calls (used by ChatMessage model)
-    allow(client_double).to receive(:embeddings).and_return({
-      "data" => [
-        {
-          "embedding" => Array.new(1536, 0.1)
-        }
-      ]
-    })
+    # Mock Ollama API calls
+    allow(ollama_service_double).to receive(:chat).and_return("Mock response")
+    allow(ollama_service_double).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
   end
   
   describe "#respond_to_question" do
@@ -32,16 +27,8 @@ RSpec.describe ConversationService, type: :service do
                           source: "test_source")
         allow(service).to receive(:search_knowledge_base).and_return([mock_item])
         
-        # Mock OpenAI client response
-        allow(client_double).to receive(:chat).and_return({
-          "choices" => [
-            {
-              "message" => {
-                "content" => "Test response"
-              }
-            }
-          ]
-        })
+        # Mock Ollama service response
+        allow(ollama_service_double).to receive(:chat).and_return("Test response")
         
         result = service.respond_to_question("Test question")
         
@@ -72,16 +59,8 @@ RSpec.describe ConversationService, type: :service do
         # Mock ChatMessage.find_similar_messages to avoid database complexity
         allow(ChatMessage).to receive(:find_similar_messages).and_return([])
         
-        # Mock OpenAI client response
-        allow(client_double).to receive(:chat).and_return({
-          "choices" => [
-            {
-              "message" => {
-                "content" => "Contextual response"
-              }
-            }
-          ]
-        })
+        # Mock Ollama service response
+        allow(ollama_service_double).to receive(:chat).and_return("Contextual response")
         
         result = service.respond_to_question("Follow-up question", user.id)
         
@@ -91,12 +70,12 @@ RSpec.describe ConversationService, type: :service do
     end
 
     context "when errors occur" do
-      it "handles OpenAI errors gracefully" do
-        allow(service).to receive(:search_knowledge_base).and_raise(OpenAI::Error.new("API Error"))
+      it "handles API errors gracefully" do
+        allow(service).to receive(:search_knowledge_base).and_raise(StandardError.new("API Error"))
         
         result = service.respond_to_question("Test question")
         
-        expect(result[:text]).to include("connectivity issues")
+        expect(result[:text]).to include("encountered an error")
       end
 
       it "handles database errors gracefully" do

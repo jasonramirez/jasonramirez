@@ -20,7 +20,7 @@ RSpec.describe ContentChunkingService do
 
   describe "#initialize" do
     it "initializes with an embedding service" do
-      expect(service.instance_variable_get(:@embedding_service)).to be_a(EmbeddingService)
+      expect(service.instance_variable_get(:@embedding_service)).to be_a(OllamaEmbeddingService)
     end
   end
 

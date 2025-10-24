@@ -65,7 +65,7 @@ namespace :embeddings do
   task generate_chat_embeddings: :environment do
     puts "💬 Generating embeddings for chat messages..."
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     total_messages = ChatMessage.where(content_embedding: nil).count
     processed = 0
     

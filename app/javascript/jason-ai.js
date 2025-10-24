@@ -54,6 +54,8 @@ class JasonAiChat {
     this.bindScrollEvents();
     this.scrollToBottom();
     this.scrollToLatestMessage();
+
+    console.log("JasonAiChat: Setup completed successfully");
   }
 
   bindEvents() {
@@ -65,6 +67,7 @@ class JasonAiChat {
 
     // Add form submit handler
     this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+    console.log("JasonAiChat: Form submit event listener attached");
 
     // Add Enter key handler for the input field
     if (this.input) {
@@ -188,10 +191,15 @@ class JasonAiChat {
   }
 
   async handleSubmit(e) {
+    console.log("JasonAiChat: Form submit event triggered");
     e.preventDefault();
+    e.stopPropagation();
 
     // Check if button is disabled to prevent multiple submissions
     if (this.submitButton.disabled) {
+      console.log(
+        "JasonAiChat: Submit button is disabled, ignoring submission"
+      );
       return;
     }
 

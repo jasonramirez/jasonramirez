@@ -83,7 +83,7 @@ class KnowledgeItem < ActiveRecord::Base
   def self.semantic_search(query, limit: 10)
     return [] if query.blank?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     query_embedding = embedding_service.generate_embedding(query)
     
     return fallback_search(query, limit) if query_embedding.nil?
@@ -124,7 +124,7 @@ class KnowledgeItem < ActiveRecord::Base
   def generate_embeddings
     return if content.blank?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     
     # Generate embedding for content only
     content_emb = embedding_service.generate_embedding(content) if content.present?

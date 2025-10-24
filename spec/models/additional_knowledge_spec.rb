@@ -76,7 +76,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
     end
 
     it 'returns none when embedding service fails' do
-      allow_any_instance_of(EmbeddingService).to receive(:generate_embedding).and_return(nil)
+      allow_any_instance_of(OllamaEmbeddingService).to receive(:generate_embedding).and_return(nil)
       
       results = AdditionalKnowledge.search_by_similarity('design')
       expect(results).to be_empty
@@ -86,7 +86,7 @@ RSpec.describe AdditionalKnowledge, type: :model do
   describe 'callbacks' do
     it 'generates embedding after save when content changes' do
       embedding = Array.new(1536, 0.1)
-      allow_any_instance_of(EmbeddingService).to receive(:generate_embedding).and_return(embedding)
+      allow_any_instance_of(OllamaEmbeddingService).to receive(:generate_embedding).and_return(embedding)
       
       additional_knowledge = create(:additional_knowledge, content: 'Initial content')
       expect(additional_knowledge.content_embedding).to eq(embedding)

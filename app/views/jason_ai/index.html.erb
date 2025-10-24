@@ -44,7 +44,7 @@
     <%= form_with url: ask_jason_ai_path,
       local: false,
       class: "jason-ai-chat-prompt__form",
-      data: { jason_ai_chat: true } do |form| %>
+      data: { jason_ai_chat: true, turbo: false } do |form| %>
       <button type="button" 
         class="jason-ai-mobile-nav-trigger button button--tertiary"
         data-action="click->navigation-drawer#toggle"

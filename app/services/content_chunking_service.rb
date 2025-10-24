@@ -4,7 +4,7 @@ class ContentChunkingService
   OVERLAP_SIZE = 100     # characters for context continuity
 
   def initialize
-    @embedding_service = EmbeddingService.new
+    @embedding_service = OllamaEmbeddingService.new
   end
 
   def chunk_knowledge_item(knowledge_item)

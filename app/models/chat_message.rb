@@ -18,7 +18,7 @@ class ChatMessage < ActiveRecord::Base
   def generate_embedding
     return if content.blank? || new_record?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     embedding = embedding_service.generate_embedding(content)
     
     if embedding
@@ -30,7 +30,7 @@ class ChatMessage < ActiveRecord::Base
   def self.find_similar_messages(query, user_id, limit: 5)
     return [] if query.blank?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     query_embedding = embedding_service.generate_embedding(query)
     
     return [] if query_embedding.nil?

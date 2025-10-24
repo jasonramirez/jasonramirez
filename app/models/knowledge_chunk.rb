@@ -18,7 +18,7 @@ class KnowledgeChunk < ActiveRecord::Base
   def self.semantic_search(query, limit: 20)
     return [] if query.blank?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     query_embedding = embedding_service.generate_embedding(query)
     
     return [] if query_embedding.nil?
@@ -57,7 +57,7 @@ class KnowledgeChunk < ActiveRecord::Base
   def generate_embeddings
     return if content.blank?
     
-    embedding_service = EmbeddingService.new
+    embedding_service = OllamaEmbeddingService.new
     content_emb = embedding_service.generate_embedding(content)
     
     if content_emb
