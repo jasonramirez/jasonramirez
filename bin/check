@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Manual check script
+# Runs the same checks as the pre-commit hook
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+print_status() {
+    echo -e "${GREEN}✓${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}✗${NC} $1"
+}
+
+echo "🔍 Running manual checks..."
+
+# Check if we're in a Rails project
+if [ ! -f "Gemfile" ]; then
+    print_error "Not in a Rails project directory"
+    exit 1
+fi
+
+# Run RuboCop if available
+if bundle exec rubocop --version >/dev/null 2>&1; then
+    echo ""
+    print_status "Running RuboCop..."
+    if bundle exec rubocop; then
+        print_status "RuboCop passed"
+    else
+        print_error "RuboCop failed"
+        exit 1
+    fi
+else
+    print_warning "RuboCop not available, skipping"
+fi
+
+# Run Rails tests
+echo ""
+print_status "Running Rails tests..."
+if bundle exec rspec --format progress; then
+    print_status "All tests passed"
+else
+    print_error "Tests failed"
+    exit 1
+fi
+
+print_status "All checks passed! 🎉"
