@@ -23,7 +23,8 @@
 }
 
 .badge--jason-ai {
-  background-image: url("jason-ai-badge-background.png");
+  //background-image: url("jason-ai-badge-background.png");
+  background-color: $action-color;
   background-size: cover;
   margin-left: 0.25rem;
   color: $warm-white;
