@@ -1,8 +1,7 @@
 require "rails_helper"
 
-# Skip VoiceService tests during Ollama migration
-# TODO: Update these tests when voice functionality is migrated to Ollama
-RSpec.describe VoiceService, skip: "Skipped during Ollama migration - ElevenLabs gem commented out" do
+# Skip VoiceService tests - ElevenLabs functionality removed
+RSpec.describe VoiceService, skip: "Skipped - ElevenLabs gem removed" do
   let(:service) { described_class.new }
   let(:sample_text) { "Hello, this is a test message for voice generation." }
   let(:mock_client) { instance_double("Elevenlabs::Client") }
