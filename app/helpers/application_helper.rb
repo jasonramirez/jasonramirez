@@ -17,15 +17,21 @@ module ApplicationHelper
   def parse_framework_links(content)
     return content if content.blank?
     
-    # First convert markdown links [text](url) to HTML links
-    processed_content = content.gsub(/\[([^\]]+)\]\(([^)]+)\)/) do |match|
-      link_text = $1
-      url = $2
-      link_to(link_text, url, target: '_blank', class: 'framework-link')
-    end
+    # Use MarkdownParser for full markdown processing including paragraphs, lists, etc.
+    markdown_parser = MarkdownParser.new(content)
+    processed_content = markdown_parser.markdown_to_html
     
-    # Then convert basic markdown formatting
-    processed_content = process_basic_markdown(processed_content)
+    # Convert markdown links [text](url) to Rails link_to helpers for framework links
+    processed_content = processed_content.gsub(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/) do |match|
+      url = $1
+      link_text = $2
+      # Check if this is a framework link (internal post link)
+      if url.start_with?('/posts/')
+        link_to(link_text, url, target: '_blank', class: 'framework-link')
+      else
+        match # Keep original link for external URLs
+      end
+    end
     
     processed_content
   end

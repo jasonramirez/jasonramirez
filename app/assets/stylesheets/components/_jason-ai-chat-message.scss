@@ -30,6 +30,10 @@
   .light & a {
     color: $warm-white;
   }
+
+  p:only-child {
+    margin-bottom: 0;
+  }
 }
 
 .jason-ai-chat-message__actions {

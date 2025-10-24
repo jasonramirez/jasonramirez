@@ -469,6 +469,16 @@ RSpec.describe OllamaConversationService, type: :service do
         
         expect(prompt).to include("Use conversation context")
       end
+
+      it "includes response formatting instructions" do
+        prompt = service.send(:build_prompt, "Test question", "context")
+        
+        expect(prompt).to include("RESPONSE FORMATTING")
+        expect(prompt).to include("multiple paragraphs")
+        expect(prompt).to include("bullet points")
+        expect(prompt).to include("inline links")
+        expect(prompt).to include("scannable")
+      end
     end
 
     describe "#system_prompt" do
@@ -484,6 +494,16 @@ RSpec.describe OllamaConversationService, type: :service do
         prompt = service.send(:system_prompt, nil)
         
         expect(prompt).not_to include("CONVERSATION CONTEXT GUIDANCE")
+      end
+
+      it "includes formatting guidelines for better response structure" do
+        prompt = service.send(:system_prompt, nil)
+        
+        expect(prompt).to include("FORMATTING GUIDELINES")
+        expect(prompt).to include("multiple paragraphs")
+        expect(prompt).to include("bullet points")
+        expect(prompt).to include("inline links")
+        expect(prompt).to include("scannable")
       end
     end
   end

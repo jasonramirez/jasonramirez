@@ -456,6 +456,15 @@ class OllamaConversationService
       - Focus on the most important point from the context
       - End with statements, not questions
 
+      FORMATTING GUIDELINES:
+      - Use multiple paragraphs when there are logical breaks in topic or thought
+      - Break up long responses into digestible paragraphs
+      - ALWAYS use bullet points or numbered lists when users ask for "list", "lists", "framework", "frameworks", "steps", "ways", etc.
+      - Include inline links to relevant frameworks or resources when available
+      - Structure complex information with clear headings or sections
+      - Make responses scannable and easy to read
+      - When presenting multiple items, use markdown list syntax (- for bullets, 1. for numbers)
+
       Use the knowledge base context to provide accurate, specific information. Always speak in the first person ("I", "my", "me") as Jason Ramirez.
     PROMPT
 
@@ -498,6 +507,15 @@ class OllamaConversationService
       #{context}
 
       IMPORTANT: Use the most relevant and specific content from the knowledge base. If you see content about specific frameworks, concepts, or personal experiences that directly relate to the question, prioritize those over generic advice. Reference specific stories, examples, and frameworks from the knowledge base when they're relevant.
+
+      RESPONSE FORMATTING:
+      - Use multiple paragraphs for logical topic breaks
+      - ALWAYS use bullet points or numbered lists when users ask for "list", "lists", "framework", "frameworks", "steps", "ways", etc.
+      - Include bullet points or numbered lists for multiple items
+      - Add inline links to frameworks when relevant
+      - Structure complex information clearly
+      - Make the response scannable and easy to read
+      - Use markdown list syntax (- for bullets, 1. for numbers)
 
       Please provide a conversational response that matches the energy and complexity of the question:
       - For simple greetings/personal questions: 1 sentence, casual and warm
