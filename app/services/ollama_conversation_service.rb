@@ -142,18 +142,50 @@ class OllamaConversationService
     Rails.logger.info "  Falling back to full item search"
     semantic_results = KnowledgeItem.semantic_search(question, limit: 6)
     
-    if semantic_results.any? && semantic_results.first.respond_to?(:similarity_score)
-      Rails.logger.info "  Full item semantic search results: #{semantic_results.count}"
-      good_results = semantic_results.select do |item|
-        similarity = item.similarity_score.to_f
-        similarity < 0.5
+    # If semantic search doesn't find relevant results, try keyword search
+    if semantic_results.empty? || (semantic_results.first.respond_to?(:similarity_score) && semantic_results.first.similarity_score.to_f < 0.3)
+      Rails.logger.info "  Semantic search found low relevance, trying keyword search"
+      
+      # Try different keyword variations
+      keywords = [question]
+      
+      # Add related terms for common queries
+      if question.match?(/talent|develop|team|leadership|manage|coach/i)
+        keywords += ['leadership', 'management', 'team', 'coaching', 'development']
       end
       
-      Rails.logger.info "  High-quality full item results: #{good_results.count}"
+      keyword_results = KnowledgeItem.where(
+        keywords.map { |k| "(title ILIKE ? OR content ILIKE ?)" }.join(' OR '),
+        *keywords.flat_map { |k| ["%#{k}%", "%#{k}%"] }
+      ).limit(6)
       
-      # Combine additional knowledge with public knowledge
-      combined_results = good_results + convert_additional_knowledge_to_item_format(additional_knowledge_results)
-      return prioritize_frameworks(combined_results, question) if combined_results.any?
+      if keyword_results.any?
+        Rails.logger.info "  Keyword search found #{keyword_results.count} results"
+        semantic_results = keyword_results
+      end
+    end
+    
+    if semantic_results.any?
+      Rails.logger.info "  Full item semantic search results: #{semantic_results.count}"
+      
+      # Check if results have similarity scores (semantic search) or not (keyword search)
+      if semantic_results.first.respond_to?(:similarity_score)
+        good_results = semantic_results.select do |item|
+          similarity = item.similarity_score.to_f
+          similarity > 0.3
+        end
+        
+        Rails.logger.info "  High-quality full item results: #{good_results.count}"
+        
+        # Combine additional knowledge with public knowledge
+        combined_results = good_results + convert_additional_knowledge_to_item_format(additional_knowledge_results)
+        return prioritize_frameworks(combined_results, question) if combined_results.any?
+      else
+        # These are keyword search results, use them directly
+        Rails.logger.info "  Using keyword search results directly"
+        combined_results = semantic_results + convert_additional_knowledge_to_item_format(additional_knowledge_results)
+        return prioritize_frameworks(combined_results, question) if combined_results.any?
+      end
     end
     
     # If no semantic results, try additional knowledge alone
@@ -402,7 +434,7 @@ class OllamaConversationService
       
       response = @ollama_service.chat(messages, {
         temperature: 0.7,
-        max_tokens: 150
+        max_tokens: 500
       })
       
       response || "I'm sorry, I couldn't generate a response at the moment."
@@ -414,33 +446,18 @@ class OllamaConversationService
 
   def system_prompt(conversation_context = nil)
     base_prompt = <<~PROMPT
-      You are Jason Ramirez, a Product Design Director with extensive experience in product design, leadership, and strategic thinking. You're having a conversation with someone who wants to learn from your expertise.
-
-      CRITICAL: You will ONLY receive questions that have relevant knowledge base content. If you receive a question, it means there IS relevant information available.
+      You are Jason Ramirez, a Product Design Director with extensive experience in product design, leadership, and strategic thinking.
 
       Your responses should be:
       - Conversational and engaging, like you're talking to a colleague
       - Based on the knowledge base context provided
       - Personal and authentic to your voice and experience
       - Helpful and actionable
-      - APPROPRIATE LENGTH - match the user's energy and question complexity
-      - For simple greetings/personal questions: respond briefly and warmly (1 sentence max)
-      - For career/professional questions: provide 2-3 sentences with context
-      - For simple personal questions (how are you, what's your name, etc.): keep it casual and brief
+      - Complete and coherent - don't cut off mid-sentence
       - Focus on the most important point from the context
-      - DECLARATIVE - end with statements, not questions
+      - End with statements, not questions
 
-      FRAMEWORK GUIDANCE:
-      - When you see "[FRAMEWORK]" in the context, prioritize referencing those structured approaches
-      - If frameworks are available, mention them as practical tools the person can use
-      - Present frameworks as actionable systems, not just concepts
-      - When multiple frameworks are relevant, briefly mention the most applicable one
-
-      IMPORTANT: For non-career questions, don't bring up work or professional topics unless specifically asked.
-
-      Use the knowledge base context to provide accurate, specific information. If the context doesn't fully answer the question, acknowledge what you know and suggest what else might be helpful to explore.
-
-      Always speak in the first person ("I", "my", "me") as Jason Ramirez.
+      Use the knowledge base context to provide accurate, specific information. Always speak in the first person ("I", "my", "me") as Jason Ramirez.
     PROMPT
 
     if conversation_context&.dig(:has_context)
@@ -499,7 +516,7 @@ class OllamaConversationService
       item = items.first
       "Based on my experience with #{item.title.downcase}, #{item.content.truncate(200)}. This is from my knowledge base, and I'd be happy to elaborate on any specific aspect you're interested in."
     else
-      "I don't have specific information about that in my knowledge base yet. I'd be happy to help you add relevant content, or you can ask me about topics I do have experience with."
+      "I don't have specific information about that in my knowledge base yet. I'd be happy to help you add relevant content, or you can ask me about topics I do have experience with like product design, leadership, or strategic thinking."
     end
   end
 
