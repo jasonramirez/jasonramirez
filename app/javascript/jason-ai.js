@@ -124,28 +124,21 @@ class JasonAiChat {
   }
 
   scrollToLatestMessage() {
-    if (!this.scrollContainer) {
+    // Use the chat container for scrolling
+    const scrollContainer = document.querySelector(
+      "[data-jason-ai-chat-container='true']"
+    );
+
+    if (!scrollContainer) {
       console.log(
         "JasonAiChat: Scroll container not found for latest message scroll"
       );
       return;
     }
 
-    // Find the most recent chat message
-    const chatMessages = this.chatHistory.querySelectorAll(
-      ".jason-ai-chat-message"
-    );
-    if (chatMessages.length === 0) {
-      console.log("JasonAiChat: No chat messages found");
-      return;
-    }
-
-    const latestMessage = chatMessages[chatMessages.length - 1];
-
     // Scroll to the very bottom of the container immediately (no animation)
-    this.scrollContainer.scrollTo({
-      top:
-        this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight,
+    scrollContainer.scrollTo({
+      top: scrollContainer.scrollHeight - scrollContainer.clientHeight,
       behavior: "instant",
     });
 
@@ -232,37 +225,76 @@ class JasonAiChat {
 
   async submitQuestion(question) {
     try {
-      const response = await fetch(this.form.action, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
-            .content,
-        },
-        body: new URLSearchParams({
-          question: question,
-          authenticity_token: document.querySelector('meta[name="csrf-token"]')
-            .content,
-        }),
-      });
-
-      const data = await response.json();
+      console.log("JasonAiChat: Submitting question:", question);
 
       // Reset form
       this.input.value = "";
 
-      // Add response message to chat (question is already displayed)
-      this.addMessageToChat(
-        data.response_message,
-        true,
-        data.knowledge_base_influence
+      // Use EventSource for real SSE streaming
+      const eventSource = new EventSource(
+        `${this.form.action}?${new URLSearchParams({
+          question: question,
+          authenticity_token: document.querySelector('meta[name="csrf-token"]')
+            .content,
+        })}`
       );
 
-      // Scroll to bottom after response is added
-      setTimeout(() => this.scrollToBottom(true), 300);
+      let responseMessageId = null;
+
+      eventSource.onmessage = (event) => {
+        console.log("JasonAiChat: Received SSE data:", event.data);
+
+        // Parse the HTML content from SSE
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = event.data;
+
+        // Find the message element
+        const messageElement = tempDiv.querySelector(".jason-ai-chat-message");
+        if (messageElement) {
+          const messageId = messageElement.id;
+          if (messageId) {
+            responseMessageId = messageId;
+          }
+
+          // Replace or append the content
+          const existingElement = document.getElementById(messageId);
+          if (existingElement) {
+            existingElement.outerHTML = messageElement.outerHTML;
+          } else {
+            this.chatHistory.insertAdjacentHTML(
+              "beforeend",
+              messageElement.outerHTML
+            );
+          }
+
+          // Scroll to bottom after each update
+          this.scrollToBottom(true);
+        }
+      };
+
+      eventSource.onerror = (error) => {
+        console.error("JasonAiChat: SSE error:", error);
+        eventSource.close();
+
+        this.addMessageToChat(
+          {
+            content: "I'm sorry, I encountered an error. Please try again.",
+            message_type: "answer",
+            created_at: new Date(),
+          },
+          true
+        );
+
+        this.setLoadingState(false);
+      };
+
+      eventSource.addEventListener("close", () => {
+        console.log("JasonAiChat: SSE connection closed");
+        eventSource.close();
+        this.setLoadingState(false);
+      });
     } catch (error) {
-      console.error("Error:", error);
+      console.error("JasonAiChat: Error:", error);
       this.addMessageToChat(
         {
           content: "I'm sorry, I encountered an error. Please try again.",
@@ -279,6 +311,196 @@ class JasonAiChat {
     }
   }
 
+  async submitQuestionOld(question) {
+    try {
+      console.log("JasonAiChat: Submitting question:", question);
+
+      // Reset form
+      this.input.value = "";
+
+      // Use EventSource for SSE streaming
+      const eventSource = new EventSource(
+        `${this.form.action}?${new URLSearchParams({
+          question: question,
+          authenticity_token: document.querySelector('meta[name="csrf-token"]')
+            .content,
+        })}`
+      );
+
+      let responseMessageId = null;
+
+      eventSource.onmessage = (event) => {
+        console.log("JasonAiChat: Received SSE data:", event.data);
+
+        // Parse the HTML content from SSE
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = event.data;
+
+        // Find the message element
+        const messageElement = tempDiv.querySelector(".jason-ai-chat-message");
+        if (messageElement) {
+          const messageId = messageElement.id;
+          if (messageId) {
+            responseMessageId = messageId;
+          }
+
+          // Replace or append the content
+          const existingElement = document.getElementById(messageId);
+          if (existingElement) {
+            existingElement.outerHTML = messageElement.outerHTML;
+          } else {
+            this.chatHistory.insertAdjacentHTML(
+              "beforeend",
+              messageElement.outerHTML
+            );
+          }
+
+          // Scroll to bottom after each update
+          this.scrollToBottom(true);
+        }
+      };
+
+      eventSource.onerror = (error) => {
+        console.error("JasonAiChat: SSE error:", error);
+        eventSource.close();
+
+        this.addMessageToChat(
+          {
+            content: "I'm sorry, I encountered an error. Please try again.",
+            message_type: "answer",
+            created_at: new Date(),
+          },
+          true
+        );
+
+        this.setLoadingState(false);
+      };
+
+      eventSource.addEventListener("close", () => {
+        console.log("JasonAiChat: SSE connection closed");
+        eventSource.close();
+        this.setLoadingState(false);
+      });
+    } catch (error) {
+      console.error("JasonAiChat: Error:", error);
+      this.addMessageToChat(
+        {
+          content: "I'm sorry, I encountered an error. Please try again.",
+          message_type: "answer",
+          created_at: new Date(),
+        },
+        true
+      );
+
+      // Scroll to bottom after error message
+      setTimeout(() => this.scrollToBottom(true), 300);
+      this.setLoadingState(false);
+    }
+  }
+
+  async handleStreamingResponse(response) {
+    console.log("JasonAiChat: Starting to handle streaming response");
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+          console.log("JasonAiChat: Streaming complete");
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        console.log("JasonAiChat: Received chunk:", buffer);
+
+        // Look for complete turbo stream elements
+        const turboStreamRegex = /<turbo-stream[^>]*>[\s\S]*?<\/turbo-stream>/g;
+        let match;
+
+        while ((match = turboStreamRegex.exec(buffer)) !== null) {
+          const turboStreamHtml = match[0];
+          console.log(
+            "JasonAiChat: Found complete turbo stream:",
+            turboStreamHtml
+          );
+
+          // Create a temporary element to parse the turbo stream
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = turboStreamHtml;
+
+          // Find and execute turbo stream actions
+          const turboStreams = tempDiv.querySelectorAll("turbo-stream");
+          turboStreams.forEach((stream) => {
+            this.executeTurboStream(stream);
+          });
+
+          // Remove processed turbo stream from buffer
+          buffer = buffer.replace(turboStreamHtml, "");
+        }
+      }
+    } finally {
+      reader.releaseLock();
+    }
+  }
+
+  executeTurboStream(streamElement) {
+    const action = streamElement.getAttribute("action");
+    const target = streamElement.getAttribute("target");
+    const template = streamElement.querySelector("template");
+
+    console.log("JasonAiChat: Executing turbo stream:", {
+      action,
+      target,
+      hasTemplate: !!template,
+    });
+
+    if (!template) {
+      console.log("JasonAiChat: No template found in turbo stream");
+      return;
+    }
+
+    const content = template.innerHTML;
+    console.log("JasonAiChat: Template content:", content);
+
+    switch (action) {
+      case "replace":
+        const targetElement = document.getElementById(target);
+        console.log(
+          "JasonAiChat: Replace action - target element:",
+          targetElement
+        );
+        if (targetElement) {
+          targetElement.outerHTML = content;
+          console.log("JasonAiChat: Replaced target element");
+        } else {
+          // If target doesn't exist, append to chat history
+          console.log(
+            "JasonAiChat: Target not found, appending to chat history"
+          );
+          this.chatHistory.insertAdjacentHTML("beforeend", content);
+        }
+        break;
+      case "append":
+        const appendTarget = document.getElementById(target);
+        console.log(
+          "JasonAiChat: Append action - target element:",
+          appendTarget
+        );
+        if (appendTarget) {
+          appendTarget.insertAdjacentHTML("beforeend", content);
+        } else {
+          this.chatHistory.insertAdjacentHTML("beforeend", content);
+        }
+        break;
+    }
+
+    // Scroll to bottom after each update
+    this.scrollToBottom(true);
+  }
+
   async addUserQuestionToChat(question) {
     // Create a message object for the user's question
     const userMessage = {
@@ -290,6 +512,32 @@ class JasonAiChat {
 
     // Use the same partial rendering system
     await this.addMessageToChat(userMessage, false, null);
+  }
+
+  async addMessageToChatWithTyping(message, kbInfluence = null) {
+    if (!this.chatHistory) {
+      console.error("Chat history element not found!");
+      return;
+    }
+
+    try {
+      // Create a placeholder message element
+      const messageElement = document.createElement("div");
+      messageElement.className =
+        "jason-ai-chat-message jason-ai-chat-message--answer";
+      messageElement.innerHTML = `
+        <div class="chat-message__content">
+        </div>
+      `;
+
+      this.chatHistory.appendChild(messageElement);
+      this.scrollToBottom(true);
+
+      // Start typing effect
+      this.startTypingEffect(messageElement, message.content, kbInfluence);
+    } catch (error) {
+      console.error("Error adding message with typing:", error);
+    }
   }
 
   async addMessageToChat(
@@ -351,7 +599,7 @@ class JasonAiChat {
     `;
   }
 
-  startTypingEffect(messageElement, content) {
+  startTypingEffect(messageElement, content, kbInfluence = null) {
     const words = content.split(" ");
     let currentWordIndex = 0;
 
@@ -360,32 +608,73 @@ class JasonAiChat {
         const contentElement = messageElement.querySelector(
           ".chat-message__content"
         );
-        const currentText = contentElement.innerHTML.replace(
-          '<span class="typing-indicator">▋</span>',
-          ""
-        );
+        const currentText = contentElement.innerHTML;
         const newText =
           currentText +
           (currentWordIndex > 0 ? " " : "") +
-          words[currentWordIndex];
-        contentElement.innerHTML =
-          newText + '<span class="typing-indicator">▋</span>';
-        currentWordIndex++;
+          `<span class="fade-in-word" style="opacity: 0;">${words[currentWordIndex]}</span>`;
+        contentElement.innerHTML = newText;
 
-        const delay = Math.random() * 100 + 50;
-        setTimeout(typeNextWord, delay);
+        // Animate the word to full opacity
+        const wordElement = contentElement.querySelector(
+          ".fade-in-word:last-child"
+        );
+        if (wordElement) {
+          wordElement.style.transition = "opacity 150ms ease-in";
+          wordElement.style.opacity = "1";
+        }
+
+        currentWordIndex++;
+        setTimeout(typeNextWord, 150);
       } else {
-        const contentElement = messageElement.querySelector(
-          ".chat-message__content"
-        );
-        contentElement.innerHTML = contentElement.innerHTML.replace(
-          '<span class="typing-indicator">▋</span>',
-          ""
-        );
+        // Replace with final formatted content
+        this.renderFinalMessage(messageElement, content, kbInfluence);
       }
     };
 
     setTimeout(typeNextWord, 500);
+  }
+
+  async renderFinalMessage(messageElement, content, kbInfluence) {
+    try {
+      // Render the final message using the Rails partial
+      const response = await fetch("/jason_ai/render_message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+            .content,
+        },
+        body: JSON.stringify({
+          message: {
+            content: content,
+            message_type: "answer",
+            created_at: new Date().toISOString(),
+            id: "temp-" + Date.now(),
+          },
+          kb_influence: kbInfluence,
+        }),
+      });
+
+      if (response.ok) {
+        const html = await response.text();
+        messageElement.outerHTML = html;
+        this.scrollToBottom(true);
+      } else {
+        // Fallback to simple content
+        const contentElement = messageElement.querySelector(
+          ".chat-message__content"
+        );
+        contentElement.innerHTML = content;
+      }
+    } catch (error) {
+      console.error("Error rendering final message:", error);
+      // Fallback to simple content
+      const contentElement = messageElement.querySelector(
+        ".chat-message__content"
+      );
+      contentElement.innerHTML = content;
+    }
   }
 
   scrollToBottom(force = false) {

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post "chat/login", to: "chat_auth#login"
   post "chat/register", to: "chat_auth#register"
   post "jason_ai/ask", to: "jason_ai#ask", as: :ask_jason_ai
+  get "jason_ai/ask_stream", to: "jason_ai#ask_stream", as: :ask_jason_ai_stream
   post "jason_ai/render_message", to: "jason_ai#render_message"
   post "jason_ai/feedback", to: "jason_ai#feedback", as: :jason_ai_feedback
   

@@ -1,0 +1,9 @@
+<div id="streaming-response-<%= message_id %>" class="jason-ai-chat-message jason-ai-chat-message--answer">
+  <div class="chat-message__content">
+    <% if chunk.present? %>
+      <%= parse_framework_links(chunk).html_safe %>
+    <% else %>
+      <span class="typing-indicator">Thinking...</span>
+    <% end %>
+  </div>
+</div>

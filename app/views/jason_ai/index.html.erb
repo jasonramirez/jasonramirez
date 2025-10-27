@@ -41,7 +41,7 @@
   </div>
 
   <div class="jason-ai-chat-prompt">
-    <%= form_with url: ask_jason_ai_path,
+    <%= form_with url: ask_jason_ai_stream_path,
       local: false,
       class: "jason-ai-chat-prompt__form",
       data: { jason_ai_chat: true, turbo: false } do |form| %>

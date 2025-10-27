@@ -3,15 +3,17 @@
 @use "variables/colors" as *;
 
 .jason-ai-chat-message {
-  font-family: $reading-font-family;
-  font-size: $reading-font-size;
-  font-weight: $reading-font-weight;
-  line-height: $reading-line-height;
   max-width: 80%;
   margin: $base-spacing 0;
 
-  @media (min-width: $large-screen) {
-    font-size: $base-font-size;
+  .chat-message__content * {
+    font-family: $reading-font-family;
+    font-size: $reading-font-size;
+    line-height: $reading-line-height;
+
+    // @media (min-width: $large-screen) {
+    //   font-size: $base-font-size;
+    // }
   }
 }
 
@@ -117,5 +119,22 @@
 
   @media (min-width: $medium-screen) {
     max-width: 50%;
+  }
+}
+
+.streaming-cursor {
+  animation: blink 1s infinite;
+  color: $action-color;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
   }
 }

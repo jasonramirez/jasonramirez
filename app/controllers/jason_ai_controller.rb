@@ -94,6 +94,90 @@ class JasonAiController < ApplicationController
     end
   end
 
+  def ask_stream
+    @question = params[:question]
+
+    if @question.present?
+      # Set up SSE headers first
+      response.headers['Content-Type'] = 'text/event-stream'
+      response.headers['Cache-Control'] = 'no-cache'
+      response.headers['Connection'] = 'keep-alive'
+      response.headers['X-Accel-Buffering'] = 'no'
+      
+      begin
+        # Store the user's question
+        question_message = current_chat_user.chat_messages.create!(
+          content: @question,
+          message_type: 'question'
+        )
+        
+        # Ensure the question has an embedding before proceeding with conversation context
+        question_message.reload
+        
+        @conversation_service = OllamaConversationService.new
+        
+        # Get knowledge base context first
+        relevant_items = @conversation_service.send(:search_knowledge_base, @question)
+        conversation_context = @conversation_service.send(:get_conversation_context, @question, current_chat_user.id)
+        context = @conversation_service.send(:build_context, relevant_items, conversation_context)
+        
+        # Calculate KB influence
+        kb_influence = @conversation_service.send(:calculate_knowledge_base_influence, relevant_items, "", @question)
+        
+        # Create a placeholder response message that we'll update
+        response_message = current_chat_user.chat_messages.create!(
+          content: " ",
+          message_type: 'answer',
+          metadata: {
+            knowledge_base_influence: kb_influence
+          }
+        )
+        
+        # Send initial placeholder
+        response.stream.write("data: #{render_to_string(partial: 'jason_ai/streaming_chunk', locals: { chunk: '', message_id: response_message.id, kb_influence: kb_influence })}\n\n")
+        
+        # Stream the response
+        full_response = ""
+        @conversation_service.send(:generate_llm_response_stream, @question, context, conversation_context) do |chunk|
+          full_response += chunk
+          
+          # Send each chunk as SSE
+          response.stream.write("data: #{render_to_string(partial: 'jason_ai/streaming_chunk', locals: { chunk: full_response, message_id: response_message.id, kb_influence: kb_influence })}\n\n")
+        end
+        
+        # Update the final response message
+        response_message.update!(content: full_response)
+        
+        # Send final update with complete message
+        response.stream.write("data: #{render_to_string(partial: 'jason_ai/chat_message', locals: { message: response_message, kb_influence: kb_influence })}\n\n")
+        
+        # Send close event
+        response.stream.write("event: close\ndata: \n\n")
+        
+      rescue => e
+        Rails.logger.error "Error in streaming ask: #{e.message}"
+        Rails.logger.error "Error backtrace: #{e.backtrace.join("\n")}"
+        error_response = "I'm sorry, I encountered an error processing your question. Please try again."
+        
+        response_message = current_chat_user.chat_messages.create!(
+          content: error_response,
+          message_type: 'answer',
+          metadata: {
+            knowledge_base_influence: nil
+          }
+        )
+        
+        response.stream.write("data: #{render_to_string(partial: 'jason_ai/chat_message', locals: { message: response_message, kb_influence: nil })}\n\n")
+      ensure
+        response.stream.close
+      end
+    else
+      response.headers['Content-Type'] = 'text/event-stream'
+      response.stream.write("data: #{render_to_string(partial: 'jason_ai/error_message', locals: { error: "Please provide a question." })}\n\n")
+      response.stream.close
+    end
+  end
+
   def check_audio
     question_hash = params[:question_hash]
     

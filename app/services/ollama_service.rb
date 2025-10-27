@@ -32,6 +32,26 @@ class OllamaService
     end
   end
 
+  def chat_stream(messages, options = {}, &block)
+    return nil if messages.blank?
+
+    begin
+      make_streaming_request('/api/chat', {
+        model: @model,
+        messages: messages,
+        stream: true,
+        options: {
+          temperature: options[:temperature] || 0.7,
+          max_tokens: options[:max_tokens] || 150,
+          top_p: options[:top_p] || 0.9
+        }
+      }, &block)
+    rescue => e
+      Rails.logger.error "Ollama streaming chat error: #{e.message}"
+      nil
+    end
+  end
+
   def generate_embedding(text)
     return nil if text.blank?
 
@@ -155,6 +175,55 @@ class OllamaService
   rescue => e
     Rails.logger.error "Ollama request error: #{e.message}"
     nil
+  end
+
+  def make_streaming_request(endpoint, payload, &block)
+    uri = URI("#{@base_url}#{endpoint}")
+    
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.read_timeout = @timeout
+    http.open_timeout = @timeout
+    
+    request = Net::HTTP::Post.new(uri)
+    request['Content-Type'] = 'application/json'
+    request.body = payload.to_json
+    
+    http.request(request) do |response|
+      case response.code.to_i
+      when 200
+        response.read_body do |chunk|
+          # Parse each line of the streaming response
+          chunk.split("\n").each do |line|
+            next if line.strip.empty?
+            
+            begin
+              data = JSON.parse(line)
+              if data['message'] && data['message']['content']
+                yield(data['message']['content'])
+              end
+            rescue JSON::ParserError
+              # Skip malformed JSON lines
+              next
+            end
+          end
+        end
+      when 404
+        Rails.logger.error "Ollama model not found: #{@model}"
+        yield("Error: Model not found")
+      when 500
+        Rails.logger.error "Ollama server error: #{response.body}"
+        yield("Error: Server error")
+      else
+        Rails.logger.error "Ollama API error: #{response.code} - #{response.body}"
+        yield("Error: API error")
+      end
+    end
+  rescue Net::ReadTimeout, Net::OpenTimeout
+    Rails.logger.error "Ollama streaming request timeout"
+    yield("Error: Request timeout")
+  rescue => e
+    Rails.logger.error "Ollama streaming request error: #{e.message}"
+    yield("Error: #{e.message}")
   end
 
   def clean_text_for_embedding(text)

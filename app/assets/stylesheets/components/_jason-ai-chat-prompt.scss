@@ -28,20 +28,16 @@
 
   textarea.jason-ai-chat-prompt__textarea {
     border-radius: $base-border-radius;
-    font-size: $base-font-size;
+    font-size: $reading-font-size;
     font-family: $reading-font-family;
     margin-bottom: 0;
     min-height: $input-height;
     max-height: 8rem;
     overflow: hidden;
-    padding: $small-spacing * 0.8;
+    padding: $small-spacing * 0.7;
     padding-left: $small-spacing;
     padding-right: $small-spacing;
     resize: none;
-
-    @media (min-width: $large-screen) {
-      font-size: $base-font-size;
-    }
   }
 }
 

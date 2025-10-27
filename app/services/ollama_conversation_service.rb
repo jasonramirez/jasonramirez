@@ -443,6 +443,26 @@ class OllamaConversationService
     end
   end
 
+  def generate_llm_response_stream(question, context, conversation_context = nil, &block)
+    prompt = build_prompt(question, context, conversation_context)
+    
+    begin
+      messages = [
+        { role: "system", content: system_prompt(conversation_context) },
+        { role: "user", content: prompt }
+      ]
+      
+      @ollama_service.chat_stream(messages, {
+        temperature: 0.7
+      }) do |chunk|
+        yield(chunk)
+      end
+    rescue => e
+      Rails.logger.error "Ollama streaming API error: #{e.message}"
+      yield("I'm sorry, I couldn't generate a response at the moment.")
+    end
+  end
+
   def system_prompt(conversation_context = nil)
     base_prompt = <<~PROMPT
       You are Jason Ramirez, a Product Design Director with extensive experience in product design, leadership, and strategic thinking.
