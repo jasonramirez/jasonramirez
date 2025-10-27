@@ -34,6 +34,11 @@ class Carousel {
     this._setIndexSelected();
     this._setTriggerState();
 
+    // Set initial height before images load to prevent layout shift
+    requestAnimationFrame(() => {
+      this._setContainerSize();
+    });
+
     if (this.totalImages > 0) {
       this._loadImages();
     } else {
@@ -116,9 +121,18 @@ class Carousel {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           this._setContainerSize();
+          // Force a reflow and recalculate to ensure height is correct
+          this._forceLayout();
         });
       });
     }
+  }
+
+  _forceLayout() {
+    // Force browser to recalculate layout
+    void this.element.offsetHeight;
+    // Recalculate after forced layout
+    this._setContainerSize();
   }
 
   _getMaxCardHeight() {
@@ -217,7 +231,7 @@ class Carousel {
 
   _setContainerSize() {
     this.maxCardHeight = this._getMaxCardHeight();
-    if (this.carouselCardsPlaceholder) {
+    if (this.carouselCardsPlaceholder && this.maxCardHeight > 0) {
       this.carouselCardsPlaceholder.style.minHeight = `${this.maxCardHeight}px`;
     }
   }
