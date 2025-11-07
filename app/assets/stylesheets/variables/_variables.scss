@@ -56,16 +56,10 @@ $title-line-height: 1.125;
 $reading-line-height: 1.6;
 $sky-label-line-height: 1.6;
 
-// Other Sizes
+// Border Radii
 $base-border-radius: 0.75rem;
-$button-border-radius: $base-border-radius;
-$input-height: 3.2rem;
-$reading-paragraph-spacing: 1.5rem;
-$navigation-height: 8rem;
-$navigation-height-mobile: 5rem;
-$sidebar-width: 10rem;
-$jason-ai-chat-prompt-height: 5rem;
-$small-border-radius: 0.25rem;
+$large-border-radius: 1.5rem;
+$x-large-border-radius: 3rem;
 
 // Spacing
 $xx-small-spacing: 0.25rem;
@@ -92,10 +86,6 @@ $base-timing: ease;
 $base-border-style: solid;
 $base-border-width: 1px;
 
-// Forms
-$input-padding: 1rem;
-$sky-labels-animation-duration: $base-duration;
-
 // Z-index
 $z-index-flashes: 4;
 $z-index-floating-actions: 3;
@@ -111,3 +101,15 @@ $medium-screen: 600px;
 $large-screen: 900px;
 $x-large-screen: 1240px;
 $xx-large-screen: 1560px;
+
+// Variables in components
+$input-padding: 1rem;
+$sky-labels-animation-duration: $base-duration;
+$button-border-radius: $base-border-radius;
+$input-height: 3.2rem;
+$reading-paragraph-spacing: 1.5rem;
+$navigation-height: 8rem;
+$navigation-height-mobile: 5rem;
+$sidebar-width: 10rem;
+$jason-ai-chat-prompt-height: 5rem;
+$small-border-radius: 0.25rem;

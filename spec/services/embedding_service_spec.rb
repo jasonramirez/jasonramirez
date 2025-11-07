@@ -9,7 +9,7 @@ RSpec.describe EmbeddingService, type: :service do
         {
           "data" => [
             {
-              "embedding" => Array.new(1536) { rand(-1.0..1.0) }
+              "embedding" => Array.new(EmbeddingService::EMBEDDING_DIMENSION) { rand(-1.0..1.0) }
             }
           ]
         }
@@ -26,7 +26,7 @@ RSpec.describe EmbeddingService, type: :service do
         result = service.generate_embedding("Test text for embedding")
         
         expect(result).to be_an(Array)
-        expect(result.length).to eq(1536)
+        expect(result.length).to eq(EmbeddingService::EMBEDDING_DIMENSION)
         expect(result.all? { |val| val.is_a?(Numeric) }).to be true
       end
       
@@ -35,7 +35,7 @@ RSpec.describe EmbeddingService, type: :service do
         allow(OpenAI::Client).to receive(:new).and_return(client)
         expect(client).to receive(:embeddings).with(
           parameters: {
-            model: "text-embedding-3-small",
+            model: EmbeddingService::MODEL_NAME,
             input: "Test text"
           }
         ).and_return(mock_response)

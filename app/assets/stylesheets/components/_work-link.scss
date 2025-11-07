@@ -24,12 +24,15 @@
 .work-link__image-container {
   aspect-ratio: 16 / 9;
   border-bottom: 0;
-  border-radius: $base-border-radius;
   display: flex;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   width: 100%;
+}
+
+.work-link__image {
+  border-radius: $large-border-radius;
 }
 
 .work-link__title {

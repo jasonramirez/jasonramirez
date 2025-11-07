@@ -1,4 +1,7 @@
 class EmbeddingService
+  MODEL_NAME = "text-embedding-3-large".freeze
+  EMBEDDING_DIMENSION = 3072
+
   def initialize
     api_key = ENV['OPENAI_API_KEY']
     raise "OpenAI API key not configured" if api_key.blank?
@@ -15,7 +18,7 @@ class EmbeddingService
     begin
       response = @client.embeddings(
         parameters: {
-          model: "text-embedding-3-small",
+          model: MODEL_NAME,
           input: cleaned_text
         }
       )
@@ -36,7 +39,7 @@ class EmbeddingService
     begin
       response = @client.embeddings(
         parameters: {
-          model: "text-embedding-3-small",
+          model: MODEL_NAME,
           input: cleaned_texts
         }
       )

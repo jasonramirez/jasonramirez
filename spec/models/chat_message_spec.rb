@@ -111,7 +111,7 @@ RSpec.describe ChatMessage, type: :model do
         # Create message with embedding by directly setting the embedding
         message_with_embedding = create(:chat_message, chat_user: user)
         # Use raw SQL to set a vector embedding since we have the column
-        embedding_array = Array.new(1536, 0.1) # Create a test embedding
+        embedding_array = Array.new(EmbeddingService::EMBEDDING_DIMENSION, 0.1)
         formatted_embedding = "[#{embedding_array.join(',')}]"
         ActiveRecord::Base.connection.execute(
           "UPDATE chat_messages SET content_embedding = '#{formatted_embedding}' WHERE id = #{message_with_embedding.id}"
@@ -158,7 +158,7 @@ RSpec.describe ChatMessage, type: :model do
           saved_message = create(:chat_message)
           
           # Manually set an embedding using raw SQL to simulate existing embedding
-          embedding_array = Array.new(1536, 0.2) # Create a test embedding  
+          embedding_array = Array.new(EmbeddingService::EMBEDDING_DIMENSION, 0.2)
           formatted_embedding = "[#{embedding_array.join(',')}]"
           ActiveRecord::Base.connection.execute(
             "UPDATE chat_messages SET content_embedding = '#{formatted_embedding}' WHERE id = #{saved_message.id}"
@@ -180,7 +180,7 @@ RSpec.describe ChatMessage, type: :model do
         it "calls EmbeddingService" do
           embedding_service = instance_double(EmbeddingService)
           allow(EmbeddingService).to receive(:new).and_return(embedding_service)
-          allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
+          allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(EmbeddingService::EMBEDDING_DIMENSION, 0.1))
 
           saved_message.generate_embedding
 
@@ -191,7 +191,7 @@ RSpec.describe ChatMessage, type: :model do
         it "updates the content_embedding column" do
           embedding_service = instance_double(EmbeddingService)
           allow(EmbeddingService).to receive(:new).and_return(embedding_service)
-          allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(1536, 0.1))
+          allow(embedding_service).to receive(:generate_embedding).and_return(Array.new(EmbeddingService::EMBEDDING_DIMENSION, 0.1))
 
           saved_message.generate_embedding
           saved_message.reload

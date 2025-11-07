@@ -12,7 +12,7 @@ RSpec.describe ConversationService, type: :service do
     allow(client_double).to receive(:embeddings).and_return({
       "data" => [
         {
-          "embedding" => Array.new(1536, 0.1)
+          "embedding" => Array.new(EmbeddingService::EMBEDDING_DIMENSION, 0.1)
         }
       ]
     })
