@@ -3,37 +3,65 @@ class Admins::DocumentsController < ApplicationController
   layout 'admin'
   
   def index
-    @documents = available_documents
+    @documents = Document.order(:title)
   end
   
   def show
-    @document = params[:document]
-    
-    # Check if the document template exists
-    unless document_file_exists?(@document)
-      redirect_to admins_documents_path, alert: "Document not found"
-      return
+    @document = find_document
+    render layout: 'documents'
+  end
+
+  def new
+    @document = Document.new
+  end
+
+  def create
+    @document = Document.new(document_params)
+
+    if @document.save
+      redirect_to edit_admins_document_path(@document),
+        notice: t("admins.flash.created")
+    else
+      redirect_to new_admins_document_path,
+        alert: t("admins.flash.failed")
     end
-    
-    # Render the specific document template with the documents layout
-    render template: "admins/documents/#{@document}", layout: 'documents'
+  end
+
+  def edit
+    @document = find_document
+  end
+
+  def update
+    @document = find_document
+
+    if @document.update(document_params)
+      redirect_to edit_admins_document_path(@document),
+        notice: t("admins.flash.updated")
+    else
+      redirect_to edit_admins_document_path(@document),
+        alert: t("admins.flash.failed")
+    end
+  end
+
+  def destroy
+    document = find_document
+
+    if document.destroy
+      redirect_to admins_documents_path,
+        notice: t("admins.flash.destroyed")
+    else
+      redirect_to edit_admins_document_path(document),
+        alert: t("admins.flash.failed")
+    end
   end
   
   private
   
-  def available_documents
-    Dir.glob(documents_base_path.join('*.html.erb'))
-       .map { |file| File.basename(file, '.html.erb') }
-       .reject { |name| name == 'index' }
-       .sort
+  def find_document
+    Document.friendly.find(params[:id])
   end
-  
-  def document_file_exists?(document_name)
-    path = documents_base_path.join("#{document_name}.html.erb")
-    File.exist?(path)
-  end
-  
-  def documents_base_path
-    Rails.root.join('app', 'views', 'admins', 'documents')
+
+  def document_params
+    params.require(:document).permit(:title, :content_markdown)
   end
 end

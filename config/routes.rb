@@ -20,10 +20,6 @@ Rails.application.routes.draw do
   delete "chat/logout", to: "chat_auth#logout", as: :chat_logout
 
   get "admin", to: "admins/posts#index"
-  
-  namespace :admins do
-    resources :documents, only: [:index, :show], param: :document
-  end
   get "chat/login", to: "chat_auth#login", as: :chat_login
   get "chat/register", to: "chat_auth#register", as: :chat_register
   get "feed.json", to: "posts#feed", format: :json
@@ -57,7 +53,7 @@ Rails.application.routes.draw do
         patch :approve
       end
     end
-    resources :documents, only: [:index, :show], param: :document
+    resources :documents
   end
 
   # Redirects for old URLs that may have been indexed or bookmarked

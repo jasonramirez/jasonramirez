@@ -27,6 +27,17 @@
   }
 }
 
+.admin-post-item__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+
+  a {
+    margin-left: $x-small-spacing;
+  }
+}
+
 .admin-post-item__published-status {
   align-items: center;
   display: flex;

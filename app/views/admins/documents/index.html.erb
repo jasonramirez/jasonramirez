@@ -2,14 +2,36 @@
   <h1>Documents</h1>
   
   <div class="u-margin-bottom-large">
-    <span><%= @documents.count %> documents</span>
+    <span><%= pluralize(@documents.count, "document") %></span>
   </div>
 
   <% if @documents.any? %>
     <% @documents.each do |document| %>
       <div class="admin-post-item">
+        <div class="admin-post-item__time">
+          <time>
+            <%= document.updated_at.strftime("%-m/%-d/%y") %>
+          </time>
+        </div>
+
         <div class="admin-post-item__title">
-          <%= link_to document.humanize, admins_document_path(document),class: "link"%>
+          <%= link_to edit_admins_document_path(document) do %>
+            <%= document.title %>
+          <% end %>
+        </div>
+
+        <div class="admin-post-item__actions">
+          <%= link_to admins_document_path(document),
+            target: "_blank",
+            data: { turbo: false } do %>
+            <%= inline_svg "icon-preview.svg", height: "16", width: "16" %>
+          <% end %>
+          
+          <%= link_to admins_document_path(document), 
+            data: { turbo_method: :delete, 
+                    turbo_confirm: "Are you sure you want to delete this document?" } do %>
+            <%= inline_svg "icon-trashcan.svg", height: "16", width: "16" %>
+          <% end %>
         </div>
       </div>
     <% end %>

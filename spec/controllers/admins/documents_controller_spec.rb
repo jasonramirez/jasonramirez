@@ -113,11 +113,13 @@ RSpec.describe Admins::DocumentsController, type: :controller do
     let(:document) { create(:document) }
 
     it "returns a successful response" do
+      document.reload # Ensure slug is set
       get :edit, params: { id: document.slug }
       expect(response).to be_successful
     end
 
     it "assigns the requested document" do
+      document.reload # Ensure slug is set
       get :edit, params: { id: document.slug }
       expect(assigns(:document)).to eq(document)
     end

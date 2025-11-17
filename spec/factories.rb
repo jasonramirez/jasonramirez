@@ -94,4 +94,9 @@ FactoryBot.define do
       end
     end
   end
+
+  factory :document do
+    title { "Test Document" }
+    content_markdown { "# Test Document\n\nThis is a **test** document." }
+  end
 end

@@ -72,11 +72,51 @@ RSpec.describe "Admin routes", type: :routing do
       expect(get: "/admins/documents").to route_to(controller: "admins/documents", action: "index")
     end
 
-    it "routes GET /admins/documents/:document to admins/documents#show" do
+    it "routes GET /admins/documents/new to admins/documents#new" do
+      expect(get: "/admins/documents/new").to route_to(controller: "admins/documents", action: "new")
+    end
+
+    it "routes POST /admins/documents to admins/documents#create" do
+      expect(post: "/admins/documents").to route_to(controller: "admins/documents", action: "create")
+    end
+
+    it "routes GET /admins/documents/:id to admins/documents#show" do
       expect(get: "/admins/documents/resume").to route_to(
         controller: "admins/documents", 
         action: "show", 
-        document: "resume"
+        id: "resume"
+      )
+    end
+
+    it "routes GET /admins/documents/:id/edit to admins/documents#edit" do
+      expect(get: "/admins/documents/resume/edit").to route_to(
+        controller: "admins/documents", 
+        action: "edit", 
+        id: "resume"
+      )
+    end
+
+    it "routes PATCH /admins/documents/:id to admins/documents#update" do
+      expect(patch: "/admins/documents/resume").to route_to(
+        controller: "admins/documents", 
+        action: "update", 
+        id: "resume"
+      )
+    end
+
+    it "routes PUT /admins/documents/:id to admins/documents#update" do
+      expect(put: "/admins/documents/resume").to route_to(
+        controller: "admins/documents", 
+        action: "update", 
+        id: "resume"
+      )
+    end
+
+    it "routes DELETE /admins/documents/:id to admins/documents#destroy" do
+      expect(delete: "/admins/documents/resume").to route_to(
+        controller: "admins/documents", 
+        action: "destroy", 
+        id: "resume"
       )
     end
   end

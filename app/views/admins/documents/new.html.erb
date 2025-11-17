@@ -1,0 +1,25 @@
+<section class="content content--medium">
+  <%= link_to admins_documents_path,
+    class: "button button--square button--secondary", 
+    data: { turbo_frame: "_top" } do %>
+    <%= inline_svg_tag "icon-arrow-left.svg" %>
+  <% end %>
+
+  <div class="u-margin-top-medium">
+    <h1>New Document</h1>
+
+    <%= simple_form_for [:admins, @document] do |f| %>
+      <%= f.input :title %>
+
+      <%= f.input :content_markdown,
+        input_html: {
+          "data-controller": "flexible-textarea",
+          "data-js-flexible-textarea": "",
+          placeholder: "Markdown content"
+        } %>
+
+      <%= f.button :submit, "Create Document", class: "button button--primary" %>
+    <% end %>
+  </div>
+</section>
+
