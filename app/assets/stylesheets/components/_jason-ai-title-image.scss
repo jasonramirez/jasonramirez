@@ -6,10 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("jason-ai-background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: $action-color;
   border-radius: $base-border-radius;
   height: 10vh;
   margin-bottom: $x-large-spacing;
