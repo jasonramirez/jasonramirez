@@ -34,9 +34,12 @@ class Carousel {
     this._setIndexSelected();
     this._setTriggerState();
 
-    // Set initial height before images load to prevent layout shift
-    requestAnimationFrame(() => {
-      this._setContainerSize();
+    // Wait for fonts before measuring heights to prevent layout shift from text reflow
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    fontsReady.then(() => {
+      requestAnimationFrame(() => {
+        this._setContainerSize();
+      });
     });
 
     if (this.totalImages > 0) {
@@ -117,12 +120,13 @@ class Carousel {
   _onImageLoad() {
     this.imagesLoaded++;
     if (this.imagesLoaded >= this.totalImages) {
-      // Use requestAnimationFrame to ensure layout is fully rendered
-      requestAnimationFrame(() => {
+      const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+      fontsReady.then(() => {
         requestAnimationFrame(() => {
-          this._setContainerSize();
-          // Force a reflow and recalculate to ensure height is correct
-          this._forceLayout();
+          requestAnimationFrame(() => {
+            this._setContainerSize();
+            this._forceLayout();
+          });
         });
       });
     }

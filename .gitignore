@@ -1,8 +1,9 @@
-!.keep
+**/.keep
 *.DS_Store
 *.swo
 *.swp
 /.bundle
+/.env
 /.env.local
 /coverage/*
 /db/*.sqlite3
