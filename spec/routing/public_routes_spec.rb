@@ -29,10 +29,6 @@ RSpec.describe "Public routes", type: :routing do
     it "routes GET /works to works#index" do
       expect(get: "/works").to route_to(controller: "works", action: "index")
     end
-
-    it "routes GET /works/:work to works#show" do
-      expect(get: "/works/sample-work").to route_to(controller: "works", action: "show", work: "sample-work")
-    end
   end
 
   describe "protected works routes" do

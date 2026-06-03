@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get "privacy_and_terms", to: "privacy_and_terms#index"
   get "sitemap.xml", to: "sitemaps#show", format: :xml
   get "works", to: "works#index"
-  get "works/:work", to: "works#show"
 
   namespace "admins" do
     resources :posts

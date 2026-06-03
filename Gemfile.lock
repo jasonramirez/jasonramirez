@@ -297,10 +297,6 @@ GEM
     recipient_interceptor (0.3.3)
       mail
     redcarpet (3.6.1)
-    redis (5.4.1)
-      redis-client (>= 0.22.0)
-    redis-client (0.25.3)
-      connection_pool
     regexp_parser (2.11.2)
     reline (0.6.3)
       io-console (~> 0.5)
@@ -435,7 +431,6 @@ DEPENDENCIES
   rails-controller-testing
   recipient_interceptor
   redcarpet
-  redis
   rouge-rails
   rspec-rails
   rspec_junit_formatter

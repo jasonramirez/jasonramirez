@@ -38,10 +38,6 @@ class Post < ActiveRecord::Base
     published || "not-published"
   end
 
-  def published_state
-    published ? "Published" : "Not Published"
-  end
-
   private
 
   def update_post_text

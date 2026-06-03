@@ -17,17 +17,4 @@ RSpec.describe "Works", type: :request do
       expect(response.body).to include("html")
     end
   end
-
-  describe "GET /works/:work" do
-    it "shows individual work" do
-      get "/works/dropbox_keeping_flow"
-      expect(response).to be_successful
-    end
-
-    it "handles nonexistent work" do
-      expect {
-        get "/works/nonexistent_work"
-      }.to raise_error(ActionView::Template::Error)
-    end
-  end
 end

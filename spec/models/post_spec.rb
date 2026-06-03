@@ -36,24 +36,6 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    describe "#published_state" do
-      context "when published" do
-        let(:post) { create(:post, published: true) }
-        
-        it "returns 'Published'" do
-          expect(post.published_state).to eq("Published")
-        end
-      end
-
-      context "when not published" do
-        let(:post) { create(:post, published: false) }
-        
-        it "returns 'Not Published'" do
-          expect(post.published_state).to eq("Not Published")
-        end
-      end
-    end
-
     describe "#slug" do
       it "generates a URL-friendly slug from title" do
         expect(post.slug).to eq("test-post")
