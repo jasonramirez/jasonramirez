@@ -2,7 +2,7 @@ class SitemapPingJob < ActiveJob::Base
   queue_as :default
 
   def perform
-    sitemap_url = "https://www.jasonramirez.com/sitemap.xml"
+    sitemap_url = "https://jasonramirez.com/sitemap.xml"
     
     search_engines = [
       "https://www.google.com/ping?sitemap=#{sitemap_url}",

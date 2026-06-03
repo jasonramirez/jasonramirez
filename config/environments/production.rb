@@ -30,26 +30,9 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
-  # Redirect non-www to www subdomain
-  config.middleware.insert_before Rack::Runtime, Rack::Rewrite do
-    # 1) Force HTTPS for requests that already hit 'www'
-    r301 %r{.*},
-      'https://www.jasonramirez.com$&',
-      :if => proc { |env|
-        env['HTTP_HOST'] == 'www.jasonramirez.com' &&
-        env['HTTP_X_FORWARDED_PROTO'] != 'https'
-      }
-
-    # 2) Canonical host: anything NOT 'www.jasonramirez.com' -> 
-    # 'https://www.jasonramirez.com'
-    # (covers apex, herokuapp, or any other host)
-    r301 %r{.*},
-      'https://www.jasonramirez.com$&',
-      :if => proc { |env|
-        host = env['HTTP_HOST'] || env['SERVER_NAME']
-        host != 'www.jasonramirez.com'
-      }
-  end
+  # Canonical host is the apex (jasonramirez.com). Render's edge redirects
+  # www -> apex; the app serves the apex directly. http -> https is handled
+  # by config.force_ssl above, so no host-rewrite middleware is needed.
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
