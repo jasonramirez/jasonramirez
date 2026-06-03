@@ -1,31 +1,4 @@
 FactoryBot.define do
-  factory :additional_knowledge do
-    title { "Sample Additional Knowledge" }
-    content { "This is sample content for additional knowledge testing." }
-  end
-
-  factory :knowledge_chunk do
-    association :knowledge_item
-    content { "This is sample chunk content about design principles and best practices." }
-    chunk_index { 0 }
-    chunk_type { "semantic" }
-    title { "Sample Knowledge Chunk" }
-    category { "Blog Post" }
-    tags { "#design, #principles, #process" }
-    confidence_score { 0.9 }
-    source { "post_123" }
-    last_updated { 1.day.ago }
-  end
-
-  factory :knowledge_item do
-    title { "Sample Knowledge Item" }
-    content { "This is sample content for testing knowledge base functionality." }
-    category { "Blog Post" }
-    tags { "#design, #process" }
-    source { "post_123" }
-    confidence_score { 0.9 }
-  end
-
   factory :post_tag do
     text { "MyString" }
   end
@@ -58,42 +31,5 @@ FactoryBot.define do
   end
 
   factory :interest do
-  end
-
-  factory :chat_user do
-    name { "Test User" }
-    email { "test#{SecureRandom.hex(8)}@example.com" }
-    password { "password123" }
-    approved { true }
-    login_expires_at { 48.hours.from_now }
-    
-    # Don't set password for traits that shouldn't trigger encryption
-    trait :without_expiration do
-      login_expires_at { nil }
-    end
-  end
-
-  factory :chat_message do
-    association :chat_user
-    content { "Hello, this is a test message." }
-    message_type { "question" }
-    
-    trait :answer do
-      message_type { "answer" }
-      content { "This is a response from the AI assistant." }
-    end
-    
-    trait :with_embedding do
-      after(:create) do |message|
-        embedding = Array.new(EmbeddingService::EMBEDDING_DIMENSION, 0.1)
-        # Now that we have neighbor gem, we can update embeddings in tests
-        message.update_column(:content_embedding, "[#{embedding.join(',')}]")
-      end
-    end
-  end
-
-  factory :document do
-    title { "Test Document" }
-    content_markdown { "# Test Document\n\nThis is a **test** document." }
   end
 end

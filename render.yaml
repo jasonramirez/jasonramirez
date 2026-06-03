@@ -4,19 +4,16 @@
 # Migrated from Heroku. Maps:
 #   web dyno     -> web service (Puma)
 #   release task -> preDeployCommand (rails db:migrate)
-#   Heroku PG    -> Render Postgres (enable pgvector: CREATE EXTENSION vector;)
+#   Heroku PG    -> Render Postgres
 #
 # Worker and Redis intentionally omitted: no app/channels (Action Cable unused)
 # and no configured queue adapter (Active Job defaults to :async, in-process).
-#
-# After first deploy, open a shell on the web service and run once:
-#   bin/rails runner "ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS vector')"
-# (or psql into the DB and run: CREATE EXTENSION IF NOT EXISTS vector;)
+# pgvector no longer needed — the jason.ai/embeddings feature was removed.
 
 databases:
   - name: jasonramirez-db
     databaseName: jasonramirez_production
-    plan: basic-256mb        # pgvector requires a paid plan (not free). Bump as needed.
+    plan: basic-256mb        # bump as needed
     postgresMajorVersion: "17"   # match local source DB (17.9) — can't restore v17 dump into v16
 
 services:
@@ -56,9 +53,6 @@ services:
         generateValue: true
       # --- Secrets: set values in the Render dashboard (sync: false = prompt).
       #     Only vars actually referenced in the code are listed. ---
-      # AI (OpenAI: embeddings + chat) — required
-      - key: OPENAI_API_KEY
-        sync: false
       # Email (SMTP) — required at boot (ENV.fetch in production.rb)
       - key: SMTP_ADDRESS
         sync: false

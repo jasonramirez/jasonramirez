@@ -29,13 +29,6 @@
         <%= link_to t("navigation.philosophy"), philosophy_path %>
       </li>
 
-      <li class="navigation-primary__link">
-        <%= link_to jason_ai_path do %>
-          <%= t("navigation.jason_ai") %>
-          <span class="badge badge--jason-ai badge--small">Beta</span>
-        <% end %> 
-      </li>
-
       <li class="navigation-primary__link" data-navigation-target="themeSwitcher">
         <div data-action="click->theme#toggle"
             class="theme-toggle-button">

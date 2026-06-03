@@ -137,26 +137,14 @@ GEM
       dotenv (= 3.1.8)
       railties (>= 6.1)
     drb (2.2.3)
-    elevenlabs (0.0.8)
-      faraday (~> 2.0)
-      faraday-multipart (~> 1.1)
     erb (5.0.2)
     erubi (1.13.1)
-    event_stream_parser (1.0.0)
     execjs (2.10.0)
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faraday (2.13.4)
-      faraday-net_http (>= 2.0, < 3.5)
-      json
-      logger
-    faraday-multipart (1.1.1)
-      multipart-post (~> 2.0)
-    faraday-net_http (3.4.1)
-      net-http (>= 0.5.0)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     flutie (2.2.1)
@@ -192,7 +180,6 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.13.2)
     launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -214,11 +201,6 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
-    multipart-post (2.4.1)
-    neighbor (0.6.0)
-      activerecord (>= 7.1)
-    net-http (0.6.0)
-      uri
     net-imap (0.5.10)
       date
       net-protocol
@@ -237,7 +219,6 @@ GEM
     orm_adapter (0.5.0)
     pg (1.6.2-arm64-darwin)
     pg (1.6.2-x86_64-linux)
-    pgvector (0.3.2)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -351,10 +332,6 @@ GEM
     rspec-support (3.13.5)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    ruby-openai (8.3.0)
-      event_stream_parser (>= 0.3.0, < 2.0.0)
-      faraday (>= 1)
-      faraday-multipart (>= 1)
     rubyzip (3.1.0)
     sass-embedded (1.92.1-arm64-darwin)
       google-protobuf (~> 4.31)
@@ -440,7 +417,6 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   dotenv-rails
-  elevenlabs
   factory_bot_rails
   flutie
   formulaic
@@ -450,10 +426,8 @@ DEPENDENCIES
   hotwire-livereload
   importmap-rails
   launchy
-  neighbor
   normalize-rails (~> 3.0.0)
   pg
-  pgvector
   propshaft
   pry-byebug
   pry-rails
@@ -469,7 +443,6 @@ DEPENDENCIES
   rouge-rails
   rspec-rails
   rspec_junit_formatter
-  ruby-openai
   selenium-webdriver
   shoulda-matchers
   simple_form

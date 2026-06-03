@@ -49,27 +49,6 @@ RSpec.configure do |config|
   config.before(:each) do
     # Reset FactoryBot sequences to prevent unique constraint violations
     FactoryBot.rewind_sequences
-    
-    # Skip ChatMessage embedding generation in tests to avoid transaction conflicts
-    begin
-      allow_any_instance_of(ChatMessage).to receive(:should_generate_embedding?).and_return(false)
-    rescue NameError, ActiveRecord::StatementInvalid
-      # Ignore if ChatMessage model isn't loaded yet or database issues
-    end
-  end
-
-  # Stub OpenAI embeddings API to prevent real API calls during tests
-  config.before(:each, type: :feature) do
-    stub_request(:post, "https://api.openai.com/v1/embeddings")
-      .to_return(
-        status: 200,
-        body: {
-          data: [
-            { embedding: Array.new(EmbeddingService::EMBEDDING_DIMENSION) { rand(-1.0..1.0) } }
-          ]
-        }.to_json,
-        headers: { 'Content-Type' => 'application/json' }
-      )
   end
 end
 
@@ -83,7 +62,6 @@ if defined?(Shoulda::Matchers)
   end
 end
 
-# Mock OpenAI API calls in tests
 WebMock.disable_net_connect!(allow_localhost: true)
 
 # Skip automatic schema maintenance in CI to avoid database conflicts
@@ -92,9 +70,6 @@ unless ENV["CI"] || ENV["CIRCLECI"]
     ActiveRecord::Migration.maintain_test_schema!
   rescue ActiveRecord::PendingMigrationError => e
     puts "Running pending migrations for test database..."
-    # Enable pgvector extension first (requires superuser)
-    system("RAILS_ENV=test rails runner \"ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS vector;')\"")
-    # Run migrations
     system("RAILS_ENV=test rails db:migrate")
     ActiveRecord::Migration.maintain_test_schema!
   end

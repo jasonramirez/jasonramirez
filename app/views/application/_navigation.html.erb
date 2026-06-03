@@ -3,9 +3,7 @@
   data-navigation-drawer-closed-class="navigation-drawer--closed"
   data-action="keydown@window->navigation-drawer#keydown">
 
-  <% unless controller_name == 'jason_ai' %>
-    <%= render "navigation_primary" %>
-  <% end %>
+  <%= render "navigation_primary" %>
 
   <%= render "navigation_drawer" %>
 </div>
