@@ -5,7 +5,6 @@ RSpec.describe Admin, type: :model do
     it "includes expected devise modules" do
       expect(Admin.devise_modules).to include(:database_authenticatable)
       expect(Admin.devise_modules).to include(:registerable)
-      expect(Admin.devise_modules).to include(:recoverable)
       expect(Admin.devise_modules).to include(:rememberable)
       expect(Admin.devise_modules).to include(:validatable)
     end

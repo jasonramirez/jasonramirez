@@ -53,15 +53,6 @@ services:
         generateValue: true
       # --- Secrets: set values in the Render dashboard (sync: false = prompt).
       #     Only vars actually referenced in the code are listed. ---
-      # Email (SMTP) — required at boot (ENV.fetch in production.rb)
-      - key: SMTP_ADDRESS
-        sync: false
-      - key: SMTP_DOMAIN
-        sync: false
-      - key: SMTP_USERNAME
-        sync: false
-      - key: SMTP_PASSWORD
-        sync: false
       # Admin lockup gate
       - key: LOCKUP_CODEWORD
         sync: false
