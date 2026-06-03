@@ -3,10 +3,11 @@
 #
 # Migrated from Heroku. Maps:
 #   web dyno     -> web service (Puma)
-#   worker dyno  -> background worker (delayed_job)
 #   release task -> preDeployCommand (rails db:migrate)
 #   Heroku PG    -> Render Postgres (enable pgvector: CREATE EXTENSION vector;)
-#   Heroku Redis -> Render Key Value
+#
+# Worker and Redis intentionally omitted: no app/channels (Action Cable unused)
+# and no configured queue adapter (Active Job defaults to :async, in-process).
 #
 # After first deploy, open a shell on the web service and run once:
 #   bin/rails runner "ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS vector')"
@@ -36,11 +37,6 @@ services:
       - key: DATABASE_URL
         fromDatabase:
           name: jasonramirez-db
-          property: connectionString
-      - key: REDIS_URL
-        fromService:
-          type: keyvalue
-          name: jasonramirez-redis
           property: connectionString
       - key: RAILS_ENV
         value: production
@@ -97,64 +93,3 @@ services:
       # Misc
       - key: LOCKUP_CODEWORD
         sync: false
-
-  # ---------------------------------------------------------------------------
-  # Worker (delayed_job)
-  # ---------------------------------------------------------------------------
-  - type: worker
-    name: jasonramirez-worker
-    runtime: ruby
-    plan: starter
-    branch: main
-    buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec rake jobs:work"
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: jasonramirez-db
-          property: connectionString
-      - key: REDIS_URL
-        fromService:
-          type: keyvalue
-          name: jasonramirez-redis
-          property: connectionString
-      - key: RAILS_ENV
-        value: production
-      - key: RACK_ENV
-        value: production
-      - key: SECRET_KEY_BASE
-        fromService:
-          type: web
-          name: jasonramirez-web
-          envVarKey: SECRET_KEY_BASE
-      # delayed_job processes deliver_later mailers, so it needs SMTP + host too.
-      - key: APPLICATION_HOST
-        sync: false
-      - key: OPENAI_API_KEY
-        sync: false
-      - key: ELEVENLABS_API_KEY
-        sync: false
-      - key: ELEVENLABS_DEFAULT_VOICE_ID
-        sync: false
-      - key: SMTP_ADDRESS
-        sync: false
-      - key: SMTP_DOMAIN
-        sync: false
-      - key: SMTP_USERNAME
-        sync: false
-      - key: SMTP_PASSWORD
-        sync: false
-      - key: MAILCHIMP_API_KEY
-        sync: false
-      - key: MAILCHIMP_LIST_ID
-        sync: false
-      - key: NEW_RELIC_LICENSE_KEY
-        sync: false
-
-  # ---------------------------------------------------------------------------
-  # Redis / Key Value
-  # ---------------------------------------------------------------------------
-  - type: keyvalue
-    name: jasonramirez-redis
-    plan: starter
-    ipAllowList: []          # only reachable from your Render services
