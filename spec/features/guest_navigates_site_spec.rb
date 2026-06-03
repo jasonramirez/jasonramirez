@@ -48,18 +48,4 @@ RSpec.feature "Guest navigates site" do
       end
     end
   end
-
-  context "from the footer navigation" do
-    describe "clicking on follow" do
-      it "takes you to the follow page" do
-        visit root_path
-
-        within ".site-footer" do
-          click_link t("navigation.follow")
-        end
-
-        expect(page).to have_text t("followers.new.sign_up")
-      end
-    end
-  end
 end

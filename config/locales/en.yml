@@ -34,16 +34,8 @@ en:
         submit: Sign in
         sign_in: Sign In
 
-  followers:
-    new:
-      sign_up: Sign up to be notified of new posts and case studies
-      submit: Sign up
-      success: Thanks for signing up!
-
   helpers:
     submit:
-      follower:
-        create: Sign up
       hashtag:
         create: Create Hashtag
         update: Save Changes
@@ -60,7 +52,6 @@ en:
   navigation:
     admin: Admin
     works: Work
-    follow: Follow
     home: Jason Ramirez
     posts: Posts
     process: Process
@@ -76,8 +67,6 @@ en:
       piggy: Piggy
       tinysplash: Tinysplash
     process: Process
-    followers:
-      new: Follow
 
   works:
     works_navigation:

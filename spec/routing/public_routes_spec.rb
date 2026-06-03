@@ -45,16 +45,6 @@ RSpec.describe "Public routes", type: :routing do
     end
   end
 
-  describe "followers routes" do
-    it "routes GET /followers/new to followers#new" do
-      expect(get: "/followers/new").to route_to(controller: "followers", action: "new")
-    end
-
-    it "routes POST /followers to followers#create" do
-      expect(post: "/followers").to route_to(controller: "followers", action: "create")
-    end
-  end
-
   describe "password protection routes" do
     it "routes GET /password_protection/unlock to password_protection#unlock" do
       expect(get: "/password_protection/unlock").to route_to(

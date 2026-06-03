@@ -68,11 +68,6 @@ services:
         sync: false
       - key: SMTP_PASSWORD
         sync: false
-      # Newsletter (Mailchimp) — required when signup path runs
-      - key: MAILCHIMP_API_KEY
-        sync: false
-      - key: MAILCHIMP_LIST_ID
-        sync: false
       # Admin lockup gate
       - key: LOCKUP_CODEWORD
         sync: false

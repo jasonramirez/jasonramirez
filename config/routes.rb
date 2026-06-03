@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
-  resources :followers, only: [:new, :create]
   resources :posts, only: [:index, :show] do
     collection do
       get :search

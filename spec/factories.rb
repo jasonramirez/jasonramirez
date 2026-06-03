@@ -60,9 +60,6 @@ FactoryBot.define do
   factory :interest do
   end
 
-  factory :follower do
-  end
-
   factory :chat_user do
     name { "Test User" }
     email { "test#{SecureRandom.hex(8)}@example.com" }
