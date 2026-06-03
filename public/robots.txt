@@ -6,4 +6,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.jasonramirez.com/sitemap.xml
+Sitemap: https://jasonramirez.com/sitemap.xml
