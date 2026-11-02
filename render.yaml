@@ -4,17 +4,14 @@
 # Migrated from Heroku. Maps:
 #   web dyno     -> web service (Puma)
 #   release task -> preDeployCommand (rails db:migrate)
-#   Heroku PG    -> Render Postgres
+#   Heroku PG    -> Neon Postgres (external; not managed by this Blueprint)
+#
+# Database: hosted on Neon (Postgres 17, AWS us-west-2). DATABASE_URL is set
+# in the Render dashboard to Neon's direct (non-pooled) connection string.
 #
 # Worker and Redis intentionally omitted: no app/channels (Action Cable unused)
 # and no configured queue adapter (Active Job defaults to :async, in-process).
 # pgvector no longer needed — the jason.ai/embeddings feature was removed.
-
-databases:
-  - name: jasonramirez-db
-    databaseName: jasonramirez_production
-    plan: basic-256mb        # bump as needed
-    postgresMajorVersion: "17"   # match local source DB (17.9) — can't restore v17 dump into v16
 
 services:
   # ---------------------------------------------------------------------------
@@ -32,9 +29,7 @@ services:
     autoDeploy: true
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: jasonramirez-db
-          property: connectionString
+        sync: false            # Neon direct connection string, set in dashboard
       - key: RAILS_ENV
         value: production
       - key: RACK_ENV
