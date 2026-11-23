@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
+  # Health check for Render; does not touch the database.
+  get "up" => "rails/health#show", as: :rails_health_check
+
   resources :posts, only: [:index, :show] do
     collection do
       get :search

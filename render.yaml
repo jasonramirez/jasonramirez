@@ -25,7 +25,7 @@ services:
     buildCommand: "./bin/render-build.sh"
     preDeployCommand: "bundle exec rails db:migrate"
     startCommand: "bundle exec puma -C ./config/puma.rb"
-    healthCheckPath: /
+    healthCheckPath: /up        # no DB query, lets Neon scale to zero
     autoDeploy: true
     envVars:
       - key: DATABASE_URL
