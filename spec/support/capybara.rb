@@ -32,3 +32,17 @@ Capybara.javascript_driver = :selenium_chrome_headless
 # Configure Capybara
 Capybara.default_max_wait_time = 10
 Capybara.server = :puma, { Silent: true }
+
+# Chrome 158+ rejects the wildcard origin Capybara 3.40 passes to
+# Storage.clearDataForOrigin on session reset ("* is not a valid URL").
+# Clear cookies browser-wide and storage for the app server's origin instead.
+module ChromeStorageClearOriginFix
+  def execute_cdp(cmd, params = {})
+    return super unless cmd == "Storage.clearDataForOrigin" && params[:origin] == "*"
+
+    super("Network.clearBrowserCookies")
+    server = Capybara.current_session.server
+    super(cmd, params.merge(origin: server.base_url)) if server
+  end
+end
+Capybara::Selenium::Driver::ChromeDriver.prepend(ChromeStorageClearOriginFix)
